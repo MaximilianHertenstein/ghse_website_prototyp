@@ -4,7 +4,7 @@ description: "Berufsvorbereitung an der GHSE Emmendingen: AV-K, AV-Dual, VABO un
 kategorie: "Vollzeitschularten"
 kurz: "Eine besondere Stärke vieler Schüler liegt im praktischen Arbeiten. Für das Erlernen theoretischer Inhalte benötigen sie häufig mehr Zeit."
 abschluss: "AV-K: Zusatzprüfung, die dem Hauptschulabschluss entspricht"
-bild: "/bilder/avk-home.jpg"
+bild: "/bilder/avk-home.webp"
 bildAlt: "Frisch gebackene Schnecken auf einem weißen Teller"
 extern: "https://www.ghse.de/schularten/vollzeitschularten/berufsvorbereitung/"
 weight: 70

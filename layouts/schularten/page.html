@@ -34,7 +34,9 @@
   <aside class="seitenleiste" aria-labelledby="blick-{{ .File.UniqueID }}">
     {{ with .Params.bild }}
       <figure class="seitenleiste__bild">
-        <img src="{{ . | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="614" height="537" loading="lazy">
+        {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .)) }}
+        <img src="{{ $.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
+        {{ end }}
       </figure>
     {{ end }}
 

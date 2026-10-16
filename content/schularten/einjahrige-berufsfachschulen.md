@@ -3,7 +3,7 @@ title: "Einjährige Berufsfachschulen"
 description: "Die einjährigen Berufsfachschulen der GHSE Emmendingen in Holztechnik, Metalltechnik und Kfz-Technik als Einstieg in die Ausbildung."
 kategorie: "Vollzeitschularten"
 kurz: "Die Einjährigen Berufsfachschulen sind die ideale Voraussetzung, um sich ein Bild über die jeweiligen Ausbildungsschwerpunkte zu machen."
-bild: "/bilder/1bf.jpg"
+bild: "/bilder/1bf.webp"
 bildAlt: "Schüler bedient eine Maschine mit Bedienpult in der Werkstatt"
 extern: "https://www.ghse.de/schularten/vollzeitschularten/1-jaehrige-berufsfachschulen/"
 weight: 60

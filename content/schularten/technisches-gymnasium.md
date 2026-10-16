@@ -4,7 +4,7 @@ description: "Das Technische Gymnasium der GHSE Emmendingen: Mechatronik/Technik
 kategorie: "Vollzeitschularten"
 kurz: "Technisches Grundlagenwissen aus den Bereichen Maschinenbau, Elektrotechnik, Informatik und BWL und dazu noch das allgemeinbildende Abitur?"
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"
-bild: "/bilder/tg-home.jpg"
+bild: "/bilder/tg-home.webp"
 bildAlt: "Elektronische Platine mit integrierten Schaltkreisen, Kabelbaum und Leuchtdioden"
 weight: 10
 downloads:

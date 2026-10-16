@@ -605,6 +605,7 @@ summary:focus-visible {
 
 .partner {
   display: block; max-width: 760px; width: 100%; margin-top: 1.75rem;
+  aspect-ratio: 1023 / 494; object-fit: contain;
   border: var(--rahmen); background: var(--weiss);
 }
 

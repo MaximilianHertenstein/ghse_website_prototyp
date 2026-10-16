@@ -3,7 +3,7 @@ title: "Pflege"
 description: "Ausbildung in der Pflege an der GHSE Emmendingen: Berufsschule, Berufsfachschulen und Blockpläne für Altenpflegehilfe und Generalistik."
 kategorie: "Teilzeitschularten"
 kurz: "Sie sind an einem Pflegeberuf interessiert? Sie möchten Verantwortung für Menschen übernehmen, fachlich fundiert pflegen, begleiten und beraten?"
-bild: "/bilder/pflege.jpg"
+bild: "/bilder/pflege.webp"
 bildAlt: "Zwei Pflegeschülerinnen mit Mundschutz üben die Versorgung einer Puppe im Pflegelabor"
 extern: "https://www.ghse.de/schularten/teilzeitschularten/pflege/"
 weight: 40

@@ -1,7 +1,9 @@
 <article class="karte">
   <a class="karte__link" href="{{ .RelPermalink }}">
     <figure class="karte__bild">
-      <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="614" height="537" loading="lazy">
+      {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .Params.bild)) }}
+      <img src="{{ $.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
+      {{ end }}
     </figure>
     <div class="karte__koerper">
       <p class="marke">{{ .Params.kategorie }}</p>

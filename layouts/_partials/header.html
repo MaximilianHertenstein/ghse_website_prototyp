@@ -17,7 +17,9 @@
 
   <div class="container kopf__innen">
     <a class="marke-link" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} – zur Startseite">
-      <img src="{{ "bilder/logo.png" | relURL }}" alt="GHSE – Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen" width="487" height="232">
+      {{ with imageConfig "static/bilder/logo.webp" }}
+      <img src="{{ "bilder/logo.webp" | relURL }}" alt="GHSE – Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen" width="{{ .Width }}" height="{{ .Height }}">
+      {{ end }}
     </a>
 
     <button class="menueknopf" type="button" data-menu-button aria-expanded="false" aria-controls="hauptmenue">

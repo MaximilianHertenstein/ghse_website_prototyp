@@ -4,7 +4,7 @@ description: "Das Sozialwissenschaftliche Gymnasium (SG) der GHSE Emmendingen: d
 kategorie: "Vollzeitschularten"
 kurz: "Das Berufliche Gymnasium der dreijährigen Aufbauform bereitet die Schülerinnen und Schüler auf das Studium an der Hochschule und – durch seine fachlichen Ausrichtungen – in besonderer Weise auf das Berufsleben vor."
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"
-bild: "/bilder/sg.jpg"
+bild: "/bilder/sg.webp"
 bildAlt: "Schülerinnen und Schüler ziehen bei einer Übung im Freien gemeinsam an Seilen"
 extern: "https://www.ghse.de/schularten/vollzeitschularten/sozgymnasium/"
 weight: 20

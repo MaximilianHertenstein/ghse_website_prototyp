@@ -15,6 +15,8 @@ Voraussetzung: Hugo **v0.146 oder neuer** (getestet mit `v0.166.0+extended`).
 hugo server -D        # Entwicklung: http://localhost:1313
 hugo                   # Produktionsbau nach public/
 hugo server            # public/ lokal ansehen: hugo server -s public ...
+python3 tools/preview-server.py   # public/ so ausliefern wie GitHub Pages
+                                   # (Keep-Alive + gzip, Port 1314)
 ```
 
 Es gibt keine npm-/PostCSS-Toolchain: CSS, JS und Schrift liegen fertig unter
@@ -75,7 +77,7 @@ Beiträge; die Startseite listet wie im Original die fünf neuesten.
 **Instagram:** Die GHSE betreibt auf ihrer Startseite einen Feed mit acht
 Accounts und vier aktuellen Beiträgen. Der Originalseite lädt diese Beiträge
 per JavaScript nach; im Prototyp liegen die vier Bilder statisch unter
-`static/bilder/insta-*.jpg` (aus den öffentlichen Embed-Seiten der Beiträge
+`static/bilder/insta-*.webp` (aus den öffentlichen Embed-Seiten der Beiträge
 gelesen) und werden mit der Kurzfassung der Bildunterschrift verlinkt –
 ohne Einbettung, ohne Drittanbieter-Skript. Für eine spätere Laufzeit muss
 dieser Block einmalig aktualisiert werden; die acht Account-Links bleiben
@@ -152,6 +154,7 @@ layouts/            baseof.html, home.html, 404.html
   downloads/        section.html
 assets/downloads/   Original-PDFs (Hugo veröffentlicht sie als /downloads/*.pdf)
 static/             css/main.css, js/nav.js, fonts/, bilder/, favicon.svg
+tools/              preview-server.py (Mess-Server: Keep-Alive + gzip wie GitHub Pages)
 public/             gebaute Website (nicht eingecheckt, siehe .gitignore)
 recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingecheckt)
 ```
@@ -184,13 +187,28 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * Responsive: Breakpoints 1000/900/640 px – Karten- und Zeilenraster stapeln
   sich, Navigation wird zum Aufklappmenü, Download-Zeilen werden zu
   Vollbreiten-Karten mit großem Button.
-* Links: 62 interne Ziele im Gebuild geprüft (alle vorhanden), 52 externe
+* Links: 62 interne Seitenziele sowie alle eingebundenen Bilder, Schriften
+  und PDFs geprüft (344 Ziele gesamt, alle vorhanden), 52 externe
   Links alle `HTTP 200` – darunter die 9 öffentlichen Nextcloud-Terminkalender,
   12 Instagram-Links (8 Accounts, 4 Beiträge), BewO, Moodle, OSM,
   Impressum/Datenschutz und die Berufsinformations-Beiträge.
-* Lighthouse (mobil, Produktionsbau `public/`): Accessibility 100,
-  Best Practices 100, SEO 100, Performance 91 (CLS 0, TBT 0). Bilder sind
-  auf ihre Anzeigegröße optimiert, Hero mit `fetchpriority="high"`.
+* Lighthouse: Performance mobil **99** (LCP 2,0 s, CLS 0, TBT 30 ms),
+  Desktop **100** (LCP 0,4 s); Accessibility, Best Practices und SEO
+  überall 100. Gemessen wurde gegen `tools/preview-server.py`, der wie
+  GitHub Pages mit Keep-Alive und gzip antwortet – das mitgelieferte
+  `python3 -m http.server` verkettet Anfragen nicht und bläht damit jedes
+  Ergebnis künstlich auf.
+* Performance-Optimierungen: alle Inhaltsbilder als WebP (die 18 Bilder der
+  Startseite von 1738 KB auf 998 KB, davon lädt Lighthouse im mobilen Lauf
+  447 KiB, der Rest lädt lazy unterhalb des Bildschirms), passend zur
+  Anzeigegröße skaliert (Mobil: 384 CSS-px × 1,75 DPR), Hero auf 4:3
+  beschnitten, weil die CSS-Box (`aspect-ratio: 4/3`, `object-fit: cover`)
+  die Seiten ohnehin abschneidet, Hero-Preload im `<head>`, `imageConfig`
+  liefert für jedes Bild echte `width/height`-Maße (verhindert
+  Layoutverschiebungen).
+  Bewusst nicht optimiert: der Hero ließe sich mit ~20 KB auf 100 bringen,
+  wäre dann aber auf hochauflösenden Displays sichtbar weicher – 99 mit
+  scharfem Bild ist hier der bessere Deal.
 
 ---
 

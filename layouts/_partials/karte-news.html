@@ -2,7 +2,9 @@
 <article class="karte karte--news">
   <a class="karte__link" href="{{ $p.RelPermalink }}">
     <figure class="karte__bild karte__bild--zeitung">
-      <img src="{{ $p.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $p.Params.bildAlt }}" loading="lazy" decoding="async">
+      {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" $p.Params.bild)) }}
+      <img src="{{ $p.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $p.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+      {{ end }}
     </figure>
     <div class="karte__koerper">
       <p class="meta">

@@ -3,7 +3,7 @@ title: "Startseite"
 description: "GHSE Emmendingen – Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen. Vom Hauptschulabschluss bis zum Abitur, Berufsausbildung in Metall, Holz, Elektro, Kfz und Pflege."
 titel: "Wir machen Schule für alle"
 untertitel: "Eine Schule und für viele gleichzeitig viele Schulen: vom Hauptschulabschluss über die mittlere Reife und die Fachhochschulreife bis zum Abitur."
-bild: "/bilder/hero-schule.jpg"
+bild: "/bilder/hero-schule.webp"
 bildAlt: "Das Schulgebäude der GHSE in Emmendingen mit dem gelb markierten Gebäudeübergang, umgeben von Bäumen und Wiesen"
 
 # Termine: öffentliche Kalender pro Schulart (Nextcloud der GHSE)
@@ -74,19 +74,19 @@ insta_kanaele:
 
 # Vier aktuelle Beiträge des Schaccounts (Bilder lokal abgelegt, Text = Kurzfassung der Bildunterschrift)
 insta_beitraege:
-  - bild: "/bilder/insta-DeejyIyJqqe.jpg"
+  - bild: "/bilder/insta-DeejyIyJqqe.webp"
     bildAlt: "Junge Menschen vor dem Stand der GHSE auf der Job-Start-Börse, mit verschenkten Taschen und Daumen hoch"
     text: "Wir waren offiziell für die Berufsorientierung da… inoffiziell für den ultimativen Goodie-Haul."
     url: "https://www.instagram.com/reel/DeejyIyJqqe/"
-  - bild: "/bilder/insta-DecBRp3iO_f.jpg"
+  - bild: "/bilder/insta-DecBRp3iO_f.webp"
     bildAlt: "Grafik mit der Aufschrift „Wichtige Termine – Pflegschaftsabende 2026“ und den Terminen 15. und 21. Oktober 2026"
     text: "Korrektur zu unserem letzten Post!"
     url: "https://www.instagram.com/p/DecBRp3iO_f/"
-  - bild: "/bilder/insta-DeWUI5SJjcz.jpg"
+  - bild: "/bilder/insta-DeWUI5SJjcz.webp"
     bildAlt: "Luftaufnahme eines Sandstrands mit Schriftzug „Surfcamp“"
     text: "Unsere 13. Klassen (SG & TG) haben auf ihrer letzten Studienfahrt noch mal alles mitgenommen: Surfkurs, Sandburgen-Contest und jede Menge gute Laune, bevor es im Frühjahr ernst wird."
     url: "https://www.instagram.com/reel/DeWUI5SJjcz/"
-  - bild: "/bilder/insta-DePZHzwOTyk.jpg"
+  - bild: "/bilder/insta-DePZHzwOTyk.webp"
     bildAlt: "Grafik „GHSE on Tour“ mit den Terminen der Job-Start-Börse in Emmendingen und Waldkirch"
     text: "Besuch die GHSE auf der Job-Start-Börse 2026!"
     url: "https://www.instagram.com/p/DePZHzwOTyk/"
@@ -95,14 +95,14 @@ insta_beitraege:
 schulleben_text: "Alles, was rund um die GHSE passiert: Schulleben, Angebote für Schülerinnen und Schüler und die Seiten der Lehrer/innen."
 schulleben_url: "https://www.ghse.de/schueler-schulleben-lehrer/"
 schulleben_bilder:
-  - bild: "/bilder/schulleben-1.jpg"
+  - bild: "/bilder/schulleben-1.webp"
     bildAlt: "Hafenbecken mit Segelbooten und abgestellten Fahrrädern im Abendlicht"
-  - bild: "/bilder/schulleben-2.jpg"
+  - bild: "/bilder/schulleben-2.webp"
     bildAlt: "Luftaufnahme von Küste und Wolken aus großer Höhe"
-  - bild: "/bilder/schulleben-3.jpg"
+  - bild: "/bilder/schulleben-3.webp"
     bildAlt: "Großer Hallenraum mit aufgestellten Tischen und Stühlen"
 
 # Partner der Schule (Logostreifen der Originalseite)
-partner_bild: "/bilder/partner.jpg"
+partner_bild: "/bilder/partner.webp"
 partner_alt: "Logostreifen der Partner der GHSE Emmendingen"
 ---

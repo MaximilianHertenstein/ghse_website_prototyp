@@ -4,7 +4,7 @@ description: "Die zweijährigen Berufsfachschulen der GHSE Emmendingen in Metall
 kategorie: "Vollzeitschularten"
 kurz: "Ein attraktives Angebot für interessierte und begabte Schüler/innen der Werkrealschule, die einen mittleren Bildungsabschluss machen und die Chancen am Arbeitsmarkt erhöhen wollen."
 abschluss: "Fachschulreife (Mittlere Reife)"
-bild: "/bilder/2bf.jpg"
+bild: "/bilder/2bf.webp"
 bildAlt: "Schüler mit Schutzbrille an einer Metallbearbeitungsmaschine in der Werkstatt"
 extern: "https://www.ghse.de/schularten/vollzeitschularten/2-jaehrige-berufsfachschule/"
 weight: 30

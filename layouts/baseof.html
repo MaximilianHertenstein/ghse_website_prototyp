@@ -11,6 +11,7 @@
   {{ with .Params.bild }}<meta property="og:image" content="{{ . | strings.TrimPrefix "/" | absURL }}">{{ end }}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 <body>

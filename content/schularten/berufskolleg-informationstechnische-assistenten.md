@@ -4,7 +4,7 @@ description: "Das zweijährige Berufskolleg für Informationstechnische Assisten
 kategorie: "Vollzeitschularten"
 kurz: "Die Digitalisierung ist eine der großen Herausforderungen unserer Gesellschaft. Um diese zu meistern, werden viele und gut ausgebildete Fachkräfte im Bereich der Informationstechnik benötigt."
 abschluss: "Staatlich anerkannter Beruf als Technischer Assistent, zusätzlich Fachhochschulreife möglich"
-bild: "/bilder/2bkik.jpg"
+bild: "/bilder/2bkik.webp"
 bildAlt: "Übersicht zum Fachunterricht mit hohem Labor- und Praxisanteil: Programmier-, Informations- und Kommunikationstechnik"
 extern: "https://www.ghse.de/schularten/vollzeitschularten/berufskollegs/2bkik/"
 weight: 50

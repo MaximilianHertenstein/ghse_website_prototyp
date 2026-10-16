@@ -3,7 +3,7 @@ title: "Berufsschule"
 description: "Die Berufsschule der GHSE Emmendingen als duale Partnerin von Handwerk und Industrie mit den Bereichen Bautechnik, Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik und Metalltechnik."
 kategorie: "Teilzeitschularten"
 kurz: "Die Berufsschule ist als Partner von Handwerk und Industrie konzipiert – die Berufsschule ist der duale Partner der Betriebe."
-bild: "/bilder/bs.jpg"
+bild: "/bilder/bs.webp"
 bildAlt: "Druckversuch an einem Betonwürfel im Labor für Bautechnik"
 extern: "https://www.ghse.de/schularten/teilzeitschularten/bs/"
 weight: 35
