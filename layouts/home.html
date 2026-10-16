@@ -1,0 +1,230 @@
+{{ define "inhalt" }}
+<div class="hero">
+  <div class="container hero__innen">
+    <div class="hero__text">
+      <p class="kicker">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
+      <h1 class="hero__titel">{{ .Params.titel }}</h1>
+      <p class="hero__unter">{{ .Params.untertitel }}</p>
+      <p class="hero__knoepfe">
+        <a class="btn btn--akzent" href="{{ "schularten/" | relURL }}">Schularten entdecken</a>
+        <a class="btn btn--hell" href="{{ "downloads/" | relURL }}">Downloads &amp; Anmeldung</a>
+      </p>
+      <ul class="hero__punkte">
+        <li>Hauptschulabschluss</li>
+        <li>Mittlere Reife</li>
+        <li>FH-Reife</li>
+        <li>Abitur</li>
+        <li>Berufsausbildung</li>
+      </ul>
+    </div>
+    <figure class="hero__bild">
+      <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="900" height="599" fetchpriority="high" decoding="async">
+    </figure>
+  </div>
+</div>
+
+<div class="faktenband">
+  <div class="container faktenband__innen">
+    <span>UNESCO-Projektschule</span>
+    <span aria-hidden="true">/</span>
+    <span>MINT-Schule</span>
+    <span aria-hidden="true">/</span>
+    <span>Technisches &amp; Sozialwissenschaftliches Gymnasium</span>
+    <span aria-hidden="true">/</span>
+    <span>Berufsausbildung in Metall, Holz, Elektro, KfZ und Pflege</span>
+  </div>
+</div>
+
+<section class="band band--papier" aria-labelledby="home-schularten">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Bildungsangebote</p>
+        <h2 id="home-schularten">Schularten entdecken</h2>
+      </div>
+      <a class="btn btn--geist" href="{{ "schularten/" | relURL }}">Alle Schularten</a>
+    </div>
+    <div class="raster raster--3">
+      {{ range first 3 (sort (where site.RegularPages "Section" "schularten") "Weight") }}
+        {{ partial "karte-schulart.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="band band--nacht" aria-labelledby="home-news">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Aus der Schule</p>
+        <h2 id="home-news">Aktuelles</h2>
+      </div>
+      <a class="btn btn--geist" href="{{ "news/" | relURL }}">Alle Meldungen</a>
+    </div>
+    <div class="raster raster--3">
+      {{ range first 5 (sort (where site.RegularPages "Section" "news") "Date" "desc") }}
+        {{ partial "karte-news.html" (dict "seite" .) }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="band band--papier" aria-labelledby="home-termine">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Schuljahresplaner</p>
+        <h2 id="home-termine">Termine</h2>
+      </div>
+    </div>
+    <p class="band__einleitung">{{ .Params.termine_text }}</p>
+    <ul class="kalenderliste">
+      {{ range .Params.termine }}
+      <li class="kalender">
+        <span class="kalender__name">{{ .name }}</span>
+        <a class="linkpfeil" href="{{ .url }}">Kalender öffnen<span aria-hidden="true">↗</span></a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<section class="band band--streifen" aria-labelledby="home-beruf">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Oberstufe &amp; Ausbildung</p>
+        <h2 id="home-beruf">Berufs- und Studieninformation</h2>
+      </div>
+      <a class="btn btn--geist" href="{{ .Params.berufsinfo_mehr }}">Noch mehr Infos</a>
+    </div>
+    <ul class="infoliste">
+      {{ range .Params.berufsinfo }}
+      <li class="infozeile">
+        <p class="meta"><span class="marke">{{ .datum }}</span></p>
+        <h3 class="infozeile__titel">{{ .titel }}</h3>
+        <p class="infozeile__text">{{ .teaser }}</p>
+        <a class="linkpfeil" href="{{ .url }}">Weiterlesen<span aria-hidden="true">↗</span></a>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<section class="band band--nacht" aria-labelledby="home-insta">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Social Media</p>
+        <h2 id="home-insta">Die GHSE bei Instagram</h2>
+      </div>
+      <a class="btn btn--geist" href="https://www.instagram.com/ghse_emmendingen/">ghse_emmendingen folgen</a>
+    </div>
+    <p class="band__einleitung">{{ .Params.insta_text }}</p>
+    <ul class="instaraster">
+      {{ range .Params.insta_beitraege }}
+      <li class="instabeitrag">
+        <a class="instabeitrag__link" href="{{ .url }}">
+          <figure class="instabeitrag__bild">
+            <img src="{{ .bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .bildAlt }}" loading="lazy" decoding="async">
+          </figure>
+          <div class="instabeitrag__koerper">
+            <p class="meta"><span aria-hidden="true">@</span>ghse_emmendingen</p>
+            <p class="instabeitrag__text">{{ .text }}</p>
+            <span class="karte__aktion">Beitrag ansehen <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    <h3 class="konten__titel">Weitere Accounts</h3>
+    <ul class="konten">
+      {{ range .Params.insta_kanaele }}
+      <li><a class="chip" href="{{ .url }}">@{{ .name }} <span>{{ .beschreibung }}</span></a></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<section class="band band--akzent" aria-labelledby="home-downloads">
+  <div class="container cta">
+    <div>
+      <p class="kicker kicker--dunkel">Formulare, Flyer, Pläne</p>
+      <h2 id="home-downloads">Alles zum Download an einem Ort</h2>
+      <p class="cta__text">Flyer zu allen Schularten, Blockpläne und Wochenpläne, Oberstufen­informationen, Anmelde­unterlagen und die Hausordnung – sortiert nach Kategorie, mit Dateiformat und Größe.</p>
+      <a class="btn btn--dunkel" href="{{ "downloads/" | relURL }}">Zum Downloadbereich</a>
+    </div>
+    <ul class="cta__liste" aria-label="Beispiele aus dem Downloadbereich">
+      <li>Hausordnung <span>PDF</span></li>
+      <li>Wochenplan 2026/27 <span>PDF</span></li>
+      <li>Flyer Technisches Gymnasium <span>PDF</span></li>
+      <li>Ablaufplan BewO <span>PDF</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--papier" id="service" aria-labelledby="home-service">
+  <div class="container">
+    <p class="kicker">Service &amp; Kontakt</p>
+    <h2 id="home-service">Über die GHSE</h2>
+    <ul class="serviceliste">
+      <li class="service">
+        <h3>Krankmelden</h3>
+        <p>Online-Abmeldung für Eltern und Schülerinnen und Schüler.</p>
+        <a class="linkpfeil" href="https://www.ghse.de/online-abmelden/">Abmelden<span aria-hidden="true">↗</span></a>
+      </li>
+      <li class="service">
+        <h3>Untis</h3>
+        <p>Immer den (hoffentlich) aktuellen Stundenplan auf dem Smartphone. Mit der App von UNTIS oder über unsere Webseite.</p>
+        <a class="linkpfeil" href="https://www.ghse.de/ekb">Stundenplan öffnen<span aria-hidden="true">↗</span></a>
+      </li>
+      <li class="service">
+        <h3>Immer ein offenes Ohr</h3>
+        <p>Schüler können jederzeit ins offene Lehrerzimmer kommen oder unkompliziert Gesprächstermine vereinbaren.</p>
+        <a class="linkpfeil" href="tel:{{ site.Params.telefonLink }}">Sekretariat anrufen<span aria-hidden="true">↗</span></a>
+      </li>
+      <li class="service">
+        <h3>Digitales Lernen</h3>
+        <p>Gemeinsam arbeiten und Dateien tauschen: nextcloud@ghse und moodle@ghse.</p>
+        <a class="linkpfeil" href="https://www.ghse.de/nextcloud/">Nextcloud<span aria-hidden="true">↗</span></a>
+      </li>
+      <li class="service">
+        <h3>Lehrer-E-Mails</h3>
+        <p>Einfach E-Mail: Jeder Lehrer ist ganz einfach über kuerzel@ghse.de erreichbar – ä, ü, ö und ß werden durch ae, ue, oe und ss ersetzt.</p>
+        <a class="linkpfeil" href="mailto:HierDasKuerzel@ghse.de">Mail schreiben<span aria-hidden="true">↗</span></a>
+      </li>
+      <li class="service">
+        <h3>Anfahrt</h3>
+        <p>Jahnstr. 12-14, 79312 Emmendingen – mit ÖPNV und Auto gut erreichbar.</p>
+        <a class="linkpfeil" href="https://www.openstreetmap.org/directions?route=%3B48.11568%2C7.86042">Route planen<span aria-hidden="true">↗</span></a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--streifen" aria-labelledby="home-schulleben">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Mehr von der Schule</p>
+        <h2 id="home-schulleben">Schüler/innen – Schulleben – Lehrer/innen</h2>
+      </div>
+      <a class="btn btn--geist" href="{{ .Params.schulleben_url }}">Jetzt erkunden</a>
+    </div>
+    <p class="band__einleitung">{{ .Params.schulleben_text }}</p>
+    <ul class="schulleben">
+      {{ range .Params.schulleben_bilder }}
+      <li><img src="{{ .bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .bildAlt }}" loading="lazy" decoding="async"></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+<section class="band band--papier" aria-labelledby="home-partner">
+  <div class="container">
+    <p class="kicker">Zusammenarbeit</p>
+    <h2 id="home-partner">Partner</h2>
+    <img class="partner" src="{{ .Params.partner_bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.partner_alt }}" loading="lazy" decoding="async">
+  </div>
+</section>
+{{ end }}

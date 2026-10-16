@@ -1,0 +1,266 @@
+# Pages CMS – Redaktionskonfiguration für den GHSE-Prototyp
+# Feldnamen entsprechen exakt den Front-Matter-Schlüsseln der Hugo-Templates.
+#
+# media:  wo Uploads landen und welcher öffentliche Pfad in Inhalte geschrieben wird
+#         Bilder  -> static/bilder   -> /bilder/...   (Templates: <img src="{{ .Params.bild }}">)
+#         Dokumente -> assets/downloads -> /downloads/... (Templates: resources.Get + RelPermalink)
+
+media:
+  - name: images
+    label: Bilder
+    input: static/bilder
+    output: /bilder
+    extensions: [png, jpg, jpeg, webp]
+    rename: safe
+  - name: documents
+    label: Dokumente
+    input: assets/downloads
+    output: /downloads
+    categories: [document]
+    rename: false
+
+content:
+  - name: startseite
+    label: Startseite
+    type: file
+    path: content/_index.md
+    fields:
+      - name: titel
+        label: Überschrift (Hero)
+        type: string
+      - name: untertitel
+        label: Unterzeile
+        type: text
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: bild
+        label: Hero-Bild
+        type: image
+        options:
+          media: images
+      - name: bildAlt
+        label: Bildbeschreibung (Alt-Text)
+        type: string
+
+      # Abschnitt „Termine“: öffentliche Kalender pro Schulart
+      - name: termine_text
+        label: Termine – Einleitung
+        type: text
+      - name: termine
+        label: Terminkalender
+        type: list
+        summary: "{{fields.name}}"
+        field:
+          type: object
+          fields:
+            - name: name
+              label: Bezeichnung (z. B. Berufsschule)
+              type: string
+            - name: url
+              label: Link zum Kalender
+              type: string
+
+      # Abschnitt „Berufs- und Studieninformation“
+      - name: berufsinfo
+        label: Berufs- und Studieninformation
+        type: list
+        summary: "{{fields.titel}} ({{fields.datum}})"
+        field:
+          type: object
+          fields:
+            - name: titel
+              label: Titel
+              type: string
+            - name: datum
+              label: Datum (Anzeige)
+              type: string
+            - name: teaser
+              label: Anrisstext
+              type: text
+            - name: url
+              label: Link zum Beitrag
+              type: string
+      - name: berufsinfo_mehr
+        label: Link „Noch mehr Infos“
+        type: string
+
+      # Abschnitt „Die GHSE bei Instagram“
+      - name: insta_text
+        label: Instagram – Einleitung
+        type: text
+      - name: insta_beitraege
+        label: Instagram-Beiträge (4 Kacheln)
+        type: list
+        summary: "{{fields.text}}"
+        field:
+          type: object
+          fields:
+            - name: bild
+              label: Beitragbild
+              type: image
+              options:
+                media: images
+            - name: bildAlt
+              label: Bildbeschreibung (Alt-Text)
+              type: string
+            - name: text
+              label: Bildunterschrift (Kurzfassung)
+              type: text
+            - name: url
+              label: Link zum Beitrag
+              type: string
+      - name: insta_kanaele
+        label: Weitere Instagram-Accounts
+        type: list
+        summary: "@{{fields.name}}"
+        field:
+          type: object
+          fields:
+            - name: name
+              label: Account-Name
+              type: string
+            - name: beschreibung
+              label: Beschreibung
+              type: string
+            - name: url
+              label: Link
+              type: string
+
+      # Abschnitt „Schüler/innen – Schulleben – Lehrer/innen“
+      - name: schulleben_text
+        label: Schulleben – Einleitung
+        type: text
+      - name: schulleben_url
+        label: Link „Jetzt erkunden“
+        type: string
+      - name: schulleben_bilder
+        label: Bilderreihe (3 Bilder)
+        type: list
+        field:
+          type: object
+          fields:
+            - name: bild
+              label: Bild
+              type: image
+              options:
+                media: images
+            - name: bildAlt
+              label: Bildbeschreibung (Alt-Text)
+              type: string
+
+      # Abschnitt „Partner“
+      - name: partner_bild
+        label: Partner-Logostreifen
+        type: image
+        options:
+          media: images
+      - name: partner_alt
+        label: Bildbeschreibung (Alt-Text)
+        type: string
+
+  # Zusätzlich in der Vorlage gerendert, aber bewusst kein CMS-Feld:
+  # "downloads" (Slugs verwandter Dokumente, nur beim Technischen
+  # Gymnasium gesetzt) – steckt in content/schularten/technisches-gymnasium.md.
+  - name: schularten
+    label: Schularten (Inhaltsseiten)
+    type: collection
+    path: content/schularten
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: kategorie
+        label: Schulart-Gruppe
+        type: select
+        options:
+          values: [Vollzeitschularten, Teilzeitschularten]
+      - name: kurz
+        label: Kurzbeschreibung (Karte/Teaser)
+        type: text
+      - name: abschluss
+        label: Abschluss / Ziel
+        type: string
+      - name: bild
+        label: Bild
+        type: image
+        options:
+          media: images
+      - name: bildAlt
+        label: Bildbeschreibung (Alt-Text)
+        type: string
+      - name: extern
+        label: Originalseite (wenn kein Detailinhalt)
+        type: string
+      - name: weight
+        label: Reihenfolge
+        type: number
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  - name: news
+    label: News
+    type: collection
+    path: content/news
+    fields:
+      - name: title
+        label: Überschrift
+        type: string
+      - name: date
+        label: Datum
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: quelle
+        label: Quelle (Medium)
+        type: string
+      - name: quelle_url
+        label: Link zum Originalartikel
+        type: string
+      - name: teaser
+        label: Teaser
+        type: text
+      - name: bild
+        label: Bild / Artikelabbildung
+        type: image
+        options:
+          media: images
+      - name: bildAlt
+        label: Bildbeschreibung (Alt-Text)
+        type: string
+      - name: body
+        label: Nachrichtentext (optional)
+        type: rich-text
+
+  - name: downloads
+    label: Downloads
+    type: collection
+    path: content/downloads
+    fields:
+      - name: title
+        label: Dokumenttitel
+        type: string
+      - name: beschreibung
+        label: Beschreibung
+        type: text
+      - name: kategorie
+        label: Kategorie
+        type: select
+        options:
+          values:
+            - Flyer & Schularten
+            - Termine & Blockpläne
+            - Oberstufe & Abitur
+            - Formulare & Hausordnung
+      - name: datei
+        label: Datei (PDF)
+        type: file
+        options:
+          media: documents
+      - name: weight
+        label: Reihenfolge
+        type: number

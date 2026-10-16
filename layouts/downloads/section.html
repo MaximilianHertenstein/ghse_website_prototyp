@@ -1,0 +1,44 @@
+{{ define "inhalt" }}
+<header class="seitenkopf">
+  <div class="container">
+    <p class="kicker">Formulare, Pläne, Flyer</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="einleitung">{{ . }}</div>{{ end }}
+  </div>
+</header>
+
+{{- $kat := slice -}}
+{{- range .RegularPages }}{{ $kat = $kat | append .Params.kategorie }}{{ end -}}
+{{- $gruppen := sort (uniq $kat) -}}
+
+<nav class="sprungleiste" aria-label="Kategorien">
+  <div class="container">
+    <span class="sprungleiste__label">Sprung zu:</span>
+    <ul>
+      {{ range $gruppen }}
+        <li><a href="#dl-{{ . | anchorize }}">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</nav>
+
+{{- /* Reihenfolge und Darstellung stecken in den Dateien selbst, nicht in der Vorlage. */ -}}
+{{- range $i, $name := $gruppen -}}
+  {{- $gruppe := where $.RegularPages "Params.kategorie" $name -}}
+  <section class="band band--papier{{ if mod $i 2 }} band--gestreift{{ end }}" aria-labelledby="dl-{{ $name | anchorize }}">
+    <div class="container">
+      <div class="kopfzeile">
+        <div>
+          <p class="kicker">Kategorie</p>
+          <h2 id="dl-{{ $name | anchorize }}">{{ $name }} <span class="anzahl">{{ len $gruppe }}</span></h2>
+        </div>
+      </div>
+      <div class="zeilen">
+        {{ range sort $gruppe "Weight" }}
+          {{ partial "zeile-download.html" . }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+{{ end }}

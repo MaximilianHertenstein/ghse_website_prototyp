@@ -1,0 +1,53 @@
+<footer class="fuss">
+  <div class="container fuss__gitter">
+    <section class="fuss__block" aria-labelledby="fuss-kontakt">
+      <h2 id="fuss-kontakt" class="fuss__titel">Kontakt</h2>
+      <address>
+        {{ site.Params.schulname }}<br>
+        {{ site.Params.strasse }}<br>
+        {{ site.Params.ort }}<br>
+        <a href="tel:{{ site.Params.telefonLink }}">Tel. {{ site.Params.telefon }}</a><br>
+        Fax {{ site.Params.fax }}<br>
+        <a href="mailto:{{ site.Params.mail }}">{{ site.Params.mail }}</a>
+      </address>
+    </section>
+
+    <section class="fuss__block" aria-labelledby="fuss-sekretariat">
+      <h2 id="fuss-sekretariat" class="fuss__titel">Sekretariat</h2>
+      <p>Geöffnet:<br>
+        Mo – Do: 7.30 – 12.00 Uhr<br>
+        Mo – Do: 13.00 – 15.30 Uhr<br>
+        Fr: 7.30 – 13.00 Uhr
+      </p>
+    </section>
+
+    <nav class="fuss__block" aria-labelledby="fuss-service">
+      <h2 id="fuss-service" class="fuss__titel">Service</h2>
+      <ul class="fuss__liste">
+        <li><a href="https://www.ghse.de/online-abmelden/">Krankmeldung</a></li>
+        <li><a href="https://www.ghse.de/anfahrt/">Anfahrt</a></li>
+        <li><a href="https://moodle.ghse.de/">Moodle</a></li>
+        <li><a href="https://www.ghse.de/nextcloud/">Nextcloud</a></li>
+        <li><a href="https://www.ghse.de/ekb">Untis / Stundenplan</a></li>
+        <li><a href="https://www.ghse.de/schueler/vertretungsplan/">Vertretungsplan</a></li>
+      </ul>
+    </nav>
+
+    <nav class="fuss__block" aria-labelledby="fuss-rechtliches">
+      <h2 id="fuss-rechtliches" class="fuss__titel">Rechtliches</h2>
+      <ul class="fuss__liste">
+        <li><a href="https://www.ghse.de/rechtliches/impressum/">Impressum</a></li>
+        <li><a href="https://www.ghse.de/rechtliches/datenschutz/">Datenschutz</a></li>
+        <li><a href="https://www.ghse.de/">Originalseite ghse.de</a></li>
+        <li><a href="https://www.instagram.com/ghse_emmendingen/">Instagram</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="fuss__leiste">
+    <div class="container fuss__leisteinnen">
+      <p>© GHSE Emmendingen</p>
+      <p class="fuss__hinweis">Redesign-Prototyp – keine veröffentlichte Website. Texte, Bilder und Dokumente stammen von ghse.de.</p>
+    </div>
+  </div>
+</footer>

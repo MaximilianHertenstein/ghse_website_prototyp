@@ -1,0 +1,44 @@
+<header class="kopf">
+  <div class="leiste">
+    <div class="container leiste__innen">
+      <p class="leiste__adresse">
+        {{ site.Params.strasse }}, {{ site.Params.ort }}
+        <span class="leiste__trenn" aria-hidden="true">·</span>
+        <a href="tel:{{ site.Params.telefonLink }}">{{ site.Params.telefon }}</a>
+      </p>
+      <nav class="leiste__schnell" aria-label="Schnellzugriff">
+        {{ range site.Menus.schnell }}
+          {{ $ziel := .URL }}{{ if hasPrefix $ziel "/" }}{{ $ziel = $ziel | relURL }}{{ end }}
+          <a href="{{ $ziel }}">{{ .Name }}</a>
+        {{ end }}
+      </nav>
+    </div>
+  </div>
+
+  <div class="container kopf__innen">
+    <a class="marke-link" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} – zur Startseite">
+      <img src="{{ "bilder/logo.png" | relURL }}" alt="GHSE – Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen" width="487" height="232">
+    </a>
+
+    <button class="menueknopf" type="button" data-menu-button aria-expanded="false" aria-controls="hauptmenue">
+      <span class="menueknopf__balken" aria-hidden="true"></span>
+      <span class="menueknopf__balken" aria-hidden="true"></span>
+      <span class="menueknopf__balken" aria-hidden="true"></span>
+      <span class="menueknopf__text">Menü</span>
+    </button>
+
+    <nav class="menue" id="hauptmenue" data-menu aria-label="Hauptnavigation">
+      <ul>
+        {{ $seite := . }}
+        {{ range site.Menus.haupt }}
+          {{ $ziel := .URL }}{{ if hasPrefix $ziel "/" }}{{ $ziel = $ziel | relURL }}{{ end }}
+          <li>
+            <a href="{{ $ziel }}"
+               {{ if or ($seite.IsMenuCurrent "haupt" .) ($seite.HasMenuCurrent "haupt" .) }}aria-current="page"{{ end }}>{{ .Name }}</a>
+          </li>
+        {{ end }}
+      </ul>
+      <a class="btn btn--klein btn--akzent menue__cta" href="{{ "downloads/" | relURL }}">Anmelden &amp; Formulare</a>
+    </nav>
+  </div>
+</header>

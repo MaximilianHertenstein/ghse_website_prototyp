@@ -1,0 +1,17 @@
+# Produktionsausgabe – wird bei jedem Push per GitHub Actions neu gebaut.
+/public/
+
+# Hugo-Buildzustand (zeitgestempelt, würde jedes Mal ungleich sein)
+.hugo_build.lock
+
+# Arbeitsmaterial: Screenshots, Lighthouse-Reports und Roh-Extrakte der
+# Originalseite. Nicht Teil der Website – für den Repository-Commit bleibt es
+# lokal. Wer sie mitversionieren will, entfernt die zwei Zeilen.
+/qa/
+/recherche/
+
+# Betriebssystem- und Editor-Reste
+.DS_Store
+Thumbs.db
+*.swp
+*~

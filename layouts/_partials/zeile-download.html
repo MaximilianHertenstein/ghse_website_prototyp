@@ -1,0 +1,38 @@
+{{- $name := path.Base .Params.datei -}}
+{{- $res := resources.Get (printf "downloads/%s" $name) -}}
+{{- $typ := "" -}}
+{{- with $res -}}{{- $typ = .MediaType.SubType | upper -}}{{- end -}}
+{{- /* Größe direkt aus der Datei: Dateien in assets/downloads werden mitgezählt. */ -}}
+{{- $groesse := "" -}}
+{{- range os.ReadDir "assets/downloads" -}}
+  {{- if eq .Name $name -}}
+    {{- if ge .Size 1048576 -}}
+      {{- $t := div (mul .Size 10) 1048576 -}}
+      {{- $groesse = printf "%d,%d MB" (div $t 10) (mod $t 10) -}}
+    {{- else -}}
+      {{- $groesse = printf "%d KB" (div (add .Size 512) 1024) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<article class="zeile">
+  <div class="zeile__text">
+    <h3 class="zeile__titel">{{ .Title }}</h3>
+    {{ with .Params.beschreibung }}<p class="zeile__beschreibung">{{ . }}</p>{{ end }}
+  </div>
+  <p class="zeile__daten">
+    {{ with $res }}
+      <span class="tag tag--akzent" aria-hidden="true">{{ $typ }}</span>
+      {{ with $groesse }}<span class="tag" aria-hidden="true">{{ . }}</span>{{ end }}
+    {{ end }}
+  </p>
+  <p class="zeile__aktion">
+    {{ with $res }}
+      <a class="btn btn--klein btn--akzent" href="{{ .RelPermalink }}" download>
+        Herunterladen
+        <span class="verborgen">: {{ $.Title }} ({{ $typ }}{{ with $groesse }}, {{ . }}{{ end }})</span>
+      </a>
+    {{ else }}
+      <span class="hinweis--warnung">Datei fehlt im Projekt</span>
+    {{ end }}
+  </p>
+</article>

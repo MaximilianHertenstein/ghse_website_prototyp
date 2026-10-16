@@ -1,0 +1,30 @@
+{{ define "inhalt" }}
+<article class="beitrag">
+  <div class="container schmal">
+    <p class="zurueck"><a href="{{ "news/" | relURL }}"><span aria-hidden="true">←</span> Alle Meldungen</a></p>
+
+    <header class="beitrag__kopf">
+      <p class="meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
+        <span aria-hidden="true">·</span>
+        {{ .Params.quelle }}
+      </p>
+      <h1>{{ .Title }}</h1>
+      <p class="lead">{{ .Params.teaser }}</p>
+    </header>
+
+    <figure class="beitrag__bild">
+      <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="1024" height="499">
+      <figcaption>Veröffentlicht von {{ .Params.quelle }} am {{ .Date.Format "02.01.2006" }}.</figcaption>
+    </figure>
+
+    {{ with .Content }}<div class="fliesstext">{{ . }}</div>{{ end }}
+
+    {{ with .Params.quelle_url }}
+      <p class="beitrag__quelle">
+        <a class="btn btn--geist" href="{{ . }}">Weiterlesen bei {{ $.Params.quelle }}<span aria-hidden="true"> ↗</span></a>
+      </p>
+    {{ end }}
+  </div>
+</article>
+{{ end }}

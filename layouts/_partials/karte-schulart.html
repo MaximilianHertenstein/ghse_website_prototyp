@@ -1,0 +1,13 @@
+<article class="karte">
+  <a class="karte__link" href="{{ .RelPermalink }}">
+    <figure class="karte__bild">
+      <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="614" height="537" loading="lazy">
+    </figure>
+    <div class="karte__koerper">
+      <p class="marke">{{ .Params.kategorie }}</p>
+      <h3 class="karte__titel">{{ .Title }}</h3>
+      <p class="karte__text">{{ .Params.kurz }}</p>
+      <span class="karte__aktion">Mehr erfahren <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>

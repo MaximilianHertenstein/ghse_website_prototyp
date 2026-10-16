@@ -1,0 +1,63 @@
+{{ define "inhalt" }}
+<header class="seitenkopf seitenkopf--akzent">
+  <div class="container">
+    <p class="zurueck"><a href="{{ "schularten/" | relURL }}"><span aria-hidden="true">←</span> Alle Schularten</a></p>
+    <p class="marke">{{ .Params.kategorie }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.kurz }}<p class="lead">{{ . }}</p>{{ end }}
+  </div>
+</header>
+
+<div class="container raster--seite">
+  <div class="fliesstext">
+    {{ with .Params.extern }}
+      <div class="hinweis" role="note">
+        <p><strong>Nur als Kurzprofil umgesetzt.</strong> Die vollständige Detailseite zu diesem Bildungsgang ist Teil des späteren Umbaus und in dieser Demo bewusst nicht nachgebaut. Die belegten Angaben finden Sie auf der Originalseite.</p>
+        <a class="btn btn--geist btn--klein" href="{{ . }}">Originalseite ansehen<span aria-hidden="true"> ↗</span></a>
+      </div>
+    {{ end }}
+
+    {{ .Content }}
+
+    {{ with .Params.downloads }}
+      <section class="kasten" aria-labelledby="unterlagen-{{ $.File.UniqueID }}">
+        <h2 id="unterlagen-{{ $.File.UniqueID }}">Downloads zu diesem Bildungsgang</h2>
+        {{ range . }}
+          {{ with site.GetPage (printf "/downloads/%s" .) }}
+            {{ partial "zeile-download.html" . }}
+          {{ end }}
+        {{ end }}
+      </section>
+    {{ end }}
+  </div>
+
+  <aside class="seitenleiste" aria-labelledby="blick-{{ .File.UniqueID }}">
+    {{ with .Params.bild }}
+      <figure class="seitenleiste__bild">
+        <img src="{{ . | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="614" height="537" loading="lazy">
+      </figure>
+    {{ end }}
+
+    <div class="kasten kasten--gelb">
+      <h2 id="blick-{{ .File.UniqueID }}">Auf einen Blick</h2>
+      <dl class="fakten">
+        <dt>Schulart</dt>
+        <dd>{{ .Params.kategorie }}</dd>
+        {{ with .Params.abschluss }}
+          <dt>Abschluss / Ziel</dt>
+          <dd>{{ . }}</dd>
+        {{ end }}
+      </dl>
+      {{ with .Params.extern }}
+        <p><a class="linkpfeil" href="{{ . }}">Informationen der Originalseite<span aria-hidden="true"> ↗</span></a></p>
+      {{ end }}
+      <p><a class="linkpfeil" href="{{ "downloads/" | relURL }}">Alle Downloads<span aria-hidden="true"> ↗</span></a></p>
+      <p class="kasten__kontakt">
+        Sekretariat<br>
+        <a href="tel:{{ site.Params.telefonLink }}">{{ site.Params.telefon }}</a><br>
+        <a href="mailto:{{ site.Params.mail }}">{{ site.Params.mail }}</a>
+      </p>
+    </div>
+  </aside>
+</div>
+{{ end }}

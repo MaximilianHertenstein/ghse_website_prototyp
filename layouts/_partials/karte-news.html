@@ -1,0 +1,18 @@
+{{- $h := .ebene | default "h3" -}}{{- $p := .seite -}}
+<article class="karte karte--news">
+  <a class="karte__link" href="{{ $p.RelPermalink }}">
+    <figure class="karte__bild karte__bild--zeitung">
+      <img src="{{ $p.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $p.Params.bildAlt }}" loading="lazy" decoding="async">
+    </figure>
+    <div class="karte__koerper">
+      <p class="meta">
+        <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "02.01.2006" }}</time>
+        <span aria-hidden="true">·</span>
+        {{ $p.Params.quelle }}
+      </p>
+      {{ printf "<%s class=\"karte__titel\">" $h | safeHTML }}{{ $p.Title }}{{ printf "</%s>" $h | safeHTML }}
+      <p class="karte__text">{{ $p.Params.teaser }}</p>
+      <span class="karte__aktion">Meldung lesen <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>

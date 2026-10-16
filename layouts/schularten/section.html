@@ -1,0 +1,31 @@
+{{ define "inhalt" }}
+<header class="seitenkopf seitenkopf--akzent">
+  <div class="container">
+    <p class="kicker">Bildungsangebote</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="einleitung">{{ . }}</div>{{ end }}
+  </div>
+</header>
+
+{{- /* Die Gruppen entstehen aus den Kategorien der Seiten: neue Kategorien erscheinen automatisch. */ -}}
+{{- $kat := slice -}}
+{{- range .RegularPages }}{{ $kat = $kat | append .Params.kategorie }}{{ end -}}
+{{- range $i, $name := sort (uniq $kat) -}}
+  {{- $gruppe := where $.RegularPages "Params.kategorie" $name -}}
+  <section class="band band--papier{{ if mod $i 2 }} band--gestreift{{ end }}" aria-labelledby="kat-{{ $name | anchorize }}">
+    <div class="container">
+      <div class="kopfzeile">
+        <div>
+          <p class="kicker">Übersicht</p>
+          <h2 id="kat-{{ $name | anchorize }}">{{ $name }} <span class="anzahl">{{ len $gruppe }}</span></h2>
+        </div>
+      </div>
+      <div class="raster raster--3">
+        {{ range sort $gruppe "Weight" }}
+          {{ partial "karte-schulart.html" . }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+{{ end }}

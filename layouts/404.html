@@ -1,0 +1,14 @@
+{{ define "inhalt" }}
+<section class="seitenkopf">
+  <div class="container">
+    <p class="kicker">Fehler 404</p>
+    <h1>Seite nicht gefunden</h1>
+    <p class="lead">Diese Seite gibt es (in diesem Prototyp) nicht. Vielleicht hilft einer der Einstiege weiter.</p>
+    <p class="hero__knoepfe">
+      <a class="btn btn--akzent" href="{{ site.Home.RelPermalink }}">Zur Startseite</a>
+      <a class="btn btn--geist" href="{{ "schularten/" | relURL }}">Alle Schularten</a>
+      <a class="btn btn--geist" href="{{ "downloads/" | relURL }}">Downloads</a>
+    </p>
+  </div>
+</section>
+{{ end }}

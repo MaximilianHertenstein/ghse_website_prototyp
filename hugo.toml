@@ -1,0 +1,63 @@
+# "/" genügt: die Vorlagen bauen alle Pfade mit relURL/relPermalink, die
+# GitHub-Actions-Pipeline überschreibt baseURL mit der echten Seitenadresse.
+baseURL = "/"
+locale = "de-DE"
+defaultContentLanguage = "de"
+title = "GHSE Emmendingen"
+
+[languages.de]
+  label = "Deutsch"
+  weight = 1
+hasCJKLanguage = false
+enableGitInfo = false
+
+# Prototyp: keine Pagination, keine Taxonomien nötig.
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
+
+[params]
+  schulname = "Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen"
+  kurzform = "GHSE Emmendingen"
+  beschreibung = "Vom Hauptschulabschluss bis zum Abitur: Berufsschule, Pflege, Gymnasien, Berufskolleg und Berufsfachschulen unter einem Dach."
+  strasse = "Jahnstr. 12-14"
+  ort = "79312 Emmendingen"
+  telefon = "07641 465 100"
+  telefonLink = "+497641465100"
+  fax = "07641 465 199"
+  mail = "poststelle@ghse.de"
+  sekretariat = "Mo - Do: 7.30 - 12.00 Uhr, Mo - Do: 13.00 - 15.30 Uhr, Fr: 7.30 - 13.00 Uhr"
+
+[menus]
+  [[menus.haupt]]
+    name = "Start"
+    pageRef = "/"
+    weight = 10
+  [[menus.haupt]]
+    name = "Schularten"
+    pageRef = "/schularten"
+    weight = 20
+  [[menus.haupt]]
+    name = "News"
+    pageRef = "/news"
+    weight = 30
+  [[menus.haupt]]
+    name = "Downloads"
+    pageRef = "/downloads"
+    weight = 40
+  [[menus.haupt]]
+    name = "Service"
+    url = "/#service"
+    weight = 50
+
+# Schnellzugriff in der Kopfleiste (echte Links der Originalseite).
+[[menus.schnell]]
+  name = "Krankmelden"
+  url = "https://www.ghse.de/online-abmelden/"
+  weight = 10
+[[menus.schnell]]
+  name = "Mail"
+  url = "mailto:poststelle@ghse.de"
+  weight = 20
+[[menus.schnell]]
+  name = "Anfahrt"
+  url = "https://www.openstreetmap.org/directions?route=%3B48.11568%2C7.86042"
+  weight = 30

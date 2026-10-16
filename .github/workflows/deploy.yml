@@ -1,0 +1,69 @@
+# Baut die Hugo-Seite und stellt sie über GitHub Pages bereit.
+#
+# Die Pipeline rechnet die Zieladresse selbst aus:
+#   Repository "max.github.io"        -> https://max.github.io/
+#   Repository "ghse-prototyp"        -> https://max.github.io/ghse-prototyp/
+# Das funktioniert für Benutzer-, Organisations- und normale Repos gleichermaßen,
+# weil alle Vorlagen Pfade mit relURL/relPermalink erzeugen.
+
+name: Website deployen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Kein paralleler Deploy, aber laufende Deploys werden nicht abgebrochen.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Quellcode holen
+        uses: actions/checkout@v4
+
+      - name: Hugo einrichten
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.166.0'
+          extended: true
+
+      - name: Zieladresse berechnen
+        run: |
+          OWNER="${GITHUB_REPOSITORY%%/*}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "BASE_URL=https://$OWNER.github.io/" >> "$GITHUB_ENV"
+          else
+            echo "BASE_URL=https://$OWNER.github.io/$REPO/" >> "$GITHUB_ENV"
+          fi
+
+      - name: Website bauen
+        run: hugo --baseURL "$BASE_URL"
+
+      - name: Pages-Konfiguration laden
+        uses: actions/configure-pages@v5
+
+      - name: Gebaute Website hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4

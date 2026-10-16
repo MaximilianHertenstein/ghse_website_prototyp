@@ -1,0 +1,19 @@
+{{ define "inhalt" }}
+<header class="seitenkopf">
+  <div class="container">
+    <p class="kicker">Aus der Schule</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="einleitung">{{ . }}</div>{{ end }}
+  </div>
+</header>
+
+<section class="band band--papier">
+  <div class="container">
+    <div class="raster raster--3">
+      {{ range sort .RegularPages "Date" "desc" }}
+        {{ partial "karte-news.html" (dict "seite" . "ebene" "h2") }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
