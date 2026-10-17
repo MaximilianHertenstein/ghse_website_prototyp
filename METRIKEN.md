@@ -13,6 +13,6 @@
 | YL | Yellow Lab Tools | Gesamtscore Performance/Best Practices/SEO (0–100), höher = besser | **96** |
 | MO | MDN/Mozilla Observatory | Sicherheits-Header (0–100 und Note), höher = besser | **50 (C)** |
 
-Letzte Messung: 2026-10-17 10:44 UTC gegen <https://maximilianhertenstein.github.io/ghse_website_prototyp/>
+Letzte Messung: 2026-10-17 11:02 UTC gegen <https://maximilianhertenstein.github.io/ghse_website_prototyp/>
 
-Details: [Yellow-Lab-Tools-Ergebnis](https://yellowlab.tools/result/hnakv624i5) · [MDN Observatory](https://developer.mozilla.org/de/observatory/?host=maximilianhertenstein.github.io)
+Details: [Lighthouse-JSON & Logs der letzten Messung](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/runs/39027140352) · [Yellow-Lab-Tools-Ergebnis](https://yellowlab.tools/result/hnaldn81ms) · [MDN Observatory](https://developer.mozilla.org/de/observatory/?host=maximilianhertenstein.github.io)
