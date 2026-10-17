@@ -1,5 +1,10 @@
 # GHSE Emmendingen – Redesign-Prototyp (Hugo + Pages CMS)
 
+**Live:** [https://maximilianhertenstein.github.io/ghse_website_prototyp/](https://maximilianhertenstein.github.io/ghse_website_prototyp/)
+[![Qualitäts-Metriken](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/workflows/metriken.yml/badge.svg)](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/workflows/metriken.yml)
+– aktuelle Messwerte (Lighthouse, Yellow Lab Tools, Observatory) in
+[METRIKEN.md](METRIKEN.md)
+
 Klickbarer Prototyp für einen Relaunch von [www.ghse.de](https://www.ghse.de/).
 Reduzierter Neobrutalismus (Grundlage: Skill `neobrutalism` aus
 [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
@@ -273,6 +278,26 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Bewusst nicht optimiert: der Hero ließe sich mit ~20 KB auf 100 bringen,
   wäre dann aber auf hochauflösenden Displays sichtbar weicher – 99 mit
   scharfem Bild ist hier der bessere Deal.
+* Automatische Messwerte: Der Workflow
+  [.github/workflows/metriken.yml](.github/workflows/metriken.yml) misst
+  wöchentlich montags (zusätzlich manuell unter „Actions" →
+  „Qualitäts-Metriken" → „Run workflow") gegen die Live-Seite und schreibt
+  die Ergebnisse nach [METRIKEN.md](METRIKEN.md) zurück:
+  **GL** – Google Lighthouse, Durchschnitt der vier Kategorien aus einem
+  mobilen Lauf;
+  **YL** – Yellow Lab Tools Gesamtscore über dessen Public API
+  (Anti-Flood: max. 12 Läufe je 24 Stunden, der wöchentliche Rhythmus
+  bleibt weit darunter);
+  **MO** – MDN/Mozilla Observatory, gelaufen als CLI
+  (`@mdn/mdn-http-observatory`), denn dessen API-Variante kennt keine
+  Unterpfade und scheitert am Host `maximilianhertenstein.github.io`
+  sonst mit 404 an der Seitenwurzel.
+  Die Lighthouse- und Observatory-JSONs landen als Artefakt im jeweiligen
+  Workflow-Lauf. Fällt ein Dienst aus (Quota, Warteschlange, Umbau), wird
+  die betroffene Metrik als „n/a" mit Grund eingetragen, statt den Lauf
+  abzubrechen. Die Observatory-Note fällt dauerhaft mittelmäßig aus, weil
+  die Sicherheits-Header von GitHub Pages zentral gesetzt werden – im
+  Repository lässt sich daran nichts drehen.
 
 ---
 
@@ -289,6 +314,11 @@ baut bei jedem Push nach `main` mit Hugo **0.166.0 (extended)** und stellt
 `public/` über die offiziellen Pages-Actions bereit. Er berechnet die
 Zieladresse selbst: Repos, die auf `<benutzer>.github.io` enden, landen unter
 der Domain-Wurzel, alle anderen unter `/<repo>/`.
+
+Der Workflow [.github/workflows/metriken.yml](.github/workflows/metriken.yml)
+misst zusätzlich wöchentlich gegen die Live-Seite und aktualisiert
+[METRIKEN.md](METRIKEN.md) (Abschnitt 6); sein Commit trägt `[skip ci]`,
+damit kein neuer Deploy entsteht.
 
 ### Einmalig einrichten
 
