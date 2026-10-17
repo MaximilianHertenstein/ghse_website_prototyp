@@ -232,6 +232,22 @@ content:
       - name: bildAlt
         label: Bildbeschreibung (Alt-Text)
         type: string
+      - name: bild2
+        label: Zweite Abbildung (optional)
+        type: image
+        options:
+          media: images
+      - name: bild2Alt
+        label: Bildbeschreibung 2 (optional)
+        type: string
+      - name: bild3
+        label: Dritte Abbildung (optional)
+        type: image
+        options:
+          media: images
+      - name: bild3Alt
+        label: Bildbeschreibung 3 (optional)
+        type: string
       - name: body
         label: Nachrichtentext (optional)
         type: rich-text

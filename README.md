@@ -32,7 +32,7 @@ selbst gehostete Variable-Font, 48 kB).
 | A Landingpage | Hero, Faktenband, 3 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Download-CTA, Über die GHSE (6 Servicekarten), Schulleben, Partner | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Technisches Gymnasium (vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Downloads) | `/schularten/technisches-gymnasium/` |
-| D Newsbereich | Liste mit 6 echten Meldungen + Detailseiten | `/news/` |
+| D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
 | E Downloadbereich | 16 PDFs in 4 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
 
 Die übrigen 7 Schularten sind als **Kurzprofil** umgesetzt: Kurztext, Bild,
@@ -64,15 +64,20 @@ Projektordner geladen und einzeln geprüft.
 | Partner-Logostreifen | `https://www.ghse.de/` (Abschnitt „Partner") |
 | Schularten-Übersicht + Kurzprofile | `https://www.ghse.de/schularten/…` (Teilzeit-/Vollzeitschularten) |
 | Detailseite TG | `https://www.ghse.de/schularten/vollzeitschularten/technisches-gymnasium/` |
-| News (6 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
+| News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |
 
 **Nachrichtentext:** Die Pressebeiträge der GHSE bestehen auf der Originalseite
-aus Überschrift, Quelle + Datum, Teaser, Abbildung (Zeitungsausschnitt) und
-externem Quellenlink. Die Detailseite zeigt genau diese Felder – es wurde
-bewusst kein Text erfunden. Startseite und Newsliste zeigen dieselben
-Beiträge; die Startseite listet wie im Original die fünf neuesten.
+aus Überschrift, Quelle + Datum, Teaser, Abbildung(en) (Zeitungsausschnitte)
+und externem Quellenlink – ohne Fließtext. Die Detailseite zeigt genau diese
+Felder; es wurde bewusst kein Text erfunden. Die Vollständigkeit wurde gegen
+die Presse-Sitemap von ghse.de geprüft (160 Beiträge): alle zehn Beiträge mit
+Pressedatum vom 30.06.2026 bis 07.10.2026 sind übernommen, vier davon wurden
+dabei nachträglich ergänzt. Meldungen ohne Teaser („Besuch aus China",
+drei Abbildungen) und ohne Abbildung („Von Pädagogik bis Physik prämiert")
+sind in Templates und CMS-Feldern abgedeckt. Startseite und Newsliste zeigen
+dieselben Beiträge; die Startseite listet wie im Original die fünf neuesten.
 
 **Instagram:** Die GHSE betreibt auf ihrer Startseite einen Feed mit acht
 Accounts und vier aktuellen Beiträgen. Der Originalseite lädt diese Beiträge
@@ -125,8 +130,15 @@ nicht verwendet werden).
 1. Collection *News* → „Add item" (Neu).
 2. Felder: `title` (Überschrift), `date` (z. B. `2026-10-16`), `quelle`
    (Medium), `quelle_url` (Link zum Originalartikel), `teaser` (1–2 Sätze),
-   `bild` + `bildAlt` (Upload nach `static/bilder`), bei Bedarf `body`.
-3. Speichern → Hugo baut neu → die Meldung erscheint automatisch als erste
+   `bild` + `bildAlt` (Upload nach `static/bilder`), bei weiteren
+   Abbildungen `bild2`/`bild2Alt` und `bild3`/`bild3Alt`, bei Bedarf `body`.
+   `teaser` und `bild` sind optional – fehlen sie, rendert die Meldung ohne
+   Lead beziehungsweise ohne Abbildung (wie bei „Von Pädagogik bis Physik
+   prämiert").
+3. Optional: eine vergrößerte Variante `<name>-gross.<endung>` neben das Bild
+   legen – die Meldungsseite nutzt sie automatisch für `srcset` und den
+   Zoom-Link (sonst wird die eingebettete Datei verlinkt).
+4. Speichern → Hugo baut neu → die Meldung erscheint automatisch als erste
    Karte auf der Startseite und in der News-Übersicht (Sortierung nach Datum).
 
 **PDF ersetzen bzw. ergänzen**
@@ -166,7 +178,8 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
   `relURL`/`relPermalink` – die Ausgabe funktioniert unter `/` und unter
   `/<repo>/` ohne Änderung an den Vorlagen.
 * **Front Matter ↔ CMS:** `title`, `description`, `kategorie`, `kurz`,
-  `abschluss`, `bild`, `bildAlt`, `extern`, `date`, `quelle`, `quelle_url`,
+  `abschluss`, `bild`, `bildAlt`, `bild2`, `bild2Alt`, `bild3`, `bild3Alt`,
+  `extern`, `date`, `quelle`, `quelle_url`,
   `teaser`, `beschreibung`, `datei`, `weight` – überall verwendet.
   Nur `downloads` (verwandte Dokumente der TG-Seite) ist reines Hugo-Feld.
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
@@ -187,17 +200,34 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * Responsive: Breakpoints 1000/900/640 px – Karten- und Zeilenraster stapeln
   sich, Navigation wird zum Aufklappmenü, Download-Zeilen werden zu
   Vollbreiten-Karten mit großem Button.
-* Links: 62 interne Seitenziele sowie alle eingebundenen Bilder, Schriften
-  und PDFs geprüft (344 Ziele gesamt, alle vorhanden), 52 externe
+* Links: alle internen Ziele geprüft – 23 HTML-Seiten sowie alle eingebundenen
+  Bilder, Schriften und PDFs (435 Ziele gesamt, keine Fehlschläge), 56 externe
   Links alle `HTTP 200` – darunter die 9 öffentlichen Nextcloud-Terminkalender,
   12 Instagram-Links (8 Accounts, 4 Beiträge), BewO, Moodle, OSM,
-  Impressum/Datenschutz und die Berufsinformations-Beiträge.
-* Lighthouse: Performance mobil **99** (LCP 2,0 s, CLS 0, TBT 30 ms),
-  Desktop **100** (LCP 0,4 s); Accessibility, Best Practices und SEO
-  überall 100. Gemessen wurde gegen `tools/preview-server.py`, der wie
+  Impressum/Datenschutz und die Berufsinformations-Beiträge; die vier
+  Presse-URLs der nachträglich ergänzten Meldungen wurden live abgefragt.
+* Lighthouse: Performance mobil **98–100** (Startseite 99, News-Übersicht 99,
+  Meldungsseiten 98–100, Download- und Schulartseiten 99–100), Desktop
+  **100** (LCP 0,4–0,5 s); Accessibility und SEO überall 100, Best Practices
+  überall 100 außer der Seite „Besuch aus China" (96): Der dortige
+  Zeitungsausschnitt ist auf ghse.de nur 360 px breit, das Audit
+  `image-size-responsive` moniert genau diese Auflösung – hochskalieren
+  würde nur weichzeichnen, daher bleibt es bei der ehrlichen Quelldatei.
+  Die beiden Hochformat-Scans stagnieren bei 98, weil ihr scharfes
+  Zoom-Bild (171/188 KB) automatisch mitgeladen wird – scharf ist hier der
+  bessere Deal. Gemessen wurde gegen `tools/preview-server.py`, der wie
   GitHub Pages mit Keep-Alive und gzip antwortet – das mitgelieferte
   `python3 -m http.server` verkettet Anfragen nicht und bläht damit jedes
   Ergebnis künstlich auf.
+* News-Lesbarkeit: Der Zeitungsscan bricht auf Detailseiten breiter als die
+  Textspalte aus (bis 1048 px), wird aber nie über die Quellauflösung hinaus
+  vergrößert – `srcset` liefert je Display die passende Datei, die
+  Originalauflösung liegt als `<name>-gross.webp` vor und liegt hinter der
+  „Vergrößern"-Plakette zum Zoomen in einem neuen Tab. Die Plakette hängt
+  unter der Bildkante und verdeckt beim Lesen keine Textzeile;
+  Bilderunterschriften sind auf 700 px Zeilenlänge begrenzt, Fließtexte
+  trennen silbentrennend (`hyphens: auto`). Dazu Druck-Styles für Artikel
+  und Downloads sowie durchgehende Hover-/Fokus-Zustände für Karten.
 * Performance-Optimierungen: alle Inhaltsbilder als WebP (die 18 Bilder der
   Startseite von 1738 KB auf 998 KB, davon lädt Lighthouse im mobilen Lauf
   447 KiB, der Rest lädt lazy unterhalb des Bildschirms), passend zur

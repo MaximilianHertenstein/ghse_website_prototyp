@@ -10,15 +10,47 @@
         {{ .Params.quelle }}
       </p>
       <h1>{{ .Title }}</h1>
-      <p class="lead">{{ .Params.teaser }}</p>
+      {{- with .Params.teaser }}<p class="lead">{{ . }}</p>{{ end }}
     </header>
 
+    {{- /* Presseabbildungen als Scan (1 bis 3). Pro Bild liefert eine vorhandene
+           Variante <name>-gross.<endung> die volle Auflösung mit (srcset plus
+           Link zum Hineinzoomen); fehlt sie, wird die eingebettete Datei
+           verlinkt. Die Anzeigebreite bleibt auf die Quellbreite begrenzt,
+           damit nichts unscharf hochskaliert wird. Nicht jedes Original hat
+           ein Bild (dann entfällt der Block) und nicht jedes einen Teaser. */ -}}
+    {{- $bilder := slice -}}
+    {{- with .Params.bild }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bildAlt) }}{{ end -}}
+    {{- with .Params.bild2 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild2Alt) }}{{ end -}}
+    {{- with .Params.bild3 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild3Alt) }}{{ end -}}
+    {{- $letzter := sub (len $bilder) 1 -}}
+    {{- range $i, $b := $bilder }}
+      {{- $rel := strings.TrimPrefix "/" $b.pfad -}}
+      {{- $endung := path.Ext $rel -}}
+      {{- $gross := printf "%s-gross%s" (strings.TrimSuffix $endung $rel) $endung -}}
+      {{- $ohneGross := not (fileExists (printf "static/%s" $gross)) -}}
+      {{- if $ohneGross }}{{ $gross = $rel }}{{ end -}}
+      {{- $klein := imageConfig (printf "static/%s" $rel) -}}
+      {{- $grossD := imageConfig (printf "static/%s" $gross) -}}
+      {{- /* Bildunterschrift: höchstens Quellbreite und lesbare Zeilenlänge */ -}}
+      {{- $capBreite := cond (lt $grossD.Width 700) $grossD.Width 700 -}}
     <figure class="beitrag__bild">
-      {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .Params.bild)) }}
-      <img src="{{ $.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" decoding="async">
-      {{ end }}
-      <figcaption>Veröffentlicht von {{ .Params.quelle }} am {{ .Date.Format "02.01.2006" }}.</figcaption>
+      <a class="beitrag__lupe" style="max-width: {{ $grossD.Width }}px" href="{{ $gross | relURL }}" target="_blank" rel="noopener"
+         aria-label="Abbildung in voller Größe öffnen – öffnet einen neuen Tab">
+        <img src="{{ $rel | relURL }}"
+          {{- if not $ohneGross }} srcset="{{ $rel | relURL }} {{ $klein.Width }}w, {{ $gross | relURL }} {{ $grossD.Width }}w"
+               sizes="(max-width: 640px) calc(100vw - 1.75rem), (max-width: 800px) calc(100vw - 2.5rem), 1048px"{{ end }}
+             alt="{{ $b.alt }}" width="{{ $klein.Width }}" height="{{ $klein.Height }}" decoding="async">
+        <span class="lupe__plakette">Vergrößern <span aria-hidden="true">↗</span></span>
+      </a>
+      {{- if eq $i $letzter }}
+      <figcaption style="max-width: {{ $capBreite }}px">
+        <span class="lupe__hinweis">Zum Lesen das Bild anklicken: Es öffnet sich in voller Auflösung und lässt sich hineinzoomen.</span>
+        Veröffentlicht von {{ $.Params.quelle }} am {{ $.Date.Format "02.01.2006" }}.
+      </figcaption>
+      {{- end }}
     </figure>
+    {{- end }}
 
     {{ with .Content }}<div class="fliesstext">{{ . }}</div>{{ end }}
 
