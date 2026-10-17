@@ -30,3 +30,39 @@
     if (window.innerWidth > 900) setz(false);
   });
 })();
+
+// Farbmodus-Umschalter: merkt sich die Wahl in localStorage ('ghse-theme')
+// und setzt data-theme am <html>. Ohne gespeicherte Wahl folgt der Schalter
+// dem System (prefers-color-scheme) – siehe Inline-Skript in baseof.html.
+(function () {
+  var knopf = document.querySelector('[data-theme-button]');
+  if (!knopf) return;
+  var text = knopf.querySelector('[data-theme-label]');
+
+  function speicher(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function merken(key, wert) {
+    try { localStorage.setItem(key, wert); } catch (e) {}
+  }
+
+  function system() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function stelle(ziel, speichern) {
+    document.documentElement.setAttribute('data-theme', ziel);
+    if (speichern) merken('ghse-theme', ziel);
+    knopf.setAttribute('data-ist', ziel === 'dark' ? 'dunkel' : 'hell');
+    knopf.setAttribute('aria-pressed', ziel === 'dark' ? 'true' : 'false');
+    if (text) text.textContent = ziel === 'dark' ? 'Hell' : 'Dunkel';
+  }
+
+  var gespeichert = speicher('ghse-theme');
+  stelle(gespeichert === 'dark' || gespeichert === 'light' ? gespeichert : system(), false);
+
+  knopf.addEventListener('click', function () {
+    stelle(knopf.getAttribute('data-ist') === 'dunkel' ? 'light' : 'dark', true);
+  });
+})();

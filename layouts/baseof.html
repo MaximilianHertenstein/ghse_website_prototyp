@@ -3,6 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // Farbmodus früh setzen, damit beim Laden kein heller Schimmer entsteht.
+    try {
+      var m = localStorage.getItem('ghse-theme');
+      if (m === 'dark' || m === 'light') document.documentElement.setAttribute('data-theme', m);
+    } catch (e) {}
+  </script>
   <title>{{ if .IsHome }}{{ site.Title }} – {{ site.Params.schulname }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Description | default site.Params.beschreibung }}">
   <meta property="og:title" content="{{ .Title }}">
