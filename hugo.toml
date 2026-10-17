@@ -36,6 +36,10 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     pageRef = "/schularten"
     weight = 20
   [[menus.haupt]]
+    name = "Termine"
+    url = "/#termine"
+    weight = 25
+  [[menus.haupt]]
     name = "News"
     pageRef = "/news"
     weight = 30

@@ -8,6 +8,20 @@
       <p class="hero__knoepfe">
         <a class="btn btn--akzent" href="{{ "schularten/" | relURL }}">Schularten entdecken</a>
       </p>
+      {{- /* Termin-Ticket als zweite Aktion. Wird nur gerendert, wenn Titel,
+             Datum und Ziel vorliegen – ein erfundenes Datum ist tabu, deshalb
+             bleibt das Feld leer, bis die GHSE einen Termin liefert. */}}
+      {{- with .Params.naechster_termin }}
+        {{- if and .titel .datum .url }}
+      <a class="hero__ticket" href="{{ .url }}">
+        <span class="hero__ticket-datum"><time datetime="{{ .datum }}">{{ .datum | time.Format "02.01.2006" }}</time></span>
+        <span class="hero__ticket-text">
+          <span class="hero__ticket-label">Nächster Termin</span>
+          <span class="hero__ticket-titel">{{ .titel }}{{ with .ort }} <span aria-hidden="true">·</span> {{ . }}{{ end }}</span>
+        </span>
+      </a>
+        {{- end }}
+      {{- end }}
       <ul class="hero__punkte">
         <li>Hauptschulabschluss</li>
         <li>Mittlere Reife</li>
@@ -51,6 +65,10 @@
   </div>
 </section>
 
+{{- /* Aktuelles: die neueste Meldung als Featured-Karte über zwei Spalten,
+       die vier weiteren füllen darunter ein 2×2-Raster – ohne Loch. */}}
+{{- $meldungen := first 5 (sort (where site.RegularPages "Section" "news") "Date" "desc") -}}
+{{- with $meldungen }}
 <section class="band band--nacht" aria-labelledby="home-news">
   <div class="container">
     <div class="kopfzeile">
@@ -60,15 +78,17 @@
       </div>
       <a class="btn btn--geist" href="{{ "news/" | relURL }}">Alle Meldungen</a>
     </div>
-    <div class="raster raster--3">
-      {{ range first 5 (sort (where site.RegularPages "Section" "news") "Date" "desc") }}
+    <div class="raster raster--2">
+      {{ partial "karte-news.html" (dict "seite" (index . 0) "klasse" "karte--gross") }}
+      {{ range after 1 . }}
         {{ partial "karte-news.html" (dict "seite" .) }}
       {{ end }}
     </div>
   </div>
 </section>
+{{- end }}
 
-<section class="band band--papier" aria-labelledby="home-termine">
+<section class="band band--papier" id="termine" aria-labelledby="home-termine">
   <div class="container">
     <div class="kopfzeile">
       <div>
@@ -78,10 +98,14 @@
     </div>
     <p class="band__einleitung">{{ .Params.termine_text }}</p>
     <ul class="kalenderliste">
+      {{- /* Die ganze Karte ist Link – ein Kalenderlink allein war mit
+             28 px deutlich unter dem Touch-Ziel. */}}
       {{ range .Params.termine }}
-      <li class="kalender">
-        <span class="kalender__name">{{ .name }}</span>
-        <a class="linkpfeil" href="{{ .url }}">Kalender öffnen<span aria-hidden="true">↗</span></a>
+      <li>
+        <a class="kalender" href="{{ .url }}">
+          <span class="kalender__name">{{ .name }}</span>
+          <span class="kalender__aktion">Kalender öffnen <span aria-hidden="true">↗</span></span>
+        </a>
       </li>
       {{ end }}
     </ul>
@@ -95,7 +119,7 @@
         <p class="kicker">Oberstufe &amp; Ausbildung</p>
         <h2 id="home-beruf">Berufs- und Studieninformation</h2>
       </div>
-      <a class="btn btn--geist" href="{{ .Params.berufsinfo_mehr }}">Noch mehr Infos</a>
+      <a class="btn btn--geist" href="{{ .Params.berufsinfo_mehr }}">Alle Beiträge zur Berufsorientierung</a>
     </div>
     <ul class="infoliste">
       {{ range .Params.berufsinfo }}
@@ -121,11 +145,19 @@
     </div>
     <p class="band__einleitung">{{ .Params.insta_text }}</p>
     <ul class="instaraster">
+      {{- /* Ein Reel ist ein bewegter Beitrag – ohne Plakette unauffällig von
+             einem Foto zu unterscheiden. Ob es eines ist, steht in der URL. */}}
       {{ range .Params.insta_beitraege }}
       <li class="instabeitrag">
         <a class="instabeitrag__link" href="{{ .url }}">
           <figure class="instabeitrag__bild">
             <img src="{{ .bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .bildAlt }}" loading="lazy" decoding="async">
+            {{- if in .url "/reel/" }}
+            <span class="instabeitrag__plakette">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5 20 12 7 19.5z"/></svg>
+              <span class="verborgen">Video (Reel)</span>
+            </span>
+            {{- end }}
           </figure>
           <div class="instabeitrag__koerper">
             <p class="meta"><span aria-hidden="true">@</span>ghse_emmendingen</p>
@@ -136,6 +168,9 @@
       </li>
       {{ end }}
     </ul>
+    {{- /* Kein Live-Feed: die vier Kacheln sind ein Standbild und sagen das
+           auch offen, statt ein fortlaufendes Versprechen zu suggerieren. */}}
+    <p class="hinweiszeile">Stand: Oktober 2026 – die Beiträge werden redaktionell aktualisiert, nicht automatisch nachgeladen.</p>
     <h3 class="konten__titel">Weitere Accounts</h3>
     <ul class="konten">
       {{ range .Params.insta_kanaele }}
@@ -148,7 +183,7 @@
 <section class="band band--papier" id="service" aria-labelledby="home-service">
   <div class="container">
     <p class="kicker">Service &amp; Kontakt</p>
-    <h2 id="home-service">Über die GHSE</h2>
+    <h2 id="home-service">Service für Schüler/innen, Eltern und Lehrkräfte</h2>
     <ul class="serviceliste">
       <li class="service">
         <h3>Untis</h3>
@@ -167,21 +202,22 @@
       </li>
       <li class="service">
         <h3>Lehrer-E-Mails</h3>
-        <p>Einfach E-Mail: Jeder Lehrer ist ganz einfach über kuerzel@ghse.de erreichbar – ä, ü, ö und ß werden durch ae, ue, oe und ss ersetzt.</p>
+        <p>Lehrkräfte sind über kuerzel@ghse.de erreichbar – ä, ü, ö und ß werden durch ae, ue, oe und ss ersetzt.</p>
         <a class="linkpfeil" href="mailto:HierDasKuerzel@ghse.de">Mail schreiben<span aria-hidden="true">↗</span></a>
       </li>
     </ul>
   </div>
 </section>
 
-<section class="band band--gestreift" aria-labelledby="home-schulleben">
+{{- /* Das einzige Vollton-Gelbband der Seite: Gelb wäre sonst nur Linienfarbe. */}}
+<section class="band band--gelb" aria-labelledby="home-schulleben">
   <div class="container">
     <div class="kopfzeile">
       <div>
         <p class="kicker">Mehr von der Schule</p>
         <h2 id="home-schulleben">Schüler/innen – Schulleben – Lehrer/innen</h2>
       </div>
-      <a class="btn btn--geist" href="{{ .Params.schulleben_url }}">Jetzt erkunden</a>
+      <a class="btn btn--geist" href="{{ .Params.schulleben_url }}">Zum Schulleben</a>
     </div>
     <p class="band__einleitung">{{ .Params.schulleben_text }}</p>
     <ul class="schulleben">
@@ -195,7 +231,8 @@
 <section class="band band--papier" aria-labelledby="home-partner">
   <div class="container">
     <p class="kicker">Zusammenarbeit</p>
-    <h2 id="home-partner">Partner</h2>
+    <h2 id="home-partner">Partner aus der Region</h2>
+    <p class="band__einleitung">Ausbildungsbetriebe und Einrichtungen der Umgebung stehen in Verbindung mit der GHSE; die Originalseite führt die Partnerschaften im Einzelnen.</p>
     <img class="partner" src="{{ .Params.partner_bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.partner_alt }}" loading="lazy" decoding="async">
   </div>
 </section>

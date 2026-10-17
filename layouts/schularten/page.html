@@ -1,8 +1,14 @@
 {{ define "inhalt" }}
 <header class="seitenkopf seitenkopf--akzent">
   <div class="container">
-    <p class="zurueck"><a href="{{ "schularten/" | relURL }}"><span aria-hidden="true">←</span> Alle Schularten</a></p>
-    <p class="marke">{{ .Params.kategorie }}</p>
+    <nav class="brotkrumen" aria-label="Brotkrumen">
+      <ol>
+        <li><a href="{{ site.Home.RelPermalink }}">Start</a></li>
+        <li><a href="{{ "schularten/" | relURL }}">Schularten</a></li>
+        <li aria-current="page">{{ .Title }}</li>
+      </ol>
+    </nav>
+    <p class="marke" data-kategorie="{{ .Params.kategorie | lower }}">{{ .Params.kategorie }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Params.kurz }}<p class="lead">{{ . }}</p>{{ end }}
   </div>
@@ -12,6 +18,7 @@
   <div class="fliesstext">
     {{ with .Params.extern }}
       <div class="hinweis" role="note">
+        <p class="kicker">Prototyp</p>
         <p><strong>Nur als Kurzprofil umgesetzt.</strong> Die vollständige Detailseite zu diesem Bildungsgang ist Teil des späteren Umbaus und in dieser Demo bewusst nicht nachgebaut. Die belegten Angaben finden Sie auf der Originalseite.</p>
         <a class="btn btn--geist btn--klein" href="{{ . }}">Originalseite ansehen<span aria-hidden="true"> ↗</span></a>
       </div>

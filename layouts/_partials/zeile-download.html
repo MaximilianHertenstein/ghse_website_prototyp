@@ -21,8 +21,8 @@
   </div>
   <p class="zeile__daten">
     {{ with $res }}
-      <span class="tag tag--akzent" aria-hidden="true">{{ $typ }}</span>
-      {{ with $groesse }}<span class="tag" aria-hidden="true">{{ . }}</span>{{ end }}
+      <span class="chip chip--akzent chip--klein" aria-hidden="true">{{ $typ }}</span>
+      {{ with $groesse }}<span class="chip chip--klein" aria-hidden="true">{{ . }}</span>{{ end }}
     {{ end }}
   </p>
   <p class="zeile__aktion">

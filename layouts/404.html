@@ -3,11 +3,16 @@
   <div class="container">
     <p class="kicker">Fehler 404</p>
     <h1>Seite nicht gefunden</h1>
-    <p class="lead">Diese Seite gibt es (in diesem Prototyp) nicht. Vielleicht hilft einer der Einstiege weiter.</p>
+    <p class="lead">Diese Seite gibt es (in diesem Prototyp) nicht. Die häufigsten Aufgaben führen weiter:</p>
     <p class="hero__knoepfe">
-      <a class="btn btn--akzent" href="{{ site.Home.RelPermalink }}">Zur Startseite</a>
+      <a class="btn btn--akzent" href="https://www.ghse.de/online-abmelden/">Krankmelden</a>
+      <a class="btn btn--akzent" href="{{ site.Home.RelPermalink }}#termine">Termine</a>
+      <a class="btn btn--geist" href="{{ "downloads/" | relURL }}">Formulare &amp; Anmeldung</a>
+    </p>
+    <p class="hero__knoepfe">
+      <a class="btn btn--geist" href="{{ site.Home.RelPermalink }}">Zur Startseite</a>
       <a class="btn btn--geist" href="{{ "schularten/" | relURL }}">Alle Schularten</a>
-      <a class="btn btn--geist" href="{{ "downloads/" | relURL }}">Downloads</a>
+      <a class="btn btn--geist" href="{{ "news/" | relURL }}">News</a>
     </p>
   </div>
 </section>

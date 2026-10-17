@@ -37,7 +37,19 @@
   --rand: #101736;
   --schatten-farbe: #101736;
   --link: #141c4e;
-  --streifen: rgba(16, 23, 54, 0.05);
+  --streifen: rgba(16, 23, 54, 0.08);
+
+  /* Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
+     (siehe qa/kontrast.py: tinte auf orange). */
+  --kategorie-teilzeit: #ee6a2b;
+  /* Hinweis- und Warnflächen: eigene Tokens, weil die Farbe im Dunkeln
+     angepasst werden muss (sonst grellt eine helle Kastenfläche im Nachtmodus). */
+  --hinweis-flaeche: #fffbe6;
+  --hinweis-rand: var(--rand);
+  --warn-flaeche: #ffe9e6;
+  /* Orange-tief statt Orange: der Rand braucht als Grafik 3:1 gegen die
+     Warnfläche, das helle Orange erreicht nur 2,68:1. */
+  --warn-rand: var(--orange-tief);
 
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
@@ -72,7 +84,9 @@
     --schatten-farbe: #05071a;
     --orange-tief: #ff9d70;
     --link: #ffd400;
-    --streifen: rgba(255, 255, 255, 0.05);
+    --streifen: rgba(255, 255, 255, 0.08);
+    --hinweis-flaeche: #33311a;
+    --warn-flaeche: #3b2016;
     color-scheme: dark;
   }
 }
@@ -87,7 +101,9 @@
   --schatten-farbe: #05071a;
   --orange-tief: #ff9d70;
   --link: #ffd400;
-  --streifen: rgba(255, 255, 255, 0.05);
+  --streifen: rgba(255, 255, 255, 0.08);
+  --hinweis-flaeche: #33311a;
+  --warn-flaeche: #3b2016;
   color-scheme: dark;
 }
 
@@ -120,8 +136,22 @@ summary:focus-visible {
   outline: 3px solid var(--orange-tief);
   outline-offset: 3px;
 }
+/* Auf dunklen Flächen trägt Orange nur ~3,2:1 gegen Nacht. Gelb liefert ~11:1
+   und bleibt über der 3:1-Grenze für Bedienelemente. */
+.hero :focus-visible,
+.band--nacht :focus-visible,
+.fuss :focus-visible,
+.leiste :focus-visible,
+.seitenkopf--akzent :focus-visible {
+  outline-color: var(--gelb);
+}
 
 [id] { scroll-margin-top: calc(var(--kopfhoehe) + 1rem); }
+/* Download-Kategorien liegen zusätzlich unter der Sprungleiste. Der Zuschlag
+   ist größer als die 4.5rem aus dem Entwurf, weil die Leiste mobil durch die
+   44-px-Touch-Ziele höher geworden ist; die tatsächliche Höhe prüft
+   qa/layout.py gegen diese Regel. */
+h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 
 .container { width: min(100% - 2.5rem, var(--container)); margin-inline: auto; }
 .schmal { width: min(100% - 2.5rem, var(--schmal)); margin-inline: auto; }
@@ -146,19 +176,43 @@ summary:focus-visible {
   letter-spacing: 0.16em; color: var(--orange-tief); margin-bottom: 0.75rem;
 }
 
-.marke {
-  display: inline-block; background: var(--gelb); color: var(--tinte);
-  border: 2px solid var(--tinte); padding: 0.2rem 0.5rem;
-  font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.08em; transform: rotate(-1.5deg);
+/* ---------- Chips ----------
+   Ein Baustein, vier Varianten. Die früher eigenständigen Bausteine
+   .marke, .tag und .meta time laufen hiermit zusammen; .marke und .tag
+   bleiben als Alias erhalten, damit Fremdinhalte nicht auseinanderfallen. */
+.chip {
+  display: inline-flex; align-items: baseline; gap: 0.5rem;
+  border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
+  padding: 0.45rem 0.8rem; text-decoration: none; font-weight: 800; font-size: 0.9rem;
+  box-shadow: 3px 3px 0 var(--schatten-farbe);
 }
+.chip span { font-weight: 400; font-size: 0.82rem; color: var(--grau); }
+.chip:hover { background: var(--gelb); color: var(--tinte); }
+.chip:hover span { color: var(--tinte); }
+.chip--klein { padding: 0.15rem 0.5rem; font-size: 0.75rem; letter-spacing: 0.06em; }
+.chip--akzent { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
+.chip--akzent:hover { background: var(--tinte); color: var(--gelb); }
+.chip--ruhig { background: transparent; box-shadow: none; }
+/* Drehung höchstens einmal pro Karte – deshalb als eigene Variante. */
+.chip--sticker { transform: rotate(-1.5deg); }
+/* Karteninterne Chips ohne Eigenschatten: sonst wirkt die Karte aufgebläht. */
+.karte .chip, .meta .chip, .zeile .chip, .hinweis .chip { box-shadow: none; }
 
-.tag {
-  display: inline-block; border: 2px solid var(--rand); background: var(--flaeche);
+/* Aliase für die alten Bausteine (identisch zu chip--klein). */
+.marke, .tag {
+  display: inline-flex; align-items: baseline;
+  border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
   padding: 0.15rem 0.5rem; font-size: 0.75rem; font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.06em;
 }
-.tag--akzent { background: var(--gelb); }
+.marke { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); transform: rotate(-1.5deg); }
+.tag--akzent, .chip--sticker.tag--akzent { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
+/* Farbcode der Kategorien: Vollzeit bleibt gelb, Teilzeit wird orange.
+   Beide Flächen behalten Tinte-Schrift (siehe qa/kontrast.py). */
+.chip[data-kategorie="teilzeitschularten"],
+.marke[data-kategorie="teilzeitschularten"] {
+  background: var(--kategorie-teilzeit); color: var(--tinte); border-color: var(--tinte);
+}
 
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -193,7 +247,23 @@ summary:focus-visible {
 .band--nacht { background: var(--nacht); color: var(--weiss); }
 .band--gestreift {
   background-image: repeating-linear-gradient(
-    -45deg, var(--streifen) 0 10px, transparent 10px 20px);
+    -45deg, var(--streifen) 0 12px, transparent 12px 24px);
+}
+/* Genau ein Band als Vollton-Gelb: Gelb ist sonst nur Linienfarbe. */
+.band--gelb { background: var(--gelb); color: var(--tinte); }
+.band--gelb h2,
+.band--gelb .kicker,
+.band--gelb .band__einleitung,
+.band--gelb .einleitung { color: var(--tinte); }
+.band--gelb .btn--geist { border-color: var(--tinte); color: var(--tinte); }
+.band--gelb .btn--geist:hover { background: var(--tinte); color: var(--gelb); }
+.band--gelb .schulleben img { border-color: var(--tinte); box-shadow: var(--schatten-klein); }
+/* Auf der gestreiften Fläche würde der Kicker auf die Streifen treffen und –
+   selbst bei den ursprünglichen 5 % – unter 4,5:1 fallen. Die deckende Fläche
+   hält ihn auf Papier und liest sich als Label auf der texturierten Fläche. */
+.band--gestreift .kicker {
+  display: inline-block; background: var(--papier);
+  padding: 0.2rem 0.6rem; margin-left: -0.6rem;
 }
 .band--nacht .kicker { color: var(--gelb); }
 .band--nacht h2 { color: var(--weiss); }
@@ -218,6 +288,8 @@ summary:focus-visible {
   font-size: 0.85rem; font-weight: 700; color: var(--grau);
   display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
 }
+/* Datums-, Größen- und Zahlenangaben: Tabellenziffern, damit Spalten stehen. */
+.meta time, .tag, .chip, .zeile__daten, .anzahl { font-variant-numeric: tabular-nums; }
 .meta time {
   background: var(--gelb); border: 2px solid var(--tinte);
   padding: 0.05rem 0.4rem; color: var(--tinte); font-weight: 800;
@@ -270,15 +342,24 @@ summary:focus-visible {
 .menue ul a:hover { background: var(--gelb); }
 .menue ul a[aria-current="page"] { background: var(--tinte); color: var(--gelb); }
 
+/* Schnellzugriff nur mobil: unter 900 px wird die dunkle Kopfleiste mit
+   „Krankmelden, Mail, Anfahrt" ausgeblendet – die Krankmeldung wäre dann nur
+   noch im Fuß erreichbar. Sie steht deshalb als erster Block im Menüpanel. */
+.menue__schnell { display: none; }
+
 .menueknopf {
   display: none; align-items: center; gap: 0.6rem;
   background: var(--flaeche); border: var(--rahmen); cursor: pointer;
   box-shadow: 3px 3px 0 var(--schatten-farbe); padding: 0.55rem 0.8rem;
   font: inherit; font-weight: 800; text-transform: uppercase;
   font-size: 0.8rem; letter-spacing: 0.06em; color: var(--schrift);
+  min-height: 2.75rem;
 }
+/* Balken liegen in einem eigenen Stapel, damit der Knopf in einer Zeile mit
+   dem Text bleibt: drei gestapelte Balken plus Text in der Spalte machten
+   das Knopffeld 83 px hoch und drückten den Mobilkopf auf 110 px. */
+.menueknopf__balken_ { display: grid; gap: 4px; }
 .menueknopf__balken { display: block; width: 22px; height: 3px; background: var(--schrift); }
-.menueknopf__balken + .menueknopf__balken { margin-top: 4px; }
 
 /* Halte-Modus-Schalter (Hell/Dunkel), Logik in nav.js */
 .kopf__ende { display: flex; align-items: center; gap: 0.6rem; }
@@ -320,6 +401,27 @@ summary:focus-visible {
   line-height: 1.5; color: #dfe3f5; max-width: 46ch;
 }
 .hero__knoepfe { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+/* Termin-Ticket: zweite Aktion im Hero. Wird nur gerendert, wenn die
+   Startseite ein Datum führt – siehe naechster_termin in .pages.yml. */
+.hero__ticket {
+  display: inline-flex; align-items: center; gap: 1rem;
+  background: var(--flaeche); color: var(--schrift);
+  border: var(--rahmen); box-shadow: var(--schatten-klein);
+  padding: 0.9rem 1.2rem; margin-top: 1.25rem; text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hero__ticket:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
+.hero__ticket:focus-visible { outline-color: var(--gelb); }
+.hero__ticket-datum {
+  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; line-height: 1;
+  font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+}
+.hero__ticket-text { display: grid; gap: 0.15rem; }
+.hero__ticket-label {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--grau);
+}
+.hero__ticket-titel { font-weight: 800; }
 .hero__punkte {
   display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none;
   padding: 0; margin-top: 2rem;
@@ -353,6 +455,15 @@ summary:focus-visible {
 
 .raster { display: grid; gap: 1.75rem; }
 .raster--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Zwei Karten in einer Dreiergruppe lassen sonst eine leere Spalte stehen. */
+.raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* Newsraster: die Featured-Karte spannt die volle Breite, die übrigen Karten
+   füllen darunter Dreier-Zeilen. */
+.raster--news { display: grid; gap: 1.75rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.zeitgruppe__titel {
+  font-size: var(--t-h2); margin-bottom: 1.75rem; padding-bottom: 0.6rem;
+  border-bottom: 3px solid var(--rand); font-variant-numeric: tabular-nums;
+}
 
 .karte {
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
@@ -363,6 +474,19 @@ summary:focus-visible {
 .karte__link {
   display: flex; flex-direction: column; height: 100%;
   text-decoration: none; color: inherit;
+}
+/* Fokus am Kartenrahmen statt am inneren Link – sonst stehen zwei Ringe
+   übereinander. :has() zeichnet den Ring auf die Karte, der Fokus bleibt
+   trotzdem am Link. */
+.karte:has(.karte__link:focus-visible),
+.instabeitrag:has(.instabeitrag__link:focus-visible) {
+  outline: 3px solid var(--orange-tief); outline-offset: 3px;
+}
+.karte__link:focus-visible,
+.instabeitrag__link:focus-visible { outline: none; }
+.band--nacht .karte:has(.karte__link:focus-visible),
+.band--nacht .instabeitrag:has(.instabeitrag__link:focus-visible) {
+  outline-color: var(--gelb);
 }
 .karte__bild {
   border-bottom: var(--rahmen); aspect-ratio: 16 / 10; overflow: hidden;
@@ -377,7 +501,7 @@ summary:focus-visible {
   display: flex; flex-direction: column; gap: 0.6rem;
   padding: 1.25rem 1.25rem 1.5rem; flex: 1;
 }
-.karte__titel { font-size: var(--t-h3); font-weight: 900; }
+.karte__titel { font-size: var(--t-h3); font-weight: 900; text-wrap: balance; }
 .karte__text { color: var(--grau); font-size: 0.97rem; }
 .karte__aktion {
   margin-top: auto; align-self: flex-start; padding-top: 0.75rem;
@@ -385,6 +509,20 @@ summary:focus-visible {
   letter-spacing: 0.07em; border-bottom: 3px solid var(--gelb);
 }
 .karte--news .karte__bild--zeitung img { object-fit: cover; object-position: left top; }
+
+/* Featured-Karte: die neueste Meldung spannt die volle Rasterbreite und
+   bekommt ein 21:9-Bild plus größeren Titel. */
+.karte--gross { grid-column: 1 / -1; }
+.karte--gross .karte__bild { aspect-ratio: 21 / 9; }
+.karte--gross .karte__titel { font-size: var(--t-h2); }
+
+/* Variante ohne Abbildung: statt einer Leerfläche von rund 230 px trägt ein
+   typografischer Kopf die Karte – Quelle als Sticker, Datum groß. */
+.karte--text .karte__koerper { gap: 0.9rem; }
+.karte--text .karte__datum {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1;
+  letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+}
 
 /* ---------- Service ---------- */
 
@@ -409,12 +547,17 @@ summary:focus-visible {
 .seitenkopf--akzent { background: var(--gelb); color: var(--tinte); }
 .seitenkopf--akzent .kicker,
 .seitenkopf--akzent .einleitung { color: var(--tinte); }
-.seitenkopf--akzent .marke { background: var(--weiss); }
+/* Auf gelber Fläche trägt die Kategorie-Farbcode nicht mehr – hier wird der
+   Chip weiß. Der Farbcode bleibt den Karten der Übersicht vorbehalten. */
+.seitenkopf--akzent .marke,
+.seitenkopf--akzent .chip { background: var(--weiss); color: var(--tinte); }
 .seitenkopf h1 { font-size: var(--t-h1); text-wrap: balance; }
 .einleitung {
   margin-top: 1.25rem; font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   line-height: 1.6; max-width: 68ch; color: var(--grau);
 }
+/* Mehrere Absätze im Vorspann (der Global-Reset setzt p auf margin: 0). */
+.einleitung > * + * { margin-top: 1rem; }
 .zurueck { margin-bottom: 1.25rem; }
 .zurueck a {
   font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
@@ -422,6 +565,21 @@ summary:focus-visible {
   border-bottom: 3px solid var(--gelb); padding-bottom: 0.15rem;
 }
 .zurueck a:hover { background: var(--gelb); color: var(--tinte); }
+
+/* Brotkrumen statt Zurück-Link: zeigt den Weg von der Übersicht zur
+   Einzelseite und bleibt über `nav[aria-label]` tastatur- und
+   screenreader-gerecht. */
+.brotkrumen { margin-bottom: 1.25rem; }
+.brotkrumen ol {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
+  font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.brotkrumen li { display: flex; align-items: center; gap: 0.35rem; }
+.brotkrumen li + li::before { content: "›"; opacity: 0.55; }
+.brotkrumen a { text-decoration: none; border-bottom: 2px solid var(--tinte); }
+.brotkrumen a:hover { background: var(--tinte); color: var(--gelb); }
 
 /* ---------- Sprungleiste Downloads ---------- */
 
@@ -445,6 +603,24 @@ summary:focus-visible {
 }
 .sprungleiste a:hover { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
 
+/* Mobil nimmt eine gestapelte Leiste rund 200 px Sichtfläche ein. Eine
+   scrollbare Chip-Zeile braucht eine Zeile und lässt sich seitlich wischen. */
+@media (max-width: 640px) {
+  .sprungleiste .container {
+    flex-wrap: nowrap; overflow-x: auto;
+    scroll-snap-type: x mandatory; scrollbar-width: none;
+  }
+  .sprungleiste .container::-webkit-scrollbar { display: none; }
+  .sprungleiste ul { flex-wrap: nowrap; }
+  .sprungleiste li { scroll-snap-align: start; }
+  .sprungleiste a { white-space: nowrap; }
+}
+
+/* Nach dem Sprung das Ziel markieren – statische Hervorhebung, keine
+   Animation, damit prefers-reduced-motion nicht berührt wird. */
+.band h2:target, .fliesstext h2:target { background: var(--gelb); color: var(--tinte); }
+.fliesstext h2:target { padding-left: 1.15rem; }
+
 /* ---------- Download-Zeilen ---------- */
 
 .zeilen { display: grid; gap: 1.1rem; }
@@ -453,14 +629,18 @@ summary:focus-visible {
   gap: 1rem 1.5rem; align-items: center;
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
   padding: 1.1rem 1.25rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+/* Hover über die ganze Zeile: liest sich als Einheit, nicht nur als Button. */
+.zeile:hover, .zeile:focus-within { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
+.kasten .zeile:hover, .kasten .zeile:focus-within { box-shadow: none; }
 .zeile__titel { font-size: 1.1rem; font-weight: 800; }
 .zeile__beschreibung { color: var(--grau); font-size: 0.92rem; margin-top: 0.3rem; }
 .zeile__daten { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .zeile__aktion { justify-self: end; }
 .hinweis--warnung {
-  background: #ffe9e6; border: 2px solid var(--orange); padding: 0.4rem 0.6rem;
-  font-size: 0.8rem; font-weight: 800; color: var(--tinte);
+  background: var(--warn-flaeche); border: 2px solid var(--warn-rand);
+  padding: 0.4rem 0.6rem; font-size: 0.8rem; font-weight: 800; color: var(--schrift);
 }
 
 /* ---------- Inhaltsseiten ---------- */
@@ -516,11 +696,14 @@ summary:focus-visible {
 }
 
 .hinweis {
-  background: #fffbe6; color: var(--tinte);
-  border: var(--rahmen); box-shadow: var(--schatten);
+  background: var(--hinweis-flaeche); color: var(--schrift);
+  border: 3px solid var(--hinweis-rand); box-shadow: var(--schatten);
   padding: 1.35rem 1.5rem; display: grid; gap: 1rem; justify-items: start;
 }
 .hinweis p { font-size: 0.98rem; }
+/* Der Kicker kennzeichnet Prototyp-Hinweise: gleiche Größe wie alle anderen
+   Kicker, damit sie nicht mit echtem Inhalt konkurrieren. */
+.hinweis .kicker { margin-bottom: 0; }
 
 .kasten {
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
@@ -556,7 +739,8 @@ summary:focus-visible {
 /* ---------- Meldung ---------- */
 
 .beitrag { padding-block: clamp(2rem, 4vw, 3.5rem); }
-.beitrag__kopf h1 { font-size: var(--t-h1); margin-top: 1rem; text-wrap: balance; }
+.beitrag__kopf h1 { font-size: var(--t-h1); text-wrap: balance; }
+.beitrag__kopf .meta { margin-top: 1rem; }
 .beitrag__kopf .lead { color: var(--grau); }
 
 /* Presse-Scan: breiter als die Textspalte, damit die Zeitung lesbar wird.
@@ -633,12 +817,23 @@ summary:focus-visible {
 .kalenderliste {
   list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem;
 }
+/* Die ganze Karte ist Link: das Touch-Ziel wächst vom Linktext (28 px) auf
+   die volle Kartenfläche. */
 .kalender {
   display: flex; flex-direction: column; justify-content: space-between; gap: 0.6rem;
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.1rem; height: 100%;
+  text-decoration: none; color: var(--schrift);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+.kalender:hover, .kalender:focus-visible { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
+.kalender:focus-visible { outline-offset: 4px; }
 .kalender__name { font-weight: 800; font-size: 1rem; line-height: 1.3; }
+.kalender__aktion {
+  margin-top: auto; align-self: flex-start; font-size: 0.8rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.07em; border-bottom: 3px solid var(--gelb);
+}
+.kalender:hover .kalender__aktion { background: var(--gelb); color: var(--tinte); }
 
 .infoliste { list-style: none; padding: 0; display: grid; gap: 1rem; }
 .infozeile {
@@ -658,10 +853,21 @@ summary:focus-visible {
   transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe);
 }
 .instabeitrag__link { display: flex; flex-direction: column; height: 100%; text-decoration: none; }
-.instabeitrag__bild { margin: 0; border-bottom: var(--rahmen); aspect-ratio: 4 / 5; }
+.instabeitrag__bild {
+  margin: 0; border-bottom: var(--rahmen); aspect-ratio: 4 / 5; position: relative;
+}
 .instabeitrag__bild img {
   width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
 }
+/* Reel-Plakette: bewegte Inhalte sind sonst von Fotos nicht zu unterscheiden.
+   Ob ein Beitrag ein Reel ist, steht in der URL (instagram.com/reel/…). */
+.instabeitrag__plakette {
+  position: absolute; left: 0.75rem; top: 0.75rem;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  background: var(--gelb); color: var(--tinte);
+  border: var(--rahmen); box-shadow: var(--schatten-klein);
+}
+.instabeitrag__plakette svg { width: 20px; height: 20px; display: block; }
 .instabeitrag__koerper {
   padding: 0.9rem 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1;
 }
@@ -670,15 +876,6 @@ summary:focus-visible {
 
 .konten__titel { font-size: 1.05rem; font-weight: 900; margin-top: 2.5rem; }
 .konten { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
-.chip {
-  display: inline-flex; align-items: baseline; gap: 0.5rem;
-  border: var(--rahmen); background: var(--flaeche); color: var(--schrift);
-  padding: 0.45rem 0.8rem; text-decoration: none; font-weight: 800; font-size: 0.9rem;
-  box-shadow: 3px 3px 0 var(--schatten-farbe);
-}
-.chip span { font-weight: 400; font-size: 0.82rem; color: var(--grau); }
-.chip:hover { background: var(--gelb); color: var(--tinte); }
-.chip:hover span { color: var(--tinte); }
 
 .schulleben { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .schulleben img {
@@ -703,7 +900,7 @@ summary:focus-visible {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1000px) {
-  .raster--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .raster--3, .raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .fuss__gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .raster--seite { grid-template-columns: 1fr; }
   .seitenleiste { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -712,17 +909,26 @@ summary:focus-visible {
 @media (max-width: 900px) {
   :root { --kopfhoehe: 4.5rem; }
   .leiste { display: none; }
-  .menueknopf { display: flex; flex-direction: column; gap: 0.45rem; }
+  .menueknopf { display: flex; }
+  /* Modusknopf nur noch als Icon – der Knopftext würde die Kopfzeile
+     verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen. */
+  .modusknopf { padding: 0.55rem; min-height: 2.75rem; min-width: 2.75rem; justify-content: center; }
+  .modusknopf__text { display: none; }
   .menue {
     display: none; position: absolute; left: 0; right: 0; top: 100%;
     flex-direction: column; align-items: stretch; gap: 0.75rem;
-    background: var(--papier); border-top: var(--rahmen);
-    border-bottom: var(--rahmen); padding: 1rem 1.25rem 1.5rem;
+    background: var(--papier); border: var(--rahmen);
+    padding: 1rem 1.25rem 1.5rem;
     box-shadow: 0 12px 0 rgba(16, 23, 54, 0.15);
   }
   .menue[data-offen] { display: flex; }
   .menue ul { flex-direction: column; gap: 0; }
   .menue ul a { padding: 0.95rem 0.5rem; font-size: 1.05rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12); }
+  /* Krankmelden & Co. stehen sonst nur noch im Fuß. */
+  .menue__schnell {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    padding-bottom: 1rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12);
+  }
   .menue__cta { justify-content: center; }
   .hero__innen { grid-template-columns: 1fr; }
   .hero__bild img { box-shadow: 10px 10px 0 var(--gelb); }
@@ -731,13 +937,30 @@ summary:focus-visible {
 @media (max-width: 640px) {
   body { font-size: 1.02rem; }
   .container, .schmal { width: min(100% - 1.75rem, var(--container)); }
-  .raster--3, .serviceliste, .fuss__gitter, .seitenleiste { grid-template-columns: 1fr; }
+  .raster--3, .raster--2, .raster--news,
+  .serviceliste, .fuss__gitter, .seitenleiste { grid-template-columns: 1fr; }
   .zeile { grid-template-columns: 1fr; }
   .zeile__aktion { justify-self: stretch; }
   .zeile__aktion .btn { width: 100%; justify-content: center; }
   .kopfzeile { align-items: flex-start; }
   .karte__koerper { padding: 1.1rem 1.1rem 1.35rem; }
   .btn { width: auto; white-space: normal; }
+}
+
+/* Grober Zeiger (Touch): Schaltflächen und Chips erreichen sonst 42/43 px. */
+@media (pointer: coarse), (max-width: 640px) {
+  .btn--klein { min-height: 2.75rem; }
+  .chip { min-height: 2.75rem; align-items: center; }
+  .menue__schnell .chip { min-height: 2.75rem; }
+  /* Die Sprungleisten-Links waren mit 36 px das kleinste Touch-Ziel der
+     Seite; die Leiste wird dadurch etwas höher, das scroll-margin-top der
+     Ziele trägt das noch mit. */
+  .sprungleiste a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+  /* Inflinks in Fließtext bleiben ausgenommen – der Ausdrucksfeil steht
+     hinter dem Linktext, nicht als eigenes Ziel. */
+  .fliesstext .linkpfeil { min-height: 0; }
+  .linkpfeil { align-items: center; }
+  .sprungleiste { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -779,6 +1002,12 @@ summary:focus-visible {
   }
   .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck,
   .lupe__plakette, .lupe__hinweis { display: none !important; }
+  /* Featured-Karte druckt einspaltig, sonst entsteht eine leere Halbspalte. */
+  .raster--news, .raster--2 { grid-template-columns: 1fr; }
+  .karte--gross { grid-column: auto; }
+  .karte--gross .karte__bild { aspect-ratio: 16 / 10; }
+  .karte--gross .karte__titel { font-size: 1.3rem; }
+  .hero__ticket { box-shadow: none; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .hero { background: #fff; color: #000; }
   .hero .kicker, .hero__unter { color: #000; }

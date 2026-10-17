@@ -1,0 +1,13 @@
+{{- /* Hinweisbaustein für Inhalte, die erkennbar nicht zum eigentlichen Inhalt
+       gehören (z. B. Prototyp-Hinweise). Als Shortcode statt rohem HTML, weil
+       der Goldmark-Renderer bewusst mit unsafe=false läuft. */ -}}
+{{- $titel := .Get "titel" | default "Hinweis" -}}
+{{- $ziel := .Get "ziel" -}}
+{{- $label := .Get "ziellabel" | default "Originalseite ansehen" -}}
+<div class="hinweis" role="note">
+  <p class="kicker">{{ $titel }}</p>
+  {{ .Inner | markdownify }}
+  {{- with $ziel }}
+  <a class="btn btn--geist btn--klein" href="{{ . }}">{{ $label }}<span aria-hidden="true"> ↗</span></a>
+  {{- end }}
+</div>

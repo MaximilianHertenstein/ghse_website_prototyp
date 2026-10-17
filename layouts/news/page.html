@@ -1,15 +1,25 @@
 {{ define "inhalt" }}
 <article class="beitrag">
   <div class="container schmal">
+    {{- /* Abbildungen zuerst ermitteln: sie entscheiden, ob in der Meta-Zeile
+           der Hinweis „Zeitungsausschnitt" mitgeführt wird. */ -}}
+    {{- $bilder := slice -}}
+    {{- with .Params.bild }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bildAlt) }}{{ end -}}
+    {{- with .Params.bild2 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild2Alt) }}{{ end -}}
+    {{- with .Params.bild3 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild3Alt) }}{{ end -}}
+
     <p class="zurueck"><a href="{{ "news/" | relURL }}"><span aria-hidden="true">←</span> Alle Meldungen</a></p>
 
+    {{- /* Meta-Zeile unter die h1: darüber konkurrierte sie mit dem
+           Zurück-Link. */}}
     <header class="beitrag__kopf">
+      <h1>{{ .Title }}</h1>
       <p class="meta">
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02.01.2006" }}</time>
         <span aria-hidden="true">·</span>
         {{ .Params.quelle }}
+        {{- if $bilder }}<span class="chip chip--ruhig chip--klein">Zeitungsausschnitt</span>{{ end }}
       </p>
-      <h1>{{ .Title }}</h1>
       {{- with .Params.teaser }}<p class="lead">{{ . }}</p>{{ end }}
     </header>
 
@@ -19,10 +29,6 @@
            verlinkt. Die Anzeigebreite bleibt auf die Quellbreite begrenzt,
            damit nichts unscharf hochskaliert wird. Nicht jedes Original hat
            ein Bild (dann entfällt der Block) und nicht jedes einen Teaser. */ -}}
-    {{- $bilder := slice -}}
-    {{- with .Params.bild }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bildAlt) }}{{ end -}}
-    {{- with .Params.bild2 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild2Alt) }}{{ end -}}
-    {{- with .Params.bild3 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild3Alt) }}{{ end -}}
     {{- $letzter := sub (len $bilder) 1 -}}
     {{- range $i, $b := $bilder }}
       {{- $rel := strings.TrimPrefix "/" $b.pfad -}}

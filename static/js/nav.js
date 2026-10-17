@@ -66,3 +66,23 @@
     stelle(knopf.getAttribute('data-ist') === 'dunkel' ? 'light' : 'dark', true);
   });
 })();
+
+// Kopfhöhe zur Laufzeit messen. --kopfhoehe steuert scroll-margin-top und die
+// Einrückung der Sprungleiste; der statische Token-Wert (7rem bzw. 4.5rem)
+// entspricht aber keiner echten Kopfhöhe – die Nachtleiste hängt darunter,
+// das Mobilmenü liegt als position:absolute außerhalb. Wird der Wert nicht
+// gemessen, landen Ankersprungziele unter dem Kopf und sind dort verdeckt.
+(function () {
+  var kopf = document.querySelector('.kopf');
+  if (!kopf) return;
+
+  function setzeKopfhoehe() {
+    document.documentElement.style.setProperty('--kopfhoehe', kopf.offsetHeight + 'px');
+  }
+
+  setzeKopfhoehe();
+  window.addEventListener('resize', setzeKopfhoehe);
+  // Schrift und Hero-Bild können die Kopfhöhe nach dem ersten Rendern ändern.
+  window.addEventListener('load', setzeKopfhoehe);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setzeKopfhoehe);
+})();

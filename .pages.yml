@@ -47,40 +47,70 @@ content:
       - name: termine_text
         label: Termine – Einleitung
         type: text
+
+      # „Nächster Termin“ als Ticket unter dem Hero-Button. Bewusst leer, bis
+      # die GHSE einen Termin liefert – erfundene Daten sind tabu. Die Vorlage
+      # rendert das Ticket nur, wenn alle drei Pflichtfelder gefüllt sind.
+      - name: naechster_termin
+        label: Nächster Termin (Hero-Ticket, optional)
+        type: object
+        fields:
+          - name: titel
+            label: Bezeichnung (z. B. Tag der offenen Tür)
+            type: string
+          - name: datum
+            label: Datum
+            type: date
+            options:
+              format: yyyy-MM-dd
+          - name: ort
+            label: Ort (optional)
+            type: string
+          - name: url
+            label: Ziel (Link)
+            type: string
+
+      # Listen aus Objekten: type: object + list: + fields: (Plural). Eine
+      # Form `type: list` mit `field:` wird vom Editor nicht als Liste
+      # erkannt und als Textfeld gerendert – im Feld stand dann
+      # „[object Object]“. Die Zusammenfassung lebt unter list.collapsible
+      # und schreibt ihre Platzhalter mit einfachen Klammern.
       - name: termine
         label: Terminkalender
-        type: list
-        summary: "{{fields.name}}"
-        field:
-          type: object
-          fields:
-            - name: name
-              label: Bezeichnung (z. B. Berufsschule)
-              type: string
-            - name: url
-              label: Link zum Kalender
-              type: string
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: name
+            label: Bezeichnung (z. B. Berufsschule)
+            type: string
+          - name: url
+            label: Link zum Kalender
+            type: string
 
       # Abschnitt „Berufs- und Studieninformation“
       - name: berufsinfo
         label: Berufs- und Studieninformation
-        type: list
-        summary: "{{fields.titel}} ({{fields.datum}})"
-        field:
-          type: object
-          fields:
-            - name: titel
-              label: Titel
-              type: string
-            - name: datum
-              label: Datum (Anzeige)
-              type: string
-            - name: teaser
-              label: Anrisstext
-              type: text
-            - name: url
-              label: Link zum Beitrag
-              type: string
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{titel} ({datum})"
+        fields:
+          - name: titel
+            label: Titel
+            type: string
+          - name: datum
+            label: Datum (Anzeige)
+            type: string
+          - name: teaser
+            label: Anrisstext
+            type: text
+          - name: url
+            label: Link zum Beitrag
+            type: string
       - name: berufsinfo_mehr
         label: Link „Noch mehr Infos“
         type: string
@@ -91,41 +121,43 @@ content:
         type: text
       - name: insta_beitraege
         label: Instagram-Beiträge (4 Kacheln)
-        type: list
-        summary: "{{fields.text}}"
-        field:
-          type: object
-          fields:
-            - name: bild
-              label: Beitragbild
-              type: image
-              options:
-                media: images
-            - name: bildAlt
-              label: Bildbeschreibung (Alt-Text)
-              type: string
-            - name: text
-              label: Bildunterschrift (Kurzfassung)
-              type: text
-            - name: url
-              label: Link zum Beitrag
-              type: string
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{text}"
+        fields:
+          - name: bild
+            label: Beitragbild
+            type: image
+            options:
+              media: images
+          - name: bildAlt
+            label: Bildbeschreibung (Alt-Text)
+            type: string
+          - name: text
+            label: Bildunterschrift (Kurzfassung)
+            type: text
+          - name: url
+            label: Link zum Beitrag
+            type: string
       - name: insta_kanaele
         label: Weitere Instagram-Accounts
-        type: list
-        summary: "@{{fields.name}}"
-        field:
-          type: object
-          fields:
-            - name: name
-              label: Account-Name
-              type: string
-            - name: beschreibung
-              label: Beschreibung
-              type: string
-            - name: url
-              label: Link
-              type: string
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "@{name}"
+        fields:
+          - name: name
+            label: Account-Name
+            type: string
+          - name: beschreibung
+            label: Beschreibung
+            type: string
+          - name: url
+            label: Link
+            type: string
 
       # Abschnitt „Schüler/innen – Schulleben – Lehrer/innen“
       - name: schulleben_text
@@ -136,18 +168,20 @@ content:
         type: string
       - name: schulleben_bilder
         label: Bilderreihe (3 Bilder)
-        type: list
-        field:
-          type: object
-          fields:
-            - name: bild
-              label: Bild
-              type: image
-              options:
-                media: images
-            - name: bildAlt
-              label: Bildbeschreibung (Alt-Text)
-              type: string
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{bildAlt}"
+        fields:
+          - name: bild
+            label: Bild
+            type: image
+            options:
+              media: images
+          - name: bildAlt
+            label: Bildbeschreibung (Alt-Text)
+            type: string
 
       # Abschnitt „Partner“
       - name: partner_bild

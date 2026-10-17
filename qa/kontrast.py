@@ -42,6 +42,10 @@ paare = [
     ("gelb auf nacht (Grafik 3:1)", "gelb", "nacht", 3.0),
     ("tinte auf gelb (Chip-Text)", "#101736", "gelb", 4.5),
     ("weiss auf nacht (Bänder)", "#ffffff", "nacht", 4.5),
+    # Kategoriefarbe der Teilzeitschularten (gemeinsam in Hell und Dunkel,
+    # weil die Fläche in beiden Modi Tinte-Schrift behält).
+    ("tinte auf teilzeit-orange (Chip-Text)", "#101736", "#ee6a2b", 4.5),
+    ("weiss auf teilzeit-orange (Grafik 3:1)", "#ffffff", "#ee6a2b", 3.0),
 ]
 
 sonder = {
@@ -49,19 +53,29 @@ sonder = {
         ("hero__unter #dfe3f5 auf nacht", "#dfe3f5", "#141c4e", 4.5),
         ("fuss-text #e6e9f7 auf nacht", "#e6e9f7", "#141c4e", 4.5),
         ("fuss-hinweis #b9bed6 auf tinte", "#b9bed6", "#101736", 4.5),
-        ("hinweis tinte auf #fffbe6", "#101736", "#fffbe6", 4.5),
-        ("warnung tinte auf #ffe9e6", "#101736", "#ffe9e6", 4.5),
+        ("hinweis schrift auf hinweis-flaeche", "#101736", "#fffbe6", 4.5),
+        ("warnung schrift auf warn-flaeche", "#101736", "#ffe9e6", 4.5),
+        ("warn-rand auf warn-flaeche (Grafik 3:1)", "#bf4712", "#ffe9e6", 3.0),
     ],
     "DUNKEL": [
         ("hero__unter #dfe3f5 auf nacht", "#dfe3f5", "#0a0e28", 4.5),
         ("fuss-text #e6e9f7 auf nacht", "#e6e9f7", "#0a0e28", 4.5),
         ("fuss-hinweis #b9bed6 auf schatten-farbe", "#b9bed6", "#05071a", 4.5),
-        ("hinweis tinte auf #fffbe6", "#101736", "#fffbe6", 4.5),
-        ("warnung tinte auf #ffe9e6", "#101736", "#ffe9e6", 4.5),
+        ("hinweis schrift auf hinweis-flaeche", "#f2f4fc", "#33311a", 4.5),
+        ("warnung schrift auf warn-flaeche", "#f2f4fc", "#3b2016", 4.5),
+        ("warn-rand auf warn-flaeche (Grafik 3:1)", "#ff9d70", "#3b2016", 3.0),
         ("strong-Marker: schrift auf flaeche+35%gelb",
          "#f2f4fc", "#6b6237", 3.0),
     ],
 }
+
+# Streifenmuster: die Fläche unter den Diagonalstreifen wird zur Hälfte
+# geprüft, denn Text steht abwechselnd auf Papier und auf Streifen.
+def mischen(grund, deck, anteil):
+    g, d = grund.lstrip("#"), deck.lstrip("#")
+    werte = [round(int(g[i:i + 2], 16) * (1 - anteil) + int(d[i:i + 2], 16) * anteil)
+             for i in (0, 2, 4)]
+    return "#%02x%02x%02x" % tuple(werte)
 
 fehler = 0
 for name, t in (("HELL", hell), ("DUNKEL", dunkel)):
@@ -75,6 +89,21 @@ for name, t in (("HELL", hell), ("DUNKEL", dunkel)):
         print(f'{"OK  " if ok else "FAIL"} {label}: {wert} (min {mindest})')
     for label, a, b, mindest in sonder[name]:
         wert = cr(a, b)
+        ok = wert >= mindest
+        fehler += 0 if ok else 1
+        print(f'{"OK  " if ok else "FAIL"} {label}: {wert} (min {mindest})')
+    # Gestreiftes Band: Text steht abwechselnd auf Papier und auf Streifen,
+    # deshalb die streifenbedeckte Hälfte der Fläche als eigene Paare.
+    # Der Kicker fehlt absichtlich: .band--gestreift .kicker liegt auf einer
+    # deckenden Papierfläche (siehe main.css), sonst fiele er selbst bei
+    # schwachen Streifen unter 4,5:1. Wer die Regel dort entfernt, verschiebt
+    # genau dieses Paar – es ist mit .kicker auf Papier bereits geprüft.
+    streif = mischen(t["papier"], "#101736" if name == "HELL" else "#ffffff", 0.08)
+    for label, fg, mindest in (
+        ("schrift auf gestreifter Fläche", "schrift", 4.5),
+        ("grau auf gestreifter Fläche (Einleitung)", "grau", 4.5),
+    ):
+        wert = cr(t[fg], streif)
         ok = wert >= mindest
         fehler += 0 if ok else 1
         print(f'{"OK  " if ok else "FAIL"} {label}: {wert} (min {mindest})')

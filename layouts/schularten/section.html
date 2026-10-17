@@ -20,7 +20,8 @@
           <h2 id="kat-{{ $name | anchorize }}">{{ $name }} <span class="anzahl">{{ len $gruppe }}</span></h2>
         </div>
       </div>
-      <div class="raster raster--3">
+      {{- /* Zwei Karten in einer Dreiergruppe lassen eine leere Spalte stehen. */ -}}
+      <div class="raster {{ if eq (len $gruppe) 2 }}raster--2{{ else }}raster--3{{ end }}">
         {{ range sort $gruppe "Weight" }}
           {{ partial "karte-schulart.html" . }}
         {{ end }}

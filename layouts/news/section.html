@@ -7,13 +7,23 @@
   </div>
 </header>
 
+{{- /* Meldungen nach Jahr gruppieren. Die neueste Meldung jedes Jahres wird
+       zur Featured-Karte, der Rest füllt darunter Dreier-Zeilen. Gruppen
+       entstehen aus den Daten – ein neues Jahr braucht keine Vorlage. */ -}}
+{{- $gruppen := .RegularPages.GroupByDate "2006" "desc" -}}
+{{- range $gruppen }}
+  {{- $seiten := sort .Pages "Date" "desc" -}}
+  {{- $erste := index $seiten 0 -}}
 <section class="band band--papier">
   <div class="container">
-    <div class="raster raster--3">
-      {{ range sort .RegularPages "Date" "desc" }}
-        {{ partial "karte-news.html" (dict "seite" . "ebene" "h2") }}
+    <h2 class="zeitgruppe__titel" id="jahr-{{ .Key }}">{{ .Key }} <span class="anzahl">{{ len $seiten }}</span></h2>
+    <div class="raster raster--news">
+      {{ partial "karte-news.html" (dict "seite" $erste "ebene" "h3" "klasse" "karte--gross") }}
+      {{ range after 1 $seiten }}
+        {{ partial "karte-news.html" (dict "seite" . "ebene" "h3") }}
       {{ end }}
     </div>
   </div>
 </section>
+{{- end }}
 {{ end }}
