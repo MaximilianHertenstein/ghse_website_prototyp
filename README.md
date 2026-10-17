@@ -20,8 +20,8 @@ python3 tools/preview-server.py   # public/ so ausliefern wie GitHub Pages
 ```
 
 Es gibt keine npm-/PostCSS-Toolchain: CSS, JS und Schrift liegen fertig unter
-`static/` (ein Stylesheet, ein kleines Skript für das Mobilmenü, Inter als
-selbst gehostete Variable-Font, 48 kB).
+`static/` (ein Stylesheet, ein kleines Skript für Mobilmenü und Farbmodus,
+Inter als selbst gehostete Variable-Font, 48 kB).
 
 ---
 
@@ -29,7 +29,7 @@ selbst gehostete Variable-Font, 48 kB).
 
 | Bereich | Umsetzung | URL |
 |---|---|---|
-| A Landingpage | Hero, Faktenband, 3 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Download-CTA, Über die GHSE (6 Servicekarten), Schulleben, Partner | `/` |
+| A Landingpage | Hero (eine Schaltfläche), Faktenband, 3 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Über die GHSE (4 Servicekarten), Schulleben, Partner (logobreit) | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Technisches Gymnasium (vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Downloads) | `/schularten/technisches-gymnasium/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
@@ -95,6 +95,13 @@ Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 **Bildnachweise:** Logo, Gebäudeaufnahme, Schulartbilder und Presseabbildungen
 stammen von `www.ghse.de` (Theme „ziegenhagel", Uploads). Für den internen
 Prototyp referenziert; eine Veröffentlichung braucht die Freigabe der Schule.
+
+**Partner-Logostreifen:** Der Prototyp nutzt die aktuelle Fassung von ghse.de
+(1023×494 px, sieben Logos, Upload 2025). Auf der vollen Containerbreite
+(1180 px) wird die Datei minimal hochskaliert – bewusst zugunsten der
+inhaltlichen Aktualität; das größere Original von 2023 (2116×1014 px) zeigt
+ein inzwischen entferntes „Approved Test Centre"-Logo und wird deshalb nicht
+verwendet.
 
 **Getestete Downloads** (alle `HTTP 200`, `application/pdf`, Magic-Bytes
 `%PDF-` geprüft, Inhalt per `pdftotext` gegen den Titel abgeglichen):
@@ -185,6 +192,28 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
   werten; Kategorien und Gruppen entstehen aus den Daten, nicht aus der Vorlage.
 
+### Farbmodus (Hell/Dunkel)
+
+Hugo selbst kann keinen Dark Mode – ein statischer Generator kennt keine
+Nutzereinstellung. Umgesetzt ist deshalb der Standardweg für statische
+Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
+
+* Semantische Tokens in `:root` (`--schrift`, `--flaeche`, `--papier`,
+  `--rand`, `--link`, `--schatten-farbe`, `--streifen` …). Die Komponenten
+  referenzieren nur diese Tokens; der dunkle Satz ersetzt Werte, nicht Regeln.
+* Der dunkle Satz steht zweimal: in `@media (prefers-color-scheme: dark)`
+  (ohne gespeicherte Wahl, `:root:not([data-theme="light"])`) und unter
+  `:root[data-theme="dark"]` für die gespeicherte Wahl. Bewusste
+  Vereinfachung ohne Präprozessor.
+* Schalter im Kopf (`.modusknopf`, Sonne/Mond, `aria-pressed`); die Wahl
+  liegt in `localStorage` (`ghse-theme`), ein Inline-Skript in `baseof.html`
+  setzt sie vor dem Rendern (kein Aufblitzen). Ohne gespeicherte Wahl folgt
+  die Seite dem System (`prefers-color-scheme`).
+* Gelbe Flächen behalten in beiden Modi dunkle Schrift (`--tinte`), das Logo
+  wird im Dunkeln weiß ausgegeben, Marker hinter `<strong>` abgeschwächt.
+* `@media print` setzt alle Tokens auf Hell zurück – ausgedruckt wird nie
+  die dunkle Variante.
+
 ---
 
 ## 6. Qualitätssicherung
@@ -195,20 +224,25 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
   Fokusringe (`:focus-visible`, orange), `aria-expanded`/`aria-controls` am
   Mobilmenü, `aria-current="page"` in der Navigation, Alt-Texte für alle
   Bilder (Bilder einzeln betrachtet und beschrieben), Farben auf Kontrast
-  geprüft (Tinte/Papier ≈ 17:1, Weiß/Nachtblau ≈ 12:1, Tinte/Gelb ≈ 12:1),
+  geprüft – `qa/kontrast.py` rechnet alle Tokenpaare in Hell **und** Dunkel
+  durch (37 Paare, kleinster Textwert 4,87:1 für den Kicker auf Papier,
+  alle Paare bestehen),
   Touch-Ziele ≥ 44 px, `prefers-reduced-motion` respektiert.
 * Responsive: Breakpoints 1000/900/640 px – Karten- und Zeilenraster stapeln
   sich, Navigation wird zum Aufklappmenü, Download-Zeilen werden zu
   Vollbreiten-Karten mit großem Button.
-* Links: alle internen Ziele geprüft – 23 HTML-Seiten sowie alle eingebundenen
-  Bilder, Schriften und PDFs (435 Ziele gesamt, keine Fehlschläge), 56 externe
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – 23 HTML-Seiten
+  sowie alle eingebundenen Bilder, Schriften und PDFs (335 Ziele gesamt,
+  keine Fehlschläge), 56 externe
   Links alle `HTTP 200` – darunter die 9 öffentlichen Nextcloud-Terminkalender,
   12 Instagram-Links (8 Accounts, 4 Beiträge), BewO, Moodle, OSM,
   Impressum/Datenschutz und die Berufsinformations-Beiträge; die vier
   Presse-URLs der nachträglich ergänzten Meldungen wurden live abgefragt.
 * Lighthouse: Performance mobil **98–100** (Startseite 99, News-Übersicht 99,
   Meldungsseiten 98–100, Download- und Schulartseiten 99–100), Desktop
-  **100** (LCP 0,4–0,5 s); Accessibility und SEO überall 100, Best Practices
+  **100** (LCP 0,4–0,5 s); nach dem Dark-Mode-Einbau stichprobenartig
+  neu gemessen: Startseite mobil 98 / Desktop 100, Download-Seite mobil 100,
+  Meldungsseite mobil 99 – Accessibility und SEO jeweils 100. Best Practices
   überall 100 außer der Seite „Besuch aus China" (96): Der dortige
   Zeitungsausschnitt ist auf ghse.de nur 360 px breit, das Audit
   `image-size-responsive` moniert genau diese Auflösung – hochskalieren

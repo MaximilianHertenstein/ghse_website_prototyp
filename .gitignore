@@ -7,7 +7,8 @@
 # Arbeitsmaterial: Screenshots, Lighthouse-Reports und Roh-Extrakte der
 # Originalseite. Nicht Teil der Website – für den Repository-Commit bleibt es
 # lokal. Wer sie mitversionieren will, entfernt die zwei Zeilen.
-/qa/
+/qa/*
+!qa/*.py
 /recherche/
 
 # Betriebssystem- und Editor-Reste
