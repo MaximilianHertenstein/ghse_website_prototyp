@@ -24,7 +24,6 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   telefonLink = "+497641465100"
   fax = "07641 465 199"
   mail = "poststelle@ghse.de"
-  sekretariat = "Mo - Do: 7.30 - 12.00 Uhr, Mo - Do: 13.00 - 15.30 Uhr, Fr: 7.30 - 13.00 Uhr"
 
 [menus]
   [[menus.haupt]]
@@ -40,7 +39,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     url = "/#termine"
     weight = 25
   [[menus.haupt]]
-    name = "News"
+    name = "Aktuelles"
     pageRef = "/news"
     weight = 30
   [[menus.haupt]]
