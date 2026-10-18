@@ -57,7 +57,10 @@
             </li>
           {{ end }}
         </ul>
-        <a class="btn btn--klein btn--akzent menue__cta" href="{{ "downloads/" | relURL }}">Formulare &amp; Anmeldung</a>
+        {{- /* Direkt in die Formularkategorie: „Anmeldung“ ist die dritthäufigste
+               Nutzeraufgabe, und auf der Download-Startseite stünde sie zwischen
+               Flyern und Blockplänen. */}}
+        <a class="btn btn--klein btn--akzent menue__cta" href="{{ "downloads/#dl-formulare--hausordnung" | relURL }}">Formulare &amp; Anmeldung</a>
       </nav>
     </div>
   </div>

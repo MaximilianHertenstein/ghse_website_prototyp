@@ -7,6 +7,9 @@
       <p class="hero__unter">{{ .Params.untertitel }}</p>
       <p class="hero__knoepfe">
         <a class="btn btn--akzent" href="{{ "schularten/" | relURL }}">Schularten entdecken</a>
+        {{- /* Zweite Aktion: führt direkt in die Formularkategorie, nicht auf
+               die Download-Startseite – sonst muss man dort erst suchen. */}}
+        <a class="btn btn--geist" href="{{ "downloads/#dl-formulare--hausordnung" | relURL }}">Anmeldung &amp; Formulare</a>
       </p>
       {{- /* Termin-Ticket als zweite Aktion. Wird nur gerendert, wenn Titel,
              Datum und Ziel vorliegen – ein erfundenes Datum ist tabu, deshalb
@@ -233,7 +236,17 @@
     <p class="kicker">Zusammenarbeit</p>
     <h2 id="home-partner">Partner aus der Region</h2>
     <p class="band__einleitung">Ausbildungsbetriebe und Einrichtungen der Umgebung stehen in Verbindung mit der GHSE; die Originalseite führt die Partnerschaften im Einzelnen.</p>
-    <img class="partner" src="{{ .Params.partner_bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.partner_alt }}" loading="lazy" decoding="async">
+    {{- /* Sieben einzelne Kacheln statt eines skalierten Gesamtstreifens:
+           feste Kachelhöhe verhindert Verschiebungen beim Laden, jedes Zeichen
+           bleibt bis maximal 4,5 rem hoch und wird nie über seine native
+           Auflösung hinaus vergrößert. */}}
+    <ul class="partnergitter">
+      {{- range .Params.partner_logos }}
+      <li class="partnergitter__kachel">
+        <img src="{{ .bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .bildAlt }}" loading="lazy" decoding="async">
+      </li>
+      {{- end }}
+    </ul>
   </div>
 </section>
 {{ end }}

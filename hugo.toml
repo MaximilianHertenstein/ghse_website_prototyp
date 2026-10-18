@@ -57,6 +57,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   name = "Krankmelden"
   url = "https://www.ghse.de/online-abmelden/"
   weight = 10
+# Stundenplan gehört laut Aufgabenrangfolge (2. Termine/Stundenplan) mit an
+# die Spitze; vorher stand er nur im Fuß und im Service-Band.
+[[menus.schnell]]
+  name = "Stundenplan"
+  url = "https://www.ghse.de/ekb"
+  weight = 15
 [[menus.schnell]]
   name = "Mail"
   url = "mailto:poststelle@ghse.de"

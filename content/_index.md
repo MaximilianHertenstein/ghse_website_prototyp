@@ -102,7 +102,23 @@ schulleben_bilder:
   - bild: "/bilder/schulleben-3.webp"
     bildAlt: "Großer Hallenraum mit aufgestellten Tischen und Stühlen"
 
-# Partner der Schule (Logostreifen der Originalseite)
-partner_bild: "/bilder/partner.webp"
-partner_alt: "Logostreifen der Partner der GHSE Emmendingen"
+# Partner der Schule – einzeln eingebunden. Der bisherige Gesamtstreifen
+# (1023 px) wurde auf Containerbreite hochskaliert und war mobil bei rund
+# 0,34-facher Skalierung nicht mehr lesbar; je Kachel erscheint jedes Zeichen
+# nahe seiner nativen Auflösung.
+partner_logos:
+  - bild: "/bilder/partner-1.webp"
+    bildAlt: "Rundes blaues Siegel mit der Umschrift Arbeitsmarktinstrumente, DQP und AZAV"
+  - bild: "/bilder/partner-2.webp"
+    bildAlt: "Infokarte Solarstrom mit Angaben zur Photovoltaikanlage der UNESCO-Projektschule GHSE Emmendingen"
+  - bild: "/bilder/partner-3.webp"
+    bildAlt: "Logo Der Deutsche Schulpreis mit grünem Pegasus-Signet"
+  - bild: "/bilder/partner-4.webp"
+    bildAlt: "Plakat BerufsWahl-SiGEL Baden-Württemberg für berufsbildende Schulen mit dem Schriftzug BoriS"
+  - bild: "/bilder/partner-5.webp"
+    bildAlt: "Logo Cisco Systems Networking Academy"
+  - bild: "/bilder/partner-6.webp"
+    bildAlt: "Logo aes – operativ eigenständige schule"
+  - bild: "/bilder/partner-7.webp"
+    bildAlt: "Siegel IQNet Certified Management System"
 ---

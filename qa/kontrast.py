@@ -48,11 +48,28 @@ paare = [
     ("weiss auf teilzeit-orange (Grafik 3:1)", "#ffffff", "#ee6a2b", 3.0),
 ]
 
+# Überblendung: Textfarbe auf einem Band liegt nicht direkt auf dem Token,
+# sondern auf der überdeckten Fläche – deshalb wird hier verrechnet.
+def mischen(grund, deck, anteil):
+    g, d = grund.lstrip("#"), deck.lstrip("#")
+    werte = [round(int(g[i:i + 2], 16) * (1 - anteil) + int(d[i:i + 2], 16) * anteil)
+             for i in (0, 2, 4)]
+    return "#%02x%02x%02x" % tuple(werte)
+
+
+# Sekundärtext auf Nacht-Bändern (rgba(255,255,255,.85) in main.css) für beide
+# Nacht-Hintergründe: hell (#141c4e) und dunkel (#0a0e28).
+def weiss_auf_nacht(nacht_hex, anteil=0.85):
+    return mischen(nacht_hex, "#ffffff", anteil)
+
+
 sonder = {
     "HELL": [
         ("hero__unter #dfe3f5 auf nacht", "#dfe3f5", "#141c4e", 4.5),
         ("fuss-text #e6e9f7 auf nacht", "#e6e9f7", "#141c4e", 4.5),
         ("fuss-hinweis #b9bed6 auf tinte", "#b9bed6", "#101736", 4.5),
+        ("band--nacht Sekundärtext (Einleitung, hinweiszeile)",
+         weiss_auf_nacht("#141c4e"), "#141c4e", 4.5),
         ("hinweis schrift auf hinweis-flaeche", "#101736", "#fffbe6", 4.5),
         ("warnung schrift auf warn-flaeche", "#101736", "#ffe9e6", 4.5),
         ("warn-rand auf warn-flaeche (Grafik 3:1)", "#bf4712", "#ffe9e6", 3.0),
@@ -61,6 +78,8 @@ sonder = {
         ("hero__unter #dfe3f5 auf nacht", "#dfe3f5", "#0a0e28", 4.5),
         ("fuss-text #e6e9f7 auf nacht", "#e6e9f7", "#0a0e28", 4.5),
         ("fuss-hinweis #b9bed6 auf schatten-farbe", "#b9bed6", "#05071a", 4.5),
+        ("band--nacht Sekundärtext (Einleitung, hinweiszeile)",
+         weiss_auf_nacht("#0a0e28"), "#0a0e28", 4.5),
         ("hinweis schrift auf hinweis-flaeche", "#f2f4fc", "#33311a", 4.5),
         ("warnung schrift auf warn-flaeche", "#f2f4fc", "#3b2016", 4.5),
         ("warn-rand auf warn-flaeche (Grafik 3:1)", "#ff9d70", "#3b2016", 3.0),
@@ -71,12 +90,6 @@ sonder = {
 
 # Streifenmuster: die Fläche unter den Diagonalstreifen wird zur Hälfte
 # geprüft, denn Text steht abwechselnd auf Papier und auf Streifen.
-def mischen(grund, deck, anteil):
-    g, d = grund.lstrip("#"), deck.lstrip("#")
-    werte = [round(int(g[i:i + 2], 16) * (1 - anteil) + int(d[i:i + 2], 16) * anteil)
-             for i in (0, 2, 4)]
-    return "#%02x%02x%02x" % tuple(werte)
-
 fehler = 0
 for name, t in (("HELL", hell), ("DUNKEL", dunkel)):
     print(f"--- {name} ---")

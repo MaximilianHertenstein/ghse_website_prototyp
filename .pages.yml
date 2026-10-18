@@ -184,14 +184,22 @@ content:
             type: string
 
       # Abschnitt „Partner“
-      - name: partner_bild
-        label: Partner-Logostreifen
-        type: image
-        options:
-          media: images
-      - name: partner_alt
-        label: Bildbeschreibung (Alt-Text)
-        type: string
+      - name: partner_logos
+        label: Partnerlogos (einzelne Kacheln)
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{bildAlt}"
+        fields:
+          - name: bild
+            label: Logo
+            type: image
+            options:
+              media: images
+          - name: bildAlt
+            label: Bildbeschreibung (Alt-Text)
+            type: string
 
   # Zusätzlich in der Vorlage gerendert, aber bewusst kein CMS-Feld:
   # "downloads" (Slugs verwandter Dokumente, nur beim Technischen

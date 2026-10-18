@@ -27,7 +27,9 @@
   });
 
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 900) setz(false);
+    // Grenze aus static/css/main.css: die Desktop-Navigation braucht 1016 px,
+    // ab 1024 px läuft sie als Zeile, darunter als Menükopf.
+    if (window.innerWidth > 1024) setz(false);
   });
 })();
 

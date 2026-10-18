@@ -813,6 +813,11 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 
 .band__einleitung { max-width: 62ch; color: var(--grau); margin-bottom: 2rem; }
 .band--nacht .band__einleitung { color: rgba(255, 255, 255, 0.85); }
+/* .hinweiszeile erbt sonst --grau, das für Papier gesetzt ist und auf dem
+   Nacht-Band nur 2,01:1 erreicht (Stand-Zeile unter dem Instagram-Raster).
+   Gleiche Behandlung wie die Einleitung desselben Bandes. Geprüft in
+   qa/kontrast.py als "band--nacht Sekundärtext". */
+.band--nacht .hinweiszeile { color: rgba(255, 255, 255, 0.85); }
 
 .kalenderliste {
   list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem;
@@ -883,18 +888,35 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   border: var(--rahmen); box-shadow: var(--schatten-klein);
 }
 
-.partner {
-  display: block; width: 100%; margin: 1.75rem auto 0;
-  aspect-ratio: 1023 / 494; object-fit: contain;
-  border: var(--rahmen); background: var(--weiss);
+/* Partnerband: jedes Zeichen als eigene Kachel. Der bisherige Gesamtstreifen
+   (1023 px) lief auf Containerbreite bis 1180 px, also über seine native
+   Auflösung, und war mobil bei rund 0,34-facher Skalierung nicht mehr lesbar.
+   --weiss bleibt in beiden Modi echtes Weiß, die Zuschnitte tragen weiße
+   Ränder – Kachel und Bildrand bleiben dadurch deckungsgleich. */
+.partnergitter {
+  list-style: none; margin: 1.75rem 0 0; padding: 0;
+  display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.partnergitter__kachel {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 7.5rem; padding: 1rem;
+  background: var(--weiss); border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+}
+.partnergitter__kachel img {
+  display: block; max-width: 100%; max-height: 4.5rem; width: auto; height: auto;
 }
 
 @media (max-width: 1000px) {
   .kalenderliste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .instaraster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .partnergitter { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .kalenderliste, .instaraster, .schulleben { grid-template-columns: minmax(0, 1fr); }
+  /* Zwei Spalten: mobil bleibt jedes Zeichen doppelt so groß wie im
+     geskalierten Streifen und damit in seiner Kleinschrift erkennbar. */
+  .partnergitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- Responsive ---------- */
@@ -906,14 +928,14 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   .seitenleiste { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (max-width: 900px) {
-  :root { --kopfhoehe: 4.5rem; }
-  .leiste { display: none; }
+/* Umschalter auf den Menükopf: Die Desktop-Navigation (6 Punkte + CTA) ist
+   gemessen 1016 px breit. Läuft sie bis 900 px als Zeile weiter, scrollte die
+   Seite zwischen 901 und 1015 px seitlich – bis zu 115 px Überlauf, sichtbar
+   als waagerechter Scrollbalken. Ab 1024 px passt sie mit Spielraum.
+   Bewusst eigene Query: Hero, Kopfleiste und Kopfhöhe richten sich weiterhin
+   nach 900 px, sonst änderte diese Grenze auch das Startseiten-Raster. */
+@media (max-width: 1024px) {
   .menueknopf { display: flex; }
-  /* Modusknopf nur noch als Icon – der Knopftext würde die Kopfzeile
-     verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen. */
-  .modusknopf { padding: 0.55rem; min-height: 2.75rem; min-width: 2.75rem; justify-content: center; }
-  .modusknopf__text { display: none; }
   .menue {
     display: none; position: absolute; left: 0; right: 0; top: 100%;
     flex-direction: column; align-items: stretch; gap: 0.75rem;
@@ -924,12 +946,22 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   .menue[data-offen] { display: flex; }
   .menue ul { flex-direction: column; gap: 0; }
   .menue ul a { padding: 0.95rem 0.5rem; font-size: 1.05rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12); }
-  /* Krankmelden & Co. stehen sonst nur noch im Fuß. */
+  .menue__cta { justify-content: center; }
+}
+
+@media (max-width: 900px) {
+  :root { --kopfhoehe: 4.5rem; }
+  .leiste { display: none; }
+  /* Modusknopf nur noch als Icon – der Knopftext würde die Kopfzeile
+     verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen. */
+  .modusknopf { padding: 0.55rem; min-height: 2.75rem; min-width: 2.75rem; justify-content: center; }
+  .modusknopf__text { display: none; }
+  /* Krankmelden & Co. stehen sonst nur noch im Fuß; bis 1024 px trägt die
+     dunkle Kopfleiste sie ohnehin. */
   .menue__schnell {
     display: flex; flex-wrap: wrap; gap: 0.6rem;
     padding-bottom: 1rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12);
   }
-  .menue__cta { justify-content: center; }
   .hero__innen { grid-template-columns: 1fr; }
   .hero__bild img { box-shadow: 10px 10px 0 var(--gelb); }
 }

@@ -1,5 +1,8 @@
 {{- $h := .ebene | default "h3" -}}{{- $p := .seite -}}{{- $klasse := .klasse | default "" -}}
-<article class="karte karte--news{{ with $klasse }} {{ . }}{{ end }}">
+{{- /* Ohne Abbildung trägt ein typografischer Kopf die Karte (Quelle als
+       Sticker, Datum groß). Die zugehörigen Regeln hängen an .karte--text –
+       die Klasse fehlte, dadurch lief das Datum unauffällig als Fließtext mit. */}}
+<article class="karte karte--news{{ if not $p.Params.bild }} karte--text{{ end }}{{ with $klasse }} {{ . }}{{ end }}">
   <a class="karte__link" href="{{ $p.RelPermalink }}">
     {{- with $p.Params.bild }}
     <figure class="karte__bild karte__bild--zeitung">
