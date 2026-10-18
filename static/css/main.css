@@ -20,7 +20,6 @@
   --nacht: #141c4e;
   --tinte: #101736;
   --gelb: #ffd400;
-  --orange: #ee6a2b;
   /* dunkleres Orange für Text und Fokus (≥4.5:1 auf Papier, ≥3:1 auf Gelb/Nacht) */
   --orange-tief: #bf4712;
   --papier: #fbfaf6;
@@ -1012,7 +1011,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 }
 
 /* ---------- Dunkelmodus: Feinjustierung über den Tokens ---------- */
-/* ponytail: wieder zweimal derselbe Block (Media-Query + Attribut), s. :root. */
+/* ponytail: wieder zweimal derselbe Block (Media-Query + Attribut), s. :root.
+   ponytail: die drei Regeln darunter sind verschachtelt (CSS Nesting, Chrome
+   112 / Firefox 117 / Safari 16.5) und hängen bewusst an [data-theme="dark"],
+   nicht an der Systempräferenz – ältere Browser verlieren sie still. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     /* Monogramm ist dunkelblau – im Dunkeln weiß ausgeben. */

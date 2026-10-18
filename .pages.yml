@@ -104,6 +104,11 @@ content:
             type: string
           - name: datum
             label: Datum (Anzeige)
+            # Wird unverändert ausgegeben, nicht als Datumsfeld formatiert.
+            description: Erscheint unverändert auf der Karte – Format TT.MM.JJJJ.
+            pattern:
+              regex: '^\d{2}\.\d{2}\.\d{4}$'
+              message: "Bitte TT.MM.JJJJ verwenden, z. B. 22.04.2024"
             type: string
           - name: teaser
             label: Anrisstext
@@ -245,7 +250,7 @@ content:
         type: rich-text
 
   - name: news
-    label: News
+    label: Aktuelles
     type: collection
     path: content/news
     fields:
@@ -292,6 +297,25 @@ content:
         type: string
       - name: body
         label: Nachrichtentext (optional)
+        type: rich-text
+
+  # Der Einstiegstext der Download-Seite wird von downloads/section.html als
+  # .Content gerendert und liegt in _index.md. Bewusst ein eigenes file-Feld
+  # statt body in der Sammlung: dort tragen 16 der 17 Dateien render: never,
+  # ihr Text würde nie erscheinen – ein totes Feld pro Eintrag.
+  - name: downloads_einstieg
+    label: Downloads – Einstieg
+    type: file
+    path: content/downloads/_index.md
+    fields:
+      - name: title
+        label: Überschrift
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Einleitung (Fließtext)
         type: rich-text
 
   - name: downloads
