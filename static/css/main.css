@@ -604,11 +604,14 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 .sprungleiste a:hover { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
 
 /* Mobil nimmt eine gestapelte Leiste rund 200 px Sichtfläche ein. Eine
-   scrollbare Chip-Zeile braucht eine Zeile und lässt sich seitlich wischen. */
+   scrollbare Chip-Zeile braucht eine Zeile und lässt sich seitlich wischen.
+   proximity statt mandatory: der starre Einrastpunkt scrollte das sichtbare
+   Label „Kategorie:" (88 px) beim Laden aus dem Bild – endgültig, weil es
+   selbst kein Einrastziel ist. proximity rastet nur noch am Rande ein. */
 @media (max-width: 640px) {
   .sprungleiste .container {
     flex-wrap: nowrap; overflow-x: auto;
-    scroll-snap-type: x mandatory; scrollbar-width: none;
+    scroll-snap-type: x proximity; scrollbar-width: none;
   }
   .sprungleiste .container::-webkit-scrollbar { display: none; }
   .sprungleiste ul { flex-wrap: nowrap; }
@@ -1012,13 +1015,15 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 
 /* ---------- Dunkelmodus: Feinjustierung über den Tokens ---------- */
 /* ponytail: wieder zweimal derselbe Block (Media-Query + Attribut), s. :root.
-   ponytail: die drei Regeln darunter sind verschachtelt (CSS Nesting, Chrome
+   ponytail: die zwei Regeln darunter sind verschachtelt (CSS Nesting, Chrome
    112 / Firefox 117 / Safari 16.5) und hängen bewusst an [data-theme="dark"],
    nicht an der Systempräferenz – ältere Browser verlieren sie still. */
+/* Das Monogramm ist auf hellem Grund gezeichnet – nicht invertieren (macht das
+   Quadrat zur weißen Matsche), sondern auf weiße Zelle wie die Partnerkacheln.
+   Flach geschrieben: verschachtelte Regeln verliert altes Safari still, dann
+   stünde das dunkle Logo auf dunklem Grund. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    /* Monogramm ist dunkelblau – im Dunkeln weiß ausgeben. */
-    .marke-link img { filter: brightness(0) invert(1); }
     /* Gelbe Fläche mit dunkler Schrift statt dunklem Chip (sonst nicht lesbar). */
     .menue ul a[aria-current="page"] { background: var(--gelb); color: var(--tinte); }
     /* Marker hinter <strong>: heller Ton, sonst zu wenig Kontrast. */
@@ -1026,14 +1031,17 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
       background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.35) 58%);
     }
   }
+  /* Bilddatei ist randlos: oben 14,5 px Luft, unten 1,5 px – deshalb asymmetrisch. */
+  .marke-link { background: var(--weiss); padding: 0 0.4rem 0.8rem; }
 }
 :root[data-theme="dark"] {
-  .marke-link img { filter: brightness(0) invert(1); }
   .menue ul a[aria-current="page"] { background: var(--gelb); color: var(--tinte); }
   .fliesstext strong {
     background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.35) 58%);
   }
 }
+/* Bilddatei ist randlos: oben 14,5 px Luft, unten 1,5 px – deshalb asymmetrisch. */
+:root[data-theme="dark"] .marke-link { background: var(--weiss); padding: 0 0.4rem 0.8rem; }
 
 /* ---------- Druck (Artikel und Downloads ausdrucken) ---------- */
 
