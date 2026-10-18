@@ -21,11 +21,13 @@ hell = {
     "schrift": "#101736", "grau": "#4c5063", "orange": "#bf4712",
     "link": "#141c4e", "rand": "#101736", "papier": "#fbfaf6",
     "flaeche": "#ffffff", "gelb": "#ffd400", "nacht": "#141c4e",
+    "papier2": "#f1efe6",
 }
 dunkel = {
     "schrift": "#f2f4fc", "grau": "#aab1cf", "orange": "#ff9d70",
     "link": "#ffd400", "rand": "#e8ebfa", "papier": "#10153a",
     "flaeche": "#1c2455", "gelb": "#ffd400", "nacht": "#0a0e28",
+    "papier2": "#171d49",
 }
 
 paare = [
@@ -46,6 +48,9 @@ paare = [
     # weil die Fläche in beiden Modi Tinte-Schrift behält).
     ("tinte auf teilzeit-orange (Chip-Text)", "#101736", "#ee6a2b", 4.5),
     ("weiss auf teilzeit-orange (Grafik 3:1)", "#ffffff", "#ee6a2b", 3.0),
+    # Zitatblöcke stehen auf --papier2 (blockquote, .fliesstext) und erben die
+    # Fließtextfarbe. Die Fläche war bislang in keinem Paar erfasst.
+    ("blockquote: schrift auf papier2 (Zitat)", "schrift", "papier2", 4.5),
 ]
 
 # Überblendung: Textfarbe auf einem Band liegt nicht direkt auf dem Token,
@@ -73,6 +78,10 @@ sonder = {
         ("hinweis schrift auf hinweis-flaeche", "#101736", "#fffbe6", 4.5),
         ("warnung schrift auf warn-flaeche", "#101736", "#ffe9e6", 4.5),
         ("warn-rand auf warn-flaeche (Grafik 3:1)", "#bf4712", "#ffe9e6", 3.0),
+        # Marker hinter fett gesetztem Fließtext (rgba(255,212,0,.75) über der
+        # Seitengrundfläche). Wurde bisher nur im Dunkelmodus geprüft.
+        ("strong-Marker: schrift auf papier+75%gelb",
+         "#101736", mischen("#fbfaf6", "#ffd400", 0.75), 4.5),
     ],
     "DUNKEL": [
         ("hero__unter #dfe3f5 auf nacht", "#dfe3f5", "#0a0e28", 4.5),
@@ -83,8 +92,10 @@ sonder = {
         ("hinweis schrift auf hinweis-flaeche", "#f2f4fc", "#33311a", 4.5),
         ("warnung schrift auf warn-flaeche", "#f2f4fc", "#3b2016", 4.5),
         ("warn-rand auf warn-flaeche (Grafik 3:1)", "#ff9d70", "#3b2016", 3.0),
+        # Schwellwert 4.5 statt 3.0: der Marker hinterläuft normal großen
+        # Fließtext (1.09rem/800), der nach WCAG 2.2 Text und nicht Grafik ist.
         ("strong-Marker: schrift auf flaeche+35%gelb",
-         "#f2f4fc", "#6b6237", 3.0),
+         "#f2f4fc", "#6b6237", 4.5),
     ],
 }
 

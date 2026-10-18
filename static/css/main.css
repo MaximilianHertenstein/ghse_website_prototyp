@@ -181,7 +181,11 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
    .marke, .tag und .meta time laufen hiermit zusammen; .marke und .tag
    bleiben als Alias erhalten, damit Fremdinhalte nicht auseinanderfallen. */
 .chip {
-  display: inline-flex; align-items: baseline; gap: 0.5rem;
+  /* flex-wrap, damit ein Chip mit langem Text umbrechen kann: als reine
+     Zeile addieren sich seine Teile zur Mindestbreite und der Chip ragte bei
+     320 px um 41 px über seinen Kontainer. Passt der Chip ohnehin, ändert
+     sich nichts. */
+  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;
   border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
   padding: 0.45rem 0.8rem; text-decoration: none; font-weight: 800; font-size: 0.9rem;
   box-shadow: 3px 3px 0 var(--schatten-farbe);
@@ -253,8 +257,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 .band--gelb { background: var(--gelb); color: var(--tinte); }
 .band--gelb h2,
 .band--gelb .kicker,
-.band--gelb .band__einleitung,
-.band--gelb .einleitung { color: var(--tinte); }
+.band--gelb .band__einleitung { color: var(--tinte); }
 .band--gelb .btn--geist { border-color: var(--tinte); color: var(--tinte); }
 .band--gelb .btn--geist:hover { background: var(--tinte); color: var(--gelb); }
 .band--gelb .schulleben img { border-color: var(--tinte); box-shadow: var(--schatten-klein); }
@@ -411,7 +414,6 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .hero__ticket:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
-.hero__ticket:focus-visible { outline-color: var(--gelb); }
 .hero__ticket-datum {
   font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; line-height: 1;
   font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
@@ -438,9 +440,8 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 
 /* ---------- Laufband mit Fakten ---------- */
 
-.faktenband { border-top: var(--rahmen); }
 .faktenband {
-  background: var(--gelb); color: var(--tinte);
+  border-top: var(--rahmen); background: var(--gelb); color: var(--tinte);
   padding: 1rem 0; overflow: hidden;
 }
 .faktenband__innen {
@@ -459,7 +460,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 .raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 /* Newsraster: die Featured-Karte spannt die volle Breite, die übrigen Karten
    füllen darunter Dreier-Zeilen. */
-.raster--news { display: grid; gap: 1.75rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.raster--news { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .zeitgruppe__titel {
   font-size: var(--t-h2); margin-bottom: 1.75rem; padding-bottom: 0.6rem;
   border-bottom: 3px solid var(--rand); font-variant-numeric: tabular-nums;
@@ -907,25 +908,27 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   display: block; max-width: 100%; max-height: 4.5rem; width: auto; height: auto;
 }
 
+/* ---------- Responsive ---------- */
+
+/* Breakpoint wie die Navigations-Grenze in static/js/nav.js. Alle Umbrüche
+   stehen absteigend in je einem Block; die Startseiten-Listen hängen hier mit,
+   damit kein zweiter Block für dieselbe Breite nötig ist. */
 @media (max-width: 1000px) {
-  .kalenderliste { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .instaraster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kalenderliste, .instaraster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .partnergitter { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .raster--3, .raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fuss__gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* minmax(0, 1fr) wie überall sonst im Raster: eine nackte `1fr`-Spalte
+     zieht ihre Untergrenze aus der Mindestinhaltsbreite und hält die Seite
+     dann waagerecht scrollbar. */
+  .raster--seite { grid-template-columns: minmax(0, 1fr); }
+  .seitenleiste { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
   .kalenderliste, .instaraster, .schulleben { grid-template-columns: minmax(0, 1fr); }
   /* Zwei Spalten: mobil bleibt jedes Zeichen doppelt so groß wie im
      geskalierten Streifen und damit in seiner Kleinschrift erkennbar. */
   .partnergitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 1000px) {
-  .raster--3, .raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .fuss__gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .raster--seite { grid-template-columns: 1fr; }
-  .seitenleiste { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* Umschalter auf den Menükopf: Die Desktop-Navigation (6 Punkte + CTA) ist
@@ -970,20 +973,29 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   body { font-size: 1.02rem; }
   .container, .schmal { width: min(100% - 1.75rem, var(--container)); }
   .raster--3, .raster--2, .raster--news,
-  .serviceliste, .fuss__gitter, .seitenleiste { grid-template-columns: 1fr; }
-  .zeile { grid-template-columns: 1fr; }
+  .serviceliste, .fuss__gitter, .seitenleiste { grid-template-columns: minmax(0, 1fr); }
+  .zeile { grid-template-columns: minmax(0, 1fr); }
   .zeile__aktion { justify-self: stretch; }
   .zeile__aktion .btn { width: 100%; justify-content: center; }
   .kopfzeile { align-items: flex-start; }
   .karte__koerper { padding: 1.1rem 1.1rem 1.35rem; }
   .btn { width: auto; white-space: normal; }
+  /* Lange deutsche Komposita sprengten sonst den Viewport: „Sozialwissen-
+     schchaftliches" (417 px), „Berufsvorbereitende" (351 px) und
+     „Abschlussmöglichkeiten" (292 px) stehen weit über den 277 px, die bei
+     320 px bleiben. `anywhere` im Gegensatz zu `break-word` verkleinert auch
+     die Mindestinhaltsbreite, aus der Raster und Grid-Spalten ihre Untergrenze
+     beziehen. `hyphens: auto` setzt bei vorhandenem Wörterbuch echte
+     Trennstriche; `anywhere` fängt den Fall ohne Wörterbuch ab. Bewusst nur
+     mobil: `text-wrap: balance` auf den Überschriften soll am Desktop nicht
+     durch Wortumbrüche beeinflusst werden. */
+  h1, h2, h3 { hyphens: auto; overflow-wrap: anywhere; }
 }
 
 /* Grober Zeiger (Touch): Schaltflächen und Chips erreichen sonst 42/43 px. */
 @media (pointer: coarse), (max-width: 640px) {
   .btn--klein { min-height: 2.75rem; }
   .chip { min-height: 2.75rem; align-items: center; }
-  .menue__schnell .chip { min-height: 2.75rem; }
   /* Die Sprungleisten-Links waren mit 36 px das kleinste Touch-Ziel der
      Seite; die Leiste wird dadurch etwas höher, das scroll-margin-top der
      Ziele trägt das noch mit. */
@@ -991,7 +1003,6 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   /* Inflinks in Fließtext bleiben ausgenommen – der Ausdrucksfeil steht
      hinter dem Linktext, nicht als eigenes Ziel. */
   .fliesstext .linkpfeil { min-height: 0; }
-  .linkpfeil { align-items: center; }
   .sprungleiste { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 }
 
