@@ -5,14 +5,14 @@
 > (wöchentlich montags oder manuell unter „Actions" → „Qualitäts-Metriken" → „Run workflow").
 > Kein Wert im Repository ist von Hand gepflegt.
 
-![GL](https://img.shields.io/badge/GL-99-brightgreen) ![YL](https://img.shields.io/badge/YL-96-brightgreen) ![MO](https://img.shields.io/badge/MO-50%20%28C%29-yellow)
+![GL](https://img.shields.io/badge/GL-97-brightgreen) ![YL](https://img.shields.io/badge/YL-96-brightgreen) ![MO](https://img.shields.io/badge/MO-50%20%28C%29-yellow)
 
 | Kürzel | Metrik | Bedeutung | Letzter Wert |
 |---|---|---|---|
-| GL | Google Lighthouse Ø | Durchschnitt der vier Kategorien (0–100), höher = besser | **99** |
+| GL | Google Lighthouse Ø | Durchschnitt der vier Kategorien (0–100), höher = besser | **97** |
 | YL | Yellow Lab Tools | Gesamtscore Performance/Best Practices/SEO (0–100), höher = besser | **96** |
 | MO | MDN/Mozilla Observatory | Sicherheits-Header (0–100 und Note), höher = besser | **50 (C)** |
 
-Letzte Messung: 2026-10-17 11:02 UTC gegen <https://maximilianhertenstein.github.io/ghse_website_prototyp/>
+Letzte Messung: 2026-10-19 10:09 UTC gegen <https://maximilianhertenstein.github.io/ghse_website_prototyp/>
 
-Details: [Lighthouse-JSON & Logs der letzten Messung](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/runs/39027140352) · [Yellow-Lab-Tools-Ergebnis](https://yellowlab.tools/result/hnaldn81ms) · [MDN Observatory](https://developer.mozilla.org/de/observatory/?host=maximilianhertenstein.github.io)
+Details: [Lighthouse-JSON & Logs der letzten Messung](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/runs/39235246319) · [Yellow-Lab-Tools-Ergebnis](https://yellowlab.tools/result/hncra580p7) · [MDN Observatory](https://developer.mozilla.org/de/observatory/?host=maximilianhertenstein.github.io)
