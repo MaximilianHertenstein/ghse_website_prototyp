@@ -2,7 +2,7 @@
 title: "Startseite"
 description: "GHSE Emmendingen – Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen. Vom Hauptschulabschluss bis zum Abitur, Berufsausbildung in Metall, Holz, Elektro, Kfz und Pflege."
 titel: "Wir machen Schule für alle"
-untertitel: "Eine Schule und für viele gleichzeitig viele Schulen: vom Hauptschulabschluss über die mittlere Reife und die Fachhochschulreife bis zum Abitur."
+untertitel: "Vom Hauptschulabschluss über die mittlere Reife und die Fachhochschulreife bis zum Abitur."
 bild: "/bilder/hero-schule.webp"
 bildAlt: "Das Schulgebäude der GHSE in Emmendingen mit dem gelb markierten Gebäudeübergang, umgeben von Bäumen und Wiesen"
 
