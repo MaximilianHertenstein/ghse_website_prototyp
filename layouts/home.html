@@ -68,9 +68,9 @@
   </div>
 </section>
 
-{{- /* Aktuelles: die neueste Meldung als Featured-Karte über zwei Spalten,
-       die vier weiteren füllen darunter ein 2×2-Raster – ohne Loch. */}}
-{{- $meldungen := first 5 (sort (where site.RegularPages "Section" "news") "Date" "desc") -}}
+{{- /* Aktuelles: drei Meldungen als gleich große Karten in einer Zeile –
+       statt Featured-Karte über volle Breite plus 2×2-Raster darunter. */}}
+{{- $meldungen := first 3 (sort (where site.RegularPages "Section" "news") "Date" "desc") -}}
 {{- with $meldungen }}
 <section class="band band--nacht" aria-labelledby="home-news">
   <div class="container">
@@ -81,9 +81,8 @@
       </div>
       <a class="btn btn--geist" href="{{ "news/" | relURL }}">Alle Meldungen</a>
     </div>
-    <div class="raster raster--2">
-      {{ partial "karte-news.html" (dict "seite" (index . 0) "klasse" "karte--gross") }}
-      {{ range after 1 . }}
+    <div class="raster raster--3">
+      {{ range . }}
         {{ partial "karte-news.html" (dict "seite" .) }}
       {{ end }}
     </div>
@@ -196,12 +195,12 @@
       <li class="service">
         <h3>Immer ein offenes Ohr</h3>
         <p>Schüler können jederzeit ins offene Lehrerzimmer kommen oder unkompliziert Gesprächstermine vereinbaren.</p>
-        <a class="linkpfeil" href="tel:{{ site.Params.telefonLink }}">Sekretariat anrufen<span aria-hidden="true">↗</span></a>
       </li>
       <li class="service">
         <h3>Digitales Lernen</h3>
         <p>Gemeinsam arbeiten und Dateien tauschen: nextcloud@ghse und moodle@ghse.</p>
         <a class="linkpfeil" href="https://www.ghse.de/nextcloud/">Nextcloud<span aria-hidden="true">↗</span></a>
+        <a class="linkpfeil" href="https://04102015300.moodle.bw.schule/">Moodle<span aria-hidden="true">↗</span></a>
       </li>
       <li class="service">
         <h3>Lehrer-E-Mails</h3>
