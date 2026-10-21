@@ -60,7 +60,7 @@ Wenn du von der Realschule, Gemeinschaftsschule, Berufsfachschule oder von der 1
 
 ## Bewerbung
 
-Die Bewerbung erfolgt über ein [online-Verfahren (BewO)](https://bewo.kultus-bw.de/). Weitere Informationen haben wir auf der Seite zum [Bewerbungsverfahren Online](https://www.ghse.de/bewo/) zusammengestellt.
+Die Bewerbung erfolgt über ein [online-Verfahren (BewO)](https://bewo.kultus-bw.de/). Weitere Informationen haben wir auf der Seite zum [Bewerbungsverfahren Online](/bewo/) zusammengestellt.
 
 ## Abschlussmöglichkeiten
 

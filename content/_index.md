@@ -42,7 +42,7 @@ berufsinfo:
     datum: "19.03.2024"
     teaser: "Ausbildungsplatz bei Wasserkraft Volk AG – Für uns als Unternehmen ist es von sehr großer Bedeutung, dass auch Sie, von Seitens der Schule, unsere Ausbildungsberufe als Zukunftsperspektive anbieten. Natürlich haben die Schüler/innen auch die Möglichkeit, sich um einen Praktikumsplatz zu bewerben."
     url: "https://www.ghse.de/wasserkraft-volk-ag/"
-berufsinfo_mehr: "https://www.ghse.de/berufsinformation/"
+berufsinfo_mehr: "/berufsinformation/"
 
 # Instagram: Konten der Schule und der Abteilungen
 insta_text: "Um bei einer so großen Schule den Interessen entsprechend zu informieren, gibt es mehrere Accounts der Schule und von Schülern:"
@@ -93,7 +93,7 @@ insta_beitraege:
 
 # Bilderbereich „Schüler/innen – Schulleben – Lehrer/innen"
 schulleben_text: "Alles, was rund um die GHSE passiert: Schulleben, Angebote für Schülerinnen und Schüler und die Seiten der Lehrer/innen."
-schulleben_url: "https://www.ghse.de/schueler-schulleben-lehrer/"
+schulleben_url: "/schulleben/"
 schulleben_bilder:
   - bild: "/bilder/schulleben-1.webp"
     bildAlt: "Hafenbecken mit Segelbooten und abgestellten Fahrrädern im Abendlicht"

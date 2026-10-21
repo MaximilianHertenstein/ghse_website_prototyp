@@ -1,7 +1,11 @@
 {{- $name := path.Base .Params.datei -}}
 {{- $res := resources.Get (printf "downloads/%s" $name) -}}
 {{- $typ := "" -}}
-{{- with $res -}}{{- $typ = .MediaType.SubType | upper -}}{{- end -}}
+{{- with $res -}}
+  {{- $sub := .MediaType.SubType -}}
+  {{- if eq $sub "msword" -}}{{- $sub = "doc" -}}{{- end -}}
+  {{- $typ = $sub | upper -}}
+{{- end -}}
 {{- /* Größe direkt aus der Datei: Dateien in assets/downloads werden mitgezählt. */ -}}
 {{- $groesse := "" -}}
 {{- range os.ReadDir "assets/downloads" -}}

@@ -1,0 +1,16 @@
+{{ define "inhalt" }}
+{{- /* Einzelseiten ohne eigene Vorlage: „Die GHSE“ und künftig Anfahrt,
+       Leitbild, Beratung … Sie teilen sich Lesespalte und Abstände mit den
+       Nachrichtenbeiträgen, damit die Textbreite überall gleich bleibt.
+       Datum, Abbildungen und Zurück-Link der Beiträge entfallen hier –
+       wer über die Navigation kommt, braucht keinen Rückweg. */ -}}
+<article class="beitrag">
+  <div class="container schmal">
+    <header class="beitrag__kopf">
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+    {{ with .Content }}<div class="fliesstext">{{ . }}</div>{{ end }}
+  </div>
+</article>
+{{ end }}

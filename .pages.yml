@@ -239,9 +239,10 @@ content:
       - name: bildAlt
         label: Bildbeschreibung (Alt-Text)
         type: string
-      - name: extern
-        label: Originalseite (wenn kein Detailinhalt)
-        type: string
+      # downloads (Liste der Schlagwörter aus der Sammlung „downloads“) ist
+      # bewusst kein Feld hier: Die Syntax für Listen aus reinen Strings ist
+      # nicht belegt – ein geratenes Feld lieferte der Redaktion ein
+      # kaputtes Textfeld.
       - name: weight
         label: Reihenfolge
         type: number
@@ -297,6 +298,166 @@ content:
         type: string
       - name: body
         label: Nachrichtentext (optional)
+        type: rich-text
+
+  # Einzelne Inhaltsseite ohne eigene Sammlung. Layout: _default/single.html
+  # (h1, description als Lead, body). Künftige Seiten derselben Art
+  # (Anfahrt, Leitbild, Beratung …) bekommen jeweils ein eigenes file-Feld
+  # mit demselben Feldsatz – ein Layout trägt sie alle.
+  - name: die_ghse
+    label: Die GHSE (Inhaltsseite)
+    type: file
+    path: content/die-ghse.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  # Gleicher Feldsatz wie die_ghse: dieselbe Vorlage rendert beide.
+  - name: unsere_schule
+    label: Unsere Schule (Inhaltsseite)
+    type: file
+    path: content/unsere-schule.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  # Startseiten-CTAs zeigen auf diese beiden Seiten (berufsinfo_mehr und
+  # schulleben_url in content/_index.md) – daher hier als eigene Einträge.
+  - name: berufsinformation
+    label: Berufsinformation (Inhaltsseite)
+    type: file
+    path: content/berufsinformation.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  - name: schulleben
+    label: Schulleben (Inhaltsseite)
+    type: file
+    path: content/schulleben.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  # Vier Schulseiten, die derzeit nur über den Fuß erreichbar sind.
+  # Gleicher Feldsatz wie die_ghse – eine Vorlage bedient alle.
+  - name: foerderverein
+    label: Förderverein (Inhaltsseite)
+    type: file
+    path: content/foerderverein.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  - name: unesco
+    label: UNESCO-Projektschule (Inhaltsseite)
+    type: file
+    path: content/unesco.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  - name: mint
+    label: MINT-freundliche Schule (Inhaltsseite)
+    type: file
+    path: content/mint.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  - name: schulsozialarbeit
+    label: Schulsozialarbeit (Inhaltsseite)
+    type: file
+    path: content/schulsozialarbeit.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  # Bewerbungsverfahren: die Schularten TG und 2BF verweisen auf diese Seite.
+  - name: bewo
+    label: Bewerbung online / BewO (Inhaltsseite)
+    type: file
+    path: content/bewo.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
+  - name: praktikum_fuer_studierende
+    label: Praktikum für Lehramtsstudierende (Inhaltsseite)
+    type: file
+    path: content/praktikum-fuer-studierende.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
         type: rich-text
 
   # Der Einstiegstext der Download-Seite wird von downloads/section.html als

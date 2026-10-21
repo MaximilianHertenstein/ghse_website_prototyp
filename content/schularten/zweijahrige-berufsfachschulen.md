@@ -6,9 +6,51 @@ kurz: "Ein attraktives Angebot für interessierte und begabte Schüler/innen der
 abschluss: "Fachschulreife (Mittlere Reife)"
 bild: "/bilder/2bf.webp"
 bildAlt: "Schüler mit Schutzbrille an einer Metallbearbeitungsmaschine in der Werkstatt"
-extern: "https://www.ghse.de/schularten/vollzeitschularten/2-jaehrige-berufsfachschule/"
 weight: 30
+downloads:
+  - flyer-berufsfachschule-pflege
 ---
-Die Kombination aus Theorie und Praxis steht im Mittelpunkt: Das Ziel ist die Erlangung eines mittleren Bildungsabschlusses (Fachschulreife). Anschließend kann ein Beruf erlernt oder eine weiterführende Schule besucht werden.
+Der entscheidende Vorteil der zweijährigen Berufsfachschule liegt darin, dass du zwei Jahre lang die Möglichkeit hast, Defizite aufzuarbeiten und – unabhängig von der späteren Berufswahl – viele fachliche und praktische Kompetenzen für dein späteres Leben erwirbst.
 
-Zweijährige Berufsfachschulen gibt es an der GHSE in den Fachrichtungen Metalltechnik, Elektrotechnik, Hauswirtschaft und Pflege.
+Durch die Profilfächer in Theorie und Praxis erlangst du eine berufliche Grundausbildung, die dir entscheidende Vorteile bei Bewerbungen und in der Ausbildung verschafft. Für manche Berufsausbildungen besteht sogar die Möglichkeit einer Ausbildungszeitverkürzung.
+
+## Die vier Schwerpunkte
+
+### Metalltechnik (2BFM)
+
+Du möchtest wissen, wie man mit Metall arbeitet und selbst lernst, wie man Metall bearbeitet? Die Kombination aus Theorie und Praxis kommt dir dabei gelegen? Dein nächstes Ziel ist der mittlere Bildungsabschluss, anschließend vielleicht ein Beruf oder eine weiterführende Schule?
+
+### Elektrotechnik (2BFE)
+
+Du möchtest wissen, wie elektrische Geräte funktionieren? Auch hier verbindet die Kombination aus Theorie und Praxis das Erlernen der Fachinhalte mit dem Ziel des mittleren Bildungsabschlusses.
+
+### Hauswirtschaft und Ernährung (2BFH)
+
+Du willst einen mittleren Schulabschluss erwerben und interessierst dich für Ernährung, Erziehung und Haushaltsmanagement?
+
+### Gesundheit und Pflege (2BFP)
+
+Dein Ziel ist der mittlere Bildungsabschluss sowie Kenntnisse über die Gesunderhaltung in allen Lebensphasen. Du bringst Sensibilität für Menschen mit.
+
+## Wer kann in die zweijährige Berufsfachschule?
+
+Zulassungsvoraussetzungen ist einer dieser Nachweise:
+
+- Hauptschulabschluss oder Abschlusszeugnis des Berufseinstiegsjahres
+- Versetzungszeugnis in die Klasse 9 der Werkreal- oder Hauptschule mit mindestens der Note 3,0 in Mathematik, Deutsch und Englisch
+- Versetzungszeugnis in Klasse 10 der Realschule oder des 9-jährigen Gymnasiums bzw. in Klasse 9 des 8-jährigen Gymnasiums
+- Abgangszeugnis der Klasse 9 der Realschule oder des 9-jährigen Gymnasiums bzw. nach der Klasse 8 des 8-jährigen Gymnasiums mit einem Notendurchschnitt von mindestens 4,0 in den Fächern Deutsch, Englisch und Mathematik und höchstens in einem dieser Fächer die Note „mangelhaft“
+- Für Schülerinnen und Schüler anderer Schulen gelten die Bestimmungen entsprechend
+
+Hinzu kommt:
+
+- Die Aufnahme erfolgt nach Notenschnitt, wenn es zu viele Bewerberinnen und Bewerber gibt.
+- Die Aufnahme geschieht zunächst auf Probe. Die Klassenkonferenz entscheidet anhand der Noten des Halbjahreszeugnisses, ob die Probezeit bestanden wurde. Bei Nichtbestehen kannst du das Schuljahr an der Schule trotzdem beenden.
+
+Für die pflegerischen Berufe erreichst du mit dem zweijährigen Bildungsgang zusätzlich das 18. Lebensjahr, das dort oftmals vorausgesetzt wird.
+
+## Bewerbung
+
+Die Bewerbung erfolgt ausschließlich über das [Bewerbungsverfahren Online (BewO)](https://bewo.kultus-bw.de/). Nähere Informationen dazu haben wir auf unserer Seite zum [Bewerbungsverfahren](/bewo/) zusammengestellt.
+
+Grundlagen des Angebots: [Berufsfachschulen beim Kultusministerium Baden-Württemberg](https://km-bw.de/,Lde/Startseite/Schule/Berufsfachschulen).
