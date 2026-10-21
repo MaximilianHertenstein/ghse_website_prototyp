@@ -1,5 +1,6 @@
 ---
 title: "Sechsmal gab es die Traumnote 1,0"
+description: "Pressebericht des EM Tor über die Zeugnisübergabe an der GHSE: sechsmal gab es die Traumnote 1,0."
 date: 2026-07-22
 quelle: "EM Tor"
 quelle_url: "https://www.ghse.de/presse/20516/"

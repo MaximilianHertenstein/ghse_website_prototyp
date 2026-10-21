@@ -1,5 +1,6 @@
 ---
 title: "Erfahrungen wirkten tief nach"
+description: "Pressebericht des EM Tor über den Vortrag von Dr. Jennifer Hartog über ihren Vater Dolf Hartog."
 date: 2026-08-12
 quelle: "EM Tor"
 quelle_url: "https://www.ghse.de/presse/erfahrungen-wirkten-tief-nach/"

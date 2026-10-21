@@ -53,4 +53,4 @@ Für die pflegerischen Berufe erreichst du mit dem zweijährigen Bildungsgang zu
 
 Die Bewerbung erfolgt ausschließlich über das [Bewerbungsverfahren Online (BewO)](https://bewo.kultus-bw.de/). Nähere Informationen dazu haben wir auf unserer Seite zum [Bewerbungsverfahren](/bewo/) zusammengestellt.
 
-Grundlagen des Angebots: [Berufsfachschulen beim Kultusministerium Baden-Württemberg](https://km-bw.de/,Lde/Startseite/Schule/Berufsfachschulen).
+Grundlagen des Angebots: [Berufsfachschulen beim Kultusministerium Baden-Württemberg](https://km.baden-wuerttemberg.de/de/schule/berufliche-bildung-1/berufliche-schulen/berufsfachschule).

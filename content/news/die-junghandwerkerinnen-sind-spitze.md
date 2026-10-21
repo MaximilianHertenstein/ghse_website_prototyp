@@ -1,5 +1,6 @@
 ---
 title: "Die Junghandwerkerinnen sind spitze!"
+description: "Pressebericht des EM Tor über die Junghandwerkerinnen der GHSE Emmendingen und ihre Arbeiten."
 date: 2026-08-05
 quelle: "EM Tor"
 quelle_url: "https://www.ghse.de/presse/die-junghandwerkerinnen-sind-spitze/"

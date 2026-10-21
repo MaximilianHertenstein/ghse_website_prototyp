@@ -1,5 +1,6 @@
 ---
 title: "Nun doch kein Parkhaus an der GHSE?"
+description: "Pressebericht des EM Tor zur Frage, ob an der GHSE statt des Parkhauses ein Multifunktionsgebäude entsteht."
 date: 2026-10-07
 quelle: "EM Tor"
 quelle_url: "https://www.ghse.de/presse/nun-doch-kein-parkhaus-an-der-ghse/"

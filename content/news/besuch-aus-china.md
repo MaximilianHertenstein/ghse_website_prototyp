@@ -1,5 +1,6 @@
 ---
 title: "Besuch aus China"
+description: "Pressebericht der Badischen Zeitung über den Besuch einer Austauschklasse aus China an der GHSE Emmendingen."
 date: 2026-07-09
 quelle: "Badische Zeitung"
 quelle_url: "https://www.ghse.de/presse/besuch-aus-china/"

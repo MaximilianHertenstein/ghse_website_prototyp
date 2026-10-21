@@ -1,5 +1,6 @@
 ---
 title: "„Ein unverzichtbarer Beitrag“"
+description: "Pressebericht des Breisgauer Wochenberichts über die Abschlussfeier der Pflegeausbildung an der GHSE."
 date: 2026-08-12
 quelle: "Breisgauer Wochenbericht"
 quelle_url: "https://www.ghse.de/presse/ein-unverzichtbarer-beitrag/"

@@ -1,5 +1,6 @@
 ---
 title: "Kooperationsmöbel"
+description: "Pressebericht der Badischen Zeitung: Kleine Meisterwerke aus Holz – die Möbel der Tischler-Azubis der GHSE."
 date: 2026-07-17
 quelle: "Badische Zeitung"
 quelle_url: "https://www.ghse.de/presse/kooperationsmoebel/"
