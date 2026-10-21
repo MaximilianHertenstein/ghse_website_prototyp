@@ -34,32 +34,32 @@ Alle Themen, die dir wichtig sind, sind willkommen!
 
 ## Das Team der Schulsozialarbeit an der GHSE
 
-{{< portraet src="/bilder/schulsozialarbeit-bindner.webp" >}}
+{{< bild src="/bilder/schulsozialarbeit-bindner.webp" >}}
 
 **Luzia Bindner**  
 Fachbereichsleitung für die Schulsozialarbeit an den Beruflichen Schulen des Landkreises Emmendingen und der SBBZ in Trägerschaft des Landkreises Emmendingen  
 [E-Mail](mailto:luzia.bindner@ghse.de) · Telefon 07641-465 513 · Raum M106  
 Zuständig für VABKF, 3BFP, 1BFAHT, 2BFAHM
 
-{{< portraet src="/bilder/schulsozialarbeit-chmieliczek.webp" >}}
+{{< bild src="/bilder/schulsozialarbeit-chmieliczek.webp" >}}
 
 **Kolja Chmieliczek**  
 [E-Mail](mailto:kolja.chmieliczek@ghse.de) · Telefon 07641-465 523 · Raum M305  
 Zuständig für 1BFZ, 1BFM, 1BFR, 2BFE, 2BFH 1, 2BFM 1, 2BFP
 
-{{< portraet src="/bilder/schulsozialarbeit-beh.webp" >}}
+{{< bild src="/bilder/schulsozialarbeit-beh.webp" >}}
 
 **Jamie Beh**  
 [E-Mail](mailto:jamie.beh@ghse.de) · Telefon 07641-465 522 · Raum M205  
 Zuständig für SG, TG, 6-jähriges SG, 2BKIK
 
-{{< portraet src="/bilder/schulsozialarbeit-kukucska.webp" >}}
+{{< bild src="/bilder/schulsozialarbeit-kukucska.webp" >}}
 
 **Noemi Kukucska**  
 [E-Mail](mailto:kukucska@carl-helbing-schule.de) · Telefon 07641/465 122 · Raum 102  
 Zuständig für VABO
 
-{{< portraet src="/bilder/schulsozialarbeit-staenke.webp" >}}
+{{< bild src="/bilder/schulsozialarbeit-staenke.webp" >}}
 
 **Anna Staenke**  
 [E-Mail](mailto:anna.staenke@ghse.de) · Telefon 07641/465 118 · Raum G124  

@@ -761,30 +761,33 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   border: var(--rahmen); box-shadow: var(--schatten);
 }
 
-/* Einzelnes Porträt im Text: gerahmt wie die Karten, aber höchstens
-   12rem (192 px) breit. Teamfotos dieser Größe wirken neben ihrem
-   Eintrag, statt die Lesespalte zu füllen; die kleinen Ausgangsdateien
-   werden so nicht aufgeblasen. */
-.portraet { margin: 1.25rem 0; max-width: 12rem; }
-.portraet img {
+/* Bild mitten im Text: gerahmt wie die Karten, aber höchstens 12rem
+   (192 px) breit. Teamfotos dieser Größe wirken neben ihrem Eintrag,
+   statt die Lesespalte zu füllen; die kleinen Ausgangsdateien werden so
+   nicht aufgeblasen. Die Vollbreite hebt die Begrenzung für Schaubilder
+   auf, deren Beschriftung man erst beim Vergrößern liest. */
+.bild { margin: 1.25rem 0; max-width: 12rem; }
+.bild img {
   width: 100%; height: auto; display: block;
   border: var(--rahmen); box-shadow: var(--schatten-klein);
 }
-/* Porträts der Schulleitung: zwei Einheiten nebeneinander, auf schmalen
-   Breiten untereinander (auto-fit braucht dafür keine Media-Query).
-   Beide Bilder sind 4:3 wie die Seitenspalte – object-fit gleicht die
-   geringe Abweichung des einen aus, ohne den Rahmen zu verändern. */
-.portraete {
+.bild--breit { max-width: none; }
+/* Bildraster: Schulleitung mit Beschriftung, Fotostreifen ohne. Die
+   Einheiten stehen nebeneinander und ordnen sich auf schmalen Breiten
+   untereinander (auto-fit braucht dafür keine Media-Query); die Bilder
+   füllen ihr Feld im Seitenverhältnis 4:3, object-fit gleicht kleine
+   Abweichungen der Ausgangsdateien aus. */
+.bildraster {
   display: grid; gap: 1.75rem 2rem; margin: 1.5rem 0 2.25rem;
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 }
-.portraete .portraet { margin: 0; max-width: none; }
-.portraete .portraet img { aspect-ratio: 4 / 3; object-fit: cover; }
-.portraet__funktion {
+.bildraster .bild { margin: 0; max-width: none; }
+.bildraster .bild img { aspect-ratio: 4 / 3; object-fit: cover; }
+.bild__funktion {
   display: block; margin-top: 0.75rem; font-size: 0.72rem; font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.1em; color: var(--grau);
 }
-.portraet__name { display: block; font-weight: 800; margin-top: 0.15rem; }
+.bild__name { display: block; font-weight: 800; margin-top: 0.15rem; }
 .seitenleiste .kasten { margin-top: 0; }
 .fakten { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
 .fakten dt {

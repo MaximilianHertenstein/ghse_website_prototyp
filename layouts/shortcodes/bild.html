@@ -1,0 +1,20 @@
+{{- /* Ein einzelnes Bild mitten im Text.
+
+   Es erscheint genau dort, wo der Shortcode steht – direkt über der
+   Person oder dem Sachverhalt, um den es geht. Standardbreite ist
+   12rem, also die Größe eines Teamfotos; breite="voll" setzt ein Bild
+   über die ganze Lesespalte, etwa ein Schaubild, dessen Details man
+   erst beim Vergrößern liest. Breite und Höhe liest der Baustein aus
+   der Bilddatei, damit beim Laden nichts springt. Ein Alt-Text ist nur
+   anzugeben, wenn das Bild mehr sagt als der Text darunter; Namen,
+   Telefonnummern und Zuständigkeiten stehen ohnehin am Platz. Fehlt
+   die Datei, bleibt die Stelle leer, statt ein kaputtes Bild zu
+   zeigen. */ -}}
+{{- $pfad := strings.TrimPrefix "/" (.Get "src") -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $klasse := cond (eq (.Get "breite") "voll") "bild bild--breit" "bild" -}}
+{{- with imageConfig (printf "static/%s" $pfad) }}
+<figure class="{{ $klasse }}">
+  <img src="{{ $pfad | relURL }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+</figure>
+{{- end }}

@@ -1,0 +1,30 @@
+{{- /* Raster aus Bildern mit Beschriftung.
+
+   Die Einträge stehen im Front Matter der Seite (bilder: bild,
+   funktion, name); der Shortcode entscheidet nur, wo sie im Text
+   erscheinen. Funktion und Name sind frei: Schulleitung nennt Person
+   und Amt, ein Fotostreifen zum Förderverein braucht nichts darunter.
+   Breite und Höhe liest der Baustein aus der Bilddatei, damit beim
+   Laden nichts springt. */ -}}
+{{- with .Page.Params.bilder }}
+<div class="bildraster">
+  {{- range . }}
+  {{- $b := . }}
+  <figure class="bild">
+    {{- with imageConfig (printf "static/%s" (strings.TrimPrefix "/" $b.bild)) }}
+    <img src="{{ $b.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $b.alt | default "" }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+    {{- end }}
+    {{- if or $b.funktion $b.name }}
+    <figcaption>
+      {{- with $b.funktion }}
+      <span class="bild__funktion">{{ . }}</span>
+      {{- end }}
+      {{- with $b.name }}
+      <span class="bild__name">{{ . }}</span>
+      {{- end }}
+    </figcaption>
+    {{- end }}
+  </figure>
+  {{- end }}
+</div>
+{{- end }}

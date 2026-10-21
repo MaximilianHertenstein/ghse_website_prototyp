@@ -331,24 +331,28 @@ content:
       - name: description
         label: Meta-Beschreibung
         type: text
-      # Porträts der Schulleitung, gerendert über {{< portraets >}} an der
-      # Stelle im Text, wo der Shortcode steht. Ohne Alt-Text, weil Funktion
-      # und Name als Bildunterschrift danebenstehen – das Bild ist dann
-      # informationstechnisch entbehrlich.
-      - name: portraets
-        label: Porträts der Schulleitung
+      # Bilder als Raster, gerendert über {{< bilder >}} an der Stelle im Text,
+      # wo der Shortcode steht. Die Schulleitung trägt Funktion und Name als
+      # Bildunterschrift, ein Fotostreifen lässt beides weg; solche Bilder
+      # brauchen dann einen Alternativtext. Höhe und Breite liest die Vorlage
+      # aus der Datei, deshalb springt beim Laden nichts.
+      - name: bilder
+        label: Bilder im Raster
         type: list
         fields:
           - name: bild
-            label: Porträt
+            label: Bild
             type: image
             options:
               media: images
+          - name: alt
+            label: Alternativtext (wenn kein Name daruntersteht)
+            type: string
           - name: funktion
-            label: Funktion (z. B. Schulleiter)
+            label: Funktion (z. B. Schulleiter) – kann leer bleiben
             type: string
           - name: name
-            label: Name
+            label: Name oder Bildunterschrift – kann leer bleiben
             type: string
       - name: body
         label: Inhalt
@@ -399,6 +403,20 @@ content:
       - name: description
         label: Meta-Beschreibung
         type: text
+      # Fotostreifen ohne Beschriftung, gerendert über {{< bilder >}}. Hier
+      # zählt der Alternativtext, weil kein Name unter dem Bild steht.
+      - name: bilder
+        label: Bilder im Raster
+        type: list
+        fields:
+          - name: bild
+            label: Bild
+            type: image
+            options:
+              media: images
+          - name: alt
+            label: Alternativtext
+            type: string
       - name: body
         label: Inhalt
         type: rich-text

@@ -1,7 +1,7 @@
 ---
 title: "Unsere Schule"
 description: "Organisation der GHSE Emmendingen: Schulleitung und fünf Abteilungen, 24 Fachschaften, das Leitbild und die Ansprechpartnerinnen und Ansprechpartner im Sekretariat."
-portraets:
+bilder:
   - bild: "/bilder/schulleiter-kruse.webp"
     funktion: "Schulleiter"
     name: "OStD Thomas Kruse"
@@ -16,9 +16,13 @@ Die GHSE hat mit mehr als 180 Mitarbeitern (Lehrerinnen und Lehrern, Hausmeister
 
 An der GHSE gibt es 24 Fachschaften, die die Schule organisatorisch gliedern. Jede Fachschaft besitzt einen eigenen Haushalt, über den sie verfügen kann. Die Größe des Haushalts richtet sich unter anderem nach der Anzahl an Schülerinnen und Schülern. Die Fachschaften sind den 5 Abteilungen zugeordnet.
 
+{{< bild src="/bilder/organigramm.webp" breite="voll" alt="Organigramm der Gewerblichen und Hauswirtschaftlich-Sozialpflegerischen Schulen Emmendingen mit Schulleitung, Hauptabteilungen und Fachschaften" >}}
+
+Die Beschriftung liest sich erst in der vollen Größe: [Organigramm vergrößern](/bilder/organigramm.webp)
+
 ## Schulleitung
 
-{{< portraets >}}
+{{< bilder >}}
 
 ### Weitere Mitglieder im Schulleitungsteam
 
@@ -81,7 +85,7 @@ Telefon: 07641-465-100 · Fax: 07641-465-199 · [poststelle@ghse.de](mailto:post
 Montag – Donnerstag: 7.30 – 12.00 Uhr und 13.00 – 15.30 Uhr  
 Freitag: 7.30 – 13.00 Uhr
 
-{{< portraet src="/bilder/sekretariat-kuerz.webp" >}}
+{{< bild src="/bilder/sekretariat-kuerz.webp" >}}
 
 ### Elvira Kürz (Tel. Nr. -108)
 
@@ -106,7 +110,7 @@ Zuständig für:
 - Altenpflegehilfeausbildung einjährig (1BFAH) und zweijährig (2BFAHM)
 - Zusatzqualifikation zum Praxisanleiter / zur Praxisanleiterin (BFQ)
 
-{{< portraet src="/bilder/sekretariat-gehri.webp" >}}
+{{< bild src="/bilder/sekretariat-gehri.webp" >}}
 
 ### Patricia Gehri (Tel. Nr. -101)
 
@@ -114,7 +118,7 @@ Von 7.30 bis 12.00 Uhr und ab 13.00 bis 15.30 Uhr
 
 Zuständig für alle Berufsschulklassen.
 
-{{< portraet src="/bilder/sekretariat-luchner.webp" >}}
+{{< bild src="/bilder/sekretariat-luchner.webp" >}}
 
 ### Petra Luchner (Tel. Nr. -102)
 
@@ -127,7 +131,7 @@ Zuständig für:
 - Sozialwissenschaftliches Gymnasium (3-jähriges, 6-jähriges)
 - Einjährige Berufsfachschule gewerbliche Richtung (Kfz, Holz, Metall)
 
-{{< portraet src="/bilder/sekretariat-keinke.webp" >}}
+{{< bild src="/bilder/sekretariat-keinke.webp" >}}
 
 ### Daniela Keinke (Tel. Nr. -107)
 

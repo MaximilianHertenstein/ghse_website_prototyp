@@ -1,6 +1,13 @@
 ---
 title: "Förderverein"
 description: "Der Förderverein der GHSE Emmendingen e. V. – Aufgaben, Finanzierung, Vorstand, Beiräte und die Anträge für Bildung und Teilhabe."
+bilder:
+  - bild: "/bilder/foerderverein-kanu.webp"
+    alt: "Zwei Kanus am Ufer eines Flusses, daneben mehrere Jugendliche"
+  - bild: "/bilder/foerderverein-gruppe.webp"
+    alt: "Viele Schülerinnen und Schüler stehen in einem Kreis auf einer Wiese"
+  - bild: "/bilder/foerderverein-fahrzeug.webp"
+    alt: "Jugendliche in einer Garage vor dem Fahrzeug der GHSE"
 ---
 
 Der Förderverein der Gewerblichen und Hauswirtschaftlich-Sozialpflegerischen Schulen Emmendingen e. V. unterstützt die Schule und ihre Schülerinnen und Schüler.
@@ -23,6 +30,8 @@ Wir finanzieren uns durch Mitgliedsbeiträge, Spenden und den Erlös von Aktione
 - alle Schüler\*innen (auch Ehemalige …)
 - alle Lehrkräfte
 - alle Personen und Institutionen, die der Schule nahestehen oder die Ziele der Schule und des Fördervereins unterstützen möchten.
+
+{{< bilder >}}
 
 ## Anträge und Formulare
 
