@@ -3,7 +3,11 @@ title: "MINT-freundliche Schule"
 description: "MINT an der GHSE Emmendingen: Anerkennung als MINT-freundliche Schule, Jugend-forscht-Erfolge, Informatikbiber, Hackdays und die MINT-Angebote aller Schularten."
 ---
 
+{{< bild src="/bilder/mint-logo.webp" alt="MINT-Schriftzug mit den Fachbereichen Mathematik, Informatik, Naturwissenschaften und Technik" >}}
+
 Einige werden sich fragen: Kann eine berufliche Schule auch NICHT MINT-freundlich sein? Bei einer gewerblich-technischen und hauswirtschaftlich-sozialpflegerischen beruflichen Schule ist das schlicht nicht möglich. Seit Oktober 2023 sind wir auch anerkannt als **MINT-freundliche Schule**. Dabei sind wir die einzige weiterführende Schule im Landkreis Emmendingen.
+
+{{< bild src="/bilder/mint-freundliche-schule.webp" alt="Abzeichen MINT-freundliche Schule" >}}
 
 Aber: Selbst wenn so schon MINT-freundlich ist, kann man noch mehr machen.
 

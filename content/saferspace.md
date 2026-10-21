@@ -3,6 +3,8 @@ title: "Safer Space"
 description: "Safer Space an der GHSE Emmendingen: ein Treff von Schüler:innen für Schüler:innen, die Termine legen die Interessierten gemeinsam fest."
 ---
 
+{{< bild src="/bilder/safer-space.webp" alt="Abzeichen Safer Space der GHSE" >}}
+
 - Du zählst Dich zur queeren Community?
 - Du bist Unterstützer:in („ally“) der queeren Community?
 - Du bist Dir unsicher bezüglich Deiner geschlechtlichen oder sexuellen Orientierung?
