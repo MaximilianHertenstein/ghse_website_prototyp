@@ -761,6 +761,15 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   border: var(--rahmen); box-shadow: var(--schatten);
 }
 
+/* Einzelnes Porträt im Text: gerahmt wie die Karten, aber höchstens
+   12rem (192 px) breit. Teamfotos dieser Größe wirken neben ihrem
+   Eintrag, statt die Lesespalte zu füllen; die kleinen Ausgangsdateien
+   werden so nicht aufgeblasen. */
+.portraet { margin: 1.25rem 0; max-width: 12rem; }
+.portraet img {
+  width: 100%; height: auto; display: block;
+  border: var(--rahmen); box-shadow: var(--schatten-klein);
+}
 /* Porträts der Schulleitung: zwei Einheiten nebeneinander, auf schmalen
    Breiten untereinander (auto-fit braucht dafür keine Media-Query).
    Beide Bilder sind 4:3 wie die Seitenspalte – object-fit gleicht die
@@ -769,11 +778,8 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   display: grid; gap: 1.75rem 2rem; margin: 1.5rem 0 2.25rem;
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 }
-.portraet { margin: 0; }
-.portraet img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
-}
+.portraete .portraet { margin: 0; max-width: none; }
+.portraete .portraet img { aspect-ratio: 4 / 3; object-fit: cover; }
 .portraet__funktion {
   display: block; margin-top: 0.75rem; font-size: 0.72rem; font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.1em; color: var(--grau);

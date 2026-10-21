@@ -81,6 +81,8 @@ Telefon: 07641-465-100 · Fax: 07641-465-199 · [poststelle@ghse.de](mailto:post
 Montag – Donnerstag: 7.30 – 12.00 Uhr und 13.00 – 15.30 Uhr  
 Freitag: 7.30 – 13.00 Uhr
 
+{{< portraet src="/bilder/sekretariat-kuerz.webp" >}}
+
 ### Elvira Kürz (Tel. Nr. -108)
 
 Von 7.30 bis 12.00 Uhr und ab 13.00 bis 15.30 Uhr
@@ -104,11 +106,15 @@ Zuständig für:
 - Altenpflegehilfeausbildung einjährig (1BFAH) und zweijährig (2BFAHM)
 - Zusatzqualifikation zum Praxisanleiter / zur Praxisanleiterin (BFQ)
 
+{{< portraet src="/bilder/sekretariat-gehri.webp" >}}
+
 ### Patricia Gehri (Tel. Nr. -101)
 
 Von 7.30 bis 12.00 Uhr und ab 13.00 bis 15.30 Uhr
 
 Zuständig für alle Berufsschulklassen.
+
+{{< portraet src="/bilder/sekretariat-luchner.webp" >}}
 
 ### Petra Luchner (Tel. Nr. -102)
 
@@ -120,6 +126,8 @@ Zuständig für:
 - Technisches Gymnasium
 - Sozialwissenschaftliches Gymnasium (3-jähriges, 6-jähriges)
 - Einjährige Berufsfachschule gewerbliche Richtung (Kfz, Holz, Metall)
+
+{{< portraet src="/bilder/sekretariat-keinke.webp" >}}
 
 ### Daniela Keinke (Tel. Nr. -107)
 
