@@ -1,0 +1,23 @@
+{{- /* Porträts der Schulleitung.
+
+   Die Daten stehen im Front Matter der Seite (portraets: bild, funktion,
+   name); der Shortcode entscheidet nur, wo sie im Text erscheinen. Breite
+   und Höhe liest er aus der Bilddatei, damit beim Laden nichts springt.
+   Der Alt-Text bleibt leer, weil Funktion und Name als Bildunterschrift
+   danebenstehen – das Bild ist informationstechnisch entbehrlich. */ -}}
+{{- with .Page.Params.portraets }}
+<div class="portraete">
+  {{- range . }}
+  {{- $p := . }}
+  <figure class="portraet">
+    {{- with imageConfig (printf "static/%s" (strings.TrimPrefix "/" $p.bild)) }}
+    <img src="{{ $p.bild | strings.TrimPrefix "/" | relURL }}" alt="" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+    {{- end }}
+    <figcaption>
+      <span class="portraet__funktion">{{ $p.funktion }}</span>
+      <span class="portraet__name">{{ $p.name }}</span>
+    </figcaption>
+  </figure>
+  {{- end }}
+</div>
+{{- end }}

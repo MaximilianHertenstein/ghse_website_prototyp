@@ -760,6 +760,25 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
   border: var(--rahmen); box-shadow: var(--schatten);
 }
+
+/* Porträts der Schulleitung: zwei Einheiten nebeneinander, auf schmalen
+   Breiten untereinander (auto-fit braucht dafür keine Media-Query).
+   Beide Bilder sind 4:3 wie die Seitenspalte – object-fit gleicht die
+   geringe Abweichung des einen aus, ohne den Rahmen zu verändern. */
+.portraete {
+  display: grid; gap: 1.75rem 2rem; margin: 1.5rem 0 2.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+.portraet { margin: 0; }
+.portraet img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border: var(--rahmen); box-shadow: var(--schatten-klein);
+}
+.portraet__funktion {
+  display: block; margin-top: 0.75rem; font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--grau);
+}
+.portraet__name { display: block; font-weight: 800; margin-top: 0.15rem; }
 .seitenleiste .kasten { margin-top: 0; }
 .fakten { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
 .fakten dt {

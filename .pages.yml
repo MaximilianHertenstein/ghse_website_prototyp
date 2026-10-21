@@ -331,6 +331,25 @@ content:
       - name: description
         label: Meta-Beschreibung
         type: text
+      # Porträts der Schulleitung, gerendert über {{< portraets >}} an der
+      # Stelle im Text, wo der Shortcode steht. Ohne Alt-Text, weil Funktion
+      # und Name als Bildunterschrift danebenstehen – das Bild ist dann
+      # informationstechnisch entbehrlich.
+      - name: portraets
+        label: Porträts der Schulleitung
+        type: list
+        fields:
+          - name: bild
+            label: Porträt
+            type: image
+            options:
+              media: images
+          - name: funktion
+            label: Funktion (z. B. Schulleiter)
+            type: string
+          - name: name
+            label: Name
+            type: string
       - name: body
         label: Inhalt
         type: rich-text

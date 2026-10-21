@@ -1,6 +1,13 @@
 ---
 title: "Unsere Schule"
 description: "Organisation der GHSE Emmendingen: Schulleitung und fünf Abteilungen, 24 Fachschaften, das Leitbild und die Ansprechpartnerinnen und Ansprechpartner im Sekretariat."
+portraets:
+  - bild: "/bilder/schulleiter-kruse.webp"
+    funktion: "Schulleiter"
+    name: "OStD Thomas Kruse"
+  - bild: "/bilder/stellvertreter-kienzle.webp"
+    funktion: "Stellvertretender Schulleiter"
+    name: "StD Christian Kienzle"
 ---
 
 ## Organisation der Schule
@@ -11,11 +18,7 @@ An der GHSE gibt es 24 Fachschaften, die die Schule organisatorisch gliedern. Je
 
 ## Schulleitung
 
-**Schulleiter**  
-OStD Thomas Kruse
-
-**Stellvertretender Schulleiter**  
-StD Christian Kienzle
+{{< portraets >}}
 
 ### Weitere Mitglieder im Schulleitungsteam
 
