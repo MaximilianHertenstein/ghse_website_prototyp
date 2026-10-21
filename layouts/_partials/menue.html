@@ -1,0 +1,15 @@
+{{- /* Eine Menüebene der Kopfnavigation.
+
+   Einträge ohne URL sind reine Überschriften („Über uns", „Teilzeit-
+   schularten"). Ihre Kinder rücken flach dahinter, statt eine zweite
+   Schachtel zu öffnen: die Tafel bleibt zweizeilig und braucht weder
+   JavaScript noch eine dritte Hover-Ebene, die auf Touchgeräten ohnehin
+   nicht zuverlässig anspringt. */ -}}
+{{- range . }}
+  {{- if .URL }}
+    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+  {{- else }}
+    <li class="menue__abteilung"><span>{{ .Name }}</span></li>
+    {{- with .Children }}{{ partial "menue.html" . }}{{ end }}
+  {{- end }}
+{{- end }}

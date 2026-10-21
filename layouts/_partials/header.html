@@ -48,19 +48,21 @@
           {{ end }}
         </nav>
         <ul>
+          {{- /* Die Tafeln hängen ab 1025 px an ::hover und :focus-within,
+                 darunter stehen sie flach im Menüpanel. Ein Eintrag ohne
+                 Kinder bleibt eine schlichte Zeile. */}}
           {{ $seite := . }}
           {{ range site.Menus.haupt }}
             {{ $ziel := .URL }}{{ if hasPrefix $ziel "/" }}{{ $ziel = $ziel | relURL }}{{ end }}
-            <li>
+            <li{{ if .Children }} class="menue__gruppe"{{ end }}>
               <a href="{{ $ziel }}"
                  {{ if or ($seite.IsMenuCurrent "haupt" .) ($seite.HasMenuCurrent "haupt" .) }}aria-current="page"{{ end }}>{{ .Name }}</a>
+              {{- with .Children }}
+              <ul class="menue__tafel">{{ partial "menue.html" . }}</ul>
+              {{- end }}
             </li>
           {{ end }}
         </ul>
-        {{- /* Direkt in die Formularkategorie: „Anmeldung“ ist die dritthäufigste
-               Nutzeraufgabe, und auf der Download-Startseite stünde sie zwischen
-               Flyern und Blockplänen. */}}
-        <a class="btn btn--klein btn--akzent menue__cta" href="{{ "downloads/#dl-formulare--hausordnung" | relURL }}">Formulare &amp; Anmeldung</a>
       </nav>
     </div>
   </div>

@@ -341,8 +341,42 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.menue ul a:hover { background: var(--gelb); }
+/* Schriftfarbe mitsetzen: im dunklen Schema ist --schrift hell und würde auf
+   der Gelbfläche mit 1,5:1 verschwinden. */
+.menue ul a:hover { background: var(--gelb); color: var(--tinte); }
 .menue ul a[aria-current="page"] { background: var(--tinte); color: var(--gelb); }
+
+/* Untermenü. Über 1024 px hängt die Tafel als Panel unter ihrem Eintrag,
+   darunter steht sie flach im Menüpanel – dieselbe Markierung, zwei
+   Darstellungen, kein JavaScript. Die Überschriften der Originalseite
+   („Über uns“, „Teilzeitschularten“) sind keine Links und setzen sich hier
+   als graue Zwischenzeile fort. */
+.menue ul.menue__tafel { padding: 0 0 0 0.9rem; }
+.menue ul.menue__tafel a {
+  font-weight: 600; font-size: 0.95rem; text-transform: none; letter-spacing: 0;
+}
+.menue__abteilung {
+  padding: 0.9rem 0.5rem 0.2rem; font-size: 0.72rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.09em; color: var(--grau);
+}
+
+@media (min-width: 1025px) {
+  .menue__gruppe { position: relative; }
+  .menue ul.menue__tafel {
+    display: none; position: absolute; top: 100%; left: 0; z-index: 70;
+    min-width: 18rem; max-width: 26rem; padding: 0.45rem; margin: 0;
+    background: var(--papier); border: var(--rahmen); box-shadow: var(--schatten);
+    /* Die Tafel „Unsere Schule“ ist rund 660 px hoch. Auf einem 768-px-
+       Fenster bliebe der letzte Eintrag ohne diese Grenze unter dem Rand –
+       die Scrollfläche hält jeden Punkt erreichbar. */
+    max-height: calc(100vh - var(--kopfhoehe) - 0.75rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .menue__gruppe:hover > ul.menue__tafel,
+  .menue__gruppe:focus-within > ul.menue__tafel { display: block; }
+  .menue ul.menue__tafel a { padding: 0.45rem 0.6rem; }
+}
 
 /* Schnellzugriff nur mobil: unter 900 px wird die dunkle Kopfleiste mit
    „Krankmelden, Mail, Anfahrt" ausgeblendet – die Krankmeldung wäre dann nur
@@ -947,11 +981,16 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
     background: var(--papier); border: var(--rahmen);
     padding: 1rem 1.25rem 1.5rem;
     box-shadow: 0 12px 0 rgba(16, 23, 54, 0.15);
+    /* Das Panel trägt nun rund fünfzig Zeilen. Absolut positioniert wächst
+       es nicht mit dem Dokument – ohne eigene Scrollfläche wären die
+       untersten Einträge unerreichbar. */
+    max-height: calc(100vh - var(--kopfhoehe));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   .menue[data-offen] { display: flex; }
   .menue ul { flex-direction: column; gap: 0; }
   .menue ul a { padding: 0.95rem 0.5rem; font-size: 1.05rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12); }
-  .menue__cta { justify-content: center; }
 }
 
 @media (max-width: 900px) {

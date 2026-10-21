@@ -27,31 +27,362 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
 
 [menus]
   [[menus.haupt]]
-    name = "Start"
-    pageRef = "/"
+    identifier = "schule"
+    name = "Unsere Schule"
+    pageRef = "/unsere-schule"
     weight = 10
+  # Gruppenüberschriften haben keine eigene Seite (`url` fehlt) und werden in
+  # der Tafel als Überschrift gesetzt, ihre Kinder flach dahinter.
   [[menus.haupt]]
-    name = "Schularten"
-    pageRef = "/schularten"
+    identifier = "schule-ueber"
+    parent = "schule"
+    name = "Über uns"
+    weight = 11
+  [[menus.haupt]]
+    identifier = "die-ghse"
+    parent = "schule-ueber"
+    name = "Die GHSE"
+    pageRef = "/die-ghse"
+    weight = 12
+  [[menus.haupt]]
+    identifier = "leitbild"
+    parent = "schule-ueber"
+    name = "Leitbild"
+    url = "/unsere-schule/#unser-leitbild"
+    weight = 13
+  [[menus.haupt]]
+    identifier = "schulleitung"
+    parent = "schule-ueber"
+    name = "Schulleitungsteam"
+    url = "/unsere-schule/#schulleitung"
+    weight = 14
+  [[menus.haupt]]
+    identifier = "foerderverein"
+    parent = "schule-ueber"
+    name = "Förderverein"
+    pageRef = "/foerderverein"
+    weight = 15
+  [[menus.haupt]]
+    identifier = "organigramm"
+    parent = "schule-ueber"
+    name = "Organigramm"
+    url = "https://www.ghse.de/unsere-schule/ueber-uns/organigram/"
+    weight = 16
+  [[menus.haupt]]
+    identifier = "anfahrt"
+    parent = "schule-ueber"
+    name = "Anfahrt"
+    url = "https://www.ghse.de/anfahrt/"
+    weight = 17
+  [[menus.haupt]]
+    identifier = "impressum"
+    parent = "schule-ueber"
+    name = "Impressum und Datenschutz"
+    pageRef = "/impressum"
+    weight = 18
+  [[menus.haupt]]
+    identifier = "schulleben"
+    parent = "schule-ueber"
+    name = "Schülerinnen, Schulleben, Lehrerinnen"
+    pageRef = "/schulleben"
+    weight = 19
+  [[menus.haupt]]
+    identifier = "presse"
+    parent = "schule-ueber"
+    name = "Presse"
+    url = "https://www.ghse.de/presse/"
     weight = 20
   [[menus.haupt]]
-    name = "Termine"
-    url = "/#termine"
+    identifier = "schule-orga"
+    parent = "schule"
+    name = "Organisatorisches"
+    weight = 21
+  [[menus.haupt]]
+    identifier = "kalender"
+    parent = "schule-orga"
+    name = "Kalender"
+    url = "https://www.ghse.de/kalender/"
+    weight = 22
+  [[menus.haupt]]
+    identifier = "fachgruppen"
+    parent = "schule-orga"
+    name = "Fachgruppen"
+    url = "https://www.ghse.de/unsere-schule/organisatorisches/fachgruppen/"
+    weight = 23
+  [[menus.haupt]]
+    identifier = "sekretariat"
+    parent = "schule-orga"
+    name = "Sekretariat"
+    url = "/unsere-schule/#sekretariat"
+    weight = 24
+  [[menus.haupt]]
+    identifier = "termine-bloecke"
+    parent = "schule-orga"
+    name = "Termine und Blockpläne"
+    url = "/downloads/#dl-termine--blockpläne"
     weight = 25
   [[menus.haupt]]
-    name = "Aktuelles"
-    pageRef = "/news"
+    identifier = "praktikum"
+    parent = "schule-orga"
+    name = "Praktikum für Studierende"
+    pageRef = "/praktikum-fuer-studierende"
+    weight = 26
+
+  [[menus.haupt]]
+    identifier = "schularten"
+    name = "Schularten"
+    pageRef = "/schularten"
     weight = 30
   [[menus.haupt]]
+    identifier = "schularten-teilzeit"
+    parent = "schularten"
+    name = "Teilzeitschularten"
+    weight = 31
+  [[menus.haupt]]
+    identifier = "berufsschule"
+    parent = "schularten-teilzeit"
+    name = "Berufsschule"
+    pageRef = "/schularten/berufsschule"
+    weight = 32
+  [[menus.haupt]]
+    identifier = "pflege"
+    parent = "schularten-teilzeit"
+    name = "Pflege"
+    pageRef = "/schularten/pflege"
+    weight = 33
+  [[menus.haupt]]
+    identifier = "schularten-vollzeit"
+    parent = "schularten"
+    name = "Vollzeitschularten"
+    weight = 34
+  [[menus.haupt]]
+    identifier = "tg"
+    parent = "schularten-vollzeit"
+    name = "Technisches Gymnasium"
+    pageRef = "/schularten/technisches-gymnasium"
+    weight = 35
+  [[menus.haupt]]
+    identifier = "sogy"
+    parent = "schularten-vollzeit"
+    name = "Sozialwissenschaftliches Gymnasium"
+    pageRef = "/schularten/sozialwissenschaftliches-gymnasium"
+    weight = 36
+  [[menus.haupt]]
+    identifier = "ita"
+    parent = "schularten-vollzeit"
+    name = "Berufskolleg Informationstechnische Assistenten"
+    pageRef = "/schularten/berufskolleg-informationstechnische-assistenten"
+    weight = 37
+  [[menus.haupt]]
+    identifier = "bfs2"
+    parent = "schularten-vollzeit"
+    name = "2-jährige Berufsfachschulen"
+    pageRef = "/schularten/zweijahrige-berufsfachschulen"
+    weight = 38
+  [[menus.haupt]]
+    identifier = "bfs1"
+    parent = "schularten-vollzeit"
+    name = "1-jährige Berufsfachschulen"
+    pageRef = "/schularten/einjahrige-berufsfachschulen"
+    weight = 39
+  [[menus.haupt]]
+    identifier = "bv"
+    parent = "schularten-vollzeit"
+    name = "Berufsvorbereitung"
+    pageRef = "/schularten/berufsvorbereitende-schularten"
+    weight = 40
+
+  # Die Schüler-Seite selbst existiert nur auf der Originalseite; sie führt hier
+  # dorthin, ihre Kinder sind einzeln erreichbar.
+  [[menus.haupt]]
+    identifier = "schueler"
+    name = "Schüler"
+    url = "https://www.ghse.de/schueler/"
+    weight = 50
+  [[menus.haupt]]
+    identifier = "smv"
+    parent = "schueler"
+    name = "SMV"
+    url = "https://www.ghse.de/schueler/smv/"
+    weight = 51
+  [[menus.haupt]]
+    identifier = "schulsanitaet"
+    parent = "schueler"
+    name = "Schulsanitätsdienst"
+    url = "https://www.ghse.de/schulsanitaetsdienst/"
+    weight = 52
+  [[menus.haupt]]
+    identifier = "vertretungsplan"
+    parent = "schueler"
+    name = "Vertretungsplan"
+    url = "https://www.ghse.de/schueler/vertretungsplan/"
+    weight = 53
+  [[menus.haupt]]
+    identifier = "beratung"
+    parent = "schueler"
+    name = "Beratungssystem"
+    url = "https://www.ghse.de/schueler/beratung/"
+    weight = 54
+  [[menus.haupt]]
+    identifier = "schulsozialarbeit"
+    parent = "schueler"
+    name = "Schulsozialarbeit"
+    pageRef = "/schulsozialarbeit"
+    weight = 55
+  [[menus.haupt]]
+    identifier = "saferspace"
+    parent = "schueler"
+    name = "Safer Space"
+    pageRef = "/saferspace"
+    weight = 56
+  [[menus.haupt]]
+    identifier = "avdual"
+    parent = "schueler"
+    name = "AV-Dual Begleitung"
+    url = "https://www.ghse.de/schueler/av-dual-begleitung/"
+    weight = 57
+  [[menus.haupt]]
+    identifier = "moodle"
+    parent = "schueler"
+    name = "Moodle"
+    url = "https://04102015300.moodle.bw.schule/"
+    weight = 58
+  [[menus.haupt]]
+    identifier = "nextcloud"
+    parent = "schueler"
+    name = "Nextcloud"
+    url = "https://www.ghse.de/nextcloud/"
+    weight = 59
+  [[menus.haupt]]
+    identifier = "besserghse"
+    parent = "schueler"
+    name = "besser@ghse"
+    url = "https://www.ghse.de/schueler/besserghse-de/"
+    weight = 60
+  [[menus.haupt]]
+    identifier = "oberstufe"
+    parent = "schueler"
+    name = "Oberstufeninformationen"
+    url = "/downloads/#dl-oberstufe--abitur"
+    weight = 61
+  [[menus.haupt]]
+    identifier = "berufsinformation"
+    parent = "schueler"
+    name = "Berufsinformation"
+    pageRef = "/berufsinformation"
+    weight = 62
+  [[menus.haupt]]
+    identifier = "studienfahrten"
+    parent = "schueler"
+    name = "Studienfahrten"
+    url = "https://www.ghse.de/downloads/studienfahrten/"
+    weight = 63
+
+  [[menus.haupt]]
+    identifier = "unesco"
+    name = "UNESCO"
+    pageRef = "/unesco"
+    weight = 70
+  [[menus.haupt]]
+    identifier = "unesco-aktivitaeten"
+    parent = "unesco"
+    name = "UNESCO-Aktivitäten"
+    url = "https://www.ghse.de/unesco/unesco-aktivitaeten/"
+    weight = 71
+  [[menus.haupt]]
+    identifier = "unesco-projektschule"
+    parent = "unesco"
+    name = "Was heißt UNESCO-Projektschule?"
+    url = "https://www.ghse.de/unesco/was-heisst-unesco-projektschule/"
+    weight = 72
+  [[menus.haupt]]
+    identifier = "schulbienen"
+    parent = "unesco"
+    name = "Schulbienen"
+    url = "https://www.ghse.de/schulbienen/"
+    weight = 73
+
+  [[menus.haupt]]
+    identifier = "downloads"
     name = "Downloads"
     pageRef = "/downloads"
-    weight = 40
+    weight = 80
   [[menus.haupt]]
-    name = "Service"
-    url = "/#service"
-    weight = 50
+    identifier = "dl-flyer"
+    parent = "downloads"
+    name = "Flyer"
+    url = "/downloads/#dl-flyer--schularten"
+    weight = 81
+  [[menus.haupt]]
+    identifier = "dl-ipad"
+    parent = "downloads"
+    name = "iPad-Leihe"
+    url = "https://www.ghse.de/downloads/ipad-leihe/"
+    weight = 82
+  [[menus.haupt]]
+    identifier = "dl-termine"
+    parent = "downloads"
+    name = "Termine und Blockpläne"
+    url = "/downloads/#dl-termine--blockpläne"
+    weight = 83
+  [[menus.haupt]]
+    identifier = "dl-hausordnung"
+    parent = "downloads"
+    name = "Hausordnung"
+    url = "/downloads/#dl-formulare--hausordnung"
+    weight = 84
+  [[menus.haupt]]
+    identifier = "dl-oberstufe"
+    parent = "downloads"
+    name = "Oberstufeninformationen"
+    url = "/downloads/#dl-oberstufe--abitur"
+    weight = 85
+  [[menus.haupt]]
+    identifier = "dl-projekte"
+    parent = "downloads"
+    name = "Projekte und Software"
+    url = "https://www.ghse.de/downloads/projekte-software/"
+    weight = 86
+  [[menus.haupt]]
+    identifier = "dl-studienfahrten"
+    parent = "downloads"
+    name = "Studienfahrten"
+    url = "https://www.ghse.de/downloads/studienfahrten/"
+    weight = 87
+
+  [[menus.haupt]]
+    identifier = "anmeldung"
+    name = "Anmeldung"
+    url = "/downloads/#dl-formulare--hausordnung"
+    weight = 90
+  [[menus.haupt]]
+    identifier = "anmeldung-bewo"
+    parent = "anmeldung"
+    name = "für Berufliches Gymnasium, BK und 2BF (BewO)"
+    pageRef = "/bewo"
+    weight = 91
+  [[menus.haupt]]
+    identifier = "anmeldung-sonst"
+    parent = "anmeldung"
+    name = "für alle anderen Schularten"
+    url = "https://www.ghse.de/downloads/anmeldeformulare/"
+    weight = 92
+
+  [[menus.haupt]]
+    identifier = "mint"
+    name = "MINT"
+    pageRef = "/mint"
+    weight = 100
 
 # Schnellzugriff in der Kopfleiste (echte Links der Originalseite).
+# Der Shop ist dort oben ein eigener Eintrag neben „MINT“ – zwei getrennte
+# Links, wie auf der Originalseite. In der Hauptleiste hätte er nicht Platz:
+# acht Einträge laufen ab 1045 px über (gemessen, siehe Kopfzeilen-Kommentar
+# in header.html), der Shop steht deshalb eine Zeile höher.
+[[menus.schnell]]
+  name = "Shop"
+  url = "https://ghse.fan12.de/"
+  weight = 35
 [[menus.schnell]]
   name = "Krankmelden"
   url = "https://www.ghse.de/online-abmelden/"
