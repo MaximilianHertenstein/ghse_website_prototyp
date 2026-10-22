@@ -315,6 +315,20 @@ content:
       - name: description
         label: Meta-Beschreibung
         type: text
+      # Fotostreifen ohne Beschriftung, gerendert über {{< bilder >}}. Hier
+      # zählt der Alternativtext, weil kein Name unter dem Bild steht.
+      - name: bilder
+        label: Bilder im Raster
+        type: list
+        fields:
+          - name: bild
+            label: Bild
+            type: image
+            options:
+              media: images
+          - name: alt
+            label: Alternativtext
+            type: string
       - name: body
         label: Inhalt
         type: rich-text

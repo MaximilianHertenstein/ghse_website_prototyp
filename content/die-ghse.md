@@ -1,7 +1,25 @@
 ---
 title: "Die GHSE"
 description: "Gewerbliche, hauswirtschaftliche und sozialpflegerische Schulen in Emmendingen: 1836 gegründet, heute alle Abschlüsse des deutschen Schulsystems unter einem Dach."
+bilder:
+  - bild: "/bilder/die-ghse-zufahrt.webp"
+    alt: "Zufahrt zum Schulgelände mit geparktem Auto, Fahrradbügeln und Tiefgarageneinfahrt, dahinter das Schulgebäude hinter Bäumen"
+  - bild: "/bilder/die-ghse-haupteingang.webp"
+    alt: "Freitreppe zum Haupteingang zwischen Hecken, darüber der Schriftzug GHSE, daneben ein Leitschild mit Lageplan"
+  - bild: "/bilder/die-ghse-vordach.webp"
+    alt: "Eingangsvordach mit dem Schriftzug GHSE, darüber die grüne Fensterfront mit gelben Geländern"
+  - bild: "/bilder/die-ghse-lageplan.webp"
+    alt: "Wegeleitschild „Berufsschulzentrum Emmendingen“ mit farbigem Lageplan, dahinter der Eingangsbereich der GHSE"
+  - bild: "/bilder/die-ghse-bruestung.webp"
+    alt: "Nahaufnahme der gelben Brüstung vor der grün gerahmten Fensterfront mit Himmelsspiegelung"
+  - bild: "/bilder/die-ghse-eingangshalle.webp"
+    alt: "Eingangsbereich unter dem Vordach mit dem Schriftzug GHSE, rechts eine farbig gemalte Wand"
+  - bild: "/bilder/die-ghse-trakt.webp"
+    alt: "Dreigeschossiger Gebäudetrakt mit vorgelagerten Betonbrüstungen, gelben Handläufen und Hecken im Vordergrund"
+  - bild: "/bilder/die-ghse-pausenhof.webp"
+    alt: "Gesamtansicht des Schulgebäudes über den Pausenhof mit blühendem Schmetterlingsstrauch und einem Fahrrad"
 ---
+{{< bilder >}}
 
 **G** für gewerblich  
 **H** für hauswirtschaftlich  
