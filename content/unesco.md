@@ -5,6 +5,8 @@ description: "Die GHSE Emmendingen ist seit 1989 UNESCO-Projektschule: Themen, T
 
 Seit 1989 ist unsere Schule Mitglied im Netzwerk der [Unesco-Projekt-Schulen](https://www.unesco.de/bildung/unesco-projektschulen), genau so wie weitere ca. 300 Schulen in Deutschland und ca. 10.000 in der ganzen Welt.
 
+{{< bild src="/bilder/unesco-netzwerk.webp" alt="Gruppenaufnahme am Banner des Netzwerks der UNESCO-Projektschulen Baden-Württemberg" >}}
+
 Wir arbeiten im Unterricht selbst sowie in vielfältigen Projekten außerhalb des Unterrichts an den Themen:
 
 - Menschenrechte
