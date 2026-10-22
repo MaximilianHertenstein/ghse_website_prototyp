@@ -41,6 +41,15 @@
   /* Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
      (siehe qa/kontrast.py: tinte auf orange). */
   --kategorie-teilzeit: #ee6a2b;
+  /* Leitbild-Quadrate: reine Farbflächen, kein Text darauf, deshalb ohne
+     Darkmode-Variante (Vorbild: --kategorie-teilzeit). Blau braucht einen
+     eigenen Wert, weil --nacht im Dunkeln zu dunkel wird, um als Quadrat
+     noch sichtbar zu bleiben. */
+  --wert-blau: #33489e;
+  --wert-gelb: var(--gelb);
+  --wert-orange: var(--kategorie-teilzeit);
+  --wert-gruen: #1a9c5a;
+  --wert-magenta: #d81b7c;
   /* Hinweis- und Warnflächen: eigene Tokens, weil die Farbe im Dunkeln
      angepasst werden muss (sonst grellt eine helle Kastenfläche im Nachtmodus). */
   --hinweis-flaeche: #fffbe6;
@@ -726,6 +735,31 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 }
 .fliesstext em { font-style: italic; }
 .fliesstext hr { border: 0; border-top: 3px solid var(--rand); margin: 2.5rem 0; }
+/* Leitbild: sechs Werte als farbige Quadrate mit Beschriftung daneben.
+   Zwei Spalten, weil die längste Bezeichnung ("Kultur des Friedens") in
+   drei Spalten der 70ch-Lesespalte umbrechen würde. */
+.werte {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.5rem;
+}
+.wert {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-weight: 700; margin: 0;
+}
+.wert__marke { flex: none; width: 2.75rem; height: 2.75rem; }
+.wert__marke--blau { background: var(--wert-blau); }
+.wert__marke--gelb { background: var(--wert-gelb); }
+.wert__marke--orange { background: var(--wert-orange); }
+.wert__marke--gruen { background: var(--wert-gruen); }
+.wert__marke--magenta { background: var(--wert-magenta); }
+/* Vielfalt: alle fünf Farben als gleich hohe Streifen von oben nach unten. */
+.wert__marke--vielfalt {
+  background: linear-gradient(to bottom,
+    var(--wert-blau) 0 20%, var(--wert-gelb) 20% 40%,
+    var(--wert-orange) 40% 60%, var(--wert-gruen) 60% 80%,
+    var(--wert-magenta) 80% 100%);
+}
+@media (max-width: 560px) { .werte { grid-template-columns: minmax(0, 1fr); } }
 /* Zitat: linke Kante statt Kasten. Auf der TG-Seite stehen 18 Berichte
    Ehemaliger untereinander – als Karten mit Rahmen und Schatten wären sie
    nicht mehr zu lesen, sondern nur noch zu zählen. */

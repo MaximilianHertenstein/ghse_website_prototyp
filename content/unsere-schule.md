@@ -8,6 +8,21 @@ bilder:
   - bild: "/bilder/stellvertreter-kienzle.webp"
     funktion: "Stellvertretender Schulleiter"
     name: "StD Christian Kienzle"
+# Die sechs Leitbildpunkte mit ihrer Farbe. Farbe und Reihenfolge gehören
+# zusammen: der sechste Punkt (Vielfalt) trägt alle fünf Farben als Streifen.
+leitbild_punkte:
+  - name: "Kultur des Friedens"
+    farbe: "blau"
+  - name: "Menschenrechte"
+    farbe: "gelb"
+  - name: "Demokratie"
+    farbe: "orange"
+  - name: "Nachhaltigkeit"
+    farbe: "gruen"
+  - name: "Toleranz"
+    farbe: "magenta"
+  - name: "Vielfalt"
+    farbe: "vielfalt"
 ---
 
 ## Organisation der Schule
@@ -147,12 +162,7 @@ Als [UNESCO-Projektschule](/unesco/) sind die Gewerblich-Hauswirtschaftlich-Sozi
 
 **Besonders wichtig in unserem Schulalltag sind uns:**
 
-- Kultur des Friedens
-- Menschenrechte
-- Demokratie
-- Nachhaltigkeit
-- Toleranz
-- Vielfalt
+{{< werte >}}
 
 Alle Mitglieder der Schulgemeinschaft lernen und arbeiten in einem Klima **gegenseitigen Respekts**. Wir treten aktiv Intoleranz, Rassismus und Gewalt entgegen.
 

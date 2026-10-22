@@ -1,0 +1,16 @@
+{{- /* Die sechs Leitbildpunkte als farbige Quadrate. Farben und Reihenfolge
+       stehen in der Frontmatter (leitbild_punkte), nicht hier: der sechste
+       Punkt (Vielfalt) trägt alle fünf Farben als Streifen, und diese
+       Abhängigkeit gehört an eine Stelle, nicht in zwei.
+
+       Die Quadrate sind reine Grafik, die Beschriftung steht daneben und
+       trägt die Aussage – Farbe allein vermittelt keine Bedeutung
+       (deshalb aria-hidden). */ -}}
+{{- $punkte := .Page.Params.leitbild_punkte -}}
+{{- if $punkte }}
+<div class="werte">
+  {{- range $punkte }}
+  <p class="wert"><span class="wert__marke wert__marke--{{ .farbe }}" aria-hidden="true"></span>{{ .name }}</p>
+  {{- end }}
+</div>
+{{- end }}
