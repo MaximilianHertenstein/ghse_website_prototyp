@@ -14,6 +14,8 @@ Wer keinen Ausbildungsplatz gefunden hat, gewinnt hier ein Jahr für die Orienti
 
 ## Metalltechnik (1BFM)
 
+{{< bild src="/bilder/bfs1-metalltechnik.webp" alt="Schüler an einer Bearbeitungsmaschine mit Bedienpult in einer Metallwerkstatt" >}}
+
 Du arbeitest gerne handwerklich auch mit Metall, weißt aber noch nicht so recht, wie es nach dem Hauptschul- oder Realschulabschluss weitergehen soll? Oder du hast keinen Ausbildungsplatz bekommen – dann könnte die Einjährige Berufsfachschule das Richtige für dich sein.
 
 Sie ist die ideale Voraussetzung für viele Metallberufe, aber auch anderer technischer Berufe, und wird von den Kammern und Betrieben anerkannt.
@@ -28,6 +30,8 @@ Sie ist die ideale Voraussetzung für viele Metallberufe, aber auch anderer tech
 
 ## Holztechnik (1BFZ)
 
+{{< bild src="/bilder/bfs1-holztechnik.webp" alt="Holzwerkstatt mit Sägen, Werkbänken und einer Kranbahn unter der Decke" >}}
+
 Die Berufsfachschule Holztechnik ist die Schulart für alle, die Spaß am Gestalten und ein gutes handwerkliches Gespür haben. Wer gerne natürliche Materialien verarbeitet, kann hier seiner Phantasie freien Lauf lassen.
 
 Die Ausbildung zum Schreiner dauert insgesamt drei Jahre, das erste Jahr wird in der Einjährigen Berufsfachschule absolviert. Im Mittelpunkt steht der Erwerb der grundlegenden handwerklichen Fertigkeiten, ergänzt um den Umgang mit weiteren Werkstoffen wie Glas, Kunststoff und Metall sowie die Bearbeitung und Veredelung von Oberflächen. Der Maschinenkurs TSM1 vermittelt die ersten Fähigkeiten zum Einsatz der modernen Maschinen des Schreiners.
@@ -35,6 +39,8 @@ Die Ausbildung zum Schreiner dauert insgesamt drei Jahre, das erste Jahr wird in
 Theorie und Werkstattunterricht ergänzen sich thematisch: Es wird entworfen, konstruiert, gerechnet und gezeichnet, und man lernt die Werkstoffe und ihre Eigenschaften kennen.
 
 ## Fahrzeugtechnik (1BFR)
+
+{{< bild src="/bilder/bfs1-fahrzeugtechnik.webp" alt="Kraftfahrzeugwerkstatt mit drei Fahrzeugen mit geöffneter Motorhaube, Werkzeugwagen und Prüfgerät" >}}
 
 „Kfz-Mechatroniker – weil Superheld kein offizieller Beruf ist."
 

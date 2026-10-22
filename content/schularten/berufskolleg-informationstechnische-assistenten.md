@@ -20,6 +20,8 @@ Sowohl in der Entwicklung neuer als auch in der Instandhaltung und Wartung beste
 
 Wenn ihr die Technologie nicht nur nutzen wollt, sondern euch auch für deren Funktionsweise interessiert, ist die Ausbildung an unserer Schule zum Informationstechnischen Assistenten die richtige Wahl.
 
+{{< bild src="/bilder/bkik-stundentafel.webp" breite="voll" alt="Stundentafel als Tabelle für beide Schuljahre: Allgemeinbildung, Fachtheorie, Fachpraxis und Wahlpflichtbereich mit zusammen 35 beziehungsweise 33 Wochenstunden; darunter Deutsch II, Englisch II und Mathematik II als Zusatzunterricht zum Erwerb der Fachhochschulreife" >}}
+
 ## Inhalte der Ausbildung
 
 Die Ausbildung fußt auf drei Säulen, deren Inhalte in Theorie und Praxis vermittelt werden. Abschließend sollen die erworbenen Kenntnisse in einer Projektarbeit zusammenfließen.

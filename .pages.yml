@@ -243,8 +243,9 @@ content:
       # wo der Shortcode im Text steht. „bild“ ist das eine Bild in der
       # Seitenleiste, „bilder“ ist der Lauf im Fließtext – dieselben zwei
       # Wörter wie in der Vorlage unserer-schule, damit die Redaktion überall
-      # dasselbe vorfindet. Nur das Technische Gymnasium trägt derzeit einen
-      # Lauf; die übrigen Schularten lassen das Feld leer.
+      # dasselbe vorfindet. Der Lauf ist nicht auf das Technische
+      # Gymnasium beschränkt: die Berufsschule zeigt darin ihre Labore,
+      # die Pflege-Abteilung ihre Impressionen.
       - name: bilder
         label: Bilder im Lauf unter dem Titel
         type: list

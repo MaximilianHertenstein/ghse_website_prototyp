@@ -20,6 +20,8 @@ Am SG findet gemeinsamer Unterricht mit dem Technischen Gymnasium in fast allen 
 
 ## Sechsjähriges SG (6SG)
 
+{{< bild src="/bilder/sg-ausflug.webp" alt="Gruppe von Jugendlichen zieht auf einer Wiese an einem langen Seil, rechts schwebt eine Person in einem Gurt über dem Boden" >}}
+
 Das sechsjährige Berufliche Gymnasium richtet sich an gute Realschüler sowie sehr gute Haupt- und Werkrealschüler und an Gymnasiasten, die früh ein besonderes Interesse oder eine besondere Begabung für einzelne berufliche Fachbereiche zeigen.
 
 Im Profilfach **Ernährung, Soziales und Gesundheit** erforschen die Schülerinnen und Schüler die Bandbreite der Faktoren, die ihre Lebensweise beeinflussen. Sie erwerben ernährungs-, sozial- und gesundheitswissenschaftliche Erkenntnisse. Theoretische Grundlagen werden durch praxisnahe Untersuchungen im Labor, Übungen in der Küche sowie Exkursionen ergänzt.
@@ -45,6 +47,8 @@ Die Fächer entsprechen denen eines allgemeinbildenden Gymnasiums, hinzu kommt d
 - Nach der 10. Klasse: Wechsel in unsere Oberstufe ohne weitere Aufnahmebedingungen
 
 ## Dreijähriges SG (3SG)
+
+{{< bild src="/bilder/sg-gruppenarbeit.webp" alt="Gruppe von Jugendlichen im Kreis um ein quadratisches Tablett auf einer Wiese" >}}
 
 Das SG ist ein Berufliches Gymnasium der dreijährigen Aufbauform. Es bereitet auf das Studium sowie – durch sein Profilfach Pädagogik / Psychologie – in besonderer Weise auf das Berufsleben vor.
 

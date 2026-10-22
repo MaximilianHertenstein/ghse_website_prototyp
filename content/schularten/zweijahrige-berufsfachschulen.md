@@ -18,17 +18,25 @@ Durch die Profilfächer in Theorie und Praxis erlangst du eine berufliche Grunda
 
 ### Metalltechnik (2BFM)
 
+{{< bild src="/bilder/bfs2-metalltechnik.webp" alt="Schüler mit Schutzbrille an einer Drehmaschine, links zwei Bohrmaschinen" >}}
+
 Du möchtest wissen, wie man mit Metall arbeitet und selbst lernst, wie man Metall bearbeitet? Die Kombination aus Theorie und Praxis kommt dir dabei gelegen? Dein nächstes Ziel ist der mittlere Bildungsabschluss, anschließend vielleicht ein Beruf oder eine weiterführende Schule?
 
 ### Elektrotechnik (2BFE)
+
+{{< bild src="/bilder/bfs2-elektrotechnik.webp" alt="Studentin steckt Kabel an einer Lehrtafel mit Stecksystemen und Messgeräten" >}}
 
 Du möchtest wissen, wie elektrische Geräte funktionieren? Auch hier verbindet die Kombination aus Theorie und Praxis das Erlernen der Fachinhalte mit dem Ziel des mittleren Bildungsabschlusses.
 
 ### Hauswirtschaft und Ernährung (2BFH)
 
+{{< bild src="/bilder/bfs2-hauswirtschaft.webp" alt="Küchenpraxis: angerichteter Salat und Knoblauchzehen mit Messer und Maßband" >}}
+
 Du willst einen mittleren Schulabschluss erwerben und interessierst dich für Ernährung, Erziehung und Haushaltsmanagement?
 
 ### Gesundheit und Pflege (2BFP)
+
+{{< bild src="/bilder/bfs2-gesundheit.webp" alt="Pflege eines Säuglings und eine Frau im Rollstuhl im Freien" >}}
 
 Dein Ziel ist der mittlere Bildungsabschluss sowie Kenntnisse über die Gesunderhaltung in allen Lebensphasen. Du bringst Sensibilität für Menschen mit.
 

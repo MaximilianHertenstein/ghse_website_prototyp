@@ -6,6 +6,19 @@ kurz: "Die Berufsschule ist als Partner von Handwerk und Industrie konzipiert �
 abschluss: "Berufsabschluss im jeweiligen Ausbildungsberuf; danach Meisterkurs, Techniker, Studienberechtigung oder Studium"
 bild: "/bilder/bs.webp"
 bildAlt: "Druckversuch an einem Betonwürfel im Labor für Bautechnik"
+bilder:
+  - bild: "/bilder/bs-lab-werkstoff.webp"
+    alt: "Zwei Personen an einer Werkstoffprüfmaschine mit roter Prüfsäule und Steuerungsschrank"
+  - bild: "/bilder/bs-lab-zerspanung.webp"
+    alt: "Zerspanungslabor mit Maschinen an der Fensterfront und Arbeitstischen mit Monitoren"
+  - bild: "/bilder/bs-lab-laser.webp"
+    alt: "Zwei Männer an einer roten Laserschneidanlage, einer blickt in den Arbeitsraum"
+  - bild: "/bilder/bs-lab-kunststoff.webp"
+    alt: "Zwei Männer an einer Maschine mit rotem Bedienpult in einer Kunststoffwerkstatt"
+  - bild: "/bilder/bs-lab-kfz.webp"
+    alt: "Fahrzeug mit geöffneter Motorhaube, daran ein Multimeter und ein Laptop angeschlossen"
+  - bild: "/bilder/bs-lab-elektro.webp"
+    alt: "Ein Lehrer erklärt an einer Schalttafel mit Bauteilen, auf dem Tisch stehen Multimeter"
 weight: 35
 downloads:
   - blockplan-e-m-1-3-2627
@@ -43,6 +56,8 @@ Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt h
 
 ### Bautechnik
 
+{{< bild src="/bilder/bs-bautechnik.webp" alt="Betonprobe beim Druckversuch in einer Prüfmaschine, das Prüfstück ist geborsten und Bruchstücke liegen darunter" >}}
+
 - Maurer
 - Betonbauer
 - Zimmerer
@@ -54,17 +69,25 @@ Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt h
 
 ### Elektrotechnik
 
+{{< bild src="/bilder/bs-elektrotechnik.webp" alt="Ein Lehrer erklärt einem Schüler etwas am Monitor eines Elektronikarbeitsplatzes, dahinter ein Anschlussfeld mit Steckverbindern" >}}
+
 - Elektroniker für Energie- und Gebäudetechnik (Handwerk)
 
 ### Holztechnik
+
+{{< bild src="/bilder/bs-holztechnik.webp" alt="Stapel gehobelter Holzlamellen auf einem Arbeitstisch, dahinter technische Zeichnungen" >}}
 
 - Schreiner / Tischler
 
 ### Kraftfahrzeugtechnik
 
+{{< bild src="/bilder/bs-kraftfahrzeugtechnik.webp" alt="Weißer VW-Pkw mit geöffneter Motorhaube und dem Kennzeichen GH-SE 310" >}}
+
 - Kraftfahrzeug-Mechatroniker/in
 
 ### Metalltechnik
+
+{{< bild src="/bilder/bs-metalltechnik.webp" alt="Metallwerkstatt mit Maschine und Bedienpult vor der Fensterfront" >}}
 
 - Chirurgiemechaniker/in
 - Feinwerkmechaniker/in
@@ -82,6 +105,8 @@ Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt h
 - Ausbildung zum staatlich geprüften Techniker
 - Erwerb einer Studienberechtigung, zum Beispiel im einjährigen Berufskolleg zur Fachhochschulreife
 - Studium
+
+{{< bilder >}}
 
 Wer während der Ausbildung Unterstützung braucht, kann die Initiative [VERAplus – Region Freiburg](mailto:freiburg@vera.ses-bonn.de) ansprechen.
 

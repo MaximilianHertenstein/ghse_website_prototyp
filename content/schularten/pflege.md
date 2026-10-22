@@ -6,12 +6,41 @@ kurz: "Sie sind an einem Pflegeberuf interessiert? Sie möchten Verantwortung f�
 abschluss: "Pflegefachfrau/-mann, Altenpflegehelfer/in oder Zertifikat zur Praxisanleitung"
 bild: "/bilder/pflege.webp"
 bildAlt: "Zwei Pflegeschülerinnen mit Mundschutz üben die Versorgung einer Puppe im Pflegelabor"
+bilder:
+  - bild: "/bilder/pflege-waschen.webp"
+    alt: "Waschen eines Beins mit einem grünen Waschlappen auf einem roten Handtuch"
+  - bild: "/bilder/pflege-treppe.webp"
+    alt: "Zwei Personen steigen eine Treppe hinauf, die eine stützt die andere am Arm"
+  - bild: "/bilder/pflege-sitzbrett.webp"
+    alt: "Transfer mit dem Sitzbrett vom Bett in den Rollstuhl"
+  - bild: "/bilder/pflege-rollator.webp"
+    alt: "Aufstehen aus dem Rollstuhl mit Hilfe eines Gurtgriffs, dahinter ein Rollator"
+  - bild: "/bilder/pflege-lagern.webp"
+    alt: "Lagerung mit einem Wickelkissen zwischen den Beinen eines Patienten im Bett"
+  - bild: "/bilder/pflege-haende.webp"
+    alt: "Händedesinfektion: Einreiben der Hände mit Desinfektionsmittel"
+  - bild: "/bilder/pflege-flaeche.webp"
+    alt: "Flächendesinfektion: eine Hand in blauem Einmalhandschuh wischt einen Tisch ab"
+  - bild: "/bilder/pflege-desituch.webp"
+    alt: "Herausziehen eines Desinfektionstuchs aus der Packung"
+  - bild: "/bilder/pflege-blutzucker-streifen.webp"
+    alt: "Blutzuckermessung mit dem Messgerät am Finger der anderen Hand"
+  - bild: "/bilder/pflege-blutzucker-lanzette.webp"
+    alt: "Sterile Einmálnadel für die Blutzuckermessung in einer blauen Einmalhandschuh"
+  - bild: "/bilder/pflege-beinschiene.webp"
+    alt: "Beinschiene mit mehreren Klettverschlüssen an einer Unterschenkelstütze"
+  - bild: "/bilder/pflege-blutdruck-automat.webp"
+    alt: "Automatische Blutdruckmessung: das Gerät am Arm zeigt 141 zu 58 und einen Puls von 92"
+  - bild: "/bilder/pflege-ats.webp"
+    alt: "Überziehen eines Fußes mit einer Schutzauflage mit einem Strumpf"
 weight: 40
 downloads:
   - blockplan-altenpflegehilfe-2627
   - blockplan-generalistik-2627
 ---
 ## Generalistische Pflegeausbildung
+
+{{< bild src="/bilder/pflege-generalistisch.webp" alt="Zwei Pflegekräfte mit Mundschutz bei einer Pflegehandlung an einem Patienten im Bett" >}}
 
 Die Ausbildung zur „Pflegefachfrau" bzw. zum „Pflegefachmann" ist generalistisch ausgerichtet: Die drei bisherigen Berufsbilder (Altenpflege, Gesundheits- und Krankenpflege sowie Gesundheits- und Kinderkrankenpflege) werden zusammengefasst zu einem neuen, universellen Berufsbild. In dieser Ausbildung fließen fachliche Schwerpunkte aus allen drei bisherigen Pflegebereichen zusammen.
 
@@ -25,6 +54,8 @@ Die Anmeldung an der Schule erfolgt durch den Ausbildungsbetrieb.
 
 ## Einjährige Berufsfachschule Altenpflegehilfe (1BFAH)
 
+{{< bild src="/bilder/pflege-kardex.webp" alt="Pflege- und Behandlungspläne in Ordnern mit Klemmbrett und Stift auf einem Tisch" >}}
+
 Altenpflegehelferinnen und Altenpflegehelfer unterstützen Pflegefachkräfte bei vielen Tätigkeiten der Betreuung und Pflege älterer Menschen. Die einjährige Ausbildung vermittelt die dafür erforderlichen Kenntnisse, Fähigkeiten und Fertigkeiten.
 
 Sie dauert ein Jahr und umfasst **850 Stunden Praxis** in einer Einrichtung der Altenpflege und **720 Stunden** theoretischen und fachpraktischen Unterricht in der Berufsfachschule.
@@ -32,6 +63,8 @@ Sie dauert ein Jahr und umfasst **850 Stunden Praxis** in einer Einrichtung der 
 **Voraussetzungen:** Hauptschulabschluss oder gleichwertiger Bildungsstand sowie ein Deutschniveau auf Niveau B1. Auch eine Förderung durch die Agentur für Arbeit ist möglich.
 
 ## Zweijährige Berufsfachschule Altenpflegehilfe mit intensiver Deutschförderung (2BFAHM)
+
+{{< bild src="/bilder/pflege-rr-manuell.webp" alt="Blutdruckmessung mit Manschette und Manometer am Arm, eine Hand hält das Stethoskop" >}}
 
 Diese Form richtet sich an Menschen, die noch nicht lange in Deutschland leben und über kein B2-Niveau verfügen, um direkt in die dreijährige Ausbildung einzusteigen.
 
@@ -41,11 +74,15 @@ Fachtheoretisch wird dasselbe gelernt wie in der einjährigen Altenpflegehilfe �
 
 ## Dreijährige Berufsfachschule für Altenpflege (BFA)
 
+{{< bild src="/bilder/pflege-blutzucker.webp" alt="Blutzuckermessung: eine Hand in blauer Einmalhandschuh hält das Messgerät, am Finger der anderen Hand wird die Probe entnommen" >}}
+
 Altenpflegerinnen und Altenpfleger arbeiten selbstständig und eigenverantwortlich in der Pflege, Begleitung und Betreuung älterer Menschen. Die Ausbildung dauerte drei Jahre und umfasste 2500 Stunden Praxis sowie 2100 Stunden theoretischen und fachpraktischen Unterricht.
 
 Diese Schulart wird nicht mehr neu angeboten: Die dreijährige Ausbildung zur Altenpflege ist durch die Generalistische Pflegeausbildung abgelöst. Wer die Ausbildung als Altenpflegehelferin oder Altenpflegehelfer mit einer Durchschnittsnote von mindestens 2,5 abgeschlossen hat, kann unter bestimmten Voraussetzungen in das zweite Ausbildungsjahr der Generalistischen einsteigen.
 
 ## Praxisanleitung (BFQ)
+
+{{< bild src="/bilder/pflege-pflegehilfe.webp" alt="Hände in Einmalhandschuhen schneiden einen Verband mit einer Schere" >}}
 
 Die berufspädagogische Zusatzqualifikation richtet sich an Pflegekräfte, die Auszubildende anleiten und ausbilden sollen.
 
@@ -59,6 +96,10 @@ Die berufspädagogische Zusatzqualifikation richtet sich an Pflegekräfte, die A
 ## Zertifiziert nach AZAV
 
 Die GHSE ist im Bereich Pflege nach der AZAV (Akkreditierungs- und Zulassungsverordnung Arbeitsförderung) zertifiziert. Damit kann eine Ausbildung über einen Bildungsgutschein finanziell gefördert werden.
+
+## Impressionen aus den Schularten der Pflege-Abteilung
+
+{{< bilder >}}
 
 ## Kontakt
 

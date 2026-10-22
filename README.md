@@ -36,14 +36,13 @@ Inter als selbst gehostete Variable-Font, 48 kB).
 |---|---|---|
 | A Landingpage | Hero (eine Schaltfläche), Faktenband, 3 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Über die GHSE (4 Servicekarten), Schulleben, Partner (logobreit) | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
-| C Detailseite Bildungsgang | Technisches Gymnasium (vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Downloads) | `/schularten/technisches-gymnasium/` |
+| C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
 | E Downloadbereich | 16 PDFs in 4 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
 
-Die übrigen 7 Schularten sind als **Kurzprofil** umgesetzt: Kurztext, Bild,
-Faktenkasten und ein klar gekennzeichneter Hinweis, dass die vollständige
-Detailseite Teil des späteren Umbaus ist – mit Link auf die Originalseite.
-So gibt es keine toten Karten, aber auch keine vorgaukelte Vollständigkeit.
+Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
+Fließtext, Faktenkasten, Bilder und – wo vorhanden – Downloads. Damit gibt
+es keine toten Karten und keinen Umweg über die Originalseite.
 
 **Nicht Teil des Prototyps:** vollständige URL-/Content-Migration, kompletter
 Serviceersatz, Buchungssystem, produktives Consent-Management, Hosting-
@@ -67,7 +66,7 @@ Projektordner geladen und einzeln geprüft.
 | Instagram (Einleitung, 8 Accounts, 4 Beiträge) | `https://www.ghse.de/` (Abschnitt „Die GHSE bei Instagram") → `instagram.com/ghse_emmendingen` |
 | Schüler/innen – Schulleben – Lehrer/innen | `https://www.ghse.de/schueler-schulleben-lehrer/` |
 | Partner-Logostreifen | `https://www.ghse.de/` (Abschnitt „Partner") |
-| Schularten-Übersicht + Kurzprofile | `https://www.ghse.de/schularten/…` (Teilzeit-/Vollzeitschularten) |
+| Schularten-Übersicht + Detailseiten | `https://www.ghse.de/schularten/…` (Teilzeit-/Vollzeitschularten) |
 | Detailseite TG | `https://www.ghse.de/schularten/vollzeitschularten/technisches-gymnasium/` |
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
@@ -190,8 +189,8 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
   `relURL`/`relPermalink` – die Ausgabe funktioniert unter `/` und unter
   `/<repo>/` ohne Änderung an den Vorlagen.
 * **Front Matter ↔ CMS:** `title`, `description`, `kategorie`, `kurz`,
-  `abschluss`, `bild`, `bildAlt`, `bild2`, `bild2Alt`, `bild3`, `bild3Alt`,
-  `extern`, `date`, `quelle`, `quelle_url`,
+  `abschluss`, `bild`, `bildAlt`, `bilder`, `bild2`, `bild2Alt`, `bild3`,
+  `bild3Alt`, `date`, `quelle`, `quelle_url`,
   `teaser`, `beschreibung`, `datei`, `weight` – überall verwendet.
   Nur `downloads` (verwandte Dokumente der TG-Seite) ist reines Hugo-Feld.
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
@@ -353,22 +352,19 @@ Push startet die Pipeline automatisch neu.
 1. **Presse-Meldungen ohne Volltext:** Solange ghse.de nur Teaser + Abbildung
    + Quellenlink liefert, bleibt die Detailseite bei diesen Feldern. Sobald
    Volltexte gepflegt werden, ist das `body`-Feld im CMS bereits angebunden.
-2. **Weitere Schularten als Detailseiten:** Die 7 Kurzprofile brauchen nur
-   `extern` leer setzen und den Inhalt aus dem Original übernehmen – die
-   Vorlage rendert den Volltext automatisch.
-3. **Bildfreigabe:** Bilder/PDFs sind für den internen Prototyp eingebunden;
+2. **Bildfreigabe:** Bilder/PDFs sind für den internen Prototyp eingebunden;
    vor einer Veröffentlichung braucht die GHSE die Freigabe (Urheberrecht
    regionaler Zeitungen bei den Presseabbildungen!).
-4. **Verlinkung ins Original:** Service-, Rechts- und Detaillinks zeigen
+3. **Verlinkung ins Original:** Service-, Rechts- und Detaillinks zeigen
    weiterhin auf ghse.de – ein Schritt der später durch eigene Seiten
    ersetzt wird. Der Kultusportal-Deep-Link der Originalseite (404, Portal
    umgezogen) wurde durch die geprüfte Startseite des Kultusministeriums
    ersetzt.
-5. **Kein echtes Consent-/Analytics-Setup:** Das Original betreibt ein
+4. **Kein echtes Consent-/Analytics-Setup:** Das Original betreibt ein
    Cookie-Consent-Modul; im Prototyp bewusst entfallen (außerhalb des Umfangs).
-6. **Instagram-Feed ist ein Standbild:** Der Abschnitt zeigt vier konkrete
+5. **Instagram-Feed ist ein Standbild:** Der Abschnitt zeigt vier konkrete
    Beiträge mit lokalen Bildern statt eines Live-Feeds. Bei Laufzeit müsste
    er regelmäßig aktualisiert werden (oder das Original per JS/Server nachladen).
-7. **Ponytail-Hinweis:** Es wurde absichtlich nur das gebaut, was die
+6. **Ponytail-Hinweis:** Es wurde absichtlich nur das gebaut, was die
    Demo braucht – kein Taxonomie-/Blog-System, kein Pagination-Layout, keine
    Social-Media-Einbettung, kein SVG-Sprite-Katalog.
