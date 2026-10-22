@@ -16,13 +16,6 @@
 
 <div class="container raster--seite">
   <div class="fliesstext">
-    {{ with .Params.extern }}
-      <div class="hinweis" role="note">
-        <p class="kicker">Prototyp</p>
-        <p><strong>Nur als Kurzprofil umgesetzt.</strong> Die vollständige Detailseite zu diesem Bildungsgang ist Teil des späteren Umbaus und in dieser Demo bewusst nicht nachgebaut. Die belegten Angaben finden Sie auf der Originalseite.</p>
-        <a class="btn btn--geist btn--klein" href="{{ . }}">Originalseite ansehen<span aria-hidden="true"> ↗</span></a>
-      </div>
-    {{ end }}
 
     {{ .Content }}
 
@@ -57,9 +50,6 @@
           <dd>{{ . }}</dd>
         {{ end }}
       </dl>
-      {{ with .Params.extern }}
-        <p><a class="linkpfeil" href="{{ . }}">Informationen der Originalseite<span aria-hidden="true"> ↗</span></a></p>
-      {{ end }}
       <p><a class="linkpfeil" href="{{ "downloads/" | relURL }}">Alle Downloads<span aria-hidden="true"> ↗</span></a></p>
       <p class="kasten__kontakt">
         Sekretariat<br>

@@ -60,10 +60,20 @@
       </div>
       <a class="btn btn--geist" href="{{ "schularten/" | relURL }}">Alle Schularten</a>
     </div>
-    <div class="raster raster--3">
-      {{ range first 3 (sort (where site.RegularPages "Section" "schularten") "Weight") }}
-        {{ partial "karte-schulart.html" . }}
-      {{ end }}
+    {{- /* Vier feste Karten statt „first n nach Weight": die Startseite
+           bewirbt andere Schularten als die Gewichtung der Übersicht
+           vorgibt — AV-K steht dort auf Platz acht. Vier Karten passen
+           nicht in eine Dreierzeile (die vierte stünde vor einer leeren
+           Spalte), deshalb raster--2 als 2×2; eine neue Spaltenzahl
+           wäre die dritte Kartenbreite im Stylesheet. */}}
+    <div class="raster raster--2">
+      {{- $karten := slice "schularten/technisches-gymnasium"
+                           "schularten/sozialwissenschaftliches-gymnasium"
+                           "schularten/zweijahrige-berufsfachschulen"
+                           "schularten/berufsvorbereitende-schularten" }}
+      {{- range $karten }}
+        {{- with site.GetPage . }}{{ partial "karte-schulart.html" . }}{{ end }}
+      {{- end }}
     </div>
   </div>
 </section>
