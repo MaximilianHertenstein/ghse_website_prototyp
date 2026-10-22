@@ -726,10 +726,20 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
 }
 .fliesstext em { font-style: italic; }
 .fliesstext hr { border: 0; border-top: 3px solid var(--rand); margin: 2.5rem 0; }
+/* Zitat: linke Kante statt Kasten. Auf der TG-Seite stehen 18 Berichte
+   Ehemaliger untereinander – als Karten mit Rahmen und Schatten wären sie
+   nicht mehr zu lesen, sondern nur noch zu zählen. */
 .fliesstext blockquote {
-  margin: 2rem 0; padding: 1.25rem 1.5rem; background: var(--papier2);
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
-  font-size: 1.15rem; font-weight: 600;
+  margin: 1.5rem 0; padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 6px solid var(--gelb);
+  font-size: 1.05rem; font-weight: 500;
+}
+.fliesstext blockquote p { margin: 0; }
+.fliesstext blockquote p + p { margin-top: 0.9rem; }
+.fliesstext blockquote em {
+  display: block; font-style: normal; font-weight: 800;
+  font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--grau);
 }
 
 .hinweis {

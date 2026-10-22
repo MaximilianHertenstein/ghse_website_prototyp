@@ -239,6 +239,30 @@ content:
       - name: bildAlt
         label: Bildbeschreibung (Alt-Text)
         type: string
+      # Raster unter dem Titel, gerendert über {{< bilder >}} an der Stelle,
+      # wo der Shortcode im Text steht. „bild“ ist das eine Bild in der
+      # Seitenleiste, „bilder“ ist der Lauf im Fließtext – dieselben zwei
+      # Wörter wie in der Vorlage unserer-schule, damit die Redaktion überall
+      # dasselbe vorfindet. Nur das Technische Gymnasium trägt derzeit einen
+      # Lauf; die übrigen Schularten lassen das Feld leer.
+      - name: bilder
+        label: Bilder im Lauf unter dem Titel
+        type: list
+        fields:
+          - name: bild
+            label: Bild
+            type: image
+            options:
+              media: images
+          - name: alt
+            label: Alternativtext
+            type: string
+          - name: funktion
+            label: Funktion – kann leer bleiben
+            type: string
+          - name: name
+            label: Bildunterschrift – kann leer bleiben
+            type: string
       # downloads (Liste der Schlagwörter aus der Sammlung „downloads“) ist
       # bewusst kein Feld hier: Die Syntax für Listen aus reinen Strings ist
       # nicht belegt – ein geratenes Feld lieferte der Redaktion ein
