@@ -7,11 +7,14 @@
   </div>
 </header>
 
-{{- /* Die Gruppen entstehen aus den Kategorien der Seiten: neue Kategorien erscheinen automatisch. */ -}}
+{{- /* Die Gruppen entstehen aus den Kategorien der Seiten: neue Kategorien erscheinen automatisch.
+     Seiten mit "karte: false" haben zwar eine eigene Detailseite, sind aber Bestandteil eines
+     anderen Bildungsgangs – etwa die fünf Fachbereiche der Berufsschule. Sie erscheinen hier
+     nicht als eigene Karte, sondern werden von ihrer Übersichtsseite aus verlinkt. */ -}}
 {{- $kat := slice -}}
 {{- range .RegularPages }}{{ $kat = $kat | append .Params.kategorie }}{{ end -}}
 {{- range $i, $name := sort (uniq $kat) -}}
-  {{- $gruppe := where $.RegularPages "Params.kategorie" $name -}}
+  {{- $gruppe := where (where $.RegularPages "Params.kategorie" $name) "Params.karte" "ne" false -}}
   <section class="band band--papier{{ if mod $i 2 }} band--gestreift{{ end }}" aria-labelledby="kat-{{ $name | anchorize }}">
     <div class="container">
       <div class="kopfzeile">

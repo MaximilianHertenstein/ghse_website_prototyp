@@ -729,6 +729,26 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
   text-decoration-color: var(--gelb);
 }
 .fliesstext a:hover { background: var(--gelb); color: var(--tinte); text-decoration: none; }
+/* Überschriften-Links: die fünf Fachbereiche der Berufsschule führen von der
+   Übersicht auf deren eigene Detailseite. Farbe und Abstand bleiben die der
+   Überschrift, damit die Gliederung lesbar bleibt. Dass es ein Verweis ist,
+   zeigt der orange Pfeil, den die Listen dieser Seiten ohnehin verwenden. */
+.fliesstext h2 a,
+.fliesstext h3 a,
+.fliesstext h4 a {
+  color: inherit; font-weight: inherit;
+  text-decoration: none;
+}
+.fliesstext h2 a::after,
+.fliesstext h3 a::after,
+.fliesstext h4 a::after {
+  content: " →"; color: var(--orange-tief); font-weight: 900;
+}
+.fliesstext h2 a:hover,
+.fliesstext h3 a:hover,
+.fliesstext h4 a:hover {
+  background: var(--gelb); color: var(--tinte);
+}
 .fliesstext strong {
   background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.75) 58%);
   font-weight: 800;

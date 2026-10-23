@@ -54,7 +54,9 @@ Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt h
 
 ## Die fünf Bereiche
 
-### Bautechnik
+Jeder der fünf Bereiche hat eine eigene Seite mit den Ausbildungsberufen im Detail.
+
+### [Bautechnik](/schularten/berufsschule/bautechnik/)
 
 {{< bild src="/bilder/bs-bautechnik.webp" alt="Betonprobe beim Druckversuch in einer Prüfmaschine, das Prüfstück ist geborsten und Bruchstücke liegen darunter" >}}
 
@@ -67,25 +69,25 @@ Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt h
 - Estrichleger
 - Wärme-, Kälte- und Schallschutzisolierer
 
-### Elektrotechnik
+### [Elektrotechnik](/schularten/berufsschule/elektrotechnik/)
 
 {{< bild src="/bilder/bs-elektrotechnik.webp" alt="Ein Lehrer erklärt einem Schüler etwas am Monitor eines Elektronikarbeitsplatzes, dahinter ein Anschlussfeld mit Steckverbindern" >}}
 
 - Elektroniker für Energie- und Gebäudetechnik (Handwerk)
 
-### Holztechnik
+### [Holztechnik](/schularten/berufsschule/holztechnik/)
 
 {{< bild src="/bilder/bs-holztechnik.webp" alt="Stapel gehobelter Holzlamellen auf einem Arbeitstisch, dahinter technische Zeichnungen" >}}
 
 - Schreiner / Tischler
 
-### Kraftfahrzeugtechnik
+### [Kraftfahrzeugtechnik](/schularten/berufsschule/kfz-technik/)
 
 {{< bild src="/bilder/bs-kraftfahrzeugtechnik.webp" alt="Weißer VW-Pkw mit geöffneter Motorhaube und dem Kennzeichen GH-SE 310" >}}
 
 - Kraftfahrzeug-Mechatroniker/in
 
-### Metalltechnik
+### [Metalltechnik](/schularten/berufsschule/metalltechnik/)
 
 {{< bild src="/bilder/bs-metalltechnik.webp" alt="Metallwerkstatt mit Maschine und Bedienpult vor der Fensterfront" >}}
 

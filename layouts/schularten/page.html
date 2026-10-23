@@ -4,7 +4,13 @@
     <nav class="brotkrumen" aria-label="Brotkrumen">
       <ol>
         <li><a href="{{ site.Home.RelPermalink }}">Start</a></li>
-        <li><a href="{{ "schularten/" | relURL }}">Schularten</a></li>
+        {{- /* Die Fachbereiche der Berufsschule liegen eine Ebene tiefer:
+             die Brotkrumen laufen über alle Vorfahren, Start ausgeblendet. */ -}}
+        {{- range .Ancestors.Reverse }}
+        {{- if not .IsHome }}
+        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        {{- end }}
+        {{- end }}
         <li aria-current="page">{{ .Title }}</li>
       </ol>
     </nav>
@@ -35,7 +41,7 @@
     {{ with .Params.bild }}
       <figure class="seitenleiste__bild">
         {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .)) }}
-        <img src="{{ $.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
+        <img src="{{ $.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
         {{ end }}
       </figure>
     {{ end }}
