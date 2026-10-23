@@ -6,7 +6,7 @@ kategorie: "Teilzeitschularten"
 kurz: "Die Ausbildung in der Schule erfolgt im Teilzeitunterricht; das 1. Lehrjahr ist auch in der einjährigen Berufsfachschule möglich."
 bild: "/bilder/bskfz-hochvoltpruefung-3.webp"
 bildAlt: "Werkbank mit blauem Helm und Werkzeug vor einem silbernen Pkw"
-karte: false   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
+karte: "nein"   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
 weight: 39
 bilder:
   - bild: "/bilder/bskfz-datenbussignal-komfortsystem.webp"

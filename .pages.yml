@@ -271,6 +271,16 @@ content:
       - name: weight
         label: Reihenfolge
         type: number
+      # Steht auf „ja", erscheint die Seite als eigene Karte auf der
+      # Schularten-Übersicht. Leer oder „nein" bedeutet: eigene Detailseite,
+      # aber zu einem anderen Bildungsgang gehörig – die fünf Fachbereiche der
+      # Berufsschule stehen so neben ihrer Übersichtsseite, ohne die acht
+      # Bildungsgänge auf achtzehn Karten aufzublasen.
+      - name: karte
+        label: Als eigene Karte auf der Schularten-Übersicht zeigen
+        type: select
+        options:
+          values: [ja, nein]
       - name: body
         label: Inhalt
         type: rich-text
@@ -393,6 +403,22 @@ content:
           - name: name
             label: Name oder Bildunterschrift – kann leer bleiben
             type: string
+      # Die sechs Leitbildpunkte in ihrer Reihenfolge. Farbe und Reihenfolge
+      # gehören zusammen: der sechste Punkt (Vielfalt) trägt alle fünf Farben
+      # als Streifen, die übrigen jeweils eine. Die Farben sind die Namen der
+      # Gestaltungswerte im Stylesheet, deshalb als Auswahlliste.
+      - name: leitbild_punkte
+        label: Leitbildpunkte (Reihenfolge und Farbe)
+        type: list
+        fields:
+          - name: name
+            label: Punkt
+            type: string
+          - name: farbe
+            label: Farbe
+            type: select
+            options:
+              values: [blau, gelb, orange, gruen, magenta, vielfalt]
       - name: body
         label: Inhalt
         type: rich-text

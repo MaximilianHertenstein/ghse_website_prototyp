@@ -6,7 +6,7 @@ kategorie: "Teilzeitschularten"
 kurz: "Die Ausbildung in der Schule erfolgt im Blockunterricht, in zwei Richtungen: Maschinen- und Feinwerktechnik sowie Metallbautechnik."
 bild: "/bilder/bs-metalltechnik.webp"
 bildAlt: "Metallwerkstatt mit Maschine und Bedienpult vor der Fensterfront"
-karte: false   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
+karte: "nein"   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
 weight: 40
 bilder:
   - bild: "/bilder/bs-lab-zerspanung.webp"

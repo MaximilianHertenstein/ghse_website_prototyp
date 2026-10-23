@@ -6,7 +6,7 @@ kategorie: "Teilzeitschularten"
 kurz: "Die Ausbildung in der Schule erfolgt im Blockunterricht; unterrichtet wird bei uns nur im 1. Lehrjahr."
 bild: "/bilder/bsb-bsrollierendbau.webp"
 bildAlt: "Nahaufnahme einer Prüfvorrichtung mit zwei Metallklemmen und einer dünnen Probe dazwischen"
-karte: false   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
+karte: "nein"   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
 weight: 36
 ---
 

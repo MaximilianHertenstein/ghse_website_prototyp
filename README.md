@@ -34,7 +34,7 @@ Inter als selbst gehostete Variable-Font, 48 kB).
 
 | Bereich | Umsetzung | URL |
 |---|---|---|
-| A Landingpage | Hero (eine Schaltfläche), Faktenband, 3 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Über die GHSE (4 Servicekarten), Schulleben, Partner (logobreit) | `/` |
+| A Landingpage | Hero (eine Schaltfläche), Faktenband, 4 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Über die GHSE (4 Servicekarten), Schulleben, Partner (logobreit) | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
@@ -43,6 +43,14 @@ Inter als selbst gehostete Variable-Font, 48 kB).
 Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
 Fließtext, Faktenkasten, Bilder und – wo vorhanden – Downloads. Damit gibt
 es keine toten Karten und keinen Umweg über die Originalseite.
+
+**Unterseiten:** Die Berufsschule führt ihre fünf Fachbereiche – Bautechnik,
+Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik, Metalltechnik – als
+eigene Seiten unter `/schularten/berufsschule/<bereich>/`. Sie gehören zur
+Berufsschule und tragen deshalb `karte: "nein"`: eigene Detailseite, aber
+keine eigene Karte auf der Schularten-Übersicht, die zeigt weiter genau die
+acht Bildungsgänge. Erreichbar sind sie über die fünf Überschriften unter
+„Die fünf Bereiche" auf der Berufsschule-Seite.
 
 **Nicht Teil des Prototyps:** vollständige URL-/Content-Migration, kompletter
 Serviceersatz, Buchungssystem, produktives Consent-Management, Hosting-

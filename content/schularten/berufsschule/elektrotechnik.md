@@ -6,7 +6,7 @@ kategorie: "Teilzeitschularten"
 kurz: "Die Ausbildung in der Schule erfolgt im Blockunterricht."
 bild: "/bilder/bs-elektrotechnik.webp"
 bildAlt: "Ein Lehrer erklärt einem Schüler etwas am Monitor eines Elektronikarbeitsplatzes, dahinter ein Anschlussfeld mit Steckverbindern"
-karte: false   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
+karte: "nein"   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
 weight: 37
 ---
 

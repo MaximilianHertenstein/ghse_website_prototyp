@@ -6,7 +6,7 @@ kategorie: "Teilzeitschularten"
 kurz: "Die Ausbildung erfolgt im ersten Jahr in Teilzeit, ab dem zweiten Ausbildungsjahr im Blockunterricht."
 bild: "/bilder/bsh-dsc00112.webp"
 bildAlt: "Schmaler Schrank mit fünf Schubladen aus hellem Holz in einer Werkstatt"
-karte: false   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
+karte: "nein"   # Fachbereich der Berufsschule: eigene Detailseite, aber keine eigene Karte auf der Übersicht
 weight: 38
 bilder:
   - bild: "/bilder/bsh-1.webp"
