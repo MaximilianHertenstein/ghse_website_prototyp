@@ -38,7 +38,8 @@ Inter als selbst gehostete Variable-Font, 48 kB).
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
-| E Downloadbereich | 16 PDFs in 4 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
+| E Downloadbereich | 49 Dokumente (44 PDFs, 4 ZIPs, 1 DOC) in 7 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
+| F Service- und Schülerseiten | 15 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Krankmeldung, Nextcloud, Projekte und Software, Schulsanitätsdienst, Schulbienen, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/` … |
 
 Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
 Fließtext, Faktenkasten, Bilder und – wo vorhanden – Downloads. Damit gibt
@@ -51,6 +52,19 @@ Berufsschule und tragen deshalb `karte: "nein"`: eigene Detailseite, aber
 keine eigene Karte auf der Schularten-Übersicht, die zeigt weiter genau die
 acht Bildungsgänge. Erreichbar sind sie über die fünf Überschriften unter
 „Die fünf Bereiche" auf der Berufsschule-Seite.
+
+**Bildinhalte als Text:** Mehrere Originalseiten liefern ihren Inhalt als
+Bild statt als Text – die SMV-Folie, der Flyer des Schulsanitätsdienstes,
+die Tabelle des Beratungssystems und die „Stimmen Ehemaliger" des TG. Alle
+vier stehen auf den neuen Seiten als Bild **und** als mitlesbarer Text
+drunter (Namen, Räume, Termine, Zitate unverändert übernommen); wer das
+Bild nicht lesen kann oder will, verliert keine Information.
+
+**Bewusst kein Autolinking:** Adressen im Fließtext („www.safethechildren.de",
+„livec.com") bleiben Text, wie auf der Originalseite – mehrere davon zeigen
+längst ins Leere. `markup.goldmark.extensions.linkify` ist deshalb ab-
+geschaltet; Links entstehen nur noch aus ausgeschriebenen Markdown-Zielen,
+und genau die prüft `qa/extlinkcheck.py`.
 
 **Nicht Teil des Prototyps:** vollständige URL-/Content-Migration, kompletter
 Serviceersatz, Buchungssystem, produktives Consent-Management, Hosting-
@@ -79,6 +93,7 @@ Projektordner geladen und einzeln geprüft.
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |
+| Service- und Schülerseiten (15) | `https://www.ghse.de/anfahrt/`, `/schulbienen/`, `/schulsanitaetsdienst/`, `/schueler/smv/`, `/schueler/beratung/`, `/schueler/av-dual-begleitung/`, `/schueler/vertretungsplan/`, `/schueler/besserghse-de/`, `/schueler/online-abmelden/`, `/nextcloud/`, `/unsere-schule/organisatorisches/fachgruppen/`, `/downloads/studienfahrten/`, `/downloads/projekte-software/`, `/downloads/anmeldeformulare/`, `/unesco/unesco-aktivitaeten/` |
 
 **Nachrichtentext:** Die Pressebeiträge der GHSE bestehen auf der Originalseite
 aus Überschrift, Quelle + Datum, Teaser, Abbildung(en) (Zeitungsausschnitte)
@@ -115,16 +130,26 @@ inhaltlichen Aktualität; das größere Original von 2023 (2116×1014 px) zeigt
 ein inzwischen entferntes „Approved Test Centre"-Logo und wird deshalb nicht
 verwendet.
 
-**Getestete Downloads** (alle `HTTP 200`, `application/pdf`, Magic-Bytes
-`%PDF-` geprüft, Inhalt per `pdftotext` gegen den Titel abgeglichen):
-`flyer-tg`, `flyer-sg`, `flyer-2bkik`, `flyer-2bfp`, `wochenplan-2026-27`,
-`26-27-blockplan-{holz,kfz,altenpflegehilfe}`, `oberstufeninformation`,
-`leitfaden-2027`, `terminuebersicht-abitur-2027`,
+**Getestete Downloads** (jeweils `HTTP 200`, MIME-Typ und Magic-Bytes
+geprüft, Inhalt per `pdftotext` gegen den Titel abgeglichen): zunächst die
+16 Dateien der vier Startkategorien (`flyer-tg`, `flyer-sg`, `flyer-2bkik`,
+`flyer-2bfp`, `wochenplan-2026-27`, `26-27-blockplan-{holz,kfz,altenpflegehilfe}`,
+`oberstufeninformation`, `leitfaden-2027`, `terminuebersicht-abitur-2027`,
 `bewertungstabelle-ab-abi-2021-2`, `hausordnung`, `ablaufplan-bewo`,
-`bewo-bewerberleitfaden`, `einrichtung-der-ipad-leihgeraete`.
-Dateien liegen lokal unter `assets/downloads/`, werden von Hugo nach
-`/downloads/<datei>.pdf` veröffentlicht; Format und Größe werden bei jedem
-Build aus der Datei selbst ermittelt (keine eingetippten Werte).
+`bewo-bewerberleitfaden`, `einrichtung-der-ipad-leihgeraete`), danach die
+vollständige Ablösung des WP-Download-Managers: heute 49 Dateien, das
+vollständige Verzeichnis mit Titel, Beschreibung, Kategorie und Dateiname
+steht in `content/downloads/`. Dateien liegen lokal unter
+`assets/downloads/` und werden von Hugo nach `/downloads/<datei>` veröf-
+fentlicht; Format und Größe ermittelt der Build bei jedem Lauf aus der
+Datei selbst (keine eingetippten Werte).
+
+**Wichtig:** Assets ohne passenden Eintrag in `content/downloads/` werden
+nicht veröffentlicht – das gilt besonders für die drei Projekt-ZIPs
+(ClipClick 53 MB, Papiercomputer 0,5 MB, Vokabeltrainer 1,9 MB). Sie liegen
+bewusst im Repository, weil die Originalseite sie verlinkt und die Links
+nach dem Cutover sonst ins Leere liefen; ihre Kategorie heißt „Projekte &amp;
+Software".
 
 ---
 
@@ -242,14 +267,23 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Touch-Ziele ≥ 44 px, `prefers-reduced-motion` respektiert.
 * Responsive: Breakpoints 1000/900/640 px – Karten- und Zeilenraster stapeln
   sich, Navigation wird zum Aufklappmenü, Download-Zeilen werden zu
-  Vollbreiten-Karten mit großem Button.
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – 23 HTML-Seiten
-  sowie alle eingebundenen Bilder, Schriften und PDFs (335 Ziele gesamt,
-  keine Fehlschläge), 56 externe
-  Links alle `HTTP 200` – darunter die 9 öffentlichen Nextcloud-Terminkalender,
-  12 Instagram-Links (8 Accounts, 4 Beiträge), BewO, Moodle, OSM,
-  Impressum/Datenschutz und die Berufsinformations-Beiträge; die vier
-  Presse-URLs der nachträglich ergänzten Meldungen wurden live abgefragt.
+  Vollbreiten-Karten mit großem Button. Nachgemessen wird das mit
+  `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste, Kopfhöhe,
+  Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (55 Seiten × 11 Breiten
+  = 605 Kombinationen, 0 Probleme – nichts bricht horizontales Scrollen
+  aus).
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – 55 HTML-Seiten
+  sowie alle eingebundenen Bilder, Schriften und Dokumente (3419 Ziele
+  gesamt, keine Fehlschläge, einschließlich der Sprungziele der Download-
+  Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
+  keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
+  Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
+  Moodle, OSM, WebUntis, die alte Nextcloud-Speicherfreigabe,
+  Impressum/Datenschutz und die Berufsinformations-Beiträge. Zwei Domains
+  (`bauen-hat-zukunft.de`, `berufe-lexikon.de`) sperren die Messumgebung
+  und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
+  `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
+  steht deshalb als Klartext im Text, nicht als Link.
 * Lighthouse: Performance mobil **98–100** (Startseite 99, News-Übersicht 99,
   Meldungsseiten 98–100, Download- und Schulartseiten 99–100), Desktop
   **100** (LCP 0,4–0,5 s); nach dem Dark-Mode-Einbau stichprobenartig
@@ -265,6 +299,11 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   GitHub Pages mit Keep-Alive und gzip antwortet – das mitgelieferte
   `python3 -m http.server` verkettet Anfragen nicht und bläht damit jedes
   Ergebnis künstlich auf.
+* Lighthouse nach dem Migrationsstand (15 neue Seiten, 49 Dokumente, keine
+  Links mehr auf die Originalseite): mobil Startseite 98, Download-Seite 99,
+  UNESCO-Aktivitäten 99 (38 KB HTML), Projekte und Software 99,
+  Studienfahrten 99 – Accessibility, Best Practices und SEO jeweils 100,
+  TBT überall 0 ms.
 * News-Lesbarkeit: Der Zeitungsscan bricht auf Detailseiten breiter als die
   Textspalte aus (bis 1048 px), wird aber nie über die Quellauflösung hinaus
   vergrößert – `srcset` liefert je Display die passende Datei, die
@@ -363,11 +402,16 @@ Push startet die Pipeline automatisch neu.
 2. **Bildfreigabe:** Bilder/PDFs sind für den internen Prototyp eingebunden;
    vor einer Veröffentlichung braucht die GHSE die Freigabe (Urheberrecht
    regionaler Zeitungen bei den Presseabbildungen!).
-3. **Verlinkung ins Original:** Service-, Rechts- und Detaillinks zeigen
-   weiterhin auf ghse.de – ein Schritt der später durch eigene Seiten
-   ersetzt wird. Der Kultusportal-Deep-Link der Originalseite (404, Portal
-   umgezogen) wurde durch die geprüfte Startseite des Kultusministeriums
-   ersetzt.
+3. **Kein Verweis mehr auf die Originalseite:** Alle 23 Menüziele sind auf
+   eigene Seiten, Anker oder die echten Dienste (WebUntis, Moodle, Shop,
+   OSM, alter Nextcloud-Speicher) umgebucht; `grep -rho … ghse\.de` über
+   `public/` liefert ausgeliefert nur noch `https://ghse.de/iserv/` – der
+   IServ-Dienstpfad als Dienstadresse. Auch die Hinweisblöcke „Prototyp",
+   der „Originalseite"-Link im Fuß, der Prototyp-Hinweis unter dem
+   Copyright und die Quellen-URLs der zehn Pressemeldungen sind entfernt
+   (die Quellenangabe selbst bleibt als Klartext im Bildtext stehen). Der
+   Kultusportal-Deep-Link der Originalseite (404, Portal umgezogen) zeigt
+   weiterhin auf die geprüfte Startseite des Kultusministeriums.
 4. **Kein echtes Consent-/Analytics-Setup:** Das Original betreibt ein
    Cookie-Consent-Modul; im Prototyp bewusst entfallen (außerhalb des Umfangs).
 5. **Instagram-Feed ist ein Standbild:** Der Abschnitt zeigt vier konkrete
