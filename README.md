@@ -165,20 +165,30 @@ nicht verwendet werden).
 3. Media-Quellen prüfen – sie sind bereits gesetzt:
    * **Bilder:** `static/bilder` → geschrieben als `/bilder/…`
    * **Dokumente:** `assets/downloads` → geschrieben als `/downloads/…`
-4. Collections: **Startseite** (Einzeldatei), **Schularten (Inhaltsseiten)**,
-   **News**, **Downloads**.
+4. Collections (33 Stück unter `content`): **Startseite** (Einzeldatei),
+   **Schularten (Inhaltsseiten)**, **News** und **Downloads** als
+   Ordner-Sammlungen, dazu jede weitere Seite einzeln – einschließlich der
+   achtzehn Einzelseiten im Wurzelverzeichnis von `content/` (Impressum,
+   Datenschutz, Safer Space und die fünfzehn Service- und Schülerseiten,
+   die mit der Ablösung der Originalseite dazukamen). Jede Sammlung bietet
+   `title`, `description` und `body`; Studienfahrten und Projekte und
+   Software zusätzlich das `bilder`-Raster für ihre Fotoläufe. Prüfbar mit
+   jedem YAML-Parser: fehlt einer `content/*.md`-Datei eine Sammlung, kann
+   die Redaktion sie nicht bearbeiten.
 
 ### Redaktionsszenarien
 
 **Neue Nachricht anlegen**
 1. Collection *News* → „Add item" (Neu).
 2. Felder: `title` (Überschrift), `date` (z. B. `2026-10-16`), `quelle`
-   (Medium), `quelle_url` (Link zum Originalartikel), `teaser` (1–2 Sätze),
-   `bild` + `bildAlt` (Upload nach `static/bilder`), bei weiteren
-   Abbildungen `bild2`/`bild2Alt` und `bild3`/`bild3Alt`, bei Bedarf `body`.
-   `teaser` und `bild` sind optional – fehlen sie, rendert die Meldung ohne
-   Lead beziehungsweise ohne Abbildung (wie bei „Von Pädagogik bis Physik
-   prämiert").
+   (Medium), `teaser` (1–2 Sätze), `bild` + `bildAlt` (Upload nach
+   `static/bilder`), bei weiteren Abbildungen `bild2`/`bild2Alt` und
+   `bild3`/`bild3Alt`, bei Bedarf `body`. `teaser` und `bild` sind
+   optional – fehlen sie, rendert die Meldung ohne Lead beziehungsweise
+   ohne Abbildung (wie bei „Von Pädagogik bis Physik prämiert"). Ein
+   Quellenlink (`quelle_url`) gibt es bewusst nicht mehr: die Quelle
+   erscheint als Klartext unter dem Beitrag, die Meldung steht
+   vollständig auf dieser Website.
 3. Optional: eine vergrößerte Variante `<name>-gross.<endung>` neben das Bild
    legen – die Meldungsseite nutzt sie automatisch für `srcset` und den
    Zoom-Link (sonst wird die eingebettete Datei verlinkt).
@@ -196,6 +206,18 @@ nicht verwendet werden).
    `downloads → kategorie → values` ergänzen; die Gruppierung auf
    `/downloads/` sortiert sich selbst (alphabetisch über die Verteilung).
 
+**Service- oder Schülerseite bearbeiten**
+1. Die passende Sammlung öffnen (z. B. *SMV (Schüler)*,
+   *Studienfahrten (Schüler und Downloads)*, *Impressum (Rechtliches)*).
+2. `title` und `description` ergeben Überschrift und Lead der Seite,
+   `body` ist der Fließtext. Die Bausteine `{{< bild >}}` und
+   `{{< bilder >}}` bleiben darin stehen, wo sie stehen: der erste holt
+   sein Bild aus `static/bilder`, der zweite aus dem `bilder`-Raster
+   gleich im Front Matter.
+3. Beim Raster jedes Element mit Bild und Bildunterschrift füllen. Wie
+   viele Einträge ein Lauf hat, ist nirgends festgeschrieben – das Raster
+   rechnet seine Spalten aus der Anzahl.
+
 ---
 
 ## 5. Technischer Aufbau
@@ -203,6 +225,8 @@ nicht verwendet werden).
 ```
 .github/workflows/  deploy.yml (Pages-Pipeline: Hugo-Bau + Veröffentlichung)
 content/            _index.md (Landingpage), schularten/, news/, downloads/
+                    und 18 Einzelseiten im Wurzelverzeichnis (Service,
+                    Schüler, Rechtliches, Mint, UNESCO)
 layouts/            baseof.html, home.html, 404.html
   _partials/        header, footer, karte-schulart, karte-news, zeile-download
   news/             section.html, page.html

@@ -531,6 +531,295 @@ content:
         label: Inhalt
         type: rich-text
 
+  # Einzelne Seiten im Wurzelverzeichnis von content/: je eine Sammlung wie
+  # schon „Mint“ oder „Schulsozialarbeit“ – Impressum, Datenschutz und Safer
+  # Space fehlten bisher, die fünfzehn Service- und Schülerseiten kamen mit
+  # der Ablösung der Originalseite dazu. Studienfahrten und Projekte und
+  # Software führen zusätzlich ein „bilder“-Raster im Front Matter für die
+  # Fotoläufe ihrer Originalseite.
+
+  - name: anfahrt
+    label: Anfahrt (Service)
+    type: file
+    path: content/anfahrt.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: anmeldeformulare
+    label: Anmeldeformulare (Service)
+    type: file
+    path: content/anmeldeformulare.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: av-dual-begleitung
+    label: AV-Dual Begleitung (Schüler)
+    type: file
+    path: content/av-dual-begleitung.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: beratungssystem
+    label: Beratungssystem (Schüler)
+    type: file
+    path: content/beratungssystem.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: besser-ghse
+    label: besser@GHSE (Schüler)
+    type: file
+    path: content/besser-ghse.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: datenschutz
+    label: Datenschutz (Rechtliches)
+    type: file
+    path: content/datenschutz.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: fachgruppen
+    label: Fachgruppen (Organisatorisches)
+    type: file
+    path: content/fachgruppen.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: impressum
+    label: Impressum (Rechtliches)
+    type: file
+    path: content/impressum.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: krankmeldung
+    label: Krankmeldung (Service)
+    type: file
+    path: content/krankmeldung.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: nextcloud
+    label: Nextcloud (Service)
+    type: file
+    path: content/nextcloud.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: projekte-und-software
+    label: Projekte und Software (Downloads)
+    type: file
+    path: content/projekte-und-software.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      # Bilder im Lauf unter dem Titel; der Baustein {{< bilder >}} gibt sie
+      # an der Stelle im Text aus, wo er steht. „name“ ist die Bild-
+      # unterschrift, wie sie die Originalseite auch mitführte.
+      - name: bilder
+        label: Bilder im Lauf unter dem Titel
+        type: list
+        fields:
+          - name: bild
+            label: Bild
+            type: image
+            options:
+              media: images
+          - name: name
+            label: Bildunterschrift
+            type: string
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: saferspace
+    label: Safer Space (Schüler)
+    type: file
+    path: content/saferspace.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: schulbienen
+    label: Schulbienen (Schüler)
+    type: file
+    path: content/schulbienen.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: schulsanitaetsdienst
+    label: Schulsanitätsdienst (Schüler)
+    type: file
+    path: content/schulsanitaetsdienst.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: smv
+    label: SMV (Schüler)
+    type: file
+    path: content/smv.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: studienfahrten
+    label: Studienfahrten (Schüler und Downloads)
+    type: file
+    path: content/studienfahrten.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      # Bilder im Lauf unter dem Titel; der Baustein {{< bilder >}} gibt sie
+      # an der Stelle im Text aus, wo er steht. „name“ ist die Bild-
+      # unterschrift, wie sie die Originalseite auch mitführte.
+      - name: bilder
+        label: Bilder im Lauf unter dem Titel
+        type: list
+        fields:
+          - name: bild
+            label: Bild
+            type: image
+            options:
+              media: images
+          - name: name
+            label: Bildunterschrift
+            type: string
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: unesco-aktivitaeten
+    label: UNESCO-Aktivitäten (UNESCO)
+    type: file
+    path: content/unesco-aktivitaeten.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+  - name: vertretungsplan
+    label: Vertretungsplan (Service)
+    type: file
+    path: content/vertretungsplan.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
   # Bewerbungsverfahren: die Schularten TG und 2BF verweisen auf diese Seite.
   - name: bewo
     label: Bewerbung online / BewO (Inhaltsseite)
