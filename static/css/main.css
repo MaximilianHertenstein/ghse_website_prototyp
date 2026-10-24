@@ -156,10 +156,14 @@ summary:focus-visible {
 
 [id] { scroll-margin-top: calc(var(--kopfhoehe) + 1rem); }
 /* Download-Kategorien liegen zusätzlich unter der Sprungleiste. Der Zuschlag
-   ist größer als die 4.5rem aus dem Entwurf, weil die Leiste mobil durch die
-   44-px-Touch-Ziele höher geworden ist; die tatsächliche Höhe prüft
-   qa/layout.py gegen diese Regel. */
-h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
+   ist größer als die 4.5rem aus dem Entwurf: ab 641 px bricht die Leiste mit
+   sieben Kategorien auf zwei Zeilen um (gemessen 141 px), mobil wachsen die
+   Ziele auf 44 px, die Leiste bleibt dort aber einzeilig (63 px). Die
+   tatsächliche Höhe prüft qa/layout.py gegen diese Regel. */
+h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
+@media (max-width: 640px) {
+  h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
+}
 
 .container { width: min(100% - 2.5rem, var(--container)); margin-inline: auto; }
 .schmal { width: min(100% - 2.5rem, var(--schmal)); margin-inline: auto; }

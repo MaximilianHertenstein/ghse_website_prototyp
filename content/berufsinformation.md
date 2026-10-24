@@ -43,6 +43,6 @@ Hier bieten wir folgende Module:
 - Berufsorientierungstag an den GHSE (Frühjahr)
 - Beratung durch unsere Jugendberufshelfer an den GHSE (ganzjährig)
 
-- [BOGY-Fahrplan 2022/23](https://www.ghse.de/wp-content/uploads/2022/11/BOGY-Fahrplan-2022_23-1.pdf)
+- [BOGY-Fahrplan 2022/23](/downloads/bogy-fahrplan-2022-23.pdf)
 
 Ansprechpartner ist hier Herr Stengele ([st@ghse.de](mailto:st@ghse.de)).

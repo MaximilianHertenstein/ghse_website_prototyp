@@ -35,9 +35,9 @@ Wir finanzieren uns durch Mitgliedsbeiträge, Spenden und den Erlös von Aktione
 
 ## Anträge und Formulare
 
-- [Antrag auf Förderung](https://www.ghse.de/wp-content/uploads/2023/05/Antrag_auf_Foerderung.pdf) – Hier finden Sie die Anträge für Bildung und Teilhabe: [Formulare des Landkreises Emmendingen](https://www.landkreis-emmendingen.de/verwaltung-service/formulare/sozialamt)
-- [Beitrittserklärung](https://www.ghse.de/wp-content/uploads/2020/01/191227-Beitritterklärung-mit-SEPA.pdf)
-- [Antrag Auszahlung-Einzahlung](https://www.ghse.de/download/antrag-auszahlung-einzahlung/)
+- [Antrag auf Förderung](/downloads/antrag-foerderung.pdf) – Hier finden Sie die Anträge für Bildung und Teilhabe: [Formulare des Landkreises Emmendingen](https://www.landkreis-emmendingen.de/verwaltung-service/formulare/sozialamt)
+- [Beitrittserklärung](/downloads/beitrittserklaerung-sepa.pdf)
+- [Antrag Auszahlung-Einzahlung](/downloads/antrag-auszahlung-einzahlung.pdf)
 
 ## Unsere Vorstände
 

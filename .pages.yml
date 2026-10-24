@@ -601,6 +601,9 @@ content:
             - Termine & Blockpläne
             - Oberstufe & Abitur
             - Formulare & Hausordnung
+            - Studienfahrten
+            - UNESCO
+            - Projekte & Software
       - name: datei
         label: Datei (PDF)
         type: file
