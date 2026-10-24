@@ -139,7 +139,7 @@
         <p class="meta"><span class="marke">{{ .datum }}</span></p>
         <h3 class="infozeile__titel">{{ .titel }}</h3>
         <p class="infozeile__text">{{ .teaser }}</p>
-        <a class="linkpfeil" href="{{ .url }}">Weiterlesen<span aria-hidden="true">↗</span></a>
+        {{ with .url }}<a class="linkpfeil" href="{{ . }}">Weiterlesen<span aria-hidden="true">↗</span></a>{{ end }}
       </li>
       {{ end }}
     </ul>
@@ -200,7 +200,7 @@
       <li class="service">
         <h3>Untis</h3>
         <p>Immer den (hoffentlich) aktuellen Stundenplan auf dem Smartphone. Mit der App von UNTIS oder über unsere Webseite.</p>
-        <a class="linkpfeil" href="https://www.ghse.de/ekb">Stundenplan öffnen<span aria-hidden="true">↗</span></a>
+        <a class="linkpfeil" href="https://ghse.webuntis.com/WebUntis/?school=ghse">Stundenplan öffnen<span aria-hidden="true">↗</span></a>
       </li>
       <li class="service">
         <h3>Immer ein offenes Ohr</h3>
@@ -209,7 +209,7 @@
       <li class="service">
         <h3>Digitales Lernen</h3>
         <p>Gemeinsam arbeiten und Dateien tauschen: nextcloud@ghse und moodle@ghse.</p>
-        <a class="linkpfeil" href="https://www.ghse.de/nextcloud/">Nextcloud<span aria-hidden="true">↗</span></a>
+        <a class="linkpfeil" href="{{ "nextcloud/" | relURL }}">Nextcloud</a>
         <a class="linkpfeil" href="https://04102015300.moodle.bw.schule/">Moodle<span aria-hidden="true">↗</span></a>
       </li>
       <li class="service">
@@ -244,7 +244,7 @@
   <div class="container">
     <p class="kicker">Zusammenarbeit</p>
     <h2 id="home-partner">Partner aus der Region</h2>
-    <p class="band__einleitung">Ausbildungsbetriebe und Einrichtungen der Umgebung stehen in Verbindung mit der GHSE; die Originalseite führt die Partnerschaften im Einzelnen.</p>
+    <p class="band__einleitung">Ausbildungsbetriebe und Einrichtungen der Umgebung stehen in Verbindung mit der GHSE.</p>
     {{- /* Sieben einzelne Kacheln statt eines skalierten Gesamtstreifens:
            feste Kachelhöhe verhindert Verschiebungen beim Laden, jedes Zeichen
            bleibt bis maximal 4,5 rem hoch und wird nie über seine native

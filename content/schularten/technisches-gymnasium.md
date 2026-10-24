@@ -95,8 +95,6 @@ Computer bedienen klappt bei dir. Aber wie funktionieren die Geräte und wie pro
 
 Ahnung von Technik und von Betriebswirtschaft bekommen? Vielleicht Wirtschaftsingenieurwesen studieren?
 
-Die drei Schwerpunkte werden auf der Originalseite im Detail vorgestellt.
-
 ## Wer kann ans TG?
 
 **Aufnahmevoraussetzung** für Schülerinnen und Schüler:
@@ -134,10 +132,6 @@ Die Bewerbung erfolgt über ein [online-Verfahren (BewO)](https://bewo.kultus-bw
 **Unterschiede zum allgemeinbildenden Gymnasium:** Musik/Kunst ist kein Pflichfach, kein Erdkunde, eine mündliche Prüfung im Abitur, Seminarkurs als Ersatz für eine schriftliche Prüfung.
 
 ## Stimmen Ehemaliger
-
-Die Originalseite führt unter dem Titel einen Lauf, in dem die folgenden
-Berichte abwechselnd mit den Fotos stehen. Sie werden dort als Bild
-ausgeliefert – hier stehen sie als Text.
 
 > Über das Fach Wirtschaftslehre habe ich meine Interessen und meinen Berufswunsch entdeckt und über Bankausbildung und Studium umsetzen können
 >

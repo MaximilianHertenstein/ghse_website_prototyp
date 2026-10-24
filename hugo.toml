@@ -25,6 +25,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   fax = "07641 465 199"
   mail = "poststelle@ghse.de"
 
+# Adressen im Fließtext bleiben Text: Der Originalseite stehen dort die
+# Webadressen als Klartext, und ein paar davon zeigen längst ins Leere.
+# Links entstehen deshalb nur noch aus ausgeschriebenen Markdown-Zielen,
+# qa/extlinkcheck.py prüft genau diese.
+[markup.goldmark.extensions]
+  linkify = false
+
 [menus]
   [[menus.haupt]]
     identifier = "schule"
@@ -66,13 +73,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "organigramm"
     parent = "schule-ueber"
     name = "Organigramm"
-    url = "https://www.ghse.de/unsere-schule/ueber-uns/organigram/"
+    url = "/unsere-schule/#organisation-der-schule"
     weight = 16
   [[menus.haupt]]
     identifier = "anfahrt"
     parent = "schule-ueber"
     name = "Anfahrt"
-    url = "https://www.ghse.de/anfahrt/"
+    pageRef = "/anfahrt"
     weight = 17
   [[menus.haupt]]
     identifier = "impressum"
@@ -90,7 +97,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "presse"
     parent = "schule-ueber"
     name = "Presse"
-    url = "https://www.ghse.de/presse/"
+    pageRef = "/news"
     weight = 20
   [[menus.haupt]]
     identifier = "schule-orga"
@@ -101,13 +108,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "kalender"
     parent = "schule-orga"
     name = "Kalender"
-    url = "https://www.ghse.de/kalender/"
+    url = "/#termine"
     weight = 22
   [[menus.haupt]]
     identifier = "fachgruppen"
     parent = "schule-orga"
     name = "Fachgruppen"
-    url = "https://www.ghse.de/unsere-schule/organisatorisches/fachgruppen/"
+    pageRef = "/fachgruppen"
     weight = 23
   [[menus.haupt]]
     identifier = "sekretariat"
@@ -192,36 +199,36 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     pageRef = "/schularten/berufsvorbereitende-schularten"
     weight = 40
 
-  # Die Schüler-Seite selbst existiert nur auf der Originalseite; sie führt hier
-  # dorthin, ihre Kinder sind einzeln erreichbar.
+  # Die Schüler-Seite selbst ist auf der Originalseite nur eine Sammelseite;
+  # hier ist die Gruppe reine Zwischenüberschrift, ihre Kinder sind einzeln
+  # erreichbar (wie „Organisatorisches“).
   [[menus.haupt]]
     identifier = "schueler"
     name = "Schüler"
-    url = "https://www.ghse.de/schueler/"
     weight = 50
   [[menus.haupt]]
     identifier = "smv"
     parent = "schueler"
     name = "SMV"
-    url = "https://www.ghse.de/schueler/smv/"
+    pageRef = "/smv"
     weight = 51
   [[menus.haupt]]
     identifier = "schulsanitaet"
     parent = "schueler"
     name = "Schulsanitätsdienst"
-    url = "https://www.ghse.de/schulsanitaetsdienst/"
+    pageRef = "/schulsanitaetsdienst"
     weight = 52
   [[menus.haupt]]
     identifier = "vertretungsplan"
     parent = "schueler"
     name = "Vertretungsplan"
-    url = "https://www.ghse.de/schueler/vertretungsplan/"
+    url = "https://erato.webuntis.com/WebUntis/?school=ghse#/basic/timetable"
     weight = 53
   [[menus.haupt]]
     identifier = "beratung"
     parent = "schueler"
     name = "Beratungssystem"
-    url = "https://www.ghse.de/schueler/beratung/"
+    pageRef = "/beratungssystem"
     weight = 54
   [[menus.haupt]]
     identifier = "schulsozialarbeit"
@@ -239,7 +246,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "avdual"
     parent = "schueler"
     name = "AV-Dual Begleitung"
-    url = "https://www.ghse.de/schueler/av-dual-begleitung/"
+    pageRef = "/av-dual-begleitung"
     weight = 57
   [[menus.haupt]]
     identifier = "moodle"
@@ -251,13 +258,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "nextcloud"
     parent = "schueler"
     name = "Nextcloud"
-    url = "https://www.ghse.de/nextcloud/"
+    pageRef = "/nextcloud"
     weight = 59
   [[menus.haupt]]
     identifier = "besserghse"
     parent = "schueler"
     name = "besser@ghse"
-    url = "https://www.ghse.de/schueler/besserghse-de/"
+    pageRef = "/besser-ghse"
     weight = 60
   [[menus.haupt]]
     identifier = "oberstufe"
@@ -275,7 +282,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "studienfahrten"
     parent = "schueler"
     name = "Studienfahrten"
-    url = "https://www.ghse.de/downloads/studienfahrten/"
+    pageRef = "/studienfahrten"
     weight = 63
 
   [[menus.haupt]]
@@ -287,19 +294,19 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "unesco-aktivitaeten"
     parent = "unesco"
     name = "UNESCO-Aktivitäten"
-    url = "https://www.ghse.de/unesco/unesco-aktivitaeten/"
+    pageRef = "/unesco-aktivitaeten"
     weight = 71
   [[menus.haupt]]
     identifier = "unesco-projektschule"
     parent = "unesco"
     name = "Was heißt UNESCO-Projektschule?"
-    url = "https://www.ghse.de/unesco/was-heisst-unesco-projektschule/"
+    url = "/unesco"
     weight = 72
   [[menus.haupt]]
     identifier = "schulbienen"
     parent = "unesco"
     name = "Schulbienen"
-    url = "https://www.ghse.de/schulbienen/"
+    pageRef = "/schulbienen"
     weight = 73
 
   [[menus.haupt]]
@@ -317,7 +324,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "dl-ipad"
     parent = "downloads"
     name = "iPad-Leihe"
-    url = "https://www.ghse.de/downloads/ipad-leihe/"
+    url = "/downloads/#dl-formulare--hausordnung"
     weight = 82
   [[menus.haupt]]
     identifier = "dl-termine"
@@ -341,13 +348,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "dl-projekte"
     parent = "downloads"
     name = "Projekte und Software"
-    url = "https://www.ghse.de/downloads/projekte-software/"
+    pageRef = "/projekte-und-software"
     weight = 86
   [[menus.haupt]]
     identifier = "dl-studienfahrten"
     parent = "downloads"
     name = "Studienfahrten"
-    url = "https://www.ghse.de/downloads/studienfahrten/"
+    pageRef = "/studienfahrten"
     weight = 87
 
   [[menus.haupt]]
@@ -365,7 +372,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "anmeldung-sonst"
     parent = "anmeldung"
     name = "für alle anderen Schularten"
-    url = "https://www.ghse.de/downloads/anmeldeformulare/"
+    pageRef = "/anmeldeformulare"
     weight = 92
 
   [[menus.haupt]]
@@ -385,13 +392,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   weight = 35
 [[menus.schnell]]
   name = "Krankmelden"
-  url = "https://www.ghse.de/online-abmelden/"
+  url = "https://ghse.webuntis.com/WebUntis/?school=ghse"
   weight = 10
 # Stundenplan gehört laut Aufgabenrangfolge (2. Termine/Stundenplan) mit an
 # die Spitze; vorher stand er nur im Fuß und im Service-Band.
 [[menus.schnell]]
   name = "Stundenplan"
-  url = "https://www.ghse.de/ekb"
+  url = "https://ghse.webuntis.com/WebUntis/?school=ghse"
   weight = 15
 [[menus.schnell]]
   name = "Mail"

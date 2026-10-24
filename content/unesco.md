@@ -36,4 +36,4 @@ Wir unterstützen Schülerinnen und Schüler, die sich in der UNESCO-Arbeit an d
 
 Die Koordinatorinnen für die UNESCO-Arbeit an der GHSE sind Monika Bresch und Hannah Geist. Wer Interesse hat, als Schüler/in oder Lehrer/in bei der UNESCO-Arbeit mitzumachen, kann sich gerne mit uns in [Verbindung setzen](mailto:unesco@ghse.de). Wir treffen uns etwa alle zwei Monate zu Teamsitzungen, meist am Donnerstagnachmittag. Schreibt uns eine [E-Mail](mailto:unesco@ghse.de), dann können wir euch informieren, wann die nächste Sitzung stattfindet.
 
-- [Jahresschrift 2016](https://www.ghse.de/ghse/index.php?option=com_attachments&task=download&id=54) – Jahresschrift 2016 der Unesco-Projektschulen
+- Jahresschrift 2016 der Unesco-Projektschulen
