@@ -6,6 +6,10 @@
    Basis ist Schwarz/Weiß: hell = weißer Grund, schwarze Schrift;
    dunkel = schwarzer Grund, weiße Schrift. Blau, Gelb und Orange sind
    nur Akzentflächen. Navy kommt genau einmal vor: im Hero-Verlauf.
+   Gelb = Aktion, Hover, Markierung. Orange = Struktur und Linien.
+   Orange und Gelb liegen nie direkt aneinander (auch nicht im Hover).
+   Typo-Skala 13/15/17 px (--t-xs/-s/-m), Abstandsskala
+   4/8/12/16/24/32 px (--r-1 … --r-8).
    ============================================================ */
 
 @font-face {
@@ -27,7 +31,7 @@
   --navy: #262b6f; /* nur im Hero-Verlauf; dort --blau einsetzen = ganz ohne Navy */
   /* dunkleres Orange für Text und Fokus (≥4.5:1 auf Weiß; im Dunkelmodus
      wird daraus das helle Logo-Orange) */
-  --orange-tief: #bf4712;
+  --orange-tief: #b8430f;
 
   /* Schwarz/Weiß-Basis */
   --nacht: #000000; /* dunkle Bänder: Kopfleiste, Sprungleiste, Fuß, Band "nacht" */
@@ -38,13 +42,12 @@
   --weiss: #ffffff; /* bleibt in beiden Modi Weiß (Text auf Blau und Schwarz) */
 
   /* Semantische Tokens: Karten-/Panel-Fläche, Text auf Flächen, Rahmen,
-     Schlagschatten, Linkfarbe im Fließtext, Streifenmuster, feine Linien. */
+     Schlagschatten, Linkfarbe im Fließtext, feine Linien. */
   --flaeche: #ffffff;
   --schrift: #000000;
   --rand: #000000;
   --schatten-farbe: #000000;
   --link: #0b66b3;
-  --streifen: rgba(0, 0, 0, 0.06);
   --haarlinie: rgba(0, 0, 0, 0.15);
 
   /* Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
@@ -75,6 +78,17 @@
   --t-h1: clamp(2.1rem, 4.6vw, 3.5rem);
   --t-h2: clamp(1.7rem, 3.4vw, 2.6rem);
   --t-h3: clamp(1.2rem, 1.6vw, 1.4rem);
+  /* Kleine Schriftgrade: drei Stufen statt elf Zwischenwerten. */
+  --t-xs: 0.8125rem; /* 13 px: Etiketten, Meta, Beschriftungen */
+  --t-s: 0.9375rem;  /* 15 px: Sekundärtext, Buttons */
+  --t-m: 1.0625rem;  /* 17 px: Fließtext */
+  /* Abstandsskala */
+  --r-1: 0.25rem;
+  --r-2: 0.5rem;
+  --r-3: 0.75rem;
+  --r-4: 1rem;
+  --r-6: 1.5rem;
+  --r-8: 2rem;
 
   --container: 1180px;
   --schmal: 760px;
@@ -101,7 +115,6 @@
     --schatten-farbe: #ffffff;
     --orange-tief: #f07733;
     --link: #f8dc59;
-    --streifen: rgba(255, 255, 255, 0.08);
     --haarlinie: rgba(255, 255, 255, 0.25);
     --hinweis-flaeche: #2a2610;
     --warn-flaeche: #3b1d12;
@@ -119,7 +132,6 @@
   --schatten-farbe: #ffffff;
   --orange-tief: #f07733;
   --link: #f8dc59;
-  --streifen: rgba(255, 255, 255, 0.08);
   --haarlinie: rgba(255, 255, 255, 0.25);
   --hinweis-flaeche: #2a2610;
   --warn-flaeche: #3b1d12;
@@ -133,7 +145,7 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  font-size: 1.0625rem;
+  font-size: var(--t-m);
   line-height: 1.6;
   color: var(--schrift);
   background: var(--papier);
@@ -202,7 +214,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 /* ---------- Bausteine ---------- */
 
 .kicker {
-  font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.16em; color: var(--orange-tief); margin-bottom: 0.75rem;
 }
 
@@ -217,13 +229,14 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
      sich nichts. */
   display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;
   border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
-  padding: 0.45rem 0.8rem; text-decoration: none; font-weight: 800; font-size: 0.9rem;
+  padding: var(--r-2) var(--r-3); text-decoration: none; font-weight: 800; font-size: var(--t-s);
   box-shadow: 3px 3px 0 var(--schatten-farbe);
 }
-.chip span { font-weight: 400; font-size: 0.82rem; color: var(--grau); }
+.chip span { font-weight: 400; font-size: var(--t-xs); color: var(--grau); }
 .chip:hover { background: var(--gelb); color: var(--tinte); }
 .chip:hover span { color: var(--tinte); }
-.chip--klein { padding: 0.15rem 0.5rem; font-size: 0.75rem; letter-spacing: 0.06em; }
+.chip:active { transform: translate(2px, 2px); box-shadow: none; }
+.chip--klein { padding: 0.15rem 0.5rem; font-size: var(--t-xs); letter-spacing: 0.06em; }
 .chip--akzent { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
 .chip--akzent:hover { background: var(--tinte); color: var(--gelb); }
 .chip--ruhig { background: transparent; box-shadow: none; }
@@ -236,7 +249,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .marke, .tag {
   display: inline-flex; align-items: baseline;
   border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
-  padding: 0.15rem 0.5rem; font-size: 0.75rem; font-weight: 800;
+  padding: 0.15rem 0.5rem; font-size: var(--t-xs); font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.06em;
 }
 .marke { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); transform: rotate(-1.5deg); }
@@ -250,9 +263,9 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  font: inherit; font-size: 0.95rem; font-weight: 800;
+  font: inherit; font-size: var(--t-s); font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.05em; line-height: 1;
-  padding: 0.95rem 1.4rem; text-decoration: none; cursor: pointer;
+  padding: var(--r-4) var(--r-6); text-decoration: none; cursor: pointer;
   white-space: nowrap;
   background: var(--flaeche); color: var(--schrift);
   border: var(--rahmen); box-shadow: var(--schatten-klein);
@@ -264,16 +277,21 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .btn--akzent { background: var(--gelb); color: var(--tinte); }
 .btn--orange { background: var(--orange); color: var(--tinte); }
 .btn--geist { background: transparent; }
-.btn--klein { font-size: 0.82rem; padding: 0.7rem 1rem; box-shadow: 3px 3px 0 var(--schatten-farbe); }
+.btn--klein { font-size: var(--t-xs); padding: var(--r-3) var(--r-4); box-shadow: 3px 3px 0 var(--schatten-farbe); }
 .btn--klein:hover { box-shadow: 5px 5px 0 var(--schatten-farbe); }
+/* Deaktiviert: flach, grau, kein Schatten, keine Bewegung. */
+.btn:disabled, .btn[aria-disabled="true"] {
+  background: var(--papier2); color: var(--grau); border-color: var(--grau);
+  box-shadow: none; transform: none; cursor: not-allowed;
+}
 
 .linkpfeil {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+  font-weight: 800; font-size: var(--t-s); text-transform: uppercase;
   letter-spacing: 0.05em; text-decoration: none;
   border-bottom: 3px solid var(--orange); padding-bottom: 0.15rem;
 }
-.linkpfeil:hover { background: var(--gelb); color: var(--tinte); }
+.linkpfeil:hover { background: var(--gelb); color: var(--tinte); border-bottom-color: var(--tinte); }
 
 .band {
   padding: clamp(3rem, 6vw, 5rem) 0;
@@ -289,10 +307,9 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
-.band--gestreift {
-  background-image: repeating-linear-gradient(
-    -45deg, var(--streifen) 0 12px, transparent 12px 24px);
-}
+/* Früher gestreift, jetzt eine flache helle Fläche. Der Klassenname bleibt,
+   damit das HTML nicht angefasst werden muss. */
+.band--gestreift { background: var(--papier2); }
 /* Genau ein Band als Vollton-Gelb: Gelb ist sonst nur Linienfarbe. */
 .band--gelb { background: var(--gelb); color: var(--tinte); }
 /* Gelbe Flächen bleiben in beiden Modi hell: die Tokens werden lokal auf
@@ -305,7 +322,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   --rand: #000000;
   --schatten-farbe: #000000;
   --link: #0b66b3;
-  --orange-tief: #bf4712;
+  --orange-tief: #b8430f;
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
@@ -316,13 +333,6 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .band--gelb .btn--geist { border-color: var(--tinte); color: var(--tinte); }
 .band--gelb .btn--geist:hover { background: var(--tinte); color: var(--gelb); }
 .band--gelb .schulleben img { border-color: var(--tinte); box-shadow: var(--schatten-klein); }
-/* Auf der gestreiften Fläche würde der Kicker auf die Streifen treffen und –
-   selbst bei den ursprünglichen 5 % – unter 4,5:1 fallen. Die deckende Fläche
-   hält ihn auf Papier und liest sich als Label auf der texturierten Fläche. */
-.band--gestreift .kicker {
-  display: inline-block; background: var(--papier);
-  padding: 0.2rem 0.6rem; margin-left: -0.6rem;
-}
 .band--nacht .kicker { color: var(--gelb); }
 .band--nacht h2 { color: var(--weiss); }
 .band--nacht .btn--geist { border-color: var(--gelb); color: var(--gelb); }
@@ -332,7 +342,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 
 .kopfzeile {
   display: flex; flex-wrap: wrap; align-items: flex-end;
-  justify-content: space-between; gap: 1.25rem; margin-bottom: 2rem;
+  justify-content: space-between; gap: 1.25rem; margin-bottom: var(--r-8);
 }
 .kopfzeile h2 { font-size: var(--t-h2); }
 .anzahl {
@@ -340,10 +350,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   font-size: 0.5em; vertical-align: 0.55em; padding: 0.15em 0.5em;
   letter-spacing: 0.04em; margin-left: 0.4rem;
 }
-.hinweiszeile { font-size: 0.85rem; font-weight: 700; color: var(--grau); }
+.hinweiszeile { font-size: var(--t-xs); font-weight: 700; color: var(--grau); }
 
 .meta {
-  font-size: 0.85rem; font-weight: 700; color: var(--grau);
+  font-size: var(--t-xs); font-weight: 700; color: var(--grau);
   display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
 }
 /* Datums-, Größen- und Zahlenangaben: Tabellenziffern, damit Spalten stehen. */
@@ -365,7 +375,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .leiste {
   background: var(--nacht); color: var(--weiss);
-  font-size: 0.82rem; font-weight: 600;
+  font-size: var(--t-xs); font-weight: 600;
 }
 .leiste__innen {
   display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
@@ -375,7 +385,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .leiste__schnell { display: flex; gap: 1.25rem; }
 .leiste__schnell a {
   text-transform: uppercase; letter-spacing: 0.08em;
-  font-weight: 800; font-size: 0.75rem; text-decoration: none;
+  font-weight: 800; font-size: var(--t-xs); text-decoration: none;
   border-bottom: 2px solid var(--gelb); padding-bottom: 1px;
 }
 .leiste__schnell a:hover { background: var(--gelb); color: var(--tinte); }
@@ -394,7 +404,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .menue ul a {
   display: block; padding: 0.65rem 0.75rem; text-decoration: none;
-  font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+  font-weight: 800; font-size: var(--t-s); text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 /* Schriftfarbe mitsetzen: im dunklen Schema ist --schrift hell und würde auf
@@ -410,10 +420,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
    als graue Zwischenzeile fort. */
 .menue ul.menue__tafel { padding: 0 0 0 0.9rem; }
 .menue ul.menue__tafel a {
-  font-weight: 600; font-size: 0.95rem; text-transform: none; letter-spacing: 0;
+  font-weight: 600; font-size: var(--t-s); text-transform: none; letter-spacing: 0;
 }
 .menue__abteilung {
-  padding: 0.9rem 0.5rem 0.2rem; font-size: 0.72rem; font-weight: 800;
+  padding: 0.9rem 0.5rem 0.2rem; font-size: var(--t-xs); font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.09em; color: var(--grau);
 }
 
@@ -445,7 +455,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   background: var(--flaeche); border: var(--rahmen); cursor: pointer;
   box-shadow: 3px 3px 0 var(--schatten-farbe); padding: 0.55rem 0.8rem;
   font: inherit; font-weight: 800; text-transform: uppercase;
-  font-size: 0.8rem; letter-spacing: 0.06em; color: var(--schrift);
+  font-size: var(--t-xs); letter-spacing: 0.06em; color: var(--schrift);
   min-height: 2.75rem;
 }
 /* Balken liegen in einem eigenen Stapel, damit der Knopf in einer Zeile mit
@@ -453,6 +463,9 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
    das Knopffeld 83 px hoch und drückten den Mobilkopf auf 110 px. */
 .menueknopf__balken_ { display: grid; gap: 4px; }
 .menueknopf__balken { display: block; width: 22px; height: 3px; background: var(--schrift); }
+.menueknopf:hover { background: var(--gelb); color: var(--tinte); }
+.menueknopf:hover .menueknopf__balken { background: var(--tinte); }
+.menueknopf:active, .modusknopf:active { transform: translate(3px, 3px); box-shadow: none; }
 
 /* Halte-Modus-Schalter (Hell/Dunkel), Logik in nav.js */
 .kopf__ende { display: flex; align-items: center; gap: 0.6rem; }
@@ -461,7 +474,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   background: var(--flaeche); border: var(--rahmen); color: var(--schrift);
   box-shadow: 3px 3px 0 var(--schatten-farbe); padding: 0.55rem 0.8rem;
   font: inherit; font-weight: 800; text-transform: uppercase;
-  font-size: 0.8rem; letter-spacing: 0.06em;
+  font-size: var(--t-xs); letter-spacing: 0.06em;
 }
 .modusknopf svg { width: 18px; height: 18px; display: block; }
 .modusknopf .modusknopf__mond { display: none; }
@@ -495,30 +508,30 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .hero__titel::after {
   content: ""; display: block; width: 130px; height: 8px;
-  background: var(--gelb); margin-top: 1.25rem;
+  background: var(--gelb); margin-top: var(--r-6);
 }
 .hero__unter {
   margin-top: 1.5rem; font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   line-height: 1.5; color: var(--weiss); max-width: 46ch;
 }
-.hero__knoepfe { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+.hero__knoepfe { display: flex; flex-wrap: wrap; gap: var(--r-4); margin-top: 2rem; }
 /* Termin-Ticket: zweite Aktion im Hero. Wird nur gerendert, wenn die
    Startseite ein Datum führt – siehe naechster_termin in .pages.yml. */
 .hero__ticket {
   display: inline-flex; align-items: center; gap: 1rem;
   background: var(--flaeche); color: var(--schrift);
   border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: 0.9rem 1.2rem; margin-top: 1.25rem; text-decoration: none;
+  padding: var(--r-4) var(--r-6); margin-top: var(--r-4); text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.hero__ticket:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
+.hero__ticket:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
 .hero__ticket-datum {
   font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; line-height: 1;
   font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
 }
 .hero__ticket-text { display: grid; gap: 0.15rem; }
 .hero__ticket-label {
-  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--grau);
 }
 .hero__ticket-titel { font-weight: 800; }
@@ -528,11 +541,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .hero__punkte li {
   border: 2px solid rgba(255, 255, 255, 0.7); padding: 0.3rem 0.6rem;
-  font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-/* Orange Schlagschatten: Gegenfarbe zum Blau und der Ort, an dem das
-   Logo-Orange am meisten Gewicht bekommt. */
+/* Ein Schlagschatten in Orange, der Gegenfarbe zum Blau. */
 .hero__bild img {
   width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
   border: 4px solid var(--weiss); box-shadow: 14px 14px 0 var(--orange);
@@ -547,14 +559,14 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .faktenband__innen {
   display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
   align-items: center; justify-content: center;
-  font-size: 0.85rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.08em; text-align: center;
 }
 .faktenband__innen span[aria-hidden] { color: rgba(0, 0, 0, 0.45); }
 
 /* ---------- Karten ---------- */
 
-.raster { display: grid; gap: 1.75rem; }
+.raster { display: grid; gap: var(--r-8); }
 .raster--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 /* Zwei Karten in einer Dreiergruppe lassen sonst eine leere Spalte stehen. */
 .raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -591,6 +603,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .karte__bild {
   border-bottom: var(--rahmen); aspect-ratio: 16 / 10; overflow: hidden;
+  background: var(--gelb);
 }
 .karte__bild img {
   width: 100%; height: 100%; object-fit: cover; object-position: center top;
@@ -599,14 +612,19 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .karte:hover .karte__bild img,
 .karte:focus-within .karte__bild img { transform: scale(1.04); }
 .karte__koerper {
-  display: flex; flex-direction: column; gap: 0.6rem;
-  padding: 1.25rem 1.25rem 1.5rem; flex: 1;
+  display: flex; flex-direction: column; gap: var(--r-3);
+  padding: var(--r-6); flex: 1;
 }
 .karte__titel { font-size: var(--t-h3); font-weight: 900; text-wrap: balance; }
-.karte__text { color: var(--grau); font-size: 0.97rem; }
+.karte__link:hover .karte__titel,
+.karte__link:focus-visible .karte__titel {
+  text-decoration: underline; text-decoration-color: var(--orange);
+  text-decoration-thickness: 4px; text-underline-offset: 4px;
+}
+.karte__text { color: var(--grau); font-size: var(--t-s); }
 .karte__aktion {
   margin-top: auto; align-self: flex-start; padding-top: 0.75rem;
-  font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.07em; border-bottom: 3px solid var(--orange);
 }
 .karte--news .karte__bild--zeitung img { object-fit: cover; object-position: left top; }
@@ -629,14 +647,14 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 
 .serviceliste {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.75rem; list-style: none; padding: 0; margin: 0;
+  gap: var(--r-8); list-style: none; padding: 0; margin: 0;
 }
 .service {
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
-  padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem;
+  padding: var(--r-6); display: flex; flex-direction: column; gap: var(--r-3);
 }
 .service h3 { font-size: 1.15rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; }
-.service p { color: var(--grau); font-size: 0.95rem; }
+.service p { color: var(--grau); font-size: var(--t-s); }
 .service .linkpfeil { margin-top: auto; align-self: flex-start; }
 
 /* ---------- Seitenköpfe ---------- */
@@ -661,11 +679,11 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .einleitung > * + * { margin-top: 1rem; }
 .zurueck { margin-bottom: 1.25rem; }
 .zurueck a {
-  font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.06em; text-decoration: none;
   border-bottom: 3px solid var(--orange); padding-bottom: 0.15rem;
 }
-.zurueck a:hover { background: var(--gelb); color: var(--tinte); }
+.zurueck a:hover { background: var(--gelb); color: var(--tinte); border-bottom-color: var(--tinte); }
 
 /* Brotkrumen statt Zurück-Link: zeigt den Weg von der Übersicht zur
    Einzelseite und bleibt über `nav[aria-label]` tastatur- und
@@ -674,7 +692,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .brotkrumen ol {
   list-style: none; padding: 0; margin: 0;
   display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
-  font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 .brotkrumen li { display: flex; align-items: center; gap: 0.35rem; }
@@ -693,13 +711,13 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: center;
 }
 .sprungleiste__label {
-  font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--gelb);
 }
 .sprungleiste ul { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
 .sprungleiste a {
   display: block; padding: 0.35rem 0.7rem; text-decoration: none;
-  font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.05em; border: 2px solid rgba(255, 255, 255, 0.5);
 }
 .sprungleiste a:hover { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
@@ -723,28 +741,28 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 /* Nach dem Sprung das Ziel markieren – statische Hervorhebung, keine
    Animation, damit prefers-reduced-motion nicht berührt wird. */
 .band h2:target, .fliesstext h2:target { background: var(--gelb); color: var(--tinte); }
-.fliesstext h2:target { padding-left: 1.15rem; }
+.fliesstext h2:target { padding-left: 1.15rem; border-left-color: var(--tinte); }
 
 /* ---------- Download-Zeilen ---------- */
 
-.zeilen { display: grid; gap: 1.1rem; }
+.zeilen { display: grid; gap: var(--r-4); }
 .zeile {
   display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 1rem 1.5rem; align-items: center;
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: 1.1rem 1.25rem;
+  padding: var(--r-4) var(--r-6);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 /* Hover über die ganze Zeile: liest sich als Einheit, nicht nur als Button. */
-.zeile:hover, .zeile:focus-within { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
+.zeile:hover, .zeile:focus-within { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
 .kasten .zeile:hover, .kasten .zeile:focus-within { box-shadow: none; }
 .zeile__titel { font-size: 1.1rem; font-weight: 800; }
-.zeile__beschreibung { color: var(--grau); font-size: 0.92rem; margin-top: 0.3rem; }
+.zeile__beschreibung { color: var(--grau); font-size: var(--t-s); margin-top: 0.3rem; }
 .zeile__daten { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .zeile__aktion { justify-self: end; }
 .hinweis--warnung {
   background: var(--warn-flaeche); border: 2px solid var(--warn-rand);
-  padding: 0.4rem 0.6rem; font-size: 0.8rem; font-weight: 800; color: var(--schrift);
+  padding: 0.4rem 0.6rem; font-size: var(--t-xs); font-weight: 800; color: var(--schrift);
 }
 
 /* ---------- Inhaltsseiten ---------- */
@@ -764,7 +782,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .fliesstext h2 {
   font-size: clamp(1.4rem, 2.4vw, 1.85rem); font-weight: 900;
   margin-top: 2.75rem; padding-left: 0.75rem;
-  border-left: 8px solid var(--gelb);
+  border-left: 8px solid var(--orange);
 }
 .fliesstext h3 { font-size: 1.2rem; font-weight: 800; margin-top: 2rem; }
 .fliesstext ul, .fliesstext ol { padding-left: 0.25rem; list-style: none; }
@@ -843,33 +861,33 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
    nicht mehr zu lesen, sondern nur noch zu zählen. */
 .fliesstext blockquote {
   margin: 1.5rem 0; padding: 0.1rem 0 0.1rem 1.1rem;
-  border-left: 6px solid var(--gelb);
+  border-left: 6px solid var(--orange);
   font-size: 1.05rem; font-weight: 500;
 }
 .fliesstext blockquote p { margin: 0; }
 .fliesstext blockquote p + p { margin-top: 0.9rem; }
 .fliesstext blockquote em {
   display: block; font-style: normal; font-weight: 800;
-  font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;
+  font-size: var(--t-xs); letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--grau);
 }
 
 .hinweis {
   background: var(--hinweis-flaeche); color: var(--schrift);
   border: 3px solid var(--hinweis-rand); box-shadow: var(--schatten);
-  padding: 1.35rem 1.5rem; display: grid; gap: 1rem; justify-items: start;
+  padding: var(--r-6); display: grid; gap: var(--r-4); justify-items: start;
 }
-.hinweis p { font-size: 0.98rem; }
+.hinweis p { font-size: var(--t-s); }
 /* Der Kicker kennzeichnet Prototyp-Hinweise: gleiche Größe wie alle anderen
    Kicker, damit sie nicht mit echtem Inhalt konkurrieren. */
 .hinweis .kicker { margin-bottom: 0; }
 
 .kasten {
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
-  padding: 1.35rem; margin-top: 2.5rem;
+  padding: var(--r-6); margin-top: 2.5rem;
 }
 .kasten h2 {
-  font-size: 0.85rem; font-weight: 900; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 900; text-transform: uppercase;
   letter-spacing: 0.1em; margin-bottom: 1rem;
   border-bottom: 3px solid var(--rand); padding-bottom: 0.6rem;
 }
@@ -900,26 +918,26 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
    füllen ihr Feld im Seitenverhältnis 4:3, object-fit gleicht kleine
    Abweichungen der Ausgangsdateien aus. */
 .bildraster {
-  display: grid; gap: 1.75rem 2rem; margin: 1.5rem 0 2.25rem;
+  display: grid; gap: var(--r-8); margin: 1.5rem 0 2.25rem;
   grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 }
 .bildraster .bild { margin: 0; max-width: none; }
 .bildraster .bild img { aspect-ratio: 4 / 3; object-fit: cover; }
 .bild__funktion {
-  display: block; margin-top: 0.75rem; font-size: 0.72rem; font-weight: 800;
+  display: block; margin-top: 0.75rem; font-size: var(--t-xs); font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.1em; color: var(--grau);
 }
 .bild__name { display: block; font-weight: 800; margin-top: 0.15rem; }
 .seitenleiste .kasten { margin-top: 0; }
 .fakten { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
 .fakten dt {
-  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.1em; color: var(--grau); margin-top: 0.75rem;
 }
 .fakten dd { margin: 0; font-weight: 800; }
 .kasten__kontakt {
   margin-top: 1.25rem; padding-top: 1rem; border-top: 3px solid var(--rand);
-  font-size: 0.92rem;
+  font-size: var(--t-s);
 }
 .kasten a { font-weight: 700; }
 
@@ -951,7 +969,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   background: var(--gelb); color: var(--tinte);
   border: var(--rahmen); box-shadow: var(--schatten-klein);
   padding: 0.55rem 0.85rem;
-  font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 .beitrag__lupe:hover .lupe__plakette,
@@ -960,8 +978,8 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .beitrag__lupe:focus-visible { outline-offset: 6px; }
 .beitrag__bild figcaption {
-  margin: 4.25rem auto 0; font-size: 0.85rem; color: var(--grau);
-  border-left: 4px solid var(--gelb); padding-left: 0.75rem;
+  margin: 4.25rem auto 0; font-size: var(--t-xs); color: var(--grau);
+  border-left: 4px solid var(--orange); padding-left: 0.75rem;
 }
 .lupe__hinweis {
   display: block; font-weight: 700; color: var(--schrift); margin-bottom: 0.3rem;
@@ -977,19 +995,19 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   gap: 2rem; padding-block: clamp(2.5rem, 5vw, 3.5rem);
 }
 .fuss__titel {
-  font-size: 0.78rem; font-weight: 900; text-transform: uppercase;
+  font-size: var(--t-xs); font-weight: 900; text-transform: uppercase;
   letter-spacing: 0.14em; color: var(--gelb);
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
   padding-bottom: 0.6rem; margin-bottom: 1rem;
 }
-.fuss address, .fuss p { font-size: 0.95rem; line-height: 1.7; }
+.fuss address, .fuss p { font-size: var(--t-s); line-height: 1.7; }
 .fuss a { color: var(--weiss); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .fuss a:hover { background: var(--gelb); color: var(--tinte); text-decoration: none; }
-.fuss__liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; font-size: 0.95rem; }
+.fuss__liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; font-size: var(--t-s); }
 .fuss__liste a { text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 2px; }
 .fuss__liste a:hover { border-bottom-color: var(--tinte); }
 /* Eigene Farbe statt --schatten-farbe: der Token ist im Dunkelmodus Weiß. */
-.fuss__leiste { background: #000000; border-top: 2px solid rgba(255, 255, 255, 0.2); padding: 1.1rem 0; font-size: 0.8rem; }
+.fuss__leiste { background: #000000; border-top: 2px solid rgba(255, 255, 255, 0.2); padding: 1.1rem 0; font-size: var(--t-xs); }
 .fuss__leisteinnen { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
 .fuss__hinweis { color: #bdbdbd; max-width: 70ch; }
 
@@ -1008,30 +1026,30 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .band--nacht .hinweiszeile { color: rgba(255, 255, 255, 0.85); }
 
 .kalenderliste {
-  list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem;
+  list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--r-3);
 }
 /* Die ganze Karte ist Link: das Touch-Ziel wächst vom Linktext (28 px) auf
    die volle Kartenfläche. */
 .kalender {
   display: flex; flex-direction: column; justify-content: space-between; gap: 0.6rem;
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: 1rem 1.1rem; height: 100%;
+  padding: var(--r-4); height: 100%;
   text-decoration: none; color: var(--schrift);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.kalender:hover, .kalender:focus-visible { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe); }
+.kalender:hover, .kalender:focus-visible { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
 .kalender:focus-visible { outline-offset: 4px; }
 .kalender__name { font-weight: 800; font-size: 1rem; line-height: 1.3; }
 .kalender__aktion {
-  margin-top: auto; align-self: flex-start; font-size: 0.8rem; font-weight: 800;
+  margin-top: auto; align-self: flex-start; font-size: var(--t-xs); font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.07em; border-bottom: 3px solid var(--orange);
 }
-.kalender:hover .kalender__aktion { background: var(--gelb); color: var(--tinte); }
+.kalender:hover .kalender__aktion { background: var(--gelb); color: var(--tinte); border-bottom-color: var(--tinte); }
 
 .infoliste { list-style: none; padding: 0; display: grid; gap: 1rem; }
 .infozeile {
   background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: 1.2rem 1.4rem; max-width: 80ch;
+  padding: var(--r-6); max-width: 80ch;
 }
 .infozeile__titel { font-size: 1.15rem; font-weight: 800; margin-top: 0.7rem; }
 .infozeile__text { color: var(--grau); margin-top: 0.5rem; }
@@ -1043,11 +1061,12 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .instabeitrag:hover, .instabeitrag:focus-within {
-  transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--schatten-farbe);
+  transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--schatten-farbe);
 }
 .instabeitrag__link { display: flex; flex-direction: column; height: 100%; text-decoration: none; }
 .instabeitrag__bild {
   margin: 0; border-bottom: var(--rahmen); aspect-ratio: 4 / 5; position: relative;
+  background: var(--gelb);
 }
 .instabeitrag__bild img {
   width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
@@ -1064,7 +1083,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .instabeitrag__koerper {
   padding: 0.9rem 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1;
 }
-.instabeitrag__text { font-size: 0.92rem; line-height: 1.5; }
+.instabeitrag__text { font-size: var(--t-s); line-height: 1.5; }
 .instabeitrag .karte__aktion { margin-top: auto; }
 
 .konten__titel { font-size: 1.05rem; font-weight: 900; margin-top: 2.5rem; }
@@ -1173,7 +1192,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   .zeile__aktion { justify-self: stretch; }
   .zeile__aktion .btn { width: 100%; justify-content: center; }
   .kopfzeile { align-items: flex-start; }
-  .karte__koerper { padding: 1.1rem 1.1rem 1.35rem; }
+  .karte__koerper { padding: var(--r-4) var(--r-4) var(--r-6); }
   .btn { width: auto; white-space: normal; }
   /* Lange deutsche Komposita sprengten sonst den Viewport: „Sozialwissen-
      schchaftliches" (417 px), „Berufsvorbereitende" (351 px) und
@@ -1240,7 +1259,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   :root {
     --nacht: #000000; --papier: #fff; --papier2: #f2f2f2; --flaeche: #fff;
     --schrift: #000; --grau: #333; --rand: #000; --schatten-farbe: #000;
-    --orange-tief: #bf4712; --link: #0b66b3; --streifen: rgba(0, 0, 0, 0.05);
+    --orange-tief: #b8430f; --link: #0b66b3;
     color-scheme: light;
   }
   .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck,

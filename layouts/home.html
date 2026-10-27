@@ -9,7 +9,7 @@
         <a class="btn btn--akzent" href="{{ "schularten/" | relURL }}">Schularten entdecken</a>
         {{- /* Zweite Aktion: führt direkt in die Formularkategorie, nicht auf
                die Download-Startseite – sonst muss man dort erst suchen. */}}
-        <a class="btn btn--geist" href="{{ "downloads/#dl-formulare--hausordnung" | relURL }}">Formulare &amp; Anmeldung</a>
+        <a class="btn btn--akzent" href="{{ "downloads/#dl-formulare--hausordnung" | relURL }}">Formulare &amp; Anmeldung</a>
       </p>
       {{- /* Termin-Ticket als zweite Aktion. Wird nur gerendert, wenn Titel,
              Datum und Ziel vorliegen – ein erfundenes Datum ist tabu, deshalb
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div class="faktenband">
+<!-- <div class="faktenband">
   <div class="container faktenband__innen">
     <span>UNESCO-Projektschule</span>
     <span aria-hidden="true">/</span>
@@ -49,7 +49,7 @@
     <span aria-hidden="true">/</span>
     <span>Berufsausbildung in Metall, Holz, Elektro, Kfz und Pflege</span>
   </div>
-</div>
+</div> -->
 
 <section class="band band--papier" aria-labelledby="home-schularten">
   <div class="container">
@@ -77,6 +77,53 @@
     </div>
   </div>
 </section>
+
+<section class="band band--nacht" aria-labelledby="home-insta">
+  <div class="container">
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Social Media</p>
+        <h2 id="home-insta">Die GHSE bei Instagram</h2>
+      </div>
+      <a class="btn btn--geist" href="https://www.instagram.com/ghse_emmendingen/">ghse_emmendingen folgen</a>
+    </div>
+    <p class="band__einleitung">{{ .Params.insta_text }}</p>
+    <ul class="instaraster">
+      {{- /* Ein Reel ist ein bewegter Beitrag – ohne Plakette unauffällig von
+             einem Foto zu unterscheiden. Ob es eines ist, steht in der URL. */}}
+      {{ range .Params.insta_beitraege }}
+      <li class="instabeitrag">
+        <a class="instabeitrag__link" href="{{ .url }}">
+          <figure class="instabeitrag__bild">
+            <img src="{{ .bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .bildAlt }}" loading="lazy" decoding="async">
+            {{- if in .url "/reel/" }}
+            <span class="instabeitrag__plakette">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5 20 12 7 19.5z"/></svg>
+              <span class="verborgen">Video (Reel)</span>
+            </span>
+            {{- end }}
+          </figure>
+          <div class="instabeitrag__koerper">
+            <p class="meta"><span aria-hidden="true">@</span>ghse_emmendingen</p>
+            <p class="instabeitrag__text">{{ .text }}</p>
+            <span class="karte__aktion">Beitrag ansehen <span aria-hidden="true">↗</span></span>
+          </div>
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    {{- /* Kein Live-Feed: die vier Kacheln sind ein Standbild und sagen das
+           auch offen, statt ein fortlaufendes Versprechen zu suggerieren. */}}
+    <p class="hinweiszeile">Stand: Oktober 2026 – die Beiträge werden redaktionell aktualisiert, nicht automatisch nachgeladen.</p>
+    <h3 class="konten__titel">Weitere Accounts</h3>
+    <ul class="konten">
+      {{ range .Params.insta_kanaele }}
+      <li><a class="chip" href="{{ .url }}">@{{ .name }} <span>{{ .beschreibung }}</span></a></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
 
 {{- /* Aktuelles: drei Meldungen als gleich große Karten in einer Zeile –
        statt Featured-Karte über volle Breite plus 2×2-Raster darunter. */}}
@@ -146,51 +193,7 @@
   </div>
 </section>
 
-<section class="band band--nacht" aria-labelledby="home-insta">
-  <div class="container">
-    <div class="kopfzeile">
-      <div>
-        <p class="kicker">Social Media</p>
-        <h2 id="home-insta">Die GHSE bei Instagram</h2>
-      </div>
-      <a class="btn btn--geist" href="https://www.instagram.com/ghse_emmendingen/">ghse_emmendingen folgen</a>
-    </div>
-    <p class="band__einleitung">{{ .Params.insta_text }}</p>
-    <ul class="instaraster">
-      {{- /* Ein Reel ist ein bewegter Beitrag – ohne Plakette unauffällig von
-             einem Foto zu unterscheiden. Ob es eines ist, steht in der URL. */}}
-      {{ range .Params.insta_beitraege }}
-      <li class="instabeitrag">
-        <a class="instabeitrag__link" href="{{ .url }}">
-          <figure class="instabeitrag__bild">
-            <img src="{{ .bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .bildAlt }}" loading="lazy" decoding="async">
-            {{- if in .url "/reel/" }}
-            <span class="instabeitrag__plakette">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5 20 12 7 19.5z"/></svg>
-              <span class="verborgen">Video (Reel)</span>
-            </span>
-            {{- end }}
-          </figure>
-          <div class="instabeitrag__koerper">
-            <p class="meta"><span aria-hidden="true">@</span>ghse_emmendingen</p>
-            <p class="instabeitrag__text">{{ .text }}</p>
-            <span class="karte__aktion">Beitrag ansehen <span aria-hidden="true">↗</span></span>
-          </div>
-        </a>
-      </li>
-      {{ end }}
-    </ul>
-    {{- /* Kein Live-Feed: die vier Kacheln sind ein Standbild und sagen das
-           auch offen, statt ein fortlaufendes Versprechen zu suggerieren. */}}
-    <p class="hinweiszeile">Stand: Oktober 2026 – die Beiträge werden redaktionell aktualisiert, nicht automatisch nachgeladen.</p>
-    <h3 class="konten__titel">Weitere Accounts</h3>
-    <ul class="konten">
-      {{ range .Params.insta_kanaele }}
-      <li><a class="chip" href="{{ .url }}">@{{ .name }} <span>{{ .beschreibung }}</span></a></li>
-      {{ end }}
-    </ul>
-  </div>
-</section>
+
 
 <section class="band band--papier" id="service" aria-labelledby="home-service">
   <div class="container">
