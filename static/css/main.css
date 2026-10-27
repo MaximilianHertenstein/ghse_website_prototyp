@@ -395,6 +395,8 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   display: flex; align-items: center; justify-content: space-between;
   gap: 1.5rem; padding: 0.75rem 0; position: relative;
 }
+/* Logo ohne Fläche, Rand oder Innenabstand, in beiden Modi gleich groß. */
+.marke-link { background: none; border: 0; padding: 0; }
 .marke-link img { height: 64px; width: auto; display: block; }
 .marke-link:hover img { transform: rotate(-2deg); }
 
@@ -1230,10 +1232,6 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
    ponytail: die Regeln darunter sind verschachtelt (CSS Nesting, Chrome
    112 / Firefox 117 / Safari 16.5) und hängen bewusst an [data-theme="dark"],
    nicht an der Systempräferenz – ältere Browser verlieren sie still. */
-/* Das Monogramm ist auf hellem Grund gezeichnet – nicht invertieren (macht das
-   Quadrat zur weißen Matsche), sondern auf weiße Zelle wie die Partnerkacheln.
-   Flach geschrieben: verschachtelte Regeln verliert altes Safari still, dann
-   stünde das dunkle Logo auf dunklem Grund. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     /* Marker hinter <strong>: heller Ton, sonst zu wenig Kontrast. */
@@ -1241,16 +1239,12 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
       background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.35) 58%);
     }
   }
-  /* Bilddatei ist randlos: oben 14,5 px Luft, unten 1,5 px – deshalb asymmetrisch. */
-  .marke-link { background: var(--weiss); padding: 0 0.4rem 0.8rem; }
 }
 :root[data-theme="dark"] {
   .fliesstext strong {
     background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.35) 58%);
   }
 }
-/* Bilddatei ist randlos: oben 14,5 px Luft, unten 1,5 px – deshalb asymmetrisch. */
-:root[data-theme="dark"] .marke-link { background: var(--weiss); padding: 0 0.4rem 0.8rem; }
 
 /* ---------- Druck (Artikel und Downloads ausdrucken) ---------- */
 
