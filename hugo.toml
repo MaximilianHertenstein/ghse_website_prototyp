@@ -222,7 +222,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "vertretungsplan"
     parent = "schueler"
     name = "Vertretungsplan"
-    url = "https://erato.webuntis.com/WebUntis/?school=ghse#/basic/timetable"
+    pageRef = "/vertretungsplan"
     weight = 53
   [[menus.haupt]]
     identifier = "beratung"
