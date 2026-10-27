@@ -1,10 +1,8 @@
 {{ define "inhalt" }}
 <div class="hero">
   <p class="btn btn--akzent">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
- <br>
+  <br>
   <div class="container hero__innen">
-          
-  
     <div class="hero__text">
       <h1 class="hero__titel">{{ .Params.titel }}</h1>
       <p class="hero__unter">{{ .Params.untertitel }}</p>
@@ -19,42 +17,28 @@
              bleibt das Feld leer, bis die GHSE einen Termin liefert. */}}
       {{- with .Params.naechster_termin }}
         {{- if and .titel .datum .url }}
-      <a class="hero__ticket" href="{{ .url }}">
-        <span class="hero__ticket-datum"><time datetime="{{ .datum }}">{{ .datum | time.Format "02.01.2006" }}</time></span>
-        <span class="hero__ticket-text">
-          <span class="hero__ticket-label">Nächster Termin</span>
-          <span class="hero__ticket-titel">{{ .titel }}{{ with .ort }} <span aria-hidden="true">·</span> {{ . }}{{ end }}</span>
-        </span>
-      </a>
+          <a class="hero__ticket" href="{{ .url }}">
+            <span class="hero__ticket-datum"><time datetime="{{ .datum }}">{{ .datum | time.Format "02.01.2006" }}</time></span>
+            <span class="hero__ticket-text">
+              <span class="hero__ticket-label">Nächster Termin</span>
+              <span class="hero__ticket-titel">{{ .titel }}{{ with .ort }} <span aria-hidden="true">·</span> {{ . }}{{ end }}</span>
+            </span>
+          </a>
         {{- end }}
       {{- end }}
-
     </div>
     <figure class="hero__bild">
       <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="604" height="453" fetchpriority="high" decoding="async">
     </figure>
-    
   </div>
-        <ul class="hero__punkte">
-        <li>Hauptschulabschluss</li>
-        <li>Mittlere Reife</li>
-        <li>FH-Reife</li>
-        <li>Abitur</li>
-        <li>Berufsausbildung</li>
-      </ul>
+  <ul class="hero__punkte">
+    <li>Hauptschulabschluss</li>
+    <li>Mittlere Reife</li>
+    <li>FH-Reife</li>
+    <li>Abitur</li>
+    <li>Berufsausbildung</li>
+  </ul>
 </div>
-
-<!-- <div class="faktenband">
-  <div class="container faktenband__innen">
-    <span>UNESCO-Projektschule</span>
-    <span aria-hidden="true">/</span>
-    <span>MINT-Schule</span>
-    <span aria-hidden="true">/</span>
-    <span>Technisches &amp; Sozialwissenschaftliches Gymnasium</span>
-    <span aria-hidden="true">/</span>
-    <span>Berufsausbildung in Metall, Holz, Elektro, Kfz und Pflege</span>
-  </div>
-</div> -->
 
 <section class="band band--papier" aria-labelledby="home-schularten">
   <div class="container">
@@ -128,12 +112,11 @@
     </ul>
   </div>
 </section>
-
-
 {{- /* Aktuelles: drei Meldungen als gleich große Karten in einer Zeile –
        statt Featured-Karte über volle Breite plus 2×2-Raster darunter. */}}
 {{- $meldungen := first 3 (sort (where site.RegularPages "Section" "news") "Date" "desc") -}}
 {{- with $meldungen }}
+
 <section class="band band--nacht" aria-labelledby="home-news">
   <div class="container">
     <div class="kopfzeile">
@@ -198,8 +181,6 @@
   </div>
 </section>
 
-
-
 <section class="band band--papier" id="service" aria-labelledby="home-service">
   <div class="container">
     <p class="kicker">Service &amp; Kontakt</p>
@@ -228,8 +209,8 @@
     </ul>
   </div>
 </section>
-
 {{- /* Das einzige Vollton-Gelbband der Seite: Gelb wäre sonst nur Linienfarbe. */}}
+
 <section class="band band--gelb" aria-labelledby="home-schulleben">
   <div class="container">
     <div class="kopfzeile">
