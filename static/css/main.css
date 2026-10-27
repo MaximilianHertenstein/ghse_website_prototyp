@@ -1,7 +1,11 @@
 /* ============================================================
    GHSE-Redesign (Prototyp) – reduziertes Neobrutalism-Design
    Grundlage: Skill "neobrutalism" (bergside/awesome-design-skills),
-   Farbwerte aus dem GHSE-Logo und dem Schulgebäude abgeleitet.
+   Farbwerte aus dem GHSE-Logo (Blau-Navy-Verlauf, Orange und Gelb der
+   Pinselstriche).
+   Basis ist Schwarz/Weiß: hell = weißer Grund, schwarze Schrift;
+   dunkel = schwarzer Grund, weiße Schrift. Blau, Gelb und Orange sind
+   nur Akzentflächen. Navy kommt genau einmal vor: im Hero-Verlauf.
    ============================================================ */
 
 @font-face {
@@ -16,43 +20,47 @@
 }
 
 :root {
-  /* Farben: Marineblau/Orange aus dem Logo, Gelb aus den Fassadenbalken */
-  --nacht: #141c4e;
-  --tinte: #101736;
-  --gelb: #ffd400;
-  /* dunkleres Orange für Text und Fokus (≥4.5:1 auf Papier, ≥3:1 auf Gelb/Nacht) */
+  /* Logo-Farben */
+  --gelb: #f8dc59;
+  --orange: #f07733;
+  --blau: #0b66b3;
+  --navy: #262b6f; /* nur im Hero-Verlauf; dort --blau einsetzen = ganz ohne Navy */
+  /* dunkleres Orange für Text und Fokus (≥4.5:1 auf Weiß; im Dunkelmodus
+     wird daraus das helle Logo-Orange) */
   --orange-tief: #bf4712;
-  --papier: #fbfaf6;
-  --papier2: #f1efe6;
-  --grau: #4c5063;
-  --weiss: #ffffff;
+
+  /* Schwarz/Weiß-Basis */
+  --nacht: #000000; /* dunkle Bänder: Kopfleiste, Sprungleiste, Fuß, Band "nacht" */
+  --tinte: #000000; /* bleibt in beiden Modi Schwarz (Text auf Gelb/Orange) */
+  --papier: #ffffff;
+  --papier2: #f2f2f2;
+  --grau: #444444;
+  --weiss: #ffffff; /* bleibt in beiden Modi Weiß (Text auf Blau und Schwarz) */
 
   /* Semantische Tokens: Karten-/Panel-Fläche, Text auf Flächen, Rahmen,
-     Schlagschatten, Linkfarbe im Fließtext, Streifenmuster.
-     --tinte bleibt dunkle "Druckerschwärze" (Text auf Gelb, dunkle Chips),
-     --weiss bleibt echtes Weiß (Text auf Nacht-Bändern, Bildrahmen). */
+     Schlagschatten, Linkfarbe im Fließtext, Streifenmuster, feine Linien. */
   --flaeche: #ffffff;
-  --schrift: #101736;
-  --rand: #101736;
-  --schatten-farbe: #101736;
-  --link: #141c4e;
-  --streifen: rgba(16, 23, 54, 0.08);
+  --schrift: #000000;
+  --rand: #000000;
+  --schatten-farbe: #000000;
+  --link: #0b66b3;
+  --streifen: rgba(0, 0, 0, 0.06);
+  --haarlinie: rgba(0, 0, 0, 0.15);
 
   /* Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
-     (siehe qa/kontrast.py: tinte auf orange). */
-  --kategorie-teilzeit: #ee6a2b;
+     (Schwarz auf Orange ≈ 7,4:1, siehe qa/kontrast.py). */
+  --kategorie-teilzeit: #f07733;
   /* Leitbild-Quadrate: reine Farbflächen, kein Text darauf, deshalb ohne
-     Darkmode-Variante (Vorbild: --kategorie-teilzeit). Blau braucht einen
-     eigenen Wert, weil --nacht im Dunkeln zu dunkel wird, um als Quadrat
-     noch sichtbar zu bleiben. */
-  --wert-blau: #33489e;
+     Darkmode-Variante. Blau, Gelb und Orange kommen aus dem Logo; Grün und
+     Magenta sind Inhaltsfarben des Leitbilds und bleiben wie sie waren. */
+  --wert-blau: #0b66b3;
   --wert-gelb: var(--gelb);
   --wert-orange: var(--kategorie-teilzeit);
   --wert-gruen: #1a9c5a;
   --wert-magenta: #d81b7c;
   /* Hinweis- und Warnflächen: eigene Tokens, weil die Farbe im Dunkeln
      angepasst werden muss (sonst grellt eine helle Kastenfläche im Nachtmodus). */
-  --hinweis-flaeche: #fffbe6;
+  --hinweis-flaeche: #fff8d6;
   --hinweis-rand: var(--rand);
   --warn-flaeche: #ffe9e6;
   /* Orange-tief statt Orange: der Rand braucht als Grafik 3:1 gegen die
@@ -78,40 +86,43 @@
 /* ---------- Darkmode ----------
    Zwei Wege: Systempräferenz (prefers-color-scheme) und Umschalter im Kopf
    (localStorage "ghse-theme", gesetzt über data-theme am <html>).
+   Schwarzer Grund, weiße Schrift, Rahmen und Schatten in Weiß.
    ponytail: Der dunkle Token-Block steht bewusst zweimal (Media-Query +
    Attribut-Selektor) – ohne Präprozessor ist das der kürzeste Weg. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --nacht: #0a0e28;
-    --papier: #10153a;
-    --papier2: #171d49;
-    --flaeche: #1c2455;
-    --schrift: #f2f4fc;
-    --grau: #aab1cf;
-    --rand: #e8ebfa;
-    --schatten-farbe: #05071a;
-    --orange-tief: #ff9d70;
-    --link: #ffd400;
+    --nacht: #111111;
+    --papier: #000000;
+    --papier2: #111111;
+    --flaeche: #111111;
+    --schrift: #ffffff;
+    --grau: #bdbdbd;
+    --rand: #ffffff;
+    --schatten-farbe: #ffffff;
+    --orange-tief: #f07733;
+    --link: #f8dc59;
     --streifen: rgba(255, 255, 255, 0.08);
-    --hinweis-flaeche: #33311a;
-    --warn-flaeche: #3b2016;
+    --haarlinie: rgba(255, 255, 255, 0.25);
+    --hinweis-flaeche: #2a2610;
+    --warn-flaeche: #3b1d12;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --nacht: #0a0e28;
-  --papier: #10153a;
-  --papier2: #171d49;
-  --flaeche: #1c2455;
-  --schrift: #f2f4fc;
-  --grau: #aab1cf;
-  --rand: #e8ebfa;
-  --schatten-farbe: #05071a;
-  --orange-tief: #ff9d70;
-  --link: #ffd400;
+  --nacht: #111111;
+  --papier: #000000;
+  --papier2: #111111;
+  --flaeche: #111111;
+  --schrift: #ffffff;
+  --grau: #bdbdbd;
+  --rand: #ffffff;
+  --schatten-farbe: #ffffff;
+  --orange-tief: #f07733;
+  --link: #f8dc59;
   --streifen: rgba(255, 255, 255, 0.08);
-  --hinweis-flaeche: #33311a;
-  --warn-flaeche: #3b2016;
+  --haarlinie: rgba(255, 255, 255, 0.25);
+  --hinweis-flaeche: #2a2610;
+  --warn-flaeche: #3b1d12;
   color-scheme: dark;
 }
 
@@ -144,14 +155,21 @@ summary:focus-visible {
   outline: 3px solid var(--orange-tief);
   outline-offset: 3px;
 }
-/* Auf dunklen Flächen trägt Orange nur ~3,2:1 gegen Nacht. Gelb liefert ~11:1
-   und bleibt über der 3:1-Grenze für Bedienelemente. */
+/* Auf dunklen Flächen und auf dem Hero-Blau trägt Gelb am besten (≥4,3:1,
+   über der 3:1-Grenze für Bedienelemente). */
 .hero :focus-visible,
 .band--nacht :focus-visible,
 .fuss :focus-visible,
 .leiste :focus-visible,
-.seitenkopf--akzent :focus-visible {
+.sprungleiste :focus-visible {
   outline-color: var(--gelb);
+}
+/* Auf gelben Flächen ist Gelb unsichtbar – dort trägt der Fokus Schwarz. */
+.band--gelb :focus-visible,
+.seitenkopf--akzent :focus-visible,
+.kasten--gelb :focus-visible,
+.faktenband :focus-visible {
+  outline-color: var(--tinte);
 }
 
 [id] { scroll-margin-top: calc(var(--kopfhoehe) + 1rem); }
@@ -242,7 +260,9 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
 .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--schatten-farbe); }
+/* Gelb = Hauptaktion, Orange = zweite Aktion. Beide mit schwarzer Schrift. */
 .btn--akzent { background: var(--gelb); color: var(--tinte); }
+.btn--orange { background: var(--orange); color: var(--tinte); }
 .btn--geist { background: transparent; }
 .btn--klein { font-size: 0.82rem; padding: 0.7rem 1rem; box-shadow: 3px 3px 0 var(--schatten-farbe); }
 .btn--klein:hover { box-shadow: 5px 5px 0 var(--schatten-farbe); }
@@ -251,7 +271,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   display: inline-flex; align-items: center; gap: 0.4rem;
   font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
   letter-spacing: 0.05em; text-decoration: none;
-  border-bottom: 3px solid var(--gelb); padding-bottom: 0.15rem;
+  border-bottom: 3px solid var(--orange); padding-bottom: 0.15rem;
 }
 .linkpfeil:hover { background: var(--gelb); color: var(--tinte); }
 
@@ -261,12 +281,35 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .band--papier { background: var(--papier); }
 .band--nacht { background: var(--nacht); color: var(--weiss); }
+/* Auf dem schwarzen Band wäre ein schwarzer Schlagschatten unsichtbar –
+   hier schlägt die Karte einen gelben Schatten. Rahmen und Schatten sind
+   zusammengesetzte Tokens und werden deshalb hier neu gebildet. */
+.band--nacht {
+  --schatten-farbe: var(--gelb);
+  --schatten: 6px 6px 0 var(--schatten-farbe);
+  --schatten-klein: 4px 4px 0 var(--schatten-farbe);
+}
 .band--gestreift {
   background-image: repeating-linear-gradient(
     -45deg, var(--streifen) 0 12px, transparent 12px 24px);
 }
 /* Genau ein Band als Vollton-Gelb: Gelb ist sonst nur Linienfarbe. */
 .band--gelb { background: var(--gelb); color: var(--tinte); }
+/* Gelbe Flächen bleiben in beiden Modi hell: die Tokens werden lokal auf
+   Hell zurückgesetzt, damit Rahmen, Schatten und Karten darin nicht mit dem
+   Dunkelmodus kippen (weiße Ränder auf Gelb wären kaum zu sehen). */
+.band--gelb, .seitenkopf--akzent, .kasten--gelb, .faktenband {
+  --flaeche: #ffffff;
+  --schrift: #000000;
+  --grau: #444444;
+  --rand: #000000;
+  --schatten-farbe: #000000;
+  --link: #0b66b3;
+  --orange-tief: #bf4712;
+  --rahmen: 3px solid var(--rand);
+  --schatten: 6px 6px 0 var(--schatten-farbe);
+  --schatten-klein: 4px 4px 0 var(--schatten-farbe);
+}
 .band--gelb h2,
 .band--gelb .kicker,
 .band--gelb .band__einleitung { color: var(--tinte); }
@@ -282,8 +325,8 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .band--nacht .kicker { color: var(--gelb); }
 .band--nacht h2 { color: var(--weiss); }
-.band--nacht .btn--geist,
-.hero .btn--geist { border-color: var(--gelb); color: var(--gelb); }
+.band--nacht .btn--geist { border-color: var(--gelb); color: var(--gelb); }
+.hero .btn--geist { border-color: var(--weiss); color: var(--weiss); }
 .band--nacht .btn--geist:hover,
 .hero .btn--geist:hover { background: var(--gelb); color: var(--tinte); }
 
@@ -355,9 +398,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   letter-spacing: 0.04em;
 }
 /* Schriftfarbe mitsetzen: im dunklen Schema ist --schrift hell und würde auf
-   der Gelbfläche mit 1,5:1 verschwinden. */
+   der Gelbfläche mit 1,5:1 verschwinden. Die aktuelle Seite ist blau mit
+   weißer Schrift (5,9:1) – in beiden Modi gleich. */
 .menue ul a:hover { background: var(--gelb); color: var(--tinte); }
-.menue ul a[aria-current="page"] { background: var(--tinte); color: var(--gelb); }
+.menue ul a[aria-current="page"] { background: var(--blau); color: var(--weiss); }
 
 /* Untermenü. Über 1199 px hängt die Tafel als Panel unter ihrem Eintrag,
    darunter steht sie flach im Menüpanel – dieselbe Markierung, zwei
@@ -425,10 +469,14 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .modusknopf[data-ist="dunkel"] .modusknopf__mond { display: block; }
 .modusknopf:hover { background: var(--gelb); color: var(--tinte); }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero ----------
+   Die eine große Farbfläche der Seite: der Blau-Navy-Verlauf des Logos.
+   Alles darauf ist weiß, das Etikett gelb mit schwarzer Schrift (Gelb als
+   Schrift auf Blau erreicht nur 4,3:1). */
 
 .hero {
-  background: var(--nacht); color: var(--weiss);
+  background: linear-gradient(95deg, var(--navy) 0%, var(--blau) 75%);
+  color: var(--weiss);
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
 }
@@ -436,7 +484,11 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   display: grid; grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(2rem, 5vw, 4rem); align-items: center;
 }
-.hero .kicker { color: var(--gelb); }
+.hero .kicker {
+  display: inline-block; background: var(--gelb); color: var(--tinte);
+  border: 3px solid var(--tinte); box-shadow: 3px 3px 0 var(--weiss);
+  padding: 0.3rem 0.7rem;
+}
 .hero__titel {
   font-size: var(--t-display); font-weight: 900;
   letter-spacing: -0.035em; line-height: 0.94; text-wrap: balance;
@@ -447,7 +499,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .hero__unter {
   margin-top: 1.5rem; font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-  line-height: 1.5; color: #dfe3f5; max-width: 46ch;
+  line-height: 1.5; color: var(--weiss); max-width: 46ch;
 }
 .hero__knoepfe { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
 /* Termin-Ticket: zweite Aktion im Hero. Wird nur gerendert, wenn die
@@ -475,13 +527,15 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   padding: 0; margin-top: 2rem;
 }
 .hero__punkte li {
-  border: 2px solid rgba(255, 255, 255, 0.55); padding: 0.3rem 0.6rem;
+  border: 2px solid rgba(255, 255, 255, 0.7); padding: 0.3rem 0.6rem;
   font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.08em;
 }
+/* Orange Schlagschatten: Gegenfarbe zum Blau und der Ort, an dem das
+   Logo-Orange am meisten Gewicht bekommt. */
 .hero__bild img {
   width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
-  border: 4px solid var(--weiss); box-shadow: 14px 14px 0 var(--gelb);
+  border: 4px solid var(--weiss); box-shadow: 14px 14px 0 var(--orange);
 }
 
 /* ---------- Laufband mit Fakten ---------- */
@@ -496,7 +550,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   font-size: 0.85rem; font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.08em; text-align: center;
 }
-.faktenband__innen span[aria-hidden] { color: rgba(16, 23, 54, 0.45); }
+.faktenband__innen span[aria-hidden] { color: rgba(0, 0, 0, 0.45); }
 
 /* ---------- Karten ---------- */
 
@@ -553,7 +607,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .karte__aktion {
   margin-top: auto; align-self: flex-start; padding-top: 0.75rem;
   font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.07em; border-bottom: 3px solid var(--gelb);
+  letter-spacing: 0.07em; border-bottom: 3px solid var(--orange);
 }
 .karte--news .karte__bild--zeitung img { object-fit: cover; object-position: left top; }
 
@@ -609,7 +663,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .zurueck a {
   font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
   letter-spacing: 0.06em; text-decoration: none;
-  border-bottom: 3px solid var(--gelb); padding-bottom: 0.15rem;
+  border-bottom: 3px solid var(--orange); padding-bottom: 0.15rem;
 }
 .zurueck a:hover { background: var(--gelb); color: var(--tinte); }
 
@@ -730,7 +784,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .fliesstext a {
   color: var(--link); font-weight: 700;
   text-decoration-thickness: 3px; text-underline-offset: 3px;
-  text-decoration-color: var(--gelb);
+  text-decoration-color: var(--orange);
 }
 .fliesstext a:hover { background: var(--gelb); color: var(--tinte); text-decoration: none; }
 /* Überschriften-Links: die fünf Fachbereiche der Berufsschule führen von der
@@ -754,7 +808,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   background: var(--gelb); color: var(--tinte);
 }
 .fliesstext strong {
-  background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.75) 58%);
+  background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.75) 58%);
   font-weight: 800;
 }
 .fliesstext em { font-style: italic; }
@@ -917,7 +971,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 
 /* ---------- Fuß ---------- */
 
-.fuss { background: var(--nacht); color: #e6e9f7; border-top: 6px solid var(--gelb); }
+.fuss { background: var(--nacht); color: #f2f2f2; border-top: 6px solid var(--gelb); }
 .fuss__gitter {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 2rem; padding-block: clamp(2.5rem, 5vw, 3.5rem);
@@ -934,9 +988,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .fuss__liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; font-size: 0.95rem; }
 .fuss__liste a { text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 2px; }
 .fuss__liste a:hover { border-bottom-color: var(--tinte); }
-.fuss__leiste { background: var(--schatten-farbe); padding: 1.1rem 0; font-size: 0.8rem; }
+/* Eigene Farbe statt --schatten-farbe: der Token ist im Dunkelmodus Weiß. */
+.fuss__leiste { background: #000000; border-top: 2px solid rgba(255, 255, 255, 0.2); padding: 1.1rem 0; font-size: 0.8rem; }
 .fuss__leisteinnen { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
-.fuss__hinweis { color: #b9bed6; max-width: 70ch; }
+.fuss__hinweis { color: #bdbdbd; max-width: 70ch; }
 
 /* ---------- Sonstiges ---------- */
 
@@ -947,9 +1002,9 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .band__einleitung { max-width: 62ch; color: var(--grau); margin-bottom: 2rem; }
 .band--nacht .band__einleitung { color: rgba(255, 255, 255, 0.85); }
 /* .hinweiszeile erbt sonst --grau, das für Papier gesetzt ist und auf dem
-   Nacht-Band nur 2,01:1 erreicht (Stand-Zeile unter dem Instagram-Raster).
-   Gleiche Behandlung wie die Einleitung desselben Bandes. Geprüft in
-   qa/kontrast.py als "band--nacht Sekundärtext". */
+   Nacht-Band zu wenig Kontrast erreicht (Stand-Zeile unter dem Instagram-
+   Raster). Gleiche Behandlung wie die Einleitung desselben Bandes. Geprüft
+   in qa/kontrast.py als "band--nacht Sekundärtext". */
 .band--nacht .hinweiszeile { color: rgba(255, 255, 255, 0.85); }
 
 .kalenderliste {
@@ -969,7 +1024,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .kalender__name { font-weight: 800; font-size: 1rem; line-height: 1.3; }
 .kalender__aktion {
   margin-top: auto; align-self: flex-start; font-size: 0.8rem; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.07em; border-bottom: 3px solid var(--gelb);
+  text-transform: uppercase; letter-spacing: 0.07em; border-bottom: 3px solid var(--orange);
 }
 .kalender:hover .kalender__aktion { background: var(--gelb); color: var(--tinte); }
 
@@ -1079,7 +1134,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
     flex-direction: column; align-items: stretch; gap: 0.75rem;
     background: var(--papier); border: var(--rahmen);
     padding: 1rem 1.25rem 1.5rem;
-    box-shadow: 0 12px 0 rgba(16, 23, 54, 0.15);
+    box-shadow: 0 12px 0 var(--haarlinie);
     /* Das Panel trägt nun rund fünfzig Zeilen. Absolut positioniert wächst
        es nicht mit dem Dokument – ohne eigene Scrollfläche wären die
        untersten Einträge unerreichbar. */
@@ -1089,7 +1144,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   }
   .menue[data-offen] { display: flex; }
   .menue ul { flex-direction: column; gap: 0; }
-  .menue ul a { padding: 0.95rem 0.5rem; font-size: 1.05rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12); }
+  .menue ul a { padding: 0.95rem 0.5rem; font-size: 1.05rem; border-bottom: 2px solid var(--haarlinie); }
 }
 
 @media (max-width: 900px) {
@@ -1103,10 +1158,10 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
      dunkle Kopfleiste sie ohnehin. */
   .menue__schnell {
     display: flex; flex-wrap: wrap; gap: 0.6rem;
-    padding-bottom: 1rem; border-bottom: 2px solid rgba(16, 23, 54, 0.12);
+    padding-bottom: 1rem; border-bottom: 2px solid var(--haarlinie);
   }
   .hero__innen { grid-template-columns: 1fr; }
-  .hero__bild img { box-shadow: 10px 10px 0 var(--gelb); }
+  .hero__bild img { box-shadow: 10px 10px 0 var(--orange); }
 }
 
 @media (max-width: 640px) {
@@ -1153,7 +1208,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 
 /* ---------- Dunkelmodus: Feinjustierung über den Tokens ---------- */
 /* ponytail: wieder zweimal derselbe Block (Media-Query + Attribut), s. :root.
-   ponytail: die zwei Regeln darunter sind verschachtelt (CSS Nesting, Chrome
+   ponytail: die Regeln darunter sind verschachtelt (CSS Nesting, Chrome
    112 / Firefox 117 / Safari 16.5) und hängen bewusst an [data-theme="dark"],
    nicht an der Systempräferenz – ältere Browser verlieren sie still. */
 /* Das Monogramm ist auf hellem Grund gezeichnet – nicht invertieren (macht das
@@ -1162,20 +1217,17 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
    stünde das dunkle Logo auf dunklem Grund. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    /* Gelbe Fläche mit dunkler Schrift statt dunklem Chip (sonst nicht lesbar). */
-    .menue ul a[aria-current="page"] { background: var(--gelb); color: var(--tinte); }
     /* Marker hinter <strong>: heller Ton, sonst zu wenig Kontrast. */
     .fliesstext strong {
-      background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.35) 58%);
+      background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.35) 58%);
     }
   }
   /* Bilddatei ist randlos: oben 14,5 px Luft, unten 1,5 px – deshalb asymmetrisch. */
   .marke-link { background: var(--weiss); padding: 0 0.4rem 0.8rem; }
 }
 :root[data-theme="dark"] {
-  .menue ul a[aria-current="page"] { background: var(--gelb); color: var(--tinte); }
   .fliesstext strong {
-    background: linear-gradient(transparent 58%, rgba(255, 212, 0, 0.35) 58%);
+    background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.35) 58%);
   }
 }
 /* Bilddatei ist randlos: oben 14,5 px Luft, unten 1,5 px – deshalb asymmetrisch. */
@@ -1186,9 +1238,9 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 @media print {
   /* Tokens auf Hell zurücksetzen – sonst druckt der Dunkelmodus Flächen voll. */
   :root {
-    --nacht: #141c4e; --papier: #fff; --papier2: #f1efe6; --flaeche: #fff;
+    --nacht: #000000; --papier: #fff; --papier2: #f2f2f2; --flaeche: #fff;
     --schrift: #000; --grau: #333; --rand: #000; --schatten-farbe: #000;
-    --orange-tief: #bf4712; --link: #141c4e; --streifen: rgba(0, 0, 0, 0.05);
+    --orange-tief: #bf4712; --link: #0b66b3; --streifen: rgba(0, 0, 0, 0.05);
     color-scheme: light;
   }
   .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck,
@@ -1201,7 +1253,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   .hero__ticket { box-shadow: none; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .hero { background: #fff; color: #000; }
-  .hero .kicker, .hero__unter { color: #000; }
+  .hero .kicker, .hero__unter { color: #000; box-shadow: none; }
   .hero__punkte li { border-color: #000; }
   .band { border-top: 0; padding-block: 1.25rem; background: #fff !important; color: #000 !important; }
   .beitrag__bild { --ueberhang: 0px; margin-inline: 0; }
