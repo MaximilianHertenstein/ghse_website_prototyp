@@ -1,18 +1,4 @@
-/*
- * ============================================================
- * GHSE-Redesign (Prototyp) – reduziertes Neobrutalism-Design
- * Grundlage: Skill "neobrutalism" (bergside/awesome-design-skills),
- * Farbwerte aus dem GHSE-Logo (Blau-Navy-Verlauf, Orange und Gelb der
- * Pinselstriche).
- * Basis ist Schwarz/Weiß: hell = weißer Grund, schwarze Schrift;
- * dunkel = schwarzer Grund, weiße Schrift. Blau, Gelb und Orange sind
- * nur Akzentflächen. Navy kommt genau einmal vor: im Hero-Verlauf.
- * Gelb = Aktion, Hover, Markierung. Orange = Struktur und Linien.
- * Orange und Gelb liegen nie direkt aneinander (auch nicht im Hover).
- * Typo-Skala 13/15/17 px (--t-xs/-s/-m), Abstandsskala
- * 4/8/12/16/24/32 px (--r-1 … --r-8).
- * ============================================================
- */
+/* GHSE-Redesign: Tokens, Komponenten, Layout und responsive Regeln. */
 
 @font-face {
   font-family: "Inter";
@@ -26,31 +12,23 @@
 }
 
 :root {
-  /* Logo-Farben */
+
   --gelb: #f8dc59;
   --orange: #f07733;
   --blau: #0b66b3;
   --navy: #262b6f;
-  /* nur im Hero-Verlauf; dort --blau einsetzen = ganz ohne Navy */
-  /*
-   * dunkleres Orange für Text und Fokus (≥4.5:1 auf Weiß; im Dunkelmodus
-   * wird daraus das helle Logo-Orange)
-   */
+
   --orange-tief: #b8430f;
-  /* Schwarz/Weiß-Basis */
+
   --nacht: #000000;
-  /* dunkle Bänder: Kopfleiste, Sprungleiste, Fuß, Band "nacht" */
+
   --tinte: #000000;
-  /* bleibt in beiden Modi Schwarz (Text auf Gelb/Orange) */
+
   --papier: #ffffff;
   --papier2: #f2f2f2;
   --grau: #444444;
   --weiss: #ffffff;
-  /* bleibt in beiden Modi Weiß (Text auf Blau und Schwarz) */
-  /*
-   * Semantische Tokens: Karten-/Panel-Fläche, Text auf Flächen, Rahmen,
-   * Schlagschatten, Linkfarbe im Fließtext, feine Linien.
-   */
+
   --flaeche: #ffffff;
   --schrift: #000000;
   --rand: #000000;
@@ -58,32 +36,19 @@
   --link: #0b66b3;
   --haarlinie: rgba(0, 0, 0, 0.15);
   --marker-hintergrund: rgba(248, 220, 89, 0.75);
-  /*
-   * Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
-   * (Schwarz auf Orange ≈ 7,4:1, siehe qa/kontrast.py).
-   */
+
   --kategorie-teilzeit: #f07733;
-  /*
-   * Leitbild-Quadrate: reine Farbflächen, kein Text darauf, deshalb ohne
-   * Darkmode-Variante. Blau, Gelb und Orange kommen aus dem Logo; Grün und
-   * Magenta sind Inhaltsfarben des Leitbilds und bleiben wie sie waren.
-   */
+
   --wert-blau: #0b66b3;
   --wert-gelb: var(--gelb);
   --wert-orange: var(--kategorie-teilzeit);
   --wert-gruen: #1a9c5a;
   --wert-magenta: #d81b7c;
-  /*
-   * Hinweis- und Warnflächen: eigene Tokens, weil die Farbe im Dunkeln
-   * angepasst werden muss (sonst grellt eine helle Kastenfläche im Nachtmodus).
-   */
+
   --hinweis-flaeche: #fff8d6;
   --hinweis-rand: var(--rand);
   --warn-flaeche: #ffe9e6;
-  /*
-   * Orange-tief statt Orange: der Rand braucht als Grafik 3:1 gegen die
-   * Warnfläche, das helle Orange erreicht nur 2,68:1.
-   */
+
   --warn-rand: var(--orange-tief);
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
@@ -92,14 +57,13 @@
   --t-h1: clamp(2.1rem, 4.6vw, 3.5rem);
   --t-h2: clamp(1.7rem, 3.4vw, 2.6rem);
   --t-h3: clamp(1.2rem, 1.6vw, 1.4rem);
-  /* Kleine Schriftgrade: drei Stufen statt elf Zwischenwerten. */
+
   --t-xs: 0.8125rem;
-  /* 13 px: Etiketten, Meta, Beschriftungen */
+
   --t-s: 0.9375rem;
-  /* 15 px: Sekundärtext, Buttons */
+
   --t-m: 1.0625rem;
-  /* 17 px: Fließtext */
-  /* Abstandsskala */
+
   --r-1: 0.25rem;
   --r-2: 0.5rem;
   --r-3: 0.75rem;
@@ -112,14 +76,7 @@
   color-scheme: light;
 }
 
-/*
- * ---------- Darkmode ----------
- * Zwei Wege: Systempräferenz (prefers-color-scheme) und Umschalter im Kopf
- * (localStorage "ghse-theme", gesetzt über data-theme am <html>).
- * Schwarzer Grund, weiße Schrift, Rahmen und Schatten in Weiß.
- * Hinweis: Der dunkle Token-Block steht bewusst zweimal (Media-Query +
- * Attribut-Selektor) – ohne Präprozessor ist das der kürzeste Weg.
- */
+/* ---------- Darkmode ---------- */
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -217,20 +174,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   outline-offset: 3px;
 }
 
-/*
- * Auf dunklen Flächen und auf dem Hero-Blau trägt Gelb am besten (≥4,3:1,
- * über der 3:1-Grenze für Bedienelemente).
- */
+.hero :focus-visible {
+  outline-color: var(--gelb);
+}
 
-.hero :focus-visible,
 .band--nacht :focus-visible,
 .fuss :focus-visible,
 .leiste :focus-visible,
 .sprungleiste :focus-visible {
-  outline-color: var(--gelb);
+  outline-color: var(--orange-tief);
 }
-
-/* Auf gelben Flächen ist Gelb unsichtbar – dort trägt der Fokus Schwarz. */
 
 .band--gelb :focus-visible,
 .seitenkopf--akzent :focus-visible,
@@ -242,14 +195,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 [id] {
   scroll-margin-top: calc(var(--kopfhoehe) + 1rem);
 }
-
-/*
- * Download-Kategorien liegen zusätzlich unter der Sprungleiste. Der Zuschlag
- * ist größer als die 4.5rem aus dem Entwurf: ab 641 px bricht die Leiste mit
- * sieben Kategorien auf zwei Zeilen um (gemessen 141 px), mobil wachsen die
- * Ziele auf 44 px, die Leiste bleibt dort aber einzeilig (63 px). Die
- * tatsächliche Höhe prüft qa/layout.py gegen diese Regel.
- */
 
 h2[id^="dl-"] {
   scroll-margin-top: calc(var(--kopfhoehe) + 10rem);
@@ -313,20 +258,10 @@ h2[id^="dl-"] {
   margin-bottom: 0.75rem;
 }
 
-/*
- * ---------- Chips ----------
- * Ein Baustein, vier Varianten. Die früher eigenständigen Bausteine
- * .marke, .tag und .meta time laufen hiermit zusammen; .marke und .tag
- * bleiben als Alias erhalten, damit Fremdinhalte nicht auseinanderfallen.
- */
+/* ---------- Chips ---------- */
 
 .chip {
-  /*
-   * flex-wrap, damit ein Chip mit langem Text umbrechen kann: als reine
-   * Zeile addieren sich seine Teile zur Mindestbreite und der Chip ragte bei
-   * 320 px um 41 px über seinen Kontainer. Passt der Chip ohnehin, ändert
-   * sich nichts.
-   */
+
   display: inline-flex;
   align-items: baseline;
   flex-wrap: wrap;
@@ -383,19 +318,13 @@ h2[id^="dl-"] {
   box-shadow: none;
 }
 
-/* Drehung höchstens einmal pro Karte – deshalb als eigene Variante. */
-
 .chip--sticker {
   transform: rotate(-1.5deg);
 }
 
-/* Karteninterne Chips ohne Eigenschatten: sonst wirkt die Karte aufgebläht. */
-
 .karte .chip, .meta .chip, .zeile .chip, .hinweis .chip {
   box-shadow: none;
 }
-
-/* Aliase für die alten Bausteine (identisch zu chip--klein). */
 
 .marke, .tag {
   display: inline-flex;
@@ -422,11 +351,6 @@ h2[id^="dl-"] {
   color: var(--tinte);
   border-color: var(--tinte);
 }
-
-/*
- * Farbcode der Kategorien: Vollzeit bleibt gelb, Teilzeit wird orange.
- * Beide Flächen behalten Tinte-Schrift (siehe qa/kontrast.py).
- */
 
 .chip[data-kategorie="teilzeitschularten"], .marke[data-kategorie="teilzeitschularten"] {
   background: var(--kategorie-teilzeit);
@@ -465,8 +389,6 @@ h2[id^="dl-"] {
   box-shadow: 0 0 0 var(--schatten-farbe);
 }
 
-/* Gelb = Hauptaktion, Orange = zweite Aktion. Beide mit schwarzer Schrift. */
-
 .btn--akzent {
   background: var(--gelb);
   color: var(--tinte);
@@ -492,8 +414,6 @@ h2[id^="dl-"] {
 .btn--klein:hover {
   box-shadow: 5px 5px 0 var(--schatten-farbe);
 }
-
-/* Deaktiviert: flach, grau, kein Schatten, keine Bewegung. */
 
 .btn:disabled, .btn[aria-disabled="true"] {
   background: var(--papier2);
@@ -533,15 +453,9 @@ h2[id^="dl-"] {
 }
 
 .band--nacht {
-  background: var(--nacht);
-  color: var(--weiss);
+  background: var(--papier2);
+  color: var(--schrift);
 }
-
-/*
- * Auf dem schwarzen Band wäre ein schwarzer Schlagschatten unsichtbar –
- * hier schlägt die Karte einen gelben Schatten. Rahmen und Schatten sind
- * zusammengesetzte Tokens und werden deshalb hier neu gebildet.
- */
 
 .band--nacht {
   --schatten-farbe: var(--gelb);
@@ -549,27 +463,14 @@ h2[id^="dl-"] {
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
 
-/*
- * Früher gestreift, jetzt eine flache helle Fläche. Der Klassenname bleibt,
- * damit das HTML nicht angefasst werden muss.
- */
-
 .band--gestreift {
   background: var(--papier2);
 }
-
-/* Genau ein Band als Vollton-Gelb: Gelb ist sonst nur Linienfarbe. */
 
 .band--gelb {
   background: var(--gelb);
   color: var(--tinte);
 }
-
-/*
- * Gelbe Flächen bleiben in beiden Modi hell: die Tokens werden lokal auf
- * Hell zurückgesetzt, damit Rahmen, Schatten und Karten darin nicht mit dem
- * Dunkelmodus kippen (weiße Ränder auf Gelb wären kaum zu sehen).
- */
 
 .band--gelb, .seitenkopf--akzent, .kasten--gelb, .faktenband {
   --flaeche: #ffffff;
@@ -604,16 +505,16 @@ h2[id^="dl-"] {
 }
 
 .band--nacht .kicker {
-  color: var(--gelb);
+  color: var(--orange-tief);
 }
 
 .band--nacht h2 {
-  color: var(--weiss);
+  color: var(--schrift);
 }
 
 .band--nacht .btn--geist {
-  border-color: var(--gelb);
-  color: var(--gelb);
+  border-color: var(--link);
+  color: var(--link);
 }
 
 .hero .btn--geist {
@@ -666,8 +567,6 @@ h2[id^="dl-"] {
   align-items: center;
 }
 
-/* Datums-, Größen- und Zahlenangaben: Tabellenziffern, damit Spalten stehen. */
-
 .meta time, .tag, .chip, .zeile__daten, .anzahl {
   font-variant-numeric: tabular-nums;
 }
@@ -699,8 +598,8 @@ h2[id^="dl-"] {
 }
 
 .leiste {
-  background: var(--nacht);
-  color: var(--weiss);
+  background: var(--papier2);
+  color: var(--schrift);
   font-size: var(--t-xs);
   font-weight: 600;
 }
@@ -715,7 +614,7 @@ h2[id^="dl-"] {
 }
 
 .leiste a {
-  color: var(--weiss);
+  color: inherit;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
@@ -752,8 +651,6 @@ h2[id^="dl-"] {
   padding: 0.75rem 0;
   position: relative;
 }
-
-/* Logo ohne Fläche, Rand oder Innenabstand, in beiden Modi gleich groß. */
 
 .marke-link {
   display: inline-flex;
@@ -801,12 +698,6 @@ h2[id^="dl-"] {
   letter-spacing: 0.04em;
 }
 
-/*
- * Schriftfarbe mitsetzen: im dunklen Schema ist --schrift hell und würde auf
- * der Gelbfläche mit 1,5:1 verschwinden. Die aktuelle Seite ist blau mit
- * weißer Schrift (5,9:1) – in beiden Modi gleich.
- */
-
 .menue ul a:hover {
   background: var(--gelb);
   color: var(--tinte);
@@ -816,14 +707,6 @@ h2[id^="dl-"] {
   background: var(--blau);
   color: var(--weiss);
 }
-
-/*
- * Untermenü. Über 1199 px hängt die Tafel als Panel unter ihrem Eintrag,
- * darunter steht sie flach im Menüpanel – dieselbe Markierung, zwei
- * Darstellungen, kein JavaScript. Die Überschriften der Originalseite
- * („Über uns“, „Teilzeitschularten“) sind keine Links und setzen sich hier
- * als graue Zwischenzeile fort.
- */
 
 .menue ul.menue__tafel {
   padding: 0 0 0 0.9rem;
@@ -862,11 +745,7 @@ h2[id^="dl-"] {
     background: var(--papier);
     border: var(--rahmen);
     box-shadow: var(--schatten);
-    /*
-     * Die Tafel „Unsere Schule“ ist rund 660 px hoch. Auf einem 768-px-
-     * Fenster bliebe der letzte Eintrag ohne diese Grenze unter dem Rand –
-     * die Scrollfläche hält jeden Punkt erreichbar.
-     */
+
     max-height: calc(100vh - var(--kopfhoehe) - 0.75rem);
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -878,12 +757,6 @@ h2[id^="dl-"] {
     padding: 0.45rem 0.6rem;
   }
 }
-
-/*
- * Schnellzugriff nur mobil: unter 900 px wird die dunkle Kopfleiste mit
- * „Krankmelden, Mail, Anfahrt" ausgeblendet – die Krankmeldung wäre dann nur
- * noch im Fuß erreichbar. Sie steht deshalb als erster Block im Menüpanel.
- */
 
 .menue__schnell {
   display: none;
@@ -906,12 +779,6 @@ h2[id^="dl-"] {
   color: var(--schrift);
   min-height: 2.75rem;
 }
-
-/*
- * Balken liegen in einem eigenen Stapel, damit der Knopf in einer Zeile mit
- * dem Text bleibt: drei gestapelte Balken plus Text in der Spalte machten
- * das Knopffeld 83 px hoch und drückten den Mobilkopf auf 110 px.
- */
 
 .menueknopf__balken\_ {
   display: grid;
@@ -938,8 +805,6 @@ h2[id^="dl-"] {
   transform: translate(3px, 3px);
   box-shadow: none;
 }
-
-/* Halte-Modus-Schalter (Hell/Dunkel), Logik in nav.js */
 
 .kopf__ende {
   display: flex;
@@ -987,12 +852,7 @@ h2[id^="dl-"] {
   color: var(--tinte);
 }
 
-/*
- * ---------- Hero ----------
- * Die eine große Farbfläche der Seite: der Blau-Navy-Verlauf des Logos.
- * Alles darauf ist weiß, das Etikett gelb mit schwarzer Schrift (Gelb als
- * Schrift auf Blau erreicht nur 4,3:1).
- */
+/* ---------- Hero ---------- */
 
 .hero {
   background: linear-gradient(95deg, var(--navy) 0%, var(--blau) 75%);
@@ -1049,11 +909,6 @@ h2[id^="dl-"] {
   gap: var(--r-4);
   margin-top: 2rem;
 }
-
-/*
- * Termin-Ticket: zweite Aktion im Hero. Wird nur gerendert, wenn die
- * Startseite ein Datum führt – siehe naechster_termin in .pages.yml.
- */
 
 .hero__ticket {
   display: inline-flex;
@@ -1118,8 +973,6 @@ h2[id^="dl-"] {
   letter-spacing: 0.08em;
 }
 
-/* Ein Schlagschatten in Orange, der Gegenfarbe zum Blau. */
-
 .hero__bild img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -1166,16 +1019,9 @@ h2[id^="dl-"] {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-/* Zwei Karten in einer Dreiergruppe lassen sonst eine leere Spalte stehen. */
-
 .raster--2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
-
-/*
- * Newsraster: die Featured-Karte spannt die volle Breite, die übrigen Karten
- * füllen darunter Dreier-Zeilen.
- */
 
 .raster--news {
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1210,12 +1056,6 @@ h2[id^="dl-"] {
   text-decoration: none;
   color: inherit;
 }
-
-/*
- * Fokus am Kartenrahmen statt am inneren Link – sonst stehen zwei Ringe
- * übereinander. :has() zeichnet den Ring auf die Karte, der Fokus bleibt
- * trotzdem am Link.
- */
 
 .karte:has(.karte__link:focus-visible), .instabeitrag:has(.instabeitrag__link:focus-visible) {
   outline: 3px solid var(--orange-tief);
@@ -1291,11 +1131,6 @@ h2[id^="dl-"] {
   object-position: left top;
 }
 
-/*
- * Featured-Karte: die neueste Meldung spannt die volle Rasterbreite und
- * bekommt ein 21:9-Bild plus größeren Titel.
- */
-
 .karte--gross {
   grid-column: 1 / -1;
 }
@@ -1307,11 +1142,6 @@ h2[id^="dl-"] {
 .karte--gross .karte__titel {
   font-size: var(--t-h2);
 }
-
-/*
- * Variante ohne Abbildung: statt einer Leerfläche von rund 230 px trägt ein
- * typografischer Kopf die Karte – Quelle als Sticker, Datum groß.
- */
 
 .karte--text .karte__koerper {
   gap: 0.9rem;
@@ -1380,11 +1210,6 @@ h2[id^="dl-"] {
   color: var(--tinte);
 }
 
-/*
- * Auf gelber Fläche trägt die Kategorie-Farbcode nicht mehr – hier wird der
- * Chip weiß. Der Farbcode bleibt den Karten der Übersicht vorbehalten.
- */
-
 .seitenkopf--akzent .marke, .seitenkopf--akzent .chip {
   background: var(--weiss);
   color: var(--tinte);
@@ -1402,8 +1227,6 @@ h2[id^="dl-"] {
   max-width: 68ch;
   color: var(--grau);
 }
-
-/* Mehrere Absätze im Vorspann (der Global-Reset setzt p auf margin: 0). */
 
 .einleitung > * + * {
   margin-top: 1rem;
@@ -1428,12 +1251,6 @@ h2[id^="dl-"] {
   color: var(--tinte);
   border-bottom-color: var(--tinte);
 }
-
-/*
- * Brotkrumen statt Zurück-Link: zeigt den Weg von der Übersicht zur
- * Einzelseite und bleibt über `nav[aria-label]` tastatur- und
- * screenreader-gerecht.
- */
 
 .brotkrumen {
   margin-bottom: 1.25rem;
@@ -1477,8 +1294,8 @@ h2[id^="dl-"] {
 /* ---------- Sprungleiste Downloads ---------- */
 
 .sprungleiste {
-  background: var(--nacht);
-  color: var(--weiss);
+  background: var(--papier2);
+  color: var(--schrift);
   border-bottom: var(--rahmen);
   padding: 0.85rem 0;
   position: sticky;
@@ -1498,7 +1315,7 @@ h2[id^="dl-"] {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--gelb);
+  color: var(--orange-tief);
 }
 
 .sprungleiste ul {
@@ -1518,7 +1335,7 @@ h2[id^="dl-"] {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--rand);
 }
 
 .sprungleiste a:hover {
@@ -1526,14 +1343,6 @@ h2[id^="dl-"] {
   color: var(--tinte);
   border-color: var(--tinte);
 }
-
-/*
- * Mobil nimmt eine gestapelte Leiste rund 200 px Sichtfläche ein. Eine
- * scrollbare Chip-Zeile braucht eine Zeile und lässt sich seitlich wischen.
- * proximity statt mandatory: der starre Einrastpunkt scrollte das sichtbare
- * Label „Kategorie:" (88 px) beim Laden aus dem Bild – endgültig, weil es
- * selbst kein Einrastziel ist. proximity rastet nur noch am Rande ein.
- */
 
 @media (max-width: 640px) {
   .sprungleiste .container {
@@ -1555,11 +1364,6 @@ h2[id^="dl-"] {
     white-space: nowrap;
   }
 }
-
-/*
- * Nach dem Sprung das Ziel markieren – statische Hervorhebung, keine
- * Animation, damit prefers-reduced-motion nicht berührt wird.
- */
 
 .band h2:target, .fliesstext h2:target {
   background: var(--gelb);
@@ -1589,8 +1393,6 @@ h2[id^="dl-"] {
   padding: var(--r-4) var(--r-6);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-
-/* Hover über die ganze Zeile: liest sich als Einheit, nicht nur als Button. */
 
 .zeile:hover, .zeile:focus-within {
   transform: translate(-2px, -2px);
@@ -1729,13 +1531,6 @@ h2[id^="dl-"] {
   text-decoration: none;
 }
 
-/*
- * Überschriften-Links: die fünf Fachbereiche der Berufsschule führen von der
- * Übersicht auf deren eigene Detailseite. Farbe und Abstand bleiben die der
- * Überschrift, damit die Gliederung lesbar bleibt. Dass es ein Verweis ist,
- * zeigt der orange Pfeil, den die Listen dieser Seiten ohnehin verwenden.
- */
-
 .fliesstext h2 a, .fliesstext h3 a, .fliesstext h4 a {
   color: inherit;
   font-weight: inherit;
@@ -1767,12 +1562,6 @@ h2[id^="dl-"] {
   border-top: 3px solid var(--rand);
   margin: 2.5rem 0;
 }
-
-/*
- * Leitbild: sechs Werte als farbige Quadrate mit Beschriftung daneben.
- * Zwei Spalten, weil die längste Bezeichnung ("Kultur des Friedens") in
- * drei Spalten der 70ch-Lesespalte umbrechen würde.
- */
 
 .werte {
   display: grid;
@@ -1814,8 +1603,6 @@ h2[id^="dl-"] {
   background: var(--wert-magenta);
 }
 
-/* Vielfalt: alle fünf Farben als gleich hohe Streifen von oben nach unten. */
-
 .wert__marke--vielfalt {
   background: linear-gradient(
     to bottom,
@@ -1832,12 +1619,6 @@ h2[id^="dl-"] {
     grid-template-columns: minmax(0, 1fr);
   }
 }
-
-/*
- * Zitat: linke Kante statt Kasten. Auf der TG-Seite stehen 18 Berichte
- * Ehemaliger untereinander – als Karten mit Rahmen und Schatten wären sie
- * nicht mehr zu lesen, sondern nur noch zu zählen.
- */
 
 .fliesstext blockquote {
   margin: 1.5rem 0;
@@ -1879,11 +1660,6 @@ h2[id^="dl-"] {
 .hinweis p {
   font-size: var(--t-s);
 }
-
-/*
- * Der Kicker kennzeichnet Prototyp-Hinweise: gleiche Größe wie alle anderen
- * Kicker, damit sie nicht mit echtem Inhalt konkurrieren.
- */
 
 .hinweis .kicker {
   margin-bottom: 0;
@@ -1935,14 +1711,6 @@ h2[id^="dl-"] {
   box-shadow: var(--schatten);
 }
 
-/*
- * Bild mitten im Text: gerahmt wie die Karten, aber höchstens 12rem
- * (192 px) breit. Teamfotos dieser Größe wirken neben ihrem Eintrag,
- * statt die Lesespalte zu füllen; die kleinen Ausgangsdateien werden so
- * nicht aufgeblasen. Die Vollbreite hebt die Begrenzung für Schaubilder
- * auf, deren Beschriftung man erst beim Vergrößern liest.
- */
-
 .bild {
   margin: 1.25rem 0;
   max-width: 12rem;
@@ -1959,14 +1727,6 @@ h2[id^="dl-"] {
 .bild--breit {
   max-width: none;
 }
-
-/*
- * Bildraster: Schulleitung mit Beschriftung, Fotostreifen ohne. Die
- * Einheiten stehen nebeneinander und ordnen sich auf schmalen Breiten
- * untereinander (auto-fit braucht dafür keine Media-Query); die Bilder
- * füllen ihr Feld im Seitenverhältnis 4:3, object-fit gleicht kleine
- * Abweichungen der Ausgangsdateien aus.
- */
 
 .bildraster {
   display: grid;
@@ -2055,11 +1815,6 @@ h2[id^="dl-"] {
   color: var(--grau);
 }
 
-/*
- * Presse-Scan: breiter als die Textspalte, damit die Zeitung lesbar wird.
- * Der Überhang wird nur gewährt, wenn seitlich Platz ist (max 9rem).
- */
-
 .beitrag__bild {
   --ueberhang: max(0px, min(9rem, calc((100vw - var(--schmal)) / 2 - 1.25rem)));
   margin: 4.25rem calc(-1 * var(--ueberhang)) 0;
@@ -2071,7 +1826,7 @@ h2[id^="dl-"] {
   text-decoration: none;
   color: var(--schrift);
   margin-inline: auto;
-  /* max-width (Quellbreite) kommt aus dem Template */
+
 }
 
 .beitrag__lupe img {
@@ -2080,8 +1835,6 @@ h2[id^="dl-"] {
   box-shadow: var(--schatten);
   background: var(--weiss);
 }
-
-/* Plakette hängt unter die Bildkante – sie darf beim Lesen nichts verdecken. */
 
 .lupe__plakette {
   position: absolute;
@@ -2137,8 +1890,8 @@ h2[id^="dl-"] {
 /* ---------- Fuß ---------- */
 
 .fuss {
-  background: var(--nacht);
-  color: #f2f2f2;
+  background: var(--papier2);
+  color: var(--schrift);
   border-top: 6px solid var(--gelb);
 }
 
@@ -2154,8 +1907,8 @@ h2[id^="dl-"] {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--gelb);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  color: var(--orange-tief);
+  border-bottom: 2px solid var(--haarlinie);
   padding-bottom: 0.6rem;
   margin-bottom: 1rem;
 }
@@ -2166,7 +1919,7 @@ h2[id^="dl-"] {
 }
 
 .fuss a {
-  color: var(--weiss);
+  color: var(--link);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
@@ -2196,11 +1949,9 @@ h2[id^="dl-"] {
   border-bottom-color: var(--tinte);
 }
 
-/* Eigene Farbe statt --schatten-farbe: der Token ist im Dunkelmodus Weiß. */
-
 .fuss__leiste {
-  background: #000000;
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--papier);
+  border-top: 2px solid var(--rand);
   padding: 1.1rem 0;
   font-size: var(--t-xs);
 }
@@ -2213,7 +1964,7 @@ h2[id^="dl-"] {
 }
 
 .fuss__hinweis {
-  color: #bdbdbd;
+  color: var(--grau);
   max-width: 70ch;
 }
 
@@ -2232,18 +1983,11 @@ h2[id^="dl-"] {
 }
 
 .band--nacht .band__einleitung {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--grau);
 }
 
-/*
- * .hinweiszeile erbt sonst --grau, das für Papier gesetzt ist und auf dem
- * Nacht-Band zu wenig Kontrast erreicht (Stand-Zeile unter dem Instagram-
- * Raster). Gleiche Behandlung wie die Einleitung desselben Bandes. Geprüft
- * in qa/kontrast.py als "band--nacht Sekundärtext".
- */
-
 .band--nacht .hinweiszeile {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--grau);
 }
 
 .kalenderliste {
@@ -2253,11 +1997,6 @@ h2[id^="dl-"] {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--r-3);
 }
-
-/*
- * Die ganze Karte ist Link: das Touch-Ziel wächst vom Linktext (28 px) auf
- * die volle Kartenfläche.
- */
 
 .kalender {
   display: flex;
@@ -2379,11 +2118,6 @@ h2[id^="dl-"] {
   display: block;
 }
 
-/*
- * Reel-Plakette: bewegte Inhalte sind sonst von Fotos nicht zu unterscheiden.
- * Ob ein Beitrag ein Reel ist, steht in der URL (instagram.com/reel/…).
- */
-
 .instabeitrag__plakette {
   position: absolute;
   left: 0.75rem;
@@ -2453,13 +2187,7 @@ h2[id^="dl-"] {
   box-shadow: var(--schatten-klein);
 }
 
-/*
- * Partnerband: jedes Zeichen als eigene Kachel. Der bisherige Gesamtstreifen
- * (1023 px) lief auf Containerbreite bis 1180 px, also über seine native
- * Auflösung, und war mobil bei rund 0,34-facher Skalierung nicht mehr lesbar.
- * --weiss bleibt in beiden Modi echtes Weiß, die Zuschnitte tragen weiße
- * Ränder – Kachel und Bildrand bleiben dadurch deckungsgleich.
- */
+/* --weiss bleibt in beiden Modi echtes Weiß, die Zuschnitte tragen weiße */
 
 .partnergitter {
   list-style: none;
@@ -2491,12 +2219,6 @@ h2[id^="dl-"] {
 
 /* ---------- Responsive ---------- */
 
-/*
- * Breakpoint wie die Navigations-Grenze in static/js/nav.js. Alle Umbrüche
- * stehen absteigend in je einem Block; die Startseiten-Listen hängen hier mit,
- * damit kein zweiter Block für dieselbe Breite nötig ist.
- */
-
 @media (max-width: 1000px) {
   .kalenderliste, .instaraster {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2510,11 +2232,7 @@ h2[id^="dl-"] {
   .fuss__gitter {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  /*
-   * minmax(0, 1fr) wie überall sonst im Raster: eine nackte `1fr`-Spalte
-   * zieht ihre Untergrenze aus der Mindestinhaltsbreite und hält die Seite
-   * dann waagerecht scrollbar.
-   */
+
   .raster--seite {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2528,26 +2246,11 @@ h2[id^="dl-"] {
   .kalenderliste, .instaraster, .schulleben {
     grid-template-columns: minmax(0, 1fr);
   }
-  /*
-   * Zwei Spalten: mobil bleibt jedes Zeichen doppelt so groß wie im
-   * skalierten Streifen und damit in seiner Kleinschrift erkennbar.
-   */
+
   .partnergitter {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-/*
- * Umschalter auf den Menükopf: Die Desktop-Navigation führt seit der
- * Erasmus+-Seite acht Einträge wie die Originalseite und misst damit 842 px.
- * Zusammen mit Logo, Modusknopf und Abständen braucht der Kopf gemessen
- * rund 1200 px, bevor nichts mehr gestaucht wird – bei 1025 px wäre das
- * Logo auf 0 px zusammengedrückt gewesen. Ab 1200 px läuft die Reihe mit
- * Spielraum, darunter steht das Menü als Knopf im Panel (Messung nach der
- * Methode aus qa/layout.py).
- * Bewusst eigene Query: Hero, Kopfleiste und Kopfhöhe richten sich weiterhin
- * nach 900 px, sonst änderte diese Grenze auch das Startseiten-Raster.
- */
 
 @media (max-width: 1199px) {
   .menueknopf {
@@ -2566,11 +2269,7 @@ h2[id^="dl-"] {
     border: var(--rahmen);
     padding: 1rem 1.25rem 1.5rem;
     box-shadow: 0 12px 0 var(--haarlinie);
-    /*
-     * Das Panel trägt nun rund fünfzig Zeilen. Absolut positioniert wächst
-     * es nicht mit dem Dokument – ohne eigene Scrollfläche wären die
-     * untersten Einträge unerreichbar.
-     */
+
     max-height: calc(100vh - var(--kopfhoehe));
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -2596,10 +2295,7 @@ h2[id^="dl-"] {
   .leiste {
     display: none;
   }
-  /*
-   * Modusknopf nur noch als Icon – der Knopftext würde die Kopfzeile
-   * verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen.
-   */
+
   .modusknopf {
     padding: 0.55rem;
     min-height: 2.75rem;
@@ -2609,10 +2305,7 @@ h2[id^="dl-"] {
   .modusknopf__text {
     display: none;
   }
-  /*
-   * Krankmelden & Co. stehen sonst nur noch im Fuß; bis 900 px trägt die
-   * dunkle Kopfleiste sie ohnehin.
-   */
+
   .menue__schnell {
     display: flex;
     flex-wrap: wrap;
@@ -2658,24 +2351,12 @@ h2[id^="dl-"] {
     width: auto;
     white-space: normal;
   }
-  /*
-   * Lange deutsche Komposita sprengten sonst den Viewport: „Sozialwissen-
-   * schchaftliches" (417 px), „Berufsvorbereitende" (351 px) und
-   * „Abschlussmöglichkeiten" (292 px) stehen weit über den 277 px, die bei
-   * 320 px bleiben. `anywhere` im Gegensatz zu `break-word` verkleinert auch
-   * die Mindestinhaltsbreite, aus der Raster und Grid-Spalten ihre Untergrenze
-   * beziehen. `hyphens: auto` setzt bei vorhandenem Wörterbuch echte
-   * Trennstriche; `anywhere` fängt den Fall ohne Wörterbuch ab. Bewusst nur
-   * mobil: `text-wrap: balance` auf den Überschriften soll am Desktop nicht
-   * durch Wortumbrüche beeinflusst werden.
-   */
+
   h1, h2, h3 {
     hyphens: auto;
     overflow-wrap: anywhere;
   }
 }
-
-/* Grober Zeiger (Touch): Schaltflächen und Chips erreichen sonst 42/43 px. */
 
 @media (pointer: coarse), (max-width: 640px) {
   .btn--klein {
@@ -2685,20 +2366,13 @@ h2[id^="dl-"] {
     min-height: 2.75rem;
     align-items: center;
   }
-  /*
-   * Die Sprungleisten-Links waren mit 36 px das kleinste Touch-Ziel der
-   * Seite; die Leiste wird dadurch etwas höher, das scroll-margin-top der
-   * Ziele trägt das noch mit.
-   */
+
   .sprungleiste a {
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
   }
-  /*
-   * Inline-Links in Fließtext bleiben ausgenommen – der Ausdruckspfeil steht
-   * hinter dem Linktext, nicht als eigenes Ziel.
-   */
+
   .fliesstext .linkpfeil {
     min-height: 0;
   }
@@ -2721,7 +2395,7 @@ h2[id^="dl-"] {
 /* ---------- Druck (Artikel und Downloads ausdrucken) ---------- */
 
 @media print {
-  /* Tokens auf Hell zurücksetzen – sonst druckt der Dunkelmodus Flächen voll. */
+
   :root {
     --nacht: #000000;
     --papier: #fff;
@@ -2739,7 +2413,7 @@ h2[id^="dl-"] {
   .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck, .lupe__plakette, .lupe__hinweis {
     display: none !important;
   }
-  /* Featured-Karte druckt einspaltig, sonst entsteht eine leere Halbspalte. */
+
   .raster--news, .raster--2 {
     grid-template-columns: 1fr;
   }
