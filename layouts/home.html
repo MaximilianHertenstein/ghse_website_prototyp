@@ -1,8 +1,11 @@
 {{ define "inhalt" }}
 <div class="hero">
+  <p class="btn btn--akzent">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
+ <br>
   <div class="container hero__innen">
+          
+  
     <div class="hero__text">
-      <p class="kicker">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
       <h1 class="hero__titel">{{ .Params.titel }}</h1>
       <p class="hero__unter">{{ .Params.untertitel }}</p>
       <p class="hero__knoepfe">
@@ -25,18 +28,20 @@
       </a>
         {{- end }}
       {{- end }}
-      <ul class="hero__punkte">
+
+    </div>
+    <figure class="hero__bild">
+      <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="604" height="453" fetchpriority="high" decoding="async">
+    </figure>
+    
+  </div>
+        <ul class="hero__punkte">
         <li>Hauptschulabschluss</li>
         <li>Mittlere Reife</li>
         <li>FH-Reife</li>
         <li>Abitur</li>
         <li>Berufsausbildung</li>
       </ul>
-    </div>
-    <figure class="hero__bild">
-      <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="604" height="453" fetchpriority="high" decoding="async">
-    </figure>
-  </div>
 </div>
 
 <!-- <div class="faktenband">

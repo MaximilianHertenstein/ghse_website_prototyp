@@ -74,7 +74,7 @@
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 
-  --t-display: clamp(2.7rem, 6.6vw, 5rem);
+  --t-display: clamp(2.7rem, 6.6vw, 4.8rem);
   --t-h1: clamp(2.1rem, 4.6vw, 3.5rem);
   --t-h2: clamp(1.7rem, 3.4vw, 2.6rem);
   --t-h3: clamp(1.2rem, 1.6vw, 1.4rem);
@@ -274,7 +274,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
 .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--schatten-farbe); }
 /* Gelb = Hauptaktion, Orange = zweite Aktion. Beide mit schwarzer Schrift. */
-.btn--akzent { background: var(--gelb); color: var(--tinte); }
+.btn--akzent { background: var(--gelb); color: var(--tinte); display: table; margin:  auto; }
 .btn--orange { background: var(--orange); color: var(--tinte); }
 .btn--geist { background: transparent; }
 .btn--klein { font-size: var(--t-xs); padding: var(--r-3) var(--r-4); box-shadow: 3px 3px 0 var(--schatten-farbe); }
@@ -396,8 +396,8 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   gap: 1.5rem; padding: 0.75rem 0; position: relative;
 }
 /* Logo ohne Fläche, Rand oder Innenabstand, in beiden Modi gleich groß. */
-.marke-link { background: none; border: 0; padding: 0; }
-.marke-link img { height: 64px; width: auto; display: block; }
+ .marke-link { background: inherit; border: 0; padding: 0;  font-size: var(--t-m);}
+.marke-link img { height: 100% ;font-size: var(--t-m); } */
 .marke-link:hover img { transform: rotate(-2deg); }
 
 .menue { display: flex; align-items: center; gap: 1rem; }
@@ -494,10 +494,13 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   color: var(--weiss);
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
+
 }
 .hero__innen {
-  display: grid; grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  display: grid; 
+  grid-template-columns: 2fr 2fr;
+  gap: clamp(0rem, 2vw, 2rem);
+  margin-top: var(--r-6);
 }
 .hero .kicker {
   display: inline-block; background: var(--gelb); color: var(--tinte);
@@ -507,6 +510,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .hero__titel {
   font-size: var(--t-display); font-weight: 900;
   letter-spacing: -0.035em; line-height: 0.94; text-wrap: balance;
+  margin-top: var(--r-6);
 }
 .hero__titel::after {
   content: ""; display: block; width: 130px; height: 8px;
@@ -538,8 +542,13 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 }
 .hero__ticket-titel { font-weight: 800; }
 .hero__punkte {
-  display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none;
-  padding: 0; margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 0;
+  justify-content: center;
 }
 .hero__punkte li {
   border: 2px solid rgba(255, 255, 255, 0.7); padding: 0.3rem 0.6rem;
