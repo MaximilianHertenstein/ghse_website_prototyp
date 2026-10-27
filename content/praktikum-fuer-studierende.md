@@ -1,5 +1,5 @@
 ---
-title: "Praxissemester oder Orientierungspraktikum"
+title: "Praxissemester oder Orientierungspraktikum an den GHSE"
 description: "Praktikum für Lehramtsstudierende an den GHSE: dreiwöchiges Orientierungspraktikum und zwölfwöchiges Schulpraxissemester, Fachrichtungen, Betreuung und Kontakt."
 ---
 
@@ -16,7 +16,7 @@ Wir bieten Ihnen
 - Einblick in die Arbeit einer UNESCO-Projekt-Schule mit zahlreichen ausländischen Partnerschulen und Kooperationen
 - Einsicht in die Arbeit einer zertifizierten OES-Stützpunktschule. Wir verstehen Qualitätssicherung und Schulentwicklung als andauernden Prozess.
 
-Nicht zuletzt weil gerade an den Berufsbildenden Schulen in den kommenden Jahren hoher Einstellungsbedarf besteht, freuen wir uns, wenn Sie diesen wichtigen und zentralen Bereich des baden-württembergischen Schulwesens bei uns näher kennenlernen wollen – auch wenn Sie (noch!) eine spätere Tätigkeit am allgemeinbildenden Gymnasium vor Augen haben sollten!
+Nicht zuletzt weil gerade an den Berufsbildenden Schulen in den kommenden Jahren hoher Einstellungsbedarf besteht, freuen wir uns, wenn Sie diesen wichtigen und zentralen Bereich des baden-württembergischen Schulwesens bei uns näher kennen lernen wollen – auch wenn Sie (noch!) eine spätere Tätigkeit am allgemeinbildenden Gymnasium vor Augen haben sollten!
 
 Wir freuen uns auf Sie – nehmen Sie deshalb gerne Kontakt mit uns auf! Junge (zukünftige) Kolleginnen und Kollegen sind bei uns sehr gerne gesehen und treffen auf eine aufgeschlossene Lehrerschaft.
 

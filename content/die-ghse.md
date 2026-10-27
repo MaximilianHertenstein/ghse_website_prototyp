@@ -40,7 +40,7 @@ Als solche ist sie 1836 gegründet worden und damit eine der ältesten Gewerbesc
 
 Dadurch wurde nicht nur das Bildungsangebot um berufsfachliche und praktische Inhalte im Bereich Hauswirtschaft und Ernährung erweitert, sondern auch die Möglichkeit geschaffen, durch den Besuch von Schularten im Übergangssystem (AV-Dual, Berufsfachschulen, VABO, VABKF) weiterführende Bildungsabschlüsse (Hauptschulabschluss, Fachschulreife) zu erwerben.
 
-## Sozialpflegerisch seit 1989
+## Sozialpflegerisch
 
 Die Gründung einer Altenpflegeschule im Jahr 1989 führte dazu, dass der Name der Schule ergänzt wurde. Inzwischen gibt es hier mehrere Schularten im Bereich der Pflege. Darüber hinaus gibt es mit dem 6-jährigen und 3-jährigen Sozialwissenschaftlichen Gymnasium (mit dem Profilfach Pädagogik/Psychologie) auch das Angebot, die allgemeine Hochschulreife zu erwerben. Das SG ist inzwischen die größte Vollzeitschule an den GHSE.
 

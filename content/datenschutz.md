@@ -38,10 +38,6 @@ RP Freiburg
 79095 Freiburg  
 Deutschland  
 E-Mail: [datenschutz-oeffentliche-schulen@rpf.bwl.de](mailto:datenschutz-oeffentliche-schulen@rpf.bwl.de)
-
-Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg  
-Heilbronner Straße 35  
-70191 Stuttgart
 ### 3. Cookies
 Die Internetseiten der GHSE verwenden Cookies. Cookies sind Textdateien, welche über einen Internetbrowser auf einem Computersystem abgelegt und gespeichert werden.
 Zahlreiche Internetseiten und Server verwenden Cookies. Viele Cookies enthalten eine sogenannte Cookie-ID. Eine Cookie-ID ist eine eindeutige Kennung des Cookies. Sie besteht aus einer Zeichenfolge, durch welche Internetseiten und Server dem konkreten Internetbrowser zugeordnet werden können, in dem das Cookie gespeichert wurde. Dies ermöglicht es den besuchten Internetseiten und Servern, den individuellen Browser der betroffenen Person von anderen Internetbrowsern, die andere Cookies enthalten, zu unterscheiden. Ein bestimmter Internetbrowser kann über die eindeutige Cookie-ID wiedererkannt und identifiziert werden.

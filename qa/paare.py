@@ -3,11 +3,13 @@
 
 Aufruf:  python3 qa/paare.py          (aus dem Repository-Stammverzeichnis)
 
-Jede der achtzehn Seiten hat ihre eigene Originalseite, die Namen decken sich
-aber nicht (das Original liegt unter `/schueler/beratung-2/`, bei uns heißt
-die Seite `schulsozialarbeit`). Die Paare stehen deshalb hier explizit; für
-einzeln Nachzuprüfendes sind das die beiden Argumente, die `qa/treue.py` und
-`satzpruefung.py` verlangen.
+Jede der vierundzwanzig Seiten hat ihre eigene Originalseite, die Namen decken
+sich aber nicht (das Original liegt unter `/schueler/beratung-2/`, bei uns
+heißt die Seite `schulsozialarbeit`). Die Paare stehen deshalb hier explizit;
+für einzeln Nachzuprüfendes sind das die beiden Argumente, die `qa/treue.py`
+und `satzpruefung.py` verlangen. Neunzehn Quellen liegen als HTML vor, fünf
+als Text (Markdown- oder Rohtext-Aufzeichnung); beide Formen lesen dieselbe
+Wortfolge.
 
 Abgezogen werden, was kein Textbefund ist:
   * Zuordnungs-Artefakte – ein Wortglied, das beidseitig vorkommt, aber an
@@ -15,7 +17,10 @@ Abgezogen werden, was kein Textbefund ist:
   * die eigene Meta-Beschreibung (allgemein in Abschnitt 3 dokumentiert);
   * die Download-Größen, die Hugo beim Build aus der Datei ermittelt;
   * zwei Restfetzen der Vorlage („Anfahrt Maps Anrufen Krank“, „Uhr“), die
-    zu kurz sind, um sie wie den übrigen Kopf- und Fußblock zu filtern.
+    zu kurz sind, um sie wie den übrigen Kopf- und Fußblock zu filtern;
+  * Aufzeichnungs-Vermerke und Word-Reste („QUELLE saferspace“, der
+    Microsoft-Word-Kopf „Normal 0 21 false …“), die in keiner Fassung der
+    Seite stehen.
 
 Was übrig bleibt, muss in README Abschnitt 3 als „alt“ → „neu“ zitiert
 stehen – sonst beendet sich das Skript mit einem Befund und zeigt die
@@ -36,11 +41,18 @@ PAARE = [
     ("content/av-dual-begleitung.md", "recherche/quellen/av-dual.html"),
     ("content/beratungssystem.md", "recherche/quellen/beratung.html"),
     ("content/besser-ghse.md", "recherche/quellen/besserghse.html"),
+    ("content/bewo.md", "recherche/bewo-roh.md"),
+    ("content/datenschutz.md", "recherche/datenschutz.md"),
+    ("content/die-ghse.md", "recherche/quellen/die-ghse.html"),
     ("content/erasmus.md", "recherche/quellen/erasmus.html"),
     ("content/fachgruppen.md", "recherche/quellen/fachgruppen.html"),
+    ("content/impressum.md", "recherche/impressum.md"),
     ("content/krankmeldung.md", "recherche/quellen/online-abmelden.html"),
     ("content/nextcloud.md", "recherche/quellen/nextcloud.html"),
+    ("content/praktikum-fuer-studierende.md",
+     "recherche/praktikum-fuer-studierende-roh.md"),
     ("content/projekte-und-software.md", "recherche/quellen/projekte.html"),
+    ("content/saferspace.md", "recherche/saferspace-roh.md"),
     ("content/schulbienen.md", "recherche/quellen/schulbienen.html"),
     ("content/schulsanitaetsdienst.md", "recherche/quellen/schulsanitaet.html"),
     ("content/schulsozialarbeit.md", "recherche/quellen/schulsozialarbeit.html"),
@@ -52,6 +64,8 @@ PAARE = [
 ]
 
 VORLAGE = r"\b(uhr|anfahrt maps anrufen krank)\b"
+AUFZEICHNUNG = (r"\b(quelle saferspace"
+                r"|normal 0 21 false false false de x-none x-none)\b")
 LANG = 15      # ab wie vielen Wörtern nur noch der Anfang zitiert wird
 KOPF = 10      # wie viele Wörter des Anfangs dann verglichen werden
 
@@ -83,6 +97,23 @@ def frontmatter(datei, schluessel):
     return m.group(1) if m else ""
 
 
+def quellwoerter(datei: str):
+    """Wortfolge der Quelle – HTML über lxml, Text aus der Aufzeichnung.
+
+    Die fünf Textquellen (Impressum, Datenschutz, BewO, Praktikum, Safer
+    Space) liegen als Markdown bzw. als Rohtext vor. Linkziele und
+    HTML-Kommentare fliegen raus, damit nur die sichtbaren Wörter zählen.
+    """
+    if datei.endswith(".html"):
+        return treue.ohne_chrome(treue.worte(treue.quelltext(datei)),
+                                 treue.chrome_menge())
+    t = open(datei, encoding="utf-8").read()
+    t = re.sub(r"<!--.*?-->", " ", t, flags=re.S)
+    t = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", t)
+    t = re.sub(r"<([^>]+)>", r"\1", t)
+    return treue.ohne_chrome(treue.worte(t), treue.chrome_menge())
+
+
 def abweichungen(q, m):
     """Wortabweichungen zwischen Quelle und eigener Seite."""
     raus = []
@@ -95,6 +126,8 @@ def abweichungen(q, m):
             continue                      # reine Interpunktion, siehe Modultext
         if re.search(VORLAGE, alt) or re.search(VORLAGE, neu):
             continue                      # Restfetzen der Vorlage
+        if re.search(AUFZEICHNUNG, alt) or re.search(AUFZEICHNUNG, neu):
+            continue                      # Aufzeichnungs- und Word-Reste
         if "datei en" in alt or "datei en" in neu:
             continue                      # Download-Größe, der Build rechnet sie
         glied_a, glied_m = w_woerter(alt), w_woerter(neu)
@@ -108,11 +141,10 @@ def abweichungen(q, m):
 
 def main():
     readme = readme_woerter()
-    gramme = treue.chrome_menge()
     unbekannt, summe = [], 0
 
-    for md, html in PAARE:
-        q = treue.ohne_chrome(treue.worte(treue.quelltext(html)), gramme)
+    for md, quelle in PAARE:
+        q = quellwoerter(quelle)
         m = treue.worte(treue.eigener_text(md))
         # Die eigene Meta-Beschreibung folgt im Vergleichstext auf den Titel
         # und ist allgemein in Abschnitt 3 dokumentiert.

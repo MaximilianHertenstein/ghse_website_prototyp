@@ -97,7 +97,11 @@ Projektordner geladen und einzeln geprüft.
 | Service- und Schülerseiten (16) | `https://www.ghse.de/anfahrt/`, `/schulbienen/`, `/schulsanitaetsdienst/`, `/schueler/smv/`, `/schueler/beratung/`, `/schueler/beratung-2/`, `/schueler/av-dual-begleitung/`, `/schueler/vertretungsplan/`, `/schueler/besserghse-de/`, `/online-abmelden/`, `/nextcloud/`, `/unsere-schule/organisatorisches/fachgruppen/`, `/downloads/studienfahrten/`, `/downloads/projekte-software/`, `/downloads/anmeldeformulare/`, `/unesco/unesco-aktivitaeten/` |
 | UNESCO-Einstiegsseite | `https://www.ghse.de/unesco/was-heisst-unesco-projektschule/` |
 | Erasmus+ | `https://www.ghse.de/ghse-emmendingen-ist-erasmus-akkreditiert-europa-erleben/` |
+| Die GHSE | `https://www.ghse.de/die-ghse/` (Aufzeichnung `recherche/quellen/die-ghse.html`, Stand 9. Dezember 2025) |
 | Safer Space | eigene Aufzeichnung (`recherche/saferspace-roh.md`, ohne Seiten-URL erfasst) |
+| BewO (Bewerbung online) | `https://www.ghse.de/bewo/` (Aufzeichnung `recherche/bewo-roh.md`) |
+| Praktikum für Studierende | `https://www.ghse.de/praktikum-fuer-studierende/` (Aufzeichnung `recherche/praktikum-fuer-studierende-roh.md`) |
+| Impressum und Datenschutz | `https://www.ghse.de/impressum/`, `https://www.ghse.de/datenschutz/` (Aufzeichnung als Markdown) |
 
 **Nachrichtentext:** Die Pressebeiträge der GHSE bestehen auf der Originalseite
 aus Überschrift, Quelle + Datum, Teaser, Abbildung(en) (Zeitungsausschnitte)
@@ -123,11 +127,13 @@ jederzeit aktuell.
 „Badischen Zeitung" → „Badische Zeitung" (Quellenlabel), „Die Einjährige
 Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 
-Beim Übernehmen der achtzehn Service-, Schüler- und Themenseiten dieselbe
-Regel – jedes Wort steht so, wie die Quelle es schreibt, nur wo diese
-offensichtlich fehlerhaft ist, wird richtig gestellt. Diese Fälle sind es,
-jeder einzelne gegen die Originalseite nachgeprüft (siehe Abschnitt 6,
-`qa/treue.py`):
+Für die vierundzwanzig Seiten mit eigener Quelle – die achtzehn Service-,
+Schüler- und Themenseiten sowie Die GHSE, BewO, Praktikum, Impressum,
+Datenschutz und Safer Space – gilt dieselbe Regel: jedes Wort steht so, wie
+die Quelle es schreibt, nur wo diese offensichtlich fehlerhaft ist, wird
+richtig gestellt.
+Diese Fälle sind es, jeder einzelne gegen die Originalseite nachgeprüft
+(siehe Abschnitt 6, `qa/paare.py`):
 
 *UNESCO-Aktivitäten:* „UNSECO" → „UNESCO", „Kathastrophe" → „Katastrophe",
 „30ten mal" → „30. Mal", „Mittepunkt." → „Mittelpunkt.",
@@ -216,6 +222,30 @@ einem Bild; was darauf steht, steht bei uns als Text darunter (Abschnitt 2).
 („Ersten – Hilfe" → „Ersten Hilfe", „Erste – Hilfe Kursen" →
 „Erste-Hilfe-Kursen").
 
+*Die GHSE:* „allgemeinenen" → „allgemeinen", „Namen" → „Name" (Grammatik)
+und „AV dual" → „AV-Dual", weil die Quelle die Verbundform einmal mit und
+einmal ohne Bindestrich schreibt.
+
+*BewO:* „vorläufigen Zu- oder Absage" → „vorläufige Zu- oder Absage" und
+„vorläufige Zu- oder Absagen" → „vorläufige Zu- oder Absage" (die Quelle
+mischt Einzahl und Mehrzahl), „Niveaum" → „Niveau", „Bewo- Infoblatt" →
+„BewO-Infoblatt", „z.B." → „z. B."; in der Ansprechpartner-Liste
+„Ansprechpartner sind für das Technische Gymnasium" → „Technisches
+Gymnasium" und „das Sozialwissenschaftlich Gymnasium" → „das
+Sozialwissenschaftliches Gymnasium" (Grammatik), außerdem das „2BKI" →
+„Berufskolleg für Informations- und Kommunikationstechnik", wie der
+Bildungsgang auf seiner Schulartseite heißt.
+
+*Praktikum:* „nahe zu" → „nahezu", „zahleichen" → „zahlreichen",
+„allgemein bildender" und „allgemein bildenden" → „allgemeinbildender" und
+„allgemeinbildenden", „z. Zt. Herr Michael Feißt, Frau Annina Schäfer" →
+„zurzeit Herrn Michael Feißt und Frau Annina Schäfer" (Dativ nach „durch",
+dazu „und" statt Komma). Der Seitentitel trägt wieder die volle
+Quellenüberschrift „Praxissemester oder Orientierungspraktikum an den GHSE".
+
+*Datenschutz:* „Rechtsanwälteerstellt." → „Rechtsanwälte erstellt." – im
+Original verschluckt die Verlinkung der Kanzlei das Leerzeichen.
+
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
 Baustein-Text führt („Gewerbliche und Hauswirtschaftlich-Sozialpflegerische
@@ -230,10 +260,26 @@ vier Überschriften, die ein Wort aus dem Originalsatz über genau den Satz
 stellen, der dort ohne Überschrift steht: „Trägerschaft" auf AV-Dual und
 Schulsozialarbeit, „Veranstaltungen" und „Koordinatorinnen" auf der
 UNESCO-Einstiegsseite;
+vier Zwischenüberschriften auf der Seite Die GHSE, die die Fettlabels und
+Foliensätze der Quelle als Überschrift führen („Eine Schule und für viele
+gleichzeitig viele Schulen", „Gewerblich geprägt ist ein Großteil unserer
+Schule", „Hauswirtschaftlich ist die Schule seit 1993", „Sozialpflegerisch");
 fünf Seitenüberschriften, weil die Vorlage ihre Hero-Überschrift nicht als
 `title` führt – bei uns steht dieselbe Zeile im `<h1>` und im Browser-Titel:
 „Anfahrt an die GHSE", „Willkommen bei der AV-Dual Begleitung", „Beratung",
 „Projektarbeiten/Software", „Vertretungsplan der GHSE";
+die Seitenüberschriften „Impressum" und „Datenschutz", weil die Quelle dort
+ohne Seitenüberschrift mit dem Schulnamen bzw. mit der Zwischenüberschrift
+„Datenschutzerklärung" beginnt, und drei Zwischenüberschriften auf der
+BewO-Seite
+(„Sicherer Schulplatz", „Fast sicherer Schulplatz", „Ansprechpartner"), die
+je eine Liste einleiten, welche die Quelle ohne Überschrift führt – die
+letzte ersetzt den Listenauftakt „Ansprechpartner sind für das";
+die beiden BewO-Linktexte, die in der Quelle die volle Adresse nennen
+(`https://bewo.kultus-bw.de/,Lde/Startseite/BewO` und
+`https://bewo.kultus-bw.de/,Lde/Startseite/BewO/Downloads`) und bei uns als
+Domain stehen, sowie der Sekretariatsverweis, der statt der damaligen
+kasserver-Adresse auf die eigene Seite zeigt (nur das Ziel, der Text bleibt);
 vier Menülabels, die wieder so geschrieben sind wie in der Navigationsleiste
 der Vorlage („2-jähriges Berufskolleg für Informationstechnische Assistenten",
 „Unesco Aktivitäten", „Was heißt UNESCO Projektschule?", „Projekte/Software");
@@ -307,10 +353,11 @@ nicht verwendet werden).
    * **Dokumente:** `assets/downloads` → geschrieben als `/downloads/…`
 4. Collections (33 Stück unter `content`): **Startseite** (Einzeldatei),
    **Schularten (Inhaltsseiten)**, **News** und **Downloads** als
-   Ordner-Sammlungen, dazu jede weitere Seite einzeln – einschließlich der
-   achtzehn Einzelseiten im Wurzelverzeichnis von `content/` (Impressum,
-   Datenschutz, Safer Space und die achtzehn Service-, Schüler- und
-   Themenseiten, die mit der Ablösung der Originalseite dazukamen). Jede Sammlung bietet
+   Ordner-Sammlungen, dazu jede weitere Seite einzeln – die 28 Einzelseiten
+   im Wurzelverzeichnis von `content/`: die 16 Service- und Schülerseiten,
+   UNESCO und Erasmus+, Impressum und Datenschutz, Safer Space sowie Die
+   GHSE, Unsere Schule, MINT, Schüler/innen – Schulleben, Förderverein, BewO
+   und Praktikum. Jede Sammlung bietet
    `title`, `description` und `body`; Studienfahrten und Projekte und
    Software zusätzlich das `bilder`-Raster für ihre Fotoläufe. Prüfbar mit
    jedem YAML-Parser: fehlt einer `content/*.md`-Datei eine Sammlung, kann
@@ -448,29 +495,38 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
-* Worttreue gegen die Vorlage: alle achtzehn Seiten mit eigener Quelle werden
-  Wort für Wort gegen ihre Originalseite geprüft – `qa/treue.py` vergleicht
-  die Folge der Wörter (Kopf-, Navigations- und Fußblock der Vorlage fallen
-  raus, ebenso der Adress- und Öffnungszeitblock, den die Vorlage auf jeder
-  Seite mitschleift) und zählt reine Satzzeichen- und Trennstrich-Anpas-
-  sungen getrennt, `qa/satzpruefung.py` zeigt für einzelne Sätze das
-  passende Stück der Quelle und nur die abweichenden Wörter. Die Quellseiten
-  liegen als HTML unter `recherche/quellen/`, damit die Prüfung nicht bei
-  jedem Lauf ins Netz muss; die Zuordnung der achtzehn Quellpaare ist
-  explizit, weil Datei- und Seitennamen sich nicht decken
-  (`schulsozialarbeit` liegt unter `/schueler/beratung-2/`), und
-  `qa/paare.py` läuft alle Paare auf einmal durch und gleicht den Befund
-  gegen Abschnitt 3 dieser Datei ab – ohne offene Stelle meldet es
-  „davon 0 nicht zitiert" und Beendigungscode 0, sonst die Stellen, die noch
-  fehlen. Erster Lauf dieser Prüfung hat vier stille Textänderungen und
-  einen erfundenen Absatz gefunden, ein späterer noch einen erfundenen Satz
-  und zwei Überschriften ohne Vorlage (die Details stehen in Abschnitt 3) –
-  seither ist der Befund null. Was die Prüfung weiter meldet, sind die dort
+* Worttreue gegen die Vorlage: alle vierundzwanzig Seiten mit eigener Quelle
+  werden Wort für Wort gegen ihre Originalseite geprüft – `qa/treue.py`
+  vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der
+  Vorlage fallen raus, ebenso der Adress- und Öffnungszeitblock, den die
+  Vorlage auf jeder Seite mitschleift) und zählt reine Satzzeichen- und
+  Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
+  Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
+  Neunzehn Quellseiten liegen als HTML unter `recherche/quellen/`, fünf als
+  Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space), damit die
+  Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
+  vierundzwanzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  nicht decken (`schulsozialarbeit` liegt unter
+  `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
+  durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
+  offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 113
+  Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
+  vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
+  späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage
+  (die Details stehen in Abschnitt 3) – seither ist der Befund null. Beim
+  Ausbau auf die fünf Textquellen und die Seite Die GHSE kam eine erfundene
+  Adresse auf der Datenschutzseite ans Licht (die Anschrift des
+  Landesbeauftragten, die die Quelle nicht führt), auf der BewO-Seite
+  mehrere Umformulierungen („Bewerber" zu „Bewerberinnen und Bewerber",
+  eingeschobenes „Uhr", zusammengezogene Listen) – alles zurück auf den
+  Quellwortlaut. Was die Prüfung weiter meldet, sind die dort
   dokumentierten beabsichtigten Abweichungen, Baustein-Aufrufe und
   Linkadressen sowie zwei Restfetzen der Vorlage im Quelltext
   („Anfahrt Maps Anrufen Krank", „Uhr"), die aus zu kurzen Wortgruppen
-  bestehen, um sie wie den übrigen Kopf- und Fußblock zu filtern –
-  `qa/paare.py` lässt sie als bekannt weg.
+  bestehen, um sie wie den übrigen Kopf- und Fußblock zu filtern, und die
+  Aufzeichnungsvermerke der Textquellen („QUELLE saferspace", der
+  Word-Kopf „Normal 0 21 false …") – `qa/paare.py` lässt sie als bekannt weg.
 * Lighthouse: Performance mobil **98–100** (Startseite 99, News-Übersicht 99,
   Meldungsseiten 98–100, Download- und Schulartseiten 99–100), Desktop
   **100** (LCP 0,4–0,5 s); nach dem Dark-Mode-Einbau stichprobenartig

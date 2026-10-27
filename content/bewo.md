@@ -43,13 +43,13 @@ Den genauen zeitlichen Ablauf finden Sie auf der [Webseite der Kultusverwaltung]
 
 - Ende Januar bis 1.3. ist die Online-Anmeldung unter [bewo.kultus-bw.de](https://bewo.kultus-bw.de/,Lde/Startseite/BewO) freigeschaltet
 - In der Regel bis zum ersten Arbeitstag im März müssen die schriftlichen Unterlagen an der Schule eingereicht werden.
-- In den ersten 2–3 Märzwochen werden die vorläufigen Zu- oder Absagen von den Schulen verschickt
+- In den ersten 2-3 Märzwochen werden die vorläufigen Zu- oder Absagen von den Schulen verschickt
 - Bis Ende März müssen die Wahlfächer an der Schule gewählt werden
 - Von März bis Juli können die Bewerbungsdaten, z. B. Priorität oder Adressänderungen, geändert werden
-- Bis Mitte Juli kümmern sich die Bewerberinnen und Bewerber des allgemeinbildenden Gymnasiums um einen Notenauszug (Formular unter [bewo.kultus-bw.de](https://bewo.kultus-bw.de/,Lde/Startseite/BewO/Downloads))
+- Bis Mitte Juli kümmern sich die Bewerber vom allgemeinbildenden Gymnasium um einen Notenauszug (Formular unter [bewo.kultus-bw.de](https://bewo.kultus-bw.de/,Lde/Startseite/BewO/Downloads))
 - Bis Mitte Juli (genauen Stichtag beachten) muss das Endzeugnis oder ein Notennachweis an der Schule abgegeben werden, von der die vorläufige Zu- oder Absage kam
 - Ende Juli (genauen Stichtag beachten) findet an der Schule, von der die vorläufige Zu- oder Absage kam, das Aufnahmeverfahren statt. Die Schülerinnen und Schüler werden an der Schule aufgenommen oder ihnen wird mitgeteilt, wo sie einen Schulplatz bekommen.
-- Ende Juli (genauen Stichtag beachten) findet ab 10:00 Uhr ein allgemeines Nachrückverfahren für Schülerinnen und Schüler statt, die noch keinen Schulplatz haben
+- Ende Juli (genauen Stichtag beachten) findet ab 10:00 ein allgemeines Nachrückverfahren für Schüler statt, die noch keinen Schulplatz haben
 
 ## Wie funktioniert das Online-Verfahren?
 
@@ -61,34 +61,34 @@ Den genauen zeitlichen Ablauf finden Sie auf der [Webseite der Kultusverwaltung]
 - [Technisches Gymnasium](/schularten/technisches-gymnasium/): StD Carsten Münchenbach, 07641-465-125, [muen@ghse.de](mailto:muen@ghse.de)
 - [Sozialwissenschaftliches Gymnasium](/schularten/sozialwissenschaftliches-gymnasium/): StDin Birgül Yilmaz-Daz, 07641-465-147, [yil@ghse.de](mailto:yil@ghse.de)
 - [Berufskolleg für Informations- und Kommunikationstechnik](/schularten/berufskolleg-informationstechnische-assistenten/): StR Thomas Hoffmann, [hm@ghse.de](mailto:hm@ghse.de)
-- [2BF Hauswirtschaft/Pflege](/schularten/zweijahrige-berufsfachschulen/): StRin Serap Kirkik, 07641-465-204, [kirk@ghse.de](mailto:kirk@ghse.de)
-- [2BF Elektro/Metall](/schularten/zweijahrige-berufsfachschulen/): StRin Simone Rolke, 07641-465-108, [rl@ghse.de](mailto:rl@ghse.de)
+- die [2BF Hauswirtschaft/Pflege](/schularten/zweijahrige-berufsfachschulen/): StRin Serap Kirkik, 07641-465-204, [kirk@ghse.de](mailto:kirk@ghse.de)
+- die [2BF Elektro/Metall](/schularten/zweijahrige-berufsfachschulen/): StRin Simone Rolke, 07641-465-108, [rl@ghse.de](mailto:rl@ghse.de)
 
 ## Erfahrungswerte für das Berufliche Gymnasium
 
 ### Sicherer Schulplatz
 
-Folgende Schülerinnen und Schüler haben in den letzten Jahren sicher einen Schulplatz bekommen, mit einem Notendurchschnitt von 2,3 (SG) bzw. 2,6 (TG) in D, E, M:
+Folgende Schüler haben in den letzten Jahren sicher einen Schulplatz bekommen
 
-- Realschule
-- Werkrealschule
-- Gemeinschaftsschule (Niveau M)
-- 2-jährigen Berufsfachschule
+- alle Schülerinnen und Schüler mit einem Notendurchschnitt von 2,3 (SG) bzw 2.6 (TG) in D, E, M von der
+  - Realschule
+  - Werkrealschule
+  - Gemeinschaftsschule (Niveau M)
+  - 2-jährigen Berufsfachschule
 
 ### Fast sicherer Schulplatz
 
-Mit einem Notendurchschnitt von 2,6 (SG) bzw. 3,0 (TG) in D, E, M:
+Folgende Schüler haben in den letzten Jahren fast sicher einen Schulplatz bekommen
 
-- Realschule
-- Werkrealschule
-- Gemeinschaftsschule (Niveau M)
-- 2-jährigen Berufsfachschule
-
-Außerdem haben folgende Schülerinnen und Schüler in den letzten Jahren fast sicher einen Schulplatz bekommen:
-
-- Vom allgemeinbildenden Gymnasium (mit einem Versetzungszeugnis von 9 nach 10 oder von 10 nach 11)
-- Vom sechsjährigen beruflichen Gymnasium (mit einem Versetzungszeugnis von 10 nach 11)
-- Von der Gemeinschaftsschule (Niveau E) mit Versetzung in die Oberstufe
+- Schülerinnen und Schüler mit einem Notendurchschnitt von 2.6 (SG) bzw 3.0 (TG) in D, E, M von der
+  - Realschule
+  - Werkrealschule
+  - Gemeinschaftsschule (Niveau M)
+  - 2-jährigen Berufsfachschule
+- Schülerinnen und Schüler vom
+  - allgemeinbildenden Gymnasium (mit einem Versetzungszeugnis von 9 nach 10 oder von 10 nach 11)
+  - sechsjährigen beruflichen Gymnasium (mit einem Versetzungszeugnis von 10 nach 11)
+  - Gemeinschaftsschule (Niveau E) mit Versetzung in die Oberstufe
 
 Dies sind Erfahrungswerte. Die tatsächliche Bewerberlage in einem Jahr kann jedoch davon abweichen.
 
