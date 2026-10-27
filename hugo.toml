@@ -177,7 +177,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   [[menus.haupt]]
     identifier = "ita"
     parent = "schularten-vollzeit"
-    name = "Berufskolleg Informationstechnische Assistenten"
+    name = "2-jähriges Berufskolleg für Informationstechnische Assistenten"
     pageRef = "/schularten/berufskolleg-informationstechnische-assistenten"
     weight = 37
   [[menus.haupt]]
@@ -293,13 +293,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   [[menus.haupt]]
     identifier = "unesco-aktivitaeten"
     parent = "unesco"
-    name = "UNESCO-Aktivitäten"
+    name = "Unesco Aktivitäten"
     pageRef = "/unesco-aktivitaeten"
     weight = 71
   [[menus.haupt]]
     identifier = "unesco-projektschule"
     parent = "unesco"
-    name = "Was heißt UNESCO-Projektschule?"
+    name = "Was heißt UNESCO Projektschule?"
     url = "/unesco"
     weight = 72
   [[menus.haupt]]
@@ -347,7 +347,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   [[menus.haupt]]
     identifier = "dl-projekte"
     parent = "downloads"
-    name = "Projekte und Software"
+    name = "Projekte/Software"
     pageRef = "/projekte-und-software"
     weight = 86
   [[menus.haupt]]
@@ -381,11 +381,19 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     pageRef = "/mint"
     weight = 100
 
+  # Letzter Eintrag wie auf der Originalseite (dort achter und letzter Punkt
+  # der Hauptleiste); die Seite trägt die Überschrift der Vorlage.
+  [[menus.haupt]]
+    identifier = "erasmus"
+    name = "Erasmus+"
+    pageRef = "/erasmus"
+    weight = 110
+
 # Schnellzugriff in der Kopfleiste (echte Links der Originalseite).
 # Der Shop ist dort oben ein eigener Eintrag neben „MINT“ – zwei getrennte
 # Links, wie auf der Originalseite. In der Hauptleiste hätte er nicht Platz:
-# acht Einträge laufen ab 1045 px über (gemessen, siehe Kopfzeilen-Kommentar
-# in header.html), der Shop steht deshalb eine Zeile höher.
+# acht Einträge samt Logo und Modusknopf brauchen gemessen 1200 px (Kommentar
+# in static/css/main.css), der Shop steht deshalb eine Zeile höher.
 [[menus.schnell]]
   name = "Shop"
   url = "https://ghse.fan12.de/"

@@ -39,7 +39,8 @@ Inter als selbst gehostete Variable-Font, 48 kB).
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
 | E Downloadbereich | 49 Dokumente (44 PDFs, 4 ZIPs, 1 DOC) in 7 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
-| F Service- und Schülerseiten | 15 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Krankmeldung, Nextcloud, Projekte und Software, Schulsanitätsdienst, Schulbienen, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/` … |
+| F Service- und Schülerseiten | 16 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Krankmeldung, Nextcloud, Projekte und Software, Schulsanitätsdienst, Schulbienen, Schulsozialarbeit, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/` … |
+| G Themenseiten | 2 weitere Seiten mit eigener Quelle: UNESCO („Was heißt UNESCO-Projektschule?") und Erasmus+ | `/unesco/`, `/erasmus/` |
 
 Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
 Fließtext, Faktenkasten, Bilder und – wo vorhanden – Downloads. Damit gibt
@@ -93,7 +94,10 @@ Projektordner geladen und einzeln geprüft.
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |
-| Service- und Schülerseiten (15) | `https://www.ghse.de/anfahrt/`, `/schulbienen/`, `/schulsanitaetsdienst/`, `/schueler/smv/`, `/schueler/beratung/`, `/schueler/av-dual-begleitung/`, `/schueler/vertretungsplan/`, `/schueler/besserghse-de/`, `/schueler/online-abmelden/`, `/nextcloud/`, `/unsere-schule/organisatorisches/fachgruppen/`, `/downloads/studienfahrten/`, `/downloads/projekte-software/`, `/downloads/anmeldeformulare/`, `/unesco/unesco-aktivitaeten/` |
+| Service- und Schülerseiten (16) | `https://www.ghse.de/anfahrt/`, `/schulbienen/`, `/schulsanitaetsdienst/`, `/schueler/smv/`, `/schueler/beratung/`, `/schueler/beratung-2/`, `/schueler/av-dual-begleitung/`, `/schueler/vertretungsplan/`, `/schueler/besserghse-de/`, `/online-abmelden/`, `/nextcloud/`, `/unsere-schule/organisatorisches/fachgruppen/`, `/downloads/studienfahrten/`, `/downloads/projekte-software/`, `/downloads/anmeldeformulare/`, `/unesco/unesco-aktivitaeten/` |
+| UNESCO-Einstiegsseite | `https://www.ghse.de/unesco/was-heisst-unesco-projektschule/` |
+| Erasmus+ | `https://www.ghse.de/ghse-emmendingen-ist-erasmus-akkreditiert-europa-erleben/` |
+| Safer Space | eigene Aufzeichnung (`recherche/saferspace-roh.md`, ohne Seiten-URL erfasst) |
 
 **Nachrichtentext:** Die Pressebeiträge der GHSE bestehen auf der Originalseite
 aus Überschrift, Quelle + Datum, Teaser, Abbildung(en) (Zeitungsausschnitte)
@@ -119,9 +123,145 @@ jederzeit aktuell.
 „Badischen Zeitung" → „Badische Zeitung" (Quellenlabel), „Die Einjährige
 Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 
+Beim Übernehmen der achtzehn Service-, Schüler- und Themenseiten dieselbe
+Regel – jedes Wort steht so, wie die Quelle es schreibt, nur wo diese
+offensichtlich fehlerhaft ist, wird richtig gestellt. Diese Fälle sind es,
+jeder einzelne gegen die Originalseite nachgeprüft (siehe Abschnitt 6,
+`qa/treue.py`):
+
+*UNESCO-Aktivitäten:* „UNSECO" → „UNESCO", „Kathastrophe" → „Katastrophe",
+„30ten mal" → „30. Mal", „Mittepunkt." → „Mittelpunkt.",
+„Unesco-Projektetage" → „UNESCO-Projektstage", „engagiereN" → „engagieren",
+„Flash Mop" → „Flashmob", „einen ein Scheck" → „einen Scheck",
+„berichtete/" → „berichtete", „Januar. 2018" → „Januar 2018",
+„UNESCO- Projekte" → „UNESCO-Projekte", „Welterbe- Erde/" → „Welterbe-Erde /",
+„2 BFH2" → „2BFH2", „2 BFP2-Klassen" → „2BFP2-Klassen", „u. a." →
+„unter anderem", „z.B." → „zum Beispiel", „versch." → „verschiedenen",
+„span." → „spanischen", „verg." → „vergangenen", „Leitg." → „Leitung",
+„13.ten Klassen" → „13. Klassen", „Hausw. Verantw." → „Hauswirtschaft
+verantwortlich", „UNESCO Projektschule" → „UNESCO-Projektschule",
+„UNESCO – Regionaltagung" → „UNESCO-Regionaltagung" (zweimal),
+„UNESCO Aktivitäten im 2. Halbjahr-an" → „UNESCO-Aktivitäten im 2. Halbjahr
+an" (Linktext des zweiten Berichts in der Download-Liste), „08.März" →
+„08. März",
+„14.12 – 19.12. 2003" → „14.12. – 19.12.2003" und „2.7 – 5.7. 2003" →
+„2.7. – 5.7.2003" (Datumsbereiche), „stattgafunden." → „stattgefunden.".
+„Monika Bre" → „Monika Bresch": der Name
+ist auf der Originalseite an der Zeilenkante abgeschnitten und steht zweimal
+vollständig auf derselben Seite. Dazu die Umbruch- und Bindestrichrestaurie-
+rungen, die jede Seite mitbringt, wenn Zeilenenden hart umgebrochen waren
+(„KFZ- Abteilung-" → „KFZ-Abteilung", „GHSE- Combo" → „GHSE-Combo",
+„Tschernobyl Gedenktag-" → „Tschernobyl-Gedenktag", „DM-Markt Kette" →
+„DM-Markt-Kette", „UNESCO Arbeit" → „UNESCO-Arbeit", „Relax Bank" →
+„Relax-Bank", „SG10 Spanisch-Kurses" → „SG10-Spanisch-Kurses",
+„Französisch Fachschaft" → „Französisch-Fachschaft"). Zwei Einträge fehlen
+bewusst, weil die Quelle sie doppelt führt: unter „2007/2008" stand
+„Baumpflanzaktion zum Weltfriedenstag" zweimal, dieselbe Zeile noch einmal
+nach „Internationales Polarjahr – Klimawandel"; und der Reiter „2022/2023"
+steht dort zweimal mit demselben Text, sein Inhalt – „2022/2023 Die
+Regionaltagung der UNESCO-Projektschulen Baden-Württemberg mit aktuell 34
+Bildungseinrichtungen …" und alles, was darunter in diesem Reiter folgt –
+steht bei uns genau einmal. Zwei Stellen bleiben unangetastet, weil sie
+Original sind und kein Tippfehler: das „???" beim Musikzugprojekt (Mai 2016)
+und „kommt noch" (Schuljahr 2020/2021, das die Quelle offen hält).
+
+*Projekte und Software:* „Hall of fame" → „Hall of Fame", „Java Runtime
+EnvironmentTM" → „Java Runtime Environment", „dass sie das Java Runtime
+Environment … installiert" → „dass Sie …" (zweimal), „TG Informationstechnik
+des TG" → „TG Informationstechnik", „z.B." → „zum Beispiel", „voraus. Abi-
+Jhg." → „voraussichtlicher Abiturjahrgang" und „Abi-Jhg." → „Abiturjahrgang"
+(Abkürzungen ausgeschrieben). Ein Tensewechsel mit Begründung: „sind … zu
+finden" → „waren … zu finden", weil das Projekt unter `softatomos.com/kane/`
+nicht mehr erreichbar ist – die Domain löst beim Nachprüfen gar nicht mehr
+auf (NXDOMAIN, im Gegensatz zu `ghse.de`). Die tote Adresse bleibt bewusst
+als Klartext im Text stehen, ohne Link: Sie ist Teil der Projektdokumentation
+und führte nach dem Cutover sonst ins Leere.
+
+*Vertretungsplan:* „verschiendenen" → „verschiedenen", „große Monitor" →
+„große Monitore". Außerdem zeigt der Satzanfang nicht mehr die Adresse
+„Unter https://www.ghse.de/ekb", sondern „Im WebUntis" – das Original zeigt
+diese Adresse als Linktext und schickt schon selbst weiter auf
+`erato.webuntis.com/WebUntis`, das Ziel ist also unverändert; als sichtbarer
+Text bleibt nur die Adresse, die auch das Ziel ist.
+
+*Fachgruppen:* „unter Anderem" → „unter anderem".
+
+*Beratungssystem:* „Beratungslehrer innen" → „Beratungslehrerinnen" (im
+Original durch ein Tag mitten im Wort getrennt).
+
+*Schulsozialarbeit:* „Schülerinennen" → „Schülerinnen" (Tippfehler der
+Vorlage) und „zuständig für" → „Zuständig für" als Satzanfang. Der
+Kastentitel „Schulsozialarbeit" steht im Original fünfmal, jedes Mal direkt
+vor dem Namen („Schulsozialarbeit Luzia Bindner", „Schulsozialarbeit Kolja
+Chmieliczek" …); bei uns heißt der Block nur einmal so und die Namen stehen
+fett – Räume, Durchwahlen und Klassen bleiben unverändert.
+
+*UNESCO-Einstiegsseite („Was heißt UNESCO-Projektschule?"):* „exclusiv" →
+„exklusiv", „mit zu machen" → „mitzumachen", „Donnerstag Nachmittag." →
+„Donnerstagnachmittag.", „z.B." → „zum Beispiel" (zweimal) und der Linktext
+„Email" → „E-Mail", weil die Seite sonst ohne Angabe darauf verweist.
+
+*AV-Dual Begleitung:* Der Titel heißt wie im Original „AV-Dual Begleitung",
+im Fließtext steht die Bezeichnung einheitlich, während das Original sie
+dreifach mischt („AV-Dual Begleitung", „AV-dual Begleitung",
+„AV-dual-Begleitung"). Gleiches gilt für die Angebotsüberschrift: das
+Original schreibt „Angebote für AV-dual Schülerinnen und Schüler", bei uns
+steht die Zusammensetzung mit Bindestrich („AV-dual-Schülerinnen"). Die
+Großschreibung von „Du" und „Dir" in den beiden
+Sätzen an die Eltern steht genauso im Original und wurde nicht angeglichen.
+
+*Schulsanitätsdienst und SMV:* Diese beiden Seiten bestehen im Original aus
+einem Bild; was darauf steht, steht bei uns als Text darunter (Abschnitt 2).
+Übernommen wurde wörtlich, geglättet nur die Trennstriche der Grafik
+(„Ersten – Hilfe" → „Ersten Hilfe", „Erste – Hilfe Kursen" →
+„Erste-Hilfe-Kursen").
+
+**Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
+die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
+Baustein-Text führt („Gewerbliche und Hauswirtschaftlich-Sozialpflegerische
+Schulen Emmendingen (GHSE)") und keine seitenbezogene Beschreibung kennt;
+die Einbettungen, die zu einfachen Links werden (die OpenStreetMap-Karte der
+Anfahrtseite, die Live-Waage der Schulbienen mit identischem Ziel);
+die Sprungmarke auf die beiden PDF-Berichte der UNESCO-Seite („Die Berichte
+des Schuljahres als PDF:") als Überschrift für vier Original-Dateien;
+der Linktext auf der Anmeldeformularseite ohne `https://`, wobei das Ziel
+`ghse.schulanmeldungen.com` dasselbe wie im Original ist;
+vier Überschriften, die ein Wort aus dem Originalsatz über genau den Satz
+stellen, der dort ohne Überschrift steht: „Trägerschaft" auf AV-Dual und
+Schulsozialarbeit, „Veranstaltungen" und „Koordinatorinnen" auf der
+UNESCO-Einstiegsseite;
+fünf Seitenüberschriften, weil die Vorlage ihre Hero-Überschrift nicht als
+`title` führt – bei uns steht dieselbe Zeile im `<h1>` und im Browser-Titel:
+„Anfahrt an die GHSE", „Willkommen bei der AV-Dual Begleitung", „Beratung",
+„Projektarbeiten/Software", „Vertretungsplan der GHSE";
+vier Menülabels, die wieder so geschrieben sind wie in der Navigationsleiste
+der Vorlage („2-jähriges Berufskolleg für Informationstechnische Assistenten",
+„Unesco Aktivitäten", „Was heißt UNESCO Projektschule?", „Projekte/Software");
+drei Menüpunkte weichen davon ab, weil der Punkt sonst zu lang wird oder die
+Seite anders heißt als er: „Schülerinnen, Schulleben, Lehrerinnen" (Vorlage
+„SchülerInnen – Schulleben – LehrerInnen", das ist der Seitentitel),
+„Anmeldung" (Vorlage „An der Schule anmelden") und „für Berufliches
+Gymnasium, BK und 2BF (BewO)" (Vorlage „für das Berufliches Gymnasium, BK,
+2BF (BewO)"); und die Download-Listen, weil das Original
+Dateianzahl und Dateigröße als eigenen Text neben jedem Titel führt
+(„1 Datei(en) 53.19 MB Download") beziehungsweise auf der
+UNESCO-Einstiegsseite eine Tabelle („Anhänge Datei Beschreibung Jahresschrift
+2016"). Bei uns steht dort nur Titeltext, ohne die Größenangaben dazwischen:
+„Downloads Projektarbeit (TGI): ClipClick Projektarbeiten (TGI):
+Papiercomputer Projektarbeiten (TGI): Vokabeltrainer" auf der Projektseite,
+„Regelungen bei Schulveranstaltungen Angebote für Studienfahrten" auf
+Studienfahrten. Größe und Format ermittelt der Build aus der Datei selbst
+(Abschnitt 3, „Getestete Downloads").
+
 **Bildnachweise:** Logo, Gebäudeaufnahme, Schulartbilder und Presseabbildungen
 stammen von `www.ghse.de` (Theme „ziegenhagel", Uploads). Für den internen
 Prototyp referenziert; eine Veröffentlichung braucht die Freigabe der Schule.
+Vier Wappen der Träger und Förderer liegen zusätzlich als eigene Dateien
+darunter (`landratsamt-emmendingen.webp`, `kvjs-logo.webp`,
+`ministerium-wirtschaft-arbeit-tourismus.webp`,
+`ministerium-soziales-gesundheit-integration.webp`): sie stehen über dem
+Förderabsatz auf AV-Dual Begleitung und Schulsozialarbeit, mit leerem
+`alt`-Attribut wie im Original.
 
 **Partner-Logostreifen:** Der Prototyp nutzt die aktuelle Fassung von ghse.de
 (1023×494 px, sieben Logos, Upload 2025). Auf der vollen Containerbreite
@@ -169,8 +309,8 @@ nicht verwendet werden).
    **Schularten (Inhaltsseiten)**, **News** und **Downloads** als
    Ordner-Sammlungen, dazu jede weitere Seite einzeln – einschließlich der
    achtzehn Einzelseiten im Wurzelverzeichnis von `content/` (Impressum,
-   Datenschutz, Safer Space und die fünfzehn Service- und Schülerseiten,
-   die mit der Ablösung der Originalseite dazukamen). Jede Sammlung bietet
+   Datenschutz, Safer Space und die achtzehn Service-, Schüler- und
+   Themenseiten, die mit der Ablösung der Originalseite dazukamen). Jede Sammlung bietet
    `title`, `description` und `body`; Studienfahrten und Projekte und
    Software zusätzlich das `bilder`-Raster für ihre Fotoläufe. Prüfbar mit
    jedem YAML-Parser: fehlt einer `content/*.md`-Datei eine Sammlung, kann
@@ -289,17 +429,17 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   durch (37 Paare, kleinster Textwert 4,87:1 für den Kicker auf Papier,
   alle Paare bestehen),
   Touch-Ziele ≥ 44 px, `prefers-reduced-motion` respektiert.
-* Responsive: Breakpoints 1000/900/640 px – Karten- und Zeilenraster stapeln
-  sich, Navigation wird zum Aufklappmenü, Download-Zeilen werden zu
-  Vollbreiten-Karten mit großem Button. Nachgemessen wird das mit
-  `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste, Kopfhöhe,
-  Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (55 Seiten × 11 Breiten
-  = 605 Kombinationen, 0 Probleme – nichts bricht horizontales Scrollen
-  aus).
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – 55 HTML-Seiten
-  sowie alle eingebundenen Bilder, Schriften und Dokumente (3419 Ziele
-  gesamt, keine Fehlschläge, einschließlich der Sprungziele der Download-
-  Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
+* Responsive: Breakpoints 1199/1000/900/640/560 px – Karten- und Zeilenraster
+  stapeln sich, unter 1200 px wird die Navigation zum Aufklappmenü, Download-
+  Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen wird
+  das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (56 Seiten ×
+  11 Breiten = 616 Kombinationen, 0 Probleme – nichts bricht horizontales
+  Scrollen aus).
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 57
+  HTML-Dateien (56 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
+  Schriften und Dokumente (3538 Ziele gesamt, keine Fehlschläge,
+  einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
   Moodle, OSM, WebUntis, die alte Nextcloud-Speicherfreigabe,
@@ -308,6 +448,29 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
+* Worttreue gegen die Vorlage: alle achtzehn Seiten mit eigener Quelle werden
+  Wort für Wort gegen ihre Originalseite geprüft – `qa/treue.py` vergleicht
+  die Folge der Wörter (Kopf-, Navigations- und Fußblock der Vorlage fallen
+  raus, ebenso der Adress- und Öffnungszeitblock, den die Vorlage auf jeder
+  Seite mitschleift) und zählt reine Satzzeichen- und Trennstrich-Anpas-
+  sungen getrennt, `qa/satzpruefung.py` zeigt für einzelne Sätze das
+  passende Stück der Quelle und nur die abweichenden Wörter. Die Quellseiten
+  liegen als HTML unter `recherche/quellen/`, damit die Prüfung nicht bei
+  jedem Lauf ins Netz muss; die Zuordnung der achtzehn Quellpaare ist
+  explizit, weil Datei- und Seitennamen sich nicht decken
+  (`schulsozialarbeit` liegt unter `/schueler/beratung-2/`), und
+  `qa/paare.py` läuft alle Paare auf einmal durch und gleicht den Befund
+  gegen Abschnitt 3 dieser Datei ab – ohne offene Stelle meldet es
+  „davon 0 nicht zitiert" und Beendigungscode 0, sonst die Stellen, die noch
+  fehlen. Erster Lauf dieser Prüfung hat vier stille Textänderungen und
+  einen erfundenen Absatz gefunden, ein späterer noch einen erfundenen Satz
+  und zwei Überschriften ohne Vorlage (die Details stehen in Abschnitt 3) –
+  seither ist der Befund null. Was die Prüfung weiter meldet, sind die dort
+  dokumentierten beabsichtigten Abweichungen, Baustein-Aufrufe und
+  Linkadressen sowie zwei Restfetzen der Vorlage im Quelltext
+  („Anfahrt Maps Anrufen Krank", „Uhr"), die aus zu kurzen Wortgruppen
+  bestehen, um sie wie den übrigen Kopf- und Fußblock zu filtern –
+  `qa/paare.py` lässt sie als bekannt weg.
 * Lighthouse: Performance mobil **98–100** (Startseite 99, News-Übersicht 99,
   Meldungsseiten 98–100, Download- und Schulartseiten 99–100), Desktop
   **100** (LCP 0,4–0,5 s); nach dem Dark-Mode-Einbau stichprobenartig
@@ -426,9 +589,10 @@ Push startet die Pipeline automatisch neu.
 2. **Bildfreigabe:** Bilder/PDFs sind für den internen Prototyp eingebunden;
    vor einer Veröffentlichung braucht die GHSE die Freigabe (Urheberrecht
    regionaler Zeitungen bei den Presseabbildungen!).
-3. **Kein Verweis mehr auf die Originalseite:** Alle 23 Menüziele sind auf
-   eigene Seiten, Anker oder die echten Dienste (WebUntis, Moodle, Shop,
-   OSM, alter Nextcloud-Speicher) umgebucht; `grep -rho … ghse\.de` über
+3. **Kein Verweis mehr auf die Originalseite:** Alle 54 zieltragenden
+   Menüeinträge (von 59 insgesamt; fünf sind reine Zwischenüberschriften)
+   sind auf eigene Seiten, Anker oder die echten Dienste (WebUntis, Moodle,
+   Shop, OSM, alter Nextcloud-Speicher) umgebucht; `grep -rho … ghse\.de` über
    `public/` liefert ausgeliefert nur noch `https://ghse.de/iserv/` – der
    IServ-Dienstpfad als Dienstadresse. Auch die Hinweisblöcke „Prototyp",
    der „Originalseite"-Link im Fuß, der Prototyp-Hinweis unter dem

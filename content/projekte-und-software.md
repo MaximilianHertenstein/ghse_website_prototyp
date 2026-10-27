@@ -1,5 +1,5 @@
 ---
-title: "Projekte und Software"
+title: "Projektarbeiten/Software"
 description: "Projektarbeiten und Software an den GHSE: die Hall of Fame der Projektarbeiten im TG Informationstechnik, drei Downloads und Bilder von Arbeiten aus dem Gewerbebereich."
 bilder:
   - bild: /bilder/projekt-locher.webp
@@ -39,7 +39,7 @@ Julia und Jakob erreichten beim Regionalwettbewerb von „Jugend forscht“ in S
 
 Den Download für den Installer finden Sie unten. Bitte beachten Sie, dass Sie das Java Runtime Environment zur Ausführung installiert haben müssen.
 
-Wichtig: Da das Programm in seinen Installationsbereich schreibt, installieren Sie das Programm bitte nicht an dem vom Installer vorgeschlagenen Ort im Programmbereich, sondern an einem anderen, in dem der eingeloggte Benutzer Schreibrechte hat, zum Beispiel nach `C:\Tools\ClipClick`.
+Wichtig: Da das Programm in seinen Installationsbereich schreibt, installieren Sie das Programm bitte nicht in dem vom Installer vorgeschlagenen Ort im Programmbereich, sondern an einen anderen, in dem der eingeloggte Benutzer Schreibrechte hat, zum Beispiel nach `C:\Tools\ClipClick`.
 
 **Spanisch-Vokabeltrainer (2015-2016)**
 
@@ -65,7 +65,7 @@ war verfügbar mit AppStore von Apple
 - [Projektarbeiten (TGI): Papiercomputer](/downloads/projektarbeiten-tgi-papiercomputer.zip)
 - [Projektarbeiten (TGI): Vokabeltrainer](/downloads/projektarbeiten-tgi-vokabeltrainer.zip)
 
-## Disclaimer
+## DISCLAIMER
 
 Downloads, deren Installation und Ausführung erfolgen auf eigene Gefahr. Die GHSE übernimmt keine Gewähr für den Erfolg der Downloads sowie die Funktionsfähigkeit downgeloadeter Produkte auf Ihrem System. Downloads berechtigen nur zum privaten oder sonstigen eigenen Gebrauch der zum Download angebotenen Produkte sowie davon hergestellter Vervielfältigungsstücke. Eine darüber hinausgehende Nutzung bedarf der vorherigen schriftlichen Genehmigung der GHSE. (Quelle: angelehnt an den Disclaimer von livec.com)
 

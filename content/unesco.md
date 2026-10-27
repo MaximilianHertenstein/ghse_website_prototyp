@@ -24,15 +24,15 @@ Wir haben Partnerschulen in vielen Ländern. Kolleginnen und Kollegen der Schule
 
 ## Veranstaltungen
 
-Schülerinnen und Schülern bieten wir die Teilnahmemöglichkeit, an zahlreichen Veranstaltungen, die zum Teil exklusiv für Schülerinnen und Schüler der UNESCO-Projektschulen angeboten werden, z. B.:
+Schülerinnen und Schülern bieten wir die Teilnahmemöglichkeit, an zahlreichen Veranstaltungen, die zum Teil exklusiv für Schülerinnen und Schüler der UNESCO-Projektschulen angeboten werden, zum Beispiel:
 
 - dem Sommercamp der UNESCO-Projektschulen in Baden-Württemberg
 - einem Workshop der baden-württembergischen UNESCO-Projektschulen in Zusammenarbeit mit der [Landeszentrale für politische Bildung LpB](http://www.lpb-bw.de/) im [Haus auf der Alb in Bad Urach](http://www.hausaufderalb.de/)
-- Teilnahme an Wettbewerben, z. B. Mondialogo, [eine Welt für alle](http://www.eineweltfueralle.de/), YDC, [IPY](http://www.ipy.org/), …
+- Teilnahme an Wettbewerben, zum Beispiel Mondialogo, [eine Welt für alle](http://www.eineweltfueralle.de/), YDC, [IPY](http://www.ipy.org/), …
 
 Wir unterstützen Schülerinnen und Schüler, die sich in der UNESCO-Arbeit an der GHSE engagiert haben, beim Aufbau ihres [Qualipasses](http://www.qualipass.info/), in dem wir Zertifikate für die Mitarbeit in der UNESCO-Gruppe der GHSE ausstellen.
 
-## Ansprechpartnerinnen
+## Koordinatorinnen
 
 Die Koordinatorinnen für die UNESCO-Arbeit an der GHSE sind Monika Bresch und Hannah Geist. Wer Interesse hat, als Schüler/in oder Lehrer/in bei der UNESCO-Arbeit mitzumachen, kann sich gerne mit uns in [Verbindung setzen](mailto:unesco@ghse.de). Wir treffen uns etwa alle zwei Monate zu Teamsitzungen, meist am Donnerstagnachmittag. Schreibt uns eine [E-Mail](mailto:unesco@ghse.de), dann können wir euch informieren, wann die nächste Sitzung stattfindet.
 

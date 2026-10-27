@@ -38,33 +38,41 @@ Alle Themen, die dir wichtig sind, sind willkommen!
 
 **Luzia Bindner**  
 Fachbereichsleitung für die Schulsozialarbeit an den Beruflichen Schulen des Landkreises Emmendingen und der SBBZ in Trägerschaft des Landkreises Emmendingen  
-[E-Mail](mailto:luzia.bindner@ghse.de) · Telefon 07641-465 513 · Raum M106  
+E-Mail: [luzia.bindner@ghse.de](mailto:luzia.bindner@ghse.de) · Telefon 07641-465 513 · Raum M106  
 Zuständig für VABKF, 3BFP, 1BFAHT, 2BFAHM
 
 {{< bild src="/bilder/schulsozialarbeit-chmieliczek.webp" >}}
 
 **Kolja Chmieliczek**  
-[E-Mail](mailto:kolja.chmieliczek@ghse.de) · Telefon 07641-465 523 · Raum M305  
+E-Mail: [kolja.chmieliczek@ghse.de](mailto:kolja.chmieliczek@ghse.de) · Telefon 07641-465 523 · Raum M305  
 Zuständig für 1BFZ, 1BFM, 1BFR, 2BFE, 2BFH 1, 2BFM 1, 2BFP
 
 {{< bild src="/bilder/schulsozialarbeit-beh.webp" >}}
 
 **Jamie Beh**  
-[E-Mail](mailto:jamie.beh@ghse.de) · Telefon 07641-465 522 · Raum M205  
+E-Mail: [jamie.beh@ghse.de](mailto:jamie.beh@ghse.de) · Telefon 07641-465 522 · Raum M205  
 Zuständig für SG, TG, 6-jähriges SG, 2BKIK
 
 {{< bild src="/bilder/schulsozialarbeit-kukucska.webp" >}}
 
 **Noemi Kukucska**  
-[E-Mail](mailto:kukucska@carl-helbing-schule.de) · Telefon 07641/465 122 · Raum 102  
+E-Mail: [kukucska@carl-helbing-schule.de](mailto:kukucska@carl-helbing-schule.de) · Telefon 07641/465 122 · Raum 102  
 Zuständig für VABO
 
 {{< bild src="/bilder/schulsozialarbeit-staenke.webp" >}}
 
 **Anna Staenke**  
-[E-Mail](mailto:anna.staenke@ghse.de) · Telefon 07641/465 118 · Raum G124  
+E-Mail: [anna.staenke@ghse.de](mailto:anna.staenke@ghse.de) · Telefon 07641/465 118 · Raum G124  
 Zuständig für alle gewerblichen Ausbildungsklassen
 
 ## Trägerschaft
 
-Die Schulsozialarbeit ist in Trägerschaft des Landratsamtes Emmendingen. Co-finanziert durch das Ministerium für Soziales, Gesundheit und Integration, die der Landtag von Baden-Württemberg beschlossen hat. Mehr dazu auf [landkreis-emmendingen.de](https://www.landkreis-emmendingen.de/).
+Die Schulsozialarbeit ist in Trägerschaft des Landratsamtes Emmendingen. Co-finanziert durch das Ministerium für Soziales, Gesundheit und Integration, die der Landtag von Baden-Württemberg beschlossen hat.
+
+[https://www.landkreis-emmendingen.de/](https://www.landkreis-emmendingen.de/)
+
+{{< bild src="/bilder/landratsamt-emmendingen.webp" >}}
+
+{{< bild src="/bilder/kvjs-logo.webp" >}}
+
+{{< bild src="/bilder/ministerium-soziales-gesundheit-integration.webp" >}}

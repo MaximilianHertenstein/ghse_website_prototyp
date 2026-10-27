@@ -1,5 +1,5 @@
 ---
-title: "AV-Dual Begleitung"
+title: "Willkommen bei der AV-Dual Begleitung"
 description: "Die AV-dual Begleitung an der GHSE: Angebote für Schülerinnen und Schüler und für Erziehungsberechtigte, dazu das Team mit E-Mail, Telefon und Raum."
 ---
 
@@ -14,14 +14,14 @@ Die AV-dual Begleitung steht allen Schülerinnen und Schülern, Erziehungsberech
 ## Angebote für AV-dual-Schülerinnen und Schüler der GHSE
 
 - Beratung und Begleitung im Übergang Schule-Beruf. Dies beinhaltet umfangreiche Unterstützung in allen Phasen des Bewerbungsverfahrens für Praktika und Ausbildung, Schulwegeplanung sowie alternative Möglichkeiten.
-- Gespräche und Begleitung zu Themen, die du in die Beratung einbringst. Dies beinhaltet Unterstützung bei der Lösungsfindung und Bearbeitung der Themen sowie das Aufzeigen weiterer Möglichkeiten.
+- Gespräche und Begleitung zu Themen, die Du in die Beratung einbringst. Dies beinhaltet Unterstützung bei der Lösungsfindung und Bearbeitung der Themen sowie das Aufzeigen weiterer Möglichkeiten.
 
-Alle Themen, die dir wichtig sind, sind willkommen! Es gibt keine Tabus, kein Thema ist zu klein oder zu unwichtig.
+Alle Themen, die Dir wichtig sind, sind willkommen! Es gibt keine Tabus, kein Thema ist zu klein oder zu unwichtig.
 
 ## Angebote für Erziehungsberechtigte von Schülerinnen und Schülern
 
-- Beratung zum Übergang Schule-Beruf und zur Schulwegeplanung
-- Beratung bei Unterstützungsbedarf im Kontext Schule und zu Erziehungsfragen
+- Beratung zum Übergang Schule-Beruf und zur Schulwegeplanung.
+- Beratung bei Unterstützungsbedarf im Kontext Schule und zu Erziehungsfragen.
 
 ## AV-dual-Begleitung der GHSE
 
@@ -29,20 +29,26 @@ Alle Themen, die dir wichtig sind, sind willkommen! Es gibt keine Tabus, kein Th
 
 **Nadja Reiter**  
 AV-dual-Begleitung  
-[E-Mail](mailto:nadja.reiter@ghse.de) · Telefon 07641-465 219 · Raum H209
+E-Mail: [nadja.reiter@ghse.de](mailto:nadja.reiter@ghse.de) · Telefon 07641-465 219 · Raum H209
 
 {{< bild src="/bilder/av-dual-rippa.webp" >}}
 
 **Aneta Rippa**  
 AV-dual-Begleitung  
-[E-Mail](mailto:aneta.rippa@ghse.de) · Telefon 07641-465 217 · Raum H101
+E-Mail: [aneta.rippa@ghse.de](mailto:aneta.rippa@ghse.de) · Telefon 07641-465 217 · Raum H101
 
 {{< bild src="/bilder/av-dual-savio.webp" >}}
 
 **Andreas Savio**  
 Stellvertretender Fachbereichsleiter, AV-dual-Begleitung  
-[E-Mail](mailto:andreas.savio@ghse.de) · Telefon 07641-465 206 · Raum H106
+E-Mail: [andreas.savio@ghse.de](mailto:andreas.savio@ghse.de) · Telefon 07641-465 206 · Raum H106
 
 ## Trägerschaft
 
-Die AV-dual Begleitung ist in Trägerschaft des Landratsamtes Emmendingen. Co-finanziert durch das Ministerium für Wirtschaft, Arbeit und Tourismus aus Landesmitteln, die der Landtag von Baden-Württemberg beschlossen hat. Mehr dazu auf [landkreis-emmendingen.de](https://www.landkreis-emmendingen.de/).
+Die AV-dual Begleitung ist in Trägerschaft des Landratsamtes Emmendingen. Co-finanziert durch das Ministerium für Wirtschaft, Arbeit und Tourismus aus Landesmitteln, die der Landtag von Baden-Württemberg beschlossen hat.
+
+[https://www.landkreis-emmendingen.de/](https://www.landkreis-emmendingen.de/)
+
+{{< bild src="/bilder/landratsamt-emmendingen.webp" >}}
+
+{{< bild src="/bilder/ministerium-wirtschaft-arbeit-tourismus.webp" >}}

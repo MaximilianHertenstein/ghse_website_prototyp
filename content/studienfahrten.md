@@ -20,7 +20,5 @@ Zum Bildungsauftrag der Schule gehört auch, den Horizont zu erweitern und die W
 
 {{< bilder >}}
 
-## Regelungen und Angebote
-
 - [Regelungen bei Schulveranstaltungen](/downloads/hinweis-studienfahrten.pdf)
 - [Angebote für Studienfahrten](/downloads/studienfahrten-angebote-2024.pdf)

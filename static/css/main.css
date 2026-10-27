@@ -359,7 +359,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 .menue ul a:hover { background: var(--gelb); color: var(--tinte); }
 .menue ul a[aria-current="page"] { background: var(--tinte); color: var(--gelb); }
 
-/* Untermenü. Über 1024 px hängt die Tafel als Panel unter ihrem Eintrag,
+/* Untermenü. Über 1199 px hängt die Tafel als Panel unter ihrem Eintrag,
    darunter steht sie flach im Menüpanel – dieselbe Markierung, zwei
    Darstellungen, kein JavaScript. Die Überschriften der Originalseite
    („Über uns“, „Teilzeitschularten“) sind keine Links und setzen sich hier
@@ -373,7 +373,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   text-transform: uppercase; letter-spacing: 0.09em; color: var(--grau);
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1200px) {
   .menue__gruppe { position: relative; }
   .menue ul.menue__tafel {
     display: none; position: absolute; top: 100%; left: 0; z-index: 70;
@@ -1063,13 +1063,16 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   .partnergitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* Umschalter auf den Menükopf: Die Desktop-Navigation (6 Punkte + CTA) ist
-   gemessen 1016 px breit. Läuft sie bis 900 px als Zeile weiter, scrollte die
-   Seite zwischen 901 und 1015 px seitlich – bis zu 115 px Überlauf, sichtbar
-   als waagerechter Scrollbalken. Ab 1024 px passt sie mit Spielraum.
+/* Umschalter auf den Menükopf: Die Desktop-Navigation führt seit der
+   Erasmus+-Seite acht Einträge wie die Originalseite und misst damit 842 px.
+   Zusammen mit Logo, Modusknopf und Abständen braucht der Kopf gemessen
+   rund 1200 px, bevor nichts mehr gestaucht wird – bei 1025 px wäre das
+   Logo auf 0 px zusammengedrückt gewesen. Ab 1200 px läuft die Reihe mit
+   Spielraum, darunter steht das Menü als Knopf im Panel (Messung nach der
+   Methode aus qa/layout.py).
    Bewusst eigene Query: Hero, Kopfleiste und Kopfhöhe richten sich weiterhin
    nach 900 px, sonst änderte diese Grenze auch das Startseiten-Raster. */
-@media (max-width: 1024px) {
+@media (max-width: 1199px) {
   .menueknopf { display: flex; }
   .menue {
     display: none; position: absolute; left: 0; right: 0; top: 100%;
@@ -1096,7 +1099,7 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
      verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen. */
   .modusknopf { padding: 0.55rem; min-height: 2.75rem; min-width: 2.75rem; justify-content: center; }
   .modusknopf__text { display: none; }
-  /* Krankmelden & Co. stehen sonst nur noch im Fuß; bis 1024 px trägt die
+  /* Krankmelden & Co. stehen sonst nur noch im Fuß; bis 900 px trägt die
      dunkle Kopfleiste sie ohnehin. */
   .menue__schnell {
     display: flex; flex-wrap: wrap; gap: 0.6rem;

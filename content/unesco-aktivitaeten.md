@@ -55,7 +55,7 @@ kommt noch
 
 ### Januar 2020
 
-- Projektwoche mit den 2BFH2- und 2BFP2-Klassen
+- Projektwoche mit den 2BFH2 und 2BFP2-Klassen
 
 ### März 2020
 
@@ -101,7 +101,7 @@ kommt noch
 
 ### Januar 2019
 
-- Projektwoche mit den 2BFH2- und 2BFP2-Klassen
+- Projektwoche mit den 2BFH2 und 2BFP2-Klassen
 
 ### März 2019
 
@@ -122,7 +122,7 @@ kommt noch
 
 ### Juli 2019
 
-- Teilnahme am 7. Jugendforum der SEZ (Stiftung für Entwicklung und Zusammenarbeit) im Europapark zu globalen Themen mit 10 Schülerinnen und Schülern aus unterschiedlichen Klassen! Teilnehmen können Schülerinnen und Schüler, die sich besonders bei der UNESCO-Arbeit an der GHSE engagieren
+- Teilnahme am 7. Jugendforum der SEZ (Stiftung für Entwicklung und Zusammenarbeit) im Europapark zu globalen Themen mit 10 Schülerinnen und Schülern aus unterschiedlichen Klassen! Teilnehmen können Schülerinnen und Schüler, die sich besonders bei der UNESCO Arbeit an den GHSE engagieren
 - 5 UNESCO-Zertifikate haben wir beim Abiball an besonders engagierte Schülerinnen und Schüler der 13. Klassen überreicht
 - Kulinarisches UNESCO-Treffen in Malterdingen im „Chada Thai“
 - BW-UNESCO-Sommercamp auf der BUGA in Heilbronn, drei Tage mit Schülerinnen aus dem SG 10 A und B
@@ -141,7 +141,7 @@ kommt noch
 - Lesung mit Benjamin Pütter (befreit Kindersklaven in Indien-Asien) aus seinem neuen Buch: „Kleine Hände großer Profit“
 - Scheckübergabe von 1500 € für das Kindermissionswerk „Die Sternsinger“
 - Austausch Israel und Palästina in Emmendingen und im Nahen Osten
-- Klassen SG8A/B UNESCO-Projekttag – UNESCO-Module, Leitung: Emilia Leiser und Monika Bresch
+- Klassen SG8A/B UNESCO-Projekttag-UNESCO-Module, Leitung: Emilia Leiser und Monika Bresch
 
 ### Nov. 2017
 
@@ -155,7 +155,7 @@ kommt noch
 ### März 2018
 
 - Ausstellung: „Im Fadenkreuz“ – Hintergründe der Bekleidungsindustrie
-- UNESCO-SchülerInnenseminar mit der LpB-BW im Haus auf der Alb in Bad Urach
+- UNESCO-SchülerInnenseminar mit der LpB-BW im Haus auf der Alb in Bad Urach.
 
 ### April 2018
 
@@ -173,14 +173,14 @@ kommt noch
 
 ### Ganzjährig
 
-- Fleißige Bienen sammeln Nektar auf dem Dach des Hauswirtschaftlichen Schulgebäudes und Stefan Witt schleudert zusammen mit Schülern köstlichen GHSE-Blütenhonig.
+- Fleißige Bienen sammeln Nektar auf dem Dach des hauswirtschaftlichen Schulgebäudes und Stefan Witt schleudert zusammen mit Schülern köstlichen GHSE-Blütenhonig.
 - Die Photovoltaik-Anlage auf dem Turnhallendach sammelt kräftig Sonnenenergie!
 - Viele Kolleginnen und Kollegen vermitteln in ihrem Unterricht oder auf Klassen- bzw. Studienfahrten UNESCO-Bildung und sensibilisieren ihre Schüler für die kulturellen und globalen Werte.
 
 ### Geplant 2017-18
 
-- Mohammad Darboe hält einen Vortrag über sein Heimatland Gambia, aus dem er vor zwei Jahren geflüchtet ist (ehemaliger Schüler unserer Schule)
-- Jürgen Grässlin: Wer Waffen sät wird Geflüchtete ernten – Vortrag
+- Mohammad Darboe hält einen Vortrag über sein Heimatland Gambia, aus dem er vor zwei Jahren geflüchtet ist. (ehemaliger Schüler unserer Schule)
+- Jürgen Grässlin: Wer Waffen sät wird Geflüchtete ernten-Vortrag
 - „Kleingeldaktion“ an der Schule zugunsten des Projektes „Gemüsegarten für peruanische Kaffeebauern“ des ökumenischen Peru-Kreises Herbolzheim, der UNESCO und der SMV
 - Ausstellung: „Geraubte Kinder“ – Kinder, die von Nazis den Eltern geraubt und gewaltsam eingedeutscht wurden, Ausstellung von Christof Schwarz mit eingeladenen Zeitzeugen, Leitung: Marlies Raub
 
@@ -208,7 +208,7 @@ In diesem Schuljahr werden wir von den Vertretern Christof Magar und Uli Schmitz
 ### März 2017
 
 - UNESCO-Projekttag mit der SMV zu Menschenrechten und gegen Rassismus
-- UNESCO-SchülerInnenseminar mit der LpB-BW im Haus auf der Alb in Bad Urach, Thema: „Flüchtlinge willkommen“, Leitung Marlies Raub
+- UNESCO-SchülerInnenseminar mit der LpB-BW im Haus auf der Alb in Bad Urach. Thema: „Flüchtlinge willkommen“, Leitung Marlies Raub
 
 ### April 2017
 
@@ -256,7 +256,8 @@ Die Beschäftigung mit alten Handwerkstechniken steht an der UNESCO-Projektschul
 
 - Schüleraustausch mit Polen
 - Schüleraustausch mit Israel und Palästina
-- Schüleraustausch mit einer beruflichen Schule in Pulversheim, Frankreich, gemeinsame Veranstaltungen
+- Schüleraustausch mit einer beruflichen Schule in Pulversheim, Frankreich
+  - Gemeinsame Veranstaltungen
 - Klimawandelaktionstag = Klimawandel durch Respekt
 - Springerle-Backen
 - Weihnachtsmarkt an der GHSE im Dezember 2013, organisiert durch die SchülerInnen der Altenpflegeschule der GHSE. Der Erlös geht an unsere Projekte.
@@ -271,7 +272,8 @@ Die Beschäftigung mit alten Handwerkstechniken steht an der UNESCO-Projektschul
 
 - Schüleraustausch mit Polen
 - Schüleraustausch mit Israel und Palästina
-- Aufbau einer Kooperation mit einer beruflichen Schule in Pulversheim, Frankreich, gemeinsame Veranstaltungen
+- Aufbau einer Kooperation mit einer beruflichen Schule in Pulversheim, Frankreich
+  - Gemeinsame Veranstaltungen
 - Springerle-Backen
 - Seminar in Zusammenarbeit mit der Zentrale für Politische Bildung in Bad Urach (Frühjahr 2012)
 - Projekttag der UPS-Schulen
@@ -281,7 +283,8 @@ Die Beschäftigung mit alten Handwerkstechniken steht an der UNESCO-Projektschul
 
 - Schüleraustausch mit Polen
 - Schüleraustausch mit Israel und Palästina
-- Aufbau einer Kooperation mit einer beruflichen Schule in Pulversheim, Frankreich, gemeinsame Veranstaltungen
+- Aufbau einer Kooperation mit einer beruflichen Schule in Pulversheim, Frankreich
+  - Gemeinsame Veranstaltungen
 - Springerle-Backen
 - UNESCO-Schülerseminar in Aurich mit 6 Schülern der TGT11 (Dezember 2010)
 - Seminar in Zusammenarbeit mit der Zentrale für Politische Bildung in Bad Urach (Frühjahr 2011)
@@ -290,8 +293,9 @@ Die Beschäftigung mit alten Handwerkstechniken steht an der UNESCO-Projektschul
 
 - Schüleraustausch mit Polen
 - Schüleraustausch mit Israel und Palästina
-- Aufbau einer Kooperation mit einer beruflichen Schule in Pulversheim, Frankreich, Kochen mit den KollegInnen aus Pulversheim
-- Gemeinsame Veranstaltung zum Thema 20 Jahre Mauerfall
+- Aufbau einer Kooperation mit einer beruflichen Schule in Pulversheim, Frankreich
+  - Kochen mit den KollegInnen aus Pulversheim
+  - Gemeinsame Veranstaltung zum Thema 20 Jahre Mauerfall
 - Springerle-Backen
 - Teilnahme am Weihnachtsmarkt in Emmendingen. Der Erlös geht an unsere Projekte.
 - UNESCO-Schülerseminar in Aurich (Dezember 2009)

@@ -1,5 +1,5 @@
 ---
-title: "Vertretungsplan"
+title: "Vertretungsplan der GHSE"
 description: "Wo sich Schülerinnen und Schüler der GHSE über ausgefallenen Unterricht informieren: im WebUntis und an den Monitoren in der Schule."
 ---
 

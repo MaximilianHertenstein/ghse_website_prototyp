@@ -622,6 +622,20 @@ content:
       - name: body
         label: Inhalt
         type: rich-text
+  - name: erasmus
+    label: Erasmus+ (Programm)
+    type: file
+    path: content/erasmus.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
   - name: fachgruppen
     label: Fachgruppen (Organisatorisches)
     type: file

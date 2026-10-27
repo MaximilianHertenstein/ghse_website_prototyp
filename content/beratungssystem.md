@@ -1,5 +1,5 @@
 ---
-title: "Beratungssystem"
+title: "Beratung"
 description: "Beratung und Unterstützung an der GHSE: Schulsozialarbeit, AV-Begleitung, Beratungslehrkräfte und Pädagogischer Dienst mit Kontaktdaten."
 ---
 
