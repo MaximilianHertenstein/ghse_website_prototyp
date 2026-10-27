@@ -1,16 +1,18 @@
-/* ============================================================
-   GHSE-Redesign (Prototyp) – reduziertes Neobrutalism-Design
-   Grundlage: Skill "neobrutalism" (bergside/awesome-design-skills),
-   Farbwerte aus dem GHSE-Logo (Blau-Navy-Verlauf, Orange und Gelb der
-   Pinselstriche).
-   Basis ist Schwarz/Weiß: hell = weißer Grund, schwarze Schrift;
-   dunkel = schwarzer Grund, weiße Schrift. Blau, Gelb und Orange sind
-   nur Akzentflächen. Navy kommt genau einmal vor: im Hero-Verlauf.
-   Gelb = Aktion, Hover, Markierung. Orange = Struktur und Linien.
-   Orange und Gelb liegen nie direkt aneinander (auch nicht im Hover).
-   Typo-Skala 13/15/17 px (--t-xs/-s/-m), Abstandsskala
-   4/8/12/16/24/32 px (--r-1 … --r-8).
-   ============================================================ */
+/*
+ * ============================================================
+ * GHSE-Redesign (Prototyp) – reduziertes Neobrutalism-Design
+ * Grundlage: Skill "neobrutalism" (bergside/awesome-design-skills),
+ * Farbwerte aus dem GHSE-Logo (Blau-Navy-Verlauf, Orange und Gelb der
+ * Pinselstriche).
+ * Basis ist Schwarz/Weiß: hell = weißer Grund, schwarze Schrift;
+ * dunkel = schwarzer Grund, weiße Schrift. Blau, Gelb und Orange sind
+ * nur Akzentflächen. Navy kommt genau einmal vor: im Hero-Verlauf.
+ * Gelb = Aktion, Hover, Markierung. Orange = Struktur und Linien.
+ * Orange und Gelb liegen nie direkt aneinander (auch nicht im Hover).
+ * Typo-Skala 13/15/17 px (--t-xs/-s/-m), Abstandsskala
+ * 4/8/12/16/24/32 px (--r-1 … --r-8).
+ * ============================================================
+ */
 
 @font-face {
   font-family: "Inter";
@@ -28,60 +30,75 @@
   --gelb: #f8dc59;
   --orange: #f07733;
   --blau: #0b66b3;
-  --navy: #262b6f; /* nur im Hero-Verlauf; dort --blau einsetzen = ganz ohne Navy */
-  /* dunkleres Orange für Text und Fokus (≥4.5:1 auf Weiß; im Dunkelmodus
-     wird daraus das helle Logo-Orange) */
+  --navy: #262b6f;
+  /* nur im Hero-Verlauf; dort --blau einsetzen = ganz ohne Navy */
+  /*
+   * dunkleres Orange für Text und Fokus (≥4.5:1 auf Weiß; im Dunkelmodus
+   * wird daraus das helle Logo-Orange)
+   */
   --orange-tief: #b8430f;
-
   /* Schwarz/Weiß-Basis */
-  --nacht: #000000; /* dunkle Bänder: Kopfleiste, Sprungleiste, Fuß, Band "nacht" */
-  --tinte: #000000; /* bleibt in beiden Modi Schwarz (Text auf Gelb/Orange) */
+  --nacht: #000000;
+  /* dunkle Bänder: Kopfleiste, Sprungleiste, Fuß, Band "nacht" */
+  --tinte: #000000;
+  /* bleibt in beiden Modi Schwarz (Text auf Gelb/Orange) */
   --papier: #ffffff;
   --papier2: #f2f2f2;
   --grau: #444444;
-  --weiss: #ffffff; /* bleibt in beiden Modi Weiß (Text auf Blau und Schwarz) */
-
-  /* Semantische Tokens: Karten-/Panel-Fläche, Text auf Flächen, Rahmen,
-     Schlagschatten, Linkfarbe im Fließtext, feine Linien. */
+  --weiss: #ffffff;
+  /* bleibt in beiden Modi Weiß (Text auf Blau und Schwarz) */
+  /*
+   * Semantische Tokens: Karten-/Panel-Fläche, Text auf Flächen, Rahmen,
+   * Schlagschatten, Linkfarbe im Fließtext, feine Linien.
+   */
   --flaeche: #ffffff;
   --schrift: #000000;
   --rand: #000000;
   --schatten-farbe: #000000;
   --link: #0b66b3;
   --haarlinie: rgba(0, 0, 0, 0.15);
-
-  /* Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
-     (Schwarz auf Orange ≈ 7,4:1, siehe qa/kontrast.py). */
+  --marker-hintergrund: rgba(248, 220, 89, 0.75);
+  /*
+   * Kategoriefarbe der Teilzeitschularten – nur als Fläche mit Tinte-Schrift
+   * (Schwarz auf Orange ≈ 7,4:1, siehe qa/kontrast.py).
+   */
   --kategorie-teilzeit: #f07733;
-  /* Leitbild-Quadrate: reine Farbflächen, kein Text darauf, deshalb ohne
-     Darkmode-Variante. Blau, Gelb und Orange kommen aus dem Logo; Grün und
-     Magenta sind Inhaltsfarben des Leitbilds und bleiben wie sie waren. */
+  /*
+   * Leitbild-Quadrate: reine Farbflächen, kein Text darauf, deshalb ohne
+   * Darkmode-Variante. Blau, Gelb und Orange kommen aus dem Logo; Grün und
+   * Magenta sind Inhaltsfarben des Leitbilds und bleiben wie sie waren.
+   */
   --wert-blau: #0b66b3;
   --wert-gelb: var(--gelb);
   --wert-orange: var(--kategorie-teilzeit);
   --wert-gruen: #1a9c5a;
   --wert-magenta: #d81b7c;
-  /* Hinweis- und Warnflächen: eigene Tokens, weil die Farbe im Dunkeln
-     angepasst werden muss (sonst grellt eine helle Kastenfläche im Nachtmodus). */
+  /*
+   * Hinweis- und Warnflächen: eigene Tokens, weil die Farbe im Dunkeln
+   * angepasst werden muss (sonst grellt eine helle Kastenfläche im Nachtmodus).
+   */
   --hinweis-flaeche: #fff8d6;
   --hinweis-rand: var(--rand);
   --warn-flaeche: #ffe9e6;
-  /* Orange-tief statt Orange: der Rand braucht als Grafik 3:1 gegen die
-     Warnfläche, das helle Orange erreicht nur 2,68:1. */
+  /*
+   * Orange-tief statt Orange: der Rand braucht als Grafik 3:1 gegen die
+   * Warnfläche, das helle Orange erreicht nur 2,68:1.
+   */
   --warn-rand: var(--orange-tief);
-
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
-
   --t-display: clamp(2.7rem, 6.6vw, 4.8rem);
   --t-h1: clamp(2.1rem, 4.6vw, 3.5rem);
   --t-h2: clamp(1.7rem, 3.4vw, 2.6rem);
   --t-h3: clamp(1.2rem, 1.6vw, 1.4rem);
   /* Kleine Schriftgrade: drei Stufen statt elf Zwischenwerten. */
-  --t-xs: 0.8125rem; /* 13 px: Etiketten, Meta, Beschriftungen */
-  --t-s: 0.9375rem;  /* 15 px: Sekundärtext, Buttons */
-  --t-m: 1.0625rem;  /* 17 px: Fließtext */
+  --t-xs: 0.8125rem;
+  /* 13 px: Etiketten, Meta, Beschriftungen */
+  --t-s: 0.9375rem;
+  /* 15 px: Sekundärtext, Buttons */
+  --t-m: 1.0625rem;
+  /* 17 px: Fließtext */
   /* Abstandsskala */
   --r-1: 0.25rem;
   --r-2: 0.5rem;
@@ -89,20 +106,21 @@
   --r-4: 1rem;
   --r-6: 1.5rem;
   --r-8: 2rem;
-
   --container: 1180px;
   --schmal: 760px;
   --kopfhoehe: 7rem;
-
   color-scheme: light;
 }
 
-/* ---------- Darkmode ----------
-   Zwei Wege: Systempräferenz (prefers-color-scheme) und Umschalter im Kopf
-   (localStorage "ghse-theme", gesetzt über data-theme am <html>).
-   Schwarzer Grund, weiße Schrift, Rahmen und Schatten in Weiß.
-   ponytail: Der dunkle Token-Block steht bewusst zweimal (Media-Query +
-   Attribut-Selektor) – ohne Präprozessor ist das der kürzeste Weg. */
+/*
+ * ---------- Darkmode ----------
+ * Zwei Wege: Systempräferenz (prefers-color-scheme) und Umschalter im Kopf
+ * (localStorage "ghse-theme", gesetzt über data-theme am <html>).
+ * Schwarzer Grund, weiße Schrift, Rahmen und Schatten in Weiß.
+ * Hinweis: Der dunkle Token-Block steht bewusst zweimal (Media-Query +
+ * Attribut-Selektor) – ohne Präprozessor ist das der kürzeste Weg.
+ */
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --nacht: #111111;
@@ -116,11 +134,13 @@
     --orange-tief: #f07733;
     --link: #f8dc59;
     --haarlinie: rgba(255, 255, 255, 0.25);
+    --marker-hintergrund: rgba(248, 220, 89, 0.35);
     --hinweis-flaeche: #2a2610;
     --warn-flaeche: #3b1d12;
     color-scheme: dark;
   }
 }
+
 :root[data-theme="dark"] {
   --nacht: #111111;
   --papier: #000000;
@@ -133,14 +153,20 @@
   --orange-tief: #f07733;
   --link: #f8dc59;
   --haarlinie: rgba(255, 255, 255, 0.25);
+  --marker-hintergrund: rgba(248, 220, 89, 0.35);
   --hinweis-flaeche: #2a2610;
   --warn-flaeche: #3b1d12;
   color-scheme: dark;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -152,23 +178,50 @@ body {
   font-synthesis-weight: none;
 }
 
-img { max-width: 100%; height: auto; display: block; }
-figure { margin: 0; }
-h1, h2, h3 { line-height: 1.05; letter-spacing: -0.02em; font-weight: 900; margin: 0; }
-p, ul, ol, dl, address { margin: 0; }
-address { font-style: normal; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
-::selection { background: var(--gelb); color: var(--tinte); }
+figure {
+  margin: 0;
+}
 
-a { color: inherit; }
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible {
+h1, h2, h3 {
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 900;
+  margin: 0;
+}
+
+p, ul, ol, dl, address {
+  margin: 0;
+}
+
+address {
+  font-style: normal;
+}
+
+::selection {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible, button:focus-visible, summary:focus-visible {
   outline: 3px solid var(--orange-tief);
   outline-offset: 3px;
 }
-/* Auf dunklen Flächen und auf dem Hero-Blau trägt Gelb am besten (≥4,3:1,
-   über der 3:1-Grenze für Bedienelemente). */
+
+/*
+ * Auf dunklen Flächen und auf dem Hero-Blau trägt Gelb am besten (≥4,3:1,
+ * über der 3:1-Grenze für Bedienelemente).
+ */
+
 .hero :focus-visible,
 .band--nacht :focus-visible,
 .fuss :focus-visible,
@@ -176,7 +229,9 @@ summary:focus-visible {
 .sprungleiste :focus-visible {
   outline-color: var(--gelb);
 }
+
 /* Auf gelben Flächen ist Gelb unsichtbar – dort trägt der Fokus Schwarz. */
+
 .band--gelb :focus-visible,
 .seitenkopf--akzent :focus-visible,
 .kasten--gelb :focus-visible,
@@ -184,137 +239,338 @@ summary:focus-visible {
   outline-color: var(--tinte);
 }
 
-[id] { scroll-margin-top: calc(var(--kopfhoehe) + 1rem); }
-/* Download-Kategorien liegen zusätzlich unter der Sprungleiste. Der Zuschlag
-   ist größer als die 4.5rem aus dem Entwurf: ab 641 px bricht die Leiste mit
-   sieben Kategorien auf zwei Zeilen um (gemessen 141 px), mobil wachsen die
-   Ziele auf 44 px, die Leiste bleibt dort aber einzeilig (63 px). Die
-   tatsächliche Höhe prüft qa/layout.py gegen diese Regel. */
-h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
-@media (max-width: 640px) {
-  h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 5rem); }
+[id] {
+  scroll-margin-top: calc(var(--kopfhoehe) + 1rem);
 }
 
-.container { width: min(100% - 2.5rem, var(--container)); margin-inline: auto; }
-.schmal { width: min(100% - 2.5rem, var(--schmal)); margin-inline: auto; }
+/*
+ * Download-Kategorien liegen zusätzlich unter der Sprungleiste. Der Zuschlag
+ * ist größer als die 4.5rem aus dem Entwurf: ab 641 px bricht die Leiste mit
+ * sieben Kategorien auf zwei Zeilen um (gemessen 141 px), mobil wachsen die
+ * Ziele auf 44 px, die Leiste bleibt dort aber einzeilig (63 px). Die
+ * tatsächliche Höhe prüft qa/layout.py gegen diese Regel.
+ */
+
+h2[id^="dl-"] {
+  scroll-margin-top: calc(var(--kopfhoehe) + 10rem);
+}
+
+@media (max-width: 640px) {
+  h2[id^="dl-"] {
+    scroll-margin-top: calc(var(--kopfhoehe) + 5rem);
+  }
+}
+
+.container {
+  width: min(100% - 2.5rem, var(--container));
+  margin-inline: auto;
+}
+
+.schmal {
+  width: min(100% - 2.5rem, var(--schmal));
+  margin-inline: auto;
+}
 
 .verborgen {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .sprungmarke {
-  position: absolute; left: 1rem; top: -4rem; z-index: 100;
-  background: var(--gelb); color: var(--tinte); border: var(--rahmen);
-  padding: 0.75rem 1.1rem; font-weight: 800; text-transform: uppercase;
-  text-decoration: none; box-shadow: var(--schatten-klein);
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--gelb);
+  color: var(--tinte);
+  border: var(--rahmen);
+  padding: 0.75rem 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: var(--schatten-klein);
 }
-.sprungmarke:focus { top: 1rem; }
+
+.sprungmarke:focus {
+  top: 1rem;
+}
 
 /* ---------- Bausteine ---------- */
 
 .kicker {
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.16em; color: var(--orange-tief); margin-bottom: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--orange-tief);
+  margin-bottom: 0.75rem;
 }
 
-/* ---------- Chips ----------
-   Ein Baustein, vier Varianten. Die früher eigenständigen Bausteine
-   .marke, .tag und .meta time laufen hiermit zusammen; .marke und .tag
-   bleiben als Alias erhalten, damit Fremdinhalte nicht auseinanderfallen. */
+/*
+ * ---------- Chips ----------
+ * Ein Baustein, vier Varianten. Die früher eigenständigen Bausteine
+ * .marke, .tag und .meta time laufen hiermit zusammen; .marke und .tag
+ * bleiben als Alias erhalten, damit Fremdinhalte nicht auseinanderfallen.
+ */
+
 .chip {
-  /* flex-wrap, damit ein Chip mit langem Text umbrechen kann: als reine
-     Zeile addieren sich seine Teile zur Mindestbreite und der Chip ragte bei
-     320 px um 41 px über seinen Kontainer. Passt der Chip ohnehin, ändert
-     sich nichts. */
-  display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;
-  border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
-  padding: var(--r-2) var(--r-3); text-decoration: none; font-weight: 800; font-size: var(--t-s);
+  /*
+   * flex-wrap, damit ein Chip mit langem Text umbrechen kann: als reine
+   * Zeile addieren sich seine Teile zur Mindestbreite und der Chip ragte bei
+   * 320 px um 41 px über seinen Kontainer. Passt der Chip ohnehin, ändert
+   * sich nichts.
+   */
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border: 2px solid var(--rand);
+  background: var(--flaeche);
+  color: var(--schrift);
+  padding: var(--r-2) var(--r-3);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: var(--t-s);
   box-shadow: 3px 3px 0 var(--schatten-farbe);
 }
-.chip span { font-weight: 400; font-size: var(--t-xs); color: var(--grau); }
-.chip:hover { background: var(--gelb); color: var(--tinte); }
-.chip:hover span { color: var(--tinte); }
-.chip:active { transform: translate(2px, 2px); box-shadow: none; }
-.chip--klein { padding: 0.15rem 0.5rem; font-size: var(--t-xs); letter-spacing: 0.06em; }
-.chip--akzent { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
-.chip--akzent:hover { background: var(--tinte); color: var(--gelb); }
-.chip--ruhig { background: transparent; box-shadow: none; }
+
+.chip span {
+  font-weight: 400;
+  font-size: var(--t-xs);
+  color: var(--grau);
+}
+
+.chip:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.chip:hover span {
+  color: var(--tinte);
+}
+
+.chip:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+.chip--klein {
+  padding: 0.15rem 0.5rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+}
+
+.chip--akzent {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-color: var(--tinte);
+}
+
+.chip--akzent:hover {
+  background: var(--tinte);
+  color: var(--gelb);
+}
+
+.chip--ruhig {
+  background: transparent;
+  box-shadow: none;
+}
+
 /* Drehung höchstens einmal pro Karte – deshalb als eigene Variante. */
-.chip--sticker { transform: rotate(-1.5deg); }
+
+.chip--sticker {
+  transform: rotate(-1.5deg);
+}
+
 /* Karteninterne Chips ohne Eigenschatten: sonst wirkt die Karte aufgebläht. */
-.karte .chip, .meta .chip, .zeile .chip, .hinweis .chip { box-shadow: none; }
+
+.karte .chip, .meta .chip, .zeile .chip, .hinweis .chip {
+  box-shadow: none;
+}
 
 /* Aliase für die alten Bausteine (identisch zu chip--klein). */
+
 .marke, .tag {
-  display: inline-flex; align-items: baseline;
-  border: 2px solid var(--rand); background: var(--flaeche); color: var(--schrift);
-  padding: 0.15rem 0.5rem; font-size: var(--t-xs); font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: baseline;
+  border: 2px solid var(--rand);
+  background: var(--flaeche);
+  color: var(--schrift);
+  padding: 0.15rem 0.5rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
-.marke { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); transform: rotate(-1.5deg); }
-.tag--akzent, .chip--sticker.tag--akzent { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
-/* Farbcode der Kategorien: Vollzeit bleibt gelb, Teilzeit wird orange.
-   Beide Flächen behalten Tinte-Schrift (siehe qa/kontrast.py). */
-.chip[data-kategorie="teilzeitschularten"],
-.marke[data-kategorie="teilzeitschularten"] {
-  background: var(--kategorie-teilzeit); color: var(--tinte); border-color: var(--tinte);
+
+.marke {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-color: var(--tinte);
+  transform: rotate(-1.5deg);
+}
+
+.tag--akzent, .chip--sticker.tag--akzent {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-color: var(--tinte);
+}
+
+/*
+ * Farbcode der Kategorien: Vollzeit bleibt gelb, Teilzeit wird orange.
+ * Beide Flächen behalten Tinte-Schrift (siehe qa/kontrast.py).
+ */
+
+.chip[data-kategorie="teilzeitschularten"], .marke[data-kategorie="teilzeitschularten"] {
+  background: var(--kategorie-teilzeit);
+  color: var(--tinte);
+  border-color: var(--tinte);
 }
 
 .btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font: inherit; font-size: var(--t-s); font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.05em; line-height: 1;
-  padding: var(--r-4) var(--r-6); text-decoration: none; cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-size: var(--t-s);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  padding: var(--r-4) var(--r-6);
+  text-decoration: none;
+  cursor: pointer;
   white-space: nowrap;
-  background: var(--flaeche); color: var(--schrift);
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
+  background: var(--flaeche);
+  color: var(--schrift);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
-.btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--schatten-farbe); }
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--schatten-farbe);
+}
+
 /* Gelb = Hauptaktion, Orange = zweite Aktion. Beide mit schwarzer Schrift. */
-.btn--akzent { background: var(--gelb); color: var(--tinte); display: table; margin:  auto; }
-.btn--orange { background: var(--orange); color: var(--tinte); }
-.btn--geist { background: transparent; }
-.btn--klein { font-size: var(--t-xs); padding: var(--r-3) var(--r-4); box-shadow: 3px 3px 0 var(--schatten-farbe); }
-.btn--klein:hover { box-shadow: 5px 5px 0 var(--schatten-farbe); }
+
+.btn--akzent {
+  background: var(--gelb);
+  color: var(--tinte);
+  display: table;
+  margin: auto;
+}
+
+.btn--orange {
+  background: var(--orange);
+  color: var(--tinte);
+}
+
+.btn--geist {
+  background: transparent;
+}
+
+.btn--klein {
+  font-size: var(--t-xs);
+  padding: var(--r-3) var(--r-4);
+  box-shadow: 3px 3px 0 var(--schatten-farbe);
+}
+
+.btn--klein:hover {
+  box-shadow: 5px 5px 0 var(--schatten-farbe);
+}
+
 /* Deaktiviert: flach, grau, kein Schatten, keine Bewegung. */
+
 .btn:disabled, .btn[aria-disabled="true"] {
-  background: var(--papier2); color: var(--grau); border-color: var(--grau);
-  box-shadow: none; transform: none; cursor: not-allowed;
+  background: var(--papier2);
+  color: var(--grau);
+  border-color: var(--grau);
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
 }
 
 .linkpfeil {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  font-weight: 800; font-size: var(--t-s); text-transform: uppercase;
-  letter-spacing: 0.05em; text-decoration: none;
-  border-bottom: 3px solid var(--orange); padding-bottom: 0.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: var(--t-s);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-bottom: 3px solid var(--orange);
+  padding-bottom: 0.15rem;
 }
-.linkpfeil:hover { background: var(--gelb); color: var(--tinte); border-bottom-color: var(--tinte); }
+
+.linkpfeil:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-bottom-color: var(--tinte);
+}
 
 .band {
   padding: clamp(3rem, 6vw, 5rem) 0;
   border-top: var(--rahmen);
 }
-.band--papier { background: var(--papier); }
-.band--nacht { background: var(--nacht); color: var(--weiss); }
-/* Auf dem schwarzen Band wäre ein schwarzer Schlagschatten unsichtbar –
-   hier schlägt die Karte einen gelben Schatten. Rahmen und Schatten sind
-   zusammengesetzte Tokens und werden deshalb hier neu gebildet. */
+
+.band--papier {
+  background: var(--papier);
+}
+
+.band--nacht {
+  background: var(--nacht);
+  color: var(--weiss);
+}
+
+/*
+ * Auf dem schwarzen Band wäre ein schwarzer Schlagschatten unsichtbar –
+ * hier schlägt die Karte einen gelben Schatten. Rahmen und Schatten sind
+ * zusammengesetzte Tokens und werden deshalb hier neu gebildet.
+ */
+
 .band--nacht {
   --schatten-farbe: var(--gelb);
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
-/* Früher gestreift, jetzt eine flache helle Fläche. Der Klassenname bleibt,
-   damit das HTML nicht angefasst werden muss. */
-.band--gestreift { background: var(--papier2); }
+
+/*
+ * Früher gestreift, jetzt eine flache helle Fläche. Der Klassenname bleibt,
+ * damit das HTML nicht angefasst werden muss.
+ */
+
+.band--gestreift {
+  background: var(--papier2);
+}
+
 /* Genau ein Band als Vollton-Gelb: Gelb ist sonst nur Linienfarbe. */
-.band--gelb { background: var(--gelb); color: var(--tinte); }
-/* Gelbe Flächen bleiben in beiden Modi hell: die Tokens werden lokal auf
-   Hell zurückgesetzt, damit Rahmen, Schatten und Karten darin nicht mit dem
-   Dunkelmodus kippen (weiße Ränder auf Gelb wären kaum zu sehen). */
+
+.band--gelb {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+/*
+ * Gelbe Flächen bleiben in beiden Modi hell: die Tokens werden lokal auf
+ * Hell zurückgesetzt, damit Rahmen, Schatten und Karten darin nicht mit dem
+ * Dunkelmodus kippen (weiße Ränder auf Gelb wären kaum zu sehen).
+ */
+
 .band--gelb, .seitenkopf--akzent, .kasten--gelb, .faktenband {
   --flaeche: #ffffff;
   --schrift: #000000;
@@ -327,238 +583,522 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
-.band--gelb h2,
-.band--gelb .kicker,
-.band--gelb .band__einleitung { color: var(--tinte); }
-.band--gelb .btn--geist { border-color: var(--tinte); color: var(--tinte); }
-.band--gelb .btn--geist:hover { background: var(--tinte); color: var(--gelb); }
-.band--gelb .schulleben img { border-color: var(--tinte); box-shadow: var(--schatten-klein); }
-.band--nacht .kicker { color: var(--gelb); }
-.band--nacht h2 { color: var(--weiss); }
-.band--nacht .btn--geist { border-color: var(--gelb); color: var(--gelb); }
-.hero .btn--geist { border-color: var(--weiss); color: var(--weiss); }
-.band--nacht .btn--geist:hover,
-.hero .btn--geist:hover { background: var(--gelb); color: var(--tinte); }
+
+.band--gelb h2, .band--gelb .kicker, .band--gelb .band__einleitung {
+  color: var(--tinte);
+}
+
+.band--gelb .btn--geist {
+  border-color: var(--tinte);
+  color: var(--tinte);
+}
+
+.band--gelb .btn--geist:hover {
+  background: var(--tinte);
+  color: var(--gelb);
+}
+
+.band--gelb .schulleben img {
+  border-color: var(--tinte);
+  box-shadow: var(--schatten-klein);
+}
+
+.band--nacht .kicker {
+  color: var(--gelb);
+}
+
+.band--nacht h2 {
+  color: var(--weiss);
+}
+
+.band--nacht .btn--geist {
+  border-color: var(--gelb);
+  color: var(--gelb);
+}
+
+.hero .btn--geist {
+  border-color: var(--weiss);
+  color: var(--weiss);
+}
+
+.band--nacht .btn--geist:hover, .hero .btn--geist:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+}
 
 .kopfzeile {
-  display: flex; flex-wrap: wrap; align-items: flex-end;
-  justify-content: space-between; gap: 1.25rem; margin-bottom: var(--r-8);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: var(--r-8);
 }
-.kopfzeile h2 { font-size: var(--t-h2); }
+
+.kopfzeile h2 {
+  font-size: var(--t-h2);
+}
+
 .anzahl {
-  display: inline-block; background: var(--tinte); color: var(--gelb);
-  font-size: 0.5em; vertical-align: 0.55em; padding: 0.15em 0.5em;
-  letter-spacing: 0.04em; margin-left: 0.4rem;
+  display: inline-block;
+  background: var(--tinte);
+  color: var(--gelb);
+  font-size: 0.5em;
+  vertical-align: 0.55em;
+  padding: 0.15em 0.5em;
+  letter-spacing: 0.04em;
+  margin-left: 0.4rem;
 }
-.hinweiszeile { font-size: var(--t-xs); font-weight: 700; color: var(--grau); }
+
+.hinweiszeile {
+  font-size: var(--t-xs);
+  font-weight: 700;
+  color: var(--grau);
+}
 
 .meta {
-  font-size: var(--t-xs); font-weight: 700; color: var(--grau);
-  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  color: var(--grau);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
 }
+
 /* Datums-, Größen- und Zahlenangaben: Tabellenziffern, damit Spalten stehen. */
-.meta time, .tag, .chip, .zeile__daten, .anzahl { font-variant-numeric: tabular-nums; }
-.meta time {
-  background: var(--gelb); border: 2px solid var(--tinte);
-  padding: 0.05rem 0.4rem; color: var(--tinte); font-weight: 800;
+
+.meta time, .tag, .chip, .zeile__daten, .anzahl {
+  font-variant-numeric: tabular-nums;
 }
+
+.meta time {
+  background: var(--gelb);
+  border: 2px solid var(--tinte);
+  padding: 0.05rem 0.4rem;
+  color: var(--tinte);
+  font-weight: 800;
+}
+
 .lead {
-  font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.5;
-  font-weight: 500; max-width: 60ch; margin-top: 1rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  font-weight: 500;
+  max-width: 60ch;
+  margin-top: 1rem;
 }
 
 /* ---------- Kopf ---------- */
 
 .kopf {
-  position: sticky; top: 0; z-index: 60;
-  background: var(--papier); border-bottom: var(--rahmen);
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--papier);
+  border-bottom: var(--rahmen);
 }
+
 .leiste {
-  background: var(--nacht); color: var(--weiss);
-  font-size: var(--t-xs); font-weight: 600;
+  background: var(--nacht);
+  color: var(--weiss);
+  font-size: var(--t-xs);
+  font-weight: 600;
 }
+
 .leiste__innen {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
-  align-items: center; justify-content: space-between; padding: 0.45rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0;
 }
-.leiste a { color: var(--weiss); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-.leiste__schnell { display: flex; gap: 1.25rem; }
+
+.leiste a {
+  color: var(--weiss);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.leiste__schnell {
+  display: flex;
+  gap: 1.25rem;
+}
+
 .leiste__schnell a {
-  text-transform: uppercase; letter-spacing: 0.08em;
-  font-weight: 800; font-size: var(--t-xs); text-decoration: none;
-  border-bottom: 2px solid var(--gelb); padding-bottom: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  font-size: var(--t-xs);
+  text-decoration: none;
+  border-bottom: 2px solid var(--gelb);
+  padding-bottom: 1px;
 }
-.leiste__schnell a:hover { background: var(--gelb); color: var(--tinte); }
-.leiste__trenn { opacity: 0.5; }
+
+.leiste__schnell a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.leiste__trenn {
+  opacity: 0.5;
+}
 
 .kopf__innen {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1.5rem; padding: 0.75rem 0; position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.75rem 0;
+  position: relative;
 }
+
 /* Logo ohne Fläche, Rand oder Innenabstand, in beiden Modi gleich groß. */
+
 .marke-link {
-    display: inline-flex;
-    align-items: center;
-    flex: 0 0 auto;
-    background: inherit;
-    border: 0;
-    padding: 0;
-    font-size: var(--t-m);
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  background: inherit;
+  border: 0;
+  padding: 0;
+  font-size: var(--t-m);
 }
 
 .marke-link img {
-    display: block;
-    height: 3rem;
-    width: auto;
-    max-width: none;
-    flex: 0 0 auto;
+  display: block;
+  height: 3rem;
+  width: auto;
+  max-width: none;
+  flex: 0 0 auto;
 }
 
 .marke-link:hover img {
-    transform: rotate(-2deg);
+  transform: rotate(-2deg);
 }
 
-.menue { display: flex; align-items: center; gap: 1rem; }
-.menue ul {
-  display: flex; list-style: none; margin: 0; padding: 0; gap: 0.15rem;
+.menue {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
+
+.menue ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.15rem;
+}
+
 .menue ul a {
-  display: block; padding: 0.65rem 0.75rem; text-decoration: none;
-  font-weight: 800; font-size: var(--t-s); text-transform: uppercase;
+  display: block;
+  padding: 0.65rem 0.75rem;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: var(--t-s);
+  text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-/* Schriftfarbe mitsetzen: im dunklen Schema ist --schrift hell und würde auf
-   der Gelbfläche mit 1,5:1 verschwinden. Die aktuelle Seite ist blau mit
-   weißer Schrift (5,9:1) – in beiden Modi gleich. */
-.menue ul a:hover { background: var(--gelb); color: var(--tinte); }
-.menue ul a[aria-current="page"] { background: var(--blau); color: var(--weiss); }
 
-/* Untermenü. Über 1199 px hängt die Tafel als Panel unter ihrem Eintrag,
-   darunter steht sie flach im Menüpanel – dieselbe Markierung, zwei
-   Darstellungen, kein JavaScript. Die Überschriften der Originalseite
-   („Über uns“, „Teilzeitschularten“) sind keine Links und setzen sich hier
-   als graue Zwischenzeile fort. */
-.menue ul.menue__tafel { padding: 0 0 0 0.9rem; }
-.menue ul.menue__tafel a {
-  font-weight: 600; font-size: var(--t-s); text-transform: none; letter-spacing: 0;
+/*
+ * Schriftfarbe mitsetzen: im dunklen Schema ist --schrift hell und würde auf
+ * der Gelbfläche mit 1,5:1 verschwinden. Die aktuelle Seite ist blau mit
+ * weißer Schrift (5,9:1) – in beiden Modi gleich.
+ */
+
+.menue ul a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
 }
+
+.menue ul a[aria-current="page"] {
+  background: var(--blau);
+  color: var(--weiss);
+}
+
+/*
+ * Untermenü. Über 1199 px hängt die Tafel als Panel unter ihrem Eintrag,
+ * darunter steht sie flach im Menüpanel – dieselbe Markierung, zwei
+ * Darstellungen, kein JavaScript. Die Überschriften der Originalseite
+ * („Über uns“, „Teilzeitschularten“) sind keine Links und setzen sich hier
+ * als graue Zwischenzeile fort.
+ */
+
+.menue ul.menue__tafel {
+  padding: 0 0 0 0.9rem;
+}
+
+.menue ul.menue__tafel a {
+  font-weight: 600;
+  font-size: var(--t-s);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .menue__abteilung {
-  padding: 0.9rem 0.5rem 0.2rem; font-size: var(--t-xs); font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.09em; color: var(--grau);
+  padding: 0.9rem 0.5rem 0.2rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--grau);
 }
 
 @media (min-width: 1200px) {
-  .menue__gruppe { position: relative; }
+  .menue__gruppe {
+    position: relative;
+  }
   .menue ul.menue__tafel {
-    display: none; position: absolute; top: 100%; left: 0; z-index: 70;
-    min-width: 18rem; max-width: 26rem; padding: 0.45rem; margin: 0;
-    background: var(--papier); border: var(--rahmen); box-shadow: var(--schatten);
-    /* Die Tafel „Unsere Schule“ ist rund 660 px hoch. Auf einem 768-px-
-       Fenster bliebe der letzte Eintrag ohne diese Grenze unter dem Rand –
-       die Scrollfläche hält jeden Punkt erreichbar. */
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 70;
+    min-width: 18rem;
+    max-width: 26rem;
+    padding: 0.45rem;
+    margin: 0;
+    background: var(--papier);
+    border: var(--rahmen);
+    box-shadow: var(--schatten);
+    /*
+     * Die Tafel „Unsere Schule“ ist rund 660 px hoch. Auf einem 768-px-
+     * Fenster bliebe der letzte Eintrag ohne diese Grenze unter dem Rand –
+     * die Scrollfläche hält jeden Punkt erreichbar.
+     */
     max-height: calc(100vh - var(--kopfhoehe) - 0.75rem);
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .menue__gruppe:hover > ul.menue__tafel,
-  .menue__gruppe:focus-within > ul.menue__tafel { display: block; }
-  .menue ul.menue__tafel a { padding: 0.45rem 0.6rem; }
+  .menue__gruppe:hover > ul.menue__tafel, .menue__gruppe:focus-within > ul.menue__tafel {
+    display: block;
+  }
+  .menue ul.menue__tafel a {
+    padding: 0.45rem 0.6rem;
+  }
 }
 
-/* Schnellzugriff nur mobil: unter 900 px wird die dunkle Kopfleiste mit
-   „Krankmelden, Mail, Anfahrt" ausgeblendet – die Krankmeldung wäre dann nur
-   noch im Fuß erreichbar. Sie steht deshalb als erster Block im Menüpanel. */
-.menue__schnell { display: none; }
+/*
+ * Schnellzugriff nur mobil: unter 900 px wird die dunkle Kopfleiste mit
+ * „Krankmelden, Mail, Anfahrt" ausgeblendet – die Krankmeldung wäre dann nur
+ * noch im Fuß erreichbar. Sie steht deshalb als erster Block im Menüpanel.
+ */
+
+.menue__schnell {
+  display: none;
+}
 
 .menueknopf {
-  display: none; align-items: center; gap: 0.6rem;
-  background: var(--flaeche); border: var(--rahmen); cursor: pointer;
-  box-shadow: 3px 3px 0 var(--schatten-farbe); padding: 0.55rem 0.8rem;
-  font: inherit; font-weight: 800; text-transform: uppercase;
-  font-size: var(--t-xs); letter-spacing: 0.06em; color: var(--schrift);
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--flaeche);
+  border: var(--rahmen);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--schatten-farbe);
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  color: var(--schrift);
   min-height: 2.75rem;
 }
-/* Balken liegen in einem eigenen Stapel, damit der Knopf in einer Zeile mit
-   dem Text bleibt: drei gestapelte Balken plus Text in der Spalte machten
-   das Knopffeld 83 px hoch und drückten den Mobilkopf auf 110 px. */
-.menueknopf__balken_ { display: grid; gap: 4px; }
-.menueknopf__balken { display: block; width: 22px; height: 3px; background: var(--schrift); }
-.menueknopf:hover { background: var(--gelb); color: var(--tinte); }
-.menueknopf:hover .menueknopf__balken { background: var(--tinte); }
-.menueknopf:active, .modusknopf:active { transform: translate(3px, 3px); box-shadow: none; }
+
+/*
+ * Balken liegen in einem eigenen Stapel, damit der Knopf in einer Zeile mit
+ * dem Text bleibt: drei gestapelte Balken plus Text in der Spalte machten
+ * das Knopffeld 83 px hoch und drückten den Mobilkopf auf 110 px.
+ */
+
+.menueknopf__balken\_ {
+  display: grid;
+  gap: 4px;
+}
+
+.menueknopf__balken {
+  display: block;
+  width: 22px;
+  height: 3px;
+  background: var(--schrift);
+}
+
+.menueknopf:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.menueknopf:hover .menueknopf__balken {
+  background: var(--tinte);
+}
+
+.menueknopf:active, .modusknopf:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
 
 /* Halte-Modus-Schalter (Hell/Dunkel), Logik in nav.js */
-.kopf__ende { display: flex; align-items: center; gap: 0.6rem; }
-.modusknopf {
-  display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer;
-  background: var(--flaeche); border: var(--rahmen); color: var(--schrift);
-  box-shadow: 3px 3px 0 var(--schatten-farbe); padding: 0.55rem 0.8rem;
-  font: inherit; font-weight: 800; text-transform: uppercase;
-  font-size: var(--t-xs); letter-spacing: 0.06em;
-}
-.modusknopf svg { width: 18px; height: 18px; display: block; }
-.modusknopf .modusknopf__mond { display: none; }
-.modusknopf[data-ist="dunkel"] .modusknopf__sonne { display: none; }
-.modusknopf[data-ist="dunkel"] .modusknopf__mond { display: block; }
-.modusknopf:hover { background: var(--gelb); color: var(--tinte); }
 
-/* ---------- Hero ----------
-   Die eine große Farbfläche der Seite: der Blau-Navy-Verlauf des Logos.
-   Alles darauf ist weiß, das Etikett gelb mit schwarzer Schrift (Gelb als
-   Schrift auf Blau erreicht nur 4,3:1). */
+.kopf__ende {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.modusknopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  background: var(--flaeche);
+  border: var(--rahmen);
+  color: var(--schrift);
+  box-shadow: 3px 3px 0 var(--schatten-farbe);
+  padding: 0.55rem 0.8rem;
+  font: inherit;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+}
+
+.modusknopf svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.modusknopf .modusknopf__mond {
+  display: none;
+}
+
+.modusknopf[data-ist="dunkel"] .modusknopf__sonne {
+  display: none;
+}
+
+.modusknopf[data-ist="dunkel"] .modusknopf__mond {
+  display: block;
+}
+
+.modusknopf:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+/*
+ * ---------- Hero ----------
+ * Die eine große Farbfläche der Seite: der Blau-Navy-Verlauf des Logos.
+ * Alles darauf ist weiß, das Etikett gelb mit schwarzer Schrift (Gelb als
+ * Schrift auf Blau erreicht nur 4,3:1).
+ */
 
 .hero {
   background: linear-gradient(95deg, var(--navy) 0%, var(--blau) 75%);
   color: var(--weiss);
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
-
 }
+
 .hero__innen {
-  display: grid; 
+  display: grid;
   grid-template-columns: 2fr 2fr;
   gap: clamp(0rem, 2vw, 2rem);
   margin-top: var(--r-6);
 }
+
 .hero .kicker {
-  display: inline-block; background: var(--gelb); color: var(--tinte);
-  border: 3px solid var(--tinte); box-shadow: 3px 3px 0 var(--weiss);
+  display: inline-block;
+  background: var(--gelb);
+  color: var(--tinte);
+  border: 3px solid var(--tinte);
+  box-shadow: 3px 3px 0 var(--weiss);
   padding: 0.3rem 0.7rem;
 }
+
 .hero__titel {
-  font-size: var(--t-display); font-weight: 900;
-  letter-spacing: -0.035em; line-height: 0.94; text-wrap: balance;
+  font-size: var(--t-display);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+  text-wrap: balance;
   margin-top: var(--r-6);
 }
+
 .hero__titel::after {
-  content: ""; display: block; width: 130px; height: 8px;
-  background: var(--gelb); margin-top: var(--r-6);
+  content: "";
+  display: block;
+  width: 130px;
+  height: 8px;
+  background: var(--gelb);
+  margin-top: var(--r-6);
 }
+
 .hero__unter {
-  margin-top: 1.5rem; font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-  line-height: 1.5; color: var(--weiss); max-width: 46ch;
+  margin-top: 1.5rem;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--weiss);
+  max-width: 46ch;
 }
-.hero__knoepfe { display: flex; flex-wrap: wrap; gap: var(--r-4); margin-top: 2rem; }
-/* Termin-Ticket: zweite Aktion im Hero. Wird nur gerendert, wenn die
-   Startseite ein Datum führt – siehe naechster_termin in .pages.yml. */
+
+.hero__knoepfe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--r-4);
+  margin-top: 2rem;
+}
+
+/*
+ * Termin-Ticket: zweite Aktion im Hero. Wird nur gerendert, wenn die
+ * Startseite ein Datum führt – siehe naechster_termin in .pages.yml.
+ */
+
 .hero__ticket {
-  display: inline-flex; align-items: center; gap: 1rem;
-  background: var(--flaeche); color: var(--schrift);
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: var(--r-4) var(--r-6); margin-top: var(--r-4); text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--flaeche);
+  color: var(--schrift);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+  padding: var(--r-4) var(--r-6);
+  margin-top: var(--r-4);
+  text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.hero__ticket:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
+
+.hero__ticket:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
 .hero__ticket-datum {
-  font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; line-height: 1;
-  font-variant-numeric: tabular-nums; letter-spacing: -0.02em;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
-.hero__ticket-text { display: grid; gap: 0.15rem; }
+
+.hero__ticket-text {
+  display: grid;
+  gap: 0.15rem;
+}
+
 .hero__ticket-label {
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--grau);
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--grau);
 }
-.hero__ticket-titel { font-weight: 800; }
+
+.hero__ticket-titel {
+  font-weight: 800;
+}
+
 .hero__punkte {
   display: flex;
   flex-wrap: wrap;
@@ -568,708 +1108,1613 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   margin: 2rem auto 0;
   justify-content: center;
 }
+
 .hero__punkte li {
-  border: 2px solid rgba(255, 255, 255, 0.7); padding: 0.3rem 0.6rem;
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 0.3rem 0.6rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
   letter-spacing: 0.08em;
 }
+
 /* Ein Schlagschatten in Orange, der Gegenfarbe zum Blau. */
+
 .hero__bild img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
-  border: 4px solid var(--weiss); box-shadow: 14px 14px 0 var(--orange);
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 4px solid var(--weiss);
+  box-shadow: 14px 14px 0 var(--orange);
 }
 
 /* ---------- Laufband mit Fakten ---------- */
 
 .faktenband {
-  border-top: var(--rahmen); background: var(--gelb); color: var(--tinte);
-  padding: 1rem 0; overflow: hidden;
+  border-top: var(--rahmen);
+  background: var(--gelb);
+  color: var(--tinte);
+  padding: 1rem 0;
+  overflow: hidden;
 }
+
 .faktenband__innen {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
-  align-items: center; justify-content: center;
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.08em; text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
 }
-.faktenband__innen span[aria-hidden] { color: rgba(0, 0, 0, 0.45); }
+
+.faktenband__innen span[aria-hidden] {
+  color: rgba(0, 0, 0, 0.45);
+}
 
 /* ---------- Karten ---------- */
 
-.raster { display: grid; gap: var(--r-8); }
-.raster--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.raster {
+  display: grid;
+  gap: var(--r-8);
+}
+
+.raster--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 /* Zwei Karten in einer Dreiergruppe lassen sonst eine leere Spalte stehen. */
-.raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-/* Newsraster: die Featured-Karte spannt die volle Breite, die übrigen Karten
-   füllen darunter Dreier-Zeilen. */
-.raster--news { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.raster--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/*
+ * Newsraster: die Featured-Karte spannt die volle Breite, die übrigen Karten
+ * füllen darunter Dreier-Zeilen.
+ */
+
+.raster--news {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .zeitgruppe__titel {
-  font-size: var(--t-h2); margin-bottom: 1.75rem; padding-bottom: 0.6rem;
-  border-bottom: 3px solid var(--rand); font-variant-numeric: tabular-nums;
+  font-size: var(--t-h2);
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px solid var(--rand);
+  font-variant-numeric: tabular-nums;
 }
 
 .karte {
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten);
   color: var(--schrift);
-  display: flex; transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.karte:hover, .karte:focus-within { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--schatten-farbe); }
+
+.karte:hover, .karte:focus-within {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--schatten-farbe);
+}
+
 .karte__link {
-  display: flex; flex-direction: column; height: 100%;
-  text-decoration: none; color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
 }
-/* Fokus am Kartenrahmen statt am inneren Link – sonst stehen zwei Ringe
-   übereinander. :has() zeichnet den Ring auf die Karte, der Fokus bleibt
-   trotzdem am Link. */
-.karte:has(.karte__link:focus-visible),
-.instabeitrag:has(.instabeitrag__link:focus-visible) {
-  outline: 3px solid var(--orange-tief); outline-offset: 3px;
+
+/*
+ * Fokus am Kartenrahmen statt am inneren Link – sonst stehen zwei Ringe
+ * übereinander. :has() zeichnet den Ring auf die Karte, der Fokus bleibt
+ * trotzdem am Link.
+ */
+
+.karte:has(.karte__link:focus-visible), .instabeitrag:has(.instabeitrag__link:focus-visible) {
+  outline: 3px solid var(--orange-tief);
+  outline-offset: 3px;
 }
-.karte__link:focus-visible,
-.instabeitrag__link:focus-visible { outline: none; }
-.band--nacht .karte:has(.karte__link:focus-visible),
-.band--nacht .instabeitrag:has(.instabeitrag__link:focus-visible) {
+
+.karte__link:focus-visible, .instabeitrag__link:focus-visible {
+  outline: none;
+}
+
+.band--nacht .karte:has(.karte__link:focus-visible), .band--nacht .instabeitrag:has(.instabeitrag__link:focus-visible) {
   outline-color: var(--gelb);
 }
+
 .karte__bild {
-  border-bottom: var(--rahmen); aspect-ratio: 16 / 10; overflow: hidden;
+  border-bottom: var(--rahmen);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
   background: var(--gelb);
 }
+
 .karte__bild img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   transition: transform 0.3s ease;
 }
-.karte:hover .karte__bild img,
-.karte:focus-within .karte__bild img { transform: scale(1.04); }
+
+.karte:hover .karte__bild img, .karte:focus-within .karte__bild img {
+  transform: scale(1.04);
+}
+
 .karte__koerper {
-  display: flex; flex-direction: column; gap: var(--r-3);
-  padding: var(--r-6); flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--r-3);
+  padding: var(--r-6);
+  flex: 1;
 }
-.karte__titel { font-size: var(--t-h3); font-weight: 900; text-wrap: balance; }
-.karte__link:hover .karte__titel,
-.karte__link:focus-visible .karte__titel {
-  text-decoration: underline; text-decoration-color: var(--orange);
-  text-decoration-thickness: 4px; text-underline-offset: 4px;
+
+.karte__titel {
+  font-size: var(--t-h3);
+  font-weight: 900;
+  text-wrap: balance;
 }
-.karte__text { color: var(--grau); font-size: var(--t-s); }
+
+.karte__link:hover .karte__titel, .karte__link:focus-visible .karte__titel {
+  text-decoration: underline;
+  text-decoration-color: var(--orange);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 4px;
+}
+
+.karte__text {
+  color: var(--grau);
+  font-size: var(--t-s);
+}
+
 .karte__aktion {
-  margin-top: auto; align-self: flex-start; padding-top: 0.75rem;
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.07em; border-bottom: 3px solid var(--orange);
+  margin-top: auto;
+  align-self: flex-start;
+  padding-top: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 3px solid var(--orange);
 }
-.karte--news .karte__bild--zeitung img { object-fit: cover; object-position: left top; }
 
-/* Featured-Karte: die neueste Meldung spannt die volle Rasterbreite und
-   bekommt ein 21:9-Bild plus größeren Titel. */
-.karte--gross { grid-column: 1 / -1; }
-.karte--gross .karte__bild { aspect-ratio: 21 / 9; }
-.karte--gross .karte__titel { font-size: var(--t-h2); }
+.karte--news .karte__bild--zeitung img {
+  object-fit: cover;
+  object-position: left top;
+}
 
-/* Variante ohne Abbildung: statt einer Leerfläche von rund 230 px trägt ein
-   typografischer Kopf die Karte – Quelle als Sticker, Datum groß. */
-.karte--text .karte__koerper { gap: 0.9rem; }
+/*
+ * Featured-Karte: die neueste Meldung spannt die volle Rasterbreite und
+ * bekommt ein 21:9-Bild plus größeren Titel.
+ */
+
+.karte--gross {
+  grid-column: 1 / -1;
+}
+
+.karte--gross .karte__bild {
+  aspect-ratio: 21 / 9;
+}
+
+.karte--gross .karte__titel {
+  font-size: var(--t-h2);
+}
+
+/*
+ * Variante ohne Abbildung: statt einer Leerfläche von rund 230 px trägt ein
+ * typografischer Kopf die Karte – Quelle als Sticker, Datum groß.
+ */
+
+.karte--text .karte__koerper {
+  gap: 0.9rem;
+}
+
 .karte--text .karte__datum {
-  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1;
-  letter-spacing: -0.03em; font-variant-numeric: tabular-nums;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Service ---------- */
 
 .serviceliste {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--r-8); list-style: none; padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--r-8);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
 .service {
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
-  padding: var(--r-6); display: flex; flex-direction: column; gap: var(--r-3);
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten);
+  padding: var(--r-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--r-3);
 }
-.service h3 { font-size: 1.15rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; }
-.service p { color: var(--grau); font-size: var(--t-s); }
-.service .linkpfeil { margin-top: auto; align-self: flex-start; }
+
+.service h3 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.service p {
+  color: var(--grau);
+  font-size: var(--t-s);
+}
+
+.service .linkpfeil {
+  margin-top: auto;
+  align-self: flex-start;
+}
 
 /* ---------- Seitenköpfe ---------- */
 
 .seitenkopf {
   padding: clamp(2.25rem, 4.5vw, 3.5rem) 0 clamp(2rem, 4vw, 3rem);
-  background: var(--papier); border-bottom: var(--rahmen);
+  background: var(--papier);
+  border-bottom: var(--rahmen);
 }
-.seitenkopf--akzent { background: var(--gelb); color: var(--tinte); }
-.seitenkopf--akzent .kicker,
-.seitenkopf--akzent .einleitung { color: var(--tinte); }
-/* Auf gelber Fläche trägt die Kategorie-Farbcode nicht mehr – hier wird der
-   Chip weiß. Der Farbcode bleibt den Karten der Übersicht vorbehalten. */
-.seitenkopf--akzent .marke,
-.seitenkopf--akzent .chip { background: var(--weiss); color: var(--tinte); }
-.seitenkopf h1 { font-size: var(--t-h1); text-wrap: balance; }
-.einleitung {
-  margin-top: 1.25rem; font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  line-height: 1.6; max-width: 68ch; color: var(--grau);
-}
-/* Mehrere Absätze im Vorspann (der Global-Reset setzt p auf margin: 0). */
-.einleitung > * + * { margin-top: 1rem; }
-.zurueck { margin-bottom: 1.25rem; }
-.zurueck a {
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.06em; text-decoration: none;
-  border-bottom: 3px solid var(--orange); padding-bottom: 0.15rem;
-}
-.zurueck a:hover { background: var(--gelb); color: var(--tinte); border-bottom-color: var(--tinte); }
 
-/* Brotkrumen statt Zurück-Link: zeigt den Weg von der Übersicht zur
-   Einzelseite und bleibt über `nav[aria-label]` tastatur- und
-   screenreader-gerecht. */
-.brotkrumen { margin-bottom: 1.25rem; }
+.seitenkopf--akzent {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.seitenkopf--akzent .kicker, .seitenkopf--akzent .einleitung {
+  color: var(--tinte);
+}
+
+/*
+ * Auf gelber Fläche trägt die Kategorie-Farbcode nicht mehr – hier wird der
+ * Chip weiß. Der Farbcode bleibt den Karten der Übersicht vorbehalten.
+ */
+
+.seitenkopf--akzent .marke, .seitenkopf--akzent .chip {
+  background: var(--weiss);
+  color: var(--tinte);
+}
+
+.seitenkopf h1 {
+  font-size: var(--t-h1);
+  text-wrap: balance;
+}
+
+.einleitung {
+  margin-top: 1.25rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+  max-width: 68ch;
+  color: var(--grau);
+}
+
+/* Mehrere Absätze im Vorspann (der Global-Reset setzt p auf margin: 0). */
+
+.einleitung > * + * {
+  margin-top: 1rem;
+}
+
+.zurueck {
+  margin-bottom: 1.25rem;
+}
+
+.zurueck a {
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-bottom: 3px solid var(--orange);
+  padding-bottom: 0.15rem;
+}
+
+.zurueck a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-bottom-color: var(--tinte);
+}
+
+/*
+ * Brotkrumen statt Zurück-Link: zeigt den Weg von der Übersicht zur
+ * Einzelseite und bleibt über `nav[aria-label]` tastatur- und
+ * screenreader-gerecht.
+ */
+
+.brotkrumen {
+  margin-bottom: 1.25rem;
+}
+
 .brotkrumen ol {
-  list-style: none; padding: 0; margin: 0;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem;
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.brotkrumen li { display: flex; align-items: center; gap: 0.35rem; }
-.brotkrumen li + li::before { content: "›"; opacity: 0.55; }
-.brotkrumen a { text-decoration: none; border-bottom: 2px solid var(--tinte); }
-.brotkrumen a:hover { background: var(--tinte); color: var(--gelb); }
+
+.brotkrumen li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.brotkrumen li + li::before {
+  content: "›";
+  opacity: 0.55;
+}
+
+.brotkrumen a {
+  text-decoration: none;
+  border-bottom: 2px solid var(--tinte);
+}
+
+.brotkrumen a:hover {
+  background: var(--tinte);
+  color: var(--gelb);
+}
 
 /* ---------- Sprungleiste Downloads ---------- */
 
 .sprungleiste {
-  background: var(--nacht); color: var(--weiss);
-  border-bottom: var(--rahmen); padding: 0.85rem 0;
-  position: sticky; top: var(--kopfhoehe); z-index: 40;
+  background: var(--nacht);
+  color: var(--weiss);
+  border-bottom: var(--rahmen);
+  padding: 0.85rem 0;
+  position: sticky;
+  top: var(--kopfhoehe);
+  z-index: 40;
 }
-.sprungleiste .container {
-  display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: center;
-}
-.sprungleiste__label {
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.12em; color: var(--gelb);
-}
-.sprungleiste ul { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
-.sprungleiste a {
-  display: block; padding: 0.35rem 0.7rem; text-decoration: none;
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.05em; border: 2px solid rgba(255, 255, 255, 0.5);
-}
-.sprungleiste a:hover { background: var(--gelb); color: var(--tinte); border-color: var(--tinte); }
 
-/* Mobil nimmt eine gestapelte Leiste rund 200 px Sichtfläche ein. Eine
-   scrollbare Chip-Zeile braucht eine Zeile und lässt sich seitlich wischen.
-   proximity statt mandatory: der starre Einrastpunkt scrollte das sichtbare
-   Label „Kategorie:" (88 px) beim Laden aus dem Bild – endgültig, weil es
-   selbst kein Einrastziel ist. proximity rastet nur noch am Rande ein. */
+.sprungleiste .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.sprungleiste__label {
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gelb);
+}
+
+.sprungleiste ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sprungleiste a {
+  display: block;
+  padding: 0.35rem 0.7rem;
+  text-decoration: none;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.sprungleiste a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-color: var(--tinte);
+}
+
+/*
+ * Mobil nimmt eine gestapelte Leiste rund 200 px Sichtfläche ein. Eine
+ * scrollbare Chip-Zeile braucht eine Zeile und lässt sich seitlich wischen.
+ * proximity statt mandatory: der starre Einrastpunkt scrollte das sichtbare
+ * Label „Kategorie:" (88 px) beim Laden aus dem Bild – endgültig, weil es
+ * selbst kein Einrastziel ist. proximity rastet nur noch am Rande ein.
+ */
+
 @media (max-width: 640px) {
   .sprungleiste .container {
-    flex-wrap: nowrap; overflow-x: auto;
-    scroll-snap-type: x proximity; scrollbar-width: none;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
   }
-  .sprungleiste .container::-webkit-scrollbar { display: none; }
-  .sprungleiste ul { flex-wrap: nowrap; }
-  .sprungleiste li { scroll-snap-align: start; }
-  .sprungleiste a { white-space: nowrap; }
+  .sprungleiste .container::-webkit-scrollbar {
+    display: none;
+  }
+  .sprungleiste ul {
+    flex-wrap: nowrap;
+  }
+  .sprungleiste li {
+    scroll-snap-align: start;
+  }
+  .sprungleiste a {
+    white-space: nowrap;
+  }
 }
 
-/* Nach dem Sprung das Ziel markieren – statische Hervorhebung, keine
-   Animation, damit prefers-reduced-motion nicht berührt wird. */
-.band h2:target, .fliesstext h2:target { background: var(--gelb); color: var(--tinte); }
-.fliesstext h2:target { padding-left: 1.15rem; border-left-color: var(--tinte); }
+/*
+ * Nach dem Sprung das Ziel markieren – statische Hervorhebung, keine
+ * Animation, damit prefers-reduced-motion nicht berührt wird.
+ */
+
+.band h2:target, .fliesstext h2:target {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.fliesstext h2:target {
+  padding-left: 1.15rem;
+  border-left-color: var(--tinte);
+}
 
 /* ---------- Download-Zeilen ---------- */
 
-.zeilen { display: grid; gap: var(--r-4); }
+.zeilen {
+  display: grid;
+  gap: var(--r-4);
+}
+
 .zeile {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 1rem 1.5rem; align-items: center;
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
   padding: var(--r-4) var(--r-6);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+
 /* Hover über die ganze Zeile: liest sich als Einheit, nicht nur als Button. */
-.zeile:hover, .zeile:focus-within { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
-.kasten .zeile:hover, .kasten .zeile:focus-within { box-shadow: none; }
-.zeile__titel { font-size: 1.1rem; font-weight: 800; }
-.zeile__beschreibung { color: var(--grau); font-size: var(--t-s); margin-top: 0.3rem; }
-.zeile__daten { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-.zeile__aktion { justify-self: end; }
+
+.zeile:hover, .zeile:focus-within {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
+.kasten .zeile:hover, .kasten .zeile:focus-within {
+  box-shadow: none;
+}
+
+.zeile__titel {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.zeile__beschreibung {
+  color: var(--grau);
+  font-size: var(--t-s);
+  margin-top: 0.3rem;
+}
+
+.zeile__daten {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.zeile__aktion {
+  justify-self: end;
+}
+
 .hinweis--warnung {
-  background: var(--warn-flaeche); border: 2px solid var(--warn-rand);
-  padding: 0.4rem 0.6rem; font-size: var(--t-xs); font-weight: 800; color: var(--schrift);
+  background: var(--warn-flaeche);
+  border: 2px solid var(--warn-rand);
+  padding: 0.4rem 0.6rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  color: var(--schrift);
 }
 
 /* ---------- Inhaltsseiten ---------- */
 
 .raster--seite {
-  display: grid; grid-template-columns: minmax(0, 1fr) 330px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
   gap: clamp(2rem, 4vw, 3.5rem);
   padding-block: clamp(2.5rem, 5vw, 4rem);
   align-items: start;
 }
+
 .fliesstext {
-  max-width: 70ch; font-size: 1.09rem; line-height: 1.75;
-  hyphens: auto; -webkit-hyphens: auto; text-wrap: pretty;
+  max-width: 70ch;
+  font-size: 1.09rem;
+  line-height: 1.75;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: pretty;
   overflow-wrap: break-word;
 }
-.fliesstext > * + * { margin-top: 1.25rem; }
+
+.fliesstext > * + * {
+  margin-top: 1.25rem;
+}
+
 .fliesstext h2 {
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem); font-weight: 900;
-  margin-top: 2.75rem; padding-left: 0.75rem;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  font-weight: 900;
+  margin-top: 2.75rem;
+  padding-left: 0.75rem;
   border-left: 8px solid var(--orange);
 }
-.fliesstext h3 { font-size: 1.2rem; font-weight: 800; margin-top: 2rem; }
-.fliesstext ul, .fliesstext ol { padding-left: 0.25rem; list-style: none; }
-.fliesstext li { position: relative; padding-left: 1.6rem; margin-top: 0.6rem; }
+
+.fliesstext h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-top: 2rem;
+}
+
+.fliesstext ul, .fliesstext ol {
+  padding-left: 0.25rem;
+  list-style: none;
+}
+
+.fliesstext li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-top: 0.6rem;
+}
+
 .fliesstext ul > li::before {
-  content: "→"; position: absolute; left: 0; top: 0;
-  color: var(--orange-tief); font-weight: 900;
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--orange-tief);
+  font-weight: 900;
 }
-.fliesstext li li { margin-top: 0.4rem; }
-.fliesstext li li::before { content: "–"; color: var(--grau); }
-.fliesstext ol { counter-reset: s; }
-.fliesstext ol > li { counter-increment: s; }
+
+.fliesstext li li {
+  margin-top: 0.4rem;
+}
+
+.fliesstext li li::before {
+  content: "–";
+  color: var(--grau);
+}
+
+.fliesstext ol {
+  counter-reset: s;
+}
+
+.fliesstext ol > li {
+  counter-increment: s;
+}
+
 .fliesstext ol > li::before {
-  content: counter(s) "."; position: absolute; left: 0; top: 0;
-  font-weight: 900; color: var(--orange-tief);
+  content: counter(s) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 900;
+  color: var(--orange-tief);
 }
+
 .fliesstext a {
-  color: var(--link); font-weight: 700;
-  text-decoration-thickness: 3px; text-underline-offset: 3px;
+  color: var(--link);
+  font-weight: 700;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
   text-decoration-color: var(--orange);
 }
-.fliesstext a:hover { background: var(--gelb); color: var(--tinte); text-decoration: none; }
-/* Überschriften-Links: die fünf Fachbereiche der Berufsschule führen von der
-   Übersicht auf deren eigene Detailseite. Farbe und Abstand bleiben die der
-   Überschrift, damit die Gliederung lesbar bleibt. Dass es ein Verweis ist,
-   zeigt der orange Pfeil, den die Listen dieser Seiten ohnehin verwenden. */
-.fliesstext h2 a,
-.fliesstext h3 a,
-.fliesstext h4 a {
-  color: inherit; font-weight: inherit;
+
+.fliesstext a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
   text-decoration: none;
 }
-.fliesstext h2 a::after,
-.fliesstext h3 a::after,
-.fliesstext h4 a::after {
-  content: " →"; color: var(--orange-tief); font-weight: 900;
+
+/*
+ * Überschriften-Links: die fünf Fachbereiche der Berufsschule führen von der
+ * Übersicht auf deren eigene Detailseite. Farbe und Abstand bleiben die der
+ * Überschrift, damit die Gliederung lesbar bleibt. Dass es ein Verweis ist,
+ * zeigt der orange Pfeil, den die Listen dieser Seiten ohnehin verwenden.
+ */
+
+.fliesstext h2 a, .fliesstext h3 a, .fliesstext h4 a {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
 }
-.fliesstext h2 a:hover,
-.fliesstext h3 a:hover,
-.fliesstext h4 a:hover {
-  background: var(--gelb); color: var(--tinte);
+
+.fliesstext h2 a::after, .fliesstext h3 a::after, .fliesstext h4 a::after {
+  content: " →";
+  color: var(--orange-tief);
+  font-weight: 900;
 }
+
+.fliesstext h2 a:hover, .fliesstext h3 a:hover, .fliesstext h4 a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
 .fliesstext strong {
-  background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.75) 58%);
+  background: linear-gradient(transparent 58%, var(--marker-hintergrund) 58%);
   font-weight: 800;
 }
-.fliesstext em { font-style: italic; }
-.fliesstext hr { border: 0; border-top: 3px solid var(--rand); margin: 2.5rem 0; }
-/* Leitbild: sechs Werte als farbige Quadrate mit Beschriftung daneben.
-   Zwei Spalten, weil die längste Bezeichnung ("Kultur des Friedens") in
-   drei Spalten der 70ch-Lesespalte umbrechen würde. */
+
+.fliesstext em {
+  font-style: italic;
+}
+
+.fliesstext hr {
+  border: 0;
+  border-top: 3px solid var(--rand);
+  margin: 2.5rem 0;
+}
+
+/*
+ * Leitbild: sechs Werte als farbige Quadrate mit Beschriftung daneben.
+ * Zwei Spalten, weil die längste Bezeichnung ("Kultur des Friedens") in
+ * drei Spalten der 70ch-Lesespalte umbrechen würde.
+ */
+
 .werte {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.1rem 1.5rem;
 }
+
 .wert {
-  display: flex; align-items: center; gap: 0.75rem;
-  font-weight: 700; margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  margin: 0;
 }
-.wert__marke { flex: none; width: 2.75rem; height: 2.75rem; }
-.wert__marke--blau { background: var(--wert-blau); }
-.wert__marke--gelb { background: var(--wert-gelb); }
-.wert__marke--orange { background: var(--wert-orange); }
-.wert__marke--gruen { background: var(--wert-gruen); }
-.wert__marke--magenta { background: var(--wert-magenta); }
+
+.wert__marke {
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.wert__marke--blau {
+  background: var(--wert-blau);
+}
+
+.wert__marke--gelb {
+  background: var(--wert-gelb);
+}
+
+.wert__marke--orange {
+  background: var(--wert-orange);
+}
+
+.wert__marke--gruen {
+  background: var(--wert-gruen);
+}
+
+.wert__marke--magenta {
+  background: var(--wert-magenta);
+}
+
 /* Vielfalt: alle fünf Farben als gleich hohe Streifen von oben nach unten. */
+
 .wert__marke--vielfalt {
-  background: linear-gradient(to bottom,
-    var(--wert-blau) 0 20%, var(--wert-gelb) 20% 40%,
-    var(--wert-orange) 40% 60%, var(--wert-gruen) 60% 80%,
-    var(--wert-magenta) 80% 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--wert-blau) 0 20%,
+    var(--wert-gelb) 20% 40%,
+    var(--wert-orange) 40% 60%,
+    var(--wert-gruen) 60% 80%,
+    var(--wert-magenta) 80% 100%
+  );
 }
-@media (max-width: 560px) { .werte { grid-template-columns: minmax(0, 1fr); } }
-/* Zitat: linke Kante statt Kasten. Auf der TG-Seite stehen 18 Berichte
-   Ehemaliger untereinander – als Karten mit Rahmen und Schatten wären sie
-   nicht mehr zu lesen, sondern nur noch zu zählen. */
+
+@media (max-width: 560px) {
+  .werte {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/*
+ * Zitat: linke Kante statt Kasten. Auf der TG-Seite stehen 18 Berichte
+ * Ehemaliger untereinander – als Karten mit Rahmen und Schatten wären sie
+ * nicht mehr zu lesen, sondern nur noch zu zählen.
+ */
+
 .fliesstext blockquote {
-  margin: 1.5rem 0; padding: 0.1rem 0 0.1rem 1.1rem;
+  margin: 1.5rem 0;
+  padding: 0.1rem 0 0.1rem 1.1rem;
   border-left: 6px solid var(--orange);
-  font-size: 1.05rem; font-weight: 500;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
-.fliesstext blockquote p { margin: 0; }
-.fliesstext blockquote p + p { margin-top: 0.9rem; }
+
+.fliesstext blockquote p {
+  margin: 0;
+}
+
+.fliesstext blockquote p + p {
+  margin-top: 0.9rem;
+}
+
 .fliesstext blockquote em {
-  display: block; font-style: normal; font-weight: 800;
-  font-size: var(--t-xs); letter-spacing: 0.05em; text-transform: uppercase;
+  display: block;
+  font-style: normal;
+  font-weight: 800;
+  font-size: var(--t-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--grau);
 }
 
 .hinweis {
-  background: var(--hinweis-flaeche); color: var(--schrift);
-  border: 3px solid var(--hinweis-rand); box-shadow: var(--schatten);
-  padding: var(--r-6); display: grid; gap: var(--r-4); justify-items: start;
-}
-.hinweis p { font-size: var(--t-s); }
-/* Der Kicker kennzeichnet Prototyp-Hinweise: gleiche Größe wie alle anderen
-   Kicker, damit sie nicht mit echtem Inhalt konkurrieren. */
-.hinweis .kicker { margin-bottom: 0; }
-
-.kasten {
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten);
-  padding: var(--r-6); margin-top: 2.5rem;
-}
-.kasten h2 {
-  font-size: var(--t-xs); font-weight: 900; text-transform: uppercase;
-  letter-spacing: 0.1em; margin-bottom: 1rem;
-  border-bottom: 3px solid var(--rand); padding-bottom: 0.6rem;
-}
-.kasten--gelb { background: var(--gelb); color: var(--tinte); }
-.kasten .zeile { box-shadow: none; }
-.kasten .zeile + .zeile { margin-top: 1rem; }
-
-.seitenleiste { display: grid; gap: 1.5rem; position: sticky; top: calc(var(--kopfhoehe) + 1rem); }
-.seitenleiste__bild img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
-  border: var(--rahmen); box-shadow: var(--schatten);
+  background: var(--hinweis-flaeche);
+  color: var(--schrift);
+  border: 3px solid var(--hinweis-rand);
+  box-shadow: var(--schatten);
+  padding: var(--r-6);
+  display: grid;
+  gap: var(--r-4);
+  justify-items: start;
 }
 
-/* Bild mitten im Text: gerahmt wie die Karten, aber höchstens 12rem
-   (192 px) breit. Teamfotos dieser Größe wirken neben ihrem Eintrag,
-   statt die Lesespalte zu füllen; die kleinen Ausgangsdateien werden so
-   nicht aufgeblasen. Die Vollbreite hebt die Begrenzung für Schaubilder
-   auf, deren Beschriftung man erst beim Vergrößern liest. */
-.bild { margin: 1.25rem 0; max-width: 12rem; }
-.bild img {
-  width: 100%; height: auto; display: block;
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
-}
-.bild--breit { max-width: none; }
-/* Bildraster: Schulleitung mit Beschriftung, Fotostreifen ohne. Die
-   Einheiten stehen nebeneinander und ordnen sich auf schmalen Breiten
-   untereinander (auto-fit braucht dafür keine Media-Query); die Bilder
-   füllen ihr Feld im Seitenverhältnis 4:3, object-fit gleicht kleine
-   Abweichungen der Ausgangsdateien aus. */
-.bildraster {
-  display: grid; gap: var(--r-8); margin: 1.5rem 0 2.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-}
-.bildraster .bild { margin: 0; max-width: none; }
-.bildraster .bild img { aspect-ratio: 4 / 3; object-fit: cover; }
-.bild__funktion {
-  display: block; margin-top: 0.75rem; font-size: var(--t-xs); font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--grau);
-}
-.bild__name { display: block; font-weight: 800; margin-top: 0.15rem; }
-.seitenleiste .kasten { margin-top: 0; }
-.fakten { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
-.fakten dt {
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--grau); margin-top: 0.75rem;
-}
-.fakten dd { margin: 0; font-weight: 800; }
-.kasten__kontakt {
-  margin-top: 1.25rem; padding-top: 1rem; border-top: 3px solid var(--rand);
+.hinweis p {
   font-size: var(--t-s);
 }
-.kasten a { font-weight: 700; }
+
+/*
+ * Der Kicker kennzeichnet Prototyp-Hinweise: gleiche Größe wie alle anderen
+ * Kicker, damit sie nicht mit echtem Inhalt konkurrieren.
+ */
+
+.hinweis .kicker {
+  margin-bottom: 0;
+}
+
+.kasten {
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten);
+  padding: var(--r-6);
+  margin-top: 2.5rem;
+}
+
+.kasten h2 {
+  font-size: var(--t-xs);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid var(--rand);
+  padding-bottom: 0.6rem;
+}
+
+.kasten--gelb {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.kasten .zeile {
+  box-shadow: none;
+}
+
+.kasten .zeile + .zeile {
+  margin-top: 1rem;
+}
+
+.seitenleiste {
+  display: grid;
+  gap: 1.5rem;
+  position: sticky;
+  top: calc(var(--kopfhoehe) + 1rem);
+}
+
+.seitenleiste__bild img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: var(--rahmen);
+  box-shadow: var(--schatten);
+}
+
+/*
+ * Bild mitten im Text: gerahmt wie die Karten, aber höchstens 12rem
+ * (192 px) breit. Teamfotos dieser Größe wirken neben ihrem Eintrag,
+ * statt die Lesespalte zu füllen; die kleinen Ausgangsdateien werden so
+ * nicht aufgeblasen. Die Vollbreite hebt die Begrenzung für Schaubilder
+ * auf, deren Beschriftung man erst beim Vergrößern liest.
+ */
+
+.bild {
+  margin: 1.25rem 0;
+  max-width: 12rem;
+}
+
+.bild img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+}
+
+.bild--breit {
+  max-width: none;
+}
+
+/*
+ * Bildraster: Schulleitung mit Beschriftung, Fotostreifen ohne. Die
+ * Einheiten stehen nebeneinander und ordnen sich auf schmalen Breiten
+ * untereinander (auto-fit braucht dafür keine Media-Query); die Bilder
+ * füllen ihr Feld im Seitenverhältnis 4:3, object-fit gleicht kleine
+ * Abweichungen der Ausgangsdateien aus.
+ */
+
+.bildraster {
+  display: grid;
+  gap: var(--r-8);
+  margin: 1.5rem 0 2.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.bildraster .bild {
+  margin: 0;
+  max-width: none;
+}
+
+.bildraster .bild img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.bild__funktion {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grau);
+}
+
+.bild__name {
+  display: block;
+  font-weight: 800;
+  margin-top: 0.15rem;
+}
+
+.seitenleiste .kasten {
+  margin-top: 0;
+}
+
+.fakten {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.fakten dt {
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grau);
+  margin-top: 0.75rem;
+}
+
+.fakten dd {
+  margin: 0;
+  font-weight: 800;
+}
+
+.kasten__kontakt {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 3px solid var(--rand);
+  font-size: var(--t-s);
+}
+
+.kasten a {
+  font-weight: 700;
+}
 
 /* ---------- Meldung ---------- */
 
-.beitrag { padding-block: clamp(2rem, 4vw, 3.5rem); }
-.beitrag__kopf h1 { font-size: var(--t-h1); text-wrap: balance; }
-.beitrag__kopf .meta { margin-top: 1rem; }
-.beitrag__kopf .lead { color: var(--grau); }
+.beitrag {
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
 
-/* Presse-Scan: breiter als die Textspalte, damit die Zeitung lesbar wird.
-   Der Überhang wird nur gewährt, wenn seitlich Platz ist (max 9rem). */
+.beitrag__kopf h1 {
+  font-size: var(--t-h1);
+  text-wrap: balance;
+}
+
+.beitrag__kopf .meta {
+  margin-top: 1rem;
+}
+
+.beitrag__kopf .lead {
+  color: var(--grau);
+}
+
+/*
+ * Presse-Scan: breiter als die Textspalte, damit die Zeitung lesbar wird.
+ * Der Überhang wird nur gewährt, wenn seitlich Platz ist (max 9rem).
+ */
+
 .beitrag__bild {
   --ueberhang: max(0px, min(9rem, calc((100vw - var(--schmal)) / 2 - 1.25rem)));
   margin: 4.25rem calc(-1 * var(--ueberhang)) 0;
 }
+
 .beitrag__lupe {
-  display: block; position: relative; text-decoration: none; color: var(--schrift);
-  margin-inline: auto; /* max-width (Quellbreite) kommt aus dem Template */
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: var(--schrift);
+  margin-inline: auto;
+  /* max-width (Quellbreite) kommt aus dem Template */
 }
+
 .beitrag__lupe img {
-  width: 100%; border: var(--rahmen); box-shadow: var(--schatten);
+  width: 100%;
+  border: var(--rahmen);
+  box-shadow: var(--schatten);
   background: var(--weiss);
 }
+
 /* Plakette hängt unter die Bildkante – sie darf beim Lesen nichts verdecken. */
+
 .lupe__plakette {
-  position: absolute; right: 0; top: calc(100% + 0.55rem);
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  background: var(--gelb); color: var(--tinte);
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.55rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--gelb);
+  color: var(--tinte);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
   padding: 0.55rem 0.85rem;
-  font-size: var(--t-xs); font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-.beitrag__lupe:hover .lupe__plakette,
-.beitrag__lupe:focus-visible .lupe__plakette {
-  transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--schatten-farbe);
+
+.beitrag__lupe:hover .lupe__plakette, .beitrag__lupe:focus-visible .lupe__plakette {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
 }
-.beitrag__lupe:focus-visible { outline-offset: 6px; }
+
+.beitrag__lupe:focus-visible {
+  outline-offset: 6px;
+}
+
 .beitrag__bild figcaption {
-  margin: 4.25rem auto 0; font-size: var(--t-xs); color: var(--grau);
-  border-left: 4px solid var(--orange); padding-left: 0.75rem;
+  margin: 4.25rem auto 0;
+  font-size: var(--t-xs);
+  color: var(--grau);
+  border-left: 4px solid var(--orange);
+  padding-left: 0.75rem;
 }
+
 .lupe__hinweis {
-  display: block; font-weight: 700; color: var(--schrift); margin-bottom: 0.3rem;
+  display: block;
+  font-weight: 700;
+  color: var(--schrift);
+  margin-bottom: 0.3rem;
 }
-.beitrag .fliesstext { margin-top: 2.5rem; }
-.beitrag__quelle { margin-top: 2.5rem; }
+
+.beitrag .fliesstext {
+  margin-top: 2.5rem;
+}
+
+.beitrag__quelle {
+  margin-top: 2.5rem;
+}
 
 /* ---------- Fuß ---------- */
 
-.fuss { background: var(--nacht); color: #f2f2f2; border-top: 6px solid var(--gelb); }
+.fuss {
+  background: var(--nacht);
+  color: #f2f2f2;
+  border-top: 6px solid var(--gelb);
+}
+
 .fuss__gitter {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2rem; padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
 }
+
 .fuss__titel {
-  font-size: var(--t-xs); font-weight: 900; text-transform: uppercase;
-  letter-spacing: 0.14em; color: var(--gelb);
+  font-size: var(--t-xs);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gelb);
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-  padding-bottom: 0.6rem; margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
-.fuss address, .fuss p { font-size: var(--t-s); line-height: 1.7; }
-.fuss a { color: var(--weiss); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-.fuss a:hover { background: var(--gelb); color: var(--tinte); text-decoration: none; }
-.fuss__liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.5rem; font-size: var(--t-s); }
-.fuss__liste a { text-decoration: none; border-bottom: 2px solid transparent; padding-bottom: 2px; }
-.fuss__liste a:hover { border-bottom-color: var(--tinte); }
+
+.fuss address, .fuss p {
+  font-size: var(--t-s);
+  line-height: 1.7;
+}
+
+.fuss a {
+  color: var(--weiss);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.fuss a:hover {
+  background: var(--gelb);
+  color: var(--tinte);
+  text-decoration: none;
+}
+
+.fuss__liste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+  font-size: var(--t-s);
+}
+
+.fuss__liste a {
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.fuss__liste a:hover {
+  border-bottom-color: var(--tinte);
+}
+
 /* Eigene Farbe statt --schatten-farbe: der Token ist im Dunkelmodus Weiß. */
-.fuss__leiste { background: #000000; border-top: 2px solid rgba(255, 255, 255, 0.2); padding: 1.1rem 0; font-size: var(--t-xs); }
-.fuss__leisteinnen { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
-.fuss__hinweis { color: #bdbdbd; max-width: 70ch; }
+
+.fuss__leiste {
+  background: #000000;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 1.1rem 0;
+  font-size: var(--t-xs);
+}
+
+.fuss__leisteinnen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+.fuss__hinweis {
+  color: #bdbdbd;
+  max-width: 70ch;
+}
 
 /* ---------- Sonstiges ---------- */
 
-.band--papier .raster--3:first-of-type { margin-top: 0; }
+.band--papier .raster--3:first-of-type {
+  margin-top: 0;
+}
 
 /* ---------- Startseite: Termine, Berufsinfo, Instagram, Schulleben ---------- */
 
-.band__einleitung { max-width: 62ch; color: var(--grau); margin-bottom: 2rem; }
-.band--nacht .band__einleitung { color: rgba(255, 255, 255, 0.85); }
-/* .hinweiszeile erbt sonst --grau, das für Papier gesetzt ist und auf dem
-   Nacht-Band zu wenig Kontrast erreicht (Stand-Zeile unter dem Instagram-
-   Raster). Gleiche Behandlung wie die Einleitung desselben Bandes. Geprüft
-   in qa/kontrast.py als "band--nacht Sekundärtext". */
-.band--nacht .hinweiszeile { color: rgba(255, 255, 255, 0.85); }
+.band__einleitung {
+  max-width: 62ch;
+  color: var(--grau);
+  margin-bottom: 2rem;
+}
+
+.band--nacht .band__einleitung {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/*
+ * .hinweiszeile erbt sonst --grau, das für Papier gesetzt ist und auf dem
+ * Nacht-Band zu wenig Kontrast erreicht (Stand-Zeile unter dem Instagram-
+ * Raster). Gleiche Behandlung wie die Einleitung desselben Bandes. Geprüft
+ * in qa/kontrast.py als "band--nacht Sekundärtext".
+ */
+
+.band--nacht .hinweiszeile {
+  color: rgba(255, 255, 255, 0.85);
+}
 
 .kalenderliste {
-  list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--r-3);
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--r-3);
 }
-/* Die ganze Karte ist Link: das Touch-Ziel wächst vom Linktext (28 px) auf
-   die volle Kartenfläche. */
+
+/*
+ * Die ganze Karte ist Link: das Touch-Ziel wächst vom Linktext (28 px) auf
+ * die volle Kartenfläche.
+ */
+
 .kalender {
-  display: flex; flex-direction: column; justify-content: space-between; gap: 0.6rem;
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: var(--r-4); height: 100%;
-  text-decoration: none; color: var(--schrift);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+  padding: var(--r-4);
+  height: 100%;
+  text-decoration: none;
+  color: var(--schrift);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.kalender:hover, .kalender:focus-visible { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--schatten-farbe); }
-.kalender:focus-visible { outline-offset: 4px; }
-.kalender__name { font-weight: 800; font-size: 1rem; line-height: 1.3; }
+
+.kalender:hover, .kalender:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
+.kalender:focus-visible {
+  outline-offset: 4px;
+}
+
+.kalender__name {
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
 .kalender__aktion {
-  margin-top: auto; align-self: flex-start; font-size: var(--t-xs); font-weight: 800;
-  text-transform: uppercase; letter-spacing: 0.07em; border-bottom: 3px solid var(--orange);
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 3px solid var(--orange);
 }
-.kalender:hover .kalender__aktion { background: var(--gelb); color: var(--tinte); border-bottom-color: var(--tinte); }
 
-.infoliste { list-style: none; padding: 0; display: grid; gap: 1rem; }
+.kalender:hover .kalender__aktion {
+  background: var(--gelb);
+  color: var(--tinte);
+  border-bottom-color: var(--tinte);
+}
+
+.infoliste {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
 .infozeile {
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein);
-  padding: var(--r-6); max-width: 80ch;
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+  padding: var(--r-6);
+  max-width: 80ch;
 }
-.infozeile__titel { font-size: 1.15rem; font-weight: 800; margin-top: 0.7rem; }
-.infozeile__text { color: var(--grau); margin-top: 0.5rem; }
-.infozeile .linkpfeil { margin-top: 0.9rem; }
 
-.instaraster { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.infozeile__titel {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-top: 0.7rem;
+}
+
+.infozeile__text {
+  color: var(--grau);
+  margin-top: 0.5rem;
+}
+
+.infozeile .linkpfeil {
+  margin-top: 0.9rem;
+}
+
+.instaraster {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
 .instabeitrag {
-  background: var(--flaeche); border: var(--rahmen); box-shadow: var(--schatten-klein); color: var(--schrift);
+  background: var(--flaeche);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+  color: var(--schrift);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+
 .instabeitrag:hover, .instabeitrag:focus-within {
-  transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--schatten-farbe);
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
 }
-.instabeitrag__link { display: flex; flex-direction: column; height: 100%; text-decoration: none; }
+
+.instabeitrag__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+}
+
 .instabeitrag__bild {
-  margin: 0; border-bottom: var(--rahmen); aspect-ratio: 4 / 5; position: relative;
+  margin: 0;
+  border-bottom: var(--rahmen);
+  aspect-ratio: 4 / 5;
+  position: relative;
   background: var(--gelb);
 }
+
 .instabeitrag__bild img {
-  width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
-/* Reel-Plakette: bewegte Inhalte sind sonst von Fotos nicht zu unterscheiden.
-   Ob ein Beitrag ein Reel ist, steht in der URL (instagram.com/reel/…). */
+
+/*
+ * Reel-Plakette: bewegte Inhalte sind sonst von Fotos nicht zu unterscheiden.
+ * Ob ein Beitrag ein Reel ist, steht in der URL (instagram.com/reel/…).
+ */
+
 .instabeitrag__plakette {
-  position: absolute; left: 0.75rem; top: 0.75rem;
-  width: 44px; height: 44px; display: grid; place-items: center;
-  background: var(--gelb); color: var(--tinte);
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
-}
-.instabeitrag__plakette svg { width: 20px; height: 20px; display: block; }
-.instabeitrag__koerper {
-  padding: 0.9rem 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1;
-}
-.instabeitrag__text { font-size: var(--t-s); line-height: 1.5; }
-.instabeitrag .karte__aktion { margin-top: auto; }
-
-.konten__titel { font-size: 1.05rem; font-weight: 900; margin-top: 2.5rem; }
-.konten { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
-
-.schulleben { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-.schulleben img {
-  width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block;
-  border: var(--rahmen); box-shadow: var(--schatten-klein);
-}
-
-/* Partnerband: jedes Zeichen als eigene Kachel. Der bisherige Gesamtstreifen
-   (1023 px) lief auf Containerbreite bis 1180 px, also über seine native
-   Auflösung, und war mobil bei rund 0,34-facher Skalierung nicht mehr lesbar.
-   --weiss bleibt in beiden Modi echtes Weiß, die Zuschnitte tragen weiße
-   Ränder – Kachel und Bildrand bleiben dadurch deckungsgleich. */
-.partnergitter {
-  list-style: none; margin: 1.75rem 0 0; padding: 0;
-  display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-.partnergitter__kachel {
-  display: flex; align-items: center; justify-content: center;
-  min-height: 7.5rem; padding: 1rem;
-  background: var(--weiss); border: var(--rahmen);
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--gelb);
+  color: var(--tinte);
+  border: var(--rahmen);
   box-shadow: var(--schatten-klein);
 }
+
+.instabeitrag__plakette svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.instabeitrag__koerper {
+  padding: 0.9rem 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.instabeitrag__text {
+  font-size: var(--t-s);
+  line-height: 1.5;
+}
+
+.instabeitrag .karte__aktion {
+  margin-top: auto;
+}
+
+.konten__titel {
+  font-size: 1.05rem;
+  font-weight: 900;
+  margin-top: 2.5rem;
+}
+
+.konten {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.schulleben {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.schulleben img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+}
+
+/*
+ * Partnerband: jedes Zeichen als eigene Kachel. Der bisherige Gesamtstreifen
+ * (1023 px) lief auf Containerbreite bis 1180 px, also über seine native
+ * Auflösung, und war mobil bei rund 0,34-facher Skalierung nicht mehr lesbar.
+ * --weiss bleibt in beiden Modi echtes Weiß, die Zuschnitte tragen weiße
+ * Ränder – Kachel und Bildrand bleiben dadurch deckungsgleich.
+ */
+
+.partnergitter {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.partnergitter__kachel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 7.5rem;
+  padding: 1rem;
+  background: var(--weiss);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+}
+
 .partnergitter__kachel img {
-  display: block; max-width: 100%; max-height: 4.5rem; width: auto; height: auto;
+  display: block;
+  max-width: 100%;
+  max-height: 4.5rem;
+  width: auto;
+  height: auto;
 }
 
 /* ---------- Responsive ---------- */
 
-/* Breakpoint wie die Navigations-Grenze in static/js/nav.js. Alle Umbrüche
-   stehen absteigend in je einem Block; die Startseiten-Listen hängen hier mit,
-   damit kein zweiter Block für dieselbe Breite nötig ist. */
+/*
+ * Breakpoint wie die Navigations-Grenze in static/js/nav.js. Alle Umbrüche
+ * stehen absteigend in je einem Block; die Startseiten-Listen hängen hier mit,
+ * damit kein zweiter Block für dieselbe Breite nötig ist.
+ */
+
 @media (max-width: 1000px) {
-  .kalenderliste, .instaraster { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .partnergitter { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .raster--3, .raster--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .fuss__gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  /* minmax(0, 1fr) wie überall sonst im Raster: eine nackte `1fr`-Spalte
-     zieht ihre Untergrenze aus der Mindestinhaltsbreite und hält die Seite
-     dann waagerecht scrollbar. */
-  .raster--seite { grid-template-columns: minmax(0, 1fr); }
-  .seitenleiste { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 640px) {
-  .kalenderliste, .instaraster, .schulleben { grid-template-columns: minmax(0, 1fr); }
-  /* Zwei Spalten: mobil bleibt jedes Zeichen doppelt so groß wie im
-     geskalierten Streifen und damit in seiner Kleinschrift erkennbar. */
-  .partnergitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kalenderliste, .instaraster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .partnergitter {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .raster--3, .raster--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fuss__gitter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /*
+   * minmax(0, 1fr) wie überall sonst im Raster: eine nackte `1fr`-Spalte
+   * zieht ihre Untergrenze aus der Mindestinhaltsbreite und hält die Seite
+   * dann waagerecht scrollbar.
+   */
+  .raster--seite {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .seitenleiste {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-/* Umschalter auf den Menükopf: Die Desktop-Navigation führt seit der
-   Erasmus+-Seite acht Einträge wie die Originalseite und misst damit 842 px.
-   Zusammen mit Logo, Modusknopf und Abständen braucht der Kopf gemessen
-   rund 1200 px, bevor nichts mehr gestaucht wird – bei 1025 px wäre das
-   Logo auf 0 px zusammengedrückt gewesen. Ab 1200 px läuft die Reihe mit
-   Spielraum, darunter steht das Menü als Knopf im Panel (Messung nach der
-   Methode aus qa/layout.py).
-   Bewusst eigene Query: Hero, Kopfleiste und Kopfhöhe richten sich weiterhin
-   nach 900 px, sonst änderte diese Grenze auch das Startseiten-Raster. */
+@media (max-width: 640px) {
+  .kalenderliste, .instaraster, .schulleben {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /*
+   * Zwei Spalten: mobil bleibt jedes Zeichen doppelt so groß wie im
+   * skalierten Streifen und damit in seiner Kleinschrift erkennbar.
+   */
+  .partnergitter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * Umschalter auf den Menükopf: Die Desktop-Navigation führt seit der
+ * Erasmus+-Seite acht Einträge wie die Originalseite und misst damit 842 px.
+ * Zusammen mit Logo, Modusknopf und Abständen braucht der Kopf gemessen
+ * rund 1200 px, bevor nichts mehr gestaucht wird – bei 1025 px wäre das
+ * Logo auf 0 px zusammengedrückt gewesen. Ab 1200 px läuft die Reihe mit
+ * Spielraum, darunter steht das Menü als Knopf im Panel (Messung nach der
+ * Methode aus qa/layout.py).
+ * Bewusst eigene Query: Hero, Kopfleiste und Kopfhöhe richten sich weiterhin
+ * nach 900 px, sonst änderte diese Grenze auch das Startseiten-Raster.
+ */
+
 @media (max-width: 1199px) {
-  .menueknopf { display: flex; }
+  .menueknopf {
+    display: flex;
+  }
   .menue {
-    display: none; position: absolute; left: 0; right: 0; top: 100%;
-    flex-direction: column; align-items: stretch; gap: 0.75rem;
-    background: var(--papier); border: var(--rahmen);
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    background: var(--papier);
+    border: var(--rahmen);
     padding: 1rem 1.25rem 1.5rem;
     box-shadow: 0 12px 0 var(--haarlinie);
-    /* Das Panel trägt nun rund fünfzig Zeilen. Absolut positioniert wächst
-       es nicht mit dem Dokument – ohne eigene Scrollfläche wären die
-       untersten Einträge unerreichbar. */
+    /*
+     * Das Panel trägt nun rund fünfzig Zeilen. Absolut positioniert wächst
+     * es nicht mit dem Dokument – ohne eigene Scrollfläche wären die
+     * untersten Einträge unerreichbar.
+     */
     max-height: calc(100vh - var(--kopfhoehe));
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .menue[data-offen] { display: flex; }
-  .menue ul { flex-direction: column; gap: 0; }
-  .menue ul a { padding: 0.95rem 0.5rem; font-size: 1.05rem; border-bottom: 2px solid var(--haarlinie); }
+  .menue[data-offen] {
+    display: flex;
+  }
+  .menue ul {
+    flex-direction: column;
+    gap: 0;
+  }
+  .menue ul a {
+    padding: 0.95rem 0.5rem;
+    font-size: 1.05rem;
+    border-bottom: 2px solid var(--haarlinie);
+  }
 }
 
 @media (max-width: 900px) {
-  :root { --kopfhoehe: 4.5rem; }
-  .leiste { display: none; }
-  /* Modusknopf nur noch als Icon – der Knopftext würde die Kopfzeile
-     verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen. */
-  .modusknopf { padding: 0.55rem; min-height: 2.75rem; min-width: 2.75rem; justify-content: center; }
-  .modusknopf__text { display: none; }
-  /* Krankmelden & Co. stehen sonst nur noch im Fuß; bis 900 px trägt die
-     dunkle Kopfleiste sie ohnehin. */
-  .menue__schnell {
-    display: flex; flex-wrap: wrap; gap: 0.6rem;
-    padding-bottom: 1rem; border-bottom: 2px solid var(--haarlinie);
+  :root {
+    --kopfhoehe: 4.5rem;
   }
-  .hero__innen { grid-template-columns: 1fr; }
-  .hero__bild img { box-shadow: 10px 10px 0 var(--orange); }
+  .leiste {
+    display: none;
+  }
+  /*
+   * Modusknopf nur noch als Icon – der Knopftext würde die Kopfzeile
+   * verbreitern und das Knopffeld über die Logo-Höhe hinaus wachsen lassen.
+   */
+  .modusknopf {
+    padding: 0.55rem;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    justify-content: center;
+  }
+  .modusknopf__text {
+    display: none;
+  }
+  /*
+   * Krankmelden & Co. stehen sonst nur noch im Fuß; bis 900 px trägt die
+   * dunkle Kopfleiste sie ohnehin.
+   */
+  .menue__schnell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--haarlinie);
+  }
+  .hero__innen {
+    grid-template-columns: 1fr;
+  }
+  .hero__bild img {
+    box-shadow: 10px 10px 0 var(--orange);
+  }
 }
 
 @media (max-width: 640px) {
-  body { font-size: 1.02rem; }
-  .container, .schmal { width: min(100% - 1.75rem, var(--container)); }
-  .raster--3, .raster--2, .raster--news,
-  .serviceliste, .fuss__gitter, .seitenleiste { grid-template-columns: minmax(0, 1fr); }
-  .zeile { grid-template-columns: minmax(0, 1fr); }
-  .zeile__aktion { justify-self: stretch; }
-  .zeile__aktion .btn { width: 100%; justify-content: center; }
-  .kopfzeile { align-items: flex-start; }
-  .karte__koerper { padding: var(--r-4) var(--r-4) var(--r-6); }
-  .btn { width: auto; white-space: normal; }
-  /* Lange deutsche Komposita sprengten sonst den Viewport: „Sozialwissen-
-     schchaftliches" (417 px), „Berufsvorbereitende" (351 px) und
-     „Abschlussmöglichkeiten" (292 px) stehen weit über den 277 px, die bei
-     320 px bleiben. `anywhere` im Gegensatz zu `break-word` verkleinert auch
-     die Mindestinhaltsbreite, aus der Raster und Grid-Spalten ihre Untergrenze
-     beziehen. `hyphens: auto` setzt bei vorhandenem Wörterbuch echte
-     Trennstriche; `anywhere` fängt den Fall ohne Wörterbuch ab. Bewusst nur
-     mobil: `text-wrap: balance` auf den Überschriften soll am Desktop nicht
-     durch Wortumbrüche beeinflusst werden. */
-  h1, h2, h3 { hyphens: auto; overflow-wrap: anywhere; }
+  body {
+    font-size: 1.02rem;
+  }
+  .container, .schmal {
+    width: min(100% - 1.75rem, var(--container));
+  }
+  .raster--3, .raster--2, .raster--news, .serviceliste, .fuss__gitter, .seitenleiste {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .zeile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .zeile__aktion {
+    justify-self: stretch;
+  }
+  .zeile__aktion .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .kopfzeile {
+    align-items: flex-start;
+  }
+  .karte__koerper {
+    padding: var(--r-4) var(--r-4) var(--r-6);
+  }
+  .btn {
+    width: auto;
+    white-space: normal;
+  }
+  /*
+   * Lange deutsche Komposita sprengten sonst den Viewport: „Sozialwissen-
+   * schchaftliches" (417 px), „Berufsvorbereitende" (351 px) und
+   * „Abschlussmöglichkeiten" (292 px) stehen weit über den 277 px, die bei
+   * 320 px bleiben. `anywhere` im Gegensatz zu `break-word` verkleinert auch
+   * die Mindestinhaltsbreite, aus der Raster und Grid-Spalten ihre Untergrenze
+   * beziehen. `hyphens: auto` setzt bei vorhandenem Wörterbuch echte
+   * Trennstriche; `anywhere` fängt den Fall ohne Wörterbuch ab. Bewusst nur
+   * mobil: `text-wrap: balance` auf den Überschriften soll am Desktop nicht
+   * durch Wortumbrüche beeinflusst werden.
+   */
+  h1, h2, h3 {
+    hyphens: auto;
+    overflow-wrap: anywhere;
+  }
 }
 
 /* Grober Zeiger (Touch): Schaltflächen und Chips erreichen sonst 42/43 px. */
+
 @media (pointer: coarse), (max-width: 640px) {
-  .btn--klein { min-height: 2.75rem; }
-  .chip { min-height: 2.75rem; align-items: center; }
-  /* Die Sprungleisten-Links waren mit 36 px das kleinste Touch-Ziel der
-     Seite; die Leiste wird dadurch etwas höher, das scroll-margin-top der
-     Ziele trägt das noch mit. */
-  .sprungleiste a { display: inline-flex; align-items: center; min-height: 2.75rem; }
-  /* Inflinks in Fließtext bleiben ausgenommen – der Ausdrucksfeil steht
-     hinter dem Linktext, nicht als eigenes Ziel. */
-  .fliesstext .linkpfeil { min-height: 0; }
-  .sprungleiste { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .btn--klein {
+    min-height: 2.75rem;
+  }
+  .chip {
+    min-height: 2.75rem;
+    align-items: center;
+  }
+  /*
+   * Die Sprungleisten-Links waren mit 36 px das kleinste Touch-Ziel der
+   * Seite; die Leiste wird dadurch etwas höher, das scroll-margin-top der
+   * Ziele trägt das noch mit.
+   */
+  .sprungleiste a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  /*
+   * Inline-Links in Fließtext bleiben ausgenommen – der Ausdruckspfeil steht
+   * hinter dem Linktext, nicht als eigenes Ziel.
+   */
+  .fliesstext .linkpfeil {
+    min-height: 0;
+  }
+  .sprungleiste {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { transition: none !important; animation: none !important; }
-}
-
-/* ---------- Dunkelmodus: Feinjustierung über den Tokens ---------- */
-/* ponytail: wieder zweimal derselbe Block (Media-Query + Attribut), s. :root.
-   ponytail: die Regeln darunter sind verschachtelt (CSS Nesting, Chrome
-   112 / Firefox 117 / Safari 16.5) und hängen bewusst an [data-theme="dark"],
-   nicht an der Systempräferenz – ältere Browser verlieren sie still. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    /* Marker hinter <strong>: heller Ton, sonst zu wenig Kontrast. */
-    .fliesstext strong {
-      background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.35) 58%);
-    }
+  html {
+    scroll-behavior: auto;
   }
-}
-:root[data-theme="dark"] {
-  .fliesstext strong {
-    background: linear-gradient(transparent 58%, rgba(248, 220, 89, 0.35) 58%);
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -1278,30 +2723,79 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
 @media print {
   /* Tokens auf Hell zurücksetzen – sonst druckt der Dunkelmodus Flächen voll. */
   :root {
-    --nacht: #000000; --papier: #fff; --papier2: #f2f2f2; --flaeche: #fff;
-    --schrift: #000; --grau: #333; --rand: #000; --schatten-farbe: #000;
-    --orange-tief: #b8430f; --link: #0b66b3;
+    --nacht: #000000;
+    --papier: #fff;
+    --papier2: #f2f2f2;
+    --flaeche: #fff;
+    --schrift: #000;
+    --grau: #333;
+    --rand: #000;
+    --schatten-farbe: #000;
+    --orange-tief: #b8430f;
+    --link: #0b66b3;
+    --marker-hintergrund: rgba(248, 220, 89, 0.75);
     color-scheme: light;
   }
-  .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck,
-  .lupe__plakette, .lupe__hinweis { display: none !important; }
+  .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck, .lupe__plakette, .lupe__hinweis {
+    display: none !important;
+  }
   /* Featured-Karte druckt einspaltig, sonst entsteht eine leere Halbspalte. */
-  .raster--news, .raster--2 { grid-template-columns: 1fr; }
-  .karte--gross { grid-column: auto; }
-  .karte--gross .karte__bild { aspect-ratio: 16 / 10; }
-  .karte--gross .karte__titel { font-size: 1.3rem; }
-  .hero__ticket { box-shadow: none; }
-  body { background: #fff; color: #000; font-size: 11pt; }
-  .hero { background: #fff; color: #000; }
-  .hero .kicker, .hero__unter { color: #000; box-shadow: none; }
-  .hero__punkte li { border-color: #000; }
-  .band { border-top: 0; padding-block: 1.25rem; background: #fff !important; color: #000 !important; }
-  .beitrag__bild { --ueberhang: 0px; margin-inline: 0; }
-  .beitrag__lupe img { border: 1px solid #000; box-shadow: none; }
-  .fliesstext { max-width: none; font-size: 11pt; line-height: 1.5; hyphens: auto; }
-  .beitrag a[href^="http"]::after,
-  .fliesstext a[href^="http"]::after {
-    content: " (" attr(href) ")"; font-size: 0.8em; font-weight: 400;
-    word-break: break-all; color: #444;
+  .raster--news, .raster--2 {
+    grid-template-columns: 1fr;
+  }
+  .karte--gross {
+    grid-column: auto;
+  }
+  .karte--gross .karte__bild {
+    aspect-ratio: 16 / 10;
+  }
+  .karte--gross .karte__titel {
+    font-size: 1.3rem;
+  }
+  .hero__ticket {
+    box-shadow: none;
+  }
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+  .hero {
+    background: #fff;
+    color: #000;
+  }
+  .hero .kicker, .hero__unter {
+    color: #000;
+    box-shadow: none;
+  }
+  .hero__punkte li {
+    border-color: #000;
+  }
+  .band {
+    border-top: 0;
+    padding-block: 1.25rem;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .beitrag__bild {
+    --ueberhang: 0px;
+    margin-inline: 0;
+  }
+  .beitrag__lupe img {
+    border: 1px solid #000;
+    box-shadow: none;
+  }
+  .fliesstext {
+    max-width: none;
+    font-size: 11pt;
+    line-height: 1.5;
+    hyphens: auto;
+  }
+  .beitrag a[href^="http"]::after, .fliesstext a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-weight: 400;
+    word-break: break-all;
+    color: #444;
   }
 }
