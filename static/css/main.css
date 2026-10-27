@@ -396,9 +396,27 @@ h2[id^="dl-"] { scroll-margin-top: calc(var(--kopfhoehe) + 10rem); }
   gap: 1.5rem; padding: 0.75rem 0; position: relative;
 }
 /* Logo ohne Fläche, Rand oder Innenabstand, in beiden Modi gleich groß. */
- .marke-link { background: inherit; border: 0; padding: 0;  font-size: var(--t-m);}
-.marke-link img { height: 100% ;font-size: var(--t-m); } */
-.marke-link:hover img { transform: rotate(-2deg); }
+.marke-link {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    background: inherit;
+    border: 0;
+    padding: 0;
+    font-size: var(--t-m);
+}
+
+.marke-link img {
+    display: block;
+    height: 3rem;
+    width: auto;
+    max-width: none;
+    flex: 0 0 auto;
+}
+
+.marke-link:hover img {
+    transform: rotate(-2deg);
+}
 
 .menue { display: flex; align-items: center; gap: 1rem; }
 .menue ul {
