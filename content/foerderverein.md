@@ -27,7 +27,7 @@ Wir finanzieren uns durch Mitgliedsbeiträge, Spenden und den Erlös von Aktione
 
 ## Mitglied werden können
 
-- alle Schüler\*innen (auch Ehemalige …)
+- alle Schülerinnen und Schüler (auch Ehemalige …)
 - alle Lehrkräfte
 - alle Personen und Institutionen, die der Schule nahestehen oder die Ziele der Schule und des Fördervereins unterstützen möchten.
 

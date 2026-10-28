@@ -11,7 +11,7 @@ Der Schulsanitätsdienst (SSD) ist ein wichtiger Bestandteil unseres Schullebens
 
 ## Was passiert im SSD an unserer Schule?
 
-Neben Schulungen zur Ersten Hilfe, Erste-Hilfe-Kursen und der Information von Mitschüler*innen planen wir auch Katastrophentage und andere Aktionen.
+Neben Schulungen zur Ersten Hilfe, Erste-Hilfe-Kursen und der Information von Mitschülerinnen und Mitschülern planen wir auch Katastrophentage und andere Aktionen.
 
 Wir treffen uns regelmäßig, an unterschiedlichen Tagen. Dazu werden die Mitglieder des SSD vom Unterricht befreit.
 

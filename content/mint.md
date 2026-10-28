@@ -15,9 +15,9 @@ Aber: Selbst wenn so schon MINT-freundlich ist, kann man noch mehr machen.
 
 ## Technisches Gymnasium
 
-- Die Profilfächer im Technischen Gymnasium werden 6-stündig unterrichtet, durch Gruppenteilung im praktischen Bereich in Gruppen von 9 bis 15 Schüler\*innen. Mehr Technik oder Informationstechnik geht nicht.
+- Die Profilfächer im Technischen Gymnasium werden 6-stündig unterrichtet, durch Gruppenteilung im praktischen Bereich in Gruppen von 9 bis 15 Schülerinnen und Schüler. Mehr Technik oder Informationstechnik geht nicht.
 - Informatik ist in allen Profilen des TGs ein Pflichtfach, das ebenfalls in Gruppenteilung und zudem profilfachnah und -unterstützend unterrichtet wird.
-- Der Seminarkurs ist mehrheitlich naturwissenschaftlich orientiert. Die Schüler\*innen können eigene Projekte und Themen zu einem Seminarkurs entwickeln.
+- Der Seminarkurs ist mehrheitlich naturwissenschaftlich orientiert. Die Schülerinnen und Schüler können eigene Projekte und Themen zu einem Seminarkurs entwickeln.
 - Kooperation im Seminarkurs mit den [Funkamateuren Freiburg](https://www.badische-zeitung.de/bilder-aus-der-stratosphaere--174863371.html), dem [Modellflugverein Bahlingen](https://www.breisgauer-modellflieger.de/) und der HS Offenburg
 - Das Einbringen von Seminarkursarbeiten und Projektarbeiten bei Jugend-forscht ist erwünscht. Hier wurden in den letzten Jahren zahlreiche Erfolge erzielt:
     - Zahlreiche Preise und Platzierungen beim Regionalwettbewerb Südbaden

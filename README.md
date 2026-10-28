@@ -77,9 +77,9 @@ geschaltet; Links entstehen nur noch aus ausgeschriebenen Markdown-Zielen,
 und genau die prüft `qa/extlinkcheck.py`.
 
 **Bis zur Ablöse des Originals offen:** die Migration der alten URLs
-(Weiterleitungen der ghse.de-Pfade), vollständiger Serviceersatz (IServ),
-Buchungssystem, produktives Consent-Management, Hosting- und
-Deployment-Konfiguration. Die Architektur (Hugo-Layouts, Sections,
+(Weiterleitungen der ghse.de-Pfade, siehe Abschnitt 8, Punkt 7),
+vollständiger Serviceersatz (IServ bleibt als Dienst stehen) und
+Buchungssystem. Die Architektur (Hugo-Layouts, Sections,
 `.pages.yml`) lässt sich dafür ohne Umbau erweitern.
 
 ---
@@ -280,6 +280,17 @@ Jobstartbörse" → „auf der Jobstartbörse", „des Hochschulteam der Agentur
 für Arbeit" → „des Hochschulteams …" (Grammatik), „des 6jährigen SG" →
 „des 6-jährigen SG" (Trennstrich). Die Anrede „SchülerInnen" des Originals
 steht als „Schülerinnen und Schüler" (Geschlechterform nach Absprache).
+
+*Geschlechterform (Beschluss):* Im Bestand steht die volle Form — wo die
+Quelle den Stern nutzt, bleibt das als beabsichtigte Abweichung stehen:
+„Schüler*innen" → „Schülerinnen und Schüler" (MINT, Förderverein,
+unsere-schule), „Beratungslehrer*innen" → „Beratungslehrerinnen und
+Beratungslehrer" und „Lehrer*innen und Mitschüler*innen" → „Lehrerinnen
+und Lehrern sowie Mitschülerinnen und Mitschülern" (Beratungssystem),
+„Schüler*innen und Lehrkräfte" → „Schülerinnen und Schüler sowie
+Lehrkräfte", „Mobilitäten für Schüler*innen" → „… für Schülerinnen und
+Schüler" und „Kolleg*innen" → „Kolleginnen und Kollegen" (Erasmus+),
+„Mitschüler*innen" → „Mitschülerinnen und Mitschülern" (Schulsanitätsdienst).
 
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
@@ -723,14 +734,14 @@ Push startet die Pipeline automatisch neu.
 
 ---
 
-## 8. Offene Punkte
+## 8. Offene Punkte und getroffene Entscheidungen
 
 1. **Presse-Meldungen ohne Volltext:** Solange ghse.de nur Teaser + Abbildung
    + Quellenlink liefert, bleibt die Detailseite bei diesen Feldern. Sobald
    Volltexte gepflegt werden, ist das `body`-Feld im CMS bereits angebunden.
-2. **Bildfreigabe:** Bilder/PDFs sind als Arbeitsstand eingebunden; vor der
-   Ablöse von www.ghse.de braucht die GHSE die Freigabe (Urheberrecht
-   regionaler Zeitungen bei den Presseabbildungen!).
+2. **Bildfreigabe (erledigt):** Die GHSE hält die Freigaben für den
+   www.ghse.de-Bestand; was dort veröffentlicht ist, ist freigegeben —
+   die Einbindung von Bildern und PDFs ist damit für die Ablöse gedeckt.
 3. **Kein Verweis mehr auf die Originalseite:** Alle 54 zieltragenden
    Menüeinträge (von 59 insgesamt; fünf sind reine Zwischenüberschriften)
    sind auf eigene Seiten, Anker oder die echten Dienste (WebUntis, Moodle,
@@ -742,21 +753,24 @@ Push startet die Pipeline automatisch neu.
    (die Quellenangabe selbst bleibt als Klartext im Bildtext stehen). Der
    Kultusportal-Deep-Link der Originalseite (404, Portal umgezogen) zeigt
    weiterhin auf die geprüfte Startseite des Kultusministeriums.
-4. **Kein echtes Consent-/Analytics-Setup:** Das Original betreibt ein
-   Cookie-Consent-Modul; hier bewusst entfallen. Vor der Ablöse klären, ob
-   und mit welchem Dienst Analyse läuft – ohne Analytics ist keine
-   Einwilligung nötig, dann bleibt es dabei.
+4. **Kein Tracking (entschieden):** Kein Analytics, kein Consent-Modul —
+   ohne Tracking ist keine Einwilligung nötig; der Kopf bleibt dadurch
+   auch schneller. Falls die Schule später doch Analysen will, ist der
+   Punkt wieder offen.
 5. **Instagram-Feed ist ein Standbild:** Der Abschnitt zeigt vier konkrete
    Beiträge mit lokalen Bildern statt eines Live-Feeds. Zum Auffrischen
    dient `python3 tools/instagram.py` (neueste Beiträge holen, Bilder als
    WebP ablegen, `insta_beitraege` in `_index.md` ersetzen; neue
-   Bildbeschreibungen ergänzt der Hinweis in Abschnitt 1). Alternativ müsste
-   die Seite die Beiträge per JS/Server nachladen.
+   Bildbeschreibungen ergänzt der Hinweis in Abschnitt 1). Beschluss: das
+   Skript bleibt der Weg — zu klären ist noch, wer es bei der GHSE
+   regelmäßig (z. B. monatlich) ausführt.
 6. **Bewusst nicht gebaut:** kein Taxonomie-/Blog-System, kein
    Pagination-Layout, keine Social-Media-Einbettung, kein SVG-Sprite-Katalog
    – die Ablöse braucht davon nichts; Erweiterungen sind über die
    Sammlungen in `.pages.yml` ohne Umbau möglich.
-7. **Hosting und Domain für die Ablöse:** Der Produktionsstandort (eigene
-   Domain, z. B. über GitHub Pages oder den Schulserver) und Weiterleitungen
-   der alten ghse.de-Pfade (Abschnitt 2, „Bis zur Ablöse offen") sind
-   organisorisch zu klären; technisch ist die Seite dafür gebaut.
+7. **Deployment zur Ablöse (entschieden):** Die Seite läuft weiter auf
+   GitHub Pages. Geplant ist eine ergänzende FTP-Übertragung vom
+   GitHub-Workflow auf den all-inkl-Server der GHSE; mit der eingetragenen
+   Domain löst dieser Stand dann www.ghse.de ab. Weiterleitungen der alten
+   ghse.de-Pfade (Abschnitt 2, „Bis zur Ablöse offen") sind mit dem Umzug
+   auf dem all-inkl-Server einzurichten.

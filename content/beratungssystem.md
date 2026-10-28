@@ -3,7 +3,7 @@ title: "Beratung"
 description: "Beratung und Unterstützung an der GHSE: Schulsozialarbeit, AV-Begleitung, Beratungslehrkräfte und Pädagogischer Dienst mit Kontaktdaten."
 ---
 
-Die GHSE verfügt über ein breit angelegtes Unterstützungssystem, das unseren Schülern innerhalb und außerhalb der Schule Hilfestellungen anbieten kann. Neben der [Schulsozialarbeit](/schulsozialarbeit/) und der [AV-Begleitung](/av-dual-begleitung/) stehen euch auch Beratungslehrer*innen und eine Kollegin im Pädagogischen Dienst zur Verfügung.
+Die GHSE verfügt über ein breit angelegtes Unterstützungssystem, das unseren Schülern innerhalb und außerhalb der Schule Hilfestellungen anbieten kann. Neben der [Schulsozialarbeit](/schulsozialarbeit/) und der [AV-Begleitung](/av-dual-begleitung/) stehen euch auch Beratungslehrerinnen und Beratungslehrer und eine Kollegin im Pädagogischen Dienst zur Verfügung.
 
 {{< bild src="/bilder/beratungssystem.webp" breite="voll" alt="Ausschnitt aus dem Unterstützungssystem der GHSE: Beratungslehrkräfte und Pädagogischer Dienst mit den Themen und den Kontaktdaten der drei Ansprechpartner" >}}
 
@@ -12,7 +12,7 @@ Die GHSE verfügt über ein breit angelegtes Unterstützungssystem, das unseren 
 Alle Schularten werden bei Folgendem unterstützt:
 
 - Problemen mit Noten oder Fehlzeiten
-- Problemen mit Lehrer*innen und Mitschüler*innen
+- Problemen mit Lehrerinnen und Lehrern sowie Mitschülerinnen und Mitschülern
 - Kummer
 - persönlichen Krisen
 - Kontaktvermittlung zu anderen Hilfseinrichtungen

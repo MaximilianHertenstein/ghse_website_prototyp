@@ -1,6 +1,6 @@
 ---
 title: "GHSE Emmendingen ist Erasmus+ akkreditiert – Europa erleben!"
-description: "Seit Januar 2026 ist die GHSE Emmendingen offiziell Erasmus+ akkreditiert: Mobilitäten für Schüler*innen, Projekte im Klassenverband und Fortbildungen für Lehrkräfte."
+description: "Seit Januar 2026 ist die GHSE Emmendingen offiziell Erasmus+ akkreditiert: Mobilitäten für Schülerinnen und Schüler, Projekte im Klassenverband und Fortbildungen für Lehrkräfte."
 ---
 
 {{< bild src="/bilder/erasmus-gruppe.webp" alt="" breite="voll" >}}
@@ -9,13 +9,13 @@ Seit Januar 2026 ist die GHSE Emmendingen offiziell Erasmus+ akkreditiert. Diese
 
 Was bedeutet das für unsere Schule?
 
-Dank der Erasmus+ Akkreditierung können Schüler*innen und Lehrkräfte der GHSE aktiv am europäischen Austausch teilnehmen.
+Dank der Erasmus+ Akkreditierung können Schülerinnen und Schüler sowie Lehrkräfte der GHSE aktiv am europäischen Austausch teilnehmen.
 
 Unsere Schule bietet:
 
-- Individuelle Mobilitäten für Schüler*innen: Aufenthalte in europäischen Partnerländern zur Erweiterung fachlicher und persönlicher Kompetenzen.
+- Individuelle Mobilitäten für Schülerinnen und Schüler: Aufenthalte in europäischen Partnerländern zur Erweiterung fachlicher und persönlicher Kompetenzen.
 - Projekte im Klassenverband: Gemeinsame Lernprojekte mit europäischen Partnerschulen.
-- Fortbildungen und Hospitationen für Lehrkräfte: Kolleg*innen können sich international weiterbilden und neue Impulse für den Unterricht gewinnen.
+- Fortbildungen und Hospitationen für Lehrkräfte: Kolleginnen und Kollegen können sich international weiterbilden und neue Impulse für den Unterricht gewinnen.
 
 ## Ziele von Erasmus+
 

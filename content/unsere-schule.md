@@ -166,9 +166,9 @@ Als [UNESCO-Projektschule](/unesco/) sind die Gewerblich-Hauswirtschaftlich-Sozi
 
 Alle Mitglieder der Schulgemeinschaft lernen und arbeiten in einem Klima **gegenseitigen Respekts**. Wir treten aktiv Intoleranz, Rassismus und Gewalt entgegen.
 
-Wir fördern in unseren Schularten die Schüler\*innen entsprechend ihrer **unterschiedlichen Neigungen und Begabungen** im beruflichen, persönlichen und gesellschaftlichen Bereich.
+Wir fördern in unseren Schularten die Schülerinnen und Schüler entsprechend ihrer **unterschiedlichen Neigungen und Begabungen** im beruflichen, persönlichen und gesellschaftlichen Bereich.
 
-Wir unterstützen die **geistige, körperliche sowie emotionale und kreative Entwicklung** unserer Schüler\*innen durch entsprechende Bildungsangebote und fächerübergreifendes Lernen, Methoden und Strukturen und legen die Grundlagen für eine erfolgreiche Teilnahme am Berufs- und Arbeitsleben. Eigenständigkeit ist unser Ziel.
+Wir unterstützen die **geistige, körperliche sowie emotionale und kreative Entwicklung** unserer Schülerinnen und Schüler durch entsprechende Bildungsangebote und fächerübergreifendes Lernen, Methoden und Strukturen und legen die Grundlagen für eine erfolgreiche Teilnahme am Berufs- und Arbeitsleben. Eigenständigkeit ist unser Ziel.
 
 Der achtsame Umgang mit anderen und uns selbst ist uns wichtig. Deshalb engagieren wir uns in verschiedenen Bereichen der Prävention und setzen uns aktiv mit den Freiheiten, Chancen und Grenzen des digitalen Zeitalters auseinander.
 
