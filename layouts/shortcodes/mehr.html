@@ -1,0 +1,6 @@
+{{- /* „Mehr erfahren“-Verweis wie die Kacheln der Originalseiten. Ziel
+       relativ (Untertafel) oder fremd (extern → ↗, neues Fenster). */ -}}
+{{- $ziel := .Get "ziel" -}}
+{{- $href := $ziel -}}
+{{- if hasPrefix $ziel "/" }}{{ $href = $ziel | relURL }}{{ end -}}
+<p><a class="linkpfeil" href="{{ $href }}"{{ if .Get "extern" }} target="_blank" rel="noopener"{{ end }}>Mehr erfahren<span aria-hidden="true">{{ if .Get "extern" }}↗{{ else }}→{{ end }}</span></a></p>

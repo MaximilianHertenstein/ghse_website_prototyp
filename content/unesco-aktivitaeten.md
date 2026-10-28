@@ -304,7 +304,7 @@ Die Beschäftigung mit alten Handwerkstechniken steht an der UNESCO-Projektschul
 
 ## 2008/2009
 
-- Teilnahme an der Aktion www.muetze-voll-leben.de von www.safethechildren.de
+- Teilnahme an der Aktion www.muetze-voll-leben.de von [www.safethechildren.de](http://www.safethechildren.de/)
 - Teilnahme an der Aktion „Kein Schnitt ins Leben“ von Terres des Femmes
 - Kollegenfest zu „GHSE – 15 Jahre UNESCO-Projektschule“
 - UNESCO-Schülerseminar in Aurich

@@ -31,13 +31,13 @@ termine:
 # Berufs- und Studieninformation: Beiträge aus der Berufsinformation der Schule
 berufsinfo:
   - titel: "Universität Tübingen: Aktionswoche zur Studienorientierung 13.-17. Mai 2024"
-    datum: "22.04.2024"
+    datum: "2024-04-22"
     teaser: "Die Universität Tübingen lädt Ihre Schülerinnen und Schüler der Oberstufe zu einer Aktionswoche zur Studienorientierung vom 13. bis 17. Mai 2024 mit vielen Informationsveranstaltungen zu verschiedenen Studiengängen und weiteren Veranstaltungen rund um die Studienwahl ein."
   - titel: "Tag der offenen Ausbildung SICK AG Waldkirch"
-    datum: "11.04.2024"
+    datum: "2024-04-11"
     teaser: "wir möchten Sie auf unseren Tag der offenen Ausbildung aufmerksam machen und freuen uns, wenn Sie Ihre Schüler/innen darüber informieren. Tag der offenen Ausbildung bei der SICK AG Waldkirch – Freitag, 26.04.2024 von 16 – 20 Uhr und Samstag, 27.04.2024 von 10 – 16 Uhr, Bildungshaus Merklinstraße 19 in Waldkirch."
   - titel: "Wasserkraft Volk AG"
-    datum: "19.03.2024"
+    datum: "2024-03-19"
     teaser: "Ausbildungsplatz bei Wasserkraft Volk AG – Für uns als Unternehmen ist es von sehr großer Bedeutung, dass auch Sie, von Seitens der Schule, unsere Ausbildungsberufe als Zukunftsperspektive anbieten. Natürlich haben die Schüler/innen auch die Möglichkeit, sich um einen Praktikumsplatz zu bewerben."
 berufsinfo_mehr: "/berufsinformation/"
 

@@ -360,7 +360,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
   [[menus.haupt]]
     identifier = "anmeldung"
     name = "Anmeldung"
-    url = "/downloads/#dl-formulare--hausordnung"
+    pageRef = "/anmeldeformulare"
     weight = 90
   [[menus.haupt]]
     identifier = "anmeldung-bewo"

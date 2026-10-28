@@ -27,7 +27,7 @@ Aber: Selbst wenn so schon MINT-freundlich ist, kann man noch mehr machen.
     - [Igelschutz: 3. Platz Landeswettbewerb im Fachbereich Arbeitswelt](https://www.badische-zeitung.de/emmendinger-schueler-entwickelt-igelerkennung-fuer-maehroboter--244260423.html)
 - Jährliche Teilnahme am Informatikbiber seit vielen Jahren mit allen 11. Klassen
 - Erfolgreiche Erst- und Zweitrundenteilnahme am Bundeswettbewerb Informatik im Rahmen des Seminarkurses
-- 2. Platz bei myDigitalWorld
+- [2. Platz bei myDigitalWorld](https://twitter.com/sicherimnetz/status/1135604055181602819)
 - Aussteller bei den ScienceDays 2022, 2019 und 2017 im Europapark
 - Regelmäßige AGs im MINT-Bereich:
     - Klimawandel und Astronomie (mit Ausflug zum CERN)

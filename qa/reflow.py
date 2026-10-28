@@ -19,8 +19,17 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public")
+ROOT = os.path.abspath(ROOT)
 PORT = 8732
 BREITEN = [320, 360, 414, 480, 640, 768, 834, 1024, 1112, 1280, 1440]
+
+# Optional: anderes Ziel-Verzeichnis und Port, z. B. für den Bau mit
+# --baseURL /ghse_website_prototyp/ (Unterpfad-Probe):
+#   python3 qa/reflow.py <verzeichnis> [port]
+if len(sys.argv) > 1:
+    ROOT = os.path.abspath(sys.argv[1])
+if len(sys.argv) > 2:
+    PORT = int(sys.argv[2])
 
 PROBE = """<!doctype html><meta charset="utf-8"><body style="margin:0"><pre id="a">lade</pre>
 <iframe id="f" style="border:0;width:100%;height:1400px"></iframe>

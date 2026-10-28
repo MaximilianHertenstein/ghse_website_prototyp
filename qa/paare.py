@@ -3,11 +3,11 @@
 
 Aufruf:  python3 qa/paare.py          (aus dem Repository-Stammverzeichnis)
 
-Jede der achtundzwanzig Seiten hat ihre eigene Originalseite, die Namen decken
+Jede der zweiunddreißig Seiten hat ihre eigene Originalseite, die Namen decken
 sich aber nicht (das Original liegt unter `/schueler/beratung-2/`, bei uns
 heißt die Seite `schulsozialarbeit`). Die Paare stehen deshalb hier explizit;
 für einzeln Nachzuprüfendes sind das die beiden Argumente, die `qa/treue.py`
-und `satzpruefung.py` verlangen. Dreiundzwanzig Quellen liegen als HTML vor,
+und `satzpruefung.py` verlangen. Siebenundzwanzig Quellen liegen als HTML vor,
 fünf als Text (Markdown- oder Rohtext-Aufzeichnung); beide Formen lesen dieselbe
 Wortfolge.
 
@@ -56,6 +56,14 @@ PAARE = [
     ("content/praktikum-fuer-studierende.md",
      "recherche/praktikum-fuer-studierende-roh.md"),
     ("content/projekte-und-software.md", "recherche/quellen/projekte.html"),
+    ("content/schularten/berufsvorbereitende-schularten/av-dual.md",
+     "recherche/quellen/bv-av-dual.html"),
+    ("content/schularten/berufsvorbereitende-schularten/vabo.md",
+     "recherche/quellen/bv-vabo.html"),
+    ("content/schularten/berufsvorbereitende-schularten/vabkf.md",
+     "recherche/quellen/bv-vabkf.html"),
+    ("content/schularten/berufsvorbereitende-schularten/bve.md",
+     "recherche/quellen/bv-bve.html"),
     ("content/saferspace.md", "recherche/saferspace-roh.md"),
     ("content/schulbienen.md", "recherche/quellen/schulbienen.html"),
     ("content/schulsanitaetsdienst.md", "recherche/quellen/schulsanitaet.html"),

@@ -1,0 +1,7 @@
+{{- /* Alle Markdown-Links laufen durch relURL, damit sie unter "/" und
+       unter "/ghse_website_prototyp/" greifen. relURL rührt wurzel-absolute
+       Pfade ("/downloads/…") nicht an — der Schrägstrich wird deshalb
+       abgestreift, bevor relURL den Basispfad davorsetzt. Fremd-Adressen
+       (https://, mailto:) und Anker bleiben unverändert, relative Ziele
+       (Untertafeln) ebenfalls. */ -}}
+{{- $ziel := .Destination -}}<a href="{{ if hasPrefix $ziel "/" }}{{ strings.TrimPrefix "/" $ziel | relURL }}{{ else }}{{ $ziel | safeURL }}{{ end }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>

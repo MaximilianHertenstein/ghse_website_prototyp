@@ -141,6 +141,18 @@
   </div>
 </section>
 
+{{- /* Nur aktuelle externe Angebote zeigen: das Original speist die Sektion
+       aus seinem Meldungs-Feed, unsere Kopie würde sonst Angebote von 2024
+       dauerhaft einfrieren. Einträge mit Zukunftsdatum bleiben stehen, ist
+       keiner übrig, entfällt die ganze Sektion (die Datenpflege steht im
+       CMS). Datum steht als TT.MM.JJJJ im Front-Matter. */}}
+{{- $aktuelle_angebote := slice }}
+{{- range .Params.berufsinfo }}
+  {{- with .datum | time }}
+    {{- if .After now }}{{ $aktuelle_angebote = $aktuelle_angebote | append $ }}{{ end }}
+  {{- end }}
+{{- end }}
+{{- if $aktuelle_angebote }}
 <section class="band band--papier" aria-labelledby="home-beruf">
   <div class="container">
     <div class="kopfzeile">
@@ -148,20 +160,21 @@
         <p class="kicker">Oberstufe &amp; Ausbildung</p>
         <h2 id="home-beruf">Berufs- und Studieninformation</h2>
       </div>
-      <a class="btn btn--geist" href="{{ .Params.berufsinfo_mehr }}">Zur Berufsinformation</a>
+      <a class="btn btn--geist" href="{{ strings.TrimPrefix "/" .Params.berufsinfo_mehr | relURL }}">Zur Berufsinformation</a>
     </div>
     <ul class="infoliste">
-      {{ range .Params.berufsinfo }}
+      {{ range $aktuelle_angebote }}
       <li class="infozeile">
-        <p class="meta"><span class="marke">{{ .datum }}</span></p>
+        <p class="meta"><span class="marke">{{ .datum | time.Format "02.01.2006" }}</span></p>
         <h3 class="infozeile__titel">{{ .titel }}</h3>
         <p class="infozeile__text">{{ .teaser }}</p>
-        {{ with .url }}<a class="linkpfeil" href="{{ . }}">Weiterlesen<span aria-hidden="true">↗</span></a>{{ end }}
+        {{ with .url }}<a class="linkpfeil" href="{{ . | relURL }}">Weiterlesen<span aria-hidden="true">↗</span></a>{{ end }}
       </li>
       {{ end }}
     </ul>
   </div>
 </section>
+{{- end }}
 
 <section class="band band--papier" id="service" aria-labelledby="home-service">
   <div class="container">
@@ -199,7 +212,7 @@
         <p class="kicker">Mehr von der Schule</p>
         <h2 id="home-schulleben">Schüler/innen – Schulleben – Lehrer/innen</h2>
       </div>
-      <a class="btn btn--geist" href="{{ .Params.schulleben_url }}">Zum Schulleben</a>
+      <a class="btn btn--geist" href="{{ strings.TrimPrefix "/" .Params.schulleben_url | relURL }}">Zum Schulleben</a>
     </div>
     <p class="band__einleitung">{{ .Params.schulleben_text }}</p>
     <ul class="schulleben">

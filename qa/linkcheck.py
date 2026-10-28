@@ -13,6 +13,11 @@ from urllib.parse import unquote, urlparse
 
 WURZEL = os.path.join(os.path.dirname(__file__), "..", "public")
 WURZEL = os.path.abspath(WURZEL)
+# Optional: anderes Ziel-Verzeichnis, z. B. der Bau mit
+# --baseURL /ghse_website_prototyp/, der (verschachtelt abgelegt) unter dem
+# Basispfad geprüft wird:  python3 qa/linkcheck.py <verzeichnis>
+if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):
+    WURZEL = os.path.abspath(sys.argv[1])
 
 ziele = set()
 fehler_ziele = set()
@@ -62,8 +67,15 @@ for quelle, ziel in sorted(ziele):
             fehler_anker.add((quelle, "#" + anker))
         continue
 
-    ziel_pfad = ziel_pfad.lstrip("/")
-    kandidat = os.path.join(WURZEL, ziel_pfad)
+    if ziel_pfad.startswith("/"):
+        # Wurzel-absolute Ziele (im Unterpfad-Bau samt Basispfad) gegen das
+        # Lauf-Verzeichnis auflösen.
+        kandidat = os.path.join(WURZEL, ziel_pfad.lstrip("/"))
+    else:
+        # Seitenrelative Ziele („vabkf/“): gegen das Verzeichnis der
+        # verlinkenden Seite auflösen.
+        kandidat = os.path.normpath(
+            os.path.join(WURZEL, os.path.dirname(quelle), unquote(p.path)))
     if os.path.isdir(kandidat):
         kandidat = os.path.join(kandidat, "index.html")
     if not os.path.isfile(kandidat):

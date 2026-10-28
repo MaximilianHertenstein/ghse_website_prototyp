@@ -103,13 +103,12 @@ content:
             label: Titel
             type: string
           - name: datum
-            label: Datum (Anzeige)
-            # Wird unverändert ausgegeben, nicht als Datumsfeld formatiert.
-            description: Erscheint unverändert auf der Karte – Format TT.MM.JJJJ.
-            pattern:
-              regex: '^\d{2}\.\d{2}\.\d{4}$'
-              message: "Bitte TT.MM.JJJJ verwenden, z. B. 22.04.2024"
-            type: string
+            label: Datum
+            # ISO im Front-Matter; die Vorlage formatiert es als TT.MM.JJJJ.
+            # Nur Einträge mit Zukunftsdatum erscheinen auf der Startseite.
+            type: date
+            options:
+              format: yyyy-MM-dd
           - name: teaser
             label: Anrisstext
             type: text

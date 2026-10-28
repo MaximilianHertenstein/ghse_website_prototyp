@@ -190,9 +190,12 @@ class StillerHandler(http.server.SimpleHTTPRequestHandler):
         super().end_headers()
 
 
-def hago_bauen(ziel):
+def hago_bauen(ziel, basis=None):
     print(f"baue nach {ziel} …")
-    subprocess.run(["hugo", "-D", "-d", ziel], cwd=REPO, check=True,
+    befehl = ["hugo", "-D", "-d", ziel]
+    if basis:
+        befehl += ["--baseURL", f"/{basis.strip('/')}/"]
+    subprocess.run(befehl, cwd=REPO, check=True,
                    stdout=subprocess.DEVNULL)
 
 
@@ -261,25 +264,47 @@ def pruefe(b):
 
 
 def main():
+    # Optional: Bau und Messung unter einem Unterpfad, wie beim GitHub-Pages-
+    # Deployment (/ghse_website_prototyp/…):  python3 qa/layout.py --basis ghse_website_prototyp
+    basis = ""
+    if "--basis" in sys.argv:
+        basis = sys.argv[sys.argv.index("--basis") + 1].strip("/")
+
     public = os.path.join(REPO, "public")
-    if "--bauen" in sys.argv or not os.path.isdir(public):
-        hago_bauen(public)
+    vorlage = None
+    if basis:
+        # Unterpfad: frischer Bau gleich mit --baseURL in einen Wegwerf-Ordner
+        vorlage = tempfile.TemporaryDirectory(prefix="ghse-basis-")
+        hago_bauen(vorlage.name, basis)
+        quelle = vorlage.name
+    else:
+        if "--bauen" in sys.argv or not os.path.isdir(public):
+            hago_bauen(public)
+        quelle = public
 
     with tempfile.TemporaryDirectory(prefix="ghse-layout-") as tmp:
         # Bau kopieren: die Mess-Seite liegt im selben Verzeichnis und ist
-        # damit gleicher Ursprung wie die gemessenen Seiten.
-        for eintrag in os.listdir(public):
-            quel = os.path.join(public, eintrag)
-            ziel = os.path.join(tmp, eintrag)
+        # damit gleicher Ursprung wie die gemessenen Seiten. Hugo schreibt
+        # die Dateien direkt ins Ziel (ohne Basispfad-Ebene), die Adressen
+        # verlangen sie aber — also unter <tmp>/<basis>/ ablegen.
+        ziel_basis = os.path.join(tmp, basis) if basis else tmp
+        if basis:
+            os.makedirs(ziel_basis)
+        for eintrag in os.listdir(quelle):
+            quel = os.path.join(quelle, eintrag)
+            ziel = os.path.join(ziel_basis, eintrag)
             shutil.copytree(quel, ziel) if os.path.isdir(quel) else shutil.copy(quel, ziel)
+        zpfade = [f"/{basis}{z}" for z in ZIELE] if basis else ZIELE
         with open(os.path.join(tmp, "__harness.html"), "w", encoding="utf-8") as f:
-            f.write(HARNESS)
+            f.write(HARNESS.replace(json.dumps(ZIELE), json.dumps(zpfade)))
 
         srv, port = starte_server(tmp)
         try:
             berichte = chromium_dom(f"http://127.0.0.1:{port}/__harness.html")
         finally:
             srv.shutdown()
+            if vorlage:
+                vorlage.cleanup()
 
     gesamt = 0
     for b in sorted(berichte, key=lambda x: (-x.get("breite", 0), x.get("pfad", ""))):

@@ -17,12 +17,10 @@
 
   <div class="container kopf__innen">
     <a class="marke-link" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} – zur Startseite">
-      {{- /* Maße vom echten SVG; die Datei logo.svg enthält trotz der
-             Endung JPEG-Daten und ist bewusst nicht verlinkt. */}}
-      {{- /* Echtes SVG mit transparentem Grund; Maße als Attribute, damit
-             der Kopf beim Laden nicht springt. Die Datei logo.svg enthält
-             trotz der Endung JPEG-Daten und ist bewusst nicht verlinkt. */}}
-      <img src="{{ "bilder/logo_transparent.svg" | relURL }}" width="607" height="505"
+      {{- /* Zeichen des Schullogos als optimiertes WebP (aus der
+           Logo-Vorlage extrahiert, getrimmt); Maße als Attribute, damit
+           der Kopf beim Laden nicht springt. */}}
+      <img src="{{ "bilder/logo-zeichen.webp" | relURL }}" width="269" height="224"
            alt="GHSE – Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen">
     </a>
 

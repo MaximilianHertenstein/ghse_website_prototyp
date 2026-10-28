@@ -174,3 +174,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
    `data-theme="dark"` am `<html>` ansehen (Achtung: `nav.js` setzt den
    Modus am laufenden Dokument, im Testkopie den Anfangs-`stelle()`-Aufruf
    überspringen).
+8. `python3 qa/unterpfad.py` – derselbe Stand unter
+   `/ghse_website_prototyp/` (Bau mit `--baseURL`, dann Linkcheck, Reflow
+   und Layoutmessung im Wegwerf-Verzeichnis). Fängt genau die Fehler, die
+   unter "/" unsichtbar bleiben: Schriften und alle Inhalts-Links brechen
+   unter dem GitHub-Pages-Unterpfad, wenn ein Pfad nicht durch `relURL`
+   läuft.

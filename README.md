@@ -43,7 +43,7 @@ hinschauen, was zu sehen ist).
 
 | Bereich | Umsetzung | URL |
 |---|---|---|
-| A Landingpage | Hero (Schulnamen-Badge, Abschluss-Chips), 4 Schularten, Instagram (4 Beiträge + 8 Accounts), Aktuelles (3 Meldungen + Link auf alle), Termine (9 Kalender), Berufs-/Studieninformation, Service (4 Karten), Schulleben, Partner (logobreit) | `/` |
+| A Landingpage | Hero (Schulnamen-Badge, Abschluss-Chips), 4 Schularten, Instagram (4 Beiträge + 8 Accounts), Aktuelles (3 Meldungen + Link auf alle), Termine (9 Kalender), Service (4 Karten), Schulleben, Partner (logobreit); Berufs-/Studieninformation nur bei aktuellen Terminen (Momentan-Ausblendung, siehe §3) | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
@@ -70,11 +70,14 @@ vier stehen auf den neuen Seiten als Bild **und** als mitlesbarer Text
 drunter (Namen, Räume, Termine, Zitate unverändert übernommen); wer das
 Bild nicht lesen kann oder will, verliert keine Information.
 
-**Bewusst kein Autolinking:** Adressen im Fließtext („www.safethechildren.de",
-„livec.com") bleiben Text, wie auf der Originalseite – mehrere davon zeigen
-längst ins Leere. `markup.goldmark.extensions.linkify` ist deshalb ab-
-geschaltet; Links entstehen nur noch aus ausgeschriebenen Markdown-Zielen,
-und genau die prüft `qa/extlinkcheck.py`.
+**Bewusst kein Autolinking:** bloße Adressangaben im Fließtext werden nicht
+automatisch verlinkt; `markup.goldmark.extensions.linkify` ist abgeschaltet.
+Links entstehen nur über ausgeschriebene Markdown-Ziele – genau die prüft
+`qa/extlinkcheck.py`. Wo das Original Adressen verlinkt, verlinken wir mit;
+zwei Ziele sind inzwischen tot („www.muetze-voll-leben.de" und
+softatomos.com/kane/, Domains weg) und stehen deshalb als reiner Text –
+ebenso der Sea-Shepherd-Verweis, der im Original auf den alten
+vorgelagerten Server zeigt.
 
 **Bis zur Ablöse des Originals offen:** die Migration der alten URLs
 (Weiterleitungen der ghse.de-Pfade, siehe Abschnitt 8, Punkt 7),
@@ -95,7 +98,7 @@ Projektordner geladen und einzeln geprüft.
 | Hero, Fakten, Karten-Titel | `https://www.ghse.de/`, `https://www.ghse.de/die-ghse/` |
 | Aktuelles (5 Meldungen inkl. Abbildungen) | `https://www.ghse.de/` (Abschnitt „Aktuelles") bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Termine (Einleitung, 9 Kalender-Links) | `https://www.ghse.de/` (Abschnitt „Termine") → öffentliche Nextcloud-Kalender der GHSE |
-| Berufs- und Studieninformation | `https://www.ghse.de/` (Abschnitt „Berufs- und Studieninformation") → Einzelbeiträge der Originalseite |
+| Berufs- und Studieninformation (Startseite) | `https://www.ghse.de/` (Abschnitt „Berufs- und Studieninformation") → Einzelbeiträge; nur Einträge mit Zukunftsdatum erscheinen, die drei Aufzeichnungs-Einträge von 2024 sind ausgeblendet |
 | Instagram (Einleitung, 8 Accounts, 4 Beiträge) | `https://www.ghse.de/` (Abschnitt „Die GHSE bei Instagram") → `instagram.com/ghse_emmendingen` |
 | Schüler/innen – Schulleben – Lehrer/innen | `https://www.ghse.de/schueler-schulleben-lehrer/` (Aufzeichnung `recherche/quellen/schueler-schulleben-lehrer.html`) |
 | MINT | `https://www.ghse.de/mint/` (Aufzeichnung `recherche/quellen/mint.html`) |
@@ -104,6 +107,7 @@ Projektordner geladen und einzeln geprüft.
 | Partner-Logostreifen | `https://www.ghse.de/` (Abschnitt „Partner") |
 | Schularten-Übersicht + Detailseiten | `https://www.ghse.de/schularten/…` (Teilzeit-/Vollzeitschularten) |
 | Detailseite TG | `https://www.ghse.de/schularten/vollzeitschularten/technisches-gymnasium/` |
+| Berufsvorbereitung: AV-Dual, VABO, VABKF, BVE | `https://www.ghse.de/schularten/vollzeitschularten/berufsvorbereitung/` samt vier Untertafeln (Aufzeichnungen `recherche/quellen/berufsvorbereitung.html`, `bv-av-dual.html`, `bv-vabo.html`, `bv-vabkf.html`, `bv-bve.html`) |
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |
@@ -141,9 +145,10 @@ jederzeit aktuell.
 „Badischen Zeitung" → „Badische Zeitung" (Quellenlabel), „Die Einjährige
 Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 
-Für die achtundzwanzig Seiten mit eigener Quelle – die achtzehn Service-,
-Schüler- und Themenseiten sowie Die GHSE, MINT, Schulleben, Förderverein,
-Berufsinformation, BewO, Praktikum, Impressum, Datenschutz und Safer Space –
+Für die zweiunddreißig Seiten mit eigener Quelle – die achtzehn Service-,
+Schüler- und Themenseiten, die vier Untertafeln der Berufsvorbereitung
+sowie Die GHSE, MINT, Schulleben, Förderverein, Berufsinformation, BewO,
+Praktikum, Impressum, Datenschutz und Safer Space –
 gilt dieselbe Regel: jedes Wort steht so, wie die Quelle es schreibt, nur wo
 diese offensichtlich fehlerhaft ist, wird richtig gestellt.
 Diese Fälle sind es, jeder einzelne gegen die Originalseite nachgeprüft
@@ -284,13 +289,35 @@ steht als „Schülerinnen und Schüler" (Geschlechterform nach Absprache).
 *Geschlechterform (Beschluss):* Im Bestand steht die volle Form — wo die
 Quelle den Stern nutzt, bleibt das als beabsichtigte Abweichung stehen:
 „Schüler*innen" → „Schülerinnen und Schüler" (MINT, Förderverein,
-unsere-schule), „Beratungslehrer*innen" → „Beratungslehrerinnen und
+unsere-schule, VABKF), „Beratungslehrer*innen" → „Beratungslehrerinnen und
 Beratungslehrer" und „Lehrer*innen und Mitschüler*innen" → „Lehrerinnen
 und Lehrern sowie Mitschülerinnen und Mitschülern" (Beratungssystem),
-„Schüler*innen und Lehrkräfte" → „Schülerinnen und Schüler sowie
+„die Sozialarbeiter*innen" → „die Sozialarbeiterinnen und Sozialarbeiter"
+(VABKF), „Schüler*innen und Lehrkräfte" → „Schülerinnen und Schüler sowie
 Lehrkräfte", „Mobilitäten für Schüler*innen" → „… für Schülerinnen und
 Schüler" und „Kolleg*innen" → „Kolleginnen und Kollegen" (Erasmus+),
 „Mitschüler*innen" → „Mitschülerinnen und Mitschülern" (Schulsanitätsdienst).
+
+*Berufsvorbereitende Schularten (Übersichts- und vier Detailseiten):* die
+vier Untertafeln (AV-Dual, VABO, VABKF, BVE) führen als eigene Seiten mit
+dem vollen Quellwortlaut; die Übersichtsseite ergänzt den Einleitungssatz
+mit den vier Links und je einen „Mehr erfahren"-Verweis wie die
+Kacheln der Quelle (die VABKW-Kachel zeigt wie im Original auf die
+Kooperationsschule fbs-emmendingen.de). Korrekturen: „Berufvorbereitende
+Einrichtung" → „Berufsvorbereitende Einrichtung" (Tippfehler der
+Quellenüberschrift), „Deutschkenntnis-sen" → „Deutschkenntnissen"
+(Zeilentrennung), „SBBZabgeschlossen" → „SBBZ abgeschlossen" und
+„KooperationF" → „Kooperation F" (in der Quelle zusammengerückt),
+„V= VorqualifizierungsjahrA= ArbeitB= BerufK= mit einem SBBZ" als
+Listenpunkte auseinandergezogen, das abgerutschte „l" hinter der FAQ-Frage
+„Was gefällt den Schüler*innen am VABKF?" entfernt; die FAQ führt die
+Frage „Wie sieht es mit Englisch aus?" doppelt, wie die Quelle,
+„wesentlichen Unterstützungsbedarf, der … nicht
+zulässt" → „wesentlicher Unterstützungsbedarf …" (Grammatik),
+„entwickeln die jugendlichen" → „die Jugendlichen" (Großschreibung),
+„von 7.45 Uhr – 15.00" → „… – 15.00 Uhr" (fehlendes „Uhr"). Die
+„Impressionen"-Galerien der vier Detailseiten sind noch nicht übernommen;
+je ein Bild des Bildungsgangs steht auf der Übersichtsseite.
 
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
@@ -537,7 +564,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   sind Akzente (Aktionen, Kicker, Kategorien, Links). Gelb füllt nur noch
   einzelne Komponenten wie `.kasten--gelb` oder Schaltflächen, keine ganzen
   Seitenbänder.
-* Die Akzentfarben stehen so im GHSE-Logo (`static/bilder/logo_transparent.svg`):
+* Die Akzentfarben stehen so im GHSE-Logo (`static/bilder/logo-zeichen.webp`,
+  aus der Logo-Vorlage übernommen):
   Gelb `#F8DC54`, Orange `#EC7030`, Blau `#1060A0` aus dem helleren Teil des
   Logo-Verlaufs – das dunkle Navy des Verlaufs bleibt bewusst unbenutzt.
   `qa/kontrast.py` liest die Tokens direkt aus `static/css/main.css` und
@@ -577,12 +605,18 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
   Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
   wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
-  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (56 Seiten ×
-  11 Breiten = 616 Kombinationen, 0 Probleme – nichts bricht horizontales
-  Scrollen aus).
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 57
-  HTML-Dateien (56 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
-  Schriften und Dokumente (3538 Ziele gesamt, keine Fehlschläge,
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (60 Seiten ×
+  11 Breiten = 660 Kombinationen, 0 Probleme – nichts bricht horizontales
+  Scrollen aus). Dieselben drei Prüfungen laufen zusätzlich gegen einen Bau
+  mit `--baseURL /ghse_website_prototyp/` (`qa/unterpfad.py`) – dort sind
+  Schriften und alle Inhalts-Links fürchterlich schnell kaputt, weil die
+  Seite unter dem GitHub-Pages-Unterpfad liegt und ein Pfad ohne `relURL`
+  (Schriftquelle, zwei Schaltflächen-Ziele, alle Markdown-Links der
+  Inhalte) unsichtbar unter "/" ins Leere lief; ein Render-Hook
+  (`layouts/_default/_markup/render-link.html`) schreibt sie um.
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 61
+  HTML-Dateien (60 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
+  Schriften und Dokumente (3762 Ziele gesamt, keine Fehlschläge,
   einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
@@ -592,22 +626,22 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
-* Worttreue gegen die Vorlage: alle achtundzwanzig Seiten mit eigener Quelle
+* Worttreue gegen die Vorlage: alle zweiunddreißig Seiten mit eigener Quelle
   werden Wort für Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der
   Vorlage fallen raus, ebenso der Adress- und Öffnungszeitblock, den die
   Vorlage auf jeder Seite mitschleift) und zählt reine Satzzeichen- und
   Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
   Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
-  Dreiundzwanzig Quellseiten liegen als HTML unter `recherche/quellen/`, fünf
+  Siebenundzwanzig Quellseiten liegen als HTML unter `recherche/quellen/`, fünf
   als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space), damit die
   Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
-  achtundzwanzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  zweiunddreißig Quellpaare ist explizit, weil Datei- und Seitennamen sich
   nicht decken (`schulsozialarbeit` liegt unter
   `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
   durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
   offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
-  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 134
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 172
   Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
   vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
   späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage
