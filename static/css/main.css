@@ -16,7 +16,6 @@
   --gelb: #f8dc59;
   --orange: #f07733;
   --blau: #0b66b3;
-  --navy: #262b6f;
 
   --orange-tief: #b8430f;
 
@@ -175,7 +174,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 }
 
 .hero :focus-visible {
-  outline-color: var(--gelb);
+  outline-color: var(--orange-tief);
 }
 
 .band--nacht :focus-visible,
@@ -189,7 +188,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .seitenkopf--akzent :focus-visible,
 .kasten--gelb :focus-visible,
 .faktenband :focus-visible {
-  outline-color: var(--tinte);
+  outline-color: var(--orange-tief);
 }
 
 [id] {
@@ -445,34 +444,19 @@ h2[id^="dl-"] {
 
 .band {
   padding: clamp(3rem, 6vw, 5rem) 0;
-  border-top: var(--rahmen);
 }
 
-.band--papier {
+/* Ruhige, einheitliche Seitenfläche statt horizontaler Farbbänder. */
+.band--papier,
+.band--nacht,
+.band--gestreift,
+.band--gelb {
   background: var(--papier);
-}
-
-.band--nacht {
-  background: var(--papier2);
   color: var(--schrift);
 }
 
-.band--nacht {
-  --schatten-farbe: var(--gelb);
-  --schatten: 6px 6px 0 var(--schatten-farbe);
-  --schatten-klein: 4px 4px 0 var(--schatten-farbe);
-}
-
-.band--gestreift {
-  background: var(--papier2);
-}
-
-.band--gelb {
-  background: var(--gelb);
-  color: var(--tinte);
-}
-
-.band--gelb, .seitenkopf--akzent, .kasten--gelb, .faktenband {
+/* Gelb bleibt ein Akzent für einzelne Komponenten, nicht für ganze Abschnitte. */
+.kasten--gelb {
   --flaeche: #ffffff;
   --schrift: #000000;
   --grau: #444444;
@@ -486,21 +470,21 @@ h2[id^="dl-"] {
 }
 
 .band--gelb h2, .band--gelb .kicker, .band--gelb .band__einleitung {
-  color: var(--tinte);
+  color: var(--schrift);
 }
 
 .band--gelb .btn--geist {
-  border-color: var(--tinte);
-  color: var(--tinte);
+  border-color: var(--rand);
+  color: var(--schrift);
 }
 
 .band--gelb .btn--geist:hover {
-  background: var(--tinte);
-  color: var(--gelb);
+  background: var(--gelb);
+  color: var(--tinte);
 }
 
 .band--gelb .schulleben img {
-  border-color: var(--tinte);
+  border-color: var(--rand);
   box-shadow: var(--schatten-klein);
 }
 
@@ -518,8 +502,8 @@ h2[id^="dl-"] {
 }
 
 .hero .btn--geist {
-  border-color: var(--weiss);
-  color: var(--weiss);
+  border-color: var(--rand);
+  color: var(--schrift);
 }
 
 .band--nacht .btn--geist:hover, .hero .btn--geist:hover {
@@ -594,11 +578,11 @@ h2[id^="dl-"] {
   top: 0;
   z-index: 60;
   background: var(--papier);
-  border-bottom: var(--rahmen);
+  border-bottom: 1px solid var(--haarlinie);
 }
 
 .leiste {
-  background: var(--papier2);
+  background: var(--papier);
   color: var(--schrift);
   font-size: var(--t-xs);
   font-weight: 600;
@@ -855,8 +839,8 @@ h2[id^="dl-"] {
 /* ---------- Hero ---------- */
 
 .hero {
-  background: linear-gradient(95deg, var(--navy) 0%, var(--blau) 75%);
-  color: var(--weiss);
+  background: var(--papier);
+  color: var(--schrift);
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
 }
@@ -872,8 +856,8 @@ h2[id^="dl-"] {
   display: inline-block;
   background: var(--gelb);
   color: var(--tinte);
-  border: 3px solid var(--tinte);
-  box-shadow: 3px 3px 0 var(--weiss);
+  border: 2px solid var(--tinte);
+  box-shadow: 3px 3px 0 var(--schatten-farbe);
   padding: 0.3rem 0.7rem;
 }
 
@@ -899,7 +883,7 @@ h2[id^="dl-"] {
   margin-top: 1.5rem;
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   line-height: 1.5;
-  color: var(--weiss);
+  color: var(--schrift);
   max-width: 46ch;
 }
 
@@ -965,7 +949,7 @@ h2[id^="dl-"] {
 }
 
 .hero__punkte li {
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--haarlinie);
   padding: 0.3rem 0.6rem;
   font-size: var(--t-xs);
   font-weight: 800;
@@ -977,16 +961,16 @@ h2[id^="dl-"] {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border: 4px solid var(--weiss);
-  box-shadow: 14px 14px 0 var(--orange);
+  border: 1px solid var(--haarlinie);
+  box-shadow: 8px 8px 0 var(--orange);
 }
 
 /* ---------- Laufband mit Fakten ---------- */
 
 .faktenband {
-  border-top: var(--rahmen);
-  background: var(--gelb);
-  color: var(--tinte);
+  border-top: 0;
+  background: var(--papier);
+  color: var(--schrift);
   padding: 1rem 0;
   overflow: hidden;
 }
@@ -1198,21 +1182,21 @@ h2[id^="dl-"] {
 .seitenkopf {
   padding: clamp(2.25rem, 4.5vw, 3.5rem) 0 clamp(2rem, 4vw, 3rem);
   background: var(--papier);
-  border-bottom: var(--rahmen);
+  border-bottom: 1px solid var(--haarlinie);
 }
 
 .seitenkopf--akzent {
-  background: var(--gelb);
-  color: var(--tinte);
+  background: var(--papier);
+  color: var(--schrift);
 }
 
 .seitenkopf--akzent .kicker, .seitenkopf--akzent .einleitung {
-  color: var(--tinte);
+  color: inherit;
 }
 
 .seitenkopf--akzent .marke, .seitenkopf--akzent .chip {
-  background: var(--weiss);
-  color: var(--tinte);
+  background: var(--flaeche);
+  color: var(--schrift);
 }
 
 .seitenkopf h1 {
@@ -1294,9 +1278,9 @@ h2[id^="dl-"] {
 /* ---------- Sprungleiste Downloads ---------- */
 
 .sprungleiste {
-  background: var(--papier2);
+  background: var(--papier);
   color: var(--schrift);
-  border-bottom: var(--rahmen);
+  border-bottom: 1px solid var(--haarlinie);
   padding: 0.85rem 0;
   position: sticky;
   top: var(--kopfhoehe);
@@ -1890,9 +1874,9 @@ h2[id^="dl-"] {
 /* ---------- Fuß ---------- */
 
 .fuss {
-  background: var(--papier2);
+  background: var(--papier);
   color: var(--schrift);
-  border-top: 6px solid var(--gelb);
+  border-top: 1px solid var(--haarlinie);
 }
 
 .fuss__gitter {
@@ -1951,7 +1935,7 @@ h2[id^="dl-"] {
 
 .fuss__leiste {
   background: var(--papier);
-  border-top: 2px solid var(--rand);
+  border-top: 1px solid var(--haarlinie);
   padding: 1.1rem 0;
   font-size: var(--t-xs);
 }
