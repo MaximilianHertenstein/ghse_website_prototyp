@@ -34,7 +34,7 @@ Inter als selbst gehostete Variable-Font, 48 kB).
 
 | Bereich | Umsetzung | URL |
 |---|---|---|
-| A Landingpage | Hero (eine Schaltfläche), Faktenband, 4 Schularten, Aktuelles (5 Meldungen), Termine (9 Kalender), Berufs-/Studieninformation, Instagram (4 Beiträge + 8 Accounts), Über die GHSE (4 Servicekarten), Schulleben, Partner (logobreit) | `/` |
+| A Landingpage | Hero (zwei Schaltflächen, Abschluss-Chips), 4 Schularten, Instagram (4 Beiträge + 8 Accounts), Aktuelles (3 Meldungen + Link auf alle), Termine (9 Kalender), Berufs-/Studieninformation, Service (4 Karten), Schulleben, Partner (logobreit) | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
@@ -449,6 +449,10 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
 * Semantische Tokens in `:root` (`--schrift`, `--flaeche`, `--papier`,
   `--rand`, `--link`, `--schatten-farbe`, `--streifen` …). Die Komponenten
   referenzieren nur diese Tokens; der dunkle Satz ersetzt Werte, nicht Regeln.
+* Alle Abschnitte liegen auf derselben Papierfläche; Gelb, Orange und Blau
+  sind Akzente (Aktionen, Kicker, Kategorien, Links). Gelb füllt nur noch
+  einzelne Komponenten wie `.kasten--gelb` oder Schaltflächen, keine ganzen
+  Seitenbänder.
 * Der dunkle Satz steht zweimal: in `@media (prefers-color-scheme: dark)`
   (ohne gespeicherte Wahl, `:root:not([data-theme="light"])`) und unter
   `:root[data-theme="dark"]` für die gespeicherte Wahl. Bewusste

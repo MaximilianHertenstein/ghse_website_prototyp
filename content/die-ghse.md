@@ -1,5 +1,5 @@
 ---
-title: "Die GHSE"
+title: "Die GHSE – das sind wir."
 description: "Gewerbliche, hauswirtschaftliche und sozialpflegerische Schulen in Emmendingen: 1836 gegründet, heute alle Abschlüsse des deutschen Schulsystems unter einem Dach."
 bilder:
   - bild: "/bilder/die-ghse-zufahrt.webp"

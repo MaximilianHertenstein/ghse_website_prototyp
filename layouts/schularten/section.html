@@ -1,5 +1,5 @@
 {{ define "inhalt" }}
-<header class="seitenkopf seitenkopf--akzent">
+<header class="seitenkopf">
   <div class="container">
     <p class="kicker">Bildungsangebote</p>
     <h1>{{ .Title }}</h1>
@@ -17,9 +17,9 @@
      CMS den Wert als Zeichenkette zurückschreibt. */ -}}
 {{- $kat := slice -}}
 {{- range .RegularPages }}{{ $kat = $kat | append .Params.kategorie }}{{ end -}}
-{{- range $i, $name := sort (uniq $kat) -}}
+{{- range $name := sort (uniq $kat) -}}
   {{- $gruppe := where (where $.RegularPages "Params.kategorie" $name) "Params.karte" "ne" "nein" -}}
-  <section class="band band--papier{{ if mod $i 2 }} band--gestreift{{ end }}" aria-labelledby="kat-{{ $name | anchorize }}">
+  <section class="band band--papier" aria-labelledby="kat-{{ $name | anchorize }}">
     <div class="container">
       <div class="kopfzeile">
         <div>

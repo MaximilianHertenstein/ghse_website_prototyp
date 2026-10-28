@@ -23,9 +23,9 @@
 </nav>
 
 {{- /* Reihenfolge und Darstellung stecken in den Dateien selbst, nicht in der Vorlage. */ -}}
-{{- range $i, $name := $gruppen -}}
+{{- range $name := $gruppen -}}
   {{- $gruppe := where $.RegularPages "Params.kategorie" $name -}}
-  <section class="band band--papier{{ if mod $i 2 }} band--gestreift{{ end }}" aria-labelledby="dl-{{ $name | anchorize }}">
+  <section class="band band--papier" aria-labelledby="dl-{{ $name | anchorize }}">
     <div class="container">
       <div class="kopfzeile">
         <div>

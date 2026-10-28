@@ -184,10 +184,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   outline-color: var(--orange-tief);
 }
 
-.band--gelb :focus-visible,
-.seitenkopf--akzent :focus-visible,
-.kasten--gelb :focus-visible,
-.faktenband :focus-visible {
+.kasten--gelb :focus-visible {
   outline-color: var(--orange-tief);
 }
 
@@ -449,8 +446,7 @@ h2[id^="dl-"] {
 /* Ruhige, einheitliche Seitenfläche statt horizontaler Farbbänder. */
 .band--papier,
 .band--nacht,
-.band--gestreift,
-.band--gelb {
+.band--gestreift {
   background: var(--papier);
   color: var(--schrift);
 }
@@ -467,25 +463,6 @@ h2[id^="dl-"] {
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
-}
-
-.band--gelb h2, .band--gelb .kicker, .band--gelb .band__einleitung {
-  color: var(--schrift);
-}
-
-.band--gelb .btn--geist {
-  border-color: var(--rand);
-  color: var(--schrift);
-}
-
-.band--gelb .btn--geist:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-}
-
-.band--gelb .schulleben img {
-  border-color: var(--rand);
-  box-shadow: var(--schatten-klein);
 }
 
 .band--nacht .kicker {
@@ -965,33 +942,6 @@ h2[id^="dl-"] {
   box-shadow: 8px 8px 0 var(--orange);
 }
 
-/* ---------- Laufband mit Fakten ---------- */
-
-.faktenband {
-  border-top: 0;
-  background: var(--papier);
-  color: var(--schrift);
-  padding: 1rem 0;
-  overflow: hidden;
-}
-
-.faktenband__innen {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--t-xs);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  text-align: center;
-}
-
-.faktenband__innen span[aria-hidden] {
-  color: rgba(0, 0, 0, 0.45);
-}
-
 /* ---------- Karten ---------- */
 
 .raster {
@@ -1183,20 +1133,6 @@ h2[id^="dl-"] {
   padding: clamp(2.25rem, 4.5vw, 3.5rem) 0 clamp(2rem, 4vw, 3rem);
   background: var(--papier);
   border-bottom: 1px solid var(--haarlinie);
-}
-
-.seitenkopf--akzent {
-  background: var(--papier);
-  color: var(--schrift);
-}
-
-.seitenkopf--akzent .kicker, .seitenkopf--akzent .einleitung {
-  color: inherit;
-}
-
-.seitenkopf--akzent .marke, .seitenkopf--akzent .chip {
-  background: var(--flaeche);
-  color: var(--schrift);
 }
 
 .seitenkopf h1 {
