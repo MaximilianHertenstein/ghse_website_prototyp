@@ -62,17 +62,51 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - Dark Mode tauscht nur die Tokens (`--papier`, `--schrift`, `--rand`,
   `--link` …), nicht die Regeln. Gelbe Flächen behalten dunkle Schrift.
 
-## Komponenten
+## Komponenten (Anatomie, Varianten, Zustände)
 
 - **Hero:** gelbes Schulnamen-Badge, große Überschrift, Abschluss-Chips;
   die Wege führen über die Kopfnavigation, die Sektionen und den
   „Alle Schularten"-Knopf.
-- **Kicker:** orange, Großbuchstaben, gesperrt; führt jede Sektion ein.
-- **Karten:** weiß, schwarzer Rahmen, harter Schatten, Titel als Link.
-- **Chips/Marken:** klein, Großbuchstaben; Teilzeitschularten orange,
-  Vollzeitschularten gelb.
-- **Buttons:** `btn--akzent` (gelb), `btn--geist` (transparent, schwarze
-  Kontur).
+- **Knöpfe (`btn`):** Varianten `--akzent` (gelb), `--geist`
+  (transparent, schwarze Kontur), `--klein` (z. B. in Download-Zeilen und
+  Hinweisen). Zustände: hover hebt 2 px, `:active` drückt auf den
+  Schatten, disabled über `aria-disabled`. Label ist ein Verb mit Ziel
+  („Alle Schularten", „Mehr erfahren →"), nie „Hier klicken".
+- **Chips (`chip`):** kleine Großbeschriftung; `--akzent` (gelbe Fläche)
+  für Hauptpfade, `--ruhig` für Sekundäres, `--klein` in Meta-Zeilen.
+  Teilzeit orange, Vollzeit gelb (über `data-kategorie`).
+- **Karten (`karte`):** `karte__bild` (16:10, unten Rahmen), `karte__koerper`
+  mit Marke, Titel als einzigem Link (`karte__link`), Text und Aktion;
+  hover/:focus-within hebt 3 px, Fokusring über `:has()`. Varianten:
+  `--gross` (erste Meldung), `--text` (ohne Bild), `--news`.
+- **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
+  Aktion rechts; unter 640 px Vollbreite mit vollem Knopf.
+- **Hinweise (`hinweis`, Shortcode):** blasse Gelbfläche
+  (`--hinweis-flaeche`), Titel als Kicker, optional ein
+  `btn--geist btn--klein` mit Ziel; Variante `--warnung` (rote Fläche,
+  Tieforange-Rand).
+- **Kalender-Karten (`kalender`):** Name plus Aktionsspalte; ganzflächig
+  klickbar, hover/focus heben 3 px mit größerem Schatten wie die Karten.
+- **Menü (Kopf):** acht Kategorien mit Tafeln; ab 1200 px aufklappend
+  (hover/`:focus-within`), darunter Panel mit einklappbaren Kategorien
+  (Pfeilknopf, `aria-expanded`). Aktiver Pfad als blauer Block mit weißer
+  Schrift (`aria-current="page"`).
+- **Werte-Quadrate (`wert__marke`, Shortcode):** reine Grafik, mit
+  `aria-hidden`; die Beschriftung daneben trägt die Aussage – Farbe allein
+  vermittelt keine Bedeutung. Sechs Farben, „Vielfalt" als Streifen.
+
+## Text und Ton
+
+- **Labels eindeutig:** Knöpfe und Links benennen das Ziel („Alle
+  Meldungen", „Mehr erfahren →"); Pfeile und ↗ als `aria-hidden`-Zier,
+  nicht als einzige Information.
+- **Kicker:** zwei bis drei Wörter, Großbuchstaben, ordnen die Sektion
+  ein („Bildungsangebote", „Schuljahresplaner") – kein Werbetext.
+- **Kurzfassungen:** erste Aussage der Quelle, bei Instagram mit „…"
+  gekappt, ohne Emojis und Hashtags; nichts erfinden, keine Zahlen
+  ergänzen, die die Quelle nicht nennt.
+- **Alt-Texte:** beschreiben das Bild für jemanden, der es nicht sieht
+  (Konstellation, Schriftzüge wörtlich), statt „Bild" oder Dateiname.
 
 ## Responsiv
 
