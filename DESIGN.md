@@ -134,3 +134,7 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 5. `python3 qa/reflow.py` → 0 Überlauf über alle Seiten und Breiten.
 6. Lighthouse mobil ≥ 98 Performance, 100 A11y/SEO
    (`tools/preview-server.py` als Server, kein Parallel-Chromium).
+7. Nach Token-Änderungen: Dark-Mode-Sichtprobe – Kopie von `public/` mit
+   `data-theme="dark"` am `<html>` ansehen (Achtung: `nav.js` setzt den
+   Modus am laufenden Dokument, im Testkopie den Anfangs-`stelle()`-Aufruf
+   überspringen).
