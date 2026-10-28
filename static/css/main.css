@@ -177,7 +177,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   outline-color: var(--orange-tief);
 }
 
-.band--nacht :focus-visible,
+.band--blau :focus-visible,
 .fuss :focus-visible,
 .leiste :focus-visible,
 .sprungleiste :focus-visible {
@@ -445,8 +445,7 @@ h2[id^="dl-"] {
 
 /* Ruhige, einheitliche Seitenfläche statt horizontaler Farbbänder. */
 .band--papier,
-.band--nacht,
-.band--gestreift {
+.band--blau {
   background: var(--papier);
   color: var(--schrift);
 }
@@ -465,15 +464,8 @@ h2[id^="dl-"] {
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
 
-.band--nacht .kicker {
-  color: var(--orange-tief);
-}
-
-.band--nacht h2 {
-  color: var(--schrift);
-}
-
-.band--nacht .btn--geist {
+/* Blau beschriftete Sekundärknöpfe in den Feed-Sektionen der Startseite. */
+.band--blau .btn--geist {
   border-color: var(--link);
   color: var(--link);
 }
@@ -483,7 +475,7 @@ h2[id^="dl-"] {
   color: var(--schrift);
 }
 
-.band--nacht .btn--geist:hover, .hero .btn--geist:hover {
+.band--blau .btn--geist:hover, .hero .btn--geist:hover {
   background: var(--gelb);
   color: var(--tinte);
 }
@@ -1000,7 +992,7 @@ h2[id^="dl-"] {
   outline: none;
 }
 
-.band--nacht .karte:has(.karte__link:focus-visible), .band--nacht .instabeitrag:has(.instabeitrag__link:focus-visible) {
+.band--blau .karte:has(.karte__link:focus-visible), .band--blau .instabeitrag:has(.instabeitrag__link:focus-visible) {
   outline-color: var(--gelb);
 }
 
@@ -1900,14 +1892,6 @@ h2[id^="dl-"] {
   max-width: 62ch;
   color: var(--grau);
   margin-bottom: 2rem;
-}
-
-.band--nacht .band__einleitung {
-  color: var(--grau);
-}
-
-.band--nacht .hinweiszeile {
-  color: var(--grau);
 }
 
 .kalenderliste {

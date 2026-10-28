@@ -51,9 +51,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 
 ## Flächen und Farbe
 
-- Alle Seitenabschnitte liegen auf derselben Papierfläche (`.band--papier`).
-  Gelbe Vollflächen tragen nur einzelne Komponenten (Aktionen,
-  `.kasten--gelb`, Hinweise), keine ganzen Seitenbänder.
+- Alle Seitenabschnitte liegen auf derselben Papierfläche (`.band--papier`,
+  auf der Startseite `.band--blau` für die beiden Feed-Sektionen mit blauen
+  Sekundärknöpfen). Gelbe Vollflächen tragen nur einzelne Komponenten
+  (Aktionen, `.kasten--gelb`, Hinweise), keine ganzen Seitenbänder.
 - Gelb markiert Aktionen und Marker, Orange Struktur (Kicker, Kategorien,
   Linien), Blau Links und einzelne Sekundäraktionen.
 - Schwarze 3-px-Rahmen und harte Schatten (6 px, klein 4 px) tragen die
