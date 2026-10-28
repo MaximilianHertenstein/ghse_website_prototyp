@@ -70,7 +70,26 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Chips/Marken:** klein, Großbuchstaben; Teilzeitschularten orange,
   Vollzeitschularten gelb.
 - **Buttons:** `btn--akzent` (gelb), `btn--geist` (transparent, schwarze
-  Kontur), `btn--orange` (orange Fläche).
+  Kontur).
+
+## Responsiv
+
+- **Ab 1200 px:** Dropdown-Tafeln im Kopfmennü (CSS-only, hover und
+  `:focus-within`), Zeile und Adresse sichtbar.
+- **Unter 1199 px:** die Navigation wird zum Aufklappmenü (`.menueknopf`,
+  Panel mit `aria-expanded`, scrollbar, `overscroll-behavior: contain`).
+- **Unter 1000 px:** Karten- und Zeilenraster stapeln; Hero einspaltig,
+  Bild versetzt den Schatten nach unten.
+- **Unter 900 px:** Adressleiste aus, Kopfhöhe schrumpft auf 4,5 rem,
+  Schnellzugriff wandert ins Menüpanel, Modusknopf ohne Schrift.
+- **Unter 640/560 px:** Typo-Skala abschwächen (Fließtext 1,02 rem),
+  Karten-, Zeilen-, Kalender- und Fußraster einspaltig, Buttons mehrzeilig
+  fähig (`white-space: normal`) und aktionsbreit, Wertequadrat-Raster
+  einspaltig; Touch-Ziele bleiben ≥ 44 px.
+- **Kantenfälle:** Raster mit `minmax(0, 1fr)` (kein Überlauf durch lange
+  Wörter), Buttons umbrechen mehrzeilig statt zu kneifen, Longtexte über
+  `text-wrap: balance` in Überschriften. Geprüft von `qa/reflow.py`
+  (alle Seiten × 11 Breiten) und `qa/layout.py` (1440/640/390).
 
 ## Zustände (Pflicht für jedes interaktive Element)
 

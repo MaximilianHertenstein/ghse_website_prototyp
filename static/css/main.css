@@ -314,15 +314,11 @@ h2[id^="dl-"] {
   box-shadow: none;
 }
 
-.chip--sticker {
-  transform: rotate(-1.5deg);
-}
-
 .karte .chip, .meta .chip, .zeile .chip, .hinweis .chip {
   box-shadow: none;
 }
 
-.marke, .tag {
+.marke {
   display: inline-flex;
   align-items: baseline;
   border: 2px solid var(--rand);
@@ -340,12 +336,6 @@ h2[id^="dl-"] {
   color: var(--tinte);
   border-color: var(--tinte);
   transform: rotate(-1.5deg);
-}
-
-.tag--akzent, .chip--sticker.tag--akzent {
-  background: var(--gelb);
-  color: var(--tinte);
-  border-color: var(--tinte);
 }
 
 .chip[data-kategorie="teilzeitschularten"], .marke[data-kategorie="teilzeitschularten"] {
@@ -390,11 +380,6 @@ h2[id^="dl-"] {
   color: var(--tinte);
   display: table;
   margin: auto;
-}
-
-.btn--orange {
-  background: var(--orange);
-  color: var(--tinte);
 }
 
 .btn--geist {
@@ -520,7 +505,7 @@ h2[id^="dl-"] {
   align-items: center;
 }
 
-.meta time, .tag, .chip, .zeile__daten, .anzahl {
+.meta time, .chip, .zeile__daten, .anzahl {
   font-variant-numeric: tabular-nums;
 }
 
@@ -1873,11 +1858,6 @@ h2[id^="dl-"] {
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
   justify-content: space-between;
-}
-
-.fuss__hinweis {
-  color: var(--grau);
-  max-width: 70ch;
 }
 
 /* ---------- Sonstiges ---------- */
