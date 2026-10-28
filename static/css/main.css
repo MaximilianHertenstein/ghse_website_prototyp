@@ -13,9 +13,9 @@
 
 :root {
 
-  --gelb: #f8dc59;
-  --orange: #f07733;
-  --blau: #0b66b3;
+  --gelb: #f8dc54;
+  --orange: #ec7030;
+  --blau: #1060a0;
 
   --orange-tief: #b8430f;
 
@@ -32,13 +32,13 @@
   --schrift: #000000;
   --rand: #000000;
   --schatten-farbe: #000000;
-  --link: #0b66b3;
+  --link: #1060a0;
   --haarlinie: rgba(0, 0, 0, 0.15);
-  --marker-hintergrund: rgba(248, 220, 89, 0.75);
+  --marker-hintergrund: rgba(248, 220, 84, 0.75);
 
-  --kategorie-teilzeit: #f07733;
+  --kategorie-teilzeit: #ec7030;
 
-  --wert-blau: #0b66b3;
+  --wert-blau: #1060a0;
   --wert-gelb: var(--gelb);
   --wert-orange: var(--kategorie-teilzeit);
   --wert-gruen: #1a9c5a;
@@ -87,10 +87,10 @@
     --grau: #bdbdbd;
     --rand: #ffffff;
     --schatten-farbe: #ffffff;
-    --orange-tief: #f07733;
-    --link: #f8dc59;
+    --orange-tief: #ec7030;
+    --link: #f8dc54;
     --haarlinie: rgba(255, 255, 255, 0.25);
-    --marker-hintergrund: rgba(248, 220, 89, 0.35);
+    --marker-hintergrund: rgba(248, 220, 84, 0.35);
     --hinweis-flaeche: #2a2610;
     --warn-flaeche: #3b1d12;
     color-scheme: dark;
@@ -106,10 +106,10 @@
   --grau: #bdbdbd;
   --rand: #ffffff;
   --schatten-farbe: #ffffff;
-  --orange-tief: #f07733;
-  --link: #f8dc59;
+  --orange-tief: #ec7030;
+  --link: #f8dc54;
   --haarlinie: rgba(255, 255, 255, 0.25);
-  --marker-hintergrund: rgba(248, 220, 89, 0.35);
+  --marker-hintergrund: rgba(248, 220, 84, 0.35);
   --hinweis-flaeche: #2a2610;
   --warn-flaeche: #3b1d12;
   color-scheme: dark;
@@ -458,7 +458,7 @@ h2[id^="dl-"] {
   --grau: #444444;
   --rand: #000000;
   --schatten-farbe: #000000;
-  --link: #0b66b3;
+  --link: #1060a0;
   --orange-tief: #b8430f;
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
@@ -2326,8 +2326,8 @@ h2[id^="dl-"] {
     --rand: #000;
     --schatten-farbe: #000;
     --orange-tief: #b8430f;
-    --link: #0b66b3;
-    --marker-hintergrund: rgba(248, 220, 89, 0.75);
+    --link: #1060a0;
+    --marker-hintergrund: rgba(248, 220, 84, 0.75);
     color-scheme: light;
   }
   .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck, .lupe__plakette, .lupe__hinweis {

@@ -1,10 +1,10 @@
 ---
 name: GHSE-Farben
 colors:
-  primary: "#F8DC59"
-  secondary: "#0B66B3"
+  primary: "#F8DC54"
+  secondary: "#1060A0"
   success: "#1A9C5A"
-  warning: "#F07733"
+  warning: "#EC7030"
   danger: "#B8430F"
   surface: "#FFFFFF"
   text: "#000000"
@@ -42,8 +42,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Schrift:** Inter (variabel, selbst gehostet), Fließtext 1,0625 rem,
   H1 `clamp(2.1rem, 4.6vw, 3.5rem)`, H2 `clamp(1.7rem, 3.4vw, 2.6rem)`.
 - **Gewichte:** 400 für Text, 700/800 für Labels, 900 für Überschriften.
-- **Farben:** Gelb `#F8DC59`, Orange `#F07733`, Blau `#0B66B3`,
-  Tieforange `#B8430F` (Fokusringe und Warnungen), Schwarz/Weiß als Basis.
+- **Farben:** Gelb `#F8DC54`, Orange `#EC7030`, Blau `#1060A0` – die drei
+  Farbwerte stehen so im GHSE-Logo, das Blau aus dem helleren Teil des
+  Verlaufs (das dunkle Navy bleibt unbenutzt). Tieforange `#B8430F` für
+  Fokusringe und Warnungen, Schwarz/Weiß als Basis.
 - **Abstände:** 4/8/12/16/24/32/48/64/80 px, Container 1180 px,
   Lesespalte 760 px.
 
