@@ -71,6 +71,20 @@ insta_kanaele:
 
 # Vier aktuelle Beiträge des Schaccounts (Bilder lokal abgelegt, Text = Kurzfassung der Bildunterschrift)
 insta_beitraege:
+  # - bild: "/bilder/insta-DezXzs1J5dg.webp"
+  #   bildAlt: "Instagram-Reel zu Herbstsonnenschein und kreativen Meisterwerken; Bilddetails noch prüfen"
+  #   text: "Strahlender Herbstsonnenschein, kreative Meisterwe…"
+  #   url: "https://www.instagram.com/reel/DezXzs1J5dg/"
+
+  # - bild: "/bilder/insta-DewC-nHpFYF.webp"
+  #   bildAlt: "Instagram-Reel mit dem Titel „Sirene an, Kapuze auf!“; Bilddetails noch prüfen"
+  #   text: "Sirene an, Kapuze auf! Heute stand an der GHS…"
+  #   url: "https://www.instagram.com/reel/DewC-nHpFYF/"
+
+  # - bild: "/bilder/insta-DejwxRYJx6T.webp"
+  #   bildAlt: "Instagram-Reel über ein historisches Objekt oder Bauwerk an der GHSE; Bilddetails noch prüfen"
+  #   text: "Ein echtes Stück Geschichte kehrt zurück in den Sc…"
+  #   url: "https://www.instagram.com/reel/DejwxRYJx6T/"
   - bild: "/bilder/insta-DeejyIyJqqe.webp"
     bildAlt: "Junge Menschen vor dem Stand der GHSE auf der Job-Start-Börse, mit verschenkten Taschen und Daumen hoch"
     text: "Wir waren offiziell für die Berufsorientierung da… inoffiziell für den ultimativen Goodie-Haul."
