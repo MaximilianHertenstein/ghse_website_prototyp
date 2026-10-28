@@ -3,12 +3,12 @@
 
 Aufruf:  python3 qa/paare.py          (aus dem Repository-Stammverzeichnis)
 
-Jede der vierundzwanzig Seiten hat ihre eigene Originalseite, die Namen decken
+Jede der achtundzwanzig Seiten hat ihre eigene Originalseite, die Namen decken
 sich aber nicht (das Original liegt unter `/schueler/beratung-2/`, bei uns
 heißt die Seite `schulsozialarbeit`). Die Paare stehen deshalb hier explizit;
 für einzeln Nachzuprüfendes sind das die beiden Argumente, die `qa/treue.py`
-und `satzpruefung.py` verlangen. Neunzehn Quellen liegen als HTML vor, fünf
-als Text (Markdown- oder Rohtext-Aufzeichnung); beide Formen lesen dieselbe
+und `satzpruefung.py` verlangen. Dreiundzwanzig Quellen liegen als HTML vor,
+fünf als Text (Markdown- oder Rohtext-Aufzeichnung); beide Formen lesen dieselbe
 Wortfolge.
 
 Abgezogen werden, was kein Textbefund ist:
@@ -46,9 +46,13 @@ PAARE = [
     ("content/die-ghse.md", "recherche/quellen/die-ghse.html"),
     ("content/erasmus.md", "recherche/quellen/erasmus.html"),
     ("content/fachgruppen.md", "recherche/quellen/fachgruppen.html"),
+    ("content/berufsinformation.md", "recherche/quellen/berufsinformation.html"),
+    ("content/foerderverein.md", "recherche/quellen/foerderverein.html"),
     ("content/impressum.md", "recherche/impressum.md"),
     ("content/krankmeldung.md", "recherche/quellen/online-abmelden.html"),
+    ("content/schulleben.md", "recherche/quellen/schueler-schulleben-lehrer.html"),
     ("content/nextcloud.md", "recherche/quellen/nextcloud.html"),
+    ("content/mint.md", "recherche/quellen/mint.html"),
     ("content/praktikum-fuer-studierende.md",
      "recherche/praktikum-fuer-studierende-roh.md"),
     ("content/projekte-und-software.md", "recherche/quellen/projekte.html"),
@@ -63,7 +67,7 @@ PAARE = [
     ("content/vertretungsplan.md", "recherche/quellen/vertretungsplan.html"),
 ]
 
-VORLAGE = r"\b(uhr|anfahrt maps anrufen krank)\b"
+VORLAGE = r"\b(uhr|aktuelles|anfahrt maps anrufen krank)\b"
 AUFZEICHNUNG = (r"\b(quelle saferspace"
                 r"|normal 0 21 false false false de x-none x-none)\b")
 LANG = 15      # ab wie vielen Wörtern nur noch der Anfang zitiert wird

@@ -131,7 +131,11 @@ def eigener_text(datei: str) -> str:
     # Der Genderstern bleibt Wortgrenze wie im Original, sonst erscheint
     # „Schüler*innen“ hier als Abweichung zu „Schüler*innen“ der Vorlage.
     t = t.replace("*", " ")
-    t = re.sub(r"[_`>#]", "", t)
+    # Unterstriche: Betonungs-Marker weg, aber Binnen-Unterstriche bleiben –
+    # Goldmark setzt innerhalb von Wörtern keine Betonung, „Bogy_GHSE_5“
+    # steht auf der Seite mit Unterstrichen.
+    t = re.sub(r"(?<!\w)_|_(?!\w)", "", t)
+    t = re.sub(r"[`>#]", "", t)
     return f"{titel} {beschreibung} {t}"
 
 

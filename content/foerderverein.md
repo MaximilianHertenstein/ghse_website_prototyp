@@ -12,11 +12,11 @@ bilder:
 
 Der Förderverein der Gewerblichen und Hauswirtschaftlich-Sozialpflegerischen Schulen Emmendingen e. V. unterstützt die Schule und ihre Schülerinnen und Schüler.
 
-## Unsere Aufgaben
+## Unsere Aufgabe
 
 - Wir helfen unbürokratisch in sozialen und finanziellen Notlagen der Schülerinnen und Schüler
 - Wir unterstützen die Finanzierung unterrichtlicher und außerunterrichtlicher Projekte
-- Wir strecken finanzielle Mittel vor bei der Abwicklung von Schüleraustauschen und der Koordination von Partnerschulen
+- Wir strecken finanzielle Mittel vor bei der Abwicklung von Schüleraustauschen und der Koordination von Partnerschulen vor
 - Wir sind Träger von Kursen, die Lehrkräfte der Schule durchführen
 - Wir kümmern uns um die Buchhaltung und Abrechnung der Aktivitäten, die an den GHSE als [UNESCO-Schule](/unesco/) stattfinden
 - Wir verwalten den gesponserten Kleinbus und die schuleigenen Kanus, was vielen Klassen preiswerte erlebnispädagogische Ausflüge ermöglicht.
@@ -33,9 +33,9 @@ Wir finanzieren uns durch Mitgliedsbeiträge, Spenden und den Erlös von Aktione
 
 {{< bilder >}}
 
-## Anträge und Formulare
+## Dateien
 
-- [Antrag auf Förderung](/downloads/antrag-foerderung.pdf) – Hier finden Sie die Anträge für Bildung und Teilhabe: [Formulare des Landkreises Emmendingen](https://www.landkreis-emmendingen.de/verwaltung-service/formulare/sozialamt)
+- [Antrag auf Förderung](/downloads/antrag-foerderung.pdf) – Hinweis: Hier finden Sie die Anträge für Bildung und Teilhabe: [https://www.landkreis-emmendingen.de/verwaltung-service/formulare/sozialamt](https://www.landkreis-emmendingen.de/verwaltung-service/formulare/sozialamt)
 - [Beitrittserklärung](/downloads/beitrittserklaerung-sepa.pdf)
 - [Antrag Auszahlung-Einzahlung](/downloads/antrag-auszahlung-einzahlung.pdf)
 

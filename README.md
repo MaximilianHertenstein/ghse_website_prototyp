@@ -97,7 +97,10 @@ Projektordner geladen und einzeln geprüft.
 | Termine (Einleitung, 9 Kalender-Links) | `https://www.ghse.de/` (Abschnitt „Termine") → öffentliche Nextcloud-Kalender der GHSE |
 | Berufs- und Studieninformation | `https://www.ghse.de/` (Abschnitt „Berufs- und Studieninformation") → Einzelbeiträge der Originalseite |
 | Instagram (Einleitung, 8 Accounts, 4 Beiträge) | `https://www.ghse.de/` (Abschnitt „Die GHSE bei Instagram") → `instagram.com/ghse_emmendingen` |
-| Schüler/innen – Schulleben – Lehrer/innen | `https://www.ghse.de/schueler-schulleben-lehrer/` |
+| Schüler/innen – Schulleben – Lehrer/innen | `https://www.ghse.de/schueler-schulleben-lehrer/` (Aufzeichnung `recherche/quellen/schueler-schulleben-lehrer.html`) |
+| MINT | `https://www.ghse.de/mint/` (Aufzeichnung `recherche/quellen/mint.html`) |
+| Berufsinformation | `https://www.ghse.de/berufsinformation/` (Aufzeichnung `recherche/quellen/berufsinformation.html`) |
+| Förderverein | `https://www.ghse.de/unsere-schule/ueber-uns/foerderverein-2/` (Aufzeichnung `recherche/quellen/foerderverein.html`) |
 | Partner-Logostreifen | `https://www.ghse.de/` (Abschnitt „Partner") |
 | Schularten-Übersicht + Detailseiten | `https://www.ghse.de/schularten/…` (Teilzeit-/Vollzeitschularten) |
 | Detailseite TG | `https://www.ghse.de/schularten/vollzeitschularten/technisches-gymnasium/` |
@@ -138,11 +141,11 @@ jederzeit aktuell.
 „Badischen Zeitung" → „Badische Zeitung" (Quellenlabel), „Die Einjährige
 Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 
-Für die vierundzwanzig Seiten mit eigener Quelle – die achtzehn Service-,
-Schüler- und Themenseiten sowie Die GHSE, BewO, Praktikum, Impressum,
-Datenschutz und Safer Space – gilt dieselbe Regel: jedes Wort steht so, wie
-die Quelle es schreibt, nur wo diese offensichtlich fehlerhaft ist, wird
-richtig gestellt.
+Für die achtundzwanzig Seiten mit eigener Quelle – die achtzehn Service-,
+Schüler- und Themenseiten sowie Die GHSE, MINT, Schulleben, Förderverein,
+Berufsinformation, BewO, Praktikum, Impressum, Datenschutz und Safer Space –
+gilt dieselbe Regel: jedes Wort steht so, wie die Quelle es schreibt, nur wo
+diese offensichtlich fehlerhaft ist, wird richtig gestellt.
 Diese Fälle sind es, jeder einzelne gegen die Originalseite nachgeprüft
 (siehe Abschnitt 6, `qa/paare.py`):
 
@@ -257,6 +260,27 @@ Quellenüberschrift „Praxissemester oder Orientierungspraktikum an den GHSE".
 *Datenschutz:* „Rechtsanwälteerstellt." → „Rechtsanwälte erstellt." – im
 Original verschluckt die Verlinkung der Kanzlei das Leerzeichen.
 
+*MINT:* „Unsere Angebote und Aktion" → „Unsere Angebote und Aktionen"
+(in der Quellenüberschrift ist das „en" abgeschnitten), „Pflichfach" →
+„Pflichtfach" (zweimal, Tippfehler), „zahlreiche Preis und Platzierungen" →
+„zahlreiche Preise und Platzierungen", „in praktischen Bereich" → „im
+praktischen Bereich", „des Sozialwissenschaftlichen Gymnasium" → „… des
+Sozialwissenschaftlichen Gymnasiums", „richten sich an Jugendlichen und
+junge Erwachsene" → „… an Jugendliche …" und „in einem Ausbildungsberufe" →
+„in einem Ausbildungsberuf" (Grammatik), „z.B." → „z. B.". Die beiden
+Zwischenüberschriften tragen wieder die Kurzformen der Quelle („2-jährige
+Berufsfachschule", „1-jährige Berufsfachschule – Technik pur").
+
+*Förderverein:* „1.Vorsitz" und „2.Vorsitz" → „1. Vorsitz" und
+„2. Vorsitz" (fehlende Leerzeichen), „Beitritterklärung" →
+„Beitrittserklärung" (Tippfehler).
+
+*Berufsinformation:* „an anderen Schule" → „an anderen Schulen", „auf den
+Jobstartbörse" → „auf der Jobstartbörse", „des Hochschulteam der Agentur
+für Arbeit" → „des Hochschulteams …" (Grammatik), „des 6jährigen SG" →
+„des 6-jährigen SG" (Trennstrich). Die Anrede „SchülerInnen" des Originals
+steht als „Schülerinnen und Schüler" (Geschlechterform nach Absprache).
+
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
 Baustein-Text führt („Gewerbliche und Hauswirtschaftlich-Sozialpflegerische
@@ -309,6 +333,42 @@ Papiercomputer Projektarbeiten (TGI): Vokabeltrainer" auf der Projektseite,
 „Regelungen bei Schulveranstaltungen Angebote für Studienfahrten" auf
 Studienfahrten. Größe und Format ermittelt der Build aus der Datei selbst
 (Abschnitt 3, „Getestete Downloads").
+
+**Seiten ohne Wortpaar:** Die Startseite und „Unsere Schule" sind
+Zusammensetzungen mehrerer Originalseiten und werden nicht paarweise
+geprüft. Die Startseite führt neun Abschnitte, deren jede ihre Quelle in
+der Tabelle oben hat (Aktuelles und Berufsinformation als Auszüge der
+jeweiligen Originalseiten); „Unsere Schule" fasst fünf Ursprungsseiten
+zusammen (Aufzeichnungen unter `recherche/quellen/`: `unsere-schule.html`
+mit den Öffnungszeiten, `-organigram.html`, `-schulleitungsteam.html`,
+`-sekretariat.html`, `-leitbild.html`) und formatiert sie um: Tabellen
+sind Fließtext geworden (die Öffnungszeiten „07 30 12 00" stehen als
+„7.30 bis 12.00 Uhr"), Abkürzungen sind ausgeschrieben („2-jähr. BFS" →
+„Zweijährige Berufsfachschule", „TG SG" → „Technisches Gymnasium,
+Sozialwissenschaftliches Gymnasium"), die Bilder tragen eigene
+Beschreibungen (deshalb der Satz über die 24 Fachschaften, der zur
+Organigramm-Beschreibung gehört), und die ÖPR-Mitglieder des
+Schulleitungsteams sind in die Liste aufgenommen.
+
+**Weitere beabsichtigte Abweichungen:**
+der Seitentitel „MINT-freundliche Schule", weil die Originalseite ohne
+eigene Überschrift beginnt (das Menü heißt dort wie bei uns „MINT");
+der Seitentitel „Förderverein" als Menülabel, wo das Original
+„Der Förderverein der GHSE" schreibt, dazu der Einleitungssatz „… e. V.
+unterstützt die Schule und ihre Schülerinnen und Schüler." als kurze
+Einordnung, deren Inhalt die Aufgabenliste der Quelle selbst führt;
+auf der Schulleben-Seite der Kasten „Neueste Beiträge" der Originalseite
+(„ghse.de Neueste Beiträge Universität Tübingen Aktionswoche zur
+Studienorientierung 13.-17. Mai 2024, Tag der offenen Tür …"), der bei uns
+nicht wiederholt wird, weil die Meldungen unter `/news/` leben;
+auf der Berufsinformationsseite der „Aktuelles"-Kasten und der Abschnitt
+„Externe Angebote" der Originalseite (23 terminierte Angebote externer
+Hochschulen und Arbeitgeber, Stand der Aufzeichnung 2024), die aus demselben
+Grund nicht übernommen sind, sowie der Moodle-Verweis: die
+Terminbuchung zeigt auf die Instanz `04102015300.moodle.bw.schule/` statt
+in die stillgelegte Dienstadresse, der Deep-Link
+„unter dem Link https://moodle.ghse.de/moodle/mod/scheduler/view.php?id=10929"
+entfällt, der Einschreibeschlüssel bleibt.
 
 **Bildnachweise:** Logo, Gebäudeaufnahme, Schulartbilder und Presseabbildungen
 stammen von `www.ghse.de` (Theme „ziegenhagel", Uploads). Eingebunden als
@@ -521,22 +581,22 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
-* Worttreue gegen die Vorlage: alle vierundzwanzig Seiten mit eigener Quelle
+* Worttreue gegen die Vorlage: alle achtundzwanzig Seiten mit eigener Quelle
   werden Wort für Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der
   Vorlage fallen raus, ebenso der Adress- und Öffnungszeitblock, den die
   Vorlage auf jeder Seite mitschleift) und zählt reine Satzzeichen- und
   Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
   Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
-  Neunzehn Quellseiten liegen als HTML unter `recherche/quellen/`, fünf als
-  Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space), damit die
+  Dreiundzwanzig Quellseiten liegen als HTML unter `recherche/quellen/`, fünf
+  als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space), damit die
   Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
-  vierundzwanzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  achtundzwanzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
   nicht decken (`schulsozialarbeit` liegt unter
   `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
   durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
   offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
-  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 113
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 134
   Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
   vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
   späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage

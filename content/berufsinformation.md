@@ -11,13 +11,13 @@ Wir sind auf der Jobstartbörse in Endingen, Emmendingen und Waldkirch vertreten
 
 ## BORS (Berufsorientierung Realschule)
 
-Wir gehen einmal im Jahr an die 9. Klassen der Realschulen und Werkrealschulen des Landkreises Emmendingen und informieren dort über die Beruflichen Gymnasien und das Berufskolleg. Die Schüler\*innen dürfen dann einen Tag zu uns kommen und schnuppern, wie sich ein Berufliches Gymnasium anfühlt.
+Wir gehen einmal im Jahr an die 9. Klassen der Realschulen und Werkrealschulen des Landkreises Emmendingen und informieren dort über die Beruflichen Gymnasien und das Berufskolleg. Die Schülerinnen und Schüler dürfen dann einen Tag zu uns kommen und schnuppern, wie sich ein Berufliches Gymnasium anfühlt.
 
-Dieses Angebot gilt auch für unsere Schüler\*innen der 2-jährigen Berufsfachschule.
+Dieses Angebot gilt auch für unsere Schülerinnen und Schüler der 2-jährigen Berufsfachschule.
 
 ## BOGY (Berufsorientierung Gymnasium)
 
-In der Mittelstufe des 6-jährigen SG findet für unsere Schüler\*innen ein BOGY-Praktikum statt. In der 11. Klasse des Sozialwissenschaftlichen Gymnasiums schicken wir die Schüler\*innen ins Erkundungspraktikum.
+In der Mittelstufe des 6-jährigen SG findet für unsere Schülerinnen und Schüler ein BOGY-Praktikum statt. In der 11. Klasse des Sozialwissenschaftlichen Gymnasiums schicken wir die Schülerinnen und Schüler ins Erkundungspraktikum.
 
 ## Beratungsangebot der Agentur für Arbeit
 
