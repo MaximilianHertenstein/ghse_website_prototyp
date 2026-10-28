@@ -741,7 +741,7 @@ h2[id^="dl-"] {
   min-height: 2.75rem;
 }
 
-.menueknopf__balken\_ {
+.menueknopf__balkengruppe {
   display: grid;
   gap: 4px;
 }

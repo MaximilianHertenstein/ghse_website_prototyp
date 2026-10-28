@@ -70,3 +70,47 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   Vollzeitschularten gelb.
 - **Buttons:** `btn--akzent` (gelb), `btn--geist` (transparent, schwarze
   Kontur), `btn--orange` (orange Fläche).
+
+## Zustände (Pflicht für jedes interaktive Element)
+
+- **default / hover:** Hover hebt um 2 px und lässt den Schatten weiter
+  stehen (`translate(-2px, -2px)`); `:active` drückt auf den Schatten
+  (`translate(4px, 4px)`, Schatten aus). Nicht nur die Farbe ändern.
+- **focus-visible:** 3 px Ring in Tieforange mit 3 px Abstand, auf allen
+  Flächen derselbe Token (`--orange-tief`).
+- **disabled:** `.btn:disabled` und `[aria-disabled="true"]` senken das
+  Erscheinungsbild ohne Grau-in-Grau-Kontrastverlust; Kontrollelemente
+  zusätzlich per `disabled`/`aria-disabled` aus dem Fokus nehmen.
+- **geöffnet (Mobilmenü):** `aria-expanded` am Knopf, `aria-controls` auf
+  das Panel; der Zustand hängt am Element, nicht an einer Klasse allein.
+
+## Barrierefreiheit (prüfbare Kriterien)
+
+- Textkontrast ≥ 4,5:1, Grafik ≥ 3:1 in beiden Farbmodi – geprüft von
+  `qa/kontrast.py` gegen die Tokens des Stylesheets (nicht gegen Kopien).
+- Touch-Ziele ≥ 44 px (`qa/layout.py`), Tastaturpfad über die Sprungleiste,
+  Fokus sichtbar an jedem interaktiven Element.
+- `prefers-reduced-motion`: Bewegungen (Hover-Drehungen, Smooth-Scroll)
+  abgeschaltet; Bilder mit beschreibendem `alt`, dekorative mit `alt=""`.
+
+## Anti-Patterns
+
+- Farben ohne Token („mal eben“ ein Hexwert in einer Komponente) – neue
+  Farben kommen in `:root`/den dunklen Satz, sonst schweigt `kontrast.py`.
+- Runde Ecken, Verläufe, weiche Schatten – der Stil lebt von Kante und
+  hartem Schatten.
+- Grau-auf-Grau-Sekundärtext: Sekundärtext steht in `--grau` nur auf
+  Papier/Fläche, nie auf farbigen Flächen.
+- Farbige Vollflächen-Bänder als Sektionshintergrund – Flächenfarbe gehört
+  der Komponente (Chip, Knopf, Kasten), nicht der Sektion.
+
+## QA-Checkliste (vor jedem Commit)
+
+1. `hugo` baut ohne Warnung.
+2. `python3 qa/kontrast.py` → 0 Fehler (Hell und Dunkel).
+3. `python3 qa/linkcheck.py` → 0 Fehlschläge; `python3 qa/extlinkcheck.py`
+   vor Veröffentlichung.
+4. `python3 qa/layout.py` → 0 Fehler (Anker, Sprungleiste, Touch-Ziele).
+5. `python3 qa/reflow.py` → 0 Überlauf über alle Seiten und Breiten.
+6. Lighthouse mobil ≥ 98 Performance, 100 A11y/SEO
+   (`tools/preview-server.py` als Server, kein Parallel-Chromium).

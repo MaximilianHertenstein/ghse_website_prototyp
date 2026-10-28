@@ -677,8 +677,11 @@ Push startet die Pipeline automatisch neu.
 4. **Kein echtes Consent-/Analytics-Setup:** Das Original betreibt ein
    Cookie-Consent-Modul; im Prototyp bewusst entfallen (außerhalb des Umfangs).
 5. **Instagram-Feed ist ein Standbild:** Der Abschnitt zeigt vier konkrete
-   Beiträge mit lokalen Bildern statt eines Live-Feeds. Bei Laufzeit müsste
-   er regelmäßig aktualisiert werden (oder das Original per JS/Server nachladen).
+   Beiträge mit lokalen Bildern statt eines Live-Feeds. Zum Auffrischen
+   dient `python3 tools/instagram.py` (neueste Beiträge holen, Bilder als
+   WebP ablegen, `insta_beitraege` in `_index.md` ersetzen; neue
+   Bildbeschreibungen ergänzt der Hinweis in Abschnitt 1). Alternativ müsste
+   die Seite die Beiträge per JS/Server nachladen.
 6. **Ponytail-Hinweis:** Es wurde absichtlich nur das gebaut, was die
    Demo braucht – kein Taxonomie-/Blog-System, kein Pagination-Layout, keine
    Social-Media-Einbettung, kein SVG-Sprite-Katalog.
