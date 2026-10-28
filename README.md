@@ -28,6 +28,14 @@ Es gibt keine npm-/PostCSS-Toolchain: CSS, JS und Schrift liegen fertig unter
 `static/` (ein Stylesheet, ein kleines Skript für Mobilmenü und Farbmodus,
 Inter als selbst gehostete Variable-Font, 48 kB).
 
+Die Instagram-Karten auf der Startseite frischt
+`python3 tools/instagram.py` auf: Es liest die neuesten Beiträge des
+Schulaccounts, legt die Bilder als WebP unter `static/bilder/` ab und
+aktualisiert die Liste `insta_beitraege` in `content/_index.md`. Für neue
+Beiträge trägt es einen Platzhalter als `bildAlt` ein und weist darauf
+zurück – die Bildbeschreibung bitte vor dem Build ergänzen (genau
+hinschauen, was zu sehen ist).
+
 ---
 
 ## 2. Seitenumfang (bewusst begrenzt)
@@ -422,6 +430,7 @@ layouts/            baseof.html, home.html, 404.html
 assets/downloads/   Original-PDFs (Hugo veröffentlicht sie als /downloads/*.pdf)
 static/             css/main.css, js/nav.js, fonts/, bilder/, favicon.svg
 tools/              preview-server.py (Mess-Server: Keep-Alive + gzip wie GitHub Pages)
+                    instagram.py (neueste Instagram-Beiträge in _index.md holen)
 public/             gebaute Website (nicht eingecheckt, siehe .gitignore)
 recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingecheckt)
 ```
@@ -453,6 +462,11 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   sind Akzente (Aktionen, Kicker, Kategorien, Links). Gelb füllt nur noch
   einzelne Komponenten wie `.kasten--gelb` oder Schaltflächen, keine ganzen
   Seitenbänder.
+* Die Akzentfarben stehen so im GHSE-Logo (`static/bilder/logo_transparent.svg`):
+  Gelb `#F8DC54`, Orange `#EC7030`, Blau `#1060A0` aus dem helleren Teil des
+  Logo-Verlaufs – das dunkle Navy des Verlaufs bleibt bewusst unbenutzt.
+  `qa/kontrast.py` liest die Tokens direkt aus `static/css/main.css` und
+  prüft beide Farbmodi gegen diese Werte.
 * Der dunkle Satz steht zweimal: in `@media (prefers-color-scheme: dark)`
   (ohne gespeicherte Wahl, `:root:not([data-theme="light"])`) und unter
   `:root[data-theme="dark"]` für die gespeicherte Wahl. Bewusste
