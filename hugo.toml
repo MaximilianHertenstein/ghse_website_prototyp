@@ -11,7 +11,7 @@ title = "GHSE Emmendingen"
 hasCJKLanguage = false
 enableGitInfo = false
 
-# Prototyp: keine Pagination, keine Taxonomien nötig.
+# Ablöse des Originals: keine Pagination, keine Taxonomien nötig.
 disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
 
 [params]

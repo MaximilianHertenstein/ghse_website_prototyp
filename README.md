@@ -1,11 +1,12 @@
-# GHSE Emmendingen – Redesign-Prototyp (Hugo + Pages CMS)
+# GHSE Emmendingen – Redesign (Hugo + Pages CMS)
 
 **Live:** [https://maximilianhertenstein.github.io/ghse_website_prototyp/](https://maximilianhertenstein.github.io/ghse_website_prototyp/)
 [![Qualitäts-Metriken](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/workflows/metriken.yml/badge.svg)](https://github.com/MaximilianHertenstein/ghse_website_prototyp/actions/workflows/metriken.yml)
 – aktuelle Messwerte (Lighthouse, Yellow Lab Tools, Observatory) in
 [METRIKEN.md](METRIKEN.md)
 
-Klickbarer Prototyp für einen Relaunch von [www.ghse.de](https://www.ghse.de/).
+Neubau von [www.ghse.de](https://www.ghse.de/) mit Hugo, gedacht als
+vollständige Ablöse des Originals – nicht als Demo.
 Reduzierter Neobrutalismus (Grundlage: Skill `neobrutalism` aus
 [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
 mit echten GHSE-Inhalten, Texten, Bildern und Dokumenten.
@@ -75,10 +76,11 @@ längst ins Leere. `markup.goldmark.extensions.linkify` ist deshalb ab-
 geschaltet; Links entstehen nur noch aus ausgeschriebenen Markdown-Zielen,
 und genau die prüft `qa/extlinkcheck.py`.
 
-**Nicht Teil des Prototyps:** vollständige URL-/Content-Migration, kompletter
-Serviceersatz, Buchungssystem, produktives Consent-Management, Hosting-
-und Deployment-Konfiguration. Die Architektur (Hugo-Layouts, Sections,
-`.pages.yml`) lässt sich später ohne Umbau erweitern.
+**Bis zur Ablöse des Originals offen:** die Migration der alten URLs
+(Weiterleitungen der ghse.de-Pfade), vollständiger Serviceersatz (IServ),
+Buchungssystem, produktives Consent-Management, Hosting- und
+Deployment-Konfiguration. Die Architektur (Hugo-Layouts, Sections,
+`.pages.yml`) lässt sich dafür ohne Umbau erweitern.
 
 ---
 
@@ -88,7 +90,7 @@ Inhalte wurden von den unten stehenden Seiten der Originalseite übernommen
 (Texte unverändert bzw. für Karten/Teaser gekürzt), Bilder und PDFs in den
 Projektordner geladen und einzeln geprüft.
 
-| Demo-Inhalt | Quelle |
+| Inhalt | Quelle |
 |---|---|
 | Hero, Fakten, Karten-Titel | `https://www.ghse.de/`, `https://www.ghse.de/die-ghse/` |
 | Aktuelles (5 Meldungen inkl. Abbildungen) | `https://www.ghse.de/` (Abschnitt „Aktuelles") bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
@@ -120,15 +122,16 @@ Pressedatum vom 30.06.2026 bis 07.10.2026 sind übernommen, vier davon wurden
 dabei nachträglich ergänzt. Meldungen ohne Teaser („Besuch aus China",
 drei Abbildungen) und ohne Abbildung („Von Pädagogik bis Physik prämiert")
 sind in Templates und CMS-Feldern abgedeckt. Startseite und Newsliste zeigen
-dieselben Beiträge; die Startseite listet wie im Original die fünf neuesten.
+dieselben Beiträge; die Startseite listet die drei neuesten plus einen
+Link auf alle Meldungen.
 
 **Instagram:** Die GHSE betreibt auf ihrer Startseite einen Feed mit acht
-Accounts und vier aktuellen Beiträgen. Der Originalseite lädt diese Beiträge
-per JavaScript nach; im Prototyp liegen die vier Bilder statisch unter
+Accounts und vier aktuellen Beiträgen. Die Originalseite lädt diese Beiträge
+per JavaScript nach; hier liegen die vier Bilder statisch unter
 `static/bilder/insta-*.webp` (aus den öffentlichen Embed-Seiten der Beiträge
 gelesen) und werden mit der Kurzfassung der Bildunterschrift verlinkt –
-ohne Einbettung, ohne Drittanbieter-Skript. Für eine spätere Laufzeit muss
-dieser Block einmalig aktualisiert werden; die acht Account-Links bleiben
+ohne Einbettung, ohne Drittanbieter-Skript. Zum Auffrischen dient
+`python3 tools/instagram.py` (Abschnitt 1); die acht Account-Links bleiben
 jederzeit aktuell.
 
 **Kleinere Textkorrekturen** (dokumentiert, weil das Original fehlerhaft ist):
@@ -308,8 +311,9 @@ Studienfahrten. Größe und Format ermittelt der Build aus der Datei selbst
 (Abschnitt 3, „Getestete Downloads").
 
 **Bildnachweise:** Logo, Gebäudeaufnahme, Schulartbilder und Presseabbildungen
-stammen von `www.ghse.de` (Theme „ziegenhagel", Uploads). Für den internen
-Prototyp referenziert; eine Veröffentlichung braucht die Freigabe der Schule.
+stammen von `www.ghse.de` (Theme „ziegenhagel", Uploads). Eingebunden als
+Arbeitsstand; vor der Ablöse von www.ghse.de braucht die Schule die
+Freigabe (Urheberrecht der regionalen Zeitungen bei den Presseabbildungen).
 Vier Wappen der Träger und Förderer liegen zusätzlich als eigene Dateien
 darunter (`landratsamt-emmendingen.webp`, `kvjs-logo.webp`,
 `ministerium-wirtschaft-arbeit-tourismus.webp`,
@@ -317,7 +321,7 @@ darunter (`landratsamt-emmendingen.webp`, `kvjs-logo.webp`,
 Förderabsatz auf AV-Dual Begleitung und Schulsozialarbeit, mit leerem
 `alt`-Attribut wie im Original.
 
-**Partner-Logostreifen:** Der Prototyp nutzt die aktuelle Fassung von ghse.de
+**Partner-Logostreifen:** Diese Fassung nutzt die aktuelle Fassung von ghse.de
 (1023×494 px, sieben Logos, Upload 2025). Auf der vollen Containerbreite
 (1180 px) wird die Datei minimal hochskaliert – bewusst zugunsten der
 inhaltlichen Aktualität; das größere Original von 2023 (2116×1014 px) zeigt
@@ -660,8 +664,8 @@ Push startet die Pipeline automatisch neu.
 1. **Presse-Meldungen ohne Volltext:** Solange ghse.de nur Teaser + Abbildung
    + Quellenlink liefert, bleibt die Detailseite bei diesen Feldern. Sobald
    Volltexte gepflegt werden, ist das `body`-Feld im CMS bereits angebunden.
-2. **Bildfreigabe:** Bilder/PDFs sind für den internen Prototyp eingebunden;
-   vor einer Veröffentlichung braucht die GHSE die Freigabe (Urheberrecht
+2. **Bildfreigabe:** Bilder/PDFs sind als Arbeitsstand eingebunden; vor der
+   Ablöse von www.ghse.de braucht die GHSE die Freigabe (Urheberrecht
    regionaler Zeitungen bei den Presseabbildungen!).
 3. **Kein Verweis mehr auf die Originalseite:** Alle 54 zieltragenden
    Menüeinträge (von 59 insgesamt; fünf sind reine Zwischenüberschriften)
@@ -675,13 +679,20 @@ Push startet die Pipeline automatisch neu.
    Kultusportal-Deep-Link der Originalseite (404, Portal umgezogen) zeigt
    weiterhin auf die geprüfte Startseite des Kultusministeriums.
 4. **Kein echtes Consent-/Analytics-Setup:** Das Original betreibt ein
-   Cookie-Consent-Modul; im Prototyp bewusst entfallen (außerhalb des Umfangs).
+   Cookie-Consent-Modul; hier bewusst entfallen. Vor der Ablöse klären, ob
+   und mit welchem Dienst Analyse läuft – ohne Analytics ist keine
+   Einwilligung nötig, dann bleibt es dabei.
 5. **Instagram-Feed ist ein Standbild:** Der Abschnitt zeigt vier konkrete
    Beiträge mit lokalen Bildern statt eines Live-Feeds. Zum Auffrischen
    dient `python3 tools/instagram.py` (neueste Beiträge holen, Bilder als
    WebP ablegen, `insta_beitraege` in `_index.md` ersetzen; neue
    Bildbeschreibungen ergänzt der Hinweis in Abschnitt 1). Alternativ müsste
    die Seite die Beiträge per JS/Server nachladen.
-6. **Ponytail-Hinweis:** Es wurde absichtlich nur das gebaut, was die
-   Demo braucht – kein Taxonomie-/Blog-System, kein Pagination-Layout, keine
-   Social-Media-Einbettung, kein SVG-Sprite-Katalog.
+6. **Bewusst nicht gebaut:** kein Taxonomie-/Blog-System, kein
+   Pagination-Layout, keine Social-Media-Einbettung, kein SVG-Sprite-Katalog
+   – die Ablöse braucht davon nichts; Erweiterungen sind über die
+   Sammlungen in `.pages.yml` ohne Umbau möglich.
+7. **Hosting und Domain für die Ablöse:** Der Produktionsstandort (eigene
+   Domain, z. B. über GitHub Pages oder den Schulserver) und Weiterleitungen
+   der alten ghse.de-Pfade (Abschnitt 2, „Bis zur Ablöse offen") sind
+   organisorisch zu klären; technisch ist die Seite dafür gebaut.

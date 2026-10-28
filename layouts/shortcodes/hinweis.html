@@ -1,6 +1,7 @@
 {{- /* Hinweisbaustein für Inhalte, die erkennbar nicht zum eigentlichen Inhalt
-       gehören (z. B. Prototyp-Hinweise). Als Shortcode statt rohem HTML, weil
-       der Goldmark-Renderer bewusst mit unsafe=false läuft. */ -}}
+       gehören (Gutachter-, Korrektur- und Quellenhinweise). Als Shortcode
+       statt rohem HTML, weil der Goldmark-Renderer bewusst mit unsafe=false
+       läuft. */ -}}
 {{- $titel := .Get "titel" | default "Hinweis" -}}
 {{- $ziel := .Get "ziel" -}}
 {{- $label := .Get "ziellabel" | default "Originalseite ansehen" -}}
