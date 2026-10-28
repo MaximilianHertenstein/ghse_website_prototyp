@@ -43,7 +43,7 @@ hinschauen, was zu sehen ist).
 
 | Bereich | Umsetzung | URL |
 |---|---|---|
-| A Landingpage | Hero (zwei Schaltflächen, Abschluss-Chips), 4 Schularten, Instagram (4 Beiträge + 8 Accounts), Aktuelles (3 Meldungen + Link auf alle), Termine (9 Kalender), Berufs-/Studieninformation, Service (4 Karten), Schulleben, Partner (logobreit) | `/` |
+| A Landingpage | Hero (Schulnamen-Badge, Abschluss-Chips), 4 Schularten, Instagram (4 Beiträge + 8 Accounts), Aktuelles (3 Meldungen + Link auf alle), Termine (9 Kalender), Berufs-/Studieninformation, Service (4 Karten), Schulleben, Partner (logobreit) | `/` |
 | B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
@@ -492,16 +492,20 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Überschriften-Hierarchie, `figure/figcaption`, `time`, `address`.
 * WCAG 2.2 AA im Blick: Sprungmarke „Direkt zum Inhalt", sichtbare
   Fokusringe (`:focus-visible`, orange), `aria-expanded`/`aria-controls` am
-  Mobilmenü, `aria-current="page"` in der Navigation, Alt-Texte für alle
+  Mobilmenü und an den einklappbaren Kategorien, `aria-current="page"` in
+  der Navigation, Alt-Texte für alle
   Bilder (Bilder einzeln betrachtet und beschrieben), Farben auf Kontrast
-  geprüft – `qa/kontrast.py` rechnet alle Tokenpaare in Hell **und** Dunkel
-  durch (37 Paare, kleinster Textwert 4,87:1 für den Kicker auf Papier,
+  geprüft – `qa/kontrast.py` liest die Tokens direkt aus dem Stylesheet und
+  rechnet alle Paare in Hell **und** Dunkel durch (19 Paare je Modus,
+  kleinster Textwert 5,46:1 für den Kicker auf Papier,
   alle Paare bestehen),
   Touch-Ziele ≥ 44 px, `prefers-reduced-motion` respektiert.
 * Responsive: Breakpoints 1199/1000/900/640/560 px – Karten- und Zeilenraster
-  stapeln sich, unter 1200 px wird die Navigation zum Aufklappmenü, Download-
-  Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen wird
-  das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
+  stapeln sich, unter 1200 px wird die Navigation zum Aufklappmenü, das
+  zunächst nur die Kategorien zeigt; ein Pfeil klärt die Untertafel der
+  getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
+  Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
+  wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
   Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (56 Seiten ×
   11 Breiten = 616 Kombinationen, 0 Probleme – nichts bricht horizontales
   Scrollen aus).

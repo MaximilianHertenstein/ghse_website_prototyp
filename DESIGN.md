@@ -64,7 +64,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 
 ## Komponenten
 
-- **Hero:** gelbes Schulnamen-Badge, große Überschrift, zwei Aktionen.
+- **Hero:** gelbes Schulnamen-Badge, große Überschrift, Abschluss-Chips;
+  die Wege führen über die Kopfnavigation, die Sektionen und den
+  „Alle Schularten"-Knopf.
 - **Kicker:** orange, Großbuchstaben, gesperrt; führt jede Sektion ein.
 - **Karten:** weiß, schwarzer Rahmen, harter Schatten, Titel als Link.
 - **Chips/Marken:** klein, Großbuchstaben; Teilzeitschularten orange,

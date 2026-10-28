@@ -9,6 +9,7 @@
     btn.setAttribute('aria-expanded', offen ? 'true' : 'false');
     nav.toggleAttribute('data-offen', offen);
     document.body.classList.toggle('menue-offen', offen);
+    if (!offen) klappAlle();
   }
 
   btn.addEventListener('click', function () {
@@ -30,7 +31,31 @@
     // Grenze aus static/css/main.css: die Desktop-Navigation (acht Einträge
     // samt Logo und Modusknopf) braucht gemessen 1200 px; ab 1200 px läuft
     // sie als Zeile, darunter als Menükopf.
-    if (window.innerWidth > 1199) setz(false);
+    if (window.innerWidth > 1199) { setz(false); klappAlle(); }
+  });
+
+  // Untermenüs im Panel: die Kategorien stehen eingeklappt; der Pfeil
+  // rechts an der Zeile klappt die Tafel zu und auf (aria-expanded am
+  // Knopf, sichtbarer Zustand über data-offen an der Gruppe).
+  function klappAlle() {
+    var gruppen = nav.querySelectorAll('.menue__gruppe[data-offen]');
+    for (var g = 0; g < gruppen.length; g++) {
+      gruppen[g].removeAttribute('data-offen');
+      gruppen[g].querySelector('[data-menue-auf]').setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  nav.addEventListener('click', function (e) {
+    var knopf = e.target.closest('[data-menue-auf]');
+    if (!knopf) return;
+    var gruppe = knopf.closest('.menue__gruppe');
+    var offen = knopf.getAttribute('aria-expanded') === 'true';
+    knopf.setAttribute('aria-expanded', offen ? 'false' : 'true');
+    gruppe.toggleAttribute('data-offen', !offen);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') klappAlle();
   });
 })();
 

@@ -53,16 +53,27 @@
         </nav>
         <ul>
           {{- /* Die Tafeln hängen ab 1200 px an ::hover und :focus-within,
-                 darunter stehen sie flach im Menüpanel. Ein Eintrag ohne
-                 Kinder bleibt eine schlichte Zeile. */}}
+                 darunter sind sie eingeklappt und laufen über den Pfeilknopf
+                 rechts (data-menue-auf, nav.js). Die Kategorie selbst bleibt
+                 ein Link auf ihre Seite; die aktuelle Sektion steht mobil
+                 schon aufgeklappt. Ein Eintrag ohne Kinder bleibt eine
+                 schlichte Zeile. */}}
           {{ $seite := . }}
           {{ range site.Menus.haupt }}
             {{ $ziel := .URL }}{{ if hasPrefix $ziel "/" }}{{ $ziel = $ziel | relURL }}{{ end }}
-            <li{{ if .Children }} class="menue__gruppe"{{ end }}>
-              <a href="{{ $ziel }}"
-                 {{ if or ($seite.IsMenuCurrent "haupt" .) ($seite.HasMenuCurrent "haupt" .) }}aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{ $aktuell := or ($seite.IsMenuCurrent "haupt" .) ($seite.HasMenuCurrent "haupt" .) }}
+            {{ $name := .Name }}
+            <li{{ if .Children }} class="menue__gruppe"{{ if $aktuell }} data-offen{{ end }}{{ end }}>
+              <a href="{{ $ziel }}"{{ if .Children }} id="menue-link-{{ $name | anchorize }}"{{ end }}
+                 {{ if $aktuell }}aria-current="page"{{ end }}>{{ .Name }}</a>
               {{- with .Children }}
-              <ul class="menue__tafel">{{ partial "menue.html" . }}</ul>
+              <button class="menue__auf" type="button" data-menue-auf
+                      aria-expanded="{{ if $aktuell }}true{{ else }}false{{ end }}"
+                      aria-controls="menue-tafel-{{ $name | anchorize }}"
+                      aria-labelledby="menue-link-{{ $name | anchorize }} menue-tafel-{{ $name | anchorize }}">
+                <svg class="menue__auf-pfeil" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>
+              </button>
+              <ul class="menue__tafel" id="menue-tafel-{{ $name | anchorize }}">{{ partial "menue.html" . }}</ul>
               {{- end }}
             </li>
           {{ end }}

@@ -173,10 +173,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   outline-offset: 3px;
 }
 
-.hero :focus-visible {
-  outline-color: var(--orange-tief);
-}
-
 .band--blau :focus-visible,
 .fuss :focus-visible,
 .leiste :focus-visible,
@@ -378,8 +374,6 @@ h2[id^="dl-"] {
 .btn--akzent {
   background: var(--gelb);
   color: var(--tinte);
-  display: table;
-  margin: auto;
 }
 
 .btn--geist {
@@ -455,12 +449,7 @@ h2[id^="dl-"] {
   color: var(--link);
 }
 
-.hero .btn--geist {
-  border-color: var(--rand);
-  color: var(--schrift);
-}
-
-.band--blau .btn--geist:hover, .hero .btn--geist:hover {
+.band--blau .btn--geist:hover {
   background: var(--gelb);
   color: var(--tinte);
 }
@@ -666,6 +655,12 @@ h2[id^="dl-"] {
   color: var(--grau);
 }
 
+/* Pfeilknopf für die Untertafeln: nur im Mobilpanel sichtbar (≤1199 px),
+   dort stehen die Tafeln eingeklappt und laufen über ihn. */
+.menue__auf {
+  display: none;
+}
+
 @media (min-width: 1200px) {
   .menue__gruppe {
     position: relative;
@@ -815,6 +810,22 @@ h2[id^="dl-"] {
   padding: 0.3rem 0.7rem;
 }
 
+/* Schulnamen-Badge: gelbes Etikett über der Hero-Überschrift, im
+   Gegensatz zu btn--akzent linksbündig in der Textspalte. */
+.hero__marke {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 0.9rem;
+  background: var(--gelb);
+  color: var(--tinte);
+  border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
+  font-weight: 800;
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 .hero__titel {
   font-size: var(--t-display);
   font-weight: 900;
@@ -823,7 +834,6 @@ h2[id^="dl-"] {
   text-wrap: balance;
   margin-top: var(--r-6);
 }
-
 .hero__titel::after {
   content: "";
   display: block;
@@ -2169,6 +2179,48 @@ h2[id^="dl-"] {
     padding: 0.95rem 0.5rem;
     font-size: 1.05rem;
     border-bottom: 2px solid var(--haarlinie);
+  }
+
+  /* Kategorien als Zeile: Link links, Pfeilknopf rechts; die Tafel
+     bleibt eingeklappt, bis der Knopf sie aufschließt. */
+  .menue__gruppe {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .menue__gruppe > a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .menue__auf {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    min-height: 2.75rem;
+    border: 0;
+    background: none;
+    color: var(--schrift);
+  }
+  .menue__auf:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
+  .menue__auf-pfeil {
+    width: 1.4rem;
+    height: 1.4rem;
+    transition: transform 0.15s ease;
+  }
+  .menue__auf[aria-expanded="true"] .menue__auf-pfeil {
+    transform: rotate(180deg);
+  }
+  .menue__gruppe > .menue__tafel {
+    flex-basis: 100%;
+    display: none;
+  }
+  .menue__gruppe[data-offen] > .menue__tafel {
+    display: block;
   }
 }
 

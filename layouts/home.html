@@ -1,16 +1,10 @@
 {{ define "inhalt" }}
 <div class="hero">
-  <p class="btn btn--akzent">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
-  <br>
   <div class="container hero__innen">
     <div class="hero__text">
+      <p class="hero__marke">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
       <h1 class="hero__titel">{{ .Params.titel }}</h1>
       <p class="hero__unter">{{ .Params.untertitel }}</p>
-      <p class="hero__knoepfe">
-        <a class="btn btn--akzent" href="{{ "schularten/" | relURL }}">Schularten entdecken</a>
-
-        <a class="btn btn--akzent" href="{{ "downloads/#dl-formulare--hausordnung" | relURL }}">Formulare &amp; Anmeldung</a>
-      </p>
 
       {{- with .Params.naechster_termin }}
         {{- if and .titel .datum .url }}
