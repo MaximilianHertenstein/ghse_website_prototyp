@@ -464,6 +464,21 @@ content:
         label: Inhalt
         type: rich-text
 
+  - name: infoveranstaltung
+    label: Infoveranstaltung (Inhaltsseite)
+    type: file
+    path: content/infoveranstaltung.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      - name: body
+        label: Inhalt
+        type: rich-text
+
   - name: schulleben
     label: Schulleben (Inhaltsseite)
     type: file

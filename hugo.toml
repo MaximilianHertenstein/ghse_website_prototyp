@@ -374,6 +374,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     name = "für alle anderen Schularten"
     pageRef = "/anmeldeformulare"
     weight = 92
+  [[menus.haupt]]
+    identifier = "anmeldung-infoveranstaltung"
+    parent = "anmeldung"
+    name = "Infoveranstaltung"
+    pageRef = "/infoveranstaltung"
+    weight = 93
 
   [[menus.haupt]]
     identifier = "mint"

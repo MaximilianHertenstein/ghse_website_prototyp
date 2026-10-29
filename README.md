@@ -48,7 +48,7 @@ hinschauen, was zu sehen ist).
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
 | E Downloadbereich | 49 Dokumente (44 PDFs, 4 ZIPs, 1 DOC) in 7 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
-| F Service- und Schülerseiten | 17 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Krankmeldung, Nextcloud, Oberstufeninformationen, Projekte und Software, Schulsanitätsdienst, Schulbienen, Schulsozialarbeit, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/`, `/oberstufeninformationen/` … |
+| F Service- und Schülerseiten | 18 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Infoveranstaltung, Krankmeldung, Nextcloud, Oberstufeninformationen, Projekte und Software, Schulsanitätsdienst, Schulbienen, Schulsozialarbeit, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/`, `/oberstufeninformationen/`, `/infoveranstaltung/` … |
 | G Themenseiten | 2 weitere Seiten mit eigener Quelle: UNESCO („Was heißt UNESCO-Projektschule?") und Erasmus+ | `/unesco/`, `/erasmus/` |
 
 Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
@@ -131,6 +131,7 @@ Projektordner geladen und einzeln geprüft.
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
 | Oberstufeninformationen | `https://www.ghse.de/schueler/oberstufeninformationen/` (Aufzeichnung `recherche/oberstufeninformationen-roh.md`) |
+| Infoveranstaltung | `https://www.ghse.de/infoveranstaltung/` (Aufzeichnung `recherche/infoveranstaltung-roh.md`) |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |
 | Service- und Schülerseiten (16) | `https://www.ghse.de/anfahrt/`, `/schulbienen/`, `/schulsanitaetsdienst/`, `/schueler/smv/`, `/schueler/beratung/`, `/schueler/beratung-2/`, `/schueler/av-dual-begleitung/`, `/schueler/vertretungsplan/`, `/schueler/besserghse-de/`, `/online-abmelden/`, `/nextcloud/`, `/unsere-schule/organisatorisches/fachgruppen/`, `/downloads/studienfahrten/`, `/downloads/projekte-software/`, `/downloads/anmeldeformulare/`, `/unesco/unesco-aktivitaeten/` |
 | UNESCO-Einstiegsseite | `https://www.ghse.de/unesco/was-heisst-unesco-projektschule/` |
@@ -166,9 +167,9 @@ jederzeit aktuell.
 „Badischen Zeitung" → „Badische Zeitung" (Quellenlabel), „Die Einjährige
 Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 
-Für die dreiunddreißig Seiten mit eigener Quelle – die neunzehn Service-,
-Schüler- und Themenseiten (darunter die Oberstufeninformationen), die vier
-Untertafeln der Berufsvorbereitung
+Für die vierunddreißig Seiten mit eigener Quelle – die zwanzig Service-,
+Schüler- und Themenseiten (darunter die Oberstufeninformationen und die
+Infoveranstaltung), die vier Untertafeln der Berufsvorbereitung
 sowie Die GHSE, MINT, Schulleben, Förderverein, Berufsinformation, BewO,
 Praktikum, Impressum, Datenschutz und Safer Space –
 gilt dieselbe Regel: jedes Wort steht so, wie die Quelle es schreibt, nur wo
@@ -392,6 +393,21 @@ package!"; bei uns steht an der Stelle der Hinweis „Die Datei zum
 Leitfaden zum Abi 2028 ist derzeit nicht verfügbar." Die Zeilen
 „1 Datei(en) … KB Download" des Download-Managers fehlen hier wie auf der
 Download-Seite (der Build rechnet Größe und Format aus der Datei selbst).
+
+*Infoveranstaltung:* Die Seite `https://www.ghse.de/infoveranstaltung/`
+(Aufzeichnung `recherche/infoveranstaltung-roh.md`) ist mit ihrem Wortlaut
+übernommen: die Überschrift „Infoveranstaltungen@ghse 2023", der
+Einladungstext, das Programm des Tages der offenen Tür mit derselben
+Verschachtelung der Aufzählungen, die Liste der Schularten für den Infoabend
+und der Schlusssatz „Wir freuen uns auf Ihren Besuch." Zwei Abweichungen:
+der Seitentitel „Infoveranstaltung" (das Original beginnt im Text mit der
+Überschrift „Infoveranstaltungen@ghse 2023"), und die beiden Links des
+Originals auf seine eigenen Veranstaltungsseiten – „bitte hier anmelden"
+(Tag der offenen Tür) und „Infoabend für die meisten Schularten" – stehen
+als Klartext im Text, nicht als Link: die erste Seite leitet nur noch auf
+die Startseite um, die zweite auf eine leere Seite (siehe Abschnitt 8,
+Punkt 3). Das Original führt die Seite in keinem Menü; bei uns steht sie
+unter „Anmeldung", damit sie erreichbar bleibt.
 
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
@@ -679,8 +695,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
   Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
   wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
-  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (78 Seiten ×
-  11 Breiten = 858 Kombinationen, 0 Probleme – nichts bricht horizontales
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (79 Seiten ×
+  11 Breiten = 869 Kombinationen, 0 Probleme – nichts bricht horizontales
   Scrollen aus). Dieselben drei Prüfungen laufen zusätzlich gegen einen Bau
   mit `--baseURL /ghse_website_prototyp/` (`qa/unterpfad.py`) – dort sind
   Schriften und alle Inhalts-Links fürchterlich schnell kaputt, weil die
@@ -688,9 +704,9 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   (Schriftquelle, zwei Schaltflächen-Ziele, alle Markdown-Links der
   Inhalte) unsichtbar unter "/" ins Leere lief; ein Render-Hook
   (`layouts/_default/_markup/render-link.html`) schreibt sie um.
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 79
-  HTML-Dateien (78 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
-  Schriften und Dokumente (4963 Ziele gesamt, keine Fehlschläge,
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 80
+  HTML-Dateien (79 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
+  Schriften und Dokumente (5100 Ziele gesamt, keine Fehlschläge,
   einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
@@ -708,16 +724,16 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
   Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
   Sechsundfünfzig Quellseiten liegen als HTML unter `recherche/quellen/` (64
-  Aufzeichnungen insgesamt), sechs
+  Aufzeichnungen insgesamt), sieben
   als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space,
-  Oberstufeninformationen), damit die
+  Oberstufeninformationen, Infoveranstaltung), damit die
   Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
-  zweiundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  dreiundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
   nicht decken (`schulsozialarbeit` liegt unter
   `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
   durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
   offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
-  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 180
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 181
   Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
   vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
   späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage
