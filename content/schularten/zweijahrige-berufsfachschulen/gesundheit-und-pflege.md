@@ -6,9 +6,6 @@ kategorie: "Vollzeitschularten"
 karte: "nein"   # Untertafel der zweijährigen Berufsfachschule: eigene Seite, keine eigene Karte
 bild: "/bilder/schularten/2bfp-4.webp"
 bildAlt: "Pflegende Hände an einem verbundenen Fuß einer liegenden Person"
-bilder:
-  - bild: "/bilder/schularten/2bfp-9.webp"
-    alt: "Viele Menschen auf einem Platz mit einem roten Herz aus Steinen"
 kurz: "Gesundheit und Pflege: Profilfächer Biologie und Gesundheitslehre mit Praxis in Pflege und Labortechnik."
 abschluss: "Fachschulreife (Mittlerer Bildungsabschluss)"
 weight: 34
@@ -103,4 +100,3 @@ Nein, beide Abschlüsse entsprechen einem mittleren Bildungsabschluss. Die Fachs
 
 {{< bild src="/bilder/schularten/2bfp-9.webp" alt="Viele Menschen auf einem Platz mit einem roten Herz aus Steinen" >}}
 
-{{< bilder >}}

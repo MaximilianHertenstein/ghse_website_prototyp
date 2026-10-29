@@ -6,11 +6,6 @@ kategorie: "Vollzeitschularten"
 karte: "nein"   # Untertafel der zweijährigen Berufsfachschule: eigene Seite, keine eigene Karte
 bild: "/bilder/schularten/2bfh-1.webp"
 bildAlt: "Genähte Hipsterbeutel aus bunten Stoffen"
-bilder:
-  - bild: "/bilder/schularten/2bfh-10.webp"
-    alt: "Genähte Utensilientasche im Streifenpatchwork"
-  - bild: "/bilder/schularten/2bfh-14.webp"
-    alt: "Eingetütete Backwaren auf einem Tisch"
 kurz: "Ernährung, Erziehung und Haushaltsmanagement – mit Praxis in Küche und Werkstatt."
 abschluss: "Fachschulreife (Mittlerer Bildungsabschluss)"
 weight: 33
@@ -110,4 +105,3 @@ Nein, beide Abschlüsse entsprechen einem mittleren Bildungsabschluss. Die Fachs
 
 {{< bild src="/bilder/schularten/2bfh-14.webp" alt="Eingetütete Backwaren auf einem Tisch" >}}
 
-{{< bilder >}}

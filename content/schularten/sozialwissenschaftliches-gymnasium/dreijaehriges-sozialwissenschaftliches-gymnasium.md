@@ -9,12 +9,6 @@ bildAlt: "Segelflugzeug über dem Boden"
 bilder:
   - bild: "/bilder/schularten/sg-3-1.webp"
     alt: "Hände vieler Menschen legen sich übereinander auf grünen Rasen"
-  - bild: "/bilder/schularten/sg-3-3.webp"
-    alt: "Gruppenfoto vor einem alten Torbogen"
-  - bild: "/bilder/schularten/sg-3-4.webp"
-    alt: "Jugendliche an einem Gehege bei einer Aktion"
-  - bild: "/bilder/schularten/sg-3-5.webp"
-    alt: "Unterricht im Klassenzimmer mit Tablet am Pult"
 kurz: "Drei Jahre bis zum Abitur, mit dem Profilfach Pädagogik und Psychologie."
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit uneingeschränkt anerkannt"
 weight: 22
@@ -69,7 +63,6 @@ Ergänzend zum Profilfach Pädagogik/Psychologie sind folgende Fächer als Wahl(
 - Sondergebiete der Biowissenschaften: Das Ergänzungsfach bietet die Auseinandersetzung mit aktuellen biologischen Fragestellungen, zum Beispiel aus dem Bereich der „Ökologie, Stoffwechsel und Umwelttoxikologie“ oder „Entwicklungsbiologie, Evolution und Reproduktionsmedizin“; Schwerpunkte können aber auch „Neurobiologische Grundlagen von Lernen und Verhalten“ sowie „Infektions- und Immunbiologie“ sein. Wie in allen berufsbezogenen Fächern wird auch hier auf einen Praxisbezug geachtet, zum Beispiel durch Modellversuche, Labor-Übungen oder Exkursionen.
 
 - {{< bild src="/bilder/schularten/sg-3-3.webp" alt="Gruppenfoto vor antiken Säulen" >}}
-- {{< bild src="/bilder/schularten/sg-3-2.webp" alt="Person im Korb eines Heißluftballons" >}}
 
 
 ## Was tun wir für eine gute Klassen- bzw. Schulgemeinschaft?

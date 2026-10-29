@@ -1841,9 +1841,12 @@ h2[id^="dl-"] {
 }
 
 /* Im Raster füllen die Bilder ihre Zelle – dort zählt die Fläche, nicht die
-   Originalgröße. */
+   Originalgröße. Ein einzelnes Bild bleibt aber so breit wie ein Bild im
+   Fließtext (26rem) und steht mittig. */
 .fliesstext ul:has(> li .bild) .bild img {
   width: 100%;
+  max-width: 26rem;
+  margin-inline: auto;
 }
 
 .bildraster {

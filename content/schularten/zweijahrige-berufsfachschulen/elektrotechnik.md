@@ -6,13 +6,6 @@ kategorie: "Vollzeitschularten"
 karte: "nein"   # Untertafel der zweijährigen Berufsfachschule: eigene Seite, keine eigene Karte
 bild: "/bilder/schularten/2bfe-1.webp"
 bildAlt: "Schüler an einer Elektronik-Schalttafel mit Messgeräten"
-bilder:
-  - bild: "/bilder/schularten/2bfe-2.webp"
-    alt: "Elektronik-Lehrtafel mit Stecksystemen und Schaltkasten"
-  - bild: "/bilder/schularten/2bfe-5.webp"
-    alt: "Schraubendreher-Sätze in Halterung auf einem Regalbrett"
-  - bild: "/bilder/schularten/2bfe-3.webp"
-    alt: "Elektrische Installation an einer Holzwand mit Schaltern und Steckdosen"
 kurz: "Elektrotechnik mit Praxis: Schalttafeln, Messgeräte und Fachschulreife."
 abschluss: "Fachschulreife (Mittlerer Bildungsabschluss)"
 weight: 32
@@ -26,7 +19,6 @@ Die „2-jährige Berufsfachschule Elektrotechnik“ bietet dir das alles – du
 
 Alle wichtigen Informationen zu diesen Schularten findest du in unserem Flyer, den du [hier herunterladen](/downloads/) oder im Sekretariat an der Schule (Tel. 07641/465-100) erhalten kannst.
 
-- {{< bild src="/bilder/schularten/2bfe-1.webp" alt="Zwei Schüler an einer Elektronik-Lehrtafel mit Messgeräten" >}}
 - {{< bild src="/bilder/schularten/2bfe-2.webp" alt="Verdrahtete Elektronik-Lehrtafel mit Stecksystemen, im Freien aufgebaut" >}}
 
 
@@ -131,4 +123,3 @@ Besuch eines 3-jährigen Beruflichen Gymnasiums (Abitur) in unterschiedlichen Au
 
 Nein, beide Abschlüsse entsprechen einem Mittleren Bildungsabschluss. Die Fachschulreife ist jedoch höher anzusehen, da bereits berufsfachliche und berufspraktische Kompetenzen erlangt werden, was teilweise zu Lehrzeitverkürzungen führen kann.
 
-{{< bilder >}}

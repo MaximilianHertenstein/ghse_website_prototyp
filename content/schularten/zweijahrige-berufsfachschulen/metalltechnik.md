@@ -7,10 +7,6 @@ karte: "nein"   # Untertafel der zweijährigen Berufsfachschule: eigene Seite, k
 bild: "/bilder/schularten/2bfm-5.webp"
 bildAlt: "Grüne Drehmaschinen in der Metallwerkstatt"
 bilder:
-  - bild: "/bilder/schularten/2bfm-6.webp"
-    alt: "Schüler an einer Bearbeitungsmaschine in der Werkstatt"
-  - bild: "/bilder/schularten/2bfm-9.webp"
-    alt: "Zwei Schüler in Arbeitsjacken an einer Drehmaschine"
   - bild: "/bilder/schularten/2bfm-1.webp"
     alt: "Selbst gebauter Schraubstock aus Stahl"
   - bild: "/bilder/schularten/2bfm-10.webp"
@@ -28,7 +24,6 @@ Die „2-jährige Berufsfachschule Metall“ bietet dir das alles – du gewinns
 
 Alle wichtigen Informationen zu diesen Schularten findest du in unserem Flyer, den du [hier herunterladen](/downloads/) oder im Sekretariat an der Schule (Tel. 07641/465-100) erhalten kannst.
 
-- {{< bild src="/bilder/schularten/2bfm-5.webp" alt="Grüne Drehmaschinen in der Metallwerkstatt" >}}
 - {{< bild src="/bilder/schularten/2bfm-6.webp" alt="Schüler an einer Bearbeitungsmaschine in der Werkstatt" >}}
 
 
