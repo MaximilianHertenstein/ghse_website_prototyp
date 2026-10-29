@@ -16,3 +16,7 @@
 Thumbs.db
 *.swp
 *~
+
+# Bytecode der Hilfsskripte
+__pycache__/
+*.pyc

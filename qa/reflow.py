@@ -9,9 +9,11 @@ auf Port 8732 (wird hier, falls noch nicht laeuft, selbst gestartet).
 
 Ausgabe: Seitenzahl, Kombinationszahl, Fehlerliste. Exit 1 bei Problemen.
 """
+import atexit
 import json
 import os
 import re
+import socket
 import subprocess
 import sys
 import time
@@ -46,26 +48,46 @@ f.src=t;
 """
 
 
+def freier_port():
+    """Ein Port, auf dem gerade nichts laeuft."""
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        return s.getsockname()[1]
+
+
 def server_stellt_sich_sicher():
-    """Statischen Server auf 8732 sicherstellen, damit die Probe gleich-origin laden kann."""
+    """Statischen Server auf PORT sicherstellen, damit die Probe gleich-origin laden kann.
+
+    Ein Server, der schon auf dem Port laeuft, kann ein fremder sein: er
+    bedient dann ein altes, inzwischen geloeschtes Verzeichnis und antwortet
+    mit 404, ohne dass die Probe anlaeuft. Deshalb wird zuerst geprueft, ob
+    der Port unsere Probe-Datei ausliefert; wenn nicht, zieht der Lauf auf
+    einen freien Port. Der selbst gestartete Server wird am Ende beendet –
+    sonst blockiert er den naechsten Lauf.
+    """
+    global PORT
     base = "http://127.0.0.1:%d" % PORT
 
-    def erreichbar():
+    def liefert_probe():
         try:
-            urllib.request.urlopen(base, timeout=2).read()
-            return True
+            with urllib.request.urlopen(base + "/__probe.html", timeout=2) as antwort:
+                return "lade" in antwort.read().decode("utf-8", "replace")
         except Exception:
             return False
 
-    if erreichbar():
+    if liefert_probe():
         return
-    subprocess.Popen(
+    # Der Port ist belegt, aber nicht von uns: freien Port suchen.
+    PORT = freier_port()
+    base = "http://127.0.0.1:%d" % PORT
+    prozess = subprocess.Popen(
         [sys.executable, "-m", "http.server", str(PORT), "--bind", "127.0.0.1"],
         cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     )
+    atexit.register(prozess.terminate)
     for _ in range(20):
         time.sleep(0.25)
-        if erreichbar():
+        if liefert_probe():
             return
     sys.exit("Server auf Port %d nicht erreichbar." % PORT)
 
@@ -108,11 +130,13 @@ def pruefe(arg):
 def main():
     if not os.path.isdir(ROOT):
         sys.exit("public/ fehlt – zuerst `hugo -D` ausfuehren.")
-    server_stellt_sich_sicher()
     seiten = seiten_aus_public()
     probe_pfad = os.path.join(ROOT, "__probe.html")
     with open(probe_pfad, "w", encoding="utf-8") as f:
         f.write(PROBE)
+    # Die Probe-Datei muss vor dem Server stehen, damit der Test erkennen
+    # kann, ob der Port wirklich unser Verzeichnis ausliefert.
+    server_stellt_sich_sicher()
     try:
         kombis = [(u, b) for u in seiten for b in BREITEN]
         with ThreadPoolExecutor(max_workers=6) as ex:
