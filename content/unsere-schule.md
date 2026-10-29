@@ -33,7 +33,9 @@ An der GHSE gibt es 24 Fachschaften, die die Schule organisatorisch gliedern. Je
 
 {{< bild src="/bilder/organigramm.webp" breite="voll" alt="Organigramm der Gewerblichen und Hauswirtschaftlich-Sozialpflegerischen Schulen Emmendingen mit Schulleitung, Hauptabteilungen und Fachschaften" >}}
 
-Die Beschriftung liest sich erst in der vollen Größe: [Organigramm vergrößern](/bilder/organigramm.webp)
+Die Beschriftung liest sich erst in der vollen Größe.
+
+{{< mehr ziel="/bilder/organigramm.webp" extern="1" label="Organigramm vergrößern" >}}
 
 ## Schulleitung
 

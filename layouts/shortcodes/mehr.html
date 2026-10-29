@@ -1,6 +1,10 @@
 {{- /* „Mehr erfahren“-Verweis wie die Kacheln der Originalseiten. Ziel
-       relativ (Untertafel) oder fremd (extern → ↗, neues Fenster). */ -}}
+       relativ (Untertafel) oder fremd (extern → ↗, neues Fenster).
+       Eigener Text über label (zum Beispiel „Organigramm vergrößern“). */ -}}
 {{- $ziel := .Get "ziel" -}}
 {{- $href := $ziel -}}
-{{- if hasPrefix $ziel "/" }}{{ $href = $ziel | relURL }}{{ end -}}
-<p><a class="linkpfeil" href="{{ $href }}"{{ if .Get "extern" }} target="_blank" rel="noopener"{{ end }}>Mehr erfahren<span aria-hidden="true">{{ if .Get "extern" }}↗{{ else }}→{{ end }}</span></a></p>
+{{- /* Wurzel-absolute Pfade ("/bilder/…") laufen unter dem Unterpfad
+       sonst ins Leere – deshalb den führenden Schrägstrich vorher
+       abstreichen, dann relURL. */ -}}
+{{- if hasPrefix $ziel "/" }}{{ $href = strings.TrimPrefix "/" $ziel | relURL }}{{ end -}}
+<p><a class="linkpfeil" href="{{ $href }}"{{ if .Get "extern" }} target="_blank" rel="noopener"{{ end }}>{{ .Get "label" | default "Mehr erfahren" }}<span aria-hidden="true">{{ if .Get "extern" }}↗{{ else }}→{{ end }}</span></a></p>

@@ -5,8 +5,8 @@ type: "schularten"
 kategorie: "Vollzeitschularten"
 kurz: "Die Digitalisierung ist eine der großen Herausforderungen unserer Gesellschaft. Um diese zu meistern, werden viele und gut ausgebildete Fachkräfte im Bereich der Informationstechnik benötigt."
 abschluss: "Staatlich anerkannter Beruf als Technischer Assistent, zusätzlich Fachhochschulreife möglich"
-bild: "/bilder/2bkik.webp"
-bildAlt: "Übersicht zum Fachunterricht mit hohem Labor- und Praxisanteil: Programmier-, Informations- und Kommunikationstechnik"
+karteBild: "/bilder/2bkik.webp"
+karteBildAlt: "Übersicht zum Fachunterricht mit hohem Labor- und Praxisanteil: Programmier-, Informations- und Kommunikationstechnik"
 weight: 50
 downloads:
   - flyer-berufskolleg-informationstechnik
@@ -16,11 +16,15 @@ downloads:
 
 Die technologische Entwicklung und die fortschreitende weltweite Arbeitsteilung führen zu Berufstätigkeiten mit höheren Anforderungen im fachtheoretischen Bereich. Durch ihren engen Theorie-Praxis-Bezug vermitteln die Berufskollegs eine entsprechende berufliche Qualifikation und gleichzeitig eine erweiterte allgemeine Bildung.
 
+Für die Aufnahme in das Berufskolleg sind neben dem Mittleren Bildungsabschluss teilweise weitere Voraussetzungen (zum Beispiel ein Praktikumsplatz) zu erfüllen. Das Berufskolleg endet in der Regel mit einer Abschlussprüfung. Dabei kann man bei mindestens zweijährigen (auch gestuften) Bildungsgängen sowohl die Fachhochschulreife als auch einen Berufsabschluss (beispielsweise „Staatlich geprüfter Assistent" bzw. „Staatlich geprüfte Assistentin") erwerben.
+
 Die Digitalisierung ist eine der großen Herausforderungen unserer Gesellschaft. Um diese zu meistern, werden viele und gut ausgebildete Fachkräfte im Bereich der Informationstechnik benötigt.
 
 Sowohl in der Entwicklung neuer, als auch in der Instandhaltung/Wartung bestehender Systeme, sind informationstechnische Kenntnisse unabdingbar.
 
 Wenn Ihr die Technologie nicht nur nutzen wollt, sondern euch auch für deren Funktionsweise interessiert, ist die Ausbildung an unserer Schule zum Informationstechnischen Assistenten die richtige Wahl.
+
+{{< bild src="/bilder/2bkik.webp" breite="voll" alt="Übersicht zum Fachunterricht mit hohem Labor- und Praxisanteil: Programmier-, Informations- und Kommunikationstechnik" >}}
 
 {{< bild src="/bilder/bkik-stundentafel.webp" breite="voll" alt="Stundentafel als Tabelle für beide Schuljahre: Allgemeinbildung, Fachtheorie, Fachpraxis und Wahlpflichtbereich mit zusammen 35 beziehungsweise 33 Wochenstunden; darunter Deutsch II, Englisch II und Mathematik II als Zusatzunterricht zum Erwerb der Fachhochschulreife" >}}
 
@@ -97,3 +101,5 @@ Es werden keine besonderen mathematischen Kenntnisse vorausgesetzt, aber die Fä
 Der Abschluss der Fachhochschulreife kann bundesweit anerkannt werden, wenn zusätzlich zum schulischen Abschluss ein einschlägiges, d.h. ein entsprechend der jeweiligen Fachrichtung der schulischen Ausbildung ausgerichtetes halbjähriges Praktikum, eine mindestens zweijährige einschlägige Berufstätigkeit oder eine Berufsausbildung nachgewiesen wird. Der Erwerb des Assistentenabschlusses in dem Bildungsgang, in dem zugleich die Fachhochschulreife erworben wurde, genügt für eine bundesweite Anerkennung nicht.
 
 Die Erfüllung der Voraussetzungen für eine bundesweite Anerkennung bei Nachweis eines Praktikums oder einer Berufsausbildung wird durch die Schule geprüft und bescheinigt, an der die Fachhochschulreife erworben wurde; im Übrigen ist das Kultusministerium zuständig.
+
+Quelle: [Regierungspräsidium Baden-Württemberg](https://www.km-bw.de/)

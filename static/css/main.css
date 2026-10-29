@@ -1818,6 +1818,14 @@ h2[id^="dl-"] {
   max-width: none;
 }
 
+/* „breit“ heißt: das Bild füllt die Lesespalte, auch wenn die Datei
+   kleiner ist – die Stundentafel des Berufskollegs ist nur halb so breit
+   wie die Spalte und soll trotzdem groß stehen. */
+.bild--breit img {
+  width: 100%;
+  max-width: none;
+}
+
 /* Bilder in Aufzählungen stehen nebeneinander, sobald die Leiste breit
    genug ist – ein einzelnes Bild daneben wirkt verloren. */
 .fliesstext ul:has(> li .bild) {
