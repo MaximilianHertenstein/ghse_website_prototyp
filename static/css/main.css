@@ -1214,12 +1214,14 @@ h2[id^="dl-"] {
   margin-top: auto;
   align-self: flex-start;
   padding-top: 0.75rem;
-  color: var(--akzent, var(--tinte));
+  /* Die Aktion trägt die Akzentfarbe als Unterstrich, nicht als Textfarbe:
+     Gelb auf Weiß ist 1,36:1, Orange 3,03:1 – als Text unlesbar. */
+  color: var(--schrift);
   font-size: var(--t-xs);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  border-bottom: 3px solid var(--orange);
+  border-bottom: 3px solid var(--akzent, var(--orange));
 }
 
 .karte--news .karte__bild--zeitung img {
@@ -1802,9 +1804,10 @@ h2[id^="dl-"] {
 .bild img {
   /* Nicht hochskalieren: kleine Originale (Porträts, Logos) blieben sonst
      unscharf. Große Bilder füllen die Spalte, kleine bleiben in ihrer
-     Originalgröße und stehen mittig im Rahmen. */
-  width: auto;
-  max-width: 100%;
+     Originalgröße und stehen mittig im Rahmen. Die natürliche Breite
+     steht als Variable im Bild (--breite): min(100%, …) kennt die Größe
+     schon vor dem Laden, sonst springt der Text beim Nachladen. */
+  width: min(100%, var(--breite, 100%));
   height: auto;
   display: block;
   border: var(--rahmen);
@@ -2511,9 +2514,18 @@ h2[id^="dl-"] {
     font-size: 1.02rem;
   }
   /* Der Kopf trägt auf kleinen Bildschirmen nur noch Zeichen: Burger ohne
-     Wort, Krankenmeldung enger, weniger Abstand. */
+     Wort, Krankenmeldung enger, weniger Abstand. Das Wort wird nur visuell
+     versteckt – display: none nähme es auch aus dem Namen des Knopfes
+     (Screenreader hätten dann keinen). */
   .menueknopf__text {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
   .menueknopf {
     padding: 0.5rem 0.6rem;

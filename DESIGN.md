@@ -78,7 +78,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Karten (`karte`):** `karte__bild` (16:10, unten Rahmen), `karte__koerper`
   mit Marke, Titel als einzigem Link (`karte__link`), Text und Aktion;
   hover/:focus-within hebt 3 px, Fokusring über `:has()`. Varianten:
-  `--gross` (erste Meldung), `--text` (ohne Bild), `--news`.
+  `--gross` (erste Meldung), `--text` (ohne Bild), `--news`. Die Aktion
+  („Mehr erfahren") trägt die Akzentfarbe der Karte als **Unterstrich**,
+  nicht als Textfarbe – Gelb auf Weiß ist 1,36:1, Orange 3,03:1, als Text
+  unlesbar.
 - **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
   Aktion rechts; unter 640 px Vollbreite mit vollem Knopf.
 - **Bilder im Fließtext (`bild`, Shortcode):** 26rem breit (gut zwei Drittel
@@ -87,7 +90,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   unmittelbar nebeneinander, ordnet sie das Raster der Liste
   (`.fliesstext ul:has(> li .bild)`) nebeneinander an – ab 15rem
   Spaltenbreite zwei Spalten, sonst untereinander; die Pfeilzeichen der
-  Aufzählung entfallen dort. Gallerien mit Bildunterschrift nutzen
+  Aufzählung entfallen dort. Die natürliche Breite steht als Variable
+  (`--breite`) im Bild: kleine Originale (Porträts, Logos) werden nicht
+  hochskaliert, und die Größe ist vor dem Laden bekannt, damit der Text
+  beim Nachladen nicht springt. Gallerien mit Bildunterschrift nutzen
   `bilder` (Front Matter), alle Bilder 4:3 im Raster.
 - **Hinweise (`hinweis`, Shortcode):** blasse Gelbfläche
   (`--hinweis-flaeche`), Titel als Kicker, optional ein

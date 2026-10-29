@@ -7,7 +7,9 @@
    man erst beim Vergrößern liest. Stehen mehrere Bilder unmittelbar
    nebeneinander, ordnet sie das Raster der Liste (siehe main.css)
    nebeneinander an. Breite und Höhe liest der Baustein aus der
-   Bilddatei, damit beim Laden nichts springt. Ein Alt-Text ist nur
+   Bilddatei; zusätzlich steht die natürliche Breite als Variable in der
+   Datei, damit der Browser den Platz schon vor dem Laden kennt und beim
+   Nachladen nichts springt (Bildspringen). Ein Alt-Text ist nur
    anzugeben, wenn das Bild mehr sagt als der Text darunter; Namen,
    Telefonnummern und Zuständigkeiten stehen ohnehin am Platz. Fehlt
    die Datei, bleibt die Stelle leer, statt ein kaputtes Bild zu
@@ -17,6 +19,6 @@
 {{- $klasse := cond (eq (.Get "breite") "voll") "bild bild--breit" "bild" -}}
 {{- with imageConfig (printf "static/%s" $pfad) }}
 <figure class="{{ $klasse }}">
-  <img src="{{ $pfad | relURL }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+  <img src="{{ $pfad | relURL }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}" style="--breite: {{ .Width }}px" loading="lazy" decoding="async">
 </figure>
 {{- end }}

@@ -732,6 +732,17 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   UNESCO-Aktivitäten 99 (38 KB HTML), Projekte und Software 99,
   Studienfahrten 99 – Accessibility, Best Practices und SEO jeweils 100,
   TBT überall 0 ms.
+* Lighthouse nach dem Ausbau der Schularten (Lighthouse 13.5, mobil, gegen
+  `tools/preview-server.py`): Startseite 99, Schularten-Übersicht 99,
+  zweijährige Berufsfachschulen 99, Metalltechnik (2BFM) 100, Unsere Schule
+  100, News-Übersicht 100 – Accessibility, Best Practices und SEO jeweils
+  100, Bildspringen (CLS) überall 0. Zwei Befunde hat diese Messung
+  aufgedeckt und beide sind behoben: der Menüknopf der Mobilnavigation
+  verlor auf kleinen Bildschirmen seinen Namen (das Wort war mit
+  `display: none` auch für Screenreader weg – jetzt nur visuell versteckt),
+  und die Karten-Aktion („Mehr erfahren") war in der Akzentfarbe gesetzt
+  (Gelb auf Weiß 1,36:1, Orange 3,03:1 – die Farbe trägt jetzt den
+  Unterstrich, der Text bleibt schwarz).
 * News-Lesbarkeit: Der Zeitungsscan bricht auf Detailseiten breiter als die
   Textspalte aus (bis 1048 px), wird aber nie über die Quellauflösung hinaus
   vergrößert – `srcset` liefert je Display die passende Datei, die
