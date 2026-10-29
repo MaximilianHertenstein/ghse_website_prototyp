@@ -55,13 +55,32 @@ Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
 Fließtext, Faktenkasten, Bilder und – wo vorhanden – Downloads. Damit gibt
 es keine toten Karten und keinen Umweg über die Originalseite.
 
-**Unterseiten:** Die Berufsschule führt ihre fünf Fachbereiche – Bautechnik,
-Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik, Metalltechnik – als
-eigene Seiten unter `/schularten/berufsschule/<bereich>/`. Sie gehören zur
+**Unterseiten:** Die Schularten gliedern sich wie im Original in Richtungen,
+jede mit eigener Seite und eigenem Wortlaut. Die Berufsschule führt ihre fünf
+Fachbereiche – Bautechnik, Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik,
+Metalltechnik – unter `/schularten/berufsschule/<bereich>/`. Sie gehören zur
 Berufsschule und tragen deshalb `karte: "nein"`: eigene Detailseite, aber
 keine eigene Karte auf der Schularten-Übersicht, die zeigt weiter genau die
 acht Bildungsgänge. Erreichbar sind sie über die fünf Überschriften unter
-„Die fünf Bereiche" auf der Berufsschule-Seite.
+„Die fünf Bereiche" auf der Berufsschule-Seite. Die übrigen Schularten
+führen ihre Richtungen ebenso als Unterseiten:
+
+| Schulart | Unterseiten | Pfad |
+|---|---|---|
+| Pflege | 5 (Generalistische Pflegeausbildung, dreijährige Berufsfachschule für Altenpflege, zweijährige und einjährige Berufsfachschule Altenpflegehilfe, berufspädagogische Zusatzqualifikation) | `/schularten/pflege/<richtung>/` |
+| Sozialwissenschaftliches Gymnasium | 2 (sechs- und dreijährig) | `/schularten/sozialwissenschaftliches-gymnasium/<laufzeit>/` |
+| Zweijährige Berufsfachschulen | 4 (Metalltechnik, Elektrotechnik, Hauswirtschaft und Ernährung, Gesundheit und Pflege) | `/schularten/zweijahrige-berufsfachschulen/<richtung>/` |
+| Einjährige Berufsfachschulen | 3 (Metalltechnik, Holztechnik, Fahrzeugtechnik) | `/schularten/einjahrige-berufsfachschulen/<richtung>/` |
+| Technisches Gymnasium | 3 (Informationstechnik, Mechatronik/Technik, Technik und Management) | `/schularten/technisches-gymnasium/<richtung>/` |
+| Berufsschule | 5 (Bautechnik, Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik, Metalltechnik) | `/schularten/berufsschule/<bereich>/` |
+| Berufsvorbereitung | 4 (AV-Dual, BVE, VABKF, VABO) | `/schularten/berufsvorbereitende-schularten/<angebot>/` |
+
+Das zweijährige Berufskolleg für Informationstechnische Assistentinnen und
+Assistenten hat wie im Original keine Untertafel. Insgesamt 26 Unterseiten;
+jede trägt ein Bild des jeweiligen Schwerpunkts und, wo vorhanden, den
+Flyer des Bildungsgangs. Die Übersichtsseite jedes Bildungsgangs stellt die
+Richtungen mit je einem Bild voran – dieselben Aufnahmen, die das Original an
+dieselben Stellen zeigt.
 
 **Bildinhalte als Text:** Mehrere Originalseiten liefern ihren Inhalt als
 Bild statt als Text – die SMV-Folie, der Flyer des Schulsanitätsdienstes,
@@ -106,6 +125,7 @@ Projektordner geladen und einzeln geprüft.
 | Förderverein | `https://www.ghse.de/unsere-schule/ueber-uns/foerderverein-2/` (Aufzeichnung `recherche/quellen/foerderverein.html`) |
 | Partner-Logostreifen | `https://www.ghse.de/` (Abschnitt „Partner") |
 | Schularten-Übersicht + Detailseiten | `https://www.ghse.de/schularten/…` (Teilzeit-/Vollzeitschularten) |
+| Schularten im Wortlaut (29 Seiten) | `https://www.ghse.de/schularten/…` – Aufzeichnungen `recherche/quellen/schulart-*.html`: Pflege (6), Sozialwissenschaftliches Gymnasium (3), zweijährige Berufsfachschulen (5), einjährige Berufsfachschulen (4), Technisches Gymnasium (4), Berufsschule (6), zweijähriges Berufskolleg (1) |
 | Detailseite TG | `https://www.ghse.de/schularten/vollzeitschularten/technisches-gymnasium/` |
 | Berufsvorbereitung: AV-Dual, VABO, VABKF, BVE | `https://www.ghse.de/schularten/vollzeitschularten/berufsvorbereitung/` samt vier Untertafeln (Aufzeichnungen `recherche/quellen/berufsvorbereitung.html`, `bv-av-dual.html`, `bv-vabo.html`, `bv-vabkf.html`, `bv-bve.html`) |
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
@@ -318,6 +338,39 @@ zulässt" → „wesentlicher Unterstützungsbedarf …" (Grammatik),
 „von 7.45 Uhr – 15.00" → „… – 15.00 Uhr" (fehlendes „Uhr"). Die
 „Impressionen"-Galerien der vier Detailseiten sind noch nicht übernommen;
 je ein Bild des Bildungsgangs steht auf der Übersichtsseite.
+
+*Schularten im Wortlaut (29 Seiten):* Übersicht und Untertafeln aller
+Bildungsgänge sind aus den Originalseiten übernommen (Aufzeichnungen
+`recherche/quellen/schulart-*.html`, Bilder über
+`python3 tools/schularten-bilder.py` als WebP unter
+`static/bilder/schularten/`). Die Struktur folgt der Vorlage: Pflege (eine
+Übersicht mit fünf Wegen), Sozialwissenschaftliches Gymnasium (Übersicht,
+6-jähriges und 3-jähriges SG), zweijährige Berufsfachschulen (Übersicht,
+Metalltechnik, Elektrotechnik, Hauswirtschaft und Ernährung, Gesundheit und
+Pflege), einjährige Berufsfachschulen (Übersicht, Metalltechnik,
+Holztechnik, Fahrzeugtechnik), Technisches Gymnasium (Übersicht,
+Informationstechnik, Mechatronik/Technik, Technik und Management),
+Berufsschule (Übersicht, Bautechnik, Elektrotechnik, Holztechnik,
+Kraftfahrzeugtechnik, Metalltechnik) und das zweijährige Berufskolleg für
+Informationstechnische Assistentinnen und Assistenten. Die FAQ-Akkordeons
+der Vorlage stehen bei uns als Überschrift mit Antwort darunter, die
+Bildunterschriften der Galerien als Bildunterschrift. Korrekturen an der
+Vorlage: „machen.Außerdem" → „machen. Außerdem" (2BFAHM),
+„Bäumepflanzen in Palenstina" → „… in Palästina" (TG),
+„maßgebend.D.h." → „maßgebend. D.h." und „Landkreis.Es" → „Landkreis. Es"
+(Berufsschule) – das sind die einzigen drei Stellen, an denen zwei Sätze im
+Original ohne Abstand in einem Textfeld stehen; außerdem
+„Die Einjährige Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen
+sind…" (siehe oben). Die Seitentitel der Untertafeln nennen den
+Schwerpunkt ausgeschrieben („Metalltechnik (2BFM)", „TG Informationstechnik",
+„Berufsschule: Bautechnik"), weil die Vorlage dort nur die Kurzform
+verwendet; die Menüpunkte tragen weiterhin die Bezeichnungen der
+Navigationsleiste. Die Übersichtsseiten der zweijährigen und einjährigen
+Berufsfachschulen stellen jede Richtung mit dem Bild voran, das das Original
+an derselben Stelle zeigt (`2bfe`, `2bfh2`, `2bfm-1`, `2bfp2` bzw. `1bfm`,
+`1bfz`, `1bfr`). Wo die Seitenleiste sonst das gleiche Foto zeigte, steht
+dort eine andere Aufnahme derselben Sammlung (`2bfp-2` bzw. `1bfz-1`); im
+Fließtext bleiben ausschließlich die Originalbilder.
 
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
@@ -605,8 +658,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
   Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
   wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
-  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (60 Seiten ×
-  11 Breiten = 660 Kombinationen, 0 Probleme – nichts bricht horizontales
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (77 Seiten ×
+  11 Breiten = 847 Kombinationen, 0 Probleme – nichts bricht horizontales
   Scrollen aus). Dieselben drei Prüfungen laufen zusätzlich gegen einen Bau
   mit `--baseURL /ghse_website_prototyp/` (`qa/unterpfad.py`) – dort sind
   Schriften und alle Inhalts-Links fürchterlich schnell kaputt, weil die
@@ -614,9 +667,9 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   (Schriftquelle, zwei Schaltflächen-Ziele, alle Markdown-Links der
   Inhalte) unsichtbar unter "/" ins Leere lief; ein Render-Hook
   (`layouts/_default/_markup/render-link.html`) schreibt sie um.
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 61
-  HTML-Dateien (60 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
-  Schriften und Dokumente (3762 Ziele gesamt, keine Fehlschläge,
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 78
+  HTML-Dateien (77 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
+  Schriften und Dokumente (4808 Ziele gesamt, keine Fehlschläge,
   einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
@@ -626,22 +679,23 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
-* Worttreue gegen die Vorlage: alle zweiunddreißig Seiten mit eigener Quelle
-  werden Wort für Wort gegen ihre Originalseite geprüft – `qa/treue.py`
+* Worttreue gegen die Vorlage: alle Seiten mit eigener Quelle werden Wort für
+  Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der
   Vorlage fallen raus, ebenso der Adress- und Öffnungszeitblock, den die
   Vorlage auf jeder Seite mitschleift) und zählt reine Satzzeichen- und
   Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
   Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
-  Siebenundzwanzig Quellseiten liegen als HTML unter `recherche/quellen/`, fünf
+  Sechsundfünfzig Quellseiten liegen als HTML unter `recherche/quellen/` (64
+  Aufzeichnungen insgesamt), fünf
   als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space), damit die
   Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
-  zweiunddreißig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  einundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
   nicht decken (`schulsozialarbeit` liegt unter
   `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
   durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
   offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
-  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 172
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 177
   Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
   vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
   späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage

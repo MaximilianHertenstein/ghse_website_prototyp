@@ -208,6 +208,12 @@ content:
   # Zusätzlich in der Vorlage gerendert, aber bewusst kein CMS-Feld:
   # "downloads" (Slugs verwandter Dokumente, nur beim Technischen
   # Gymnasium gesetzt) – steckt in content/schularten/technisches-gymnasium.md.
+  #
+  # Die Sammlung umfasst auch die Unterseiten in den Unterordnern
+  # (berufsschule/, pflege/, sozialwissenschaftliches-gymnasium/,
+  # zweijahrige-berufsfachschulen/, einjahrige-berufsfachschulen/,
+  # technisches-gymnasium/, berufsvorbereitende-schularten/) – die Richtungen
+  # tragen dieselben Felder wie ihre Übersichtsseite.
   - name: schularten
     label: Schularten (Inhaltsseiten)
     type: collection

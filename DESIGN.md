@@ -81,6 +81,14 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   `--gross` (erste Meldung), `--text` (ohne Bild), `--news`.
 - **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
   Aktion rechts; unter 640 px Vollbreite mit vollem Knopf.
+- **Bilder im Fließtext (`bild`, Shortcode):** 26rem breit (gut zwei Drittel
+  der Lesespalte), zentriert, schwarzer Rahmen mit Versatzschatten;
+  `breite="voll"` über die ganze Lesespalte. Stehen mehrere Bilder
+  unmittelbar nebeneinander, ordnet sie das Raster der Liste
+  (`.fliesstext ul:has(> li .bild)`) nebeneinander an – ab 15rem
+  Spaltenbreite zwei Spalten, sonst untereinander; die Pfeilzeichen der
+  Aufzählung entfallen dort. Gallerien mit Bildunterschrift nutzen
+  `bilder` (Front Matter), alle Bilder 4:3 im Raster.
 - **Hinweise (`hinweis`, Shortcode):** blasse Gelbfläche
   (`--hinweis-flaeche`), Titel als Kicker, optional ein
   `btn--geist btn--klein` mit Ziel; Variante `--warnung` (rote Fläche,
