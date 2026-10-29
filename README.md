@@ -48,7 +48,7 @@ hinschauen, was zu sehen ist).
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
 | E Downloadbereich | 49 Dokumente (44 PDFs, 4 ZIPs, 1 DOC) in 7 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
-| F Service- und Schülerseiten | 16 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Krankmeldung, Nextcloud, Projekte und Software, Schulsanitätsdienst, Schulbienen, Schulsozialarbeit, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/` … |
+| F Service- und Schülerseiten | 17 eigene Seiten: Anfahrt, Anmeldeformulare, AV-Dual Begleitung, besser@GHSE, Beratungssystem, Fachgruppen, Krankmeldung, Nextcloud, Oberstufeninformationen, Projekte und Software, Schulsanitätsdienst, Schulbienen, Schulsozialarbeit, SMV, Studienfahrten, UNESCO-Aktivitäten, Vertretungsplan | `/anfahrt/`, `/smv/`, `/studienfahrten/`, `/oberstufeninformationen/` … |
 | G Themenseiten | 2 weitere Seiten mit eigener Quelle: UNESCO („Was heißt UNESCO-Projektschule?") und Erasmus+ | `/unesco/`, `/erasmus/` |
 
 Die übrigen 7 Schularten sind als **vollständige Detailseiten** umgesetzt:
@@ -130,6 +130,7 @@ Projektordner geladen und einzeln geprüft.
 | Berufsvorbereitung: AV-Dual, VABO, VABKF, BVE | `https://www.ghse.de/schularten/vollzeitschularten/berufsvorbereitung/` samt vier Untertafeln (Aufzeichnungen `recherche/quellen/berufsvorbereitung.html`, `bv-av-dual.html`, `bv-vabo.html`, `bv-vabkf.html`, `bv-bve.html`) |
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
+| Oberstufeninformationen | `https://www.ghse.de/schueler/oberstufeninformationen/` (Aufzeichnung `recherche/oberstufeninformationen-roh.md`) |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |
 | Service- und Schülerseiten (16) | `https://www.ghse.de/anfahrt/`, `/schulbienen/`, `/schulsanitaetsdienst/`, `/schueler/smv/`, `/schueler/beratung/`, `/schueler/beratung-2/`, `/schueler/av-dual-begleitung/`, `/schueler/vertretungsplan/`, `/schueler/besserghse-de/`, `/online-abmelden/`, `/nextcloud/`, `/unsere-schule/organisatorisches/fachgruppen/`, `/downloads/studienfahrten/`, `/downloads/projekte-software/`, `/downloads/anmeldeformulare/`, `/unesco/unesco-aktivitaeten/` |
 | UNESCO-Einstiegsseite | `https://www.ghse.de/unesco/was-heisst-unesco-projektschule/` |
@@ -165,8 +166,9 @@ jederzeit aktuell.
 „Badischen Zeitung" → „Badische Zeitung" (Quellenlabel), „Die Einjährige
 Berufsfachschulen sind…" → „Die Einjährigen Berufsfachschulen sind…".
 
-Für die zweiunddreißig Seiten mit eigener Quelle – die achtzehn Service-,
-Schüler- und Themenseiten, die vier Untertafeln der Berufsvorbereitung
+Für die dreiunddreißig Seiten mit eigener Quelle – die neunzehn Service-,
+Schüler- und Themenseiten (darunter die Oberstufeninformationen), die vier
+Untertafeln der Berufsvorbereitung
 sowie Die GHSE, MINT, Schulleben, Förderverein, Berufsinformation, BewO,
 Praktikum, Impressum, Datenschutz und Safer Space –
 gilt dieselbe Regel: jedes Wort steht so, wie die Quelle es schreibt, nur wo
@@ -371,6 +373,25 @@ an derselben Stelle zeigt (`2bfe`, `2bfh2`, `2bfm-1`, `2bfp2` bzw. `1bfm`,
 `1bfz`, `1bfr`). Wo die Seitenleiste sonst das gleiche Foto zeigte, steht
 dort eine andere Aufnahme derselben Sammlung (`2bfp-2` bzw. `1bfz-1`); im
 Fließtext bleiben ausschließlich die Originalbilder.
+
+*Oberstufeninformationen:* Die Seite
+`https://www.ghse.de/schueler/oberstufeninformationen/` (Aufzeichnung
+`recherche/oberstufeninformationen-roh.md`) ist als eigene Seite unter
+`/oberstufeninformationen/` übernommen: die sieben Überschriften des
+Originals, der Link zum Universalnotenrechner, die beiden Verweise auf die
+offiziellen Infos des Ministeriums und der Satz „Keine Downloads gefunden!"
+unter dem Abiturjahrgang 2029 stehen im Wortlaut. Die Dokumente sind die
+aus der Sammlung (22 Einträge wie im Original); jede Zeile zeigt Titel,
+Kurzbeschreibung, Format und Größe. Zwei Abweichungen: der Seitentitel
+„Oberstufeninformationen" (das Original beginnt im Text mit
+„Informationen für die Oberstufe des Beruflichen Gymnasiums", führt die
+Seite im Menü aber unter derselben Bezeichnung), und der Eintrag
+„Leitfaden zum Abi 2028" – das Paket auf dem Originalserver trägt keine
+Datei mehr, der Download antwortet mit „No file is attached with this
+package!"; bei uns steht an der Stelle der Hinweis „Die Datei zum
+Leitfaden zum Abi 2028 ist derzeit nicht verfügbar." Die Zeilen
+„1 Datei(en) … KB Download" des Download-Managers fehlen hier wie auf der
+Download-Seite (der Build rechnet Größe und Format aus der Datei selbst).
 
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
@@ -658,8 +679,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
   Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
   wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
-  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (77 Seiten ×
-  11 Breiten = 847 Kombinationen, 0 Probleme – nichts bricht horizontales
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (78 Seiten ×
+  11 Breiten = 858 Kombinationen, 0 Probleme – nichts bricht horizontales
   Scrollen aus). Dieselben drei Prüfungen laufen zusätzlich gegen einen Bau
   mit `--baseURL /ghse_website_prototyp/` (`qa/unterpfad.py`) – dort sind
   Schriften und alle Inhalts-Links fürchterlich schnell kaputt, weil die
@@ -667,9 +688,9 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   (Schriftquelle, zwei Schaltflächen-Ziele, alle Markdown-Links der
   Inhalte) unsichtbar unter "/" ins Leere lief; ein Render-Hook
   (`layouts/_default/_markup/render-link.html`) schreibt sie um.
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 78
-  HTML-Dateien (77 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
-  Schriften und Dokumente (4808 Ziele gesamt, keine Fehlschläge,
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 79
+  HTML-Dateien (78 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
+  Schriften und Dokumente (4963 Ziele gesamt, keine Fehlschläge,
   einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
@@ -687,15 +708,16 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
   Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
   Sechsundfünfzig Quellseiten liegen als HTML unter `recherche/quellen/` (64
-  Aufzeichnungen insgesamt), fünf
-  als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space), damit die
+  Aufzeichnungen insgesamt), sechs
+  als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space,
+  Oberstufeninformationen), damit die
   Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
-  einundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  zweiundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
   nicht decken (`schulsozialarbeit` liegt unter
   `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
   durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
   offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
-  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 177
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 180
   Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
   vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
   späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage

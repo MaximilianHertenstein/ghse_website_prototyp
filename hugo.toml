@@ -270,7 +270,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
     identifier = "oberstufe"
     parent = "schueler"
     name = "Oberstufeninformationen"
-    url = "/downloads/#dl-oberstufe--abitur"
+    pageRef = "/oberstufeninformationen"
     weight = 61
   [[menus.haupt]]
     identifier = "berufsinformation"

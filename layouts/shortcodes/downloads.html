@@ -1,0 +1,16 @@
+{{- /* Download-Zeilen für eine Gruppe von Dokumenten.
+
+   Aufruf:  {{< downloads "klausurplan-11" "klausurplan-12" >}}
+
+   Die Slugs gehören zu den Dateien unter content/downloads/; die Zeile
+   zeigt Titel, Beschreibung, Format und Größe – wie auf der
+   Download-Seite. Fehlt eine Datei im Projekt, bleibt die Zeile leer
+   und weist darauf hin, statt einen toten Link zu erzeugen.
+*/ -}}
+<div class="zeilen">
+  {{- range .Params -}}
+    {{- with site.GetPage (printf "/downloads/%s" .) -}}
+      {{ partial "zeile-download.html" . }}
+    {{- end -}}
+  {{- end -}}
+</div>

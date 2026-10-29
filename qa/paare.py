@@ -53,6 +53,8 @@ PAARE = [
     ("content/schulleben.md", "recherche/quellen/schueler-schulleben-lehrer.html"),
     ("content/nextcloud.md", "recherche/quellen/nextcloud.html"),
     ("content/mint.md", "recherche/quellen/mint.html"),
+    ("content/oberstufeninformationen.md",
+     "recherche/oberstufeninformationen-roh.md"),
     ("content/praktikum-fuer-studierende.md",
      "recherche/praktikum-fuer-studierende-roh.md"),
     ("content/projekte-und-software.md", "recherche/quellen/projekte.html"),

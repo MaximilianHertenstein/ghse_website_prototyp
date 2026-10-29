@@ -445,6 +445,25 @@ content:
         label: Inhalt
         type: rich-text
 
+  - name: oberstufeninformationen
+    label: Oberstufeninformationen (Inhaltsseite)
+    type: file
+    path: content/oberstufeninformationen.md
+    fields:
+      - name: title
+        label: Titel
+        type: string
+      - name: description
+        label: Meta-Beschreibung
+        type: text
+      # Der Text besteht aus den Überschriften des Originals und dem
+      # Baustein „downloads", der die Dokumente aus der Sammlung „downloads"
+      # als Zeilen mit Titel, Beschreibung, Format und Größe einsetzt:
+      #   {{< downloads "klausurplan-11" "klausurplan-12" >}}
+      - name: body
+        label: Inhalt
+        type: rich-text
+
   - name: schulleben
     label: Schulleben (Inhaltsseite)
     type: file
