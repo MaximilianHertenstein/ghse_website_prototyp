@@ -12,6 +12,8 @@ bilder:
 kurz: "Drei Jahre bis zum Abitur, mit dem Profilfach Pädagogik und Psychologie."
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit uneingeschränkt anerkannt"
 weight: 22
+downloads:
+  - flyer-sozialwissenschaftliches-gymnasium
 ---
 
 ## Mit uns zur Allgemeinen Hochschulreife

@@ -5,6 +5,8 @@ type: "schularten"
 kategorie: "Vollzeitschularten"
 karte: "nein"   # Untertafel des TG: eigene Seite, keine eigene Karte
 bild: "/bilder/schularten/tg-mt-10.webp"
+karteBild: "/bilder/schularten/tg-it-1.webp"
+karteBildAlt: "Zwei Aufnahmen: Hände an einem Werkstück am Spannhebel und eine Hand an einer Elektronik-Lehrtafel"
 bildAlt: "Elektronik-Arbeitsplatz mit Messgeräten und Bauteilen"
 kurz: "Mechatronik am TG: Metall- und Elektrotechnik, Pneumatik und die Allgemeine Hochschulreife."
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"

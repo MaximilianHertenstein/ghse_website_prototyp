@@ -20,7 +20,7 @@ Dazu gehören an den GHSE [die Kooperationen mit einer Förderschule (VABKF)](va
 
 Das AV-K schließt in der Regel mit einer Zusatzprüfung ab, die dem Hauptschulabschluss entspricht. Durch die enge Kooperation mit dem sonderpädagogischen Bildungs- und Beratungszentrum werden die Schülerinnen und Schüler über zwei Jahre von einem Lehrerteam aus beiden Schulen betreut.
 
-{{< mehr ziel="vabkf/" >}}
+{{< mehr ziel="av-k/" >}}
 
 ## VABKW
 

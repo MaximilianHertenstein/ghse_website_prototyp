@@ -5,6 +5,8 @@ type: "schularten"
 kategorie: "Vollzeitschularten"
 karte: "nein"   # Untertafel des TG: eigene Seite, keine eigene Karte
 bild: "/bilder/schularten/tg-tm-10.webp"
+karteBild: "/bilder/schularten/tg-it-2.webp"
+karteBildAlt: "Drei Aufnahmen: Fräsmaschine, technische Zeichnung und schwarzer Kapuzenpullover mit Aufdruck"
 bildAlt: "Monitor mit einer Grafik in der Technikwerkstatt"
 kurz: "Technik und Management am TG: Maschinenbau, Betriebswirtschaft und die Allgemeine Hochschulreife."
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"

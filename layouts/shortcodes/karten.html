@@ -1,0 +1,14 @@
+{{- /* Kacheln wie auf der Startseite: je eine Karte für die genannten
+   Seiten (Pfad ohne führenden Schrägstrich genügt).
+
+   Aufruf:  {{< karten "schularten/technisches-gymnasium" "schularten/sozialwissenschaftliches-gymnasium" >}}
+
+   Die Kachel zeigt Bild, Marke, Titel, Kurztext und den Link auf die
+   Seite – genau wie die Karten der Startseite. */ -}}
+<div class="raster raster--2">
+  {{- range .Params -}}
+    {{- with site.GetPage . -}}
+      {{ partial "karte-schulart.html" . }}
+    {{- end -}}
+  {{- end -}}
+</div>

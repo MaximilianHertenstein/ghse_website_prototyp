@@ -44,7 +44,7 @@ hinschauen, was zu sehen ist).
 | Bereich | Umsetzung | URL |
 |---|---|---|
 | A Landingpage | Hero (Schulnamen-Badge, Abschluss-Chips), 4 Schularten, Instagram (4 Beiträge + 8 Accounts), Aktuelles (3 Meldungen + Link auf alle), Termine (9 Kalender), Service (4 Karten), Schulleben, Partner (logobreit); Berufs-/Studieninformation nur bei aktuellen Terminen (Momentan-Ausblendung, siehe §3) | `/` |
-| B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit | `/schularten/` |
+| B Schularten-Übersicht | 8 Schularten, gruppiert nach Vollzeit/Teilzeit; darunter die zwei Übersichtsseiten des Originals (Vollzeit- und Teilzeitschularten) mit Kacheln | `/schularten/`, `/schularten/vollzeitschularten/`, `/schularten/teilzeitschularten/` |
 | C Detailseite Bildungsgang | Alle 8 Schularten vollständig: Einleitung, Voraussetzungen, Abschlussmöglichkeiten, weiterführende Informationen, Bilder, Downloads | `/schularten/<bildungsgang>/` |
 | D Newsbereich | Liste mit 10 echten Meldungen + Detailseiten (Zeitungsscan zoombar) | `/news/` |
 | E Downloadbereich | 49 Dokumente (44 PDFs, 4 ZIPs, 1 DOC) in 7 Kategorien, je mit Titel, Beschreibung, Format, Größe | `/downloads/` |
@@ -73,10 +73,10 @@ führen ihre Richtungen ebenso als Unterseiten:
 | Einjährige Berufsfachschulen | 3 (Metalltechnik, Holztechnik, Fahrzeugtechnik) | `/schularten/einjahrige-berufsfachschulen/<richtung>/` |
 | Technisches Gymnasium | 3 (Informationstechnik, Mechatronik/Technik, Technik und Management) | `/schularten/technisches-gymnasium/<richtung>/` |
 | Berufsschule | 5 (Bautechnik, Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik, Metalltechnik) | `/schularten/berufsschule/<bereich>/` |
-| Berufsvorbereitung | 4 (AV-Dual, BVE, VABKF, VABO) | `/schularten/berufsvorbereitende-schularten/<angebot>/` |
+| Berufsvorbereitung | 5 (AV-Dual, AV-K, BVE, VABKF, VABO) | `/schularten/berufsvorbereitende-schularten/<angebot>/` |
 
 Das zweijährige Berufskolleg für Informationstechnische Assistentinnen und
-Assistenten hat wie im Original keine Untertafel. Insgesamt 26 Unterseiten;
+Assistenten hat wie im Original keine Untertafel. Insgesamt 27 Unterseiten;
 jede trägt ein Bild des jeweiligen Schwerpunkts und, wo vorhanden, den
 Flyer des Bildungsgangs. Die Übersichtsseite jedes Bildungsgangs stellt die
 Richtungen mit je einem Bild voran – dieselben Aufnahmen, die das Original an
@@ -374,6 +374,30 @@ an derselben Stelle zeigt (`2bfe`, `2bfh2`, `2bfm-1`, `2bfp2` bzw. `1bfm`,
 `1bfz`, `1bfr`). Wo die Seitenleiste sonst das gleiche Foto zeigte, steht
 dort eine andere Aufnahme derselben Sammlung (`2bfp-2` bzw. `1bfz-1`); im
 Fließtext bleiben ausschließlich die Originalbilder.
+
+*Neue Übersichtsseiten:* Das Original kennt zwei Seiten zwischen den
+Schularten und den einzelnen Bildungsgängen: „Vollzeitschularten"
+(`https://www.ghse.de/schularten/vollzeitschularten/`) und
+„Teilzeitschularten" (`https://www.ghse.de/schularten/teilzeitschularten/`).
+Beide gibt es jetzt bei uns: `/schularten/vollzeitschularten/` mit dem
+Originaltext („Etwa die Hälfte der Schüler der GHSE besucht eine Schulart …")
+und `/schularten/teilzeitschularten/` (das Original hat dort keinen Text,
+nur die Karten der beiden Teilzeitschularten). Die Karten zeigen die
+Schularten wie auf der Startseite. Die Aufzählung der Bereiche
+(„Schularten, die zum Abitur führen" und so weiter) steht als Liste im
+Text, weil das Original sie als Kartenüberschriften führt.
+
+*Drei Kachel-Überschriften und ein Textabsatz* sind von uns ergänzt: die
+Überschrift „Die drei Ausbildungsrichtungen" vor den Richtungskacheln des
+Technischen Gymnasiums (das Original führt dort sofort die Richtung), und
+auf der 2BKIK-Seite die drei Sätze der Übersichtsseite „Berufskollegs"
+(„Für die Aufnahme in das Berufskolleg sind neben dem Mittleren
+Bildungsabschluss teilweise weitere Voraussetzungen (zum Beispiel ein
+Praktikumsplatz) zu erfüllen. Das Berufskolleg endet in der Regel mit
+einer Abschlussprüfung. Dabei kann man bei mindestens zweijährigen (auch
+gestuften) Bildungsgängen sowohl die Fachhochschulreife als auch einen
+Berufsabschluss (beispielsweise „Staatlich geprüfter Assistent" bzw.
+„Staatlich geprüfte Assistentin") erwerben.").
 
 *Oberstufeninformationen:* Die Seite
 `https://www.ghse.de/schueler/oberstufeninformationen/` (Aufzeichnung
@@ -695,8 +719,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
   Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
   wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
-  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (79 Seiten ×
-  11 Breiten = 869 Kombinationen, 0 Probleme – nichts bricht horizontales
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (82 Seiten ×
+  11 Breiten = 902 Kombinationen, 0 Probleme – nichts bricht horizontales
   Scrollen aus). Dieselben drei Prüfungen laufen zusätzlich gegen einen Bau
   mit `--baseURL /ghse_website_prototyp/` (`qa/unterpfad.py`) – dort sind
   Schriften und alle Inhalts-Links fürchterlich schnell kaputt, weil die
@@ -704,9 +728,9 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   (Schriftquelle, zwei Schaltflächen-Ziele, alle Markdown-Links der
   Inhalte) unsichtbar unter "/" ins Leere lief; ein Render-Hook
   (`layouts/_default/_markup/render-link.html`) schreibt sie um.
-* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 80
-  HTML-Dateien (79 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
-  Schriften und Dokumente (5100 Ziele gesamt, keine Fehlschläge,
+* Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 83
+  HTML-Dateien (82 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
+  Schriften und Dokumente (5302 Ziele gesamt, keine Fehlschläge,
   einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
@@ -723,17 +747,17 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Vorlage auf jeder Seite mitschleift) und zählt reine Satzzeichen- und
   Trennstrich-Anpassungen getrennt, `qa/satzpruefung.py` zeigt für einzelne
   Sätze das passende Stück der Quelle und nur die abweichenden Wörter.
-  Sechsundfünfzig Quellseiten liegen als HTML unter `recherche/quellen/` (64
+  Achtundsechzig Quellseiten liegen als HTML unter `recherche/quellen/` (68
   Aufzeichnungen insgesamt), sieben
   als Text (Impressum, Datenschutz, BewO, Praktikum, Safer Space,
   Oberstufeninformationen, Infoveranstaltung), damit die
   Prüfung nicht bei jedem Lauf ins Netz muss; die Zuordnung der
-  dreiundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
+  fünfundsechzig Quellpaare ist explizit, weil Datei- und Seitennamen sich
   nicht decken (`schulsozialarbeit` liegt unter
   `/schueler/beratung-2/`), und `qa/paare.py` läuft alle Paare auf einmal
   durch und gleicht den Befund gegen Abschnitt 3 dieser Datei ab – ohne
   offene Stelle meldet es „davon 0 nicht zitiert" und Beendigungscode 0,
-  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 181
+  sonst die Stellen, die noch fehlen. Der Lauf zählt derzeit 202
   Abweichungen, jede in Abschnitt 3 belegt. Erster Lauf dieser Prüfung hat
   vier stille Textänderungen und einen erfundenen Absatz gefunden, ein
   späterer noch einen erfundenen Satz und zwei Überschriften ohne Vorlage

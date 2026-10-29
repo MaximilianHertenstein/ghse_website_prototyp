@@ -87,6 +87,10 @@ Gymnasiasten können ganz regulär nach der 9. Klasse wechseln, viele entscheide
 
 {{< bild src="/bilder/schularten/tg-21.webp" alt="Hand mit aufgestemmtem Daumen" >}}
 
+## Die drei Ausbildungsrichtungen
+
+{{< karten "schularten/technisches-gymnasium/mechatronik-technik" "schularten/technisches-gymnasium/informationstechnik" "schularten/technisches-gymnasium/technik-und-management" >}}
+
 ## MECHATRONIK/Technik
 
 Du möchtest wissen, wie man mit Metall arbeitet, wie Schaltungen funktionieren, was Statik ist? Du möchtest mal Maschinenbau oder Elektrotechnik studieren?

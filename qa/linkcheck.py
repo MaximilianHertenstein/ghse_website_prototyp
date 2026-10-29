@@ -36,6 +36,10 @@ for ordner, _, dateien in os.walk(WURZEL):
                 if ziel.startswith(("http://", "https://", "mailto:", "tel:",
                                     "data:")):
                     continue
+                # Der Livereload-Kasten entsteht nur, wenn parallel ein
+                # "hugo server" läuft – er gehört nicht zur Seite.
+                if "livereload" in ziel:
+                    continue
                 ziele.add((rel, ziel))
 
 # Ankernamen je Datei, einmalig gelesen

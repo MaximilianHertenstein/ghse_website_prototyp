@@ -1,10 +1,22 @@
+{{- /* Karte einer Schulart (wie auf der Startseite und auf der
+       Schularten-Übersicht).
+
+       Das Bild kommt aus „bild" – oder aus „karteBild", wenn die Seite
+       für die Kachel ein anderes Bild vorsieht als für ihre Seitenleiste
+       (das Technische Gymnasium zeigt in der Kachel je Richtung das
+       Bild des Originals, auf der Seite selbst ein Werkstattfoto). Fehlt
+       beides, bleibt die Kachel ohne Bild. */ -}}
+{{- $bild := .Params.karteBild | default .Params.bild -}}
+{{- $alt := .Params.karteBildAlt | default .Params.bildAlt -}}
 <article class="karte">
   <a class="karte__link" href="{{ .RelPermalink }}">
+    {{- with $bild -}}
+      {{- with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .)) -}}
     <figure class="karte__bild">
-      {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .Params.bild)) }}
-      <img src="{{ $.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
-      {{ end }}
+      <img src="{{ $bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $alt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy">
     </figure>
+      {{- end -}}
+    {{- end -}}
     <div class="karte__koerper">
       {{- /* Farbcode der Gruppe: Vollzeit gelb, Teilzeit orange. */}}
       <p class="marke" data-kategorie="{{ .Params.kategorie | lower }}">{{ .Params.kategorie }}</p>

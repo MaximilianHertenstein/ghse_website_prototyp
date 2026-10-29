@@ -7,8 +7,6 @@ kurz: "Berufliches Gymnasium im Profil Soziales, Gesundheit und Pädagogik – a
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"
 bild: "/bilder/schularten/sg-ueberblick-1.webp"
 bildAlt: "Gruppenfoto mit ausgestreckten Armen auf einem Aussichtspunkt"
-downloads:
-  - flyer-sozialwissenschaftliches-gymnasium
 weight: 20
 ---
 
