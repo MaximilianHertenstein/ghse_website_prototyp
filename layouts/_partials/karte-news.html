@@ -1,36 +1,38 @@
 {{- $h := .ebene | default "h3" -}}{{- $p := .seite -}}{{- $klasse := .klasse | default "" -}}
-{{- /* Ohne Abbildung trägt ein typografischer Kopf die Karte (Quelle als
-       Sticker, Datum groß). Die zugehörigen Regeln hängen an .karte--text –
-       die Klasse fehlte, dadurch lief das Datum unauffällig als Fließtext mit. */}}
+{{- /* Der Zeitungsscan ist als Thumbnail unlesbar – auf der Karte trägt
+       deshalb ein Farbblock die Schlagzeile (reihum Gelb, Orange, Blau),
+       der Scan selbst bleibt auf der Meldungsseite. Meldungen ohne
+       Abbildung behalten den typografischen Kopf aus Quelle und Datum. */}}
 <article class="karte karte--news{{ if not $p.Params.bild }} karte--text{{ end }}{{ with $klasse }} {{ . }}{{ end }}">
   <a class="karte__link" href="{{ $p.RelPermalink }}">
-    {{- with $p.Params.bild }}
-    <figure class="karte__bild karte__bild--zeitung">
-      {{- $src := strings.TrimPrefix "/" . | relURL }}
-      {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .)) }}
-      <img src="{{ $src }}" alt="{{ $p.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
-      {{ end }}
-    </figure>
-    {{- end }}
-    <div class="karte__koerper">
-      {{- /* Eine Meldung ohne Abbildung („Von Pädagogik bis Physik prämiert")
-             hinterließ rund 230 px Leerfläche. Ein typografischer Kopf trägt
-             die Karte stattdessen: Quelle als Sticker, Datum groß. */}}
-      {{- if not $p.Params.bild }}
-      <p class="marke">{{ $p.Params.quelle }}</p>
-      <p class="karte__datum">
-        <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "02.01.2006" }}</time>
-      </p>
-      {{- else }}
-      <p class="meta">
+    {{- if $p.Params.bild }}
+    <div class="karte__block">
+      <p class="karte__block-meta">
         <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "02.01.2006" }}</time>
         <span aria-hidden="true">·</span>
         {{ $p.Params.quelle }}
       </p>
-      {{- end }}
+      {{ printf "<%s class=\"karte__block-titel\">" $h | safeHTML }}{{ $p.Title }}{{ printf "</%s>" $h | safeHTML }}
+    </div>
+    {{- else }}
+    <div class="karte__koerper">
+      {{- /* Eine Meldung ohne Abbildung („Von Pädagogik bis Physik prämiert")
+             hinterließ rund 230 px Leerfläche. Ein typografischer Kopf trägt
+             die Karte stattdessen: Quelle als Sticker, Datum groß. */}}
+      <p class="marke">{{ $p.Params.quelle }}</p>
+      <p class="karte__datum">
+        <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "02.01.2006" }}</time>
+      </p>
       {{ printf "<%s class=\"karte__titel\">" $h | safeHTML }}{{ $p.Title }}{{ printf "</%s>" $h | safeHTML }}
       {{- with $p.Params.teaser }}<p class="karte__text">{{ . }}</p>{{ end }}
       <span class="karte__aktion">Meldung lesen <span aria-hidden="true">→</span></span>
     </div>
+    {{- end }}
+    {{- if $p.Params.bild }}
+    <div class="karte__koerper">
+      {{- with $p.Params.teaser }}<p class="karte__text">{{ . }}</p>{{ end }}
+      <span class="karte__aktion">Meldung lesen <span aria-hidden="true">→</span></span>
+    </div>
+    {{- end }}
   </a>
 </article>

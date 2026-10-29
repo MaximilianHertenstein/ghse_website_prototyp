@@ -63,9 +63,10 @@
 // und setzt data-theme am <html>. Ohne gespeicherte Wahl folgt der Schalter
 // dem System (prefers-color-scheme) – siehe Inline-Skript in baseof.html.
 (function () {
-  var knopf = document.querySelector('[data-theme-button]');
-  if (!knopf) return;
-  var text = knopf.querySelector('[data-theme-label]');
+  // Es gibt zwei Schaltflächen (obere Leiste ab 901 px, Kopf darunter) –
+  // beide werden getroffen und im Zustand gehalten.
+  var knoepfe = document.querySelectorAll('[data-theme-button]');
+  if (!knoepfe.length) return;
 
   function speicher(key) {
     try { return localStorage.getItem(key); } catch (e) { return null; }
@@ -82,17 +83,22 @@
   function stelle(ziel, speichern) {
     document.documentElement.setAttribute('data-theme', ziel);
     if (speichern) merken('ghse-theme', ziel);
-    knopf.setAttribute('data-ist', ziel === 'dark' ? 'dunkel' : 'hell');
-    knopf.setAttribute('aria-pressed', ziel === 'dark' ? 'true' : 'false');
-    if (text) text.textContent = ziel === 'dark' ? 'Hell' : 'Dunkel';
+    for (var i = 0; i < knoepfe.length; i++) {
+      knoepfe[i].setAttribute('data-ist', ziel === 'dark' ? 'dunkel' : 'hell');
+      knoepfe[i].setAttribute('aria-pressed', ziel === 'dark' ? 'true' : 'false');
+      var text = knoepfe[i].querySelector('[data-theme-label]');
+      if (text) text.textContent = ziel === 'dark' ? 'Hell' : 'Dunkel';
+    }
   }
 
   var gespeichert = speicher('ghse-theme');
   stelle(gespeichert === 'dark' || gespeichert === 'light' ? gespeichert : system(), false);
 
-  knopf.addEventListener('click', function () {
-    stelle(knopf.getAttribute('data-ist') === 'dunkel' ? 'light' : 'dark', true);
-  });
+  for (var k = 0; k < knoepfe.length; k++) {
+    knoepfe[k].addEventListener('click', function () {
+      stelle(this.getAttribute('data-ist') === 'dunkel' ? 'light' : 'dark', true);
+    });
+  }
 })();
 
 // Kopfhöhe zur Laufzeit messen. --kopfhoehe steuert scroll-margin-top und die

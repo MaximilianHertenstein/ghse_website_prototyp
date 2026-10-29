@@ -71,8 +71,7 @@ Die Schulsozialarbeit ist in Trägerschaft des Landratsamtes Emmendingen. Co-fin
 
 [https://www.landkreis-emmendingen.de/](https://www.landkreis-emmendingen.de/)
 
-{{< bild src="/bilder/landratsamt-emmendingen.webp" >}}
+- {{< bild src="/bilder/landratsamt-emmendingen.webp" alt="Logo des Landratsamtes Emmendingen" >}}
+- {{< bild src="/bilder/kvjs-logo.webp" alt="Logo des Kommunalen Verbundes Jugend und Soziales Breisgau-Haute-Rhin" >}}
+- {{< bild src="/bilder/ministerium-soziales-gesundheit-integration.webp" alt="Logo des Ministeriums für Soziales, Gesundheit und Integration Baden-Württemberg" >}}
 
-{{< bild src="/bilder/kvjs-logo.webp" >}}
-
-{{< bild src="/bilder/ministerium-soziales-gesundheit-integration.webp" >}}

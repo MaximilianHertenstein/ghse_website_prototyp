@@ -12,6 +12,11 @@
           <a href="{{ $ziel }}">{{ .Name }}</a>
         {{ end }}
       </nav>
+      <button class="modusknopf modusknopf--leiste" type="button" data-theme-button aria-pressed="false" aria-label="Farbschema umschalten">
+        <svg class="modusknopf__sonne" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+        <svg class="modusknopf__mond" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+        <span class="modusknopf__text" data-theme-label>Dunkel</span>
+      </button>
     </div>
   </div>
 
@@ -25,11 +30,13 @@
     </a>
 
     <div class="kopf__ende">
-      <button class="modusknopf" type="button" data-theme-button aria-pressed="false" aria-label="Farbschema umschalten">
+      <button class="modusknopf modusknopf--kopf" type="button" data-theme-button aria-pressed="false" aria-label="Farbschema umschalten">
         <svg class="modusknopf__sonne" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
         <svg class="modusknopf__mond" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
         <span class="modusknopf__text" data-theme-label>Dunkel</span>
       </button>
+
+      <a class="btn btn--akzent krankmelden-knopf" href="https://ghse.webuntis.com/WebUntis/?school=ghse">Krankmelden</a>
 
       <button class="menueknopf" type="button" data-menu-button aria-expanded="false" aria-controls="hauptmenue">
         <span class="menueknopf__balkengruppe" aria-hidden="true">

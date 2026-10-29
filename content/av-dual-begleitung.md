@@ -49,6 +49,6 @@ Die AV-dual Begleitung ist in Trägerschaft des Landratsamtes Emmendingen. Co-fi
 
 [https://www.landkreis-emmendingen.de/](https://www.landkreis-emmendingen.de/)
 
-{{< bild src="/bilder/landratsamt-emmendingen.webp" >}}
+- {{< bild src="/bilder/landratsamt-emmendingen.webp" alt="Logo des Landratsamtes Emmendingen" >}}
+- {{< bild src="/bilder/ministerium-wirtschaft-arbeit-tourismus.webp" alt="Logo des Ministeriums für Wirtschaft, Arbeit und Tourismus Baden-Württemberg" >}}
 
-{{< bild src="/bilder/ministerium-wirtschaft-arbeit-tourismus.webp" >}}

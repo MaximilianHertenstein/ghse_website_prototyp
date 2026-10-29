@@ -23,8 +23,9 @@
 
   --tinte: #000000;
 
-  --papier: #ffffff;
-  --papier2: #f2f2f2;
+  /* Papier ist warm, Karten und Kästen bleiben weiß – so heben sie sich ab. */
+  --papier: #faf8f2;
+  --papier2: #f1ede3;
   --grau: #444444;
   --weiss: #ffffff;
 
@@ -419,14 +420,76 @@ h2[id^="dl-"] {
 }
 
 .band {
-  padding: clamp(3rem, 6vw, 5rem) 0;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
 }
 
-/* Ruhige, einheitliche Seitenfläche statt horizontaler Farbbänder. */
-.band--papier,
-.band--blau {
+/* Farbbänder: Die Fläche trägt die Akzentfarbe, die Schrift folgt dem
+   Kontrast – auf Gelb und Orange nur schwarz (15:1 bzw. 6,9:1), auf
+   Blau weiß (6,6:1). */
+.band--papier {
   background: var(--papier);
   color: var(--schrift);
+}
+
+.band--gelb {
+  background: var(--gelb);
+  color: var(--tinte);
+}
+
+.band--blau {
+  background: var(--blau);
+  color: var(--weiss);
+}
+
+.band--nacht {
+  background: var(--nacht);
+  color: var(--weiss);
+}
+
+.band--gelb .kicker,
+.band--gelb .marke {
+  color: var(--tinte);
+}
+
+.band--blau .kicker {
+  color: var(--weiss);
+}
+
+.band--gelb .btn--geist {
+  border-color: var(--tinte);
+  color: var(--tinte);
+}
+
+.band--blau .btn--geist {
+  border-color: var(--weiss);
+  color: var(--weiss);
+}
+
+.band--gelb .btn--geist:hover,
+.band--blau .btn--geist:hover {
+  background: var(--tinte);
+  color: var(--gelb);
+}
+
+.band--gelb a:not(.btn),
+.band--blau a:not(.btn),
+.band--nacht a:not(.btn) {
+  color: inherit;
+}
+
+/* Auf farbigen Bändern tragen Einleitung und Hinweis helle Schrift –
+   grau auf Blau wäre unlesbar. */
+.band--blau .band__einleitung,
+.band--blau .hinweiszeile,
+.band--nacht .band__einleitung,
+.band--nacht .hinweiszeile {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Auf dem blauen Band hebt sich die dritte Kalenderfarbe als Weiß ab –
+   Blau auf Blau verschwände. */
+.band--blau .kalenderliste li:nth-child(3n) .kalender {
+  --kalender-flaeche: var(--weiss);
 }
 
 /* Gelb bleibt ein Akzent für einzelne Komponenten, nicht für ganze Abschnitte. */
@@ -443,13 +506,13 @@ h2[id^="dl-"] {
   --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
 
-/* Blau beschriftete Sekundärknöpfe in den Feed-Sektionen der Startseite. */
-.band--blau .btn--geist {
+/* Blau beschriftete Sekundärknöpfe auf heller Fläche (Startseite-Feeds). */
+.btn--geist-blau {
   border-color: var(--link);
   color: var(--link);
 }
 
-.band--blau .btn--geist:hover {
+.btn--geist-blau:hover {
   background: var(--gelb);
   color: var(--tinte);
 }
@@ -479,6 +542,7 @@ h2[id^="dl-"] {
 }
 
 .hinweiszeile {
+  margin-top: var(--r-6);
   font-size: var(--t-xs);
   font-weight: 700;
   color: var(--grau);
@@ -615,6 +679,16 @@ h2[id^="dl-"] {
   gap: 0.15rem;
 }
 
+.menue > ul > li > a {
+  white-space: nowrap;
+}
+
+.menue ul.menue__tafel a {
+  white-space: normal;
+  line-height: 1.25;
+  padding-right: 0.4rem;
+}
+
 .menue ul a {
   display: block;
   padding: 0.65rem 0.75rem;
@@ -672,7 +746,7 @@ h2[id^="dl-"] {
     left: 0;
     z-index: 70;
     min-width: 18rem;
-    max-width: 26rem;
+    max-width: 30rem;
     padding: 0.45rem;
     margin: 0;
     background: var(--papier);
@@ -745,6 +819,14 @@ h2[id^="dl-"] {
   gap: 0.6rem;
 }
 
+/* Krankmelden ist eine der wichtigsten Aufgaben und steht mobil als
+   gelber Knopf neben dem Burger. */
+.krankmelden-knopf {
+  display: none;
+  padding: 0.5rem 0.75rem;
+  font-size: var(--t-xs);
+}
+
 .modusknopf {
   display: inline-flex;
   align-items: center;
@@ -761,6 +843,29 @@ h2[id^="dl-"] {
   font-size: var(--t-xs);
   letter-spacing: 0.06em;
 }
+
+/* Farbmodus-Knopf: ab 901 px in der oberen Leiste, darunter als reines
+   Icon im Kopf – dort liest er sich sonst wie ein Teil des Logos. */
+.modusknopf--leiste {
+  display: none;
+}
+
+.modusknopf--kopf {
+  display: none;
+}
+
+.modusknopf--leiste .modusknopf__text,
+.modusknopf--kopf .modusknopf__text {
+  display: none;
+}
+
+.modusknopf--leiste,
+.modusknopf--kopf {
+  padding: 0.45rem 0.55rem;
+  min-width: 2.5rem;
+  justify-content: center;
+}
+
 
 .modusknopf svg {
   width: 18px;
@@ -913,19 +1018,30 @@ h2[id^="dl-"] {
 }
 
 .hero__punkte li {
-  border: 1px solid var(--haarlinie);
-  padding: 0.3rem 0.6rem;
+  border: var(--rahmen);
+  padding: 0.35rem 0.7rem;
   font-size: var(--t-xs);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  box-shadow: var(--schatten-klein);
+}
+
+.hero__punkte a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero__punkte a:hover {
+  background: var(--tinte);
+  color: var(--gelb);
 }
 
 .hero__bild img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border: 1px solid var(--haarlinie);
+  border: var(--rahmen);
   box-shadow: 8px 8px 0 var(--orange);
 }
 
@@ -956,10 +1072,27 @@ h2[id^="dl-"] {
   font-variant-numeric: tabular-nums;
 }
 
+/* Akzent reihum Gelb, Orange, Blau – der Schatten trägt die Farbe, der
+   Rahmen bleibt schwarz, die Fläche weiß. */
+.raster--2 .karte,
+.raster--3 .karte {
+  --akzent: var(--gelb);
+}
+
+.raster--2 .karte:nth-child(3n + 2),
+.raster--3 .karte:nth-child(3n + 2) {
+  --akzent: var(--orange);
+}
+
+.raster--2 .karte:nth-child(3n),
+.raster--3 .karte:nth-child(3n) {
+  --akzent: var(--blau);
+}
+
 .karte {
   background: var(--flaeche);
   border: var(--rahmen);
-  box-shadow: var(--schatten);
+  box-shadow: 6px 6px 0 var(--akzent, var(--schatten-farbe));
   color: var(--schrift);
   display: flex;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -967,7 +1100,7 @@ h2[id^="dl-"] {
 
 .karte:hover, .karte:focus-within {
   transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0 var(--schatten-farbe);
+  box-shadow: 9px 9px 0 var(--akzent, var(--schatten-farbe));
 }
 
 .karte__link {
@@ -1018,6 +1151,47 @@ h2[id^="dl-"] {
   flex: 1;
 }
 
+/* Der Zeitungsscan ist als Thumbnail unlesbar – auf der Karte trägt
+   deshalb ein Farbblock die Schlagzeile; der Scan selbst bleibt auf der
+   Meldungsseite. */
+.karte__block {
+  --block-flaeche: var(--gelb);
+  --block-schrift: var(--tinte);
+  display: flex;
+  flex-direction: column;
+  gap: var(--r-3);
+  min-height: 12rem;
+  padding: var(--r-4) var(--r-4) var(--r-6);
+  background: var(--block-flaeche);
+  color: var(--block-schrift);
+  border-bottom: var(--rahmen);
+}
+
+.raster--news .karte:nth-child(3n + 2) .karte__block,
+.raster--3 .karte:nth-child(3n + 2) .karte__block {
+  --block-flaeche: var(--orange);
+}
+
+.raster--news .karte:nth-child(3n) .karte__block,
+.raster--3 .karte:nth-child(3n) .karte__block {
+  --block-flaeche: var(--blau);
+  --block-schrift: var(--weiss);
+}
+
+.karte__block-meta {
+  font-size: var(--t-xs);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.karte__block-titel {
+  font-size: var(--t-h3);
+  font-weight: 900;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
 .karte__titel {
   font-size: var(--t-h3);
   font-weight: 900;
@@ -1040,6 +1214,7 @@ h2[id^="dl-"] {
   margin-top: auto;
   align-self: flex-start;
   padding-top: 0.75rem;
+  color: var(--akzent, var(--tinte));
   font-size: var(--t-xs);
   font-weight: 800;
   text-transform: uppercase;
@@ -1060,7 +1235,8 @@ h2[id^="dl-"] {
   aspect-ratio: 21 / 9;
 }
 
-.karte--gross .karte__titel {
+.karte--gross .karte__titel,
+.karte--gross .karte__block-titel {
   font-size: var(--t-h2);
 }
 
@@ -1619,12 +1795,16 @@ h2[id^="dl-"] {
 }
 
 .bild {
-  margin: 1.25rem 0;
-  max-width: 12rem;
+  margin: 1.5rem auto;
+  max-width: 26rem;
 }
 
 .bild img {
-  width: 100%;
+  /* Nicht hochskalieren: kleine Originale (Porträts, Logos) blieben sonst
+     unscharf. Große Bilder füllen die Spalte, kleine bleiben in ihrer
+     Originalgröße und stehen mittig im Rahmen. */
+  width: auto;
+  max-width: 100%;
   height: auto;
   display: block;
   border: var(--rahmen);
@@ -1633,6 +1813,37 @@ h2[id^="dl-"] {
 
 .bild--breit {
   max-width: none;
+}
+
+/* Bilder in Aufzählungen stehen nebeneinander, sobald die Leiste breit
+   genug ist – ein einzelnes Bild daneben wirkt verloren. */
+.fliesstext ul:has(> li .bild) {
+  display: grid;
+  gap: var(--r-8) var(--r-16);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  list-style: none;
+  padding-left: 0;
+}
+
+.fliesstext ul:has(> li .bild) > li {
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Im Bildraster stört das Pfeilzeichen – die Bilder tragen sich selbst. */
+.fliesstext ul:has(> li .bild) > li::before {
+  content: none;
+}
+
+.fliesstext ul:has(> li .bild) .bild {
+  max-width: none;
+  margin: 0;
+}
+
+/* Im Raster füllen die Bilder ihre Zelle – dort zählt die Fläche, nicht die
+   Originalgröße. */
+.fliesstext ul:has(> li .bild) .bild img {
+  width: 100%;
 }
 
 .bildraster {
@@ -1648,6 +1859,7 @@ h2[id^="dl-"] {
 }
 
 .bildraster .bild img {
+  width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
@@ -1796,10 +2008,11 @@ h2[id^="dl-"] {
 
 /* ---------- Fuß ---------- */
 
+/* Der Fuß schließt die Seite schwarz ab – Überschriften gelb, Links weiß. */
 .fuss {
-  background: var(--papier);
-  color: var(--schrift);
-  border-top: 1px solid var(--haarlinie);
+  background: var(--nacht);
+  color: var(--weiss);
+  border-top: 3px solid var(--gelb);
 }
 
 .fuss__gitter {
@@ -1814,8 +2027,8 @@ h2[id^="dl-"] {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--orange-tief);
-  border-bottom: 2px solid var(--haarlinie);
+  color: var(--gelb);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
   padding-bottom: 0.6rem;
   margin-bottom: 1rem;
 }
@@ -1826,7 +2039,7 @@ h2[id^="dl-"] {
 }
 
 .fuss a {
-  color: var(--link);
+  color: var(--weiss);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
@@ -1857,8 +2070,9 @@ h2[id^="dl-"] {
 }
 
 .fuss__leiste {
-  background: var(--papier);
-  border-top: 1px solid var(--haarlinie);
+  background: #0b0b0b;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.78);
   padding: 1.1rem 0;
   font-size: var(--t-xs);
 }
@@ -1907,6 +2121,22 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Die neun Kalenderkarten tragen reihum Gelb, Orange und Blau – wie die
+   Schularten-Karten. Orange und Gelb mit schwarzer, Blau mit weißer Schrift. */
+.kalender {
+  --kalender-flaeche: var(--gelb);
+  --kalender-schrift: var(--tinte);
+}
+
+.kalenderliste li:nth-child(3n + 2) .kalender {
+  --kalender-flaeche: var(--orange);
+}
+
+.kalenderliste li:nth-child(3n) .kalender {
+  --kalender-flaeche: var(--blau);
+  --kalender-schrift: var(--weiss);
+}
+
 .kalender:hover, .kalender:focus-visible {
   transform: translate(-3px, -3px);
   box-shadow: 6px 6px 0 var(--schatten-farbe);
@@ -1929,7 +2159,8 @@ h2[id^="dl-"] {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  border-bottom: 3px solid var(--orange);
+  border-bottom: 3px solid var(--tinte);
+  color: var(--kalender-schrift);
 }
 
 .kalender:hover .kalender__aktion {
@@ -2146,9 +2377,18 @@ h2[id^="dl-"] {
   }
 }
 
+@media (min-width: 901px) {
+  .modusknopf--leiste {
+    display: inline-flex;
+  }
+}
+
 @media (max-width: 1199px) {
   .menueknopf {
     display: flex;
+  }
+  .krankmelden-knopf {
+    display: inline-flex;
   }
   .menue {
     display: none;
@@ -2231,6 +2471,12 @@ h2[id^="dl-"] {
   .leiste {
     display: none;
   }
+  .modusknopf--leiste {
+    display: none;
+  }
+  .modusknopf--kopf {
+    display: inline-flex;
+  }
 
   .modusknopf {
     padding: 0.55rem;
@@ -2260,6 +2506,21 @@ h2[id^="dl-"] {
 @media (max-width: 640px) {
   body {
     font-size: 1.02rem;
+  }
+  /* Der Kopf trägt auf kleinen Bildschirmen nur noch Zeichen: Burger ohne
+     Wort, Krankenmeldung enger, weniger Abstand. */
+  .menueknopf__text {
+    display: none;
+  }
+  .menueknopf {
+    padding: 0.5rem 0.6rem;
+  }
+  .krankmelden-knopf {
+    padding: 0.45rem 0.55rem;
+    letter-spacing: 0.02em;
+  }
+  .kopf__ende {
+    gap: 0.35rem;
   }
   .container, .schmal {
     width: min(100% - 1.75rem, var(--container));
@@ -2359,7 +2620,8 @@ h2[id^="dl-"] {
   .karte--gross .karte__bild {
     aspect-ratio: 16 / 10;
   }
-  .karte--gross .karte__titel {
+  .karte--gross .karte__titel,
+  .karte--gross .karte__block-titel {
     font-size: 1.3rem;
   }
   .hero__ticket {

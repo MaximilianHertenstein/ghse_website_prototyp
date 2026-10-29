@@ -22,16 +22,24 @@
       <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="604" height="453" fetchpriority="high" decoding="async">
     </figure>
   </div>
+  {{- /* Die Abschluss-Chips sehen wie Knöpfe aus – also verlinken sie auf
+         die Schulart, die den Abschluss anbietet (Daten aus den
+         Abschluss-Angaben der Schularten; „Abitur" bieten zwei Gymnasien,
+         dort führt der Weg zur Übersicht). */}}
   <ul class="hero__punkte">
-    <li>Hauptschulabschluss</li>
-    <li>Mittlere Reife</li>
-    <li>FH-Reife</li>
-    <li>Abitur</li>
-    <li>Berufsausbildung</li>
+    {{- $abschluesse := slice
+      (dict "name" "Hauptschulabschluss" "ziel" "/schularten/berufsvorbereitende-schularten/")
+      (dict "name" "Mittlere Reife" "ziel" "/schularten/zweijahrige-berufsfachschulen/")
+      (dict "name" "FH-Reife" "ziel" "/schularten/berufskolleg-informationstechnische-assistenten/")
+      (dict "name" "Abitur" "ziel" "/schularten/")
+      (dict "name" "Berufsausbildung" "ziel" "/schularten/berufsschule/") }}
+    {{- range $abschluesse }}
+    <li><a href="{{ strings.TrimPrefix "/" .ziel | relURL }}">{{ .name }}</a></li>
+    {{- end }}
   </ul>
 </div>
 
-<section class="band band--papier" aria-labelledby="home-schularten">
+<section class="band band--gelb" aria-labelledby="home-schularten">
   <div class="container">
     <div class="kopfzeile">
       <div>
@@ -53,14 +61,14 @@
   </div>
 </section>
 
-<section class="band band--blau" aria-labelledby="home-insta">
+<section class="band band--papier" aria-labelledby="home-insta">
   <div class="container">
     <div class="kopfzeile">
       <div>
         <p class="kicker">Social Media</p>
         <h2 id="home-insta">Die GHSE bei Instagram</h2>
       </div>
-      <a class="btn btn--geist" href="https://www.instagram.com/ghse_emmendingen/">ghse_emmendingen folgen</a>
+      <a class="btn btn--geist-blau" href="https://www.instagram.com/ghse_emmendingen/">ghse_emmendingen folgen</a>
     </div>
     <p class="band__einleitung">{{ .Params.insta_text }}</p>
     <ul class="instaraster">
@@ -100,14 +108,14 @@
 {{- $meldungen := first 3 (sort (where site.RegularPages "Section" "news") "Date" "desc") -}}
 {{- with $meldungen }}
 
-<section class="band band--blau" aria-labelledby="home-news">
+<section class="band band--papier" aria-labelledby="home-news">
   <div class="container">
     <div class="kopfzeile">
       <div>
         <p class="kicker">Aus der Schule</p>
         <h2 id="home-news">Aktuelles</h2>
       </div>
-      <a class="btn btn--geist" href="{{ "news/" | relURL }}">Alle Meldungen</a>
+      <a class="btn btn--geist-blau" href="{{ "news/" | relURL }}">Alle Meldungen</a>
     </div>
     <div class="raster raster--3">
       {{ range . }}
@@ -118,7 +126,7 @@
 </section>
 {{- end }}
 
-<section class="band band--papier" id="termine" aria-labelledby="home-termine">
+<section class="band band--blau" id="termine" aria-labelledby="home-termine">
   <div class="container">
     <div class="kopfzeile">
       <div>
@@ -178,8 +186,12 @@
 
 <section class="band band--papier" id="service" aria-labelledby="home-service">
   <div class="container">
-    <p class="kicker">Service &amp; Kontakt</p>
-    <h2 id="home-service">Service für Schüler/innen, Eltern und Lehrkräfte</h2>
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Service &amp; Kontakt</p>
+        <h2 id="home-service">Service für Schüler/innen, Eltern und Lehrkräfte</h2>
+      </div>
+    </div>
     <ul class="serviceliste">
       <li class="service">
         <h3>Untis</h3>
@@ -225,8 +237,12 @@
 
 <section class="band band--papier" aria-labelledby="home-partner">
   <div class="container">
-    <p class="kicker">Zusammenarbeit</p>
-    <h2 id="home-partner">Partner aus der Region</h2>
+    <div class="kopfzeile">
+      <div>
+        <p class="kicker">Zusammenarbeit</p>
+        <h2 id="home-partner">Partner aus der Region</h2>
+      </div>
+    </div>
     <p class="band__einleitung">Ausbildungsbetriebe und Einrichtungen der Umgebung stehen in Verbindung mit der GHSE.</p>
 
     <ul class="partnergitter">
