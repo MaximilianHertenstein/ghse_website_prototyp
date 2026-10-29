@@ -433,6 +433,33 @@ die Startseite um, die zweite auf eine leere Seite (siehe Abschnitt 8,
 Punkt 3). Das Original führt die Seite in keinem Menü; bei uns steht sie
 unter „Anmeldung", damit sie erreichbar bleibt.
 
+**Seiten des Originals, die nicht übernommen sind** (jede mit Grund, damit
+die Ablöse nachprüfbar bleibt):
+- **Galerien** – eine Sammelseite aller Fotogalerien; die Galerien stehen
+  bei den jeweiligen Schularten (Pflege, TG, Berufsschule).
+- **Presse Archiv** – die älteren Pressemitteilungen; übernommen sind die
+  zehn aktuellen Meldungen (die Sitemap des Originals nennt 160
+  Beiträge, davon die zehn mit Pressedatum vom 30.06.2026 bis 07.10.2026).
+- **Kalender**, **Calendar**, **Termine und Blockpläne**, **Stundenplan** –
+  die neun öffentlichen Kalender stehen auf der Startseite, der
+  Stundenplan verweist auf WebUntis.
+- **Cookie-Richtlinie** – wir setzen keine Cookies (kein Tracking, kein
+  Einwilligungsmodul, Abschnitt 8 Punkt 4); die Datenschutzerklärung
+  steht unter `/datenschutz/`.
+- **Hausordnung**, **Anmeldeformulare**, **Flyer**, **iPad-Leihe**,
+  **Projekte/Software**, **Studienfahrten** (Download-Seiten) – die Dateien
+  stehen bei uns in `/downloads/`; die Hausordnung dort als PDF.
+- **Meisterkurs**, **1BKFH** – die Seiten leiten inzwischen auf die
+  Startseite um, die Bildungsgänge gibt es nicht mehr.
+- **Corona**, **Projekttage2019**, **50TG** (zwei Seiten), **Test**,
+  **Video**, **Player Embed**, **User Videos**, **Search Videos**,
+  **Video Tag**, **Video Category** – historische bzw. technische Seiten
+  ohne schulischen Inhalt.
+- **Vorlage_Schulart**, **vorlage_schultypen** – Redaktionsvorlagen des
+  Originals ohne Inhalt.
+- **Jugendauslandsberatung**, **UNESCO Partner schools** – die Seiten
+  haben auf ghse.de keinen Text (nur Kopf- und Fußbereich).
+
 **Abweichungen, die keine Textkorrekturen sind** (jeweils mit Begründung):
 die Meta-Beschreibungen, weil das Original auf jeder Seite denselben
 Baustein-Text führt („Gewerbliche und Hauswirtschaftlich-Sozialpflegerische
