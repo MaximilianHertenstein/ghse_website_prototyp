@@ -9,6 +9,7 @@ karteBild: "/bilder/schularten/tg-43.webp"
 karteBildAlt: "Elektronik-Baugruppe mit Steckplätzen neben einer Bildschirmdarstellung eines Programms"
 bildAlt: "Elektronik-Bausteine mit angeschlossenen Kabeln"
 kurz: "Informationstechnik am TG: Grundlagenwissen, Algorithmen und die Allgemeine Hochschulreife."
+karteText: "Computer bedienen klappt bei dir. Aber wie funktionieren die Geräte und wie programmiert man sie? Informatik ist dein Ding?"
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"
 weight: 11
 ---

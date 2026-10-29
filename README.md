@@ -399,6 +399,18 @@ gestuften) Bildungsgängen sowohl die Fachhochschulreife als auch einen
 Berufsabschluss (beispielsweise „Staatlich geprüfter Assistent" bzw.
 „Staatlich geprüfte Assistentin") erwerben.").
 
+*Die Richtungen des Technischen Gymnasiums stehen als Kacheln* – mit dem
+Text des Originals und dem Link, den die Kachel ohnehin mitbringt. Die
+Abschnitte darunter (Überschrift, Text und „mehr erfahren"-Link) sind
+entfallen; ihr Text steht jetzt in der Kachel: Mechatronik/Technik –
+„Du möchtest wissen, wie man mit Metall arbeitet, wie Schaltungen
+funktionieren, was Statik ist? Du möchtest mal Maschinenbau oder
+Elektrotechnik studieren?", Informationstechnik – „Computer bedienen
+klappt bei dir. Aber wie funktionieren die Geräte und wie programmiert man
+sie? Informatik ist dein Ding?", Technik und Management – „Ahnung von
+Technik und von Betriebswirtschaft bekommen? Vielleicht
+Wirtschaftsingenieurwesen studieren?".
+
 *Oberstufeninformationen:* Die Seite
 `https://www.ghse.de/schueler/oberstufeninformationen/` (Aufzeichnung
 `recherche/oberstufeninformationen-roh.md`) ist als eigene Seite unter

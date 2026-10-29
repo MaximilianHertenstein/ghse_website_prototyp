@@ -4,10 +4,12 @@
        Das Bild kommt aus „bild" – oder aus „karteBild", wenn die Seite
        für die Kachel ein anderes Bild vorsieht als für ihre Seitenleiste
        (das Technische Gymnasium zeigt in der Kachel je Richtung das
-       Bild des Originals, auf der Seite selbst ein Werkstattfoto). Fehlt
-       beides, bleibt die Kachel ohne Bild. */ -}}
+       Bild des Originals, auf der Seite selbst ein Werkstattfoto).
+       Der Text der Kachel steht in „karteText", sonst in „kurz".
+       Fehlt beides, bleibt die Kachel ohne Bild. */ -}}
 {{- $bild := .Params.karteBild | default .Params.bild -}}
 {{- $alt := .Params.karteBildAlt | default .Params.bildAlt -}}
+{{- $text := .Params.karteText | default .Params.kurz -}}
 <article class="karte">
   <a class="karte__link" href="{{ .RelPermalink }}">
     {{- with $bild -}}
@@ -21,7 +23,7 @@
       {{- /* Farbcode der Gruppe: Vollzeit gelb, Teilzeit orange. */}}
       <p class="marke" data-kategorie="{{ .Params.kategorie | lower }}">{{ .Params.kategorie }}</p>
       <h3 class="karte__titel">{{ .Title }}</h3>
-      <p class="karte__text">{{ .Params.kurz }}</p>
+      <p class="karte__text">{{ $text }}</p>
       <span class="karte__aktion">Mehr erfahren <span aria-hidden="true">→</span></span>
     </div>
   </a>

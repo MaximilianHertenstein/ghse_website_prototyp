@@ -9,6 +9,7 @@ karteBild: "/bilder/schularten/tg-it-2.webp"
 karteBildAlt: "Drei Aufnahmen: Fräsmaschine, technische Zeichnung und schwarzer Kapuzenpullover mit Aufdruck"
 bildAlt: "Monitor mit einer Grafik in der Technikwerkstatt"
 kurz: "Technik und Management am TG: Maschinenbau, Betriebswirtschaft und die Allgemeine Hochschulreife."
+karteText: "Ahnung von Technik und von Betriebswirtschaft bekommen? Vielleicht Wirtschaftsingenieurwesen studieren?"
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"
 weight: 13
 ---

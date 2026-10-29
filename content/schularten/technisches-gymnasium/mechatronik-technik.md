@@ -9,6 +9,7 @@ karteBild: "/bilder/schularten/tg-it-1.webp"
 karteBildAlt: "Zwei Aufnahmen: Hände an einem Werkstück am Spannhebel und eine Hand an einer Elektronik-Lehrtafel"
 bildAlt: "Elektronik-Arbeitsplatz mit Messgeräten und Bauteilen"
 kurz: "Mechatronik am TG: Metall- und Elektrotechnik, Pneumatik und die Allgemeine Hochschulreife."
+karteText: "Du möchtest wissen, wie man mit Metall arbeitet, wie Schaltungen funktionieren, was Statik ist? Du möchtest mal Maschinenbau oder Elektrotechnik studieren?"
 abschluss: "Allgemeine Hochschulreife (Abitur), bundesweit anerkannt"
 weight: 12
 ---

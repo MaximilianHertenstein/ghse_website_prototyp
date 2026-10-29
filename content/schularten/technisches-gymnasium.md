@@ -91,24 +91,6 @@ Gymnasiasten können ganz regulär nach der 9. Klasse wechseln, viele entscheide
 
 {{< karten "schularten/technisches-gymnasium/mechatronik-technik" "schularten/technisches-gymnasium/informationstechnik" "schularten/technisches-gymnasium/technik-und-management" >}}
 
-## MECHATRONIK/Technik
-
-Du möchtest wissen, wie man mit Metall arbeitet, wie Schaltungen funktionieren, was Statik ist? Du möchtest mal Maschinenbau oder Elektrotechnik studieren?
-
-[mehr erfahren](/schularten/technisches-gymnasium/mechatronik-technik/)
-
-## INFORMATIONSTECHNIK
-
-Computer bedienen klappt bei dir. Aber wie funktionieren die Geräte und wie programmiert man sie? Informatik ist dein Ding?
-
-[MEHR ERFAHREN](/schularten/technisches-gymnasium/informationstechnik/)
-
-## TECHNIK UND MANAGEMENT
-
-Ahnung von Technik und von Betriebswirtschaft bekommen? Vielleicht Wirtschaftsingenieurwesen studieren?
-
-[MEHR ERFAHREN](/schularten/technisches-gymnasium/technik-und-management/)
-
 ## Leiter des Technischen Gymnasiums ist
 
 StD Carsten Münchenbach
