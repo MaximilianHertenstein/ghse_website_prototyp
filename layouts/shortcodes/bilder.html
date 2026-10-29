@@ -10,9 +10,11 @@
 <div class="bildraster">
   {{- range . }}
   {{- $b := . }}
+  {{- $pfad := strings.TrimPrefix "/" $b.bild }}
+  {{- if fileExists (printf "static/%s" $pfad) }}
   <figure class="bild">
-    {{- with imageConfig (printf "static/%s" (strings.TrimPrefix "/" $b.bild)) }}
-    <img src="{{ $b.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $b.alt | default "" }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+    {{- with imageConfig (printf "static/%s" $pfad) }}
+    <img src="{{ $pfad | relURL }}" alt="{{ $b.alt | default "" }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
     {{- end }}
     {{- if or $b.funktion $b.name }}
     <figcaption>
@@ -25,6 +27,7 @@
     </figcaption>
     {{- end }}
   </figure>
+  {{- end }}
   {{- end }}
 </div>
 {{- end }}

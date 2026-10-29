@@ -77,7 +77,7 @@ bilder:
     alt: "Unterrichtsraum mit Tischen, Stühlen und einem Trennvorhang"
 ---
 
-## Ausbildungsberufe im Bereich der Kraftfahrzeugtechnik
+## Ausbildungsberufe im Bereich der KFZ- Technik
 
 - Kraftfahrzeugmechatroniker/in (Fachrichtung Personenkraftwagen)
 
@@ -87,7 +87,7 @@ Die Ausbildung in der Schule erfolgt im Teilzeitunterricht.
 
 Erklärungen zu den o.g. Berufsbildern siehe [www.berufe-lexikon.de](https://www.berufe-lexikon.de)
 
-Andere Berufsbilder der Kraftfahrzeugtechnik auf Anfrage.
+Andere Berufsbilder der KFZ- Technik auf Anfrage.
 
 ## So sieht es in unseren Werkstätten aus
 

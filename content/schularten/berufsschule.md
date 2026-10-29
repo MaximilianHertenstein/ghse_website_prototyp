@@ -1,5 +1,5 @@
 ---
-title: "Berufsschule"
+title: "Die Berufsschule"
 description: "Die Berufsschule der GHSE Emmendingen als duale Partnerin von Handwerk und Industrie mit den Bereichen Bautechnik, Elektrotechnik, Holztechnik, Kraftfahrzeugtechnik und Metalltechnik."
 kategorie: "Teilzeitschularten"
 kurz: "Die Berufsschule ist als Partner von Handwerk und Industrie konzipiert – die Berufsschule ist der duale Partner der Betriebe."
@@ -27,24 +27,11 @@ downloads:
   - blockplan-kfz-2627
 ---
 
-Die Berufsschule ist als Partner von Handwerk und Industrie konzipiert, das heißt: Die Berufsschule ist der duale Partner der Betriebe. Im Rahmen der dualen Berufsausbildung vermitteln wir die theoretischen Kenntnisse und Fertigkeiten auf Basis der aktuellen Lehrpläne des jeweiligen Ausbildungsberufs.
+## Dringend Facharbeiter gesucht!?!
 
-Die Anmeldung erfolgt durch den Ausbildungsbetrieb.
+### Welche Eigenschaften brauche ich, um erfolgreich eine Ausbildung zu absolvieren?
 
-## Wer kommt in die Berufsschule?
-
-Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt hier aber auch Sonderlösungen.
-
-**Muss ich mich selbst anmelden?** Nein – Ausbildungsbetriebe müssen ihre Auszubildenden zur Berufsschule anmelden.
-
-**Kann ich den Schulort aussuchen?** Nein. In Baden-Württemberg ist der Standort des Ausbildungsbetriebes maßgebend: Ist der Ausbildungsbetrieb im Landkreis Emmendingen, ist es auch der Berufsschulstandort. Auch hier gibt es Sonderlösungen.
-
-**Was heißt Berufsschulpflicht?** Die Berufsschulpflicht beginnt für Minderjährige mit dem Verlassen einer weiterführenden allgemeinbildenden Schule oder einer Sonderschule nach Erfüllung der Vollzeitschulpflicht und dauert
-
-- bis zum Abschluss eines bestehenden Ausbildungsverhältnisses oder
-- wenn kein Ausbildungsverhältnis besteht, bis zum Beginn des Schulhalbjahres, in dem die Schülerin oder der Schüler volljährig wird.
-
-## Was wünschen wir uns von unseren Berufsschülern?
+Man könnte auch sagen: Was wünschen wir uns von unseren Berufsschülern?
 
 - Interesse am Beruf
 - Lernbereitschaft
@@ -52,13 +39,25 @@ Im Prinzip alle Auszubildenden, die eine Berufsausbildung durchlaufen. Es gibt h
 - Aufgeschlossenheit gegenüber Neuem
 - positives Sozialverhalten
 
-## Die fünf Bereiche
+Wir haben für Sie die Berufsschule in
 
-Jeder der fünf Bereiche hat eine eigene Seite mit den Ausbildungsberufen im Detail.
+[Bautechnik](/schularten/berufsschule/bautechnik/) [Elektrotechnik](/schularten/berufsschule/elektrotechnik/) [Holztechnik](/schularten/berufsschule/holztechnik/) [Kraftfahrzeugtechnik](/schularten/berufsschule/kfz-technik/) [Metalltechnik](/schularten/berufsschule/metalltechnik/)
 
-### [Bautechnik](/schularten/berufsschule/bautechnik/)
+Die Berufsschule ist als Partner von Handwerk und Industrie konzipiert, d. h. die Berufsschule ist der duale Partner der Betriebe. Im Rahmen der dualen Berufsausbildung vermitteln wir die theoretischen Kenntnisse und Fertigkeiten auf Basis der aktuellen Lehrpläne des jeweiligen Ausbildungsberufs.
 
-{{< bild src="/bilder/bs-bautechnik.webp" alt="Betonprobe beim Druckversuch in einer Prüfmaschine, das Prüfstück ist geborsten und Bruchstücke liegen darunter" >}}
+Die Anmeldung erfolgt durch den Ausbildungsbetrieb.
+
+Bei Fragen zu unseren Berufsfeldern stehen Ihnen folgende Ansprechpartner zur Verfügung:
+
+- Abteilungsleiter: Herr Bienmüller (Tel. 07641 / 465-133)
+- Fachgruppe Bautechnik: Herr Limberger (Tel. 07641 / 465-143)
+- Fachgruppe Holztechnik: Herr Witt (Tel. 07641 / 465-143)
+- Fachgruppe Elektrotechnik: Herr Eckstein (Tel. 07641 / 465-164)
+- Fachgruppe KFZ- Technik: Herr Fuß (Tel. 07641 / 465-121)
+- Fachgruppe Metalltechnik: Herr Bienmüller (Tel. 07641/ 465-133)
+- Allgemeine Fragen: Sekretariat (Tel. 07641 / 465-100)
+
+### Bautechnik
 
 - Maurer
 - Betonbauer
@@ -69,29 +68,29 @@ Jeder der fünf Bereiche hat eine eigene Seite mit den Ausbildungsberufen im Det
 - Estrichleger
 - Wärme-, Kälte- und Schallschutzisolierer
 
-### [Elektrotechnik](/schularten/berufsschule/elektrotechnik/)
+[mehr erfahren](/schularten/berufsschule/bautechnik/)
 
-{{< bild src="/bilder/bs-elektrotechnik.webp" alt="Ein Lehrer erklärt einem Schüler etwas am Monitor eines Elektronikarbeitsplatzes, dahinter ein Anschlussfeld mit Steckverbindern" >}}
+### Elektrotechnik
 
 - Elektroniker für Energie- und Gebäudetechnik (Handwerk)
 
-### [Holztechnik](/schularten/berufsschule/holztechnik/)
+[MEHR ERFAHREN](/schularten/berufsschule/elektrotechnik/)
 
-{{< bild src="/bilder/bs-holztechnik.webp" alt="Stapel gehobelter Holzlamellen auf einem Arbeitstisch, dahinter technische Zeichnungen" >}}
+### Holztechnik
 
 - Schreiner / Tischler
 
-### [Kraftfahrzeugtechnik](/schularten/berufsschule/kfz-technik/)
+[MEHR ERFAHREN](/schularten/berufsschule/holztechnik/)
 
-{{< bild src="/bilder/bs-kraftfahrzeugtechnik.webp" alt="Weißer VW-Pkw mit geöffneter Motorhaube und dem Kennzeichen GH-SE 310" >}}
+### Kraftfahrzeugtechnik
 
 - Kraftfahrzeug-Mechatroniker/in
 
-### [Metalltechnik](/schularten/berufsschule/metalltechnik/)
+[MEHR ERFAHREN](/schularten/berufsschule/kfz-technik/)
 
-{{< bild src="/bilder/bs-metalltechnik.webp" alt="Metallwerkstatt mit Maschine und Bedienpult vor der Fensterfront" >}}
+### Metalltechnik
 
-- Chirurgiemechaniker/in
+- Chirugiemechaniker/in
 - Feinwerkmechaniker/in
 - Industriemechaniker/in
 - Mechatroniker/in
@@ -101,23 +100,25 @@ Jeder der fünf Bereiche hat eine eigene Seite mit den Ausbildungsberufen im Det
 - Konstruktionsmechaniker/in
 - Metallbauer/in
 
-## Wie kann es weitergehen?
+[MEHR ERFAHREN](/schularten/berufsschule/metalltechnik/)
+
+### Wie kann es weiter gehen?
 
 - Meisterkurs (Handwerksmeister)
 - Ausbildung zum staatlich geprüften Techniker
-- Erwerb einer Studienberechtigung, zum Beispiel im einjährigen Berufskolleg zur Fachhochschulreife
+- Erwerb einer Studienberechtigung (z.B. einjähriges Berufskolleg zum Erwerb der Fachhochschulreife)
 - Studium
 
+## Wer muss/kann in die Berufsschule
+
+Im Prinzip alle Auszubildenden die eine Berufsausbildung durchlaufen. Es gibt hier aber auch Sonderlösungen.
+
+## Kann man sich den Schulort für die Berufsschule aussuchen?
+
+Nein. In BW ist der Standort des Ausbildungsbetriebes maßgebend. D.h. ist der Ausbildungsbetrieb im Landkreis EM so ist auch der Berufsschulstandort im Landkreis. Es gibt hier aber auch Sonderlösungen.
+
+## Muss ich mich an den Berufsschule anmelden?
+
+Ausbildungsbetriebe müssen ihre Auszubildenden zur Berufsschule anmelden.
+
 {{< bilder >}}
-
-Wer während der Ausbildung Unterstützung braucht, kann die Initiative [VERAplus – Region Freiburg](mailto:freiburg@vera.ses-bonn.de) ansprechen.
-
-## Ansprechpartner
-
-- **Abteilungsleitung:** Herr Bienmüller, 07641 / 465-133
-- **Fachgruppe Bautechnik:** Herr Limberger, 07641 / 465-143
-- **Fachgruppe Holztechnik:** Herr Witt, 07641 / 465-143
-- **Fachgruppe Elektrotechnik:** Herr Eckstein, 07641 / 465-164
-- **Fachgruppe Kraftfahrzeugtechnik:** Herr Fuß, 07641 / 465-121
-- **Fachgruppe Metalltechnik:** Herr Bienmüller, 07641 / 465-133
-- **Allgemeine Fragen:** Sekretariat, 07641 / 465-100
