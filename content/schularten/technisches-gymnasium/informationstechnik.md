@@ -31,6 +31,8 @@ Das Fach Informationstechnik ist das prägende Fach mit folgenden Zielen:
 
 {{< bild src="/bilder/schularten/tg-it-12.webp" alt="Bildschirm mit Quelltext eines Programms" >}}
 
+{{< video src="/videos/tg-informationstechnik.mp4" poster="/bilder/tg-video-tgi.webp" alt="Video: Ehemaliger Schüler des TG Informationstechnik erzählt von seiner Ausbildung" >}}
+
 ## Wir würden das so kurz zusammenfassen:
 
 Im TG Informationstechnik können zukünftige Informatiker und Wirtschaftsinformatiker die Grundlagen eines erfolgreichen Studium legen.

@@ -89,6 +89,22 @@ vier stehen auf den neuen Seiten als Bild **und** als mitlesbarer Text
 drunter (Namen, Räume, Termine, Zitate unverändert übernommen); wer das
 Bild nicht lesen kann oder will, verliert keine Information.
 
+**Videos:** Das Technische Gymnasium hat auf der Originalseite drei Filme –
+das Gespräch mit einem ehemaligen Schüler (TG Informationstechnik), den
+Werbefilm zum Profil Technik und Management und den Werbefilm der GHSE
+(TG Technik und Management). Sie liegen jetzt bei uns unter `static/videos/`
+und laufen über den Baustein `video` an derselben Stelle der Seite
+(Informationstechnik: nach dem einleitenden Absatz; Technik und Management:
+vor der jeweiligen Überschrift). Die Originaldateien sind 1280 × 720 Pixel
+und 49 bis 86 MB groß; für die Website wurden sie auf 854 × 480 Pixel
+neu kodiert (20, 11 und 12 MB, zusammen 42 MB statt 194 MB). Das Video
+Am Platz des Films steht zunächst das Vorschaubild mit einem Play-Knopf;
+erst der Klick ersetzt ihn durch das Video und lädt es nach. Grund: ein
+`<video>`-Element bringt den Mediaplayer mit und kostet rund 200 ms
+Hauptthread-Zeit, auch wenn gar nichts abgespielt wird – die Seite wäre
+damit langsamer (gemessen: 96 statt 100 Punkte bei Lighthouse mobil).
+Ohne JavaScript bleibt das Vorschaubild mit dem Link auf die Datei.
+
 **Bewusst kein Autolinking:** bloße Adressangaben im Fließtext werden nicht
 automatisch verlinkt; `markup.goldmark.extensions.linkify` ist abgeschaltet.
 Links entstehen nur über ausgeschriebene Markdown-Ziele – genau die prüft
@@ -130,6 +146,7 @@ Projektordner geladen und einzeln geprüft.
 | Berufsvorbereitung: AV-Dual, VABO, VABKF, BVE | `https://www.ghse.de/schularten/vollzeitschularten/berufsvorbereitung/` samt vier Untertafeln (Aufzeichnungen `recherche/quellen/berufsvorbereitung.html`, `bv-av-dual.html`, `bv-vabo.html`, `bv-vabkf.html`, `bv-bve.html`) |
 | News (10 Meldungen inkl. Abbildungen) | `https://www.ghse.de/presse/` bzw. `https://www.ghse.de/presse/<schlagzeile>/` |
 | Downloads (Titel, Kategorien, Dateien) | `https://www.ghse.de/downloads/…`, WP-Download-Manager-Pakete |
+| Videos des Technischen Gymnasiums (3) | `https://www.ghse.de/schularten/vollzeitschularten/technisches-gymnasium/tg-informationstechnik-2/` (`GHSE_Tgi_2021_ehemSchueler_small_1080p.mp4`), `…/tg-technik-und-management/` (`tgtm.mp4`, `werbefilm_kleiner.mp4`) |
 | Oberstufeninformationen | `https://www.ghse.de/schueler/oberstufeninformationen/` (Aufzeichnung `recherche/oberstufeninformationen-roh.md`) |
 | Infoveranstaltung | `https://www.ghse.de/infoveranstaltung/` (Aufzeichnung `recherche/infoveranstaltung-roh.md`) |
 | Kontakt, Öffnungszeiten, Service-Links | Impressum-/Footer-Angaben der Originalseite |

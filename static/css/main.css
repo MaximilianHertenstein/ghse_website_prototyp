@@ -39,6 +39,17 @@
 
   --kategorie-teilzeit: #ec7030;
 
+  /* Der Fuß folgt dem Farbschema: im hellen Modus auf Papier, im dunklen
+     als schwarzes Band (siehe die Darkmode-Blöcke weiter unten). */
+  --fuss-flaeche: var(--papier2);
+  --fuss-schrift: var(--schrift);
+  --fuss-titel: var(--tinte);
+  --fuss-linie: var(--rand);
+  --fuss-link: var(--link);
+  --fuss-haarlinie: var(--haarlinie);
+  --fuss-leiste-flaeche: var(--papier);
+  --fuss-leiste-schrift: var(--grau);
+
   --wert-blau: #1060a0;
   --wert-gelb: var(--gelb);
   --wert-orange: var(--kategorie-teilzeit);
@@ -94,6 +105,15 @@
     --marker-hintergrund: rgba(248, 220, 84, 0.35);
     --hinweis-flaeche: #2a2610;
     --warn-flaeche: #3b1d12;
+    /* Der Fuß bleibt im dunklen Modus das schwarze Band. */
+    --fuss-flaeche: var(--nacht);
+    --fuss-schrift: #ffffff;
+    --fuss-titel: var(--gelb);
+    --fuss-linie: var(--gelb);
+    --fuss-link: #ffffff;
+    --fuss-haarlinie: rgba(255, 255, 255, 0.18);
+    --fuss-leiste-flaeche: #0b0b0b;
+    --fuss-leiste-schrift: #bdbdbd;
     color-scheme: dark;
   }
 }
@@ -113,6 +133,15 @@
   --marker-hintergrund: rgba(248, 220, 84, 0.35);
   --hinweis-flaeche: #2a2610;
   --warn-flaeche: #3b1d12;
+  /* Der Fuß bleibt im dunklen Modus das schwarze Band. */
+  --fuss-flaeche: var(--nacht);
+  --fuss-schrift: #ffffff;
+  --fuss-titel: var(--gelb);
+  --fuss-linie: var(--gelb);
+  --fuss-link: #ffffff;
+  --fuss-haarlinie: rgba(255, 255, 255, 0.18);
+  --fuss-leiste-flaeche: #0b0b0b;
+  --fuss-leiste-schrift: #bdbdbd;
   color-scheme: dark;
 }
 
@@ -472,8 +501,11 @@ h2[id^="dl-"] {
 }
 
 .band--gelb a:not(.btn),
-.band--blau a:not(.btn),
-.band--nacht a:not(.btn) {
+/* Auf farbigen Bändern erben die Links die helle Bandfarbe. Die
+   Kalenderkarten brauchen ihre eigene Schrift (schwarz auf Gelb und
+   Orange, weiß auf Blau) – deshalb sind sie ausgenommen. */
+.band--blau a:not(.btn):not(.kalender),
+.band--nacht a:not(.btn):not(.kalender) {
   color: inherit;
 }
 
@@ -490,6 +522,7 @@ h2[id^="dl-"] {
    Blau auf Blau verschwände. */
 .band--blau .kalenderliste li:nth-child(3n) .kalender {
   --kalender-flaeche: var(--weiss);
+  --kalender-schrift: var(--tinte);
 }
 
 /* Gelb bleibt ein Akzent für einzelne Komponenten, nicht für ganze Abschnitte. */
@@ -1860,6 +1893,68 @@ h2[id^="dl-"] {
   margin-inline: auto;
 }
 
+/* ---------- Video ---------- */
+
+/* Am Platz des Videos steht das Vorschaubild mit einem Play-Knopf; erst
+   der Klick ersetzt ihn durch das Video (static/js/video.js). Der
+   Mediaplayer würde sonst den Hauptthread belasten, auch ohne Abspielen. */
+.video {
+  margin: 1.5rem 0 0.75rem;
+}
+
+.video__knopf {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: var(--rahmen);
+  background: #000000;
+  cursor: pointer;
+  box-shadow: var(--schatten-klein);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.video__knopf:hover, .video__knopf:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
+.video__knopf img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.video__zeichen {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--gelb);
+  border: 3px solid var(--tinte);
+  box-shadow: 4px 4px 0 var(--tinte);
+}
+
+.video__zeichen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-left: 1.1rem solid var(--tinte);
+  border-top: 0.65rem solid transparent;
+  border-bottom: 0.65rem solid transparent;
+  transform: translateX(0.2rem);
+}
+
+.video__hinweis {
+  margin-top: 0.5rem;
+  font-size: var(--t-xs);
+}
+
 .bildraster {
   display: grid;
   gap: var(--r-8);
@@ -2022,11 +2117,12 @@ h2[id^="dl-"] {
 
 /* ---------- Fuß ---------- */
 
-/* Der Fuß schließt die Seite schwarz ab – Überschriften gelb, Links weiß. */
+/* Der Fuß schließt die Seite ab – im hellen Modus auf Papier, im dunklen
+   Modus als schwarzes Band mit gelben Überschriften. */
 .fuss {
-  background: var(--nacht);
-  color: var(--weiss);
-  border-top: 3px solid var(--gelb);
+  background: var(--fuss-flaeche);
+  color: var(--fuss-schrift);
+  border-top: 3px solid var(--fuss-linie);
 }
 
 .fuss__gitter {
@@ -2041,8 +2137,8 @@ h2[id^="dl-"] {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--gelb);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+  color: var(--fuss-titel);
+  border-bottom: 2px solid var(--fuss-haarlinie);
   padding-bottom: 0.6rem;
   margin-bottom: 1rem;
 }
@@ -2053,7 +2149,7 @@ h2[id^="dl-"] {
 }
 
 .fuss a {
-  color: var(--weiss);
+  color: var(--fuss-link);
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
 }
@@ -2080,13 +2176,13 @@ h2[id^="dl-"] {
 }
 
 .fuss__liste a:hover {
-  border-bottom-color: var(--tinte);
+  border-bottom-color: var(--fuss-schrift);
 }
 
 .fuss__leiste {
-  background: #0b0b0b;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.78);
+  background: var(--fuss-leiste-flaeche);
+  border-top: 1px solid var(--fuss-haarlinie);
+  color: var(--fuss-leiste-schrift);
   padding: 1.1rem 0;
   font-size: var(--t-xs);
 }
@@ -2125,13 +2221,17 @@ h2[id^="dl-"] {
   flex-direction: column;
   justify-content: space-between;
   gap: 0.6rem;
-  background: var(--flaeche);
+  /* Die neun Kalenderkarten tragen reihum Gelb, Orange und Blau – wie die
+     Schularten-Karten. Die Fläche und die Schrift kommen aus denselben
+     Variablen, sonst stünde der Name in der Bandfarbe auf der
+     Kartenfläche und wäre unlesbar. */
+  background: var(--kalender-flaeche);
+  color: var(--kalender-schrift);
   border: var(--rahmen);
   box-shadow: var(--schatten-klein);
   padding: var(--r-4);
   height: 100%;
   text-decoration: none;
-  color: var(--schrift);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 

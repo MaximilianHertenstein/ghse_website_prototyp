@@ -1,0 +1,25 @@
+{{- /* Video mit Vorschaubild.
+
+   Aufruf:  {{< video src="/videos/tg-informationstechnik.mp4"
+                       poster="/bilder/tg-video-tgi.webp"
+                       alt="Ehemaliger Schüler des TG Informationstechnik erzählt von seiner Ausbildung" >}}
+
+   Am Platz des Videos steht zunächst nur das Vorschaubild mit einem
+   Play-Knopf; erst der Klick ersetzt ihn durch das Video und lädt es
+   nach. Der Mediaplayer kostet sonst rund 200 ms Hauptthread-Zeit, auch
+   wenn gar nichts abgespielt wird – die Seite wäre damit langsamer.
+   Browser ohne JavaScript sehen das Vorschaubild und den Link auf die
+   Datei. */ -}}
+{{- $src := strings.TrimPrefix "/" (.Get "src") -}}
+{{- $poster := strings.TrimPrefix "/" (.Get "poster") -}}
+<figure class="video">
+  <button class="video__knopf" type="button" data-video-src="{{ $src | relURL }}"
+          aria-label="{{ .Get "alt" | default "Video abspielen" }}">
+    {{- with .Get "poster" }}
+    <img src="{{ $poster | relURL }}" alt="" width="640" height="360" loading="lazy" decoding="async">
+    {{- end }}
+    <span class="video__zeichen" aria-hidden="true"></span>
+    <span class="verborgen">Video abspielen</span>
+  </button>
+  <p class="video__hinweis"><a href="{{ $src | relURL }}">Video als Datei öffnen</a></p>
+</figure>

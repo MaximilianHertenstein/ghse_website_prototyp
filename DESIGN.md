@@ -101,6 +101,22 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   Tieforange-Rand).
 - **Kalender-Karten (`kalender`):** Name plus Aktionsspalte; ganzflächig
   klickbar, hover/focus heben 3 px mit größerem Schatten wie die Karten.
+  Die neun Karten tragen reihum Gelb, Orange und Blau – wie die
+  Schularten-Karten; Fläche und Schrift kommen aus denselben Variablen
+  (`--kalender-flaeche`, `--kalender-schrift`), sonst stünde der Name in
+  der Bandfarbe auf der Kartenfläche. Auf dem blauen Band wird die dritte
+  Farbe zu Weiß (Blau auf Blau verschwände).
+- **Fuß (`fuss`):** folgt dem Farbschema – im hellen Modus auf Papier
+  mit dunkler Schrift und blauen Links, im dunklen Modus das schwarze
+  Band mit gelben Überschriften. Die eigenen Fuß-Tokens (`--fuss-flaeche`,
+  `--fuss-titel`, `--fuss-link`, `--fuss-leiste-flaeche` …) sorgen dafür,
+  dass beide Modi ohne eigene Regeln auskommen.
+- **Video (`video`, Shortcode):** Breite der Lesespalte, schwarzer
+  Rahmen, gelber Play-Knopf auf dem Vorschaubild. Das Video selbst wird
+  erst beim Klick nachgeladen (`static/js/video.js`) – ein
+  `<video>`-Element bringt den Mediaplayer mit und kostet rund 200 ms
+  Hauptthread-Zeit, auch ohne Abspielen. Ohne JavaScript bleibt das
+  Vorschaubild mit dem Link auf die Datei.
 - **Menü (Kopf):** acht Kategorien mit Tafeln; ab 1200 px aufklappend
   (hover/`:focus-within`), darunter Panel mit einklappbaren Kategorien
   (Pfeilknopf, `aria-expanded`). Aktiver Pfad als blauer Block mit weißer

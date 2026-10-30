@@ -111,6 +111,19 @@ def paare(satz, dunkel):
         ("weiss auf blau (Menüpunkt aktiv, blaues Band)", "weiss", "blau", 4.5),
         ("weiss auf nacht (Fuß, schwarzes Band)", "weiss", "nacht", 4.5),
         ("gelb auf nacht (Fuß-Überschriften)", "gelb", "nacht", 4.5),
+        # Die Kalenderkarten tragen die Fläche und die Schrift aus denselben
+        # Variablen: schwarz auf Gelb und Orange, weiß auf Blau.
+        ("tinte auf gelb (Kalenderkarte)", "tinte", "gelb", 4.5),
+        ("tinte auf orange (Kalenderkarte)", "tinte", "orange", 4.5),
+        ("weiss auf blau (Kalenderkarte)", "weiss", "blau", 4.5),
+        # Der Fuß folgt dem Farbschema: die eigenen Fuß-Tokens gelten im
+        # hellen wie im dunklen Modus (im hellen auf Papier, im dunklen auf
+        # dem schwarzen Band).
+        ("fuss-titel auf fuss-flaeche (Fuß-Überschriften)",
+         "fuss-titel", "fuss-flaeche", 4.5),
+        ("fuss-link auf fuss-flaeche (Fuß-Links)", "fuss-link", "fuss-flaeche", 4.5),
+        ("fuss-leiste-schrift auf fuss-leiste-flaeche (Fußleiste)",
+         "fuss-leiste-schrift", "fuss-leiste-flaeche", 4.5),
         ("schrift auf hinweis-flaeche", "schrift", "hinweis-flaeche", 4.5),
         ("schrift auf warn-flaeche", "schrift", "warn-flaeche", 4.5),
         ("warn-rand auf warn-flaeche (Grafik 3:1)", "warn-rand", "warn-flaeche", 3.0),

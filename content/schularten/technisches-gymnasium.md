@@ -127,16 +127,16 @@ Aufnahmevoraussetzung:
 für Schülerinnen und Schüler
 
 - vom allgemeinbildenden Gymnasium (G8)
-- mit dem Versetzungszeugnis von Klasse 9 nach 10 oder von Klasse 10 nach 11
+  - mit dem Versetzungszeugnis von Klasse 9 nach 10 oder von Klasse 10 nach 11
 - vom 6-jährigen beruflichen Gymnasium oder vom allgemeinbildenden Gymnasium (G9)
-- mit dem Versetzungszeugnis in die Klasse 11
+  - mit dem Versetzungszeugnis in die Klasse 11
 - von der Realschule, Werkrealschule, 2-jährigen Berufsfachschule, Gemeinschaftsschule im Niveau M
-- Realschulabschluss oder gleichwertiger Abschluss
-- Notendurchschnitt 3.0 in den Fächern Deutsch, Mathematik und der ersten Pflichtfremdsprache (Englisch oder Französisch)
+  - Realschulabschluss oder gleichwertiger Abschluss
+  - Notendurchschnitt 3.0 in den Fächern Deutsch, Mathematik und der ersten Pflichtfremdsprache (Englisch oder Französisch)
 - von der Gemeinschaftsschule im Niveau E
-- Versetzungszeugnis am Ende der Klasse 10 in eine gymnasiale Oberstufe
+  - Versetzungszeugnis am Ende der Klasse 10 in eine gymnasiale Oberstufe
 - von einer freien Schule , z. B. Waldorfschule
-- Bestehen der Schulfremdenprüfung für die Realschule
+  - Bestehen der Schulfremdenprüfung für die Realschule
 
 Zusätzlich gilt
 

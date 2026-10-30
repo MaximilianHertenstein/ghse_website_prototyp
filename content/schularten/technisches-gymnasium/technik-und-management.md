@@ -45,7 +45,11 @@ Man könnte auch sagen: Was wünschen wir uns von unseren Schülern?
 - Aufgeschlossenheit gegenüber Neuem
 - positives Sozialverhalten
 
+{{< video src="/videos/tg-technik-und-management.mp4" poster="/bilder/tg-video-tgtm.webp" alt="Video: Werbefilm zum Profil Technik und Management mit Aufnahmen der GHSE" >}}
+
 Was unsere Schülerinnen und Schüler in der TGTM zum Profil sagen
+
+{{< video src="/videos/werbefilm-ghse.mp4" poster="/bilder/werbefilm-video.webp" alt="Video: Werbefilm der GHSE mit Luftaufnahmen des Schulgeländes" >}}
 
 Was Ehemalige zum Profil Technik & Management sagen.
 
