@@ -38,7 +38,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 
 ## Grundlagen
 
-- **Stil:** klar, kontrastreich, flächig; keine Verläufe, keine Rundungen.
+- **Stil:** klar, kontrastreich, flächig; keine Verläufe, keine Rundungen,
+  keine Muster.
 - **Schrift:** Inter (variabel, selbst gehostet), Fließtext 1,0625 rem,
   H1 `clamp(2.1rem, 4.6vw, 3.5rem)`, H2 `clamp(1.7rem, 3.4vw, 2.6rem)`.
 - **Gewichte:** 400 für Text, 700/800 für Labels, 900 für Überschriften.
@@ -56,32 +57,42 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   als gezielte Vollflächen ein; Schularten liegen auf der Grundfläche.
 - Gelb markiert Aktionen und Marker, Orange Struktur (Kicker, Kategorien,
   Linien), helles Blau Links und einzelne Sekundäraktionen.
-- Schwarze 3-px-Rahmen und harte Schatten (6 px, klein 4 px) tragen die
-  Kontur; Fokusringe sind 3 px tieforange mit 3 px Abstand.
+- Schwarze 3-px-Rahmen und harte Schatten (Karten 8 px, übrige 6 px,
+  klein 4 px) tragen die Kontur; Fokusringe sind 3 px tieforange mit
+  3 px Abstand.
 - Dark Mode tauscht nur die Tokens (`--papier`, `--schrift`, `--rand`,
   `--link` …), nicht die Regeln. Gelbe Flächen behalten dunkle Schrift.
 
 ## Komponenten (Anatomie, Varianten, Zustände)
 
-- **Hero:** gelbe Fläche mit schwarzer Überschrift, kontrastierendem
-  Schulnamen-Badge und Abschluss-Chips; das Foto erhält einen dynamischen
-  Rahmen und orangenen Versatzschatten. Die Wege führen über Kopfnavigation,
-  Sektionen und den „Alle Schularten"-Knopf.
+- **Hero:** gelbe Vollfläche mit schwarzer Überschrift
+  mit orangem Abschlussbalken, kontrastierendem Schulnamen-Badge und
+  leicht schräg stehenden Abschluss-Chips; das Foto steht gekippt wie ein
+  aufgeklebter Abzug mit dynamischem Rahmen und orangem Versatzschatten
+  (12 px). Das Termin-Ticket trägt eine orange Anschlagkante links. Die
+  Wege führen über Kopfnavigation, Sektionen und den „Alle
+  Schularten"-Knopf.
+- **Sektionsköpfe (`kopfzeile`):** der Kicker ist ein gelbes
+  Sticker-Etikett (Rahmen, Schatten, leichte Schräglage), die H2 trägt
+  einen 6-px-Unterstrich in Orange – auf dem blauen Band in Gelb
+  (Kontrast).
 - **Knöpfe (`btn`):** Varianten `--akzent` (gelb), `--geist`
   (transparent, schwarze Kontur), `--klein` (z. B. in Download-Zeilen und
-  Hinweisen). Zustände: hover hebt 2 px, `:active` drückt auf den
+  Hinweisen). Zustände: hover hebt 3 px, `:active` drückt auf den
   Schatten, disabled über `aria-disabled`. Label ist ein Verb mit Ziel
   („Alle Schularten", „Mehr erfahren →"), nie „Hier klicken".
-- **Chips (`chip`):** kleine Großbeschriftung; `--akzent` (gelbe Fläche)
-  für Hauptpfade, `--ruhig` für Sekundäres, `--klein` in Meta-Zeilen.
-  Teilzeit orange, Vollzeit gelb (über `data-kategorie`).
+- **Chips (`chip`):** kleine Großbeschriftung; `--akzent` (gelbe Fläche,
+  leichte Schräglage) für Hauptpfade, `--ruhig` für Sekundäres, `--klein`
+  in Meta-Zeilen. Teilzeit orange, Vollzeit gelb (über `data-kategorie`).
 - **Karten (`karte`):** `karte__bild` (16:10, unten Rahmen), `karte__koerper`
   mit Marke, Titel als einzigem Link (`karte__link`), Text und Aktion;
-  hover/:focus-within hebt 3 px, Fokusring über `:has()`. Varianten:
-  `--gross` (erste Meldung), `--text` (ohne Bild), `--news`. Die Aktion
-  („Mehr erfahren") trägt die Akzentfarbe der Karte als **Unterstrich**,
-  nicht als Textfarbe – Gelb auf Weiß ist 1,36:1, Orange 3,03:1, als Text
-  unlesbar.
+  hover/:focus-within hebt 4 px auf einen 12-px-Schatten, Fokusring über
+  `:has()`. Varianten: `--gross` (erste Meldung), `--text` (ohne Bild),
+  `--news`. Die Aktion („Mehr erfahren") trägt die Akzentfarbe der Karte
+  als 4-px-**Unterstrich**, nicht als Textfarbe – Gelb auf Weiß ist
+  1,36:1, Orange 3,03:1, als Text unlesbar.
+- **Service-Karten (`service`):** Akzentkante oben, reihum Gelb, Orange,
+  Blau; hover/:focus-within hebt 3 px.
 - **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
   Aktion rechts; unter 640 px Vollbreite mit vollem Knopf.
 - **Bilder im Fließtext (`bild`, Shortcode):** 26rem breit (gut zwei Drittel
@@ -100,14 +111,18 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   `btn--geist btn--klein` mit Ziel; Variante `--warnung` (rote Fläche,
   Tieforange-Rand).
 - **Kalender-Karten (`kalender`):** Name plus Aktionsspalte; ganzflächig
-  klickbar, hover/focus heben 3 px mit größerem Schatten wie die Karten.
-  Die neun Karten tragen reihum Gelb, Orange und helles Blau – wie die
+  klickbar, hover/focus heben 3 px auf einen 8-px-Schatten. Die Aktion
+  trägt einen Unterstrich in der Kartenschrift und kippt bei hover in
+  einen invertierten Block (Schriftfarbe wird Fläche und umgekehrt) – ein
+  gelber Hover-Hintergrund läge auf der gelben Karte unsichtbar. Die neun
+  Karten tragen reihum Gelb, Orange und helles Blau – wie die
   Schularten-Karten; Fläche und Schrift kommen aus denselben Variablen
   (`--kalender-flaeche`, `--kalender-schrift`). Auf dem schwarzen Band
   bleibt die blaue Karte mit weißer Schrift erhalten.
 - **Fuß (`fuss`):** folgt der Grundfläche des Farbmodus; Links und
   Überschriften wechseln passend zwischen den dynamischen Fuß-Tokens
-  (`--fuss-flaeche`, `--fuss-titel`, `--fuss-link` …).
+  (`--fuss-flaeche`, `--fuss-titel`, `--fuss-link` …); die Spaltentitel
+  tragen einen 3-px-Unterstrich in der Fuß-Linienfarbe (Gelb).
 - **Video (`video`, Shortcode):** Breite der Lesespalte, schwarzer
   Rahmen, gelber Play-Knopf auf dem Vorschaubild. Das Video selbst wird
   erst beim Klick nachgeladen (`static/js/video.js`) – ein
@@ -156,8 +171,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 
 ## Zustände (Pflicht für jedes interaktive Element)
 
-- **default / hover:** Hover hebt um 2 px und lässt den Schatten weiter
-  stehen (`translate(-2px, -2px)`); `:active` drückt auf den Schatten
+- **default / hover:** Hover hebt das Element und lässt den Schatten
+  weiter stehen – Stärke je nach Komponente: Knöpfe 3 px, Karten 4 px,
+  Kalender/Instagram 3 px, Partner 2 px; `:active` drückt auf den Schatten
   (`translate(4px, 4px)`, Schatten aus). Nicht nur die Farbe ändern.
 - **focus-visible:** 3 px Ring in Tieforange mit 3 px Abstand, auf allen
   Flächen derselbe Token (`--orange-tief`).
