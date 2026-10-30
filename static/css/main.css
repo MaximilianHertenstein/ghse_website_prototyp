@@ -2486,6 +2486,14 @@ h2[id^="dl-"] {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Die Galerien werden zweispaltig: auf dem Telefon stehen sonst
+     19 Bilder untereinander – gut achttausend Pixel Rollweg, bevor
+     der erste Text beginnt. */
+  .bildraster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--r-4);
+  }
+
   .partnergitter {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

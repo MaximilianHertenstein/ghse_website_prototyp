@@ -89,6 +89,10 @@ vier stehen auf den neuen Seiten als Bild **und** als mitlesbarer Text
 drunter (Namen, Räume, Termine, Zitate unverändert übernommen); wer das
 Bild nicht lesen kann oder will, verliert keine Information.
 
+**Sitemap und robots.txt:** Beides gab es auf ghse.de und gibt es jetzt
+wieder – ohne sie finden Suchmaschinen die Seiten nicht. Die Sitemap führt
+alle 82 Seiten, die robots.txt verweist darauf.
+
 **Videos:** Das Technische Gymnasium hat auf der Originalseite drei Filme –
 das Gespräch mit einem ehemaligen Schüler (TG Informationstechnik), den
 Werbefilm zum Profil Technik und Management und den Werbefilm der GHSE

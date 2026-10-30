@@ -19,7 +19,10 @@
   <meta property="og:title" content="{{ $titel }}">
   <meta property="og:description" content="{{ .Description | default site.Params.beschreibung }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-  {{ with .Params.bild }}<meta property="og:image" content="{{ . | strings.TrimPrefix "/" | absURL }}">{{ end }}
+  {{- /* Das Vorschaubild fürs Teilen: das Seitenbild, sonst das Kachelbild
+         (manche Seiten zeigen ihr Bild nur in der Kachel), sonst das Logo. */}}
+  {{- $bild := .Params.bild | default .Params.karteBild | default "/bilder/logo-zeichen.webp" -}}
+  <meta property="og:image" content="{{ $bild | strings.TrimPrefix "/" | absURL }}">
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}

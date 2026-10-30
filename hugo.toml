@@ -12,7 +12,13 @@ hasCJKLanguage = false
 enableGitInfo = false
 
 # Ablöse des Originals: keine Pagination, keine Taxonomien nötig.
-disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
+# Sitemap und robots.txt dagegen schon – ohne sie finden Suchmaschinen
+# die Seiten nicht (das Original hat beide).
+disableKinds = ["taxonomy", "term", "RSS"]
+
+# Die robots.txt gehört zur Startseite (eigener Ausgabetyp).
+[outputs]
+  home = ["HTML", "robots"]
 
 [params]
   schulname = "Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen"
