@@ -4,6 +4,9 @@
 Alle gebauten Seiten x 11 Breiten auf horizontalen Ueberlauf pruefen.
 Voraussetzung: `hugo -D` ist gelaufen; ein statischer Server bedient `public/`
 auf Port 8732 (wird hier, falls noch nicht laeuft, selbst gestartet).
+Jede Seite wird einmal in Chromium geladen und anschließend in allen Breiten
+im iframe vermessen. Die Messbreite bildet dabei den inneren Viewport der
+bisherigen Fenstergrößen nach, inklusive Chromium-Mindestbreite und Scrollbar.
 
     python3 qa/reflow.py
 
@@ -36,13 +39,22 @@ if len(sys.argv) > 2:
 PROBE = """<!doctype html><meta charset="utf-8"><body style="margin:0"><pre id="a">lade</pre>
 <iframe id="f" style="border:0;width:100%;height:1400px"></iframe>
 <script>
-var t=location.hash.slice(1),f=document.getElementById('f');
-f.onload=function(){try{
-var d=f.contentDocument,w=f.contentWindow,sw=d.documentElement.scrollWidth,iw=w.innerWidth,bad=[];
+var t=location.hash.slice(1),f=document.getElementById('f'),breiten=__BREITEN__;
+f.onload=async function(){
+var d=f.contentDocument,berichte=[];
+for(var b of breiten){
+var scrollbar=window.innerWidth-document.documentElement.clientWidth;
+f.style.width=(Math.max(b,window.innerWidth)-scrollbar)+'px';
+await new Promise(function(resolve){setTimeout(resolve,60)});
+try{
+var w=f.contentWindow,sw=d.documentElement.scrollWidth,iw=w.innerWidth,bad=[];
 if(sw>iw+1){var a=d.querySelectorAll('*');for(var i=0;i<a.length;i++){var r=a[i].getBoundingClientRect();
 if(r.right>iw+1&&r.width>0){bad.push((a[i].tagName+'.'+(a[i].className||'')).slice(0,52)+' r='+Math.round(r.right));if(bad.length>5)break;}}}
-document.getElementById('a').textContent=JSON.stringify({t:t,sw:sw,iw:iw,bad:bad});
-}catch(e){document.getElementById('a').textContent=JSON.stringify({t:t,err:String(e)})}};
+berichte.push({t:t,breite:b,sw:sw,iw:iw,bad:bad});
+}catch(e){berichte.push({t:t,breite:b,err:String(e)})}
+}
+document.getElementById('a').textContent=JSON.stringify(berichte);
+};
 f.src=t;
 </script>
 """
@@ -101,30 +113,38 @@ def seiten_aus_public():
     return sorted(treffer)
 
 
-def pruefe(arg):
-    url, breite = arg
+def pruefe(url):
     try:
         html = subprocess.run(
             ["chromium", "--headless=new", "--no-sandbox", "--disable-gpu",
              "--disable-dev-shm-usage", "--virtual-time-budget=4000",
-             "--window-size=%d,900" % breite, "--dump-dom",
+             "--window-size=320,900", "--dump-dom",
              "http://127.0.0.1:%d/__probe.html#%s" % (PORT, url)],
             capture_output=True, text=True, timeout=60,
         ).stdout
     except subprocess.TimeoutExpired:
-        return (url, breite, "TIMEOUT", "")
+        return [(url, breite, "TIMEOUT", "") for breite in BREITEN]
     m = re.search(r'<pre id="a">(.*?)</pre>', html, re.S)
     if not m:
-        return (url, breite, "KEIN-PROTOKOLL", "")
+        return [(url, breite, "KEIN-PROTOKOLL", "") for breite in BREITEN]
     try:
         d = json.loads(m.group(1))
     except Exception:
-        return (url, breite, "UNLESBAR", m.group(1)[:80])
-    if "err" in d:
-        return (url, breite, "FEHLER", d["err"])
-    if d["sw"] > d["iw"] + 1:
-        return (url, breite, "UEBERLAUF", "; ".join(d["bad"]))
-    return (url, breite, "ok", "")
+        return [(url, breite, "UNLESBAR", m.group(1)[:80]) for breite in BREITEN]
+    if not isinstance(d, list) or len(d) != len(BREITEN):
+        return [(url, breite, "UNLESBAR", "unerwartete Messdaten")
+                for breite in BREITEN]
+    ergebnisse = []
+    for messung in d:
+        breite = messung["breite"]
+        if "err" in messung:
+            status, details = "FEHLER", messung["err"]
+        elif messung["sw"] > messung["iw"] + 1:
+            status, details = "UEBERLAUF", "; ".join(messung["bad"])
+        else:
+            status, details = "ok", ""
+        ergebnisse.append((url, breite, status, details))
+    return ergebnisse
 
 
 def main():
@@ -133,14 +153,13 @@ def main():
     seiten = seiten_aus_public()
     probe_pfad = os.path.join(ROOT, "__probe.html")
     with open(probe_pfad, "w", encoding="utf-8") as f:
-        f.write(PROBE)
+        f.write(PROBE.replace("__BREITEN__", json.dumps(BREITEN)))
     # Die Probe-Datei muss vor dem Server stehen, damit der Test erkennen
     # kann, ob der Port wirklich unser Verzeichnis ausliefert.
     server_stellt_sich_sicher()
     try:
-        kombis = [(u, b) for u in seiten for b in BREITEN]
-        with ThreadPoolExecutor(max_workers=6) as ex:
-            ergebnisse = list(ex.map(pruefe, kombis))
+        with ThreadPoolExecutor(max_workers=2) as ex:
+            ergebnisse = [r for gruppe in ex.map(pruefe, seiten) for r in gruppe]
     finally:
         os.remove(probe_pfad)
 

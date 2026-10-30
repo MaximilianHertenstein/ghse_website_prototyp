@@ -16,8 +16,10 @@ import re
 import subprocess
 import sys
 from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
 
 WURZEL = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "public"))
+MAX_PARALLEL = 8
 
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120 Safari/537.36")
@@ -35,8 +37,7 @@ for ordner, _, dateien in os.walk(WURZEL):
                 continue
             ziele[ziel].add(rel)
 
-tot, blockiert, unklar = [], [], []
-for ziel in sorted(ziele):
+def pruefe(ziel):
     p = subprocess.run(
         ["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}", "-L",
          "--max-time", "25", "-H", "User-Agent: " + UA,
@@ -44,20 +45,32 @@ for ziel in sorted(ziele):
         capture_output=True, text=True)
     code = p.stdout.strip()
     if code in ("200", "204", "301", "302"):
-        continue
+        return None
     host = re.sub(r'https?://([^/]+).*', r'\1', ziel)
     dns = subprocess.run(["getent", "hosts", host],
                          capture_output=True, text=True).stdout.split()
     if code == "000" and not dns:
-        tot.append((ziel, code, "Domain existiert nicht"))
+        return "tot", (ziel, code, "Domain existiert nicht")
     elif code in ("404", "410"):
-        tot.append((ziel, code, "Seite fehlt"))
+        return "tot", (ziel, code, "Seite fehlt")
     elif not dns:
-        tot.append((ziel, code, "DNS-Aufloesung fehlt"))
+        return "tot", (ziel, code, "DNS-Aufloesung fehlt")
     elif code == "000" or code == "503":
-        blockiert.append((ziel, code, "lebend, Zugriff gesperrt"))
-    else:
-        unklar.append((ziel, code, "Status pruefen"))
+        return "blockiert", (ziel, code, "lebend, Zugriff gesperrt")
+    return "unklar", (ziel, code, "Status pruefen")
+
+
+tot, blockiert, unklar = [], [], []
+with ThreadPoolExecutor(max_workers=MAX_PARALLEL) as executor:
+    for ergebnis in executor.map(pruefe, sorted(ziele)):
+        if ergebnis:
+            kategorie, eintrag = ergebnis
+            if kategorie == "tot":
+                tot.append(eintrag)
+            elif kategorie == "blockiert":
+                blockiert.append(eintrag)
+            else:
+                unklar.append(eintrag)
 
 print(f"Externe Ziele gesamt:      {len(ziele)}")
 print(f"Nachweisbar tot:           {len(tot)}")
