@@ -15,42 +15,40 @@
 
   --gelb: #f8dc54;
   --orange: #ec7030;
-  --blau: #1060a0;
+  --blau: #1475b8;
 
   --orange-tief: #b8430f;
 
-  --nacht: #000000;
-
   --tinte: #000000;
 
-  /* Papier ist warm, Karten und Kästen bleiben weiß – so heben sie sich ab. */
-  --papier: #faf8f2;
-  --papier2: #f1ede3;
+  /* Einheitliche Grundflächen geben den GHSE-Akzenten Raum. */
+  --papier: #ffffff;
+  --nacht: var(--papier);
+  --papier2: var(--papier);
   --grau: #444444;
   --weiss: #ffffff;
 
-  --flaeche: #ffffff;
+  --flaeche: var(--papier);
   --schrift: #000000;
   --rand: #000000;
   --schatten-farbe: #000000;
-  --link: #1060a0;
+  --link: var(--blau);
   --haarlinie: rgba(0, 0, 0, 0.15);
   --marker-hintergrund: rgba(248, 220, 84, 0.75);
 
   --kategorie-teilzeit: #ec7030;
 
-  /* Der Fuß folgt dem Farbschema: im hellen Modus auf Papier, im dunklen
-     als schwarzes Band (siehe die Darkmode-Blöcke weiter unten). */
-  --fuss-flaeche: var(--papier2);
+  /* Fuß und Nachtband folgen der Grundfläche des jeweiligen Farbmodus. */
+  --fuss-flaeche: var(--nacht);
   --fuss-schrift: var(--schrift);
-  --fuss-titel: var(--tinte);
-  --fuss-linie: var(--rand);
+  --fuss-titel: var(--schrift);
+  --fuss-linie: var(--gelb);
   --fuss-link: var(--link);
   --fuss-haarlinie: var(--haarlinie);
   --fuss-leiste-flaeche: var(--papier);
   --fuss-leiste-schrift: var(--grau);
 
-  --wert-blau: #1060a0;
+  --wert-blau: var(--blau);
   --wert-gelb: var(--gelb);
   --wert-orange: var(--kategorie-teilzeit);
   --wert-gruen: #1a9c5a;
@@ -91,10 +89,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --nacht: #111111;
     --papier: #000000;
-    --papier2: #111111;
-    --flaeche: #111111;
     --schrift: #ffffff;
     --grau: #bdbdbd;
     --rand: #ffffff;
@@ -112,17 +107,14 @@
     --fuss-linie: var(--gelb);
     --fuss-link: #ffffff;
     --fuss-haarlinie: rgba(255, 255, 255, 0.18);
-    --fuss-leiste-flaeche: #0b0b0b;
+    --fuss-leiste-flaeche: var(--papier);
     --fuss-leiste-schrift: #bdbdbd;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --nacht: #111111;
   --papier: #000000;
-  --papier2: #111111;
-  --flaeche: #111111;
   --schrift: #ffffff;
   --grau: #bdbdbd;
   --rand: #ffffff;
@@ -140,7 +132,7 @@
   --fuss-linie: var(--gelb);
   --fuss-link: #ffffff;
   --fuss-haarlinie: rgba(255, 255, 255, 0.18);
-  --fuss-leiste-flaeche: #0b0b0b;
+  --fuss-leiste-flaeche: var(--papier);
   --fuss-leiste-schrift: #bdbdbd;
   color-scheme: dark;
 }
@@ -452,30 +444,29 @@ h2[id^="dl-"] {
   padding: clamp(2.5rem, 5vw, 4rem) 0;
 }
 
-/* Farbbänder: Die Fläche trägt die Akzentfarbe, die Schrift folgt dem
-   Kontrast – auf Gelb und Orange nur schwarz (15:1 bzw. 6,9:1), auf
-   Blau weiß (6,6:1). */
+/* Grundflächen folgen dem Farbmodus; GHSE-Farben bilden gezielte Akzente. */
 .band--papier {
   background: var(--papier);
   color: var(--schrift);
 }
 
 .band--gelb {
-  background: var(--gelb);
-  color: var(--tinte);
+  background: var(--papier);
+  color: var(--schrift);
+  border-bottom: 4px solid var(--gelb);
 }
 
 .band--blau {
   background: var(--blau);
   color: var(--weiss);
+  border-block: 4px solid var(--gelb);
 }
 
 .band--nacht {
   background: var(--nacht);
-  color: var(--weiss);
+  color: var(--schrift);
 }
 
-.band--gelb .kicker,
 .band--gelb .marke {
   color: var(--tinte);
 }
@@ -485,8 +476,8 @@ h2[id^="dl-"] {
 }
 
 .band--gelb .btn--geist {
-  border-color: var(--tinte);
-  color: var(--tinte);
+  border-color: var(--rand);
+  color: var(--schrift);
 }
 
 .band--blau .btn--geist {
@@ -496,8 +487,8 @@ h2[id^="dl-"] {
 
 .band--gelb .btn--geist:hover,
 .band--blau .btn--geist:hover {
-  background: var(--tinte);
-  color: var(--gelb);
+  background: var(--gelb);
+  color: var(--tinte);
 }
 
 .band--gelb a:not(.btn),
@@ -509,20 +500,10 @@ h2[id^="dl-"] {
   color: inherit;
 }
 
-/* Auf farbigen Bändern tragen Einleitung und Hinweis helle Schrift –
-   grau auf Blau wäre unlesbar. */
+/* Auf dunklen Bändern tragen Einleitung und Hinweis helle Schrift. */
 .band--blau .band__einleitung,
-.band--blau .hinweiszeile,
-.band--nacht .band__einleitung,
-.band--nacht .hinweiszeile {
+.band--blau .hinweiszeile {
   color: rgba(255, 255, 255, 0.92);
-}
-
-/* Auf dem blauen Band hebt sich die dritte Kalenderfarbe als Weiß ab –
-   Blau auf Blau verschwände. */
-.band--blau .kalenderliste li:nth-child(3n) .kalender {
-  --kalender-flaeche: var(--weiss);
-  --kalender-schrift: var(--tinte);
 }
 
 /* Gelb bleibt ein Akzent für einzelne Komponenten, nicht für ganze Abschnitte. */
@@ -532,7 +513,7 @@ h2[id^="dl-"] {
   --grau: #444444;
   --rand: #000000;
   --schatten-farbe: #000000;
-  --link: #1060a0;
+  --link: var(--blau);
   --orange-tief: #b8430f;
   --rahmen: 3px solid var(--rand);
   --schatten: 6px 6px 0 var(--schatten-farbe);
@@ -622,7 +603,7 @@ h2[id^="dl-"] {
 }
 
 .leiste {
-  background: var(--papier);
+  background: var(--papier2);
   color: var(--schrift);
   font-size: var(--t-xs);
   font-weight: 600;
@@ -926,10 +907,11 @@ h2[id^="dl-"] {
 /* ---------- Hero ---------- */
 
 .hero {
-  background: var(--papier);
-  color: var(--schrift);
+  background: var(--gelb);
+  color: var(--tinte);
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
+  border-bottom: 4px solid var(--orange);
 }
 
 .hero__innen {
@@ -941,9 +923,9 @@ h2[id^="dl-"] {
 
 .hero .kicker {
   display: inline-block;
-  background: var(--gelb);
-  color: var(--tinte);
-  border: 2px solid var(--tinte);
+  background: var(--flaeche);
+  color: var(--schrift);
+  border: var(--rahmen);
   box-shadow: 3px 3px 0 var(--schatten-farbe);
   padding: 0.3rem 0.7rem;
 }
@@ -954,10 +936,10 @@ h2[id^="dl-"] {
   display: inline-block;
   margin: 0;
   padding: 0.5rem 0.9rem;
-  background: var(--gelb);
-  color: var(--tinte);
+  background: var(--flaeche);
+  color: var(--schrift);
   border: var(--rahmen);
-  box-shadow: var(--schatten-klein);
+  box-shadow: 4px 4px 0 var(--tinte);
   font-weight: 800;
   font-size: var(--t-xs);
   text-transform: uppercase;
@@ -965,6 +947,7 @@ h2[id^="dl-"] {
 }
 
 .hero__titel {
+  color: var(--tinte);
   font-size: var(--t-display);
   font-weight: 900;
   letter-spacing: -0.035em;
@@ -985,7 +968,7 @@ h2[id^="dl-"] {
   margin-top: 1.5rem;
   font-size: clamp(1.05rem, 1.7vw, 1.3rem);
   line-height: 1.5;
-  color: var(--schrift);
+  color: var(--tinte);
   max-width: 46ch;
 }
 
@@ -1051,7 +1034,10 @@ h2[id^="dl-"] {
 }
 
 .hero__punkte li {
+  background: var(--flaeche);
+  color: var(--schrift);
   border: var(--rahmen);
+  box-shadow: var(--schatten-klein);
   padding: 0.35rem 0.7rem;
   font-size: var(--t-xs);
   font-weight: 800;
@@ -1330,7 +1316,7 @@ h2[id^="dl-"] {
 .seitenkopf {
   padding: clamp(2.25rem, 4.5vw, 3.5rem) 0 clamp(2rem, 4vw, 3rem);
   background: var(--papier);
-  border-bottom: 1px solid var(--haarlinie);
+  border-bottom: 4px solid var(--gelb);
 }
 
 .seitenkopf h1 {
@@ -2117,8 +2103,7 @@ h2[id^="dl-"] {
 
 /* ---------- Fuß ---------- */
 
-/* Der Fuß schließt die Seite ab – im hellen Modus auf Papier, im dunklen
-   Modus als schwarzes Band mit gelben Überschriften. */
+/* Der Fuß folgt der einheitlichen Grundfläche des aktiven Farbmodus. */
 .fuss {
   background: var(--fuss-flaeche);
   color: var(--fuss-schrift);
@@ -2734,7 +2719,7 @@ h2[id^="dl-"] {
     --rand: #000;
     --schatten-farbe: #000;
     --orange-tief: #b8430f;
-    --link: #1060a0;
+    --link: var(--blau);
     --marker-hintergrund: rgba(248, 220, 84, 0.75);
     color-scheme: light;
   }

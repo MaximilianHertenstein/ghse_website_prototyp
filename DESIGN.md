@@ -2,13 +2,13 @@
 name: GHSE-Farben
 colors:
   primary: "#F8DC54"
-  secondary: "#1060A0"
+  secondary: "#1475B8"
   success: "#1A9C5A"
   warning: "#EC7030"
   danger: "#B8430F"
   surface: "#FFFFFF"
   text: "#000000"
-  neutral: "#F2F2F2"
+  neutral: "#FFFFFF"
 typography:
   h1:
     fontFamily: "Inter"
@@ -42,21 +42,20 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Schrift:** Inter (variabel, selbst gehostet), Fließtext 1,0625 rem,
   H1 `clamp(2.1rem, 4.6vw, 3.5rem)`, H2 `clamp(1.7rem, 3.4vw, 2.6rem)`.
 - **Gewichte:** 400 für Text, 700/800 für Labels, 900 für Überschriften.
-- **Farben:** Gelb `#F8DC54`, Orange `#EC7030`, Blau `#1060A0` – die drei
-  Farbwerte stehen so im GHSE-Logo, das Blau aus dem helleren Teil des
-  Verlaufs (das dunkle Navy bleibt unbenutzt). Tieforange `#B8430F` für
+- **Farben:** Logo-Gelb `#F8DC54`, Logo-Orange `#EC7030` und helles Blau
+  `#1475B8` als kontraststarke Aufhellung des Logo-Blaus; dunkles Navy bleibt
+  aus großen Flächen heraus. Tieforange `#B8430F` für
   Fokusringe und Warnungen, Schwarz/Weiß als Basis.
 - **Abstände:** 4/8/12/16/24/32/48/64/80 px, Container 1180 px,
   Lesespalte 760 px.
 
 ## Flächen und Farbe
 
-- Alle Seitenabschnitte liegen auf derselben Papierfläche (`.band--papier`,
-  auf der Startseite `.band--blau` für die beiden Feed-Sektionen mit blauen
-  Sekundärknöpfen). Gelbe Vollflächen tragen nur einzelne Komponenten
-  (Aktionen, `.kasten--gelb`, Hinweise), keine ganzen Seitenbänder.
+- Neutrale Grundflächen bleiben im Light Mode weiß und wechseln im Dark Mode
+  geschlossen zu Schwarz. Hero und Termine setzen GHSE-Gelb und helles Blau
+  als gezielte Vollflächen ein; Schularten liegen auf der Grundfläche.
 - Gelb markiert Aktionen und Marker, Orange Struktur (Kicker, Kategorien,
-  Linien), Blau Links und einzelne Sekundäraktionen.
+  Linien), helles Blau Links und einzelne Sekundäraktionen.
 - Schwarze 3-px-Rahmen und harte Schatten (6 px, klein 4 px) tragen die
   Kontur; Fokusringe sind 3 px tieforange mit 3 px Abstand.
 - Dark Mode tauscht nur die Tokens (`--papier`, `--schrift`, `--rand`,
@@ -64,9 +63,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 
 ## Komponenten (Anatomie, Varianten, Zustände)
 
-- **Hero:** gelbes Schulnamen-Badge, große Überschrift, Abschluss-Chips;
-  die Wege führen über die Kopfnavigation, die Sektionen und den
-  „Alle Schularten"-Knopf.
+- **Hero:** gelbe Fläche mit schwarzer Überschrift, kontrastierendem
+  Schulnamen-Badge und Abschluss-Chips; das Foto erhält einen dynamischen
+  Rahmen und orangenen Versatzschatten. Die Wege führen über Kopfnavigation,
+  Sektionen und den „Alle Schularten"-Knopf.
 - **Knöpfe (`btn`):** Varianten `--akzent` (gelb), `--geist`
   (transparent, schwarze Kontur), `--klein` (z. B. in Download-Zeilen und
   Hinweisen). Zustände: hover hebt 2 px, `:active` drückt auf den
@@ -101,16 +101,13 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   Tieforange-Rand).
 - **Kalender-Karten (`kalender`):** Name plus Aktionsspalte; ganzflächig
   klickbar, hover/focus heben 3 px mit größerem Schatten wie die Karten.
-  Die neun Karten tragen reihum Gelb, Orange und Blau – wie die
+  Die neun Karten tragen reihum Gelb, Orange und helles Blau – wie die
   Schularten-Karten; Fläche und Schrift kommen aus denselben Variablen
-  (`--kalender-flaeche`, `--kalender-schrift`), sonst stünde der Name in
-  der Bandfarbe auf der Kartenfläche. Auf dem blauen Band wird die dritte
-  Farbe zu Weiß (Blau auf Blau verschwände).
-- **Fuß (`fuss`):** folgt dem Farbschema – im hellen Modus auf Papier
-  mit dunkler Schrift und blauen Links, im dunklen Modus das schwarze
-  Band mit gelben Überschriften. Die eigenen Fuß-Tokens (`--fuss-flaeche`,
-  `--fuss-titel`, `--fuss-link`, `--fuss-leiste-flaeche` …) sorgen dafür,
-  dass beide Modi ohne eigene Regeln auskommen.
+  (`--kalender-flaeche`, `--kalender-schrift`). Auf dem schwarzen Band
+  bleibt die blaue Karte mit weißer Schrift erhalten.
+- **Fuß (`fuss`):** folgt der Grundfläche des Farbmodus; Links und
+  Überschriften wechseln passend zwischen den dynamischen Fuß-Tokens
+  (`--fuss-flaeche`, `--fuss-titel`, `--fuss-link` …).
 - **Video (`video`, Shortcode):** Breite der Lesespalte, schwarzer
   Rahmen, gelber Play-Knopf auf dem Vorschaubild. Das Video selbst wird
   erst beim Klick nachgeladen (`static/js/video.js`) – ein
