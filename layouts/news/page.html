@@ -4,9 +4,14 @@
     {{- /* Abbildungen zuerst ermitteln: sie entscheiden, ob in der Meta-Zeile
            der Hinweis „Zeitungsausschnitt" mitgeführt wird. */ -}}
     {{- $bilder := slice -}}
-    {{- with .Params.bild }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bildAlt) }}{{ end -}}
-    {{- with .Params.bild2 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild2Alt) }}{{ end -}}
-    {{- with .Params.bild3 }}{{ $bilder = $bilder | append (dict "pfad" . "alt" $.Params.bild3Alt) }}{{ end -}}
+    {{- range (slice
+      (dict "pfad" .Params.bild "alt" .Params.bildAlt)
+      (dict "pfad" .Params.bild2 "alt" .Params.bild2Alt)
+      (dict "pfad" .Params.bild3 "alt" .Params.bild3Alt)
+    ) -}}
+      {{- $bild := . -}}
+      {{- with .pfad }}{{ $bilder = $bilder | append $bild }}{{ end -}}
+    {{- end -}}
 
     <p class="zurueck"><a href="{{ "news/" | relURL }}"><span aria-hidden="true">←</span> Alle Meldungen</a></p>
 
