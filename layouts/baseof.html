@@ -23,6 +23,11 @@
          (manche Seiten zeigen ihr Bild nur in der Kachel), sonst das Logo. */}}
   {{- $bild := .Params.bild | default .Params.karteBild | default "/bilder/logo-zeichen.webp" -}}
   <meta property="og:image" content="{{ $bild | strings.TrimPrefix "/" | absURL }}">
+  {{- /* Der Feed des Nachrichtenbereichs wird von Lesern und Suchmaschinen
+         über diesen Verweis gefunden. */}}
+  {{ with .OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} – {{ site.Title }}">
+  {{ end }}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}

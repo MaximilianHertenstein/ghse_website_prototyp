@@ -1,0 +1,26 @@
+{{- /* Feed für den Nachrichtenbereich.
+
+   Hugo liefert sonst die englischen Standardtexte („Recent content in …“)
+   und den Seitentitel des Bereichs. Hier stehen deutsche Texte, die
+   Beschreibung aus dem Front Matter und der Teaser der Meldung. */ -}}
+{{- $seite := .Page -}}
+{{- $limit := 20 -}}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ $seite.Title }} – {{ site.Title }}</title>
+    <link>{{ $seite.Permalink }}</link>
+    <description>{{ $seite.Params.description | default site.Params.beschreibung }}</description>
+    <generator>Hugo</generator>
+    <language>de-DE</language>
+    <atom:link href="{{ $seite.Permalink }}index.xml" rel="self" type="application/rss+xml" />
+    {{- range first $limit $seite.RegularPages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <description>{{ .Params.teaser | default .Description | plainify | html }}</description>
+      <guid>{{ .Permalink }}</guid>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

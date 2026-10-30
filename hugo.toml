@@ -14,11 +14,13 @@ enableGitInfo = false
 # Ablöse des Originals: keine Pagination, keine Taxonomien nötig.
 # Sitemap und robots.txt dagegen schon – ohne sie finden Suchmaschinen
 # die Seiten nicht (das Original hat beide).
-disableKinds = ["taxonomy", "term", "RSS"]
+disableKinds = ["taxonomy", "term"]
 
-# Die robots.txt gehört zur Startseite (eigener Ausgabetyp).
+# Die robots.txt gehört zur Startseite (eigener Ausgabetyp), der
+# Nachrichtenbereich liefert einen Feed – das Original hat ihn auch.
 [outputs]
   home = ["HTML", "robots"]
+  section = ["HTML", "RSS"]
 
 [params]
   schulname = "Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen"

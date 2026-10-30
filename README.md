@@ -91,7 +91,9 @@ Bild nicht lesen kann oder will, verliert keine Information.
 
 **Sitemap und robots.txt:** Beides gab es auf ghse.de und gibt es jetzt
 wieder – ohne sie finden Suchmaschinen die Seiten nicht. Die Sitemap führt
-alle 82 Seiten, die robots.txt verweist darauf.
+alle 82 Seiten, die robots.txt verweist darauf. Der Nachrichtenbereich
+liefert außerdem wieder einen Feed (`/news/index.xml`) wie das Original –
+mit deutschen Texten statt der englischen Hugo-Standardtexte.
 
 **Videos:** Das Technische Gymnasium hat auf der Originalseite drei Filme –
 das Gespräch mit einem ehemaligen Schüler (TG Informationstechnik), den
