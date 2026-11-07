@@ -13,9 +13,9 @@
 
 :root {
 
-  --gelb: #f8dc54;
-  --orange: #ec7030;
-  --blau: #1475b8;
+  --gelb: #f6dc56; /* RGB (246, 220, 86) */
+  --orange: #ee7330; /* RGB (238, 115, 48) */
+  --blau: #114c92; /* Mitte zwischen (34, 45, 113) und (0, 106, 180) */
 
   --orange-tief: #b8430f;
 
@@ -25,7 +25,7 @@
   --papier: #ffffff;
   --nacht: var(--papier);
   --papier2: var(--papier);
-  --grau: #444444;
+  --grau: #00000a; /* RGB (0, 0, 10) */
   --weiss: #ffffff;
 
   --flaeche: var(--papier);
@@ -34,9 +34,9 @@
   --schatten-farbe: #000000;
   --link: var(--blau);
   --haarlinie: rgba(0, 0, 0, 0.15);
-  --marker-hintergrund: rgba(248, 220, 84, 0.75);
+  --marker-hintergrund: rgba(246, 220, 86, 0.75);
 
-  --kategorie-teilzeit: #ec7030;
+  --kategorie-teilzeit: #ee7330;
 
   /* Fuß und Nachtband folgen der Grundfläche des jeweiligen Farbmodus. */
   --fuss-flaeche: var(--nacht);
@@ -87,6 +87,9 @@
 
 /* ---------- Darkmode ---------- */
 
+/* Ohne Systemvorgabe (kein prefers-color-scheme: dark) und ohne gespeicherte
+   Wahl gilt der helle Modus aus :root – dunkel greift nur bei ausdrücklichem
+   Systemwunsch oder Knopfdruck (data-theme). */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --papier: #000000;
@@ -94,10 +97,10 @@
     --grau: #bdbdbd;
     --rand: #ffffff;
     --schatten-farbe: #ffffff;
-    --orange-tief: #ec7030;
-    --link: #f8dc54;
+    --orange-tief: #ee7330;
+    --link: #f6dc56;
     --haarlinie: rgba(255, 255, 255, 0.25);
-    --marker-hintergrund: rgba(248, 220, 84, 0.35);
+    --marker-hintergrund: rgba(246, 220, 86, 0.35);
     --hinweis-flaeche: #2a2610;
     --warn-flaeche: #3b1d12;
     /* Der Fuß bleibt im dunklen Modus das schwarze Band. */
@@ -119,10 +122,10 @@
   --grau: #bdbdbd;
   --rand: #ffffff;
   --schatten-farbe: #ffffff;
-  --orange-tief: #ec7030;
-  --link: #f8dc54;
+  --orange-tief: #ee7330;
+  --link: #f6dc56;
   --haarlinie: rgba(255, 255, 255, 0.25);
-  --marker-hintergrund: rgba(248, 220, 84, 0.35);
+  --marker-hintergrund: rgba(246, 220, 86, 0.35);
   --hinweis-flaeche: #2a2610;
   --warn-flaeche: #3b1d12;
   /* Der Fuß bleibt im dunklen Modus das schwarze Band. */
@@ -511,7 +514,7 @@ h2[id^="dl-"] {
 .kasten--gelb {
   --flaeche: #ffffff;
   --schrift: #000000;
-  --grau: #444444;
+  --grau: #00000a; /* RGB (0, 0, 10) */
   --rand: #000000;
   --schatten-farbe: #000000;
   --link: var(--blau);
@@ -2809,7 +2812,7 @@ h2[id^="dl-"] {
     --schatten-farbe: #000;
     --orange-tief: #b8430f;
     --link: var(--blau);
-    --marker-hintergrund: rgba(248, 220, 84, 0.75);
+    --marker-hintergrund: rgba(246, 220, 86, 0.75);
     color-scheme: light;
   }
   .kopf, .fuss, .sprungleiste, .sprungmarke, .zurueck, .lupe__plakette, .lupe__hinweis {

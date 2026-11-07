@@ -742,8 +742,9 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Seitenbänder.
 * Die Akzentfarben stehen so im GHSE-Logo (`static/bilder/logo-zeichen.webp`,
   aus der Logo-Vorlage übernommen):
-  Gelb `#F8DC54`, Orange `#EC7030`, Blau `#1060A0` aus dem helleren Teil des
-  Logo-Verlaufs – das dunkle Navy des Verlaufs bleibt bewusst unbenutzt.
+  Gelb `#F6DC56` (246, 220, 86), Orange `#EE7330` (238, 115, 48),
+  Blau `#114C92` als Mitte zwischen (34, 45, 113) und (0, 106, 180);
+  Grau `#00000A` (0, 0, 10).
   `qa/kontrast.py` liest die Tokens direkt aus `static/css/main.css` und
   prüft beide Farbmodi gegen diese Werte.
 * Der dunkle Satz steht zweimal: in `@media (prefers-color-scheme: dark)`

@@ -1,10 +1,10 @@
 ---
 name: GHSE-Farben
 colors:
-  primary: "#F8DC54"
-  secondary: "#1475B8"
+  primary: "#F6DC56"
+  secondary: "#114C92"
   success: "#1A9C5A"
-  warning: "#EC7030"
+  warning: "#EE7330"
   danger: "#B8430F"
   surface: "#FFFFFF"
   text: "#000000"
@@ -43,9 +43,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Schrift:** Inter (variabel, selbst gehostet), Fließtext 1,0625 rem,
   H1 `clamp(2.1rem, 4.6vw, 3.5rem)`, H2 `clamp(1.7rem, 3.4vw, 2.6rem)`.
 - **Gewichte:** 400 für Text, 700/800 für Labels, 900 für Überschriften.
-- **Farben:** Logo-Gelb `#F8DC54`, Logo-Orange `#EC7030` und helles Blau
-  `#1475B8` als kontraststarke Aufhellung des Logo-Blaus; dunkles Navy bleibt
-  aus großen Flächen heraus. Tieforange `#B8430F` für
+- **Farben:** Logo-Gelb `#F6DC56` (246, 220, 86), Logo-Orange `#EE7330`
+  (238, 115, 48) und Blau `#114C92` (Mitte zwischen (34, 45, 113) und
+  (0, 106, 180)); dunkles Navy bleibt aus großen Flächen heraus. Tieforange `#B8430F` für
   Fokusringe und Warnungen, Schwarz/Weiß als Basis.
 - **Abstände:** 4/8/12/16/24/32/48/64/80 px, Container 1180 px,
   Lesespalte 760 px.
@@ -90,7 +90,7 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   `:has()`. Varianten: `--gross` (erste Meldung), `--text` (ohne Bild),
   `--news`. Die Aktion („Mehr erfahren") trägt die Akzentfarbe der Karte
   als 4-px-**Unterstrich**, nicht als Textfarbe – Gelb auf Weiß ist
-  1,36:1, Orange 3,03:1, als Text unlesbar.
+  1,37:1, Orange 2,95:1, als Text unlesbar.
 - **Service-Karten (`service`):** Akzentkante oben, reihum Gelb, Orange,
   Blau; hover/:focus-within hebt 3 px.
 - **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
