@@ -48,7 +48,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   (0, 106, 180)); dunkles Navy bleibt aus großen Flächen heraus. Tieforange `#B8430F` für
   Fokusringe und Warnungen, Schwarz/Weiß als Basis.
 - **Abstände:** 4/8/12/16/24/32/48/64/80 px, Container 1180 px,
-  Lesespalte 760 px.
+  Fließtext 60ch (rund 78 Zeichen), Einleitung 40ch (rund 77 Zeichen);
+  Einzelseiten 760 px.
 
 ## Flächen und Farbe
 
@@ -102,7 +103,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Service-Karten (`service`):** Akzentkante oben, reihum Gelb, Orange,
   Blau; hover/:focus-within hebt 3 px.
 - **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
-  Aktion rechts; unter 640 px Vollbreite mit vollem Knopf.
+  Aktion rechts; Textspalte max 60ch, unter 640 px Vollbreite mit vollem
+  Knopf.
 - **Bilder im Fließtext (`bild`, Shortcode):** 26rem breit (gut zwei Drittel
   der Lesespalte), zentriert, schwarzer Rahmen mit Versatzschatten;
   `breite="voll"` über die ganze Lesespalte. Stehen mehrere Bilder
@@ -154,7 +156,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   Download-Zeilen oder Kästen – die Komponenten bringen eigene Größen und
   Abstände mit.
 - **Tabellen:** 2-px-Raster, gelbe Kopfzeile, erste Spalte fett,
-  Tabellenziffern; unter 640 px eine Schriftstufe kleiner.
+  Tabellenziffern; unter 640 px eine Schriftstufe kleiner und 8 px
+  Zellenpolster horizontal.
 - **Seitenleiste:** Zwei Fassungen derselben Zusammenfassung. Die mobile
   Kopie steht im Markup vor dem Fließtext und erscheint unter 1000 px;
   die Desktop-Fassung steht danach und bleibt in der rechten Spalte.

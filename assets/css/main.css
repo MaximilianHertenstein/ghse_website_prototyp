@@ -1479,7 +1479,7 @@ h2[id^="dl-"] {
   margin-top: 1.25rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   line-height: 1.6;
-  max-width: 68ch;
+  max-width: 40ch;
   color: var(--grau);
 }
 
@@ -1675,6 +1675,10 @@ h2[id^="dl-"] {
   }
 }
 
+.zeile__text {
+  max-width: 60ch;
+}
+
 .zeile__titel {
   font-size: 1.1rem;
   font-weight: 800;
@@ -1716,7 +1720,7 @@ h2[id^="dl-"] {
 }
 
 .fliesstext {
-  max-width: 70ch;
+  max-width: 60ch;
   font-size: 1.09rem;
   line-height: 1.75;
   hyphens: auto;
@@ -2788,7 +2792,7 @@ h2[id^="dl-"] {
   }
   .fliesstext th,
   .fliesstext td {
-    padding: 0.35rem 0.4rem;
+    padding: 0.35rem 0.5rem;
   }
 
   .partnergitter {
