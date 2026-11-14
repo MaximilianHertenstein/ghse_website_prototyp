@@ -26,17 +26,19 @@
          die Schulart, die den Abschluss anbietet (Daten aus den
          Abschluss-Angaben der Schularten; „Abitur" bieten zwei Gymnasien,
          dort führt der Weg zur Übersicht). */}}
-  <ul class="hero__punkte">
-    {{- $abschluesse := slice
-      (dict "name" "Hauptschulabschluss" "ziel" "/schularten/berufsvorbereitende-schularten/")
-      (dict "name" "Mittlere Reife" "ziel" "/schularten/zweijahrige-berufsfachschulen/")
-      (dict "name" "FH-Reife" "ziel" "/schularten/berufskolleg-informationstechnische-assistenten/")
-      (dict "name" "Abitur" "ziel" "/schularten/")
-      (dict "name" "Berufsausbildung" "ziel" "/schularten/berufsschule/") }}
-    {{- range $abschluesse }}
-    <li><a href="{{ strings.TrimPrefix "/" .ziel | relURL }}">{{ .name }}</a></li>
-    {{- end }}
-  </ul>
+  <div class="container">
+    <ul class="hero__punkte">
+      {{- $abschluesse := slice
+        (dict "name" "Hauptschulabschluss" "ziel" "/schularten/berufsvorbereitende-schularten/")
+        (dict "name" "Mittlere Reife" "ziel" "/schularten/zweijahrige-berufsfachschulen/")
+        (dict "name" "FH-Reife" "ziel" "/schularten/berufskolleg-informationstechnische-assistenten/")
+        (dict "name" "Abitur" "ziel" "/schularten/")
+        (dict "name" "Berufsausbildung" "ziel" "/schularten/berufsschule/") }}
+      {{- range $abschluesse }}
+      <li><a href="{{ strings.TrimPrefix "/" .ziel | relURL }}">{{ .name }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
 </div>
 
 <section class="band band--gelb" aria-labelledby="home-schularten">

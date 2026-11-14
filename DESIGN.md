@@ -70,8 +70,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   leicht schräg stehenden Abschluss-Chips; das Foto steht gekippt wie ein
   aufgeklebter Abzug mit dynamischem Rahmen und orangem Versatzschatten
   (12 px). Das Termin-Ticket trägt eine orange Anschlagkante links. Die
-  Wege führen über Kopfnavigation, Sektionen und den „Alle
-  Schularten"-Knopf.
+  Abschluss-Chips beginnen an derselben Flucht wie Badge, H1 und Text und
+  bleiben leicht gedreht. Die Wege führen über Kopfnavigation, Sektionen
+  und den „Alle Schularten"-Knopf.
 - **Sektionsköpfe (`kopfzeile`):** der Kicker ist ein gelbes
   Sticker-Etikett (Rahmen, Schatten, leichte Schräglage), die H2 trägt
   einen 6-px-Unterstrich in Orange – auf dem blauen Band in Gelb
@@ -84,13 +85,18 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Chips (`chip`):** kleine Großbeschriftung; `--akzent` (gelbe Fläche,
   leichte Schräglage) für Hauptpfade, `--ruhig` für Sekundäres, `--klein`
   in Meta-Zeilen. Teilzeit orange, Vollzeit gelb (über `data-kategorie`).
+  Die Account-Chips der Startseite stehen in einem `auto-fit`-Raster und
+  füllen ihre Zelle.
 - **Karten (`karte`):** `karte__bild` (16:10, unten Rahmen), `karte__koerper`
   mit Marke, Titel als einzigem Link (`karte__link`), Text und Aktion;
   hover/:focus-within hebt 4 px auf einen 12-px-Schatten, Fokusring über
   `:has()`. Varianten: `--gross` (erste Meldung), `--text` (ohne Bild),
   `--news`. Die Aktion („Mehr erfahren") trägt die Akzentfarbe der Karte
   als 4-px-**Unterstrich**, nicht als Textfarbe – Gelb auf Weiß ist
-  1,37:1, Orange 2,95:1, als Text unlesbar.
+  1,37:1, Orange 2,95:1, als Text unlesbar. Bei ungerader Kartenzahl in
+  zwei Spalten rückt die letzte Karte mittig unter die Reihe und behält
+  die Breite ihrer Nachbarn; im Fließtext behält die Kartenüberschrift
+  die Kartenfarbe (der Prosa-Link färbt sie nicht blau).
 - **Service-Karten (`service`):** Akzentkante oben, reihum Gelb, Orange,
   Blau; hover/:focus-within hebt 3 px.
 - **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
@@ -105,7 +111,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   (`--breite`) im Bild: kleine Originale (Porträts, Logos) werden nicht
   hochskaliert, und die Größe ist vor dem Laden bekannt, damit der Text
   beim Nachladen nicht springt. Gallerien mit Bildunterschrift nutzen
-  `bilder` (Front Matter), alle Bilder 4:3 im Raster.
+  `bilder` (Front Matter), alle Bilder 4:3 im Raster; unter 640 px steht
+  die Beschriftung eine Stufe kleiner (`--t-s`), damit lange Namen in der
+  zweispaltigen Galerie nicht mitten im Wort brechen.
 - **Hinweise (`hinweis`, Shortcode):** blasse Gelbfläche
   (`--hinweis-flaeche`), Titel als Kicker, optional ein
   `btn--geist btn--klein` mit Ziel; Variante `--warnung` (rote Fläche,
@@ -137,6 +145,18 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   `aria-hidden`; die Beschriftung daneben trägt die Aussage – Farbe allein
   vermittelt keine Bedeutung. Sechs Farben, „Vielfalt" als Streifen.
 
+## Inhaltsseiten
+
+- **Gliederung:** H2 trägt einen 8-px-Balken links, H3 einen 4-px-Balken;
+  nur direkte Gliederungen des Fließtexts, nicht Überschriften in Karten,
+  Download-Zeilen oder Kästen – die Komponenten bringen eigene Größen und
+  Abstände mit.
+- **Tabellen:** 2-px-Raster, gelbe Kopfzeile, erste Spalte fett,
+  Tabellenziffern; unter 640 px eine Schriftstufe kleiner.
+- **Seitenleiste:** Steht im Markup vor dem Fließtext. Ab 1001 px weist
+  das Grid ihr die rechte Spalte zu; darunter erscheint sie zuerst, damit
+  „Auf einen Blick" nicht erst nach einer langen Galerie kommt.
+
 ## Text und Ton
 
 - **Labels eindeutig:** Knöpfe und Links benennen das Ziel („Alle
@@ -157,7 +177,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Unter 1199 px:** die Navigation wird zum Aufklappmenü (`.menueknopf`,
   Panel mit `aria-expanded`, scrollbar, `overscroll-behavior: contain`).
 - **Unter 1000 px:** Karten- und Zeilenraster stapeln; Hero einspaltig,
-  Bild versetzt den Schatten nach unten.
+  Bild versetzt den Schatten nach unten. Die Seitenleiste rückt vor den
+  Fließtext.
 - **Unter 900 px:** Adressleiste aus, Kopfhöhe schrumpft auf 4,5 rem,
   Schnellzugriff wandert ins Menüpanel, Modusknopf ohne Schrift.
 - **Unter 640/560 px:** Typo-Skala abschwächen (Fließtext 1,02 rem),

@@ -20,23 +20,11 @@
   </div>
 </header>
 
+{{- /* Die Seitenleiste steht bewusst vor dem Fließtext: Auf schmalen
+     Bildschirmen erscheinen Bild und „Auf einen Blick“ sonst erst nach
+     der kompletten Galerie. Auf Desktop weist das Grid ihr die rechte
+     Spalte zu, die Lesereihenfolge bleibt dort Text links, Infos rechts. */ -}}
 <div class="container raster--seite">
-  <div class="fliesstext">
-
-    {{ .Content }}
-
-    {{ with .Params.downloads }}
-      <section class="kasten" aria-labelledby="unterlagen-{{ $.File.UniqueID }}">
-        <h2 id="unterlagen-{{ $.File.UniqueID }}">Downloads zu diesem Bildungsgang</h2>
-        {{ range . }}
-          {{ with site.GetPage (printf "/downloads/%s" .) }}
-            {{ partial "zeile-download.html" . }}
-          {{ end }}
-        {{ end }}
-      </section>
-    {{ end }}
-  </div>
-
   <aside class="seitenleiste" aria-labelledby="blick-{{ .File.UniqueID }}">
     {{ with .Params.bild }}
       <figure class="seitenleiste__bild">
@@ -64,5 +52,21 @@
       </p>
     </div>
   </aside>
+
+  <div class="fliesstext">
+
+    {{ .Content }}
+
+    {{ with .Params.downloads }}
+      <section class="kasten" aria-labelledby="unterlagen-{{ $.File.UniqueID }}">
+        <h2 id="unterlagen-{{ $.File.UniqueID }}">Downloads zu diesem Bildungsgang</h2>
+        {{ range . }}
+          {{ with site.GetPage (printf "/downloads/%s" .) }}
+            {{ partial "zeile-download.html" . }}
+          {{ end }}
+        {{ end }}
+      </section>
+    {{ end }}
+  </div>
 </div>
 {{ end }}

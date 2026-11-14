@@ -1058,8 +1058,10 @@ h2[id^="dl-"] {
   gap: 0.5rem;
   list-style: none;
   padding: 0;
-  margin: 2rem auto 0;
-  justify-content: center;
+  /* Die Sticker beginnen an derselben Flucht wie Badge, Überschrift und
+     Text; die leichte Schräglage bleibt. */
+  margin: 2rem 0 0;
+  justify-content: flex-start;
 }
 
 .hero__punkte li {
@@ -1170,6 +1172,23 @@ h2[id^="dl-"] {
   height: 100%;
   text-decoration: none;
   color: inherit;
+}
+
+/* Im Fließtext färbt der Prosa-Link sonst die Kartenüberschrift blau;
+   die Karte bleibt eine Fläche mit Schrift in Kartenfarbe. */
+.fliesstext .karte__link {
+  color: inherit;
+}
+
+/* Eine ungerade Anzahl Karten in zwei Spalten lässt die letzte Karte
+   allein links stehen. Sie rückt mittig unter die Reihe und behält die
+   Breite ihrer Nachbarn. */
+@media (min-width: 641px) {
+  .raster--2 > .karte:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 1rem);
+    justify-self: center;
+  }
 }
 
 .karte:has(.karte__link:focus-visible), .instabeitrag:has(.instabeitrag__link:focus-visible) {
@@ -1535,7 +1554,7 @@ h2[id^="dl-"] {
   color: var(--tinte);
 }
 
-.fliesstext h2:target {
+.fliesstext > h2:target {
   padding-left: 1.15rem;
   border-left-color: var(--tinte);
 }
@@ -1609,6 +1628,8 @@ h2[id^="dl-"] {
 }
 
 .fliesstext {
+  grid-column: 1;
+  grid-row: 1;
   max-width: 70ch;
   font-size: 1.09rem;
   line-height: 1.75;
@@ -1622,7 +1643,10 @@ h2[id^="dl-"] {
   margin-top: 1.25rem;
 }
 
-.fliesstext h2 {
+/* Nur die Gliederung des Fließtexts, nicht die Überschriften in Karten,
+   Download-Zeilen oder Kästen: Die Komponenten bringen ihre eigenen
+   Größen und Abstände mit. */
+.fliesstext > h2 {
   font-size: clamp(1.4rem, 2.4vw, 1.85rem);
   font-weight: 900;
   margin-top: 2.75rem;
@@ -1630,10 +1654,44 @@ h2[id^="dl-"] {
   border-left: 8px solid var(--orange);
 }
 
-.fliesstext h3 {
+.fliesstext > h3 {
   font-size: 1.2rem;
   font-weight: 800;
+  line-height: 1.25;
   margin-top: 2rem;
+  /* Eine Stufe schmaler als der Balken der H2: dieselbe Sprache,
+     erkennbar untergeordnet. */
+  padding-left: 0.65rem;
+  border-left: 4px solid var(--orange);
+}
+
+/* Tabellen kommen nur im Fließtext vor (Stundentafel 6SG). Rahmen und
+   gelbe Kopfzeile folgen der Karten- und Kasten-Sprache; die Zahlen
+   stehen in Tabellenziffern untereinander. */
+.fliesstext table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: var(--t-s);
+  font-variant-numeric: tabular-nums;
+}
+
+.fliesstext th,
+.fliesstext td {
+  border: 2px solid var(--rand);
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.fliesstext thead th {
+  background: var(--gelb);
+  color: var(--tinte);
+  font-weight: 800;
+}
+
+.fliesstext tbody td:first-child {
+  font-weight: 700;
 }
 
 .fliesstext ul, .fliesstext ol {
@@ -1696,19 +1754,19 @@ h2[id^="dl-"] {
   text-decoration: none;
 }
 
-.fliesstext h2 a, .fliesstext h3 a, .fliesstext h4 a {
+.fliesstext > h2 a, .fliesstext > h3 a, .fliesstext > h4 a {
   color: inherit;
   font-weight: inherit;
   text-decoration: none;
 }
 
-.fliesstext h2 a::after, .fliesstext h3 a::after, .fliesstext h4 a::after {
+.fliesstext > h2 a::after, .fliesstext > h3 a::after, .fliesstext > h4 a::after {
   content: " →";
   color: var(--orange-tief);
   font-weight: 900;
 }
 
-.fliesstext h2 a:hover, .fliesstext h3 a:hover, .fliesstext h4 a:hover {
+.fliesstext > h2 a:hover, .fliesstext > h3 a:hover, .fliesstext > h4 a:hover {
   background: var(--gelb);
   color: var(--tinte);
 }
@@ -1862,6 +1920,8 @@ h2[id^="dl-"] {
 }
 
 .seitenleiste {
+  grid-column: 2;
+  grid-row: 1;
   display: grid;
   gap: 1.5rem;
   position: sticky;
@@ -2465,10 +2525,21 @@ h2[id^="dl-"] {
 .konten {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 0.6rem;
   margin-top: 1rem;
+}
+
+.konten li {
+  display: flex;
+}
+
+/* Die Chips füllen ihre Rasterzelle, damit die Zeilen eine ruhige Kante
+   bilden; die Beschriftung bleibt linksbündig. */
+.konten .chip {
+  width: 100%;
+  height: 100%;
 }
 
 .schulleben {
@@ -2552,6 +2623,13 @@ h2[id^="dl-"] {
   .raster--seite {
     grid-template-columns: minmax(0, 1fr);
   }
+  /* Die Seitenleiste steht im Markup vor dem Fließtext; ohne die
+     Spaltenzuordnung würde sie auf schmalen Geräten wieder ans Ende
+     rutschen. */
+  .fliesstext, .seitenleiste {
+    grid-column: auto;
+    grid-row: auto;
+  }
   .seitenleiste {
     position: static;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2569,6 +2647,22 @@ h2[id^="dl-"] {
   .bildraster {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--r-4);
+  }
+
+  /* In der zweispaltigen Galerie ist die Beschriftung sonst breiter als
+     ihre Spalte; lange Wörter wie „Stratosphärenballon“ brachen mitten
+     im Wort. Eine Stufe kleiner reicht für zwei saubere Zeilen. */
+  .bildraster .bild__name {
+    font-size: var(--t-s);
+    line-height: 1.4;
+  }
+
+  .fliesstext table {
+    font-size: var(--t-xs);
+  }
+  .fliesstext th,
+  .fliesstext td {
+    padding: 0.35rem 0.4rem;
   }
 
   .partnergitter {
