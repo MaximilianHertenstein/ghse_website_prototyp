@@ -20,3 +20,11 @@ Thumbs.db
 # Bytecode der Hilfsskripte
 __pycache__/
 *.pyc
+
+# design-taste-frontend: 40-MB-Skill-Kit mit Demo-Fotos und Stand-ins.
+# Lokal als Werkzeug installiert, nicht Teil der Website. Der Eintrag in
+# skills-lock.json bleibt als Manifest erhalten; die Skill-Dateien lassen
+# sich darüber neu installieren.
+/.agents/skills/design-taste-frontend/
+/.taste-skill/
+/shots/
