@@ -13,7 +13,7 @@
   {{- /* Ein Titel für <title> und og:title – sonst driftet der eine beim
          Teilen auseinander. „Emmendingen" steht doppelt, weil site.Title die
          Stadt schon nennt; der volle Name bleibt im Fuß stehen. */}}
-  {{- $titel := cond .IsHome (printf "%s – %s" site.Title (strings.TrimSuffix " Emmendingen" site.Params.schulname)) (printf "%s | %s" .Title site.Title) -}}
+  {{- $titel := cond .IsHome (printf "%s | %s" site.Title (strings.TrimSuffix " Emmendingen" site.Params.schulname)) (printf "%s | %s" .Title site.Title) -}}
   <title>{{ $titel }}</title>
   <meta name="description" content="{{ .Description | default site.Params.beschreibung }}">
   <link rel="canonical" href="{{ .Permalink }}">
@@ -36,7 +36,7 @@
   {{- /* Der Feed des Nachrichtenbereichs wird von Lesern und Suchmaschinen
          über diesen Verweis gefunden. */}}
   {{ with .OutputFormats.Get "RSS" }}
-  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} – {{ site.Title }}">
+  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} | {{ site.Title }}">
   {{ end }}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>

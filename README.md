@@ -827,6 +827,12 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   `unbalanced-heading`-Befunde mehr. Übrig bleiben `overused-font` (Inter
   als Hausschrift), die Großbuchstaben-Labels und die harten Schatten –
   bewusste GHSE-Merkmale, kein Slop.
+* Hallmark-`sloplint`: Kicker (54), Fokus-Latenz (15), fehlender
+  Überlaufschutz (34) und der Gedankenstrich im Seitentitel sind
+  bereinigt. Was bleibt, ist Absicht: reines Schwarz/Weiß (7a), die
+  Großbuchstaben-Labels (67), die orangen Strukturlinien (3), der
+  Karten-Zoom 1,03 (11), die Länge der Originaltexte (58) und die
+  verschiedenen Spaltenabstände (F15).
 * Worttreue gegen die Vorlage: alle Seiten mit eigener Quelle werden Wort für
   Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der

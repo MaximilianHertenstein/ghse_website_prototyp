@@ -741,12 +741,6 @@ h2[id^="dl-"] {
   flex: 0 0 auto;
 }
 
-@media (hover: hover) {
-  .marke-link:hover img {
-    transform: rotate(-2deg);
-  }
-}
-
 .menue {
   display: flex;
   align-items: center;
