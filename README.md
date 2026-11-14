@@ -808,6 +808,12 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
+* UI-Texte: Bei neuen Labels, Buttons, Kickern und Alt-Texten den lokalen
+  `copy-lint` des design-taste-Skills auf den geänderten Seiten laufen
+  lassen. Die Originaltexte bleiben unangetastet; die zwei bekannten
+  Fehlalarme (Download-Dokumenttitel, UNESCO-Datumslabels) werden
+  ignoriert. Der vollständige Lauf über alle 83 Seiten meldet keinen
+  echten Prosa-Slop.
 * Worttreue gegen die Vorlage: alle Seiten mit eigener Quelle werden Wort für
   Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der
