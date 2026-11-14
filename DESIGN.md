@@ -82,10 +82,15 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   aufgeklebter Abzug mit dynamischem Rahmen und orangem Versatzschatten
   (12 px). Das Termin-Ticket trägt eine orange Anschlagkante links. Die
   Abschluss-Chips beginnen an derselben Flucht wie Badge, H1 und Text und
-  bleiben leicht gedreht. Der Hero bleibt inhaltshoch; auf dem Telefon
-  wird das Foto auf 13 rem Höhe beschnitten, damit die Chips im ersten
-  Bild bleiben. Die Wege führen über Kopfnavigation, Sektionen und den
-  „Alle Schularten"-Knopf.
+  bleiben leicht gedreht. Sie stehen in der Textspalte, damit sie auf dem
+  Telefon zwischen Leitsatz und Foto erscheinen. Der Hero bleibt
+  inhaltshoch; auf dem Telefon wird das Foto auf 13 rem Höhe beschnitten,
+  damit die Chips im ersten Bild bleiben. Die Wege führen über
+  Kopfnavigation, Sektionen und den „Alle Schularten"-Knopf.
+- **Schulart-Kopf:** Brotkrumen, H1 und Lead. Kein Kategorie-Etikett über
+  der H1; die Einordnung (Vollzeit/Teilzeit) steht als Fakt „Schulart" in
+  „Auf einen Blick" in der Seitenleiste und wird dort nicht doppelt
+  wiederholt.
 - **Sektionsköpfe (`kopfzeile`):** die H2 steht allein auf der
   Containerkante und trägt einen 6-px-Unterstrich in Orange – auf dem
   blauen Band in Gelb (Kontrast). Kein Kicker darüber: die Überschrift

@@ -17,27 +17,26 @@
           </a>
         {{- end }}
       {{- end }}
+      {{- /* Die Abschluss-Chips sehen wie Knöpfe aus – also verlinken sie auf
+             die Schulart, die den Abschluss anbietet (Daten aus den
+             Abschluss-Angaben der Schularten; „Abitur" bieten zwei Gymnasien,
+             dort führt der Weg zur Übersicht). Sie stehen in der Textspalte,
+             damit sie auf dem Telefon nicht hinter dem Foto landen. */}}
+      <ul class="hero__punkte">
+        {{- $abschluesse := slice
+          (dict "name" "Hauptschulabschluss" "ziel" "/schularten/berufsvorbereitende-schularten/")
+          (dict "name" "Mittlere Reife" "ziel" "/schularten/zweijahrige-berufsfachschulen/")
+          (dict "name" "FH-Reife" "ziel" "/schularten/berufskolleg-informationstechnische-assistenten/")
+          (dict "name" "Abitur" "ziel" "/schularten/")
+          (dict "name" "Berufsausbildung" "ziel" "/schularten/berufsschule/") }}
+        {{- range $abschluesse }}
+        <li><a href="{{ strings.TrimPrefix "/" .ziel | relURL }}">{{ .name }}</a></li>
+        {{- end }}
+      </ul>
     </div>
     <figure class="hero__bild">
       <img src="{{ .Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ .Params.bildAlt }}" width="604" height="453" fetchpriority="high" decoding="async">
     </figure>
-  </div>
-  {{- /* Die Abschluss-Chips sehen wie Knöpfe aus – also verlinken sie auf
-         die Schulart, die den Abschluss anbietet (Daten aus den
-         Abschluss-Angaben der Schularten; „Abitur" bieten zwei Gymnasien,
-         dort führt der Weg zur Übersicht). */}}
-  <div class="container">
-    <ul class="hero__punkte">
-      {{- $abschluesse := slice
-        (dict "name" "Hauptschulabschluss" "ziel" "/schularten/berufsvorbereitende-schularten/")
-        (dict "name" "Mittlere Reife" "ziel" "/schularten/zweijahrige-berufsfachschulen/")
-        (dict "name" "FH-Reife" "ziel" "/schularten/berufskolleg-informationstechnische-assistenten/")
-        (dict "name" "Abitur" "ziel" "/schularten/")
-        (dict "name" "Berufsausbildung" "ziel" "/schularten/berufsschule/") }}
-      {{- range $abschluesse }}
-      <li><a href="{{ strings.TrimPrefix "/" .ziel | relURL }}">{{ .name }}</a></li>
-      {{- end }}
-    </ul>
   </div>
 </section>
 

@@ -14,7 +14,6 @@
         <li aria-current="page">{{ .Title }}</li>
       </ol>
     </nav>
-    <p class="marke" data-kategorie="{{ .Params.kategorie | lower }}">{{ .Params.kategorie }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Params.kurz }}<p class="lead">{{ . }}</p>{{ end }}
   </div>
