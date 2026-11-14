@@ -1114,13 +1114,13 @@ h2[id^="dl-"] {
   background: var(--flaeche);
   color: var(--schrift);
   border: var(--rahmen);
-  box-shadow: var(--schatten-klein);
   padding: 0.35rem 0.7rem;
   font-size: var(--t-xs);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   box-shadow: var(--schatten-klein);
+  transition: translate 0.15s ease, box-shadow 0.15s ease;
 }
 
 .hero__punkte li:nth-child(odd) {
@@ -1137,10 +1137,18 @@ h2[id^="dl-"] {
   display: block;
 }
 
+/* Kein schwarzer Block beim Überfahren: der Chip hebt sich wie ein
+   Knopf um 2 px und legt einen größeren Schatten an. Tastaturfokus
+   bekommt dieselbe Bewegung, damit sie nicht nur der Maus vorbehalten ist. */
+.hero__punkte li:focus-within {
+  translate: -2px -2px;
+  box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
 @media (hover: hover) {
-  .hero__punkte a:hover {
-    background: var(--tinte);
-    color: var(--gelb);
+  .hero__punkte li:hover {
+    translate: -2px -2px;
+    box-shadow: 6px 6px 0 var(--schatten-farbe);
   }
 }
 
