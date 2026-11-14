@@ -745,7 +745,7 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   `--rand`, `--link`, `--schatten-farbe`, `--streifen` …). Die Komponenten
   referenzieren nur diese Tokens; der dunkle Satz ersetzt Werte, nicht Regeln.
 * Alle Abschnitte liegen auf derselben Papierfläche; Gelb, Orange und Blau
-  sind Akzente (Aktionen, Kicker, Kategorien, Links). Gelb füllt nur noch
+  sind Akzente (Aktionen, Kategorien, Links). Gelb füllt nur noch
   einzelne Komponenten wie `.kasten--gelb` oder Schaltflächen, keine ganzen
   Seitenbänder.
 * Die Akzentfarben stehen so im GHSE-Logo (`static/bilder/logo-zeichen.webp`,
@@ -781,7 +781,7 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Bilder (Bilder einzeln betrachtet und beschrieben), Farben auf Kontrast
   geprüft – `qa/kontrast.py` liest die Tokens direkt aus dem Stylesheet und
   rechnet alle Paare in Hell **und** Dunkel durch (kleinster Textwert
-  5,46:1 für den Kicker auf Papier, alle Paare bestehen),
+  5,46:1 für Tieforange auf Papier, alle Paare bestehen),
   Touch-Ziele ≥ 44 px, `prefers-reduced-motion` respektiert.
 * Responsive: Breakpoints 1199/1000/900/640/560 px – Karten- und Zeilenraster
   stapeln sich, unter 1200 px wird die Navigation zum Aufklappmenü, das
@@ -810,9 +810,9 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   und werden deshalb als „lebend, aber gesperrt" geführt; ein dritter Link,
   `softatomos.com/kane/` (Projektseite von VplanTouch), zeigt ins Leere und
   steht deshalb als Klartext im Text, nicht als Link.
-* UI-Texte: Bei neuen Labels, Buttons, Kickern und Alt-Texten den lokalen
-  `copy-lint` des design-taste-Skills auf den geänderten Seiten laufen
-  lassen. Die Originaltexte bleiben unangetastet; die zwei bekannten
+* UI-Texte: Bei neuen Labels, Buttons, Überschriften und Alt-Texten den
+  lokalen `copy-lint` des design-taste-Skills auf den geänderten Seiten
+  laufen lassen. Die Originaltexte bleiben unangetastet; die zwei bekannten
   Fehlalarme (Download-Dokumenttitel, UNESCO-Datumslabels) werden
   ignoriert. Der vollständige Lauf über alle 83 Seiten meldet keinen
   echten Prosa-Slop.
@@ -821,8 +821,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Überschriften. Der Impeccable-Browser-Detector meldet auf neun
   Seitentypen (1440 und 390 px) keine `line-length`-, `straggler`- oder
   `unbalanced-heading`-Befunde mehr. Übrig bleiben `overused-font` (Inter
-  als Hausschrift), die Sticker-Kicker und die harten Schatten – bewusste
-  GHSE-Merkmale, kein Slop.
+  als Hausschrift), die Großbuchstaben-Labels und die harten Schatten –
+  bewusste GHSE-Merkmale, kein Slop.
 * Worttreue gegen die Vorlage: alle Seiten mit eigener Quelle werden Wort für
   Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der

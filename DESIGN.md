@@ -60,8 +60,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - Neutrale Grundflächen bleiben im Light Mode weiß und wechseln im Dark Mode
   geschlossen zu Schwarz. Hero und Termine setzen GHSE-Gelb und helles Blau
   als gezielte Vollflächen ein; Schularten liegen auf der Grundfläche.
-- Gelb markiert Aktionen und Marker, Orange Struktur (Kicker, Kategorien,
-  Linien), helles Blau Links und einzelne Sekundäraktionen.
+- Gelb markiert Aktionen und Marker, Orange Struktur (Kategorien,
+  Linien, Unterstreichungen), helles Blau Links und einzelne
+  Sekundäraktionen.
 - Schwarze 3-px-Rahmen und harte Schatten (Karten 8 px, übrige 6 px,
   klein 4 px) tragen die Kontur; Fokusringe sind 3 px tieforange mit
   3 px Abstand.
@@ -80,13 +81,11 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   wird das Foto auf 13 rem Höhe beschnitten, damit die Chips im ersten
   Bild bleiben. Die Wege führen über Kopfnavigation, Sektionen und den
   „Alle Schularten"-Knopf.
-- **Sektionsköpfe (`kopfzeile`):** der Kicker ist ein gelbes
-  Sticker-Etikett (Rahmen, Schatten, leichte Schräglage) **über** der
-  H2 und links auf der Containerkante; die H2 trägt einen
-  6-px-Unterstrich in Orange – auf dem blauen Band in Gelb (Kontrast).
-  Kicker nur, wo sie die Sektion einordnen („Bildungsangebote",
-  „Schuljahresplaner"); wiederholte Strukturlabels wie „Kategorie" oder
-  „Übersicht" entfallen, weil die Überschrift das schon sagt.
+- **Sektionsköpfe (`kopfzeile`):** die H2 steht allein auf der
+  Containerkante und trägt einen 6-px-Unterstrich in Orange – auf dem
+  blauen Band in Gelb (Kontrast). Kein Kicker darüber: die Überschrift
+  benennt die Sektion selbst, ein Zusatz gehört in ihren Wortlaut
+  („Termine im Schuljahr").
 - **Knöpfe (`btn`):** Varianten `--akzent` (gelb), `--geist`
   (transparent, schwarze Kontur), `--klein` (z. B. in Download-Zeilen und
   Hinweisen). Zustände: hover hebt 3 px, `:active` drückt auf den
@@ -126,7 +125,7 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   die Beschriftung eine Stufe kleiner (`--t-s`), damit lange Namen in der
   zweispaltigen Galerie nicht mitten im Wort brechen.
 - **Hinweise (`hinweis`, Shortcode):** blasse Gelbfläche
-  (`--hinweis-flaeche`), Titel als Kicker, optional ein
+  (`--hinweis-flaeche`), Titel fett in Tieforange, optional ein
   `btn--geist btn--klein` mit Ziel; Variante `--warnung` (rote Fläche,
   Tieforange-Rand).
 - **Kalender-Karten (`kalender`):** Name plus Aktionsspalte; ganzflächig
@@ -176,8 +175,9 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Labels eindeutig:** Knöpfe und Links benennen das Ziel („Alle
   Meldungen", „Mehr erfahren →"); Pfeile und ↗ als `aria-hidden`-Zier,
   nicht als einzige Information.
-- **Kicker:** zwei bis drei Wörter, Großbuchstaben, ordnen die Sektion
-  ein („Bildungsangebote", „Schuljahresplaner") – kein Werbetext.
+- **Sektionsköpfe:** keine Kicker über der Überschrift. Die H2 benennt
+  die Sektion; wo ein Zusatz nötig ist, steht er in ihrem Wortlaut
+  („Termine im Schuljahr") – kein Werbetext.
 - **Kurzfassungen:** erste Aussage der Quelle, bei Instagram mit „…"
   gekappt, ohne Emojis und Hashtags; nichts erfinden, keine Zahlen
   ergänzen, die die Quelle nicht nennt.
