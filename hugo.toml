@@ -22,6 +22,12 @@ disableKinds = ["taxonomy", "term"]
   home = ["HTML", "robots"]
   section = ["HTML", "RSS"]
 
+# Der HTML-Minifier behält Attribut-Anführungszeichen: linkcheck und
+# livecheck lesen href/src als Text und brauchen die Quotes.
+[minify]
+  [minify.tdewolff.html]
+    keepQuotes = true
+
 [params]
   schulname = "Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen"
   kurzform = "GHSE Emmendingen"

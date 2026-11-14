@@ -91,6 +91,12 @@
       "skillPath": "skills/explain-interface/SKILL.md",
       "computedHash": "027b08c97bb30e38a4498612dd1a8d1ff5424ae535dd9eec61c5de62b5df5b7a"
     },
+    "hugo-theme": {
+      "source": "magnus919/agent-skills",
+      "sourceType": "github",
+      "skillPath": "hugo-theme/SKILL.md",
+      "computedHash": "9a804cac323f71aaf27416f49a249b8e27da7133bf54800f98b87887469104ea"
+    },
     "impeccable": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",

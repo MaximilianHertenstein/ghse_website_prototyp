@@ -47,7 +47,7 @@ jobs:
           fi
 
       - name: Website bauen
-        run: hugo --baseURL "$BASE_URL"
+        run: hugo --baseURL "$BASE_URL" --minify --gc
 
       - name: Pages-Konfiguration laden
         uses: actions/configure-pages@v5

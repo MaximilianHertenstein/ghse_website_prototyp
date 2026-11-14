@@ -1,0 +1,83 @@
+{{- /* Strukturierte Daten für Suchmaschinen: Schule und Website auf jeder
+       Seite, dazu BreadcrumbList auf Schulart-Detailseiten und
+       NewsArticle auf Meldungen. Absolute Adressen kommen aus .Permalink
+       und absURL; im lokalen Bau mit baseURL "/" bleiben sie relativ. */ -}}
+{{- $home := site.Home.Permalink -}}
+{{- $orgID := printf "%s#school" $home -}}
+{{- $websiteID := printf "%s#website" $home -}}
+{{- $logo := "/bilder/logo-zeichen.webp" | absURL -}}
+
+{{- $adresse := dict
+      "@type" "PostalAddress"
+      "streetAddress" site.Params.strasse
+      "postalCode" "79312"
+      "addressLocality" "Emmendingen"
+      "addressCountry" "DE" -}}
+
+{{- $schule := dict
+      "@type" "School"
+      "@id" $orgID
+      "name" site.Params.schulname
+      "alternateName" site.Params.kurzform
+      "url" $home
+      "logo" $logo
+      "image" $logo
+      "telephone" site.Params.telefon
+      "email" site.Params.mail
+      "address" $adresse
+      "sameAs" (slice "https://www.instagram.com/ghse_emmendingen/") -}}
+
+{{- $website := dict
+      "@type" "WebSite"
+      "@id" $websiteID
+      "url" $home
+      "name" site.Title
+      "inLanguage" "de-DE"
+      "publisher" (dict "@id" $orgID) -}}
+
+{{- $graph := slice $schule $website -}}
+
+{{- if and (eq .Type "schularten") (eq .Kind "page") -}}
+  {{- $items := slice -}}
+  {{- range .Ancestors.Reverse -}}
+    {{- $name := cond .IsHome "Start" .Title -}}
+    {{- $items = $items | append (dict
+          "@type" "ListItem"
+          "position" (add (len $items) 1)
+          "name" $name
+          "item" .Permalink) -}}
+  {{- end -}}
+  {{- $items = $items | append (dict
+        "@type" "ListItem"
+        "position" (add (len $items) 1)
+        "name" .Title
+        "item" .Permalink) -}}
+  {{- $graph = $graph | append (dict
+        "@type" "BreadcrumbList"
+        "@id" (printf "%s#breadcrumb" .Permalink)
+        "itemListElement" $items) -}}
+{{- end -}}
+
+{{- if and (eq .Section "news") (eq .Kind "page") -}}
+  {{- $bild := .Params.bild | default "/bilder/logo-zeichen.webp" -}}
+  {{- $mod := cond .Lastmod.IsZero .Date .Lastmod -}}
+  {{- $artikel := dict
+        "@type" "NewsArticle"
+        "@id" (printf "%s#article" .Permalink)
+        "headline" .Title
+        "description" (.Description | default .Params.teaser | default site.Params.beschreibung)
+        "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+        "dateModified" ($mod.Format "2006-01-02T15:04:05Z07:00")
+        "image" (slice ($bild | strings.TrimPrefix "/" | absURL))
+        "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+        "publisher" (dict "@id" $orgID) -}}
+  {{- with .Params.quelle -}}
+    {{- $artikel = merge $artikel (dict "author" (dict "@type" "Organization" "name" .)) -}}
+  {{- end -}}
+  {{- with .Params.quelle_url -}}
+    {{- $artikel = merge $artikel (dict "isBasedOn" .) -}}
+  {{- end -}}
+  {{- $graph = $graph | append $artikel -}}
+{{- end -}}
+
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

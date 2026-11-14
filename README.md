@@ -719,6 +719,12 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * **Pfade:** Interne Links, Bildpfade und Datei-Downloads laufen durch
   `relURL`/`relPermalink` – die Ausgabe funktioniert unter `/` und unter
   `/<repo>/` ohne Änderung an den Vorlagen.
+* **Suchmaschinen:** `layouts/baseof.html` setzt Canonical, Open Graph,
+  Twitter Cards und `og:image:alt`; `layouts/_partials/jsonld.html` liefert
+  `School` und `WebSite` auf jeder Seite, `BreadcrumbList` auf
+  Schulart-Detailseiten und `NewsArticle` auf Meldungen. Die Pages-Pipeline
+  baut mit `--minify --gc`; `keepQuotes` in `hugo.toml` erhält die
+  Attribut-Anführungszeichen für `linkcheck` und `livecheck`.
 * **Front Matter ↔ CMS:** `title`, `description`, `kategorie`, `kurz`,
   `abschluss`, `bild`, `bildAlt`, `bilder`, `bild2`, `bild2Alt`, `bild3`,
   `bild3Alt`, `date`, `quelle`, `quelle_url`,
@@ -772,9 +778,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   der Navigation, Alt-Texte für alle
   Bilder (Bilder einzeln betrachtet und beschrieben), Farben auf Kontrast
   geprüft – `qa/kontrast.py` liest die Tokens direkt aus dem Stylesheet und
-  rechnet alle Paare in Hell **und** Dunkel durch (19 Paare je Modus,
-  kleinster Textwert 5,46:1 für den Kicker auf Papier,
-  alle Paare bestehen),
+  rechnet alle Paare in Hell **und** Dunkel durch (kleinster Textwert
+  5,46:1 für den Kicker auf Papier, alle Paare bestehen),
   Touch-Ziele ≥ 44 px, `prefers-reduced-motion` respektiert.
 * Responsive: Breakpoints 1199/1000/900/640/560 px – Karten- und Zeilenraster
   stapeln sich, unter 1200 px wird die Navigation zum Aufklappmenü, das
@@ -793,7 +798,7 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   (`layouts/_default/_markup/render-link.html`) schreibt sie um.
 * Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 83
   HTML-Dateien (82 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
-  Schriften und Dokumente (5302 Ziele gesamt, keine Fehlschläge,
+  Schriften und Dokumente (über 5.400 Ziele gesamt, keine Fehlschläge,
   einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,

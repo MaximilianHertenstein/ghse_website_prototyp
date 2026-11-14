@@ -16,6 +16,7 @@
   {{- $titel := cond .IsHome (printf "%s – %s" site.Title (strings.TrimSuffix " Emmendingen" site.Params.schulname)) (printf "%s | %s" .Title site.Title) -}}
   <title>{{ $titel }}</title>
   <meta name="description" content="{{ .Description | default site.Params.beschreibung }}">
+  <link rel="canonical" href="{{ .Permalink }}">
   <meta property="og:title" content="{{ $titel }}">
   <meta property="og:description" content="{{ .Description | default site.Params.beschreibung }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
@@ -23,6 +24,15 @@
          (manche Seiten zeigen ihr Bild nur in der Kachel), sonst das Logo. */}}
   {{- $bild := .Params.bild | default .Params.karteBild | default "/bilder/logo-zeichen.webp" -}}
   <meta property="og:image" content="{{ $bild | strings.TrimPrefix "/" | absURL }}">
+  <meta property="og:image:alt" content="{{ .Params.bildAlt | default $titel }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:locale" content="de_DE">
+  {{ if eq .Section "news" }}<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $titel }}">
+  <meta name="twitter:description" content="{{ .Description | default site.Params.beschreibung }}">
+  <meta name="twitter:image" content="{{ $bild | strings.TrimPrefix "/" | absURL }}">
   {{- /* Der Feed des Nachrichtenbereichs wird von Lesern und Suchmaschinen
          über diesen Verweis gefunden. */}}
   {{ with .OutputFormats.Get "RSS" }}
@@ -32,6 +42,7 @@
   <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{ partial "jsonld.html" . }}
 </head>
 <body>
   <a class="sprungmarke" href="#inhalt">Direkt zum Inhalt</a>
