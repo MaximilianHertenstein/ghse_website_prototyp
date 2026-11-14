@@ -1,0 +1,27 @@
+{{- /* Tabellen aus Markdown bekommen explizite Spalten- und Zeilenköpfe
+       für Screenreader. Die erste Zelle jeder Body-Zeile ist die
+       Zeilenüberschrift, die Kopfzeile die Spaltenüberschrift. */ -}}
+<table>
+  <thead>
+    {{- range .THead }}
+      <tr>
+        {{- range . }}
+          <th scope="col"{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
+        {{- end }}
+      </tr>
+    {{- end }}
+  </thead>
+  <tbody>
+    {{- range .TBody }}
+      <tr>
+        {{- range $i, $zelle := . }}
+          {{- if eq $i 0 }}
+          <th scope="row"{{ with $zelle.Alignment }} style="text-align: {{ . }}"{{ end }}>{{ $zelle.Text }}</th>
+          {{- else }}
+          <td{{ with $zelle.Alignment }} style="text-align: {{ . }}"{{ end }}>{{ $zelle.Text }}</td>
+          {{- end }}
+        {{- end }}
+      </tr>
+    {{- end }}
+  </tbody>
+</table>

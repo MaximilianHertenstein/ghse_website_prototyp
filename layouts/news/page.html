@@ -46,8 +46,7 @@
       {{- /* Bildunterschrift: höchstens Quellbreite und lesbare Zeilenlänge */ -}}
       {{- $capBreite := cond (lt $grossD.Width 700) $grossD.Width 700 -}}
     <figure class="beitrag__bild">
-      <a class="beitrag__lupe" style="max-width: {{ $grossD.Width }}px" href="{{ $gross | relURL }}" target="_blank" rel="noopener"
-         aria-label="Abbildung in voller Größe öffnen – öffnet einen neuen Tab">
+      <a class="beitrag__lupe" style="max-width: {{ $grossD.Width }}px" href="{{ $gross | relURL }}" target="_blank" rel="noopener">
         <img src="{{ $rel | relURL }}"
           {{- if not $ohneGross }} srcset="{{ $rel | relURL }} {{ $klein.Width }}w, {{ $gross | relURL }} {{ $grossD.Width }}w"
                sizes="(max-width: 640px) calc(100vw - 1.75rem), (max-width: 800px) calc(100vw - 2.5rem), 1048px"{{ end }}

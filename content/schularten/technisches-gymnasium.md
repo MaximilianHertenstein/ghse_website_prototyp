@@ -157,7 +157,7 @@ Alle wichtigen Informationen zu dieser Schulart finden Sie in unserem Flyer, den
 
 Noch mehr Informationen und Quelle:
 
-[http://www.kultusportal-bw.de/,Lde/Startseite/schulebw/Technisches+Gymnasium](http://www.kultusportal-bw.de/,Lde/Startseite/schulebw/Technisches+Gymnasium)
+http://www.kultusportal-bw.de/,Lde/Startseite/schulebw/Technisches+Gymnasium
 
 ## Alles im Überblick
 

@@ -976,13 +976,6 @@ h2[id^="dl-"] {
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
   border-bottom: 4px solid var(--orange);
-  /* Der Hero füllt den ersten Bildschirm unter dem Kopf; die nächste
-     Sektion beginnt erst darunter. */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(100vh - var(--kopfhoehe));
-  min-height: calc(100svh - var(--kopfhoehe));
 }
 
 .hero__innen {

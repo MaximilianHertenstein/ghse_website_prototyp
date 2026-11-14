@@ -799,7 +799,7 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
 * Links: alle internen Ziele geprüft (`qa/linkcheck.py`) – alle 83
   HTML-Dateien (82 Seiten plus `404.html`) sowie alle eingebundenen Bilder,
   Schriften und Dokumente (über 5.400 Ziele gesamt, keine Fehlschläge,
-  einschließlich der Sprungziele der Download-Kategorien). Die 59 externen Links prüft `qa/extlinkcheck.py` einzeln:
+  einschließlich der Sprungziele der Download-Kategorien). Die über 60 externen Links prüft `qa/extlinkcheck.py` einzeln:
   keiner ist nachweisbar tot – darunter die 9 öffentlichen Nextcloud-
   Terminkalender, 12 Instagram-Links (8 Accounts, 4 Beiträge), BewO,
   Moodle, OSM, WebUntis, die alte Nextcloud-Speicherfreigabe,
@@ -979,9 +979,11 @@ Push startet die Pipeline automatisch neu.
    IServ-Dienstpfad als Dienstadresse. Auch die Hinweisblöcke „Prototyp",
    der „Originalseite"-Link im Fuß, der Prototyp-Hinweis unter dem
    Copyright und die Quellen-URLs der zehn Pressemeldungen sind entfernt
-   (die Quellenangabe selbst bleibt als Klartext im Bildtext stehen). Der
-   Kultusportal-Deep-Link der Originalseite (404, Portal umgezogen) zeigt
-   weiterhin auf die geprüfte Startseite des Kultusministeriums.
+   (die Quellenangabe selbst bleibt als Klartext im Bildtext stehen). Vier
+   tote Original-Links stehen jetzt als Klartext: der Kultusportal-Deeplink,
+   zwei km-bw-Deeplinks und ein Twitter-Status; `qa/extlinkcheck.py` meldet
+   damit keine nachweisbar toten Ziele mehr (zwei Ziele sind nur
+   bot-gesperrt).
 4. **Kein Tracking (entschieden):** Kein Analytics, kein Consent-Modul —
    ohne Tracking ist keine Einwilligung nötig; der Kopf bleibt dadurch
    auch schneller. Falls die Schule später doch Analysen will, ist der

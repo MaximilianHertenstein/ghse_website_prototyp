@@ -71,10 +71,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   aufgeklebter Abzug mit dynamischem Rahmen und orangem Versatzschatten
   (12 px). Das Termin-Ticket trägt eine orange Anschlagkante links. Die
   Abschluss-Chips beginnen an derselben Flucht wie Badge, H1 und Text und
-  bleiben leicht gedreht. Der Hero füllt unter dem Kopf den ersten
-  Bildschirm; auf dem Telefon wird das Foto auf 13 rem Höhe beschnitten,
-  damit die Chips im ersten Bild bleiben. Die Wege führen über
-  Kopfnavigation, Sektionen und den „Alle Schularten"-Knopf.
+  bleiben leicht gedreht. Der Hero bleibt inhaltshoch; auf dem Telefon
+  wird das Foto auf 13 rem Höhe beschnitten, damit die Chips im ersten
+  Bild bleiben. Die Wege führen über Kopfnavigation, Sektionen und den
+  „Alle Schularten"-Knopf.
 - **Sektionsköpfe (`kopfzeile`):** der Kicker ist ein gelbes
   Sticker-Etikett (Rahmen, Schatten, leichte Schräglage), die H2 trägt
   einen 6-px-Unterstrich in Orange – auf dem blauen Band in Gelb

@@ -26,7 +26,7 @@ Das sechsjährige Berufliche Gymnasium richtet sich an gute Realschüler sowie s
 
 Im Unterricht des Profilfachs Ernährung, Soziales und Gesundheit erforschen die Schülerinnen und Schüler im 6SG die Bandbreite der Faktoren, die ihre Lebensweise beeinflussen. Sie erwerben ernährungs-, sozial- und gesundheitswissenschaftliche Erkenntnisse und gewinnen daraus fundierte Einsichten, die zu einer gelingenden persönlichen Entwicklung und einer gesunden Lebensführung beitragen. Durch die Vermittlung grundlegender Kenntnisse über die Inhaltsstoffe von Lebensmitteln und deren ernährungsphysiologische Bedeutung erlernen sie einen verantwortungsbewussten Umgang mit Nahrungsmitteln. Sie sind in der Lage, eine bedarfsgerechte Ernährung als entscheidende Grundlage für die Erhaltung der Gesundheit und Leistungsfähigkeit zu würdigen.
 
-Theoretische Grundlagen werden durch praxisnahe Untersuchungen im Labor, Übungen in der Küche sowie Exkursionen ergänzt. Quelle: [https://km-bw.de/Kultusministerium,Lde/Startseite/Schule/6_Jaehrige+BG](https://km-bw.de/Kultusministerium,Lde/Startseite/Schule/6_Jaehrige+BG)
+Theoretische Grundlagen werden durch praxisnahe Untersuchungen im Labor, Übungen in der Küche sowie Exkursionen ergänzt. Quelle: https://km-bw.de/Kultusministerium,Lde/Startseite/Schule/6_Jaehrige+BG
 
 ## Wir würden das kurz so zusammenfassen:
 

@@ -93,4 +93,4 @@ Alle wichtigen Informationen zu dieser Schulart findest du in unserem Flyer, den
 
 Noch mehr Informationen und Quellen:
 
-[https://km-bw.de/,Lde/Startseite/Schule/Berufsfachschulen](https://km-bw.de/,Lde/Startseite/Schule/Berufsfachschulen)
+https://km-bw.de/,Lde/Startseite/Schule/Berufsfachschulen

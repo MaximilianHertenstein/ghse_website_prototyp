@@ -38,7 +38,7 @@ jobs:
 
       - name: Zieladresse berechnen
         run: |
-          OWNER="${GITHUB_REPOSITORY%%/*}"
+          OWNER="$(printf '%s' "${GITHUB_REPOSITORY%%/*}" | tr '[:upper:]' '[:lower:]')"
           REPO="${GITHUB_REPOSITORY#*/}"
           if [ "$REPO" = "$OWNER.github.io" ]; then
             echo "BASE_URL=https://$OWNER.github.io/" >> "$GITHUB_ENV"

@@ -14,7 +14,7 @@
 {{- $poster := strings.TrimPrefix "/" (.Get "poster") -}}
 <figure class="video">
   <button class="video__knopf" type="button" data-video-src="{{ $src | relURL }}"
-          aria-label="{{ .Get "alt" | default "Video abspielen" }}">
+          aria-label="Video abspielen: {{ .Get "alt" | default "GHSE-Video" }}">
     {{- with .Get "poster" }}
     <img src="{{ $poster | relURL }}" alt="" width="640" height="360" loading="lazy" decoding="async">
     {{- end }}
