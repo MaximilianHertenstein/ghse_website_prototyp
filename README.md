@@ -705,8 +705,10 @@ layouts/            baseof.html, home.html, 404.html
   news/             section.html, page.html
   schularten/       section.html, page.html
   downloads/        section.html
+assets/css/         main.css (Hugo Pipes: minify + fingerprint)
+assets/js/          nav.js, video.js (Hugo Pipes: minify + fingerprint)
 assets/downloads/   Original-PDFs (Hugo veröffentlicht sie als /downloads/*.pdf)
-static/             css/main.css, js/nav.js, fonts/, bilder/, favicon.svg
+static/             fonts/, bilder/, favicon.svg
 tools/              preview-server.py (Mess-Server: Keep-Alive + gzip wie GitHub Pages)
                     instagram.py (neueste Instagram-Beiträge in _index.md holen)
 public/             gebaute Website (nicht eingecheckt, siehe .gitignore)
@@ -751,7 +753,7 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Gelb `#F6DC56` (246, 220, 86), Orange `#EE7330` (238, 115, 48),
   Blau `#114C92` als Mitte zwischen (34, 45, 113) und (0, 106, 180);
   Grau `#00000A` (0, 0, 10).
-  `qa/kontrast.py` liest die Tokens direkt aus `static/css/main.css` und
+  `qa/kontrast.py` liest die Tokens direkt aus `assets/css/main.css` und
   prüft beide Farbmodi gegen diese Werte.
 * Der dunkle Satz steht zweimal: in `@media (prefers-color-scheme: dark)`
   (ohne gespeicherte Wahl, `:root:not([data-theme="light"])`) und unter

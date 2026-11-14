@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""WCAG-2.2-Kontrastprüfung der Farb-Tokens aus static/css/main.css.
+"""WCAG-2.2-Kontrastprüfung der Farb-Tokens aus assets/css/main.css.
 
 Das Skript liest die Tokens direkt aus dem Stylesheet – der helle Satz aus
 `:root`, der dunkle aus `@media (prefers-color-scheme: dark)` und aus
@@ -17,7 +17,7 @@ import re
 import sys
 from pathlib import Path
 
-STYLESHEET = Path(__file__).resolve().parent.parent / "static" / "css" / "main.css"
+STYLESHEET = Path(__file__).resolve().parent.parent / "assets" / "css" / "main.css"
 
 
 def regeln(css):

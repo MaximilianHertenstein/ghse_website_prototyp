@@ -135,7 +135,7 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   tragen einen 3-px-Unterstrich in der Fuß-Linienfarbe (Gelb).
 - **Video (`video`, Shortcode):** Breite der Lesespalte, schwarzer
   Rahmen, gelber Play-Knopf auf dem Vorschaubild. Das Video selbst wird
-  erst beim Klick nachgeladen (`static/js/video.js`) – ein
+  erst beim Klick nachgeladen (`assets/js/video.js`) – ein
   `<video>`-Element bringt den Mediaplayer mit und kostet rund 200 ms
   Hauptthread-Zeit, auch ohne Abspielen. Ohne JavaScript bleibt das
   Vorschaubild mit dem Link auf die Datei.

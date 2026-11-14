@@ -41,7 +41,8 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
   {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}
-  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
   {{ partial "jsonld.html" . }}
 </head>
 <body>
@@ -51,7 +52,9 @@
     {{ block "inhalt" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script src="{{ "js/nav.js" | relURL }}" defer></script>
-  <script src="{{ "js/video.js" | relURL }}" defer></script>
+  {{- $nav := resources.Get "js/nav.js" | minify | fingerprint }}
+  {{- $video := resources.Get "js/video.js" | minify | fingerprint }}
+  <script src="{{ $nav.RelPermalink }}" integrity="{{ $nav.Data.Integrity }}" defer></script>
+  <script src="{{ $video.RelPermalink }}" integrity="{{ $video.Data.Integrity }}" defer></script>
 </body>
 </html>
