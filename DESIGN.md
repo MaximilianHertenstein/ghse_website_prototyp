@@ -198,6 +198,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   weiter stehen – Stärke je nach Komponente: Knöpfe 3 px, Karten 4 px,
   Kalender/Instagram 3 px, Partner 2 px; `:active` drückt auf den Schatten
   (`translate(4px, 4px)`, Schatten aus). Nicht nur die Farbe ändern.
+  Hover-Regeln liegen unter `@media (hover: hover)`; auf Touch bleiben
+  Ruhezustand und `:focus-within`/`:focus-visible` sichtbar.
 - **focus-visible:** 3 px Ring mit 3 px Abstand. Auf Papier und Fläche
   Tieforange (`--orange-tief`), auf dem blauen Band Gelb, auf Gelb Tinte –
   der Ring muss gegen die Fläche 3:1 erreichen.

@@ -306,13 +306,17 @@ h2[id^="dl-"] {
   color: var(--grau);
 }
 
-.chip:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-}
+/* Hover ist eine Rückmeldung für Zeigegeräte. Auf Touch bleibt der
+   Ruhezustand; Fokus zeigen :focus-within und :focus-visible. */
+@media (hover: hover) {
+  .chip:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 
-.chip:hover span {
-  color: var(--tinte);
+  .chip:hover span {
+    color: var(--tinte);
+  }
 }
 
 .chip:active {
@@ -333,9 +337,11 @@ h2[id^="dl-"] {
   transform: rotate(-1.2deg);
 }
 
-.chip--akzent:hover {
-  background: var(--tinte);
-  color: var(--gelb);
+@media (hover: hover) {
+  .chip--akzent:hover {
+    background: var(--tinte);
+    color: var(--gelb);
+  }
 }
 
 .chip--ruhig {
@@ -394,9 +400,11 @@ h2[id^="dl-"] {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.btn:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 7px 7px 0 var(--schatten-farbe);
+@media (hover: hover) {
+  .btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0 var(--schatten-farbe);
+  }
 }
 
 .btn:active {
@@ -419,8 +427,10 @@ h2[id^="dl-"] {
   box-shadow: 3px 3px 0 var(--schatten-farbe);
 }
 
-.btn--klein:hover {
-  box-shadow: 5px 5px 0 var(--schatten-farbe);
+@media (hover: hover) {
+  .btn--klein:hover {
+    box-shadow: 5px 5px 0 var(--schatten-farbe);
+  }
 }
 
 .btn:disabled, .btn[aria-disabled="true"] {
@@ -445,10 +455,12 @@ h2[id^="dl-"] {
   padding-bottom: 0.15rem;
 }
 
-.linkpfeil:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-  border-bottom-color: var(--tinte);
+@media (hover: hover) {
+  .linkpfeil:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+    border-bottom-color: var(--tinte);
+  }
 }
 
 .band {
@@ -496,10 +508,12 @@ h2[id^="dl-"] {
   color: var(--weiss);
 }
 
-.band--gelb .btn--geist:hover,
-.band--blau .btn--geist:hover {
-  background: var(--gelb);
-  color: var(--tinte);
+@media (hover: hover) {
+  .band--gelb .btn--geist:hover,
+  .band--blau .btn--geist:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 }
 
 .band--gelb a:not(.btn),
@@ -537,9 +551,11 @@ h2[id^="dl-"] {
   color: var(--link);
 }
 
-.btn--geist-blau:hover {
-  background: var(--gelb);
-  color: var(--tinte);
+@media (hover: hover) {
+  .btn--geist-blau:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 }
 
 .kopfzeile {
@@ -672,9 +688,11 @@ h2[id^="dl-"] {
   padding-bottom: 1px;
 }
 
-.leiste__schnell a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
+@media (hover: hover) {
+  .leiste__schnell a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 }
 
 .leiste__trenn {
@@ -708,8 +726,10 @@ h2[id^="dl-"] {
   flex: 0 0 auto;
 }
 
-.marke-link:hover img {
-  transform: rotate(-2deg);
+@media (hover: hover) {
+  .marke-link:hover img {
+    transform: rotate(-2deg);
+  }
 }
 
 .menue {
@@ -746,9 +766,11 @@ h2[id^="dl-"] {
   letter-spacing: 0.04em;
 }
 
-.menue ul a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
+@media (hover: hover) {
+  .menue ul a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 }
 
 .menue ul a[aria-current="page"] {
@@ -804,8 +826,13 @@ h2[id^="dl-"] {
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  .menue__gruppe:hover > ul.menue__tafel, .menue__gruppe:focus-within > ul.menue__tafel {
+  .menue__gruppe:focus-within > ul.menue__tafel {
     display: block;
+  }
+  @media (hover: hover) {
+    .menue__gruppe:hover > ul.menue__tafel {
+      display: block;
+    }
   }
   .menue ul.menue__tafel a {
     padding: 0.45rem 0.6rem;
@@ -846,13 +873,15 @@ h2[id^="dl-"] {
   background: var(--schrift);
 }
 
-.menueknopf:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-}
+@media (hover: hover) {
+  .menueknopf:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 
-.menueknopf:hover .menueknopf__balken {
-  background: var(--tinte);
+  .menueknopf:hover .menueknopf__balken {
+    background: var(--tinte);
+  }
 }
 
 .menueknopf:active, .modusknopf:active {
@@ -932,9 +961,11 @@ h2[id^="dl-"] {
   display: block;
 }
 
-.modusknopf:hover {
-  background: var(--gelb);
-  color: var(--tinte);
+@media (hover: hover) {
+  .modusknopf:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 }
 
 /* ---------- Hero ---------- */
@@ -1029,9 +1060,11 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.hero__ticket:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 var(--schatten-farbe);
+@media (hover: hover) {
+  .hero__ticket:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--schatten-farbe);
+  }
 }
 
 .hero__ticket-datum {
@@ -1098,9 +1131,11 @@ h2[id^="dl-"] {
   display: block;
 }
 
-.hero__punkte a:hover {
-  background: var(--tinte);
-  color: var(--gelb);
+@media (hover: hover) {
+  .hero__punkte a:hover {
+    background: var(--tinte);
+    color: var(--gelb);
+  }
 }
 
 .hero__bild img {
@@ -1167,9 +1202,16 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.karte:hover, .karte:focus-within {
+.karte:focus-within {
   transform: translate(-4px, -4px);
   box-shadow: 12px 12px 0 var(--akzent, var(--schatten-farbe));
+}
+
+@media (hover: hover) {
+  .karte:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 var(--akzent, var(--schatten-farbe));
+  }
 }
 
 .karte__link {
@@ -1226,8 +1268,14 @@ h2[id^="dl-"] {
   transition: transform 0.3s ease;
 }
 
-.karte:hover .karte__bild img, .karte:focus-within .karte__bild img {
+.karte:focus-within .karte__bild img {
   transform: scale(1.06);
+}
+
+@media (hover: hover) {
+  .karte:hover .karte__bild img {
+    transform: scale(1.06);
+  }
 }
 
 .karte__koerper {
@@ -1285,11 +1333,20 @@ h2[id^="dl-"] {
   text-wrap: balance;
 }
 
-.karte__link:hover .karte__titel, .karte__link:focus-visible .karte__titel {
+.karte__link:focus-visible .karte__titel {
   text-decoration: underline;
   text-decoration-color: var(--orange);
   text-decoration-thickness: 4px;
   text-underline-offset: 4px;
+}
+
+@media (hover: hover) {
+  .karte__link:hover .karte__titel {
+    text-decoration: underline;
+    text-decoration-color: var(--orange);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 4px;
+  }
 }
 
 .karte__text {
@@ -1376,9 +1433,16 @@ h2[id^="dl-"] {
   border-top: 8px solid var(--blau);
 }
 
-.service:hover, .service:focus-within {
+.service:focus-within {
   transform: translate(-3px, -3px);
   box-shadow: 9px 9px 0 var(--schatten-farbe);
+}
+
+@media (hover: hover) {
+  .service:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--schatten-farbe);
+  }
 }
 
 .service h3 {
@@ -1437,10 +1501,12 @@ h2[id^="dl-"] {
   padding-bottom: 0.15rem;
 }
 
-.zurueck a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-  border-bottom-color: var(--tinte);
+@media (hover: hover) {
+  .zurueck a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+    border-bottom-color: var(--tinte);
+  }
 }
 
 .brotkrumen {
@@ -1477,9 +1543,11 @@ h2[id^="dl-"] {
   border-bottom: 2px solid var(--tinte);
 }
 
-.brotkrumen a:hover {
-  background: var(--tinte);
-  color: var(--gelb);
+@media (hover: hover) {
+  .brotkrumen a:hover {
+    background: var(--tinte);
+    color: var(--gelb);
+  }
 }
 
 /* ---------- Sprungleiste Downloads ---------- */
@@ -1529,10 +1597,12 @@ h2[id^="dl-"] {
   border: 2px solid var(--rand);
 }
 
-.sprungleiste a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-  border-color: var(--tinte);
+@media (hover: hover) {
+  .sprungleiste a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+    border-color: var(--tinte);
+  }
 }
 
 @media (max-width: 640px) {
@@ -1585,13 +1655,24 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.zeile:hover, .zeile:focus-within {
+.zeile:focus-within {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--schatten-farbe);
 }
 
-.kasten .zeile:hover, .kasten .zeile:focus-within {
+.kasten .zeile:focus-within {
   box-shadow: none;
+}
+
+@media (hover: hover) {
+  .zeile:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--schatten-farbe);
+  }
+
+  .kasten .zeile:hover {
+    box-shadow: none;
+  }
 }
 
 .zeile__titel {
@@ -1753,10 +1834,12 @@ h2[id^="dl-"] {
   text-decoration-color: var(--orange);
 }
 
-.fliesstext a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-  text-decoration: none;
+@media (hover: hover) {
+  .fliesstext a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+    text-decoration: none;
+  }
 }
 
 .fliesstext > h2 a, .fliesstext > h3 a, .fliesstext > h4 a {
@@ -1771,9 +1854,11 @@ h2[id^="dl-"] {
   font-weight: 900;
 }
 
-.fliesstext > h2 a:hover, .fliesstext > h3 a:hover, .fliesstext > h4 a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
+@media (hover: hover) {
+  .fliesstext > h2 a:hover, .fliesstext > h3 a:hover, .fliesstext > h4 a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+  }
 }
 
 .fliesstext strong {
@@ -2031,9 +2116,16 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.video__knopf:hover, .video__knopf:focus-visible {
+.video__knopf:focus-visible {
   transform: translate(-3px, -3px);
   box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
+@media (hover: hover) {
+  .video__knopf:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 var(--schatten-farbe);
+  }
 }
 
 .video__knopf img {
@@ -2200,9 +2292,16 @@ h2[id^="dl-"] {
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.beitrag__lupe:hover .lupe__plakette, .beitrag__lupe:focus-visible .lupe__plakette {
+.beitrag__lupe:focus-visible .lupe__plakette {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--schatten-farbe);
+}
+
+@media (hover: hover) {
+  .beitrag__lupe:hover .lupe__plakette {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--schatten-farbe);
+  }
 }
 
 .beitrag__lupe:focus-visible {
@@ -2270,10 +2369,12 @@ h2[id^="dl-"] {
   text-underline-offset: 3px;
 }
 
-.fuss a:hover {
-  background: var(--gelb);
-  color: var(--tinte);
-  text-decoration: none;
+@media (hover: hover) {
+  .fuss a:hover {
+    background: var(--gelb);
+    color: var(--tinte);
+    text-decoration: none;
+  }
 }
 
 .fuss__liste {
@@ -2291,8 +2392,10 @@ h2[id^="dl-"] {
   padding-bottom: 2px;
 }
 
-.fuss__liste a:hover {
-  border-bottom-color: var(--fuss-schrift);
+@media (hover: hover) {
+  .fuss__liste a:hover {
+    border-bottom-color: var(--fuss-schrift);
+  }
 }
 
 .fuss__leiste {
@@ -2367,13 +2470,17 @@ h2[id^="dl-"] {
   --kalender-schrift: var(--weiss);
 }
 
-.kalender:hover, .kalender:focus-visible {
+.kalender:focus-visible {
   transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0 var(--schatten-farbe);
+  outline-offset: 4px;
 }
 
-.kalender:focus-visible {
-  outline-offset: 4px;
+@media (hover: hover) {
+  .kalender:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--schatten-farbe);
+  }
 }
 
 .kalender__name {
@@ -2395,11 +2502,13 @@ h2[id^="dl-"] {
 
 /* Hover kippt die Aktion in einen invertierten Block – ein gelber
    Hintergrund läge auf der gelben Karte unsichtbar. */
-.kalender:hover .kalender__aktion {
-  background: var(--kalender-schrift);
-  color: var(--kalender-flaeche);
-  border-bottom-color: var(--kalender-schrift);
-  padding: 0.1rem 0.35rem;
+@media (hover: hover) {
+  .kalender:hover .kalender__aktion {
+    background: var(--kalender-schrift);
+    color: var(--kalender-flaeche);
+    border-bottom-color: var(--kalender-schrift);
+    padding: 0.1rem 0.35rem;
+  }
 }
 
 .infoliste {
@@ -2448,9 +2557,16 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.instabeitrag:hover, .instabeitrag:focus-within {
+.instabeitrag:focus-within {
   transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0 var(--schatten-farbe);
+}
+
+@media (hover: hover) {
+  .instabeitrag:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--schatten-farbe);
+  }
 }
 
 .instabeitrag__link {
@@ -2601,9 +2717,11 @@ h2[id^="dl-"] {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.partnergitter__kachel:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--schatten-farbe);
+@media (hover: hover) {
+  .partnergitter__kachel:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--schatten-farbe);
+  }
 }
 
 .partnergitter__kachel img {
@@ -2744,9 +2862,11 @@ h2[id^="dl-"] {
     background: none;
     color: var(--schrift);
   }
-  .menue__auf:hover {
-    background: var(--gelb);
-    color: var(--tinte);
+  @media (hover: hover) {
+    .menue__auf:hover {
+      background: var(--gelb);
+      color: var(--tinte);
+    }
   }
   .menue__auf-pfeil {
     width: 1.4rem;
