@@ -744,6 +744,10 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
 * Semantische Tokens in `:root` (`--schrift`, `--flaeche`, `--papier`,
   `--rand`, `--link`, `--schatten-farbe`, `--streifen` …). Die Komponenten
   referenzieren nur diese Tokens; der dunkle Satz ersetzt Werte, nicht Regeln.
+  Karten, Zeilen und Knöpfe liegen im dunklen Modus auf `#222222`, damit
+  die weiße Kontur nicht mit dem schwarzen Papier verschmilzt. Der Hero
+  bleibt die gelbe Markenfläche; Abschluss-Chips und Schulnamen-Badge
+  tragen dort in beiden Modi schwarze Kontur und schwarzen Schatten.
 * Alle Abschnitte liegen auf derselben Papierfläche; Gelb, Orange und Blau
   sind Akzente (Aktionen, Kategorien, Links). Gelb füllt nur noch
   einzelne Komponenten wie `.kasten--gelb` oder Schaltflächen, keine ganzen

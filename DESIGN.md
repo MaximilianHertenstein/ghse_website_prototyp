@@ -57,9 +57,14 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 
 ## Flächen und Farbe
 
-- Neutrale Grundflächen bleiben im Light Mode weiß und wechseln im Dark Mode
-  geschlossen zu Schwarz. Hero und Termine setzen GHSE-Gelb und helles Blau
-  als gezielte Vollflächen ein; Schularten liegen auf der Grundfläche.
+- Neutrale Grundflächen bleiben im Light Mode weiß. Im Dark Mode wird das
+  Papier schwarz; Karten, Zeilen und Knöpfe liegen auf `#222222`, damit
+  weiße Kontur und harter Schatten als Relief lesbar bleiben. Hero und
+  Termine setzen GHSE-Gelb und helles Blau als gezielte Vollflächen ein;
+  Schularten liegen auf der Grundfläche.
+- Der Hero bleibt in beiden Modi die gelbe Markenfläche: Abschluss-Chips
+  und Schulnamen-Badge sind dort weiß mit schwarzer Kontur, schwarzem
+  Schatten und schwarzer Schrift – nie weißer Schatten auf Gelb.
 - Gelb markiert Aktionen und Marker, Orange Struktur (Kategorien,
   Linien, Unterstreichungen), helles Blau Links und einzelne
   Sekundäraktionen.

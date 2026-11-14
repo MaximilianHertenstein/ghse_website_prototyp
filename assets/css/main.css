@@ -95,6 +95,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --papier: #000000;
+    --flaeche: #222222;
     --schrift: #ffffff;
     --grau: #bdbdbd;
     --rand: #ffffff;
@@ -120,6 +121,7 @@
 
 :root[data-theme="dark"] {
   --papier: #000000;
+  --flaeche: #222222;
   --schrift: #ffffff;
   --grau: #bdbdbd;
   --rand: #ffffff;
@@ -140,6 +142,37 @@
   --fuss-leiste-flaeche: var(--papier);
   --fuss-leiste-schrift: #bdbdbd;
   color-scheme: dark;
+}
+
+/* Der Hero bleibt in beiden Modi eine gelbe Markenfläche. Ohne eigene
+   Werte läge im dunklen Modus ein weißer Schatten auf Gelb (kaum
+   sichtbar) und weißer Text auf weißem Ticket. Die Chips tragen deshalb
+   wie im hellen Modus schwarze Kontur, schwarzen Schatten und schwarze
+   Schrift auf weißer Fläche. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero {
+    --flaeche: #ffffff;
+    --schrift: #000000;
+    --grau: #00000a;
+    --rand: #000000;
+    --schatten-farbe: #000000;
+    --orange-tief: #b8430f;
+    --rahmen: 3px solid var(--rand);
+    --schatten: 6px 6px 0 var(--schatten-farbe);
+    --schatten-klein: 4px 4px 0 var(--schatten-farbe);
+  }
+}
+
+:root[data-theme="dark"] .hero {
+  --flaeche: #ffffff;
+  --schrift: #000000;
+  --grau: #00000a;
+  --rand: #000000;
+  --schatten-farbe: #000000;
+  --orange-tief: #b8430f;
+  --rahmen: 3px solid var(--rand);
+  --schatten: 6px 6px 0 var(--schatten-farbe);
+  --schatten-klein: 4px 4px 0 var(--schatten-farbe);
 }
 
 *, *::before, *::after {
@@ -1391,6 +1424,12 @@ h2[id^="dl-"] {
   flex-direction: column;
   gap: var(--r-3);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Aktionen sitzen am Kartenfuß, damit die vier Karten einer Reihe trotz
+   unterschiedlich langer Texte auf einer Linie abschließen. */
+.service .linkpfeil:first-of-type {
+  margin-top: auto;
 }
 
 /* Akzentkante oben, reihum Gelb, Orange, Blau – wie die Karten-Schatten. */
@@ -3053,6 +3092,15 @@ h2[id^="dl-"] {
   .hero {
     background: #fff;
     color: #000;
+    --flaeche: #ffffff;
+    --schrift: #000000;
+    --grau: #00000a;
+    --rand: #000000;
+    --schatten-farbe: #000000;
+    --orange-tief: #b8430f;
+    --rahmen: 3px solid var(--rand);
+    --schatten: 6px 6px 0 var(--schatten-farbe);
+    --schatten-klein: 4px 4px 0 var(--schatten-farbe);
   }
   .hero__unter {
     color: #000;
