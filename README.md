@@ -816,6 +816,13 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   Fehlalarme (Download-Dokumenttitel, UNESCO-Datumslabels) werden
   ignoriert. Der vollständige Lauf über alle 83 Seiten meldet keinen
   echten Prosa-Slop.
+* Satzbild: `text-wrap: balance` für Überschriften und `pretty` für Absätze
+  verhindern einzelne Wörter am Zeilenende („Seiten).") und ausgefranste
+  Überschriften. Der Impeccable-Browser-Detector meldet auf neun
+  Seitentypen (1440 und 390 px) keine `line-length`-, `straggler`- oder
+  `unbalanced-heading`-Befunde mehr. Übrig bleiben `overused-font` (Inter
+  als Hausschrift), die Sticker-Kicker und die harten Schatten – bewusste
+  GHSE-Merkmale, kein Slop.
 * Worttreue gegen die Vorlage: alle Seiten mit eigener Quelle werden Wort für
   Wort gegen ihre Originalseite geprüft – `qa/treue.py`
   vergleicht die Folge der Wörter (Kopf-, Navigations- und Fußblock der

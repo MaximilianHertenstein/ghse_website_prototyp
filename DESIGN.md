@@ -50,6 +50,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Abstände:** 4/8/12/16/24/32/48/64/80 px, Container 1180 px,
   Fließtext 60ch (rund 78 Zeichen), Einleitung 40ch (rund 77 Zeichen);
   Einzelseiten 760 px.
+- **Zeilenumbruch:** Überschriften `text-wrap: balance`, Absätze
+  `text-wrap: pretty`; so bleiben keine einzelnen Wörter („Seiten).")
+  am Zeilenende stehen und Überschriften brechen nicht in eine
+  Restzeile mit einem Wort.
 
 ## Flächen und Farbe
 
@@ -77,9 +81,12 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   Bild bleiben. Die Wege führen über Kopfnavigation, Sektionen und den
   „Alle Schularten"-Knopf.
 - **Sektionsköpfe (`kopfzeile`):** der Kicker ist ein gelbes
-  Sticker-Etikett (Rahmen, Schatten, leichte Schräglage), die H2 trägt
-  einen 6-px-Unterstrich in Orange – auf dem blauen Band in Gelb
-  (Kontrast).
+  Sticker-Etikett (Rahmen, Schatten, leichte Schräglage) **über** der
+  H2 und links auf der Containerkante; die H2 trägt einen
+  6-px-Unterstrich in Orange – auf dem blauen Band in Gelb (Kontrast).
+  Kicker nur, wo sie die Sektion einordnen („Bildungsangebote",
+  „Schuljahresplaner"); wiederholte Strukturlabels wie „Kategorie" oder
+  „Übersicht" entfallen, weil die Überschrift das schon sagt.
 - **Knöpfe (`btn`):** Varianten `--akzent` (gelb), `--geist`
   (transparent, schwarze Kontur), `--klein` (z. B. in Download-Zeilen und
   Hinweisen). Zustände: hover hebt 3 px, `:active` drückt auf den
