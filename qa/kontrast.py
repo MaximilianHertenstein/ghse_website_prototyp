@@ -126,6 +126,12 @@ def paare(satz, dunkel):
         ("warn-rand auf warn-flaeche (Grafik 3:1)", "warn-rand", "warn-flaeche", 3.0),
         ("orange-tief als Fokusfarbe auf papier (Grafik 3:1)",
          "orange-tief", "papier", 3.0),
+        # Fokusringe auf den farbigen Vollflächen: Gelb auf Blau, Tinte auf
+        # Gelb. Tieforange auf Gelb fällt im dunklen Modus unter 3:1.
+        ("gelb als Fokusfarbe auf blau (Grafik 3:1)",
+         "gelb", "blau", 3.0),
+        ("tinte als Fokusfarbe auf gelb (Grafik 3:1)",
+         "tinte", "gelb", 3.0),
     ]
     # Marker hinter fett gesetztem Fließtext: der Anteil steht im Alpha
     # des Tokens (0.75 hell, 0.35 dunkel) und wird hier herausgerechnet.

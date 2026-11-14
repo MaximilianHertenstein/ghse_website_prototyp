@@ -153,9 +153,11 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   Abstände mit.
 - **Tabellen:** 2-px-Raster, gelbe Kopfzeile, erste Spalte fett,
   Tabellenziffern; unter 640 px eine Schriftstufe kleiner.
-- **Seitenleiste:** Steht im Markup vor dem Fließtext. Ab 1001 px weist
-  das Grid ihr die rechte Spalte zu; darunter erscheint sie zuerst, damit
-  „Auf einen Blick" nicht erst nach einer langen Galerie kommt.
+- **Seitenleiste:** Zwei Fassungen derselben Zusammenfassung. Die mobile
+  Kopie steht im Markup vor dem Fließtext und erscheint unter 1000 px;
+  die Desktop-Fassung steht danach und bleibt in der rechten Spalte.
+  Immer nur eine ist sichtbar – `display: none` hält die andere aus dem
+  Accessibility-Baum und aus der Tab-Reihenfolge.
 
 ## Text und Ton
 
@@ -177,8 +179,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Unter 1199 px:** die Navigation wird zum Aufklappmenü (`.menueknopf`,
   Panel mit `aria-expanded`, scrollbar, `overscroll-behavior: contain`).
 - **Unter 1000 px:** Karten- und Zeilenraster stapeln; Hero einspaltig,
-  Bild versetzt den Schatten nach unten. Die Seitenleiste rückt vor den
-  Fließtext.
+  Bild versetzt den Schatten nach unten. Die mobile Kopie der Seitenleiste
+  erscheint vor dem Fließtext; die Desktop-Sidebar wird ausgeblendet.
 - **Unter 900 px:** Adressleiste aus, Kopfhöhe schrumpft auf 4,5 rem,
   Schnellzugriff wandert ins Menüpanel, Modusknopf ohne Schrift.
 - **Unter 640/560 px:** Typo-Skala abschwächen (Fließtext 1,02 rem),
@@ -196,8 +198,11 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   weiter stehen – Stärke je nach Komponente: Knöpfe 3 px, Karten 4 px,
   Kalender/Instagram 3 px, Partner 2 px; `:active` drückt auf den Schatten
   (`translate(4px, 4px)`, Schatten aus). Nicht nur die Farbe ändern.
-- **focus-visible:** 3 px Ring in Tieforange mit 3 px Abstand, auf allen
-  Flächen derselbe Token (`--orange-tief`).
+- **focus-visible:** 3 px Ring mit 3 px Abstand. Auf Papier und Fläche
+  Tieforange (`--orange-tief`), auf dem blauen Band Gelb, auf Gelb Tinte –
+  der Ring muss gegen die Fläche 3:1 erreichen.
+- **Modusknopf:** führt die sichtbare Zielbeschriftung („Dunkel"/„Hell")
+  im zugänglichen Namen und meldet den Zustand über `aria-pressed`.
 - **disabled:** `.btn:disabled` und `[aria-disabled="true"]` senken das
   Erscheinungsbild ohne Grau-in-Grau-Kontrastverlust; Kontrollelemente
   zusätzlich per `disabled`/`aria-disabled` aus dem Fokus nehmen.
@@ -209,7 +214,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - Textkontrast ≥ 4,5:1, Grafik ≥ 3:1 in beiden Farbmodi – geprüft von
   `qa/kontrast.py` gegen die Tokens des Stylesheets (nicht gegen Kopien).
 - Touch-Ziele ≥ 44 px (`qa/layout.py`), Tastaturpfad über die Sprungleiste,
-  Fokus sichtbar an jedem interaktiven Element.
+  Fokus sichtbar an jedem interaktiven Element; der Ring erreicht gegen
+  Papier, Blau und Gelb mindestens 3:1.
 - `prefers-reduced-motion`: Bewegungen (Hover-Drehungen, Smooth-Scroll)
   abgeschaltet; Bilder mit beschreibendem `alt`, dekorative mit `alt=""`.
 

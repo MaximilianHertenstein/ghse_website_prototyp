@@ -198,15 +198,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   outline-offset: 3px;
 }
 
-.band--blau :focus-visible,
+/* Auf farbigen Flächen muss der Ring gegen die Fläche bestehen:
+   Gelb auf Blau 6,18:1, Tinte auf Gelb 15,3:1. Tieforange bleibt auf
+   Papier und Fläche (5,46:1 hell, 5,2:1 dunkel). */
+.band--blau :focus-visible {
+  outline-color: var(--gelb);
+}
+
 .fuss :focus-visible,
 .leiste :focus-visible,
 .sprungleiste :focus-visible {
   outline-color: var(--orange-tief);
 }
 
+.hero :focus-visible,
 .kasten--gelb :focus-visible {
-  outline-color: var(--orange-tief);
+  outline-color: var(--tinte);
 }
 
 [id] {
@@ -1628,8 +1635,6 @@ h2[id^="dl-"] {
 }
 
 .fliesstext {
-  grid-column: 1;
-  grid-row: 1;
   max-width: 70ch;
   font-size: 1.09rem;
   line-height: 1.75;
@@ -1920,12 +1925,17 @@ h2[id^="dl-"] {
 }
 
 .seitenleiste {
-  grid-column: 2;
-  grid-row: 1;
   display: grid;
   gap: 1.5rem;
   position: sticky;
   top: calc(var(--kopfhoehe) + 1rem);
+}
+
+/* Die mobile Kopie steht im Markup vor dem Fließtext. Auf Desktop ist sie
+   ausgeblendet, auf schmalen Geräten ersetzt sie die feste Sidebar. */
+.seitenleiste--mobil {
+  display: none;
+  position: static;
 }
 
 .seitenleiste__bild img {
@@ -2623,16 +2633,14 @@ h2[id^="dl-"] {
   .raster--seite {
     grid-template-columns: minmax(0, 1fr);
   }
-  /* Die Seitenleiste steht im Markup vor dem Fließtext; ohne die
-     Spaltenzuordnung würde sie auf schmalen Geräten wieder ans Ende
-     rutschen. */
-  .fliesstext, .seitenleiste {
-    grid-column: auto;
-    grid-row: auto;
-  }
-  .seitenleiste {
-    position: static;
+  /* Die mobile Kopie steht im Markup vor dem Fließtext; die feste
+     Desktop-Sidebar wird auf schmalen Geräten ausgeblendet. */
+  .seitenleiste--mobil {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .seitenleiste--desktop {
+    display: none;
   }
 }
 

@@ -84,10 +84,14 @@
     document.documentElement.setAttribute('data-theme', ziel);
     if (speichern) merken('ghse-theme', ziel);
     for (var i = 0; i < knoepfe.length; i++) {
+      var label = ziel === 'dark' ? 'Hell' : 'Dunkel';
       knoepfe[i].setAttribute('data-ist', ziel === 'dark' ? 'dunkel' : 'hell');
       knoepfe[i].setAttribute('aria-pressed', ziel === 'dark' ? 'true' : 'false');
+      /* Der sichtbare Zielmodus gehört in den zugänglichen Namen; sonst
+         hören Screenreader nur „Farbschema umschalten“, nicht wohin. */
+      knoepfe[i].setAttribute('aria-label', 'Farbschema umschalten: ' + label);
       var text = knoepfe[i].querySelector('[data-theme-label]');
-      if (text) text.textContent = ziel === 'dark' ? 'Hell' : 'Dunkel';
+      if (text) text.textContent = label;
     }
   }
 

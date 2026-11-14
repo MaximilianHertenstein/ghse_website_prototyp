@@ -1,0 +1,33 @@
+{{- /* Seitenleiste einer Schulart: Bild und „Auf einen Blick“.
+
+   Wird zweimal gerendert – als mobile Kopie vor dem Fließtext und als
+   Desktop-Sidebar danach. Die jeweils andere Kopie ist per display: none
+   aus dem Accessibility-Baum genommen; „id“ hält die Überschriften-IDs
+   eindeutig. */ -}}
+{{- $seite := .seite -}}
+{{- $id := .id -}}
+{{- with $seite.Params.bild }}
+  <figure class="seitenleiste__bild">
+    {{ with imageConfig (printf "static/%s" (strings.TrimPrefix "/" .)) }}
+    <img src="{{ $seite.Params.bild | strings.TrimPrefix "/" | relURL }}" alt="{{ $seite.Params.bildAlt }}" width="{{ .Width }}" height="{{ .Height }}" loading="lazy" decoding="async">
+    {{ end }}
+  </figure>
+{{ end }}
+
+<div class="kasten kasten--gelb">
+  <h2 id="blick-{{ $id }}">Auf einen Blick</h2>
+  <dl class="fakten">
+    <dt>Schulart</dt>
+    <dd>{{ $seite.Params.kategorie }}</dd>
+    {{ with $seite.Params.abschluss }}
+      <dt>Abschluss / Ziel</dt>
+      <dd>{{ . }}</dd>
+    {{ end }}
+  </dl>
+  <p><a class="linkpfeil" href="{{ "downloads/" | relURL }}">Alle Downloads<span aria-hidden="true"> ↗</span></a></p>
+  <p class="kasten__kontakt">
+    Sekretariat<br>
+    <a href="tel:{{ site.Params.telefonLink }}">{{ site.Params.telefon }}</a><br>
+    <a href="mailto:{{ site.Params.mail }}">{{ site.Params.mail }}</a>
+  </p>
+</div>
