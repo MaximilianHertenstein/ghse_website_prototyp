@@ -31,3 +31,31 @@ __pycache__/
 
 # Impeccable: lokale Hook-/Tool-Konfiguration (Consent, Projektstatus).
 /.impeccable/
+
+# Python-Virtualenv der QA-Werkzeuge. Es hat ein eigenes .gitignore; der
+# Eintrag hier macht die Absicht im versionierten Repo sichtbar.
+/.venv/
+/venv/
+/env/
+
+# Hugo-Ressourcen-Cache (Bildverarbeitung/Hugo Pipes, generiert)
+/resources/
+
+# Lokale Node-/Python-Werkzeugcaches
+/node_modules/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Editor-, Log- und Merge-Reste
+.idea/
+.vscode/
+*.log
+*.orig
+*.rej
+
+# Lokale Umgebungsdateien (nie versehentlich einchecken)
+.env
+.env.*
+!.env.example
