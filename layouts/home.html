@@ -1,9 +1,9 @@
 {{ define "inhalt" }}
-<div class="hero">
+<section class="hero" aria-labelledby="hero-titel">
   <div class="container hero__innen">
     <div class="hero__text">
       <p class="hero__marke">Gewerbliche und Hauswirtschaftlich-Sozialpflegerische Schulen Emmendingen</p>
-      <h1 class="hero__titel">{{ .Params.titel }}</h1>
+      <h1 class="hero__titel" id="hero-titel">{{ .Params.titel }}</h1>
       <p class="hero__unter">{{ .Params.untertitel }}</p>
 
       {{- with .Params.naechster_termin }}
@@ -39,7 +39,7 @@
       {{- end }}
     </ul>
   </div>
-</div>
+</section>
 
 <section class="band band--gelb" aria-labelledby="home-schularten">
   <div class="container">

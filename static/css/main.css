@@ -976,6 +976,13 @@ h2[id^="dl-"] {
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 6vw, 5rem);
   overflow: hidden;
   border-bottom: 4px solid var(--orange);
+  /* Der Hero füllt den ersten Bildschirm unter dem Kopf; die nächste
+     Sektion beginnt erst darunter. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--kopfhoehe));
+  min-height: calc(100svh - var(--kopfhoehe));
 }
 
 .hero__innen {
@@ -1269,12 +1276,12 @@ h2[id^="dl-"] {
 }
 
 .karte:focus-within .karte__bild img {
-  transform: scale(1.06);
+  transform: scale(1.03);
 }
 
 @media (hover: hover) {
   .karte:hover .karte__bild img {
-    transform: scale(1.06);
+    transform: scale(1.03);
   }
 }
 
@@ -2925,6 +2932,12 @@ h2[id^="dl-"] {
 }
 
 @media (max-width: 640px) {
+  /* Auf dem Telefon bleibt der Hero ein Screen: das Foto wird etwas
+     flacher beschnitten, damit die Abschluss-Chips im ersten Bild
+     sichtbar bleiben. */
+  .hero__bild img {
+    max-height: 13rem;
+  }
   body {
     font-size: 1.02rem;
   }

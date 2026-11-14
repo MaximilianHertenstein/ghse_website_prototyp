@@ -71,8 +71,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   aufgeklebter Abzug mit dynamischem Rahmen und orangem Versatzschatten
   (12 px). Das Termin-Ticket trägt eine orange Anschlagkante links. Die
   Abschluss-Chips beginnen an derselben Flucht wie Badge, H1 und Text und
-  bleiben leicht gedreht. Die Wege führen über Kopfnavigation, Sektionen
-  und den „Alle Schularten"-Knopf.
+  bleiben leicht gedreht. Der Hero füllt unter dem Kopf den ersten
+  Bildschirm; auf dem Telefon wird das Foto auf 13 rem Höhe beschnitten,
+  damit die Chips im ersten Bild bleiben. Die Wege führen über
+  Kopfnavigation, Sektionen und den „Alle Schularten"-Knopf.
 - **Sektionsköpfe (`kopfzeile`):** der Kicker ist ein gelbes
   Sticker-Etikett (Rahmen, Schatten, leichte Schräglage), die H2 trägt
   einen 6-px-Unterstrich in Orange – auf dem blauen Band in Gelb
@@ -89,8 +91,8 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
   füllen ihre Zelle.
 - **Karten (`karte`):** `karte__bild` (16:10, unten Rahmen), `karte__koerper`
   mit Marke, Titel als einzigem Link (`karte__link`), Text und Aktion;
-  hover/:focus-within hebt 4 px auf einen 12-px-Schatten, Fokusring über
-  `:has()`. Varianten: `--gross` (erste Meldung), `--text` (ohne Bild),
+  hover/:focus-within hebt 4 px auf einen 12-px-Schatten, das Bild zoomt
+  auf 1,03, Fokusring über `:has()`. Varianten: `--gross` (erste Meldung), `--text` (ohne Bild),
   `--news`. Die Aktion („Mehr erfahren") trägt die Akzentfarbe der Karte
   als 4-px-**Unterstrich**, nicht als Textfarbe – Gelb auf Weiß ist
   1,37:1, Orange 2,95:1, als Text unlesbar. Bei ungerader Kartenzahl in
@@ -184,9 +186,10 @@ ist eine einzige variable Inter-Datei in den Schnitten 100 bis 900.
 - **Unter 900 px:** Adressleiste aus, Kopfhöhe schrumpft auf 4,5 rem,
   Schnellzugriff wandert ins Menüpanel, Modusknopf ohne Schrift.
 - **Unter 640/560 px:** Typo-Skala abschwächen (Fließtext 1,02 rem),
-  Karten-, Zeilen-, Kalender- und Fußraster einspaltig, Buttons mehrzeilig
-  fähig (`white-space: normal`) und aktionsbreit, Wertequadrat-Raster
-  einspaltig; Touch-Ziele bleiben ≥ 44 px.
+  Hero-Foto auf 13 rem begrenzt, Karten-, Zeilen-, Kalender- und Fußraster
+  einspaltig, Buttons mehrzeilig fähig (`white-space: normal`) und
+  aktionsbreit, Wertequadrat-Raster einspaltig; Touch-Ziele bleiben
+  ≥ 44 px.
 - **Kantenfälle:** Raster mit `minmax(0, 1fr)` (kein Überlauf durch lange
   Wörter), Buttons umbrechen mehrzeilig statt zu kneifen, Longtexte über
   `text-wrap: balance` in Überschriften. Geprüft von `qa/reflow.py`
