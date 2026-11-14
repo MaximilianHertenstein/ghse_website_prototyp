@@ -28,3 +28,6 @@ __pycache__/
 /.agents/skills/design-taste-frontend/
 /.taste-skill/
 /shots/
+
+# Impeccable: lokale Hook-/Tool-Konfiguration (Consent, Projektstatus).
+/.impeccable/
