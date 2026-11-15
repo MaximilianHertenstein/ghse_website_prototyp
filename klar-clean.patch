@@ -1,0 +1,2849 @@
+diff --git a/.github/workflows/deploy.yml b/.github/workflows/deploy.yml
+index fc39ef5..92bd595 100644
+--- a/.github/workflows/deploy.yml
++++ b/.github/workflows/deploy.yml
+@@ -46,8 +46,10 @@ jobs:
+             echo "BASE_URL=https://$OWNER.github.io/$REPO/" >> "$GITHUB_ENV"
+           fi
+ 
+-      - name: Website bauen
+-        run: hugo --baseURL "$BASE_URL" --minify --gc
++      - name: Website bauen (Hauptvariante, dann „klar“ in den Unterordner)
++        run: |
++          hugo --baseURL "$BASE_URL" --minify --gc
++          hugo --config hugo.toml,hugo-klar.toml --baseURL "${BASE_URL}klar/" --destination public/klar --minify --gc
+ 
+       - name: Pages-Konfiguration laden
+         uses: actions/configure-pages@v5
+diff --git a/DESIGN-KLAR.md b/DESIGN-KLAR.md
+new file mode 100644
+index 0000000..1a2951b
+--- /dev/null
++++ b/DESIGN-KLAR.md
+@@ -0,0 +1,111 @@
++# GHSE – Gestaltungsvariante „klar“ (Design-System „Clean“)
++
++Zweite Gestaltung derselben Website neben dem Neobrutalismus (`DESIGN.md`). Aufgebaut nach dem Design-System **Clean** (typeui.sh): minimal, viel Weißraum, gut lesbare Schrift, begrenzte Palette. Angepasst für Leserinnen und Leser um 60 bis 65 Jahre. Wo Clean und Lesbarkeit kollidieren, gewinnt die Lesbarkeit; die Abweichungen stehen unten und sind begründet.
++
++„Muss“ ist nicht verhandelbar, „sollte“ ist eine Empfehlung.
++
++## 1. Kontext und Ziel
++
++Absicht in einem Satz: *Dieselben Inhalte und dieselbe Navigation, ruhig und ohne Ablenkung gestaltet, sodass Text ohne Anstrengung lesbar und jedes Ziel sicher zu treffen ist.*
++
++- Struktur, Inhalte, Menüs und Dropdowns sind identisch mit der Hauptvariante. Es ändert sich nur das Aussehen.
++- Erreichbar unter `/klar/` mit derselben URL-Struktur (`/schularten/pflege/` ↔ `/klar/schularten/pflege/`).
++- `hugo-klar.toml` setzt `params.design = "klar"`; `layouts/baseof.html` schreibt `data-design="klar"` an `<html>` und lädt nach `main.css` zusätzlich `assets/css/klar.css` (gleiche Pipeline: minify, fingerprint, Integrity). Ohne den Parameter ist die Ausgabe der Hauptvariante Byte für Byte unverändert.
++- Jede Regel in `klar.css` trägt das Präfix `:root[data-design="klar"]` und gewinnt damit ohne `!important` (Ausnahmen: `translate` und der Druck-Block). Kein CSS-Nesting.
++- `rel="canonical"` zeigt auf die Seite der Hauptvariante (`layouts/_partials/haupt-url.html`). Soll „klar“ kanonisch sein, dreht man das in diesem Partial um.
++
++## 2. Tokens und Grundlagen
++
++Rohwerte stehen nur im Token-Block am Anfang von `klar.css`. Alles Weitere benutzt Tokens.
++
++| Rolle | Token | Hell | Dunkel | Verwendung |
++| --- | --- | --- | --- | --- |
++| Text | `--text` | `#111827` | `#f9fafb` | Fließtext, Überschriften (≥ 7:1) |
++| Zweittext | `--text-leise` | `#4b5563` | `#d1d5db` | Beschreibungen, Metadaten (≥ 7:1) |
++| Primär (Fläche) | `--primaer` | `#1e40af` | `#1e40af` | Flächen mit weißer Schrift, `.band--blau`, aktives Menü |
++| Primär (Text) | `--primaer-text` | `#1e40af` | `#93c5fd` | Links, Textakzente (≥ 7:1) |
++| Akzent | `--primaer-akzent` | `#3b82f6` | `#3b82f6` | Linien, Balken, Icons; **nie Text** (Clean-Primärblau) |
++| Hellfläche | `--primaer-hell` | `#dbeafe` | `#dbeafe` | Hover, Markierung, mit dunkler Schrift |
++| Aktion | `--aktion` / `--aktion-schrift` | `#1e40af` / `#fff` | `#93c5fd` / `#111827` | Primärer Button |
++| Fläche | `--papier`, `--flaeche-leise` | `#fff`, `#f9fafb` | `#111827`, `#1f2937` | Seite, Hero, Karten im Dunkeln |
++| Linie | `--rand-leise` / `--rand` | `#e5e7eb` / `#4b5563` | `#374151` / `#9ca3af` | Kartenrand und Trenner / Rand bedienbarer Elemente (≥ 3:1) |
++| Erfolg, Warnung, Fehler | `--erfolg`, `--warnung`, `--fehler` | `#166534`, `#92400e`, `#991b1b` | `#86efac`, `#fcd34d`, `#fca5a5` | Clean-Signalfarben, für Text abgedunkelt (≥ 7:1) |
++
++Die Tokens aus `main.css` (`--gelb`, `--orange`, `--blau`, `--link` …) werden in `klar` auf diese Rollen abgebildet. So verschwinden Gelb und Orange ohne Eingriff in die Templates; die fünf Wertefarben der Schule (`--wert-*`) bleiben als Inhalt erhalten.
++
++**Schrift.** Roboto (Text) und Poppins 600 (Überschriften), selbst gehostet unter `assets/fonts/klar/` (Lizenz: SIL OFL, Text in `LIZENZ.txt`), nur im klar-Bau geladen und vorab geladen (`_partials/schriften-klar.html`). Inter wird dort nicht abgerufen.
++
++| Stufe | Token | Größe | Verwendung |
++| --- | --- | --- | --- |
++| Beschriftung | `--t-xs` | 14 px | Datum, Bildunterschrift (kleinste erlaubte Größe) |
++| Zweittext | `--t-s` | 16 px | Fuß, Kasten, Brotkrumen |
++| Bedienung¹ | `--t-ui` | 18 px (mobil 16) | Menü, Buttons, Chips, Kartentext |
++| Fließtext | `--t-m` | 20 px (mobil 18) | Absätze, Einleitungen |
++| H3 / H2 | `--t-h3` / `--t-h2` | 20–24 / 24–32 px | Überschriften |
++| H1 / Hero¹ | `--t-h1` / `--t-display` | 32–40 / 32–48 px | Seitentitel, Hero |
++
++¹ Abweichung von Clean (12/14/16/20/24/32): zusätzlich 18, 40 und 48 px; 12 px entfällt. Begründung: 16 px ist für diese Zielgruppe die Untergrenze und nicht der Normalfall.
++
++**Raster.** 8 pt: Abstände und Polster in Vielfachen von 0,5 rem (4 px nur für Kleinstabstände), Abschnitte `clamp(3rem, 6vw, 5rem)`, Zeigeziele mindestens 3 rem hoch. Radius 8 px (Karten, Buttons), 4 px (Chips, Marken).
++
++## 3. Komponenten
++
++Gemeinsam: keine Schatten (Ausnahme: Dropdown-Tafel), keine Schrägstellung, keine Bewegung beim Überfahren, keine Versalien.
++
++| Komponente | Aufbau und Varianten | Zustände |
++| --- | --- | --- |
++| Button `.btn` | min. 48 px hoch, 18 px/600, Rand 2 px `--rand`. `--akzent` gefüllt (`--aktion`), `--geist` transparent, `--klein` 16 px | Hover: Unterstreichung + innerer Rand 2 px. Aktiv: innerer Rand 3 px. Fokus: 4 px Ring. Deaktiviert: `main.css` |
++| Chip `.chip`, Hero-Chips | 48 px hoch, Rand 1 px `--rand`, Radius 8 px | wie Button |
++| Karte `.karte`, `.service`, `.zeile`, `.kalender`, `.instabeitrag` | weiß, Rand 1 px `--rand-leise`, Radius 8 px, Polster 24 px, kein Balken | Hover und Fokus innen: Rand `--primaer-akzent`. Titel unterstrichen |
++| Menü und Dropdown | gleiche Struktur wie `main`, Einträge 48 px hoch, Tafel mit Rand und weichem Schatten | Hover: `--primaer-hell`. Aktuelle Seite: `--primaer` mit Weiß. Tafel schließt 0,35 s verzögert, Wechsel zur nächsten Kategorie sofort |
++| Link im Text | `--primaer-text`, unterstrichen 2 px | Hover: `--primaer-hell`, Unterstreichung bleibt |
++| Hinweis `.hinweis` | `--hinweis-flaeche`, Rand 1 px `--hinweis-rand` | – |
++| Tabelle | Rand 1 px, Polster 8/12 px (mobil 4/8), lange Wörter trennen und brechen | – |
++
++Responsiv: ab 1200 px Dropdowns, darunter Panel mit Pfeilknöpfen. Unter 640 px: Fließtext 18 px, Kopfzeile mit Logo, Farbmodus, Krankmelden und Menü; unter 380 px kleineres Logo. Leer-, Lade- und Fehlerzustände gibt es auf dieser statischen Seite nicht; sollten Formulare dazukommen, gelten `--fehler` und `--erfolg` mit Symbol und Text (nie nur Farbe).
++
++## 4. Barrierefreiheit (prüfbar)
++
++| Anforderung | Schwelle | Prüfung |
++| --- | --- | --- |
++| Text- und Linkkontrast | ≥ 7:1 (AAA); Rand bedienbarer Elemente und Akzentlinien ≥ 3:1 | `qa/kontrast_klar.py` (Hell und Dunkel, 31 Paare); `qa/klar_pruefung.py` (berechnete Farben aller Textstellen) |
++| Kleinste Schrift | ≥ 14 px | `qa/klar_pruefung.py` |
++| Zeigeziele | ≥ 44 px Höhe; kleine Textlinks durch unsichtbar vergrößerte Fläche | `qa/klar_pruefung.py` |
++| Fokus | 4 px Ring, 4 px Abstand, auf blauem Band hell; nicht vom Kopf verdeckt (`--kopfhoehe`) | Tab-Durchlauf von Hand |
++| Tastatur | Dropdowns öffnen per Fokus; erster Eintrag per Tab erreichbar | Tab-Durchlauf von Hand |
++| Bewegung | keine Hover-Bewegung (`translate: none`); `prefers-reduced-motion` wie in `main.css` | `qa/klar_pruefung.py` (keine Rotation) |
++| Reflow | kein waagerechter Überlauf bei 320–1440 px, Hell und Dunkel | `qa/klar_pruefung.py` |
++| Semantik | Markup identisch mit der Hauptvariante, kein ARIA hinzugefügt | `qa/linkcheck.py`, Vergleich der HTML-Ausgabe |
++
++## 5. Inhalt und Ton
++
++Klar und freundlich, ohne Versalien. Kleinschreibung nach Satzregeln gilt auch für Beschriftungen; keine Kürzel ohne Erklärung.
++
++| Do | Don't |
++| --- | --- |
++| „Termine im Schuljahr“, „Mehr erfahren“ | „TERMINE“, „Hier klicken“ |
++| Links benennen ihr Ziel („Anfahrt“) | Links nur mit „mehr“ oder „weiter“ |
++| Ein Absatz, ein Gedanke, ≤ 66 Zeichen Zeilenbreite | lange Textwände, zentrierter Fließtext |
++
++## 6. Anti-Patterns
++
++- **Muss nicht:** Versalien, gesperrte Schrift, Schrägstellung, harte Schatten, Hover-Hüpfen, Farbe als einziger Bedeutungsträger, Text kleiner als 14 px.
++  Don't: `text-transform: uppercase`, `transform: rotate()`, `box-shadow: 4px 4px 0`.
++- **Muss nicht:** neue Rohfarben oder Pixelwerte in Komponenten. Do: Token verwenden. Don't: `#3b82f6` als Textfarbe (3,7:1).
++- **Sollte nicht:** mehr als eine Akzentfarbe. Do: `--primaer-akzent`. Don't: wieder Gelb/Orange/Blau reihum.
++
++## 7. Wenn sich `main.css` ändert (Migration)
++
++- Neue Komponente mit Rahmen, Schatten, Schräglage, Hover-Versatz oder Versalien: in `klar.css` mit demselben Selektor plus Präfix zurücknehmen.
++- Setzt `main.css` im Dunkeln ein neues Token, setzt `klar.css` es ebenfalls (`qa/kontrast_klar.py` schlägt sonst an).
++- Neue feste Schriftgrößen (rem außerhalb von `--t-*`) bleiben unverändert, bis sie in `klar.css` angehoben werden.
++- Neue harte Schatten über `--schatten-farbe` sind in klar automatisch unsichtbar, feste Farben nicht.
++
++## 8. QA-Checkliste (Code-Review)
++
++1. `python3 qa/kontrast_klar.py` → 0 Fehler.
++2. Beide Varianten bauen, `python3 qa/linkcheck.py public` → 0 Fehler.
++3. Hauptvariante vor/nach der Änderung bauen und mit `diff -rq` vergleichen → keine Unterschiede.
++4. `python3 qa/klar_pruefung.py <klar-Bau mit baseURL />` → 0 Befunde (Versalien, Rotation, Schatten, Schrift, Zeigeziele, Kontrast, Überlauf).
++5. Sichtprobe `/klar/`: Hell, Dunkel, 1440 px und 390 px; Menü mit Maus und Tab; Hero, Karte, Tabelle, Download-Zeile.
++6. Keine neue Rohfarbe, keine neue feste Pixelgröße außerhalb des Token-Blocks.
+diff --git a/README.md b/README.md
+index fb7ba0a..77c950d 100644
+--- a/README.md
++++ b/README.md
+@@ -1030,3 +1030,20 @@ Push startet die Pipeline automatisch neu.
+    Domain löst dieser Stand dann www.ghse.de ab. Weiterleitungen der alten
+    ghse.de-Pfade (Abschnitt 2, „Bis zur Ablöse offen") sind mit dem Umzug
+    auf dem all-inkl-Server einzurichten.
++
++* * *
++
++## 9. Zweite Gestaltungsvariante „klar“
++
++Dieselbe Website im Design-System „Clean“ (ruhig, viel Weißraum, Roboto und Poppins, große Schrift, Kontrast mindestens 7:1, keine Versalien, keine Schrägstellung) – gleiche Struktur, gleiche Menüs und Dropdowns, gleiche Inhalte. Beschreibung und Pflegeregeln: [DESIGN-KLAR.md](DESIGN-KLAR.md).
++
++```
++hugo --baseURL "$BASE_URL" --minify --gc                    # Hauptvariante -> public/
++hugo --config hugo.toml,hugo-klar.toml \
++     --baseURL "${BASE_URL}klar/" \
++     --destination public/klar --minify --gc                # klar         -> public/klar/
++```
++
++Die Hauptvariante zuerst bauen, `klar` danach in den Unterordner. Lokal ansehen: `hugo server --config hugo.toml,hugo-klar.toml`. Die Pipeline (`deploy.yml`) baut beide; die geplante FTP-Übertragung lädt einfach `public/` hoch. Prüfen: `python3 qa/kontrast_klar.py`, `python3 qa/linkcheck.py public` (beide Varianten zusammen) und `python3 qa/klar_pruefung.py <Ordner>` (Browserprüfung, braucht Playwright; Anleitung im Kopf des Skripts).
++
++Kanonisch ist die Hauptvariante (`rel="canonical"` der Klar-Seiten zeigt dorthin). Offen: Bilder und Downloads liegen derzeit in beiden Ordnern (rund 160 MB doppelt).
+diff --git a/assets/css/klar.css b/assets/css/klar.css
+new file mode 100644
+index 0000000..b0a5d3d
+--- /dev/null
++++ b/assets/css/klar.css
+@@ -0,0 +1,1090 @@
++/* GHSE – Gestaltungsvariante „klar“ (Design-System „Clean“)
++   ============================================================
++   Gleiche Struktur wie die Hauptvariante: gleiche Templates, Menüs,
++   Dropdowns und Inhalte. Nur das Aussehen folgt dem Design-System „Clean“:
++   minimal, viel Weißraum, gut lesbare Schrift, begrenzte Palette.
++   Beschreibung, Regeln und QA-Checkliste: DESIGN-KLAR.md.
++
++   Technik: Die Datei wird nur gebaut, wenn hugo-klar.toml gilt
++   (params.design = "klar"), und zwar NACH main.css. Jede Regel trägt das
++   Präfix  :root[data-design="klar"]  und schlägt damit main.css, ohne dass
++   dort etwas geändert werden muss. Kein CSS-Nesting: ältere Tablets und
++   Telefone verstehen es nicht.
++
++   Pflegehinweis: Was der helle Satz in den Farb-Tokens setzt, setzt der
++   dunkle Satz ebenfalls – und jedes Token, das main.css im Dunkeln setzt,
++   setzt er auch. Sonst scheint der dunkle Satz aus main.css durch.
++   qa/kontrast_klar.py prüft das. */
++
++/* ---------- Tokens, hell ---------- */
++
++:root[data-design="klar"] {
++  /* Semantische Ebene (Clean). Rohwerte stehen nur hier. */
++  --primaer: #1e40af;            /* Flächen mit weißer Schrift, Primäraktion (8,7:1) */
++  --primaer-text: #1e40af;       /* Links und Textakzente (8,7:1 auf Weiß) */
++  --primaer-akzent: #3b82f6;     /* Clean-Primärblau: Linien, Balken, Icons – nie Text */
++  --primaer-hell: #dbeafe;       /* Hover- und Markierungsfläche, mit dunkler Schrift */
++  --aktion: #1e40af;             /* Fläche der Primäraktion */
++  --aktion-schrift: #ffffff;
++  --text: #111827;               /* Clean: text */
++  --text-leise: #4b5563;         /* Zweittext (7,6:1) */
++  --flaeche-leise: #f9fafb;
++  --rand-leise: #e5e7eb;         /* Trennlinien und Kartenränder */
++  --erfolg: #166534;             /* Clean #16A34A, für Text abgedunkelt */
++  --warnung: #92400e;            /* Clean #D97706, für Text abgedunkelt */
++  --fehler: #991b1b;             /* Clean #DC2626, für Text abgedunkelt */
++
++  /* Abbildung auf die Tokens aus main.css */
++  --papier: #ffffff;
++  --papier2: var(--flaeche-leise);
++  --schrift: var(--text);
++  --grau: var(--text-leise);
++  --rand: #4b5563;               /* Rand interaktiver Elemente (7,6:1) */
++  --linie: var(--rand-leise);
++  --link: var(--primaer-text);
++  --blau: var(--primaer);
++  --gelb: var(--primaer-hell);
++  --orange: var(--primaer-akzent);
++  --orange-tief: var(--primaer-text);
++  --tinte: var(--text);
++  --schatten-farbe: transparent;
++  --haarlinie: rgba(17, 24, 39, 0.12);
++  --marker-hintergrund: transparent;
++  --kategorie-teilzeit: var(--rand-leise);
++  --hinweis-flaeche: #eff6ff;
++  --hinweis-rand: var(--primaer);
++  --warn-flaeche: #fffbeb;
++  --warn-rand: var(--warnung);
++
++  /* Die fünf Werte der Schule sind Inhalt und behalten ihre Markenfarben. */
++  --wert-blau: #114c92;
++  --wert-gelb: #f6dc56;
++  --wert-orange: #ee7330;
++
++  --fuss-flaeche: #f3f4f6;
++  --fuss-schrift: var(--text);
++  --fuss-titel: var(--text);
++  --fuss-linie: var(--rand-leise);
++  --fuss-link: var(--primaer-text);
++  --fuss-haarlinie: var(--rand-leise);
++  --fuss-leiste-flaeche: #e5e7eb;
++  --fuss-leiste-schrift: #374151;
++  color-scheme: light;
++
++  /* Form */
++  --rahmen: 2px solid var(--rand);
++  --schatten: none;
++  --schatten-klein: none;
++  --rund: 8px;
++
++  /* Schrift: Clean-Skala 14/16/20/24/32, ergänzt um 18 (Bedienelemente),
++     40 und 48 (Überschrift, Hero). Roboto für Text, Poppins für Überschriften. */
++  --schriftstapel: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
++  --schriftstapel-display: "Poppins", "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
++  --t-xs: 0.875rem;
++  --t-s: 1rem;
++  --t-ui: 1.125rem;
++  --t-m: 1.25rem;
++  --t-h3: clamp(1.25rem, 1.8vw, 1.5rem);
++  --t-h2: clamp(1.5rem, 3vw, 2rem);
++  --t-h1: clamp(2rem, 4vw, 2.5rem);
++  --t-display: clamp(2rem, 5vw, 3rem);
++}
++
++/* Kopfhöhe gemessen (Leiste + Logozeile); steuert Sprungleiste und Ankerabstand. */
++@media (min-width: 901px) {
++  :root[data-design="klar"] {
++    --kopfhoehe: 7.9rem;
++  }
++}
++
++@media (max-width: 900px) {
++  :root[data-design="klar"] {
++    --kopfhoehe: 4.5625rem;
++  }
++}
++
++@media (max-width: 640px) {
++  :root[data-design="klar"] {
++    --t-ui: 1rem;
++    --t-m: 1.125rem;
++  }
++}
++
++/* ---------- Tokens, dunkel (gleiche Namen wie oben) ---------- */
++
++@media (prefers-color-scheme: dark) {
++  :root[data-design="klar"]:not([data-theme="light"]) {
++    --primaer: #1e40af;
++    --primaer-text: #93c5fd;
++    --primaer-akzent: #3b82f6;
++    --primaer-hell: #dbeafe;
++    --aktion: #93c5fd;
++    --aktion-schrift: #111827;
++    --text: #f9fafb;
++    --text-leise: #d1d5db;
++    --flaeche-leise: #1f2937;
++    --rand-leise: #374151;
++    --erfolg: #86efac;
++    --warnung: #fcd34d;
++    --fehler: #fca5a5;
++
++    --papier: #111827;
++    --papier2: var(--flaeche-leise);
++    --flaeche: var(--flaeche-leise);
++    --schrift: var(--text);
++    --grau: var(--text-leise);
++    --rand: #9ca3af;
++    --linie: var(--rand-leise);
++    --link: var(--primaer-text);
++    --blau: var(--primaer);
++    --gelb: var(--primaer-hell);
++    --orange: var(--primaer-akzent);
++    --orange-tief: var(--primaer-text);
++    --tinte: #111827;
++    --schatten-farbe: transparent;
++    --haarlinie: rgba(255, 255, 255, 0.14);
++    --marker-hintergrund: transparent;
++    --kategorie-teilzeit: var(--rand-leise);
++    --hinweis-flaeche: #172554;
++    --hinweis-rand: var(--primaer-text);
++    --warn-flaeche: #451a03;
++    --warn-rand: var(--warnung);
++
++    --wert-blau: #114c92;
++    --wert-gelb: #f6dc56;
++    --wert-orange: #ee7330;
++
++    --fuss-flaeche: #0b1220;
++    --fuss-schrift: var(--text);
++    --fuss-titel: var(--text);
++    --fuss-linie: var(--rand-leise);
++    --fuss-link: var(--primaer-text);
++    --fuss-haarlinie: rgba(255, 255, 255, 0.14);
++    --fuss-leiste-flaeche: #060b14;
++    --fuss-leiste-schrift: #d1d5db;
++    color-scheme: dark;
++  }
++}
++
++:root[data-design="klar"][data-theme="dark"] {
++  --primaer: #1e40af;
++  --primaer-text: #93c5fd;
++  --primaer-akzent: #3b82f6;
++  --primaer-hell: #dbeafe;
++  --aktion: #93c5fd;
++  --aktion-schrift: #111827;
++  --text: #f9fafb;
++  --text-leise: #d1d5db;
++  --flaeche-leise: #1f2937;
++  --rand-leise: #374151;
++  --erfolg: #86efac;
++  --warnung: #fcd34d;
++  --fehler: #fca5a5;
++
++  --papier: #111827;
++  --papier2: var(--flaeche-leise);
++  --flaeche: var(--flaeche-leise);
++  --schrift: var(--text);
++  --grau: var(--text-leise);
++  --rand: #9ca3af;
++  --linie: var(--rand-leise);
++  --link: var(--primaer-text);
++  --blau: var(--primaer);
++  --gelb: var(--primaer-hell);
++  --orange: var(--primaer-akzent);
++  --orange-tief: var(--primaer-text);
++  --tinte: #111827;
++  --schatten-farbe: transparent;
++  --haarlinie: rgba(255, 255, 255, 0.14);
++  --marker-hintergrund: transparent;
++  --kategorie-teilzeit: var(--rand-leise);
++  --hinweis-flaeche: #172554;
++  --hinweis-rand: var(--primaer-text);
++  --warn-flaeche: #451a03;
++  --warn-rand: var(--warnung);
++
++  --wert-blau: #114c92;
++  --wert-gelb: #f6dc56;
++  --wert-orange: #ee7330;
++
++  --fuss-flaeche: #0b1220;
++  --fuss-schrift: var(--text);
++  --fuss-titel: var(--text);
++  --fuss-linie: var(--rand-leise);
++  --fuss-link: var(--primaer-text);
++  --fuss-haarlinie: rgba(255, 255, 255, 0.14);
++  --fuss-leiste-flaeche: #060b14;
++  --fuss-leiste-schrift: #d1d5db;
++  color-scheme: dark;
++}
++
++/* ---------- Basis ---------- */
++
++:root[data-design="klar"] body {
++  font-size: var(--t-m);
++  line-height: 1.6;
++}
++
++/* Keine Versalien, keine Sperrung: gilt für alles, auch für Pseudo-Elemente. */
++:root[data-design="klar"] *,
++:root[data-design="klar"] *::before,
++:root[data-design="klar"] *::after {
++  text-transform: none;
++  letter-spacing: normal;
++}
++
++/* Nichts hüpft: weder transform (je Komponente unten) noch translate.
++   !important, weil main.css die Hover-Bewegung an einzelnen Stellen über
++   translate setzt und künftig weitere hinzukommen können. */
++:root[data-design="klar"] *,
++:root[data-design="klar"] *::before,
++:root[data-design="klar"] *::after {
++  translate: none !important;
++}
++
++:root[data-design="klar"] h1,
++:root[data-design="klar"] h2,
++:root[data-design="klar"] h3,
++:root[data-design="klar"] .hero__titel,
++:root[data-design="klar"] .karte__titel,
++:root[data-design="klar"] .karte__block-titel,
++:root[data-design="klar"] .zeitgruppe__titel,
++:root[data-design="klar"] .kasten h2,
++:root[data-design="klar"] .fliesstext > h2,
++:root[data-design="klar"] .fliesstext > h3,
++:root[data-design="klar"] .service h3 {
++  font-family: var(--schriftstapel-display);
++}
++
++:root[data-design="klar"] h1,
++:root[data-design="klar"] h2,
++:root[data-design="klar"] h3,
++:root[data-design="klar"] .hero__titel,
++:root[data-design="klar"] .karte__titel,
++:root[data-design="klar"] .karte__block-titel,
++:root[data-design="klar"] .zeitgruppe__titel,
++:root[data-design="klar"] .kasten h2,
++:root[data-design="klar"] .fliesstext > h2,
++:root[data-design="klar"] .fliesstext > h3,
++:root[data-design="klar"] .zeile__titel,
++:root[data-design="klar"] .infozeile__titel,
++:root[data-design="klar"] .konten__titel,
++:root[data-design="klar"] .kalender__name,
++:root[data-design="klar"] .hero__ticket-datum,
++:root[data-design="klar"] .karte--text .karte__datum,
++:root[data-design="klar"] .service h3 {
++  font-weight: 600;
++}
++
++:root[data-design="klar"] h1,
++:root[data-design="klar"] h2,
++:root[data-design="klar"] h3 {
++  line-height: 1.25;
++}
++
++:root[data-design="klar"] .hero__titel {
++  line-height: 1.15;
++}
++
++:root[data-design="klar"] .karte__block-titel {
++  line-height: 1.3;
++}
++
++/* Sichtbarer Fokus: 4 px in der Textfarbe des Akzents, 4 px Abstand. */
++:root[data-design="klar"] a:focus-visible,
++:root[data-design="klar"] button:focus-visible,
++:root[data-design="klar"] summary:focus-visible {
++  outline-width: 4px;
++  outline-offset: 4px;
++}
++
++:root[data-design="klar"] .band--blau :focus-visible {
++  outline-color: var(--primaer-hell);
++}
++
++/* Platz zwischen den Abschnitten: 8-pt-Raster, großzügiger als bisher. */
++:root[data-design="klar"] .band {
++  padding-block: clamp(3rem, 6vw, 5rem);
++}
++
++:root[data-design="klar"] .kopfzeile {
++  margin-bottom: 3rem;
++}
++
++:root[data-design="klar"] .kopfzeile h2 {
++  border-bottom: 0;
++  padding-bottom: 0;
++}
++
++:root[data-design="klar"] .seitenkopf {
++  padding-block: clamp(2rem, 5vw, 4rem);
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .band--gelb {
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .band--blau {
++  border-block: 0;
++}
++
++/* ---------- Fließtext und Einleitungen ---------- */
++
++:root[data-design="klar"] .lead {
++  font-size: clamp(1.25rem, 2vw, 1.5rem);
++}
++
++:root[data-design="klar"] .einleitung {
++  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
++  color: var(--grau);
++}
++
++:root[data-design="klar"] .fliesstext {
++  font-size: var(--t-m);
++  line-height: 1.7;
++  max-width: 66ch;
++}
++
++:root[data-design="klar"] .fliesstext blockquote {
++  font-size: var(--t-m);
++  border-left-width: 4px;
++}
++
++:root[data-design="klar"] .fliesstext > h2 {
++  margin-top: 3rem;
++  border-left-width: 4px;
++}
++
++:root[data-design="klar"] .fliesstext > h3 {
++  border-left: 0;
++  padding-left: 0;
++}
++
++:root[data-design="klar"] .fliesstext a {
++  font-weight: 500;
++  text-decoration-color: currentColor;
++  text-decoration-thickness: 2px;
++}
++
++:root[data-design="klar"] .fliesstext a:hover {
++  text-decoration: underline;
++}
++
++/* Buttons im Fließtext: .fliesstext a färbt sonst auch sie wie einen Link
++   (im Dunkelmodus gelb auf gelb in main.css). Schrift wie bei Buttons. */
++:root[data-design="klar"] .fliesstext a.btn {
++  text-decoration: none;
++  font-weight: 600;
++  color: var(--schrift);
++}
++
++:root[data-design="klar"] .fliesstext a.btn--akzent {
++  color: var(--aktion-schrift);
++}
++
++:root[data-design="klar"] .fliesstext a.btn:hover {
++  text-decoration: underline;
++}
++
++:root[data-design="klar"] .fliesstext th,
++:root[data-design="klar"] .fliesstext td {
++  border: 1px solid var(--rand);
++  padding: 0.5rem 0.75rem;
++}
++
++@media (max-width: 640px) {
++  :root[data-design="klar"] .fliesstext th,
++  :root[data-design="klar"] .fliesstext td {
++    padding: 0.25rem 0.5rem;
++    /* Notbremse für lange Fachwörter: erst Silbentrennung, dann Umbruch im Wort,
++       statt die ganze Seite seitwärts zu verschieben. */
++    overflow-wrap: anywhere;
++    hyphens: auto;
++  }
++}
++
++:root[data-design="klar"] .fliesstext hr {
++  border-top: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .zeitgruppe__titel {
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++/* ---------- Kleine Bausteine ---------- */
++
++:root[data-design="klar"] .chip {
++  border-radius: var(--rund);
++  box-shadow: none;
++  font-size: var(--t-ui);
++  font-weight: 500;
++  min-height: 3rem;
++  align-items: center;
++  padding: 0.5rem 1rem;
++}
++
++:root[data-design="klar"] .chip span {
++  font-size: var(--t-s);
++  color: var(--grau);
++}
++
++:root[data-design="klar"] .chip,
++:root[data-design="klar"] .hero__punkte li {
++  border-width: 1px;
++}
++
++/* Zweittext in Karten und Listen: 18 px statt 16 px – für diese Zielgruppe
++   ist 16 px die Untergrenze, nicht der Normalfall. */
++:root[data-design="klar"] .karte__text,
++:root[data-design="klar"] .service p,
++:root[data-design="klar"] .zeile__beschreibung,
++:root[data-design="klar"] .infozeile__text,
++:root[data-design="klar"] .instabeitrag__text {
++  font-size: var(--t-ui);
++}
++
++:root[data-design="klar"] .chip--klein {
++  min-height: 0;
++  padding: 0.125rem 0.5rem;
++  border-radius: 4px;
++  font-size: var(--t-xs);
++}
++
++:root[data-design="klar"] .chip--akzent,
++:root[data-design="klar"] .chip:active {
++  transform: none;
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .marke,
++:root[data-design="klar"] .chip[data-kategorie="teilzeitschularten"],
++:root[data-design="klar"] .marke[data-kategorie="teilzeitschularten"] {
++  transform: none;
++}
++
++:root[data-design="klar"] .marke {
++  border: 0;
++  border-radius: 4px;
++  font-size: var(--t-xs);
++  font-weight: 500;
++  padding: 0.25rem 0.5rem;
++}
++
++:root[data-design="klar"] .karte__koerper .marke {
++  align-self: flex-start;
++}
++
++:root[data-design="klar"] .meta time {
++  border: 0;
++  border-radius: 4px;
++  padding: 0.125rem 0.5rem;
++}
++
++/* Schaltfläche. Zustände: Standard, Hover (Unterstreichung + zweiter innerer
++   Rand), Fokus (siehe oben), Aktiv (dritter Rand), Deaktiviert (main.css). */
++:root[data-design="klar"] .btn {
++  font-size: var(--t-ui);
++  font-weight: 600;
++  line-height: 1.25;
++  min-height: 3rem;
++  padding: 0.5rem 1.5rem;
++  border-radius: var(--rund);
++  box-shadow: none;
++  white-space: normal;
++}
++
++:root[data-design="klar"] .btn:hover,
++:root[data-design="klar"] .btn--klein:hover {
++  transform: none;
++  box-shadow: inset 0 0 0 2px currentColor;
++  text-decoration: underline;
++}
++
++:root[data-design="klar"] .btn:active {
++  transform: none;
++  box-shadow: inset 0 0 0 3px currentColor;
++}
++
++/* Primäraktion: gefüllt in Clean-Blau (hell) bzw. hellem Blau (dunkel). */
++:root[data-design="klar"] .btn--akzent {
++  background: var(--aktion);
++  color: var(--aktion-schrift);
++  border-color: var(--aktion);
++}
++
++:root[data-design="klar"] .btn--klein {
++  font-size: var(--t-s);
++  padding: 0.5rem 1rem;
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .linkpfeil {
++  font-size: var(--t-ui);
++  font-weight: 600;
++  border-bottom-width: 3px;
++}
++
++:root[data-design="klar"] .anzahl {
++  font-size: var(--t-xs);
++  vertical-align: 0.4em;
++}
++
++/* Kleine Textlinks: die sichtbare Fläche bleibt, die Treffläche wächst
++   unsichtbar auf mindestens 44 px Höhe. */
++:root[data-design="klar"] .leiste__schnell a,
++:root[data-design="klar"] .brotkrumen a,
++:root[data-design="klar"] .zurueck a,
++:root[data-design="klar"] .linkpfeil {
++  position: relative;
++}
++
++:root[data-design="klar"] .leiste__schnell a::after,
++:root[data-design="klar"] .brotkrumen a::after,
++:root[data-design="klar"] .zurueck a::after,
++:root[data-design="klar"] .linkpfeil::after {
++  content: "";
++  position: absolute;
++  inset: -0.5rem -0.5rem;
++}
++
++:root[data-design="klar"] .hinweiszeile {
++  font-size: var(--t-s);
++}
++
++/* ---------- Kopf, Leiste, Menü ---------- */
++
++:root[data-design="klar"] .leiste {
++  font-size: var(--t-xs);
++}
++
++:root[data-design="klar"] .leiste__innen {
++  padding-block: 0.25rem;
++}
++
++:root[data-design="klar"] .leiste__schnell a {
++  font-size: var(--t-xs);
++  font-weight: 500;
++  border-bottom-color: var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .marke-link:hover img {
++  transform: none;
++}
++
++:root[data-design="klar"] .menue ul a {
++  font-size: var(--t-ui);
++  font-weight: 500;
++  border-radius: 4px;
++}
++
++:root[data-design="klar"] .menue ul.menue__tafel a {
++  font-size: var(--t-s);
++  font-weight: 400;
++  min-height: 3rem;
++  display: flex;
++  align-items: center;
++  padding: 0.5rem 1rem;
++}
++
++:root[data-design="klar"] .menue__abteilung {
++  font-size: var(--t-xs);
++  font-weight: 500;
++  padding: 1rem 1rem 0.25rem;
++}
++
++:root[data-design="klar"] .menueknopf,
++:root[data-design="klar"] .modusknopf {
++  border-radius: var(--rund);
++  box-shadow: none;
++  font-size: var(--t-s);
++  font-weight: 500;
++}
++
++/* Farbmodus-Knopf in der Kopfleiste: Zeigeziel mindestens 44 px. */
++:root[data-design="klar"] .modusknopf--leiste {
++  min-width: 2.75rem;
++  min-height: 2.75rem;
++}
++
++:root[data-design="klar"] .menueknopf:active,
++:root[data-design="klar"] .modusknopf:active {
++  transform: none;
++}
++
++/* Dropdowns ab 1200 px: dieselbe Struktur (Hover und Tastaturfokus), aber
++   sie bleiben kurz sichtbar, wenn der Zeiger die Fläche schräg verlässt. */
++@media (min-width: 1200px) {
++  :root[data-design="klar"] .menue ul.menue__tafel {
++    display: block;
++    visibility: hidden;
++    opacity: 0;
++    border: 1px solid var(--rand-leise);
++    border-radius: var(--rund);
++    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.16);
++    transition: opacity 0.12s ease 0.35s, visibility 0s linear 0.47s;
++  }
++  :root[data-design="klar"] .menue__gruppe:hover > ul.menue__tafel,
++  :root[data-design="klar"] .menue__gruppe:focus-within > ul.menue__tafel {
++    visibility: visible;
++    opacity: 1;
++    transition-delay: 0s;
++  }
++  /* Wechselt der Zeiger zu einer anderen Kategorie, schließt die alte sofort. */
++  :root[data-design="klar"] .menue > ul:has(.menue__gruppe:hover) .menue__gruppe:not(:hover):not(:focus-within) > ul.menue__tafel {
++    visibility: hidden;
++    opacity: 0;
++    transition-delay: 0s;
++  }
++}
++
++@media (max-width: 1199px) {
++  :root[data-design="klar"] .menue ul a {
++    font-size: var(--t-m);
++    border-radius: 0;
++  }
++  :root[data-design="klar"] .menue ul.menue__tafel a {
++    font-size: var(--t-m);
++  }
++}
++
++/* Handy: „Krankmelden“ im Kopf bleibt schmal, sonst läuft die Zeile über. */
++@media (max-width: 640px) {
++  :root[data-design="klar"] .krankmelden-knopf {
++    font-size: var(--t-s);
++    padding: 0.5rem 0.75rem;
++  }
++}
++
++@media (max-width: 380px) {
++  :root[data-design="klar"] .marke-link img {
++    height: 2.5rem;
++  }
++  :root[data-design="klar"] .kopf__innen {
++    gap: 0.75rem;
++  }
++}
++
++/* ---------- Hero ---------- */
++
++:root[data-design="klar"] .hero {
++  background: var(--papier2);
++  color: var(--schrift);
++  padding-block: clamp(3rem, 6vw, 6rem);
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++/* main.css hält den Hero im dunklen Modus gelb und setzt dafür eigene Tokens
++   (schwarze Schrift, harte Schatten). Hier erbt der Hero die Tokens der Seite. */
++:root[data-design="klar"][data-design="klar"] .hero {
++  --flaeche: inherit;
++  --schrift: inherit;
++  --grau: inherit;
++  --rand: inherit;
++  --schatten-farbe: inherit;
++  --orange-tief: inherit;
++  --rahmen: inherit;
++  --schatten: inherit;
++  --schatten-klein: inherit;
++}
++
++:root[data-design="klar"] .hero__titel,
++:root[data-design="klar"] .hero__unter {
++  color: var(--schrift);
++}
++
++:root[data-design="klar"] .hero__titel::after {
++  width: 96px;
++  height: 4px;
++}
++
++:root[data-design="klar"] .hero__unter {
++  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
++}
++
++:root[data-design="klar"] .hero__marke {
++  border: 0;
++  background: transparent;
++  border-radius: 0;
++  box-shadow: none;
++  color: var(--grau);
++  font-size: var(--t-ui);
++  font-weight: 500;
++  padding: 0;
++}
++
++:root[data-design="klar"] .hero__ticket {
++  border: 1px solid var(--rand-leise);
++  border-left: 4px solid var(--primaer-akzent);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .hero__ticket:hover {
++  transform: none;
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .hero__ticket-label {
++  font-weight: 500;
++  font-size: var(--t-xs);
++}
++
++:root[data-design="klar"] .hero__punkte li,
++:root[data-design="klar"] .hero__punkte li:nth-child(odd),
++:root[data-design="klar"] .hero__punkte li:nth-child(even) {
++  transform: none;
++  padding: 0;
++  border-radius: var(--rund);
++  box-shadow: none;
++  font-size: var(--t-ui);
++  font-weight: 500;
++}
++
++:root[data-design="klar"] .hero__punkte li:hover,
++:root[data-design="klar"] .hero__punkte li:focus-within {
++  box-shadow: inset 0 0 0 2px var(--rand);
++}
++
++:root[data-design="klar"] .hero__punkte a:hover {
++  background: transparent;
++  color: inherit;
++  text-decoration: underline;
++}
++
++:root[data-design="klar"] .hero__punkte a {
++  display: flex;
++  align-items: center;
++  min-height: 3rem;
++  padding: 0.5rem 1rem;
++  border-radius: 4px;
++}
++
++:root[data-design="klar"] .hero__bild img {
++  transform: none;
++  box-shadow: none;
++  border: 1px solid var(--rand-leise);
++  border-radius: 12px;
++}
++
++@media (max-width: 900px) {
++  :root[data-design="klar"] .hero__bild img {
++    box-shadow: none;
++  }
++}
++
++/* ---------- Karten, Service, Zeilen, Kästen ---------- */
++
++:root[data-design="klar"] .karte {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++  overflow: hidden;
++}
++
++:root[data-design="klar"] .karte:hover,
++:root[data-design="klar"] .karte:focus-within {
++  transform: none;
++  box-shadow: none;
++  border-color: var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .karte__bild {
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .karte:hover .karte__bild img,
++:root[data-design="klar"] .karte:focus-within .karte__bild img {
++  transform: none;
++}
++
++:root[data-design="klar"] .karte__koerper {
++  gap: 1rem;
++}
++
++/* Meldungs-Blöcke: ein neutraler Ton statt Gelb, Orange und Blau reihum. */
++:root[data-design="klar"] .karte__block,
++:root[data-design="klar"] .raster--news .karte:nth-child(3n + 2) .karte__block,
++:root[data-design="klar"] .raster--3 .karte:nth-child(3n + 2) .karte__block,
++:root[data-design="klar"] .raster--news .karte:nth-child(3n) .karte__block,
++:root[data-design="klar"] .raster--3 .karte:nth-child(3n) .karte__block {
++  --block-flaeche: var(--papier2);
++  --block-schrift: var(--schrift);
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .karte__aktion {
++  font-size: var(--t-ui);
++  font-weight: 600;
++  border-bottom: 3px solid var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .karte__link:hover .karte__titel,
++:root[data-design="klar"] .karte__link:focus-visible .karte__titel {
++  text-decoration-color: var(--primaer-akzent);
++  text-decoration-thickness: 3px;
++}
++
++:root[data-design="klar"] .service,
++:root[data-design="klar"] .serviceliste .service:nth-child(3n + 1),
++:root[data-design="klar"] .serviceliste .service:nth-child(3n + 2),
++:root[data-design="klar"] .serviceliste .service:nth-child(3n) {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .service:hover,
++:root[data-design="klar"] .service:focus-within {
++  transform: none;
++  box-shadow: none;
++  border-color: var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .service h3 {
++  font-size: var(--t-h3);
++}
++
++:root[data-design="klar"] .zeile {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .zeile:hover,
++:root[data-design="klar"] .zeile:focus-within {
++  transform: none;
++  box-shadow: none;
++  border-color: var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .zeile__titel {
++  font-size: var(--t-h3);
++}
++
++:root[data-design="klar"] .kasten {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .kasten h2 {
++  font-size: var(--t-s);
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .kasten__kontakt {
++  border-top: 1px solid var(--rand-leise);
++}
++
++/* „kasten--gelb“ erzwang weiße Innenflächen und schwarze Schrift; hier erbt
++   der Inhalt die Tokens der Seite, die Fläche selbst ist ein neutraler Ton. */
++:root[data-design="klar"] .kasten--gelb {
++  --flaeche: inherit;
++  --schrift: inherit;
++  --grau: inherit;
++  --rand: inherit;
++  --schatten-farbe: inherit;
++  --link: inherit;
++  --orange-tief: inherit;
++  --rahmen: inherit;
++  --schatten: inherit;
++  --schatten-klein: inherit;
++  background: var(--papier2);
++  color: var(--schrift);
++}
++
++:root[data-design="klar"] .hinweis {
++  border: 1px solid var(--hinweis-rand);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .hinweis__titel {
++  color: var(--schrift);
++}
++
++:root[data-design="klar"] .hinweis p {
++  font-size: var(--t-ui);
++}
++
++:root[data-design="klar"] .infozeile {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .infozeile__titel {
++  font-size: var(--t-h3);
++}
++
++:root[data-design="klar"] .konten__titel {
++  font-size: var(--t-ui);
++}
++
++/* ---------- Bilder ---------- */
++
++:root[data-design="klar"] .bild img,
++:root[data-design="klar"] .seitenleiste__bild img,
++:root[data-design="klar"] .beitrag__lupe img,
++:root[data-design="klar"] .schulleben img {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .schulleben li:nth-child(3n + 1) img,
++:root[data-design="klar"] .schulleben li:nth-child(3n + 3) img {
++  transform: none;
++}
++
++:root[data-design="klar"] .lupe__plakette {
++  border: 2px solid var(--tinte);
++  border-radius: 4px;
++  box-shadow: none;
++  font-size: var(--t-s);
++}
++
++:root[data-design="klar"] .beitrag__lupe:hover .lupe__plakette,
++:root[data-design="klar"] .beitrag__lupe:focus-visible .lupe__plakette {
++  transform: none;
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .video__knopf {
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .video__knopf:hover,
++:root[data-design="klar"] .video__knopf:focus-visible {
++  transform: none;
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .video__zeichen {
++  box-shadow: none;
++}
++
++/* ---------- Navigationshilfen ---------- */
++
++:root[data-design="klar"] .sprungleiste__label {
++  color: var(--primaer-text);
++  font-size: var(--t-s);
++  font-weight: 600;
++}
++
++:root[data-design="klar"] .sprungleiste a {
++  display: inline-flex;
++  align-items: center;
++  min-height: 3rem;
++  padding: 0.5rem 1rem;
++  border-radius: 4px;
++  font-size: var(--t-s);
++  font-weight: 500;
++}
++
++:root[data-design="klar"] .brotkrumen ol,
++:root[data-design="klar"] .zurueck a {
++  font-size: var(--t-s);
++  font-weight: 500;
++}
++
++/* ---------- Startseite: Termine, Instagram, Partner ---------- */
++
++:root[data-design="klar"] .kalender,
++:root[data-design="klar"] .kalenderliste li:nth-child(3n + 2) .kalender,
++:root[data-design="klar"] .kalenderliste li:nth-child(3n) .kalender {
++  --kalender-flaeche: var(--flaeche);
++  --kalender-schrift: var(--schrift);
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .kalender:hover,
++:root[data-design="klar"] .kalender:focus-visible {
++  transform: none;
++  box-shadow: none;
++  border-color: var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .kalender__name {
++  font-size: var(--t-ui);
++}
++
++:root[data-design="klar"] .kalender__aktion {
++  font-size: var(--t-s);
++  font-weight: 600;
++}
++
++:root[data-design="klar"] .instabeitrag {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++  overflow: hidden;
++}
++
++:root[data-design="klar"] .instabeitrag:hover,
++:root[data-design="klar"] .instabeitrag:focus-within {
++  transform: none;
++  box-shadow: none;
++  border-color: var(--primaer-akzent);
++}
++
++:root[data-design="klar"] .instabeitrag__bild {
++  border-bottom: 1px solid var(--rand-leise);
++}
++
++:root[data-design="klar"] .instabeitrag__plakette,
++:root[data-design="klar"] .instaraster li:nth-child(4n + 2) .instabeitrag__plakette,
++:root[data-design="klar"] .instaraster li:nth-child(4n + 3) .instabeitrag__plakette {
++  transform: none;
++  box-shadow: none;
++  border: 2px solid var(--tinte);
++  border-radius: var(--rund);
++}
++
++:root[data-design="klar"] .partnergitter__kachel {
++  border: 1px solid var(--rand-leise);
++  border-radius: var(--rund);
++  box-shadow: none;
++}
++
++:root[data-design="klar"] .partnergitter__kachel:hover {
++  transform: none;
++  box-shadow: none;
++  border-color: var(--primaer-akzent);
++}
++
++/* ---------- Fuß ---------- */
++
++:root[data-design="klar"] .fuss {
++  border-top: 1px solid var(--fuss-linie);
++}
++
++:root[data-design="klar"] .fuss__titel {
++  font-size: var(--t-s);
++  border-bottom: 1px solid var(--fuss-linie);
++}
++
++/* ---------- Druck: immer hell, auch wenn der dunkle Satz aktiv ist ---------- */
++
++@media print {
++  :root[data-design="klar"] {
++    --papier: #ffffff !important;
++    --papier2: #f3f4f6 !important;
++    --flaeche: #ffffff !important;
++    --schrift: #000000 !important;
++    --grau: #333333 !important;
++    --rand: #000000 !important;
++    --link: #1e40af !important;
++    --orange-tief: #1e40af !important;
++    --rand-leise: #999999 !important;
++    --linie: #999999 !important;
++    --hinweis-flaeche: #ffffff !important;
++    --fuss-flaeche: #ffffff !important;
++    color-scheme: light;
++  }
++}
+diff --git a/assets/fonts/klar/LIZENZ.txt b/assets/fonts/klar/LIZENZ.txt
+new file mode 100644
+index 0000000..a63b250
+--- /dev/null
++++ b/assets/fonts/klar/LIZENZ.txt
+@@ -0,0 +1,196 @@
++Schriften der Variante „klar“ (assets/fonts/klar/)
++==================================================
++
++Roboto (Variable, Latin-Ausschnitt) und Poppins 600 (Latin-Ausschnitt) stammen aus den npm-Paketen
++@fontsource-variable/roboto und @fontsource/poppins. Beide stehen unter der SIL Open Font License 1.1,
++die ein Weitergeben mit der Website erlaubt; der Lizenztext folgt unten.
++
++--- Roboto ---
++Copyright 2011 The Roboto Project Authors (https://github.com/googlefonts/roboto-classic) Roboto-Italic[wdth,wght].ttf: Copyright 2011 The Roboto Project Authors (https://github.com/googlefonts/roboto-classic)
++
++This Font Software is licensed under the SIL Open Font License, Version 1.1.
++This license is copied below, and is also available with a FAQ at:
++http://scripts.sil.org/OFL
++
++
++-----------------------------------------------------------
++SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
++-----------------------------------------------------------
++
++PREAMBLE
++The goals of the Open Font License (OFL) are to stimulate worldwide
++development of collaborative font projects, to support the font creation
++efforts of academic and linguistic communities, and to provide a free and
++open framework in which fonts may be shared and improved in partnership
++with others.
++
++The OFL allows the licensed fonts to be used, studied, modified and
++redistributed freely as long as they are not sold by themselves. The
++fonts, including any derivative works, can be bundled, embedded,
++redistributed and/or sold with any software provided that any reserved
++names are not used by derivative works. The fonts and derivatives,
++however, cannot be released under any other type of license. The
++requirement for fonts to remain under this license does not apply
++to any document created using the fonts or their derivatives.
++
++DEFINITIONS
++"Font Software" refers to the set of files released by the Copyright
++Holder(s) under this license and clearly marked as such. This may
++include source files, build scripts and documentation.
++
++"Reserved Font Name" refers to any names specified as such after the
++copyright statement(s).
++
++"Original Version" refers to the collection of Font Software components as
++distributed by the Copyright Holder(s).
++
++"Modified Version" refers to any derivative made by adding to, deleting,
++or substituting -- in part or in whole -- any of the components of the
++Original Version, by changing formats or by porting the Font Software to a
++new environment.
++
++"Author" refers to any designer, engineer, programmer, technical
++writer or other person who contributed to the Font Software.
++
++PERMISSION & CONDITIONS
++Permission is hereby granted, free of charge, to any person obtaining
++a copy of the Font Software, to use, study, copy, merge, embed, modify,
++redistribute, and sell modified and unmodified copies of the Font
++Software, subject to the following conditions:
++
++1) Neither the Font Software nor any of its individual components,
++in Original or Modified Versions, may be sold by itself.
++
++2) Original or Modified Versions of the Font Software may be bundled,
++redistributed and/or sold with any software, provided that each copy
++contains the above copyright notice and this license. These can be
++included either as stand-alone text files, human-readable headers or
++in the appropriate machine-readable metadata fields within text or
++binary files as long as those fields can be easily viewed by the user.
++
++3) No Modified Version of the Font Software may use the Reserved Font
++Name(s) unless explicit written permission is granted by the corresponding
++Copyright Holder. This restriction only applies to the primary font name as
++presented to the users.
++
++4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
++Software shall not be used to promote, endorse or advertise any
++Modified Version, except to acknowledge the contribution(s) of the
++Copyright Holder(s) and the Author(s) or with their explicit written
++permission.
++
++5) The Font Software, modified or unmodified, in part or in whole,
++must be distributed entirely under this license, and must not be
++distributed under any other license. The requirement for fonts to
++remain under this license does not apply to any document created
++using the Font Software.
++
++TERMINATION
++This license becomes null and void if any of the above conditions are
++not met.
++
++DISCLAIMER
++THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
++MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
++OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
++COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
++DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
++OTHER DEALINGS IN THE FONT SOFTWARE.
++
++--- Poppins ---
++Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-ThinItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-ExtraLight.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-ExtraLightItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-Light.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-LightItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-Regular.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-Italic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-Medium.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-MediumItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-SemiBold.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-SemiBoldItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-Bold.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-BoldItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-ExtraBold.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-ExtraBoldItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-Black.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins) Poppins-BlackItalic.ttf: Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
++
++This Font Software is licensed under the SIL Open Font License, Version 1.1.
++This license is copied below, and is also available with a FAQ at:
++http://scripts.sil.org/OFL
++
++
++-----------------------------------------------------------
++SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
++-----------------------------------------------------------
++
++PREAMBLE
++The goals of the Open Font License (OFL) are to stimulate worldwide
++development of collaborative font projects, to support the font creation
++efforts of academic and linguistic communities, and to provide a free and
++open framework in which fonts may be shared and improved in partnership
++with others.
++
++The OFL allows the licensed fonts to be used, studied, modified and
++redistributed freely as long as they are not sold by themselves. The
++fonts, including any derivative works, can be bundled, embedded,
++redistributed and/or sold with any software provided that any reserved
++names are not used by derivative works. The fonts and derivatives,
++however, cannot be released under any other type of license. The
++requirement for fonts to remain under this license does not apply
++to any document created using the fonts or their derivatives.
++
++DEFINITIONS
++"Font Software" refers to the set of files released by the Copyright
++Holder(s) under this license and clearly marked as such. This may
++include source files, build scripts and documentation.
++
++"Reserved Font Name" refers to any names specified as such after the
++copyright statement(s).
++
++"Original Version" refers to the collection of Font Software components as
++distributed by the Copyright Holder(s).
++
++"Modified Version" refers to any derivative made by adding to, deleting,
++or substituting -- in part or in whole -- any of the components of the
++Original Version, by changing formats or by porting the Font Software to a
++new environment.
++
++"Author" refers to any designer, engineer, programmer, technical
++writer or other person who contributed to the Font Software.
++
++PERMISSION & CONDITIONS
++Permission is hereby granted, free of charge, to any person obtaining
++a copy of the Font Software, to use, study, copy, merge, embed, modify,
++redistribute, and sell modified and unmodified copies of the Font
++Software, subject to the following conditions:
++
++1) Neither the Font Software nor any of its individual components,
++in Original or Modified Versions, may be sold by itself.
++
++2) Original or Modified Versions of the Font Software may be bundled,
++redistributed and/or sold with any software, provided that each copy
++contains the above copyright notice and this license. These can be
++included either as stand-alone text files, human-readable headers or
++in the appropriate machine-readable metadata fields within text or
++binary files as long as those fields can be easily viewed by the user.
++
++3) No Modified Version of the Font Software may use the Reserved Font
++Name(s) unless explicit written permission is granted by the corresponding
++Copyright Holder. This restriction only applies to the primary font name as
++presented to the users.
++
++4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
++Software shall not be used to promote, endorse or advertise any
++Modified Version, except to acknowledge the contribution(s) of the
++Copyright Holder(s) and the Author(s) or with their explicit written
++permission.
++
++5) The Font Software, modified or unmodified, in part or in whole,
++must be distributed entirely under this license, and must not be
++distributed under any other license. The requirement for fonts to
++remain under this license does not apply to any document created
++using the Font Software.
++
++TERMINATION
++This license becomes null and void if any of the above conditions are
++not met.
++
++DISCLAIMER
++THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
++MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
++OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
++COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
++DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
++OTHER DEALINGS IN THE FONT SOFTWARE.
+diff --git a/assets/fonts/klar/poppins-600-latin.woff2 b/assets/fonts/klar/poppins-600-latin.woff2
+new file mode 100644
+index 0000000000000000000000000000000000000000..921e962b91ded5f8574b8605d1e0b2af1294189f
+GIT binary patch
+literal 8000
+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
+CEPT=c
+
+literal 0
+HcmV?d00001
+
+diff --git a/assets/fonts/klar/roboto-var-latin.woff2 b/assets/fonts/klar/roboto-var-latin.woff2
+new file mode 100644
+index 0000000000000000000000000000000000000000..9b0f14165e44ad80256062baf0e55c163dfbe96b
+GIT binary patch
+literal 43136
+zcmV(}K+wN;Pew8T0RR910H}Zf761SM0Xx_L0H_E60RR9100000000000000000000
+z0000Qh8-K=JRFcZKS)+VQicTvU_Vn-K~#ZGCoTYkLI{C=37-Zpeh~}`fzDuowrLB6
+zSO74A-fRIj0we>AECe70iB<<7424cxf-7-?ImbzLmD>gYEY;nucUlP>T)m<5CbvH^
+z#julc3-4~FFA660qW}LtF{zB9N!`){0HW&j`)om$Tu$KuMN%#qxvD_{^@^G^aw5SU
+zNhDu1uoj-NMcFwajKg!sPJu$59d+3}Fj_s1>?BCobc(Kzw~Stq`)8fKZ8gxk;|@5<
+znB<OiKsP;Zq~ci;bYKtukd`D<yY=U0xo~O2<`Y75xRdZ~m?TAqpbp`>5TYKwY9x5|
+z)M`nX<<Y4I(FQ5i2=)|Vs3s2*&aVfFA~}VTMhv<KWJ-pXi?t%ijka*(|Dp%NR}LBO
+zXkiT*LJ=~bDfE)E=x45)xphwO@?h@9*G;|8Y5!gz3~@o(Z|YQE7{)R%c43q@Vx4%0
+z=j+yc|Nl8oV~n}XFpldUawQ?>6+&t|PD#d<yTg%$WTlq2RZ+;6N>*yC)g|4EBy?<!
+zbKqaZWxX%ia*`<?A<`ZIcK3kW3C~yi#e42dzug~Hj4n2k7|ZY0k0K+GoQYx~iC<5j
+zo8JpTv~9pk175MOs@Gj-dRsl4dKJ@9K`dwzAWizidsc6uGdpmJX(wf-O)4cRl0sVO
+z_lRHH86LN+e=yRSnyu*Uo=JDltlLxlW-{eOz2<bwC}uGv;>1XtK(HY5)n;FLi_y?n
+zh>oqR-u6*s#r*n3Pn-QNBc9PHfd<;Fpd6cbKdgclMJ5=ku+Wk}eB1gzgcV!q-5Zso
+z-d7bLpQIQ~$N-W(3=Az1rOQV4rK&y&wFanDwNUoU|87VFQg2V@oQK_W+PGR&+mb$s
+zn$!Jgzn1R~2t|BnzdV^i`$;Nz$ks9?Pzw>i&t^HZgtG^xHdMa~Te=unfCiD*)pLe!
+zjimJjnK8b5<t+Ja9EGMK+_Zxt8bZX06M_V@(iN&c>wbGtZFv>no5{p0Ho$MQXLI4o
+zSr{|0Kt&V;2~kpbR9hfOTBLyrI1_a`YwE^Abk^!N-P+yO=bfwmx4Yg&^gmqd-^ole
+z+3@n+9=v<NpNLcuREqLRS3p_gE34{T`P=@`0MhC|&Gr5n+L<I1T1pCxyRS;I@pE_6
+zR|ljBNcaj_3#8irFMRaNx#tkFbYXFz{vD+>g=3;3TxPjH#OZij9|5p75s^gdkmJ3C
+zModI);!{tIRU2vh95{F=abBrYhAC2t1SwF4smplXUfq|oXf7XSgB!XBpc2bgSYXUw
+z(Rg;E!ZrYo_iw|Tc<+O#raWN=xTLd^5|)w!dH^heXhvgLAn;gC+}^g&9WmJJCjeoa
+zDH`m8+oB-mbN~NMHQRr|4MRBr8;9#O-1ukXpWUKyZgc70$3-_BfYJ;|NW<g>K+yuJ
+z1VExaprqpg*V;pE2(hwr8DjYWl4m~@yq~1PNKW8Jty2t5ms^*;i*B`@Qz~6_b!rXI
+z|IbXR-@8&Ijk8!*_RZ}Mm;zwCBbdnYIHRXOnvRn?sgJX5?lv(>_UY;vC9EwfEn!($
+z3t(7bSaAt}E8wIM^p`K+tbJQM{eS^`u^_gxbClM&6_L2c=QA~JXRyQxxC}))AKw#{
+zD%nLv$6S=oecJsqgV~+If{P`2hXoiw@Fanx0>EIAxCnxG20<T{VgjK%g&2z7rR<{d
+zbC<fxa?!aG(dx9B2Rd6IEX$L(XgTe}+)&j*caZMnI~hvdpR{)AF5TG2MaH^ZE>pVJ
+zO0M5--PX_OG9U7+yAW}0cWx~S4Iw#+{Ugt@lqMEx!~$WAS>WGksNNUJ4Q-&t9Ig;X
+z6`nejO!b|ZU;oL>bdP?>5=tA4@d_i1&<d|GCS;EDF;vUZ^nAMd5G8I~)~psU>P-LD
+z!YL|BhykJy(c67hJw~|Oj^l+4BHw$Asd<`9+WNzE+ifjx6C{XAkO0o-=VhB+jEWAl
+zjwcXZq(DVqw?2TNFl}18nbbg#rOpAwMHEQNBLUf#fb32{Bne1%0+N@26xes7NJ-*|
+zV`|4$LTPak!d-nJ_rtd~DatnPqLgIs1OWUl#@>ar4ORd(uTp~m*^`4@c;{HCR~ot3
+zYy+tDUsG<q54f1#OKJhB)r>$J40AXnaAXm7o2X=lj_ki0op9<hS7ML%6^am2!wFsx
+zTW!Pg{`l*Ep*RwmF%Fx<<q3p}T1F;T&Tby~0RRL5;L&w{b87h1;HmRe*X%W2^VD|j
+zSJzEhI@15^9rj%N4*MN5V}OH+Gl|(w+&2F<GD{t0{^BNkkT}dQQcexS+2P!9>7oC|
+z{vX?jSQBkdu2bPux@w12F0*TqyVs-i_V{}I)Ct(H@GApYARd4N+<+=z4#GiW&=j<U
+z;E*|7K2tekj+mmxs3}IBgE96z7enK4+&sx#gr}HGoN3dHHNi>e)7&&K!^!IMp1il<
+zDA+}ELQSAjJWXb;vZjJpkcYhwdT0F4w(F{fnw|h*hd>Dfv6xswa-umBB@Gl6!vv;>
+z8!&ZfCk=CyYsI6p?kp&S5|*em%P!N-f(ll0rB^Lh!?w@;if$4@070-T#y%K8229pJ
+z_*b8FfCkD+uhW|}nE*DBl#@#SClBS9`D6Z+C-Qs-xZGyUtc!mNj4_=#X#chotJ)p+
+zpTk+#`ZoL@AZwzGCa$KG%JO6RmyB0M`)4`Pnc+3(mR|FAY1FQD;)~6(@BchGQsNw{
+z`+ui(C(T3kWIR<**VFSXJRj>l=A-&4{>P(k?cN50JV6ft01y)c5CF)SiGeM%9PR`D
+zBm3(`;6Je=RRI38vCT5@VE_Q6QVswR1a#+Z>t#@TF1B6(!E>8S1z-UH0RsmB2nZ+u
+zAV2`XkMmTigEC2;ICStZK*%7#&Om1X*hz&7h8Z1vWYCejqO-FPG63**3qVJ{>vYIl
+z=<%02lY7!Yz|gXs)Fa7&KK4yVbL-gW<RDlldvmug^=&l<_B9Y9uoKX<0-IT=3?5qA
+zWHd=lNaN8sGzN`g!>U*7@p`bnU0<$invA-#&a3y-sdYr{Rom5iHM_<WzgNT6K-E??
+zR;5)&l~jdPewA}&QmItT3L*R~lVzj~mD}ZVX(-1_R@qVFieK?44n?al3lYB>(}mfD
+z#M@EpVRS@89B+~$%i4EDMEF@?t4COcR&ZO1xS#oT9&GK;9r=8&dQyJgkt4EKHIVIW
+zr(R}f{F|`Z^ga!wuGZ#MopREy7ZIPllS?v7YKfmPblTtgL+|x2Z}ldx@#CK5sUGJc
+z?(Hsa<2o*K_U%MIpYn^Qq6oRP`ffjMr17X4ZP0GpWoxi1%Wqg!NL^DQ$UaM|Bg$oq
+zGVhvQc9?^inWE7V3@-NhLpK@Ka1&CsHHuY|CNx}+SI+fdWm4a+RO-tWv#!x&_0@T0
+zq~248>eO<(j?h&#)n28cwkyYLJRz<yK{X#%klg?Pe%k?1D=j&QA_hx$M|4=&YG{or
+zEmep88mX7&*bxcCbFM~~>Wc0O0$8dS$x&(pesF#1smx60nOX{G$Vvi$>oiI(`(Q{2
+z^AiBJ7jMvV+{+%QF-j>?{P*?3wi218ZOvJ;^i%~16{tfTX~bf5r$Pv3&>b&hdGk-I
+zHbIY8PDP>i;IhXooF`)<SEN{v6hXzvJnltK9lO!yibBXtn9sR^B943ND?qqK18?vn
+zk(_mOI~<%=>Z8YBFWAy<Q_544)WjOzKjKAFqPHpbCc9t0^q8se;P6P9ZY#`ugSV8H
+zM2CCcWGFs4v81sysnq9-p2yH4oZUoT@0_vfvY#;*1HkkAsLA1`o=-Aq*;*R%CtFaJ
+zHl;mMJUFh@=l5<EnSC55vOI6hyV|EL8~`+{3R*-YoC>Uo057t%5i5YK#uvpdIYne_
+zn~s|Nrqo6A=zQskfVxA*A8SJ%0&q7UCA$?iaN0t+%Rp945<JBDrzF`upj3`cIFMO5
+zL@~m~?PDbg9_PF$Np?TO<&~YgFkEA-oMsV4-z?c^dQL4Rn@mu`NOcwA?CMjJkoe9!
+zCCQ2Gh(Sxvds|6ER|FUGDp#Gb+#zm~;QO3!N|HSZ(w>xZ+A|=uo+>er`Q^VF)p(s4
+zhh6nvF81(FiR;7x0*1HCfg+l+KI0~J-stl4q`}MK7SBQ&QLRVMic>Zt27cP;T+P7j
+zFledqVOY1hY{p(rWyR#2zjy0W(&CRn_tckniR#O`7!iU{8lEou37%8nx*91zBB}Qt
+zrM^jI>;vQ(<}%Ujw_eI*;%mUcow24GvAT;aFGOKtF&*$Sspw!o4H@_FOi|efEQ6LP
+ztTX_FmhgIaNVr>392t;(xXhiFb}j>cZw(ZH6Sh>BX3hr-?8H(E=^t9<dwThR;dLgN
+zOsoUPs`3<_fW`~iS<#ilNF4K=jKE&o*Z2{=GRDH@Ox1O>P=2f)>vlCjz&?Y#+lUuU
+z-lRSYnrU_X!$5=krYCK;D4C7n1OPS<#oQWhuDYZ1B0AVA@;UTgXlWf#g|fKiMQX`v
+zO$sN-I&KnFDQl9GwjZu!uuTAN^t`4?BB-g3)YYVJr^Jq->*GV5Gt1Co|0vcp#fTo_
+zgeiv`(7Ll3Jkn~bsDl^y70<aR8SAe$Y1$aiK@>b(N5tEq!-ipG*cRbv!8Q*FN8<JU
+z4dR4Xb{VglqTf(7-WfDE>LWJ7h1YYN>mJLY&D^scfT&q)KDQpk%$+~X$Bzuht0>3N
+zm--ys7U2Ma5@4dLB>=ARr=^%-js=!kO+vB7o)T5%EieG^h}3FS3jj=+-J2FGGa{3Z
+z#P*@6<B-Fo?H$7v<?A=sbcieCcbY7xwA+d7_DZD;MJwuaAJ}%63#FzMm-Moy#1!9R
+zQ_PBDp$p*;C5B=!9z=IEMP=m0o=A+K5QkClgN$3u6ZvU=D18sxkc)GAP8G5@0N9u~
+z@;LRR)@T<R*%?Y{DW!L%^QE|S|MR&NR?^#S&{ray_aoxqe=hmvr{VK}z^e3~RF{;R
+zyjX1NXHe+4^q9^O(Vf}RlmY%Y+a!!qVI-!W-4=JBQ>^CHWRuiNckmM(oiFM6DbW6y
+zKH`Jk?H6JwdwGo)zZHCs$FzY8B_{XFzh?J!u^YL_84d`O<zkz#r`Bt2)@bFHVOt%2
+zjBIC7=3yo#Fg%>~wIV&%n4YWedi^|9>4Ts~U%dgcWdT56_?m_#<g$a8tV*1ose85f
+zX;WSE;%uAv91#<>+@!nR%S1)37c7xZa2U6;;yROVIg_Zb+tsb*qqb~gcD<1))m^lW
+zeIs>QcEVJec_5E-FsfI3E@4TIJs}RtE={SkAo04kZmAML>rl2kD#~};L&Ng!e35Us
+znpdlENw9%jh}0FyPDRX5L=EC)j6*;gLEZ9*p~=+xo_+wR4Ewuum5Bs_INa1dU6ko2
+z03|)G^pax!wCY^ac^rFmYeh_4b!TXNnh0|z!cD~&#p#|)jM%Q$z>2SB;nM7mL&lmA
+z^}c4geBoksvB+n%mdbY>)CMcm&X>MI%gYy<XS7m{4TC_=<4%AiDdCjS!70f<Nq-v`
+zL-d*mq`ssq&Q`0W4Qn*7N!!d6P!<Qj3$wvGleSNrYHVW`g-+GG=;htyR{gurXDU6$
+zlNl@&6}PdsPu73?E+Ku|XCXJwv`!Xxc^d<;_m_|xt2q~^%8MlNY0z}KP5{ai@@Q89
+z_=BP<**MW6ACo6u!|sy=<@IvQ(CdH%qRd}aLf>*Y$g6;KYw1SIg&g&p*-hg?wVgwC
+z1XvxeeZYT>L_jprJ!SdIS=CB8SYB8zT@lOipwZRN){Pn5;RxZy<A!L$YwVh?;2@iW
+zR4xt62}=x`Tb~-p=4urr(%D@N2ylAca63mAl_sarZRY+MqTy|VfEMQm5>0s9v}4|*
+znpIAcdmmD2ua@PPk?hienONS+z&i5cbLi?pZu~n~;J*^r^<SRlU;NJG1_;HUqnqer
+zHH_hqMnGC|+>WQ6o1h~Yx}$-gnEx}?s&iVsGa58TK>`qP;D-=OkO2&S4B~|0LYP8M
+z3uzG2=vEYJssa#&N^alSj~~NTxqPgF<(>GuE3-+@bA))d@6L3{sf#}Wz#qX6w*;q#
+zzn00fTZKpUPv-yC>6f2cJ&i0m$Dg_HO#u8r?);i`hCZa<j^E&W=coG{sXo7T@Omvc
+z?(;{T(dBtNw*7Se0e(UL+jjto@4{0kG5vL8_~fArwo}9Zm%rN2+PpuNS3l=Ie_49*
+zMEo5!wL%vA+_!~tI`0+!0`LFB1fa`}t9pq@^UX;=x<hl2d#27P(U)}6t)G8dIw|#i
+zbLW09Q*`K8T!4AZ1O0C4iMB*9XAJeBrAsgN@~FgO4_Q3_di1;b3(h2Ad)I!%5xkwY
+zfxq)1y=we<HS&EiKM>8%eo()@N3OQcSl!LarcTcv^X1Y7U%IRC`BFtKSo(HV%5Up(
+zey+H#f4Wyj9?m;7%HuF>bBVH#)-j^Dg75MOx%sR1(%jJ}!S>7GR-X>P3a+RgfYXs@
+zc;C*GqV!4XkpT_!O}_`7J2Rhl1WOOqr?F43Yk`!<|F><Qh_|05m&_adHZ=Nhrs{X4
+z8t2NcWIB_%)|Yc{t(dxFs836JYTiHIwoBw7pK{jT%RJP{V83;`uR^DY!mCsE@jQS&
+zb^nLcKEs3b(_+nN-bbl;+Bv^+uAYmvOaDdbbl`jAKaD(o^|(>qGj*K(Ej7$zekyw8
+zwfY;|eX})>_>a24td6;{uH+ipVdN0BkJRPE09w0&JUWUxZ5VpYkg(!lxhr=(YcDYY
+zuK-q|4FV_%N~j34s)`UrO`%m&tp-{e)ePMCouL_v0!g8R@ZcaoObCz&Vnap;8$%;N
+zd}JVlgvg__DI9{N@T5a>^dLA81DTK>GZc};LbhbZO`hb(OWu^k7oDT=BRG}-g>gI)
+z=$uS+U8)nSL{241$)-vhxFa~q$TvV_;lqIm3JDqrDq!HzMh788C==lhVKc*_L%)$D
+zTa?FCj=C6{BIt@>Acv_4<|0_iU?l}>N!Z9@t1LUI*gueQ;N0334)+_#I!~a_eo*`s
+zPk<<aLV~3cDuFPGL?}a~M51KN7NJ;#lHZV1YRDUc(T%<2%)#g;A9A#Fat1C|c@O*t
+zV^D_h+It8ed_rQB4(Typ;h6LtWX7c9rr{zyOI8t(LI6>j1BmRQs{^2j04fT=2sMBv
+zfFwFVkPN^K1MJ8hNT{A{$u=O1e-J-!{d5TdH%dSy0w!hPqykK;z)2lYnt;*<lmQSK
+z0xu&VG6r5IAjuR2nSms85M%+eEJ2jj#8}HZHnNGWY}Xy2S_h~=pb7@65Fm;KBT)w}
+z*hOhTQXE*>2%_T0lc0o61hPp2Gs!1v18fM};bow}kc}yux(FKbX-Y#&h_)C85;2s5
+zk#bChn5n=@8LTB@BbV(dE09~!k-tH4Ln`jdS}P8(NZ}kwQCAF{2ni;Hc<Ux={9wR_
+z0sDsS{s;o(H;pHr!$Jrgi4(f5jk2bEhht_TMRAuPKudO!B}b6}Cu01Nj~6^xBMSly
+z1du>LL4KoBlNuPFang`RR8yL2NozNX;6^yYh#~w-Oe0|=K)5E!W6bcgc7`g?8L0I$
+zBzd1fS+!7-izp;W*HEFFQApSs)D;XTnV>?13jr<!Sjflpc+~pE1pvDb%vRGbtEzIU
+zZB<eg7U!crj)&cfj1c6(T$*>~u#92L=|*Zzcy!(?y_9gKC%Tr499*2;uBJ88!4oD`
+zIfrhm!VXA!NXD?%!H|$3BD0;2<Gazsw4B2_nlM3o8iv8J)VlAT<eA_kV7=@l{HWIs
+zeb8^da5tUpo%L5PEG+}s4FeAaD(W<8(Wb+Y5mRQ&S+HWmmOTfK*7D@V#|D1<1ql%*
+zT%>5V>eM^qz6bvG&?AriXV4Q*J@edaZ@l%+d!wdI`{uhDv*yfOut*Alf;dQoWGDmW
+z#Su?@DM%oplq8ah)TAyAX-Z4lGLWH+WGo9=%1YL<k*(b2srB-fuly9KV1+1D5sFrv
+zHY#2TN>mam-21L!9yivq?&V%YX~GBJasSTrRABYl!F|+2;V1x5Qm{#4ifO*_-DX>D
+z4$QNli;F?97^-A1>POQ|XqzF&jM3IMll3)aV1q^J*$4rd0|*;J9gs2je9f%E2S)g)
+zpX#uextK?{%)XMku|E#9!D$+3JWT9~_FE+Udva7!2LLOxN1G$&S<uD04AuA;@N3Uc
+zz>^FtAxu0DCp&-$EL^SYR>U>W$i}J<26uJl@n9|M2&9BbrkLiNey>AgTBc`4S$SDs
+zku$+r1;{>&6PC)HKI_rF$MblwmURRgORkb*wXM|=_0ySMm5ejaIODW;;lwbQWSVqW
+zH*MOqH;*q$qsPHvnrWt)W*P@)nqEV~d-RhIxgD|nL~kFN*Rv-K>Y+l8`-a`p7ftVf
+zm2|y%eanLG@%Mi6ia|q0D5^wXn-_Wo7P5>$iri8nSUWWL?3T8h5Z?dXzr&Wb0|)7?
+z#fqfYGm+P&@)h(M06@6AH_?v~@V8R1>g!zCd`27FH&TqE4ku(j7GR-bbN)=?7T`9t
+zMMZN#hStW02sQaUux(2YR^HgSagy;fX;@fT*!Y<UK4lNLUHnW@@gM}<!@1MTA)hl0
+z!n<+6PAkitz10<?Pv!#5$FtS@SJQ;SI<I=Hyd1dp+py}u*Ii;Q>+mPgpdKr9n1w~E
+zNUEgTY55w6#vb(QU+|DeJm$Z~y7w83^Mwh%Hi@RdG~f8nEOX4Wz+y{kTLvqvCY_AH
+zsWDfu?+i{<IGsY<O3G(&sw1jRo0|T?jLgoQ%`MQpXnvU%1Piw^$IW52bz#|dF4G-W
+ztcQV=o<s1QG99jTIz-a%0D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
+
+literal 0
+HcmV?d00001
+
+diff --git a/hugo-klar.toml b/hugo-klar.toml
+new file mode 100644
+index 0000000..42a75c5
+--- /dev/null
++++ b/hugo-klar.toml
+@@ -0,0 +1,12 @@
++# Zweite Gestaltungsvariante „klar“ (ruhig, gut lesbar, große Schrift).
++# Gleiche Inhalte, gleiche Templates, gleiche Menüs – nur klar.css kommt dazu.
++#
++# Bau (Beispiel, Basis-URL der Hauptvariante vorausgesetzt):
++#   hugo --baseURL "$BASE_URL" --minify --gc
++#   hugo --config hugo.toml,hugo-klar.toml --baseURL "${BASE_URL}klar/" --destination public/klar --minify --gc
++#
++# Wichtig: Die Hauptvariante zuerst bauen, die zweite danach in den
++# Unterordner – Hugo leert das Zielverzeichnis nicht von selbst.
++
++[params]
++design = "klar"
+diff --git a/layouts/_partials/haupt-url.html b/layouts/_partials/haupt-url.html
+new file mode 100644
+index 0000000..8cb8eb3
+--- /dev/null
++++ b/layouts/_partials/haupt-url.html
+@@ -0,0 +1,8 @@
++{{- /* Adresse einer Seite in der Hauptvariante.
++       Hauptvariante: .Permalink. Variante „klar“ (baseURL endet auf klar/):
++       dieselbe Seite ohne den Unterordner. Aufruf: partial "haupt-url.html" . */ -}}
++{{- $url := .Permalink -}}
++{{- if eq site.Params.design "klar" -}}
++  {{- $url = strings.Replace $url site.BaseURL (strings.TrimSuffix "klar/" site.BaseURL) 1 -}}
++{{- end -}}
++{{- return $url -}}
+diff --git a/layouts/_partials/schriften-klar.html b/layouts/_partials/schriften-klar.html
+new file mode 100644
+index 0000000..f4c0c0e
+--- /dev/null
++++ b/layouts/_partials/schriften-klar.html
+@@ -0,0 +1,14 @@
++{{- /* Schriften der Variante „klar“ (Design-System Clean): Roboto für Text,
++       Poppins für Überschriften. Dateien liegen in assets/fonts/klar/ und
++       werden nur im klar-Bau veröffentlicht (mit Hash im Namen); die
++       Hauptvariante lädt weiter nur Inter. Zeichensatz wie bei Inter:
++       Latin-Ausschnitt. */ -}}
++{{- $roboto := resources.Get "fonts/klar/roboto-var-latin.woff2" | fingerprint -}}
++{{- $poppins := resources.Get "fonts/klar/poppins-600-latin.woff2" | fingerprint -}}
++{{- $bereich := "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" -}}
++<link rel="preload" href="{{ $roboto.RelPermalink }}" as="font" type="font/woff2" crossorigin>
++<link rel="preload" href="{{ $poppins.RelPermalink }}" as="font" type="font/woff2" crossorigin>
++<style>
++@font-face{font-family:"Roboto";src:url({{ $roboto.RelPermalink }}) format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:{{ $bereich | safeCSS }}}
++@font-face{font-family:"Poppins";src:url({{ $poppins.RelPermalink }}) format("woff2");font-weight:600;font-style:normal;font-display:swap;unicode-range:{{ $bereich | safeCSS }}}
++</style>
+diff --git a/layouts/baseof.html b/layouts/baseof.html
+index 466774f..9853625 100644
+--- a/layouts/baseof.html
++++ b/layouts/baseof.html
+@@ -1,5 +1,5 @@
+ <!doctype html>
+-<html lang="de">
++<html lang="de"{{ with site.Params.design }} data-design="{{ . }}"{{ end }}>
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+@@ -16,7 +16,9 @@
+   {{- $titel := cond .IsHome (printf "%s | %s" site.Title (strings.TrimSuffix " Emmendingen" site.Params.schulname)) (printf "%s | %s" .Title site.Title) -}}
+   <title>{{ $titel }}</title>
+   <meta name="description" content="{{ .Description | default site.Params.beschreibung }}">
+-  <link rel="canonical" href="{{ .Permalink }}">
++  {{- /* Kanonisch ist immer die Hauptvariante; die Variante „klar“ verweist auf
++         dieselbe Seite dort (siehe _partials/haupt-url.html). */ -}}
++  <link rel="canonical" href="{{ partial "haupt-url.html" . }}">
+   <meta property="og:title" content="{{ $titel }}">
+   <meta property="og:description" content="{{ .Description | default site.Params.beschreibung }}">
+   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+@@ -39,10 +41,18 @@
+   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} | {{ site.Title }}">
+   {{ end }}
+   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+-  <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
++  {{ if ne site.Params.design "klar" }}<link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>{{ else }}{{ partial "schriften-klar.html" . }}{{ end }}
+   {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}
+   {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
++  {{- /* Zweite Gestaltungsvariante: gleiche Struktur, anderes Aussehen.
++         hugo-klar.toml setzt params.design = "klar"; klar.css überschreibt
++         nur, was main.css vorgibt. Ohne den Parameter wird die Datei weder
++         verarbeitet noch veröffentlicht. */ -}}
++  {{- if eq site.Params.design "klar" }}
++  {{- $klar := resources.Get "css/klar.css" | minify | fingerprint }}
++  <link rel="stylesheet" href="{{ $klar.RelPermalink }}" integrity="{{ $klar.Data.Integrity }}">
++  {{- end }}
+   {{ partial "jsonld.html" . }}
+ </head>
+ <body>
+diff --git a/qa/klar_pruefung.py b/qa/klar_pruefung.py
+new file mode 100644
+index 0000000..cae773e
+--- /dev/null
++++ b/qa/klar_pruefung.py
+@@ -0,0 +1,165 @@
++#!/usr/bin/env python3
++"""Browserprüfung der Variante „klar“ (siehe DESIGN-KLAR.md, Abschnitt 4 und 8).
++
++Prüft in Chromium (Hell und Dunkel, 1440 und 390 px) an einer Stichprobe von
++Seiten und misst in einem Sweep den waagerechten Überlauf aller Seiten bei
++elf Breiten:
++
++  - keine Versalien (text-transform)
++  - keine Drehung (transform mit Rotation) und keine harten Schatten
++  - keine Schrift unter 14 px
++  - Zeigeziele (Links, Knöpfe außerhalb von Fließtext) mindestens 44 px hoch,
++    außer sie haben eine unsichtbar vergrößerte Fläche (::after, absolut)
++  - Text- und Linkkontrast mindestens 7:1 (große Schrift 4,5:1) gegen den
++    tatsächlich dahinterliegenden Hintergrund
++  - kein waagerechter Überlauf (320–1440 px)
++
++Voraussetzung: Python-Paket playwright mit Chromium
++    pip install playwright && playwright install chromium
++
++Aufruf (klar-Bau mit Basis-URL „/“, damit er ohne Unterpfad ausgeliefert wird):
++    hugo --config hugo.toml,hugo-klar.toml --baseURL / --minify --gc -d /tmp/klar
++    python3 qa/klar_pruefung.py /tmp/klar            # Stichprobe + Sweep (einige Minuten)
++    python3 qa/klar_pruefung.py /tmp/klar --schnell  # nur Stichprobe
++
++Ausgabe: Befunde je Prüfung. Exit 1, wenn es Befunde gibt.
++"""
++import os
++import socket
++import subprocess
++import sys
++import time
++
++from playwright.sync_api import sync_playwright
++
++BREITEN = [320, 360, 414, 480, 640, 768, 834, 1024, 1112, 1280, 1440]
++KEIN_UEBERLAUF = "html,body{overflow-x:visible !important}"  # main.css klemmt mit overflow-x: clip
++
++JS = r"""
++() => {
++  const r = {upper: [], rot: [], shadow: [], klein: [], ziel: [], kontrast: [], geprueft: 0};
++  const sel = e => { let s = e.tagName.toLowerCase(); if (e.className && typeof e.className === 'string') s += '.' + e.className.trim().split(/\s+/).slice(0, 2).join('.'); return s; };
++  const sichtbar = e => { const b = e.getBoundingClientRect(), c = getComputedStyle(e); return b.width > 0 && b.height > 0 && c.visibility !== 'hidden' && c.display !== 'none' && c.opacity !== '0'; };
++  const farbe = c => { const m = c.match(/rgba?\(([^)]+)\)/); if (!m) return null; const p = m[1].split(/[ ,\/]+/).filter(Boolean).map(Number); return {r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1}; };
++  const lum = c => { const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c.r) + 0.7152 * f(c.g) + 0.0722 * f(c.b); };
++  const verh = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
++  const misch = (v, h) => ({r: v.r * v.a + h.r * (1 - v.a), g: v.g * v.a + h.g * (1 - v.a), b: v.b * v.a + h.b * (1 - v.a), a: 1});
++  const hintergrund = el => { const lagen = []; for (let e = el; e; e = e.parentElement) { const c = getComputedStyle(e); if (c.backgroundImage !== 'none') return null; const f = farbe(c.backgroundColor); if (f && f.a > 0) { lagen.push(f); if (f.a >= 1) break; } } let g = {r: 255, g: 255, b: 255, a: 1}; for (let i = lagen.length - 1; i >= 0; i--) g = misch(lagen[i], g); return g; };
++  for (const el of document.body.querySelectorAll('*')) {
++    if (!sichtbar(el)) continue;
++    const cs = getComputedStyle(el);
++    if (cs.textTransform === 'uppercase' || cs.textTransform === 'capitalize') r.upper.push(sel(el));
++    const m = cs.transform.match(/matrix\(([^)]+)\)/);
++    if (m) { const v = m[1].split(',').map(Number); if (Math.abs(v[1]) > 0.001 || Math.abs(v[2]) > 0.001) r.rot.push(sel(el) + ' ' + cs.transform); }
++    if (cs.boxShadow !== 'none' && /-?\d+px -?\d+px 0px/.test(cs.boxShadow) && !/rgba\(0, 0, 0, 0\)/.test(cs.boxShadow)) r.shadow.push(sel(el) + ' ' + cs.boxShadow);
++    const text = [...el.childNodes].filter(n => n.nodeType === 3 && n.textContent.trim());
++    if (text.length) {
++      const px = parseFloat(cs.fontSize), probe = text[0].textContent.trim().slice(0, 28);
++      if (px < 14) r.klein.push(sel(el) + ' ' + px + 'px "' + probe + '"');
++      const v = farbe(cs.color), h = hintergrund(el);
++      if (v && h) {
++        r.geprueft++;
++        const gross = px >= 24 || (px >= 18.66 && parseInt(cs.fontWeight) >= 700), v2 = misch(v, h), q = verh(v2, h);
++        if (q < (gross ? 4.5 : 7)) r.kontrast.push(q.toFixed(2) + ' ' + sel(el) + ' "' + probe + '"');
++      }
++    }
++    if ((el.tagName === 'A' || el.tagName === 'BUTTON') && !el.closest('p,.verborgen,.sprungmarke') && cs.display !== 'inline') {
++      const b = el.getBoundingClientRect(), af = getComputedStyle(el, '::after');
++      if (!(af.position === 'absolute' && af.content !== 'none') && (b.height < 44 || b.width < 44)) r.ziel.push(sel(el) + ' ' + Math.round(b.width) + 'x' + Math.round(b.height) + ' "' + (el.textContent || '').trim().slice(0, 22) + '"');
++    }
++  }
++  r.ueberlauf = document.documentElement.scrollWidth - document.documentElement.clientWidth;
++  return r;
++}
++"""
++
++
++def seiten(wurzel):
++    gefunden = []
++    for ordner, _, dateien in os.walk(wurzel):
++        rel = os.path.relpath(ordner, wurzel)
++        if "index.html" in dateien and not rel.startswith(("css", "bilder", "fonts", "js")):
++            gefunden.append("/" if rel == "." else "/" + rel + "/")
++    return sorted(gefunden)
++
++
++def stichprobe(alle):
++    wahl = ["/"]
++    for fest in ("/news/", "/downloads/", "/unsere-schule/"):
++        if fest in alle:
++            wahl.append(fest)
++    wahl += [s for s in alle if s.startswith("/schularten/") and s.count("/") == 3][:2]
++    wahl += [s for s in alle if s.startswith("/news/") and s.count("/") == 3][:1]
++    return wahl
++
++
++def freier_port():
++    with socket.socket() as s:
++        s.bind(("127.0.0.1", 0))
++        return s.getsockname()[1]
++
++
++def main():
++    args = [a for a in sys.argv[1:] if not a.startswith("--")]
++    schnell = "--schnell" in sys.argv
++    if not args:
++        sys.exit(__doc__)
++    wurzel = os.path.abspath(args[0])
++    alle = seiten(wurzel)
++    probe = stichprobe(alle)
++    port = freier_port()
++    server = subprocess.Popen([sys.executable, "-m", "http.server", str(port), "-d", wurzel],
++                              stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
++    time.sleep(1.5)
++    befunde = {}
++    try:
++        with sync_playwright() as p:
++            browser = p.chromium.launch()
++            for modus in ("light", "dark"):
++                for breite in (1440, 390):
++                    ctx = browser.new_context(viewport={"width": breite, "height": 900}, color_scheme=modus)
++                    pg = ctx.new_page()
++                    for s in probe:
++                        pg.goto(f"http://localhost:{port}{s}", wait_until="load")
++                        pg.add_style_tag(content=KEIN_UEBERLAUF)
++                        pg.wait_for_timeout(250)
++                        r = pg.evaluate(JS)
++                        for art in ("upper", "rot", "shadow", "klein", "ziel", "kontrast"):
++                            for x in r[art]:
++                                befunde.setdefault(art, set()).add(f"{modus} {breite}px {s}: {x}")
++                        if r["ueberlauf"] > 0:
++                            befunde.setdefault("ueberlauf", set()).add(f"{modus} {breite}px {s}: {r['ueberlauf']} px")
++                    ctx.close()
++            print(f"Stichprobe: {len(probe)} Seiten x 2 Breiten x 2 Modi geprüft")
++            if not schnell:
++                n = 0
++                for modus in ("light", "dark"):
++                    ctx = browser.new_context(viewport={"width": 1440, "height": 900}, color_scheme=modus)
++                    pg = ctx.new_page()
++                    for s in alle:
++                        pg.goto(f"http://localhost:{port}{s}", wait_until="domcontentloaded")
++                        pg.add_style_tag(content=KEIN_UEBERLAUF)
++                        for breite in BREITEN:
++                            pg.set_viewport_size({"width": breite, "height": 900})
++                            pg.wait_for_timeout(15)
++                            n += 1
++                            d = pg.evaluate("document.documentElement.scrollWidth-document.documentElement.clientWidth")
++                            if d > 0:
++                                befunde.setdefault("ueberlauf", set()).add(f"{modus} {breite}px {s}: {d} px")
++                    ctx.close()
++                print(f"Sweep: {len(alle)} Seiten x {len(BREITEN)} Breiten x 2 Modi = {n} Kombinationen")
++            browser.close()
++    finally:
++        server.terminate()
++    namen = {"upper": "Versalien", "rot": "Drehung", "shadow": "harter Schatten", "klein": "Schrift < 14 px",
++             "ziel": "Zeigeziel < 44 px", "kontrast": "Kontrast < 7:1", "ueberlauf": "waagerechter Überlauf"}
++    for art, name in namen.items():
++        liste = sorted(befunde.get(art, []))
++        print(f"{name}: {len(liste)}")
++        for x in liste[:8]:
++            print("   ", x)
++    sys.exit(1 if befunde else 0)
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/qa/kontrast_klar.py b/qa/kontrast_klar.py
+new file mode 100644
+index 0000000..9b43663
+--- /dev/null
++++ b/qa/kontrast_klar.py
+@@ -0,0 +1,118 @@
++#!/usr/bin/env python3
++"""Kontrastprüfung der Variante „klar“ (assets/css/klar.css).
++
++Ergänzt qa/kontrast.py, das nur main.css liest. Geprüft wird, was klar.css
++selbst festlegt:
++  1. Der dunkle Satz (Media-Query und data-theme) ist in beiden Formen
++     identisch – wie in main.css.
++  2. Der dunkle Satz setzt jedes Farb-Token, das der helle setzt, und jedes,
++     das main.css im Dunkeln setzt; sonst schiene der dunkle Satz aus
++     main.css durch (Pflegehinweis im Kopf von klar.css).
++  3. Alle Text-Paare erreichen 7:1 (AAA), Rahmen 3:1.
++
++Aufruf:  python3 qa/kontrast_klar.py     (aus dem Repository-Stammverzeichnis)
++"""
++
++import re
++import sys
++from pathlib import Path
++
++CSS = Path(__file__).resolve().parent.parent / "assets" / "css"
++klar = (CSS / "klar.css").read_text(encoding="utf-8")
++haupt = (CSS / "main.css").read_text(encoding="utf-8")
++
++
++def block(text, kopf):
++    i = text.index(kopf)
++    j = text.index("{", i)
++    tief, k = 1, j + 1
++    while tief:
++        tief += {"{": 1, "}": -1}.get(text[k], 0)
++        k += 1
++    return text[j + 1:k - 1]
++
++
++def tokens(körper):
++    return {m.group(1): m.group(2).strip() for m in re.finditer(r"--([\w-]+):\s*([^;]+);", körper)}
++
++
++P = ':root[data-design="klar"]'
++hell = tokens(block(klar, P + " {"))
++dunkel_media = tokens(block(block(klar, "@media (prefers-color-scheme: dark)"), P + ":not("))
++dunkel_attr = tokens(block(klar, P + '[data-theme="dark"]'))
++basis = tokens(block(haupt, ":root {"))
++
++fehler = []
++if dunkel_media != dunkel_attr:
++    fehler.append("Dunkel-Satz in @media und [data-theme=dark] ist nicht identisch: "
++                  + ", ".join(sorted(set(dunkel_media) ^ set(dunkel_attr) | {k for k in dunkel_media if dunkel_media.get(k) != dunkel_attr.get(k)})))
++
++PRAEFIXE = ("papier", "papier2", "schrift", "grau", "rand", "orange", "link", "haarlinie", "marker", "hinweis",
++            "warn", "fuss", "primaer", "aktion", "text", "flaeche", "erfolg", "warnung", "fehler", "linie",
++            "schatten-farbe", "blau", "gelb", "tinte", "kategorie", "wert")
++FARBEN = {k for k in hell if any(k == p or k.startswith(p + "-") for p in PRAEFIXE)}
++fehlt = sorted(FARBEN - set(dunkel_attr))
++if fehlt:
++    fehler.append("im dunklen Satz fehlen Tokens des hellen Satzes: " + ", ".join(fehlt))
++
++
++haupt_dunkel = tokens(block(haupt, ':root[data-theme="dark"] {'))
++offen = sorted(set(haupt_dunkel) - set(dunkel_attr))
++if offen:
++    fehler.append("main.css setzt im dunklen Satz, klar.css nicht: " + ", ".join(offen))
++
++
++def wert(satz, name, tiefe=0):
++    v = satz.get(name) or basis.get(name)
++    m = re.fullmatch(r"var\(--([\w-]+)\)", v or "")
++    if m and tiefe < 8:
++        return wert(satz, m.group(1), tiefe + 1)
++    return v
++
++
++def lum(h):
++    h = h.lstrip("#")
++    r, g, b = (int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
++    f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
++    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
++
++
++def verhältnis(a, b):
++    x, y = sorted((lum(a), lum(b)), reverse=True)
++    return (x + 0.05) / (y + 0.05)
++
++
++# (Vordergrund, Hintergrund, Mindestwert). Text 7:1 (AAA), Linien und Icons 3:1.
++PAARE = [
++    ("schrift", "papier", 7), ("schrift", "papier2", 7), ("schrift", "flaeche", 7),
++    ("grau", "papier", 7), ("grau", "papier2", 7), ("grau", "flaeche", 7),
++    ("link", "papier", 7), ("link", "papier2", 7), ("link", "flaeche", 7),
++    ("orange-tief", "papier", 4.5), ("orange-tief", "papier2", 4.5),
++    ("rand", "papier", 3), ("rand", "flaeche", 3), ("primaer-akzent", "papier", 3),
++    ("aktion-schrift", "aktion", 7), ("aktion", "papier", 3),
++    ("weiss", "blau", 7), ("tinte", "gelb", 7),
++    ("schrift", "hinweis-flaeche", 7), ("link", "hinweis-flaeche", 7), ("hinweis-rand", "hinweis-flaeche", 3),
++    ("schrift", "warn-flaeche", 7), ("warn-rand", "warn-flaeche", 3),
++    ("erfolg", "papier", 7), ("warnung", "papier", 7), ("fehler", "papier", 7),
++    ("fuss-schrift", "fuss-flaeche", 7), ("fuss-link", "fuss-flaeche", 7),
++    ("fuss-titel", "fuss-flaeche", 7), ("fuss-leiste-schrift", "fuss-leiste-flaeche", 7),
++    ("orange-tief", "fuss-flaeche", 4.5),
++]
++
++for modus, satz in (("hell", {**basis, **hell}), ("dunkel", {**basis, **dunkel_attr})):
++    kleinster = 99
++    for fg, bg, soll in PAARE:
++        a, b = wert(satz, fg), wert(satz, bg)
++        if not (a and b and a.startswith("#") and b.startswith("#")):
++            fehler.append(f"{modus}: {fg}/{bg} nicht auflösbar ({a} / {b})")
++            continue
++        v = verhältnis(a, b)
++        kleinster = min(kleinster, v / soll * 7)
++        if v < soll:
++            fehler.append(f"{modus}: {fg} auf {bg} = {v:.2f}:1, verlangt {soll}:1")
++    print(f"{modus}: {len(PAARE)} Paare geprüft")
++
++if fehler:
++    print("\nFEHLER:\n  " + "\n  ".join(fehler))
++    sys.exit(1)
++print("klar.css: alle Kontrastpaare bestehen, beide Dunkel-Sätze sind identisch und vollständig.")
