@@ -9,10 +9,10 @@ colors:
   text: "#1A2233"
 typography:
   body:
-    fontFamily: "Montserrat"
+    fontFamily: "Familjen Grotesk"
     fontSize: 1.0625rem
   heading:
-    fontFamily: "Montserrat"
+    fontFamily: "Familjen Grotesk"
     fontSize: 3.6rem
   weights: "400, 500, 600"
 rounded:
@@ -25,10 +25,14 @@ spacing:
 
 # GHSE – Variante „modern“
 
-Interne Kennung `modern` (Kurzform im Umschalter: „Mod“). Vierte Gestaltung:
+Interne Kennung `modern` (im Umschalter: „Modern“). Vierte Gestaltung:
 eine konsequente Weiterentwicklung des bestehenden GHSE-Auftritts
 (www.ghse.de). Kein neuer Markenauftritt, sondern eine Modernisierung der
 vorhandenen Identität.
+
+**Hallmark-Referenz:** Cobalt (modern-minimal, restrained: Familjen Grotesk,
+kühle Flächen, ruhige Struktur). Übernommen werden Typografie und Struktur,
+niemals die Palette; Marineblau, GHSE-Blau, Gelb und Orange bleiben GHSE.
 
 ![Vorschaubild modern](static/bilder/themes/modern.webp)
 
@@ -44,8 +48,9 @@ vorhandenen Identität.
 
 ## 2. Was modernisiert wird
 
-- **Typografie:** Montserrat 400–700 für Text und Überschriften – die
-  geometrische Stimme der bisherigen Website. Klare Größenstufen, ruhige
+- **Typografie:** Familjen Grotesk 400–700 für Text und Überschriften – eine präzise
+  Grotesk nach der Hallmark-Referenz **Cobalt**; die GHSE-Farben und Bilder
+  tragen die Wiedererkennung. Klare Größenstufen, ruhige
   Zeilenhöhen, 66 Zeichen Lesebreite.
 - **Kopf:** marineblaue Nutzleiste, weiße Logozeile, klare Navigation mit
   blauer aktiver Fläche; mobil dasselbe zugängliche Aufklappmenü.
@@ -73,9 +78,10 @@ vorhandenen Identität.
 
 - **Form:** Radius 16 px für Karten, 10 px für Buttons, 8 px für kleine
   Bedienelemente; weiche Schatten statt harter Versätze.
-- **Schrift:** Montserrat (variabel, 400–700) für Text und Überschriften;
+- **Schrift:** Familjen Grotesk (variabel, 400–700) für Text und Überschriften;
   selbst gehostet unter `assets/fonts/modern/` (SIL OFL, `LIZENZ.txt`),
-  keine externen Font-Dienste.
+  keine externen Font-Dienste. Die bestehende Website nutzt Montserrat; der
+  Wechsel ist die bewusste Modernisierung, nicht eine neue Marke.
 - **Raster:** 8-pt-Nähe, Abschnitte `clamp(2.5rem, 5vw, 4rem)`.
 - **Dunkel:** tiefes Marineblau, Karten heben sich mit dunkler Fläche und
   weichem Schatten; Gelb bleibt Marke, Blau bleibt Band.
@@ -84,7 +90,7 @@ vorhandenen Identität.
 
 - **Kopf:** Nutzleiste marineblau mit weißen Schnellzugriffen und Gelb als
   Unterstreichung; Logozeile weiß; aktive Navigation blau mit weißer Schrift.
-- **Hero:** blaues Band, Montserrat-H1 in Weiß, Leitsatz, Abschlüsse als weiße
+- **Hero:** blaues Band, Familjen-Grotesk-H1 in Weiß, Leitsatz, Abschlüsse als weiße
   Pillen, Foto rechts mit 20-px-Radius und weichem Schatten.
 - **Karten:** weiß, 16 px Radius, 1-px-Rand, weicher Schatten; Bild oben,
   gelbe Kategorie-Marke, Titel, Text, Textlink.

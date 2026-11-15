@@ -11,13 +11,13 @@ colors:
   neutral: "#FFFFFF"
 typography:
   body-md:
-    fontFamily: "system-ui"
+    fontFamily: "Hanken Grotesk"
     fontSize: 1.125rem
   h1:
-    fontFamily: "system-ui"
+    fontFamily: "Hanken Grotesk"
     fontSize: 2.9rem
   h2:
-    fontFamily: "system-ui"
+    fontFamily: "Hanken Grotesk"
     fontSize: 1.8rem
   weights: "400, 500, 600, 700"
 rounded:
@@ -31,9 +31,13 @@ spacing:
 # GHSE – Variante „funktional“
 
 Interne Kennung `funktional` (kein sichtbarer Markenname; im Umschalter
-steht die Kurzform „Sach“). Dritte Gestaltung derselben Seiten: konsequenter
+steht „Funktional“). Dritte Gestaltung derselben Seiten: konsequenter
 funktionaler Minimalismus mit den klassischen Tugenden des Web – klare
 Navigation, lesbare Texte, sichtbare Ordnung – auf aktuellem Niveau.
+
+**Hallmark-Referenz:** Almanac (Referenz/Handbuch: Hanken Grotesk, zwei
+Linienstärken, eckige Kanten, Tabellen). Übernommen werden Struktur und
+Typografie; die Palette bleibt strikt GHSE-Schwarz/Weiß/Logo.
 
 ![Vorschaubild funktional](static/bilder/themes/funktional.webp)
 
@@ -62,7 +66,8 @@ in den beiden dunklen Sätzen. Alles Weitere benutzt Tokens.
 | GHSE-Gelb | `#F6DC56` | Marken, Tabellenkopf, kleine Flächen |
 | GHSE-Orange | `#EE7330` | Unterstreichungen, Zitatkante, Warnung |
 
-- **Schrift:** `system-ui`-Stapel, keine zusätzliche Schriftdatei. Fließtext
+- **Schrift:** Hanken Grotesk (variabel, 400–700), selbst gehostet unter
+  `assets/fonts/funktional/` (SIL OFL, `LIZENZ.txt`). Fließtext
   1,125 rem, Zeilenhöhe 1,65, Lesebreite 66 Zeichen.
 - **Raster:** 4/8/12/16/24/32/48 px; Abschnitte `clamp(2rem, 4vw, 3.25rem)`.
 - **Form:** Radius 0, Rahmen 1 px, keine Schatten. Einzige Linienstärken:
@@ -88,8 +93,9 @@ in den beiden dunklen Sätzen. Alles Weitere benutzt Tokens.
   0 Radius; Hover als Unterstreichung/Farbwechsel, kein Versatz.
 - **Tabellen:** 1-px-Raster, gelber Kopf, schwarze Schrift; mobil kleinere
   Schrift und 8 px Polster.
-- **Fuß:** schwarz, weiße Schrift, 4-px-GHSE-Kante in Blau, Copyright in der
-  schwarzen Leiste.
+- **Fuß:** weiße Fläche mit schwarzer Schrift und blauer Oberkante, Copyright
+  in einer weißen Leiste mit schwarzer Trennlinie. Im Dunkeln dreht sich das
+  Bild: schwarze Fläche, weiße Schrift, gelbe Links.
 
 ## 4. Zugänglichkeit
 

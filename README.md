@@ -30,7 +30,8 @@ python3 tools/preview-server.py   # public/ so ausliefern wie GitHub Pages
 Es gibt keine npm-/PostCSS-Toolchain: CSS und JS liegen unter `assets/`
 (Hugo Pipes, minify + fingerprint), Schriften und Bilder unter `static/`.
 Inter ist die selbst gehostete Variable-Font der Standardvariante; Klar
-bringt Roboto und Poppins mit, Modern das originalnahe Montserrat.
+bringt Roboto und Poppins mit, Funktional Hanken Grotesk und Modern
+Familjen Grotesk (Hallmark-Referenz Cobalt).
 
 Die Instagram-Karten auf der Startseite frischt
 `python3 tools/instagram.py` auf: Es liest die neuesten Beiträge des
@@ -714,7 +715,8 @@ assets/css/         main.css (Neo), klar.css, funktional.css, modern.css
                     – Hugo Pipes: minify + fingerprint
 assets/js/          nav.js, video.js, design.js – Hugo Pipes: minify + fingerprint
 assets/fonts/klar/  Roboto und Poppins für Klar
-assets/fonts/modern/ Montserrat für Modern
+assets/fonts/funktional/ Hanken Grotesk für Funktional
+assets/fonts/modern/ Familjen Grotesk für Modern
 assets/downloads/   Original-PDFs (Hugo veröffentlicht sie als /downloads/*.pdf)
 static/             fonts/, bilder/, favicon.svg
 tools/              preview-server.py (Mess-Server: Keep-Alive + gzip wie GitHub Pages)
@@ -752,8 +754,8 @@ Inhalte und URLs:
 | --- | --- | --- |
 | `neobrutalismus` | Neo | GHSE-Gelb/Orange/Blau, harte Schatten, Inter (Standard) |
 | `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam |
-| `funktional` | Sach | Weiß/Schwarz, Systemschrift, Logofarben als Akzente, flache Kästen |
-| `modern` | Mod | Marineblau/GHSE-Blau/Gelb/Orange, Montserrat, weiße Karten |
+| `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen |
+| `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt
@@ -763,8 +765,9 @@ Inhalte und URLs:
   vollständig. `?design=klar` öffnet die zweite Variante ohne zu speichern
   (QA und Teilen).
 * **Laden:** `klar.css` wird auf jeder Seite mitgeladen, wirkt aber nur
-  unter `:root[data-design="klar"]`. Roboto/Poppins (Klar) und Montserrat
-  (Modern) stehen als `@font-face` bereit und werden erst geladen, wenn die
+  unter `:root[data-design="klar"]`. Roboto/Poppins (Klar), Hanken Grotesk
+  (Funktional) und Familjen Grotesk (Modern) stehen als `@font-face` bereit
+  und werden erst geladen, wenn die
   Variante sie benutzt (kein Preload, `font-display: swap`).
 * **Kompatibilität:** Die neuen Theme-Dateien fixieren die vorherige Breite
   des Theme-Feldes für Neo/Klar (59,78 px / 72 px). Dadurch bleiben die

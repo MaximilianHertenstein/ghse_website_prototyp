@@ -2,7 +2,7 @@
    ============================================================
    Gleiche Struktur wie die Hauptvariante: gleiche Templates, Menüs,
    Dropdowns und Inhalte. Das Aussehen folgt einem konsequenten funktionalen
-   Minimalismus: Weiß, Schwarz, Systemschrift, GHSE-Logofarben nur als Akzent,
+   Minimalismus: Weiß, Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzent,
    keine Schatten und keine Rundungen.
    Beschreibung, Regeln und QA-Checkliste: funktional-DESIGN.md.
 
@@ -61,21 +61,21 @@
   --wert-blau: #114c92;
   --wert-gelb: #f6dc56;
   --wert-orange: #ee7330;
-  --fuss-flaeche: #000000;
-  --fuss-schrift: #ffffff;
-  --fuss-titel: #ffffff;
-  --fuss-linie: #ffffff;
-  --fuss-link: #ffffff;
-  --fuss-haarlinie: #ffffff;
-  --fuss-leiste-flaeche: #000000;
-  --fuss-leiste-schrift: #ffffff;
+  --fuss-flaeche: #ffffff;
+  --fuss-schrift: #000000;
+  --fuss-titel: #000000;
+  --fuss-linie: #000000;
+  --fuss-link: #114c92;
+  --fuss-haarlinie: #000000;
+  --fuss-leiste-flaeche: #ffffff;
+  --fuss-leiste-schrift: #000000;
   color-scheme: light;
   --rund: 0px;
   --rahmen: 1px solid var(--rand);
   --schatten: none;
   --schatten-klein: none;
-  --schriftstapel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --schriftstapel-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --schriftstapel: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --t-xs: 0.875rem;
   --t-s: 1rem;
   --t-ui: 1.0625rem;
@@ -155,7 +155,7 @@
     --fuss-schrift: #ffffff;
     --fuss-titel: #ffffff;
     --fuss-linie: #ffffff;
-    --fuss-link: #ffffff;
+    --fuss-link: #f6dc56;
     --fuss-haarlinie: #ffffff;
     --fuss-leiste-flaeche: #000000;
     --fuss-leiste-schrift: #ffffff;
@@ -164,8 +164,8 @@
     --rahmen: 1px solid var(--rand);
     --schatten: none;
     --schatten-klein: none;
-    --schriftstapel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    --schriftstapel-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --schriftstapel: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --schriftstapel-display: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     --t-xs: 0.875rem;
     --t-s: 1rem;
     --t-ui: 1.0625rem;
@@ -223,7 +223,7 @@
   --fuss-schrift: #ffffff;
   --fuss-titel: #ffffff;
   --fuss-linie: #ffffff;
-  --fuss-link: #ffffff;
+  --fuss-link: #f6dc56;
   --fuss-haarlinie: #ffffff;
   --fuss-leiste-flaeche: #000000;
   --fuss-leiste-schrift: #ffffff;
@@ -232,8 +232,8 @@
   --rahmen: 1px solid var(--rand);
   --schatten: none;
   --schatten-klein: none;
-  --schriftstapel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --schriftstapel-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --schriftstapel: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --t-xs: 0.875rem;
   --t-s: 1rem;
   --t-ui: 1.0625rem;
@@ -1440,22 +1440,23 @@
 
 :root[data-design="funktional"] .fuss {
   border-top: 4px solid var(--blau);
-  background: #000000;
-  color: #ffffff;
+  background: var(--fuss-flaeche);
+  color: var(--fuss-schrift);
 }
 
-:root[data-design="funktional"] .fuss a,
-:root[data-design="funktional"] .fuss__titel {
-  color: #ffffff;
+:root[data-design="funktional"] .fuss a {
+  color: var(--fuss-link);
 }
 
 :root[data-design="funktional"] .fuss__titel {
-  border-bottom: 1px solid #ffffff;
+  color: var(--fuss-titel);
+  border-bottom: 1px solid var(--fuss-linie);
 }
 
 :root[data-design="funktional"] .fuss__leiste {
-  background: #000000;
-  color: #ffffff;
+  border-top: 1px solid var(--fuss-linie);
+  background: var(--fuss-leiste-flaeche);
+  color: var(--fuss-leiste-schrift);
 }
 
 :root[data-design="funktional"] .fliesstext > h2 {

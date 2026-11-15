@@ -58,12 +58,13 @@ disableKinds = ["taxonomy", "term"]
   [[params.designs]]
     id = "funktional"
     name = "Funktional"
-    kurz = "Sach"
+    kurz = "Funktional"
     css = "css/funktional.css"
+    fonts = "schriften-funktional.html"
   [[params.designs]]
     id = "modern"
     name = "Modern"
-    kurz = "Mod"
+    kurz = "Modern"
     css = "css/modern.css"
     fonts = "schriften-modern.html"
 

@@ -1,0 +1,9 @@
+{{- /* Hanken Grotesk für die Variante „funktional“ (Hallmark-Referenz Almanac:
+       Handbuch/Referenz, präzise Grotesk, zwei Linienstärken). Selbst gehostet
+       unter assets/fonts/funktional/ (SIL OFL, LIZENZ.txt). Kein Preload:
+       geladen wird die Schrift erst, wenn „funktional“ sie benutzt. */ -}}
+{{- $hanken := resources.Get "fonts/funktional/hanken-grotesk-var-latin.woff2" | fingerprint -}}
+{{- $bereich := "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" -}}
+<style>
+@font-face{font-family:"Hanken Grotesk";src:url({{ $hanken.RelPermalink }}) format("woff2");font-weight:400 700;font-style:normal;font-display:swap;unicode-range:{{ $bereich | safeCSS }}}
+</style>

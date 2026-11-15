@@ -74,13 +74,14 @@ def main():
             page.wait_for_timeout(250)
             s = zustand(page)
             pruefe(s["design"] == "funktional", "Wechsel auf Funktional fehlt: %r" % s)
+            pruefe("Hanken" in s["schrift"], "Funktional nutzt nicht Hanken Grotesk: %r" % s["schrift"])
             pruefe(s["gespeichert"] == "funktional", "Funktional nicht gespeichert: %r" % s)
 
             page.select_option(".stilwahl--leiste select", "modern")
             page.wait_for_timeout(250)
             s = zustand(page)
             pruefe(s["design"] == "modern", "Wechsel auf Modern fehlt: %r" % s)
-            pruefe("Montserrat" in s["schrift"], "Modern nutzt nicht Montserrat: %r" % s["schrift"])
+            pruefe("Familjen" in s["schrift"], "Modern nutzt nicht Familjen Grotesk: %r" % s["schrift"])
 
             page.select_option(".stilwahl--leiste select", "neobrutalismus")
             page.wait_for_timeout(250)

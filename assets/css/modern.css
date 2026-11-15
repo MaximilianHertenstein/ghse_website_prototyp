@@ -3,7 +3,7 @@
    Gleiche Struktur wie die Hauptvariante: gleiche Templates, Menüs,
    Dropdowns und Inhalte. Das Aussehen ist eine Modernisierung des bestehenden
    GHSE-Auftritts: Marineblau, GHSE-Blau, Gelb und Orange, weiße Karten auf
-   hellem Blau, Montserrat, weiche Schatten.
+   hellem Blau, Familjen Grotesk, weiche Schatten.
    Beschreibung, Regeln und QA-Checkliste: modern-DESIGN.md.
 
    Technik: Die Datei wird auf jeder Seite mitgeladen und wirkt nur unter
@@ -75,8 +75,8 @@
   --rahmen: 1px solid var(--rand-leise);
   --schatten: 0 18px 40px rgba(34, 45, 113, 0.14);
   --schatten-klein: 0 6px 18px rgba(34, 45, 113, 0.10);
-  --schriftstapel: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --schriftstapel-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --t-xs: 0.875rem;
   --t-s: 1rem;
   --t-ui: 1.0625rem;
@@ -166,8 +166,8 @@
     --rahmen: 1px solid var(--rand-leise);
     --schatten: 0 18px 40px rgba(0, 0, 0, 0.35);
     --schatten-klein: 0 6px 18px rgba(0, 0, 0, 0.28);
-    --schriftstapel: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-    --schriftstapel-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --schriftstapel: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --schriftstapel-display: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
     --t-xs: 0.875rem;
     --t-s: 1rem;
     --t-ui: 1.0625rem;
@@ -235,8 +235,8 @@
   --rahmen: 1px solid var(--rand-leise);
   --schatten: 0 18px 40px rgba(0, 0, 0, 0.35);
   --schatten-klein: 0 6px 18px rgba(0, 0, 0, 0.28);
-  --schriftstapel: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --schriftstapel-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --t-xs: 0.875rem;
   --t-s: 1rem;
   --t-ui: 1.0625rem;
