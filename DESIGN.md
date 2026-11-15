@@ -1,5 +1,5 @@
 ---
-name: GHSE – zwei Gestaltungsvarianten
+name: GHSE – vier Gestaltungsvarianten
 colors:
   primary: "#F6DC56"
   secondary: "#114C92"
@@ -27,13 +27,15 @@ spacing:
 
 ## Überblick
 
-Dieselben Seiten, Inhalte und URLs gibt es in zwei Gestaltungsvarianten.
-Beide nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
+Dieselben Seiten, Inhalte und URLs gibt es in vier Gestaltungsvarianten.
+Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 
-| Variante | Aussehen | Dokument |
-| --- | --- | --- |
-| **Neobrutalismus** (Standard) | GHSE-Gelb/Orange/Blau, schwarze Konturen, harte Schatten, Inter | `Neobrutalismus-DESIGN.md` |
-| **Klar** (Clean) | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
+| Variante | Kennung | Aussehen | Dokument |
+| --- | --- | --- | --- |
+| **Neobrutalismus** (Standard) | `neobrutalismus` | GHSE-Gelb/Orange/Blau, schwarze Konturen, harte Schatten, Inter | `Neobrutalismus-DESIGN.md` |
+| **Klar** (Clean) | `klar` | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
+| **Funktional** | `funktional` | Weiß/Schwarz, Systemschrift, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
+| **Modern** | `modern` | Marineblau/GHSE-Blau/Gelb/Orange, Montserrat, weiße Karten auf hellem Blau, weiche Schatten | `modern-DESIGN.md` |
 
 ## Umschaltung
 
@@ -46,16 +48,17 @@ Beide nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
   Kopfleiste, bis 1100 px im Menü. `assets/js/design.js` schaltet um,
   speichert die Wahl und hält beide Menüs synchron.
 - `?design=klar` öffnet eine Variante ohne zu speichern (QA, Teilen).
-- **Drittes Theme:** Eintrag in `params.designs`, eine CSS-Datei, deren
+- **Weiteres Theme:** Eintrag in `params.designs`, eine CSS-Datei, deren
   Regeln unter `:root[data-design="<id>"]` stehen, und bei eigenen
   Schriften ein Partial in `fonts`. Templates und Skript bleiben
-  unverändert.
+  unverändert. Die CSS-Datei wird automatisch mitgeladen.
 
 ## Gemeinsame Grundlage
 
 - Eine Seitenstruktur, eine Navigation, ein Inhaltsbestand; keine
   Variante erfindet Inhalte oder Ziele.
 - Jede Variante prüft ihre eigenen Kontrast- und Lesbarkeitswerte
-  (`qa/kontrast.py` für Neobrutalismus, `qa/kontrast_klar.py` für Klar).
+  (`qa/kontrast.py` für Neobrutalismus, `qa/kontrast_klar.py` für Klar,
+  `qa/themes.py` für alle vier im Browser).
 - Farbe und Schrift sind pro Variante über Tokens gesetzt; Komponenten
   lesen nur Tokens, keine Rohwerte.

@@ -67,6 +67,21 @@ def main():
             pruefe(s["design"] == "klar", "Wahl überlebt Neuladen nicht: %r" % s)
             pruefe(s["wahl"] == "klar", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
 
+            optionen = page.eval_on_selector_all(".stilwahl--leiste option", "els => els.map(e => e.value)")
+            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern"], "Theme-Optionen: %r" % optionen)
+
+            page.select_option(".stilwahl--leiste select", "funktional")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "funktional", "Wechsel auf Funktional fehlt: %r" % s)
+            pruefe(s["gespeichert"] == "funktional", "Funktional nicht gespeichert: %r" % s)
+
+            page.select_option(".stilwahl--leiste select", "modern")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "modern", "Wechsel auf Modern fehlt: %r" % s)
+            pruefe("Montserrat" in s["schrift"], "Modern nutzt nicht Montserrat: %r" % s["schrift"])
+
             page.select_option(".stilwahl--leiste select", "neobrutalismus")
             page.wait_for_timeout(250)
             s = zustand(page)
@@ -81,10 +96,14 @@ def main():
             s = zustand(page2)
             pruefe(s["design"] == "klar", "?design=klar greift nicht: %r" % s)
             pruefe(s["gespeichert"] is None, "?design=klar speichert ungefragt: %r" % s)
+            page2.goto(BASIS + "?design=modern", wait_until="load")
+            page2.wait_for_timeout(250)
+            s = zustand(page2)
+            pruefe(s["design"] == "modern", "?design=modern greift nicht: %r" % s)
             ctx2.close()
         finally:
             browser.close()
-    print("OK: Umschalter, Speicherung, Neuladen und ?design=klar funktionieren.")
+    print("OK: vier Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1573 @@
+/* GHSE – Gestaltungsvariante „modern“
+   ============================================================
+   Gleiche Struktur wie die Hauptvariante: gleiche Templates, Menüs,
+   Dropdowns und Inhalte. Das Aussehen ist eine Modernisierung des bestehenden
+   GHSE-Auftritts: Marineblau, GHSE-Blau, Gelb und Orange, weiße Karten auf
+   hellem Blau, Montserrat, weiche Schatten.
+   Beschreibung, Regeln und QA-Checkliste: modern-DESIGN.md.
+
+   Technik: Die Datei wird auf jeder Seite mitgeladen und wirkt nur unter
+   :root[data-design="modern"]; die Wahl trifft der Umschalter (design.js,
+   gespeichert in localStorage). Jede Regel trägt das Präfix und schlägt
+   damit main.css, ohne dass dort etwas geändert werden muss. Kein
+   CSS-Nesting: ältere Tablets und Telefone verstehen es nicht.
+
+   Pflegehinweis: Was der helle Satz in den Farb-Tokens setzt, setzt der
+   dunkle Satz ebenfalls – und jedes Token, das main.css im Dunkeln setzt,
+   setzt er auch. Sonst scheint der dunkle Satz aus main.css durch.
+   qa/themes.py und qa/theme-guard.py prüfen das. */
+
+/* ---------- Tokens, hell ---------- */
+
+:root[data-design="modern"] {
+  --primaer: #222d71;
+  --primaer-text: #1f4e8c;
+  --primaer-akzent: #b85c00;
+  --primaer-hell: #f1db6c;
+  --aktion: #222d71;
+  --aktion-schrift: #ffffff;
+  --fokus: #b85c00;
+  --marke-gelb: #f1db6c;
+  --marke-gelb-hell: #fff8d9;
+  --marke-orange: #f8a000;
+  --hero-flaeche: #295c9f;
+  --text: #1a2233;
+  --text-leise: #4a5568;
+  --flaeche-leise: #f4f7fb;
+  --rand-leise: #d6dfeb;
+  --erfolg: #166534;
+  --warnung: #92400e;
+  --fehler: #991b1b;
+  --papier: #eef3fa;
+  --papier2: #e7eef8;
+  --flaeche: #ffffff;
+  --schrift: #1a2233;
+  --grau: #4a5568;
+  --rand: #222d71;
+  --linie: #d6dfeb;
+  --link: #1f4e8c;
+  --blau: #295c9f;
+  --gelb: #f1db6c;
+  --orange: #f8a000;
+  --orange-tief: #b85c00;
+  --tinte: #111827;
+  --schatten-farbe: rgba(34, 45, 113, 0.18);
+  --haarlinie: rgba(34, 45, 113, 0.14);
+  --marker-hintergrund: #f1db6c;
+  --kategorie-teilzeit: #f8a000;
+  --hinweis-flaeche: #fff8d9;
+  --hinweis-rand: #d6dfeb;
+  --warn-flaeche: #fff3e0;
+  --warn-rand: #b85c00;
+  --wert-blau: #114c92;
+  --wert-gelb: #f6dc56;
+  --wert-orange: #ee7330;
+  --fuss-flaeche: #222d71;
+  --fuss-schrift: #ffffff;
+  --fuss-titel: #f1db6c;
+  --fuss-linie: rgba(255, 255, 255, 0.25);
+  --fuss-link: #ffffff;
+  --fuss-haarlinie: rgba(255, 255, 255, 0.18);
+  --fuss-leiste-flaeche: #1a2358;
+  --fuss-leiste-schrift: #dbe4f5;
+  color-scheme: light;
+  --rund: 16px;
+  --rahmen: 1px solid var(--rand-leise);
+  --schatten: 0 18px 40px rgba(34, 45, 113, 0.14);
+  --schatten-klein: 0 6px 18px rgba(34, 45, 113, 0.10);
+  --schriftstapel: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --t-xs: 0.875rem;
+  --t-s: 1rem;
+  --t-ui: 1.0625rem;
+  --t-m: 1.0625rem;
+  --t-h3: 1.35rem;
+  --t-h2: clamp(1.7rem, 3vw, 2.2rem);
+  --t-h1: clamp(2.2rem, 4vw, 3rem);
+  --t-display: clamp(2.5rem, 5vw, 3.6rem);
+}
+
+/* Kopfhöhe gemessen (Leiste + Logozeile); steuert Sprungleiste und Ankerabstand. */
+@media (min-width: 901px) {
+  :root[data-design="modern"] {
+    --kopfhoehe: 7.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :root[data-design="modern"] {
+    --kopfhoehe: 4.5625rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root[data-design="modern"] {
+    --t-ui: 1rem;
+    --t-m: 1.125rem;
+  }
+}
+
+/* ---------- Tokens, dunkel (gleiche Namen wie oben) ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root[data-design="modern"]:not([data-theme="light"]) {
+    --primaer: #295c9f;
+    --primaer-text: #9fc3ff;
+    --primaer-akzent: #f8a000;
+    --primaer-hell: #f1db6c;
+    --aktion: #f1db6c;
+    --aktion-schrift: #111827;
+    --fokus: #f8a000;
+    --marke-gelb: #f1db6c;
+    --marke-gelb-hell: #1a2338;
+    --marke-orange: #f8a000;
+    --hero-flaeche: #122a4a;
+    --text: #f2f6ff;
+    --text-leise: #c7d3e8;
+    --flaeche-leise: #111c33;
+    --rand-leise: #2a3a5a;
+    --erfolg: #86efac;
+    --warnung: #fcd34d;
+    --fehler: #fca5a5;
+    --papier: #0b1220;
+    --papier2: #0f1a30;
+    --flaeche: #111c33;
+    --schrift: #f2f6ff;
+    --grau: #c7d3e8;
+    --rand: #dbe4f5;
+    --linie: #2a3a5a;
+    --link: #9fc3ff;
+    --blau: #295c9f;
+    --gelb: #f1db6c;
+    --orange: #f8a000;
+    --orange-tief: #f8a000;
+    --tinte: #111827;
+    --schatten-farbe: rgba(0, 0, 0, 0.45);
+    --haarlinie: rgba(255, 255, 255, 0.16);
+    --marker-hintergrund: #f1db6c;
+    --kategorie-teilzeit: #f8a000;
+    --hinweis-flaeche: #1a2338;
+    --hinweis-rand: #2a3a5a;
+    --warn-flaeche: #2a1a08;
+    --warn-rand: #f8a000;
+    --wert-blau: #114c92;
+    --wert-gelb: #f6dc56;
+    --wert-orange: #ee7330;
+    --fuss-flaeche: #0b1220;
+    --fuss-schrift: #f2f6ff;
+    --fuss-titel: #f1db6c;
+    --fuss-linie: rgba(255, 255, 255, 0.18);
+    --fuss-link: #ffffff;
+    --fuss-haarlinie: rgba(255, 255, 255, 0.14);
+    --fuss-leiste-flaeche: #060b14;
+    --fuss-leiste-schrift: #dbe4f5;
+    color-scheme: dark;
+    --rund: 16px;
+    --rahmen: 1px solid var(--rand-leise);
+    --schatten: 0 18px 40px rgba(0, 0, 0, 0.35);
+    --schatten-klein: 0 6px 18px rgba(0, 0, 0, 0.28);
+    --schriftstapel: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --schriftstapel-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --t-xs: 0.875rem;
+    --t-s: 1rem;
+    --t-ui: 1.0625rem;
+    --t-m: 1.0625rem;
+    --t-h3: 1.35rem;
+    --t-h2: clamp(1.7rem, 3vw, 2.2rem);
+    --t-h1: clamp(2.2rem, 4vw, 3rem);
+    --t-display: clamp(2.5rem, 5vw, 3.6rem);
+}
+}
+
+:root[data-design="modern"][data-theme="dark"] {
+  --primaer: #295c9f;
+  --primaer-text: #9fc3ff;
+  --primaer-akzent: #f8a000;
+  --primaer-hell: #f1db6c;
+  --aktion: #f1db6c;
+  --aktion-schrift: #111827;
+  --fokus: #f8a000;
+  --marke-gelb: #f1db6c;
+  --marke-gelb-hell: #1a2338;
+  --marke-orange: #f8a000;
+  --hero-flaeche: #122a4a;
+  --text: #f2f6ff;
+  --text-leise: #c7d3e8;
+  --flaeche-leise: #111c33;
+  --rand-leise: #2a3a5a;
+  --erfolg: #86efac;
+  --warnung: #fcd34d;
+  --fehler: #fca5a5;
+  --papier: #0b1220;
+  --papier2: #0f1a30;
+  --flaeche: #111c33;
+  --schrift: #f2f6ff;
+  --grau: #c7d3e8;
+  --rand: #dbe4f5;
+  --linie: #2a3a5a;
+  --link: #9fc3ff;
+  --blau: #295c9f;
+  --gelb: #f1db6c;
+  --orange: #f8a000;
+  --orange-tief: #f8a000;
+  --tinte: #111827;
+  --schatten-farbe: rgba(0, 0, 0, 0.45);
+  --haarlinie: rgba(255, 255, 255, 0.16);
+  --marker-hintergrund: #f1db6c;
+  --kategorie-teilzeit: #f8a000;
+  --hinweis-flaeche: #1a2338;
+  --hinweis-rand: #2a3a5a;
+  --warn-flaeche: #2a1a08;
+  --warn-rand: #f8a000;
+  --wert-blau: #114c92;
+  --wert-gelb: #f6dc56;
+  --wert-orange: #ee7330;
+  --fuss-flaeche: #0b1220;
+  --fuss-schrift: #f2f6ff;
+  --fuss-titel: #f1db6c;
+  --fuss-linie: rgba(255, 255, 255, 0.18);
+  --fuss-link: #ffffff;
+  --fuss-haarlinie: rgba(255, 255, 255, 0.14);
+  --fuss-leiste-flaeche: #060b14;
+  --fuss-leiste-schrift: #dbe4f5;
+  color-scheme: dark;
+  --rund: 16px;
+  --rahmen: 1px solid var(--rand-leise);
+  --schatten: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --schatten-klein: 0 6px 18px rgba(0, 0, 0, 0.28);
+  --schriftstapel: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Montserrat", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --t-xs: 0.875rem;
+  --t-s: 1rem;
+  --t-ui: 1.0625rem;
+  --t-m: 1.0625rem;
+  --t-h3: 1.35rem;
+  --t-h2: clamp(1.7rem, 3vw, 2.2rem);
+  --t-h1: clamp(2.2rem, 4vw, 3rem);
+  --t-display: clamp(2.5rem, 5vw, 3.6rem);
+}
+
+/* ---------- Basis ---------- */
+
+:root[data-design="modern"] body {
+  font-size: var(--t-m);
+  line-height: 1.6;
+}
+
+/* Keine Versalien, keine Sperrung: gilt für alles, auch für Pseudo-Elemente. */
+:root[data-design="modern"] *,
+:root[data-design="modern"] *::before,
+:root[data-design="modern"] *::after {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Nichts hüpft: weder transform (je Komponente unten) noch translate.
+   !important, weil main.css die Hover-Bewegung an einzelnen Stellen über
+   translate setzt und künftig weitere hinzukommen können. */
+:root[data-design="modern"] *,
+:root[data-design="modern"] *::before,
+:root[data-design="modern"] *::after {
+  translate: none !important;
+}
+
+:root[data-design="modern"] h1,
+:root[data-design="modern"] h2,
+:root[data-design="modern"] h3,
+:root[data-design="modern"] .hero__titel,
+:root[data-design="modern"] .karte__titel,
+:root[data-design="modern"] .karte__block-titel,
+:root[data-design="modern"] .zeitgruppe__titel,
+:root[data-design="modern"] .kasten h2,
+:root[data-design="modern"] .fliesstext > h2,
+:root[data-design="modern"] .fliesstext > h3,
+:root[data-design="modern"] .service h3 {
+  font-family: var(--schriftstapel-display);
+}
+
+:root[data-design="modern"] h1,
+:root[data-design="modern"] h2,
+:root[data-design="modern"] h3,
+:root[data-design="modern"] .hero__titel,
+:root[data-design="modern"] .karte__titel,
+:root[data-design="modern"] .karte__block-titel,
+:root[data-design="modern"] .zeitgruppe__titel,
+:root[data-design="modern"] .kasten h2,
+:root[data-design="modern"] .fliesstext > h2,
+:root[data-design="modern"] .fliesstext > h3,
+:root[data-design="modern"] .zeile__titel,
+:root[data-design="modern"] .infozeile__titel,
+:root[data-design="modern"] .konten__titel,
+:root[data-design="modern"] .kalender__name,
+:root[data-design="modern"] .hero__ticket-datum,
+:root[data-design="modern"] .karte--text .karte__datum,
+:root[data-design="modern"] .service h3 {
+  font-weight: 600;
+}
+
+:root[data-design="modern"] h1,
+:root[data-design="modern"] h2,
+:root[data-design="modern"] h3 {
+  line-height: 1.25;
+}
+
+:root[data-design="modern"] .hero__titel {
+  line-height: 1.15;
+}
+
+:root[data-design="modern"] .karte__block-titel {
+  line-height: 1.3;
+}
+
+/* Sichtbarer Fokus: 4 px in der Textfarbe des Akzents, 4 px Abstand. */
+:root[data-design="modern"] a:focus-visible,
+:root[data-design="modern"] button:focus-visible,
+:root[data-design="modern"] summary:focus-visible {
+  outline-width: 4px;
+  outline-offset: 4px;
+  outline-color: var(--fokus);
+}
+
+:root[data-design="modern"] .band--blau :focus-visible {
+  outline-color: var(--primaer-hell);
+}
+
+/* Platz zwischen den Abschnitten: 8-pt-Raster, großzügiger als bisher. */
+:root[data-design="modern"] .band {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+:root[data-design="modern"] .kopfzeile {
+  margin-bottom: 3rem;
+}
+
+:root[data-design="modern"] .kopfzeile h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+:root[data-design="modern"] .seitenkopf {
+  padding-block: clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .band--gelb {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .band--blau {
+  border-block: 0;
+}
+
+/* ---------- Fließtext und Einleitungen ---------- */
+
+:root[data-design="modern"] .lead {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+:root[data-design="modern"] .einleitung {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  color: var(--grau);
+}
+
+:root[data-design="modern"] .fliesstext {
+  font-size: var(--t-m);
+  line-height: 1.7;
+  max-width: 66ch;
+}
+
+:root[data-design="modern"] .fliesstext blockquote {
+  font-size: var(--t-m);
+  border-left: 0;
+  background: var(--flaeche-leise);
+  border-radius: var(--rund);
+  padding: 1rem 1.25rem;
+}
+
+:root[data-design="modern"] .fliesstext > h2 {
+  margin-top: 3rem;
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="modern"] .fliesstext > h3 {
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="modern"] .beitrag__bild figcaption {
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="modern"] .fliesstext a {
+  font-weight: 500;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+:root[data-design="modern"] .fliesstext a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons im Fließtext: .fliesstext a färbt sonst auch sie wie einen Link
+   (im Dunkelmodus gelb auf gelb in main.css). Schrift wie bei Buttons. */
+:root[data-design="modern"] .fliesstext a.btn {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--schrift);
+}
+
+:root[data-design="modern"] .fliesstext a.btn--akzent {
+  color: var(--aktion-schrift);
+}
+
+:root[data-design="modern"] .fliesstext a.btn:hover {
+  text-decoration: underline;
+}
+
+:root[data-design="modern"] .fliesstext th,
+:root[data-design="modern"] .fliesstext td {
+  border: 1px solid var(--rand);
+  padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 640px) {
+  :root[data-design="modern"] .fliesstext th,
+  :root[data-design="modern"] .fliesstext td {
+    padding: 0.25rem 0.5rem;
+    /* Notbremse für lange Fachwörter: erst Silbentrennung, dann Umbruch im Wort,
+       statt die ganze Seite seitwärts zu verschieben. */
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
+:root[data-design="modern"] .fliesstext hr {
+  border-top: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .zeitgruppe__titel {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* ---------- Kleine Bausteine ---------- */
+
+:root[data-design="modern"] .chip {
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-ui);
+  font-weight: 500;
+  min-height: 3rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+:root[data-design="modern"] .chip span {
+  font-size: var(--t-s);
+  color: var(--grau);
+}
+
+:root[data-design="modern"] .chip,
+:root[data-design="modern"] .hero__punkte li {
+  border-width: 1px;
+}
+
+/* Zweittext in Karten und Listen: 18 px statt 16 px – für diese Zielgruppe
+   ist 16 px die Untergrenze, nicht der Normalfall. */
+:root[data-design="modern"] .karte__text,
+:root[data-design="modern"] .service p,
+:root[data-design="modern"] .zeile__beschreibung,
+:root[data-design="modern"] .infozeile__text,
+:root[data-design="modern"] .instabeitrag__text {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="modern"] .chip--klein {
+  min-height: 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="modern"] .chip--akzent,
+:root[data-design="modern"] .chip:active {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .marke,
+:root[data-design="modern"] .chip[data-kategorie="teilzeitschularten"],
+:root[data-design="modern"] .marke[data-kategorie="teilzeitschularten"] {
+  transform: none;
+}
+
+:root[data-design="modern"] .marke {
+  border: 0;
+  border-radius: 4px;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+:root[data-design="modern"] .karte__koerper .marke {
+  align-self: flex-start;
+}
+
+:root[data-design="modern"] .meta time {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.125rem 0.5rem;
+}
+
+/* Schaltfläche. Zustände: Standard, Hover (Unterstreichung + zweiter innerer
+   Rand), Fokus (siehe oben), Aktiv (dritter Rand), Deaktiviert (main.css). */
+:root[data-design="modern"] .btn {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  line-height: 1.25;
+  min-height: 3rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--rund);
+  box-shadow: none;
+  white-space: normal;
+}
+
+:root[data-design="modern"] .btn:hover,
+:root[data-design="modern"] .btn--klein:hover {
+  transform: none;
+  box-shadow: inset 0 0 0 2px currentColor;
+  text-decoration: underline;
+}
+
+:root[data-design="modern"] .btn:active {
+  transform: none;
+  box-shadow: inset 0 0 0 3px currentColor;
+}
+
+/* Primäraktion: gefüllt in GHSE-Blau (hell) bzw. hellem Blau (dunkel). */
+:root[data-design="modern"] .btn--akzent {
+  background: var(--aktion);
+  color: var(--aktion-schrift);
+  border-color: var(--aktion);
+}
+
+:root[data-design="modern"] .btn--klein {
+  font-size: var(--t-s);
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .linkpfeil {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  border-bottom-width: 3px;
+}
+
+:root[data-design="modern"] .anzahl {
+  font-size: var(--t-xs);
+  vertical-align: 0.4em;
+}
+
+/* Kleine Textlinks: die sichtbare Fläche bleibt, die Treffläche wächst
+   unsichtbar auf mindestens 44 px Höhe. */
+:root[data-design="modern"] .leiste__schnell a,
+:root[data-design="modern"] .brotkrumen a,
+:root[data-design="modern"] .zurueck a,
+:root[data-design="modern"] .linkpfeil {
+  position: relative;
+}
+
+:root[data-design="modern"] .leiste__schnell a::after,
+:root[data-design="modern"] .brotkrumen a::after,
+:root[data-design="modern"] .zurueck a::after,
+:root[data-design="modern"] .linkpfeil::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem -0.5rem;
+}
+
+:root[data-design="modern"] .hinweiszeile {
+  font-size: var(--t-s);
+}
+
+/* ---------- Kopf, Leiste, Menü ---------- */
+
+:root[data-design="modern"] .leiste {
+  font-size: var(--t-xs);
+}
+
+:root[data-design="modern"] .leiste__innen {
+  padding-block: 0.25rem;
+}
+
+:root[data-design="modern"] .leiste__schnell a {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  border-bottom-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .marke-link:hover img {
+  transform: none;
+}
+
+:root[data-design="modern"] .menue ul a {
+  font-size: var(--t-ui);
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+:root[data-design="modern"] .menue ul.menue__tafel a {
+  font-size: var(--t-s);
+  font-weight: 400;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+:root[data-design="modern"] .menue__abteilung {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  padding: 1rem 1rem 0.25rem;
+}
+
+:root[data-design="modern"] .menueknopf,
+:root[data-design="modern"] .modusknopf {
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+/* Farbmodus-Knopf in der Kopfleiste: Zeigeziel mindestens 44 px. */
+:root[data-design="modern"] .modusknopf--leiste {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+:root[data-design="modern"] .menueknopf:active,
+:root[data-design="modern"] .modusknopf:active {
+  transform: none;
+}
+
+/* Dropdowns ab 1200 px: dieselbe Struktur (Hover und Tastaturfokus), aber
+   sie bleiben kurz sichtbar, wenn der Zeiger die Fläche schräg verlässt. */
+@media (min-width: 1200px) {
+  :root[data-design="modern"] .menue ul.menue__tafel {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid var(--rand-leise);
+    border-radius: var(--rund);
+    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.16);
+    transition: opacity 0.12s ease 0.35s, visibility 0s linear 0.47s;
+  }
+  :root[data-design="modern"] .menue__gruppe:hover > ul.menue__tafel,
+  :root[data-design="modern"] .menue__gruppe:focus-within > ul.menue__tafel {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  /* Wechselt der Zeiger zu einer anderen Kategorie, schließt die alte sofort. */
+  :root[data-design="modern"] .menue > ul:has(.menue__gruppe:hover) .menue__gruppe:not(:hover):not(:focus-within) > ul.menue__tafel {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0s;
+  }
+}
+
+@media (max-width: 1199px) {
+  :root[data-design="modern"] .menue ul a {
+    font-size: var(--t-m);
+    border-radius: 0;
+  }
+  :root[data-design="modern"] .menue ul.menue__tafel a {
+    font-size: var(--t-m);
+  }
+}
+
+/* Handy: „Krankmelden“ im Kopf bleibt schmal, sonst läuft die Zeile über. */
+@media (max-width: 640px) {
+  :root[data-design="modern"] .krankmelden-knopf {
+    font-size: var(--t-s);
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  :root[data-design="modern"] .marke-link img {
+    height: 2.5rem;
+  }
+  :root[data-design="modern"] .kopf__innen {
+    gap: 0.75rem;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+:root[data-design="modern"] .hero {
+  background: var(--hero-flaeche);
+  color: var(--schrift);
+  padding-block: clamp(3rem, 6vw, 6rem);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* main.css hält den Hero im dunklen Modus gelb und setzt dafür eigene Tokens
+   (schwarze Schrift, harte Schatten). Hier erbt der Hero die Tokens der Seite. */
+:root[data-design="modern"][data-design="modern"] .hero {
+  --flaeche: inherit;
+  --schrift: inherit;
+  --grau: inherit;
+  --rand: inherit;
+  --schatten-farbe: inherit;
+  --orange-tief: inherit;
+  --rahmen: inherit;
+  --schatten: inherit;
+  --schatten-klein: inherit;
+}
+
+:root[data-design="modern"] .hero__titel,
+:root[data-design="modern"] .hero__unter {
+  color: var(--schrift);
+}
+
+:root[data-design="modern"] .hero__titel::after {
+  width: 96px;
+  height: 4px;
+}
+
+:root[data-design="modern"] .hero__unter {
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+}
+
+:root[data-design="modern"] .hero__marke {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--grau);
+  font-size: var(--t-ui);
+  font-weight: 500;
+  padding: 0;
+}
+
+:root[data-design="modern"] .hero__ticket {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .hero__ticket-datum {
+  color: var(--primaer-text);
+}
+
+:root[data-design="modern"] .hero__ticket:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .hero__ticket-label {
+  font-weight: 500;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="modern"] .hero__punkte li,
+:root[data-design="modern"] .hero__punkte li:nth-child(odd),
+:root[data-design="modern"] .hero__punkte li:nth-child(even) {
+  transform: none;
+  padding: 0;
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-ui);
+  font-weight: 500;
+}
+
+:root[data-design="modern"] .hero__punkte li:hover,
+:root[data-design="modern"] .hero__punkte li:focus-within {
+  box-shadow: inset 0 0 0 2px var(--rand);
+}
+
+:root[data-design="modern"] .hero__punkte a:hover {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+}
+
+:root[data-design="modern"] .hero__punkte a {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+:root[data-design="modern"] .hero__bild img {
+  transform: none;
+  box-shadow: none;
+  border: 1px solid var(--rand-leise);
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  :root[data-design="modern"] .hero__bild img {
+    box-shadow: none;
+  }
+}
+
+/* ---------- Karten, Service, Zeilen, Kästen ---------- */
+
+:root[data-design="modern"] .karte {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+:root[data-design="modern"] .karte:hover,
+:root[data-design="modern"] .karte:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .karte__bild {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .karte:hover .karte__bild img,
+:root[data-design="modern"] .karte:focus-within .karte__bild img {
+  transform: none;
+}
+
+:root[data-design="modern"] .karte__koerper {
+  gap: 1rem;
+}
+
+/* Meldungs-Blöcke: ein neutraler Ton statt Gelb, Orange und Blau reihum. */
+:root[data-design="modern"] .karte__block,
+:root[data-design="modern"] .raster--news .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="modern"] .raster--3 .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="modern"] .raster--news .karte:nth-child(3n) .karte__block,
+:root[data-design="modern"] .raster--3 .karte:nth-child(3n) .karte__block {
+  --block-flaeche: var(--papier2);
+  --block-schrift: var(--schrift);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .karte__aktion {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  border-bottom: 3px solid var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .karte__link:hover .karte__titel,
+:root[data-design="modern"] .karte__link:focus-visible .karte__titel {
+  text-decoration-color: var(--primaer-akzent);
+  text-decoration-thickness: 3px;
+}
+
+:root[data-design="modern"] .service,
+:root[data-design="modern"] .serviceliste .service:nth-child(3n + 1),
+:root[data-design="modern"] .serviceliste .service:nth-child(3n + 2),
+:root[data-design="modern"] .serviceliste .service:nth-child(3n) {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .service:hover,
+:root[data-design="modern"] .service:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .service h3 {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="modern"] .zeile {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .zeile:hover,
+:root[data-design="modern"] .zeile:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .zeile__titel {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="modern"] .kasten {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+/* Keine Karte in der Karte: Download-Zeilen im Kasten werden zu
+   Zeilen mit Trennlinie, der Kasten bleibt die einzige Fläche. */
+:root[data-design="modern"] .kasten .zeile {
+  border: 0;
+  border-bottom: 1px solid var(--rand-leise);
+  border-radius: 0;
+  padding-inline: 0;
+  padding-block: 1rem;
+}
+
+:root[data-design="modern"] .kasten .zeile:last-child {
+  border-bottom: 0;
+}
+
+:root[data-design="modern"] .kasten .zeile:hover,
+:root[data-design="modern"] .kasten .zeile:focus-within {
+  border-color: transparent;
+  border-bottom-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .kasten h2 {
+  font-size: var(--t-s);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .kasten__kontakt {
+  border-top: 1px solid var(--rand-leise);
+}
+
+/* „kasten--gelb“ erzwang weiße Innenflächen und schwarze Schrift; hier erbt
+   der Inhalt die Tokens der Seite, die Fläche selbst ist ein neutraler Ton. */
+:root[data-design="modern"] .kasten--gelb {
+  --flaeche: inherit;
+  --schrift: inherit;
+  --grau: inherit;
+  --rand: inherit;
+  --schatten-farbe: inherit;
+  --link: inherit;
+  --orange-tief: inherit;
+  --rahmen: inherit;
+  --schatten: inherit;
+  --schatten-klein: inherit;
+  background: var(--marke-gelb-hell);
+  border-top: 4px solid var(--primaer-text);
+  color: var(--schrift);
+}
+
+:root[data-design="modern"] .hinweis {
+  border: 1px solid var(--hinweis-rand);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .hinweis__titel {
+  color: var(--schrift);
+}
+
+:root[data-design="modern"] .hinweis p {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="modern"] .infozeile {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .infozeile__titel {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="modern"] .konten__titel {
+  font-size: var(--t-ui);
+}
+
+/* ---------- Bilder ---------- */
+
+:root[data-design="modern"] .bild img,
+:root[data-design="modern"] .seitenleiste__bild img,
+:root[data-design="modern"] .beitrag__lupe img,
+:root[data-design="modern"] .schulleben img {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .schulleben li:nth-child(3n + 1) img,
+:root[data-design="modern"] .schulleben li:nth-child(3n + 3) img {
+  transform: none;
+}
+
+:root[data-design="modern"] .lupe__plakette {
+  border: 2px solid var(--tinte);
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: var(--t-s);
+}
+
+:root[data-design="modern"] .beitrag__lupe:hover .lupe__plakette,
+:root[data-design="modern"] .beitrag__lupe:focus-visible .lupe__plakette {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .video__knopf {
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .video__knopf:hover,
+:root[data-design="modern"] .video__knopf:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .video__zeichen {
+  box-shadow: none;
+}
+
+/* ---------- Navigationshilfen ---------- */
+
+:root[data-design="modern"] .sprungleiste__label {
+  color: var(--primaer-text);
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="modern"] .sprungleiste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+:root[data-design="modern"] .brotkrumen ol,
+:root[data-design="modern"] .zurueck a {
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+/* ---------- Startseite: Termine, Instagram, Partner ---------- */
+
+:root[data-design="modern"] .kalender,
+:root[data-design="modern"] .kalenderliste li:nth-child(3n + 2) .kalender,
+:root[data-design="modern"] .kalenderliste li:nth-child(3n) .kalender {
+  --kalender-flaeche: var(--flaeche);
+  --kalender-schrift: var(--schrift);
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .kalender:hover,
+:root[data-design="modern"] .kalender:focus-visible {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .kalender__name {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="modern"] .kalender__aktion {
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="modern"] .instabeitrag {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+:root[data-design="modern"] .instabeitrag:hover,
+:root[data-design="modern"] .instabeitrag:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="modern"] .instabeitrag__bild {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .instabeitrag__plakette,
+:root[data-design="modern"] .instaraster li:nth-child(4n + 2) .instabeitrag__plakette,
+:root[data-design="modern"] .instaraster li:nth-child(4n + 3) .instabeitrag__plakette {
+  transform: none;
+  box-shadow: none;
+  border: 2px solid var(--tinte);
+  border-radius: var(--rund);
+}
+
+:root[data-design="modern"] .partnergitter__kachel {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .partnergitter__kachel:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+/* Hover-Rückmeldung bleibt ruhig und blau; das kräftige GHSE-Gelb ist
+   Flächen und Marken vorbehalten (PDF-/Zähler-Marken, Fußkante). */
+@media (hover: hover) {
+  :root[data-design="modern"] .chip:hover,
+  :root[data-design="modern"] .leiste__schnell a:hover,
+  :root[data-design="modern"] .menue ul a:hover,
+  :root[data-design="modern"] .menueknopf:hover,
+  :root[data-design="modern"] .modusknopf:hover,
+  :root[data-design="modern"] .band--gelb .btn--geist:hover,
+  :root[data-design="modern"] .band--blau .btn--geist:hover {
+    background: var(--primaer-hell);
+    color: var(--tinte);
+  }
+}
+
+/* ---------- Fuß ---------- */
+
+:root[data-design="modern"] .fuss {
+  border-top: 4px solid var(--marke-gelb);
+}
+
+:root[data-design="modern"] .fuss__titel {
+  font-size: var(--t-s);
+  border-bottom: 1px solid var(--fuss-linie);
+}
+
+/* ---------- Gestaltungswahl ---------- */
+
+:root[data-design="modern"] .stilwahl {
+  gap: 0.5rem;
+}
+
+:root[data-design="modern"] .stilwahl__label {
+  color: var(--text-leise);
+  font-weight: 500;
+}
+
+:root[data-design="modern"] .stilwahl__auswahl {
+  min-height: 2.75rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  padding: 0.4rem 2rem 0.4rem 0.75rem;
+  background: var(--flaeche);
+  color: var(--schrift);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+:root[data-design="modern"] .stilwahl__auswahl:focus-visible {
+  outline-width: 4px;
+  outline-offset: 4px;
+}
+
+:root[data-design="modern"] .stilwahl__pfeil {
+  right: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+:root[data-design="modern"] .stilwahl--menue {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* ---------- Druck: immer hell, auch wenn der dunkle Satz aktiv ist ---------- */
+
+@media print {
+  :root[data-design="modern"] {
+    --papier: #ffffff !important;
+    --papier2: #f3f4f6 !important;
+    --flaeche: #ffffff !important;
+    --schrift: #000000 !important;
+    --grau: #333333 !important;
+    --rand: #000000 !important;
+    --primaer: #114c92 !important;
+    --primaer-text: #114c92 !important;
+    --primaer-akzent: #e2651f !important;
+    --aktion: #114c92 !important;
+    --aktion-schrift: #ffffff !important;
+    --fokus: #b8430f !important;
+    --marke-gelb: #f6dc56 !important;
+    --marke-gelb-hell: #ffffff !important;
+    --hero-flaeche: #ffffff !important;
+    --link: #114c92 !important;
+    --orange-tief: #114c92 !important;
+    --rand-leise: #999999 !important;
+    --linie: #999999 !important;
+    --hinweis-flaeche: #ffffff !important;
+    --fuss-flaeche: #ffffff !important;
+    color-scheme: light;
+  }
+}
+
+/* ============================================================
+   Modern: Weiterentwicklung des GHSE-Auftritts mit Marineblau,
+   GHSE-Blau, Gelb und Orange; weiße Karten auf hellem Blau,
+   Poppins für Überschriften, Inter für Text, weiche Schatten.
+   ============================================================ */
+
+:root[data-design="modern"] .leiste {
+  background: #222d71;
+  color: #ffffff;
+  border-bottom: 0;
+}
+
+:root[data-design="modern"] .leiste .stilwahl__label {
+  color: #dbe4f5;
+}
+
+:root[data-design="modern"] .leiste a {
+  color: #ffffff;
+}
+
+:root[data-design="modern"] .leiste__schnell a {
+  border-bottom-color: #f1db6c;
+}
+
+:root[data-design="modern"] .kopf {
+  background: var(--flaeche);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .menue ul a {
+  color: #222d71;
+  border-radius: 8px;
+}
+
+:root[data-design="modern"] .menue ul a[aria-current="page"] {
+  background: #295c9f;
+  color: #ffffff;
+}
+
+:root[data-design="modern"] .leiste__schnell a:hover,
+:root[data-design="modern"] .menue ul a:hover {
+  background: #f1db6c;
+  color: #222d71;
+}
+
+:root[data-design="modern"] .hero {
+  background: var(--hero-flaeche);
+  color: #ffffff;
+  border-bottom: 0;
+  padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+
+:root[data-design="modern"] .hero__titel {
+  color: #ffffff;
+  font-family: var(--schriftstapel-display);
+  font-size: var(--t-display);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+:root[data-design="modern"] .hero__unter {
+  color: #eaf2ff;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+}
+
+:root[data-design="modern"] .einleitung {
+  max-width: 66ch;
+}
+
+:root[data-design="modern"] .hero__marke {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #dbeafe;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+:root[data-design="modern"] .hero__punkte li {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #222d71;
+  box-shadow: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  transform: none;
+}
+
+:root[data-design="modern"] .hero__punkte a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="modern"] .hero__bild img {
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.25);
+  transform: none;
+}
+
+:root[data-design="modern"] .hero__ticket {
+  border: 1px solid var(--rand-leise);
+  border-top: 6px solid #f1db6c;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #222d71;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+:root[data-design="modern"] .hero__ticket-label {
+  color: #4a5568;
+}
+
+:root[data-design="modern"] .band {
+  background: var(--papier);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+:root[data-design="modern"] .band--blau {
+  background: #295c9f;
+  color: #ffffff;
+  border-block: 0;
+}
+
+:root[data-design="modern"] .band--blau .band__einleitung,
+:root[data-design="modern"] .band--blau .kopfzeile h2 {
+  color: #ffffff;
+}
+
+:root[data-design="modern"] .kopfzeile {
+  margin-bottom: 2.25rem;
+}
+
+:root[data-design="modern"] .kopfzeile h2 {
+  border-bottom: 3px solid #f1db6c;
+  padding-bottom: 0.5rem;
+  font-family: var(--schriftstapel-display);
+}
+
+:root[data-design="modern"] .seitenkopf {
+  padding-block: clamp(2.25rem, 4vw, 3.5rem);
+  background: var(--papier);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .karte,
+:root[data-design="modern"] .service,
+:root[data-design="modern"] .zeile,
+:root[data-design="modern"] .kalender,
+:root[data-design="modern"] .instabeitrag,
+:root[data-design="modern"] .kasten,
+:root[data-design="modern"] .infozeile,
+:root[data-design="modern"] .konten,
+:root[data-design="modern"] .hinweis {
+  border: 1px solid var(--rand-leise);
+  border-radius: 16px;
+  background: var(--flaeche);
+  color: var(--schrift);
+  box-shadow: 0 10px 30px rgba(34, 45, 113, 0.10);
+}
+
+/* Keine Karte in der Karte: Zeilen im Kasten bleiben Reihen. */
+:root[data-design="modern"] .kasten .zeile {
+  border: 0;
+  border-bottom: 1px solid var(--rand-leise);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-inline: 0;
+  padding-block: 1rem;
+}
+
+:root[data-design="modern"] .kasten .zeile:last-child {
+  border-bottom: 0;
+}
+
+:root[data-design="modern"] .karte:hover,
+:root[data-design="modern"] .service:hover,
+:root[data-design="modern"] .zeile:hover,
+:root[data-design="modern"] .kalender:hover,
+:root[data-design="modern"] .instabeitrag:hover {
+  border-color: #f8a000;
+  box-shadow: 0 16px 36px rgba(34, 45, 113, 0.14);
+}
+
+:root[data-design="modern"] .karte__bild img,
+:root[data-design="modern"] .instabeitrag__bild img,
+:root[data-design="modern"] .bild img {
+  border-radius: 12px;
+}
+
+:root[data-design="modern"] .karte__block-meta,
+:root[data-design="modern"] .marke,
+:root[data-design="modern"] .chip {
+  padding: 0.15rem 0.55rem;
+  border: 0;
+  border-radius: 6px;
+  background: #f1db6c;
+  color: #222d71;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="modern"] .chip--ruhig {
+  background: var(--flaeche);
+  color: var(--schrift);
+  border: 1px solid var(--rand-leise);
+}
+
+:root[data-design="modern"] .karte__aktion,
+:root[data-design="modern"] .linkpfeil,
+:root[data-design="modern"] .fliesstext a {
+  color: #1f4e8c;
+  text-decoration-color: #f8a000;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+:root[data-design="modern"] .btn {
+  border-radius: 10px;
+  box-shadow: none;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="modern"] .btn--akzent {
+  background: var(--aktion);
+  border-color: var(--aktion);
+  color: var(--aktion-schrift);
+}
+
+:root[data-design="modern"] .btn--geist {
+  background: var(--flaeche);
+  border: 1px solid var(--rand);
+  color: var(--schrift);
+}
+
+:root[data-design="modern"] .btn--geist-blau {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+:root[data-design="modern"] .serviceliste .service:nth-child(3n + 1) {
+  border-top: 4px solid #f1db6c;
+}
+
+:root[data-design="modern"] .serviceliste .service:nth-child(3n + 2) {
+  border-top: 4px solid #f8a000;
+}
+
+:root[data-design="modern"] .serviceliste .service:nth-child(3n) {
+  border-top: 4px solid #295c9f;
+}
+
+:root[data-design="modern"] .kasten--gelb {
+  background: var(--flaeche);
+  box-shadow: 0 10px 30px rgba(34, 45, 113, 0.10);
+}
+
+:root[data-design="modern"] .kasten--gelb h2 {
+  border-bottom: 3px solid #f1db6c;
+}
+
+:root[data-design="modern"] .hinweis {
+  background: #fff8d9;
+  border-color: #e5d48a;
+}
+
+:root[data-design="modern"] .fuss {
+  background: var(--fuss-flaeche);
+  color: var(--fuss-schrift);
+  border-top: 4px solid #f1db6c;
+}
+
+:root[data-design="modern"] .fuss__titel {
+  color: var(--fuss-titel);
+  border-bottom-color: var(--fuss-linie);
+}
+
+:root[data-design="modern"] .fuss a {
+  color: #ffffff;
+}
+
+:root[data-design="modern"] .fuss__leiste {
+  background: var(--fuss-leiste-flaeche);
+  color: var(--fuss-leiste-schrift);
+}
+
+:root[data-design="modern"] .fliesstext > h2 {
+  border-left: 0;
+  border-bottom: 2px solid #f1db6c;
+  padding-left: 0;
+  padding-bottom: 0.3rem;
+  font-family: var(--schriftstapel-display);
+}
+
+:root[data-design="modern"] .fliesstext blockquote {
+  border: 1px solid var(--rand-leise);
+  border-top: 4px solid #f8a000;
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem 1.25rem;
+}
+
+:root[data-design="modern"] .fliesstext table th,
+:root[data-design="modern"] .fliesstext table td {
+  border-color: var(--rand-leise);
+}
+
+:root[data-design="modern"] .fliesstext thead th {
+  background: #222d71;
+  color: #ffffff;
+}
+
+:root[data-design="modern"] .stilwahl__auswahl {
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+/* Dunkel: tiefes Marineblau, Karten heben sich mit weichem Schatten. */
+:root[data-design="modern"][data-theme="dark"] .kopf,
+:root[data-design="modern"]:not([data-theme="light"]) .kopf {
+  background: var(--flaeche);
+}
+
+:root[data-design="modern"][data-theme="dark"] .menue ul a,
+:root[data-design="modern"]:not([data-theme="light"]) .menue ul a {
+  color: var(--schrift);
+}
+
+:root[data-design="modern"][data-theme="dark"] .hero__ticket,
+:root[data-design="modern"]:not([data-theme="light"]) .hero__ticket {
+  background: var(--flaeche);
+  color: var(--schrift);
+}
+
+:root[data-design="modern"][data-theme="dark"] .hinweis,
+:root[data-design="modern"]:not([data-theme="light"]) .hinweis {
+  background: var(--hinweis-flaeche);
+  border-color: var(--hinweis-rand);
+}
+
+/* Kompatibilität: Die neuen Optionen dürfen die Breite des bestehenden
+   Theme-Feldes in Neo und Klar nicht verändern. Die Werte sind die vor
+   dem Vier-Themes-Ausbau gemessenen Breiten; neue Themes bleiben automatisch. */
+:root[data-design="neobrutalismus"] .stilwahl__auswahl {
+  width: 59.78125px;
+}
+
+:root[data-design="klar"] .stilwahl__auswahl {
+  width: 72px;
+}

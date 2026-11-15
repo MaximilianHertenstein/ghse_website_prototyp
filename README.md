@@ -9,8 +9,9 @@ Neubau von [www.ghse.de](https://www.ghse.de/) mit Hugo, gedacht als
 vollständige Ablöse des Originals – nicht als Demo.
 Reduzierter Neobrutalismus als Standard (Grundlage: Skill `neobrutalism` aus
 [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
-dazu die ruhige Variante **Klar** nach dem Clean-System; mit echten
-GHSE-Inhalten, Texten, Bildern und Dokumenten.
+dazu die Varianten **Klar** (Clean), **Funktional** (funktionaler
+Minimalismus) und **Modern** (Weiterentwicklung des GHSE-Auftritts); mit
+echten GHSE-Inhalten, Texten, Bildern und Dokumenten.
 
 ---
 
@@ -28,8 +29,8 @@ python3 tools/preview-server.py   # public/ so ausliefern wie GitHub Pages
 
 Es gibt keine npm-/PostCSS-Toolchain: CSS und JS liegen unter `assets/`
 (Hugo Pipes, minify + fingerprint), Schriften und Bilder unter `static/`.
-Inter ist die selbst gehostete Variable-Font der Standardvariante; die
-zweite Variante „Klar“ bringt Roboto und Poppins mit.
+Inter ist die selbst gehostete Variable-Font der Standardvariante; Klar
+bringt Roboto und Poppins mit, Modern das originalnahe Montserrat.
 
 Die Instagram-Karten auf der Startseite frischt
 `python3 tools/instagram.py` auf: Es liest die neuesten Beiträge des
@@ -704,13 +705,16 @@ content/            _index.md (Landingpage), schularten/, news/, downloads/
                     Schüler, Rechtliches, Mint, UNESCO)
 layouts/            baseof.html, home.html, 404.html
   _partials/        header, footer, karte-schulart, karte-news, zeile-download,
-                    stilwahl (Theme-Umschalter), theme-button, schriften-klar
+                    stilwahl (Theme-Umschalter), theme-button,
+                    schriften-klar, schriften-modern
   news/             section.html, page.html
   schularten/       section.html, page.html
   downloads/        section.html
-assets/css/         main.css (Neo), klar.css (Klar) – Hugo Pipes: minify + fingerprint
+assets/css/         main.css (Neo), klar.css, funktional.css, modern.css
+                    – Hugo Pipes: minify + fingerprint
 assets/js/          nav.js, video.js, design.js – Hugo Pipes: minify + fingerprint
-assets/fonts/klar/  Roboto und Poppins für die Variante Klar
+assets/fonts/klar/  Roboto und Poppins für Klar
+assets/fonts/modern/ Montserrat für Modern
 assets/downloads/   Original-PDFs (Hugo veröffentlicht sie als /downloads/*.pdf)
 static/             fonts/, bilder/, favicon.svg
 tools/              preview-server.py (Mess-Server: Keep-Alive + gzip wie GitHub Pages)
@@ -739,13 +743,17 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
   werten; Kategorien und Gruppen entstehen aus den Daten, nicht aus der Vorlage.
 
-### Gestaltungsvarianten (Neo/Klar)
+### Gestaltungsvarianten (vier Themes)
 
-Dieselben Seiten gibt es in zwei Aussehen. Standard ist der Neobrutalismus
-(`main.css`); die zweite Variante „Klar“ folgt dem Clean-System
-(`assets/css/klar.css`). Beide nutzen dieselben Templates, Inhalte und URLs.
-Klar setzt die GHSE-Farben sparsam ein: Blau für Text und Aktionen, Orange
-für Linien und Rahmen, Gelb für Flächen und Kanten.
+Dieselben Seiten gibt es in vier Aussehen; alle nutzen dieselben Templates,
+Inhalte und URLs:
+
+| Kennung | Kurzform | Aussehen |
+| --- | --- | --- |
+| `neobrutalismus` | Neo | GHSE-Gelb/Orange/Blau, harte Schatten, Inter (Standard) |
+| `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam |
+| `funktional` | Sach | Weiß/Schwarz, Systemschrift, Logofarben als Akzente, flache Kästen |
+| `modern` | Mod | Marineblau/GHSE-Blau/Gelb/Orange, Montserrat, weiße Karten |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt
@@ -755,22 +763,32 @@ für Linien und Rahmen, Gelb für Flächen und Kanten.
   vollständig. `?design=klar` öffnet die zweite Variante ohne zu speichern
   (QA und Teilen).
 * **Laden:** `klar.css` wird auf jeder Seite mitgeladen, wirkt aber nur
-  unter `:root[data-design="klar"]`. Roboto/Poppins stehen als
-  `@font-face` bereit und werden erst geladen, wenn die Variante sie
-  benutzt (kein Preload, `font-display: swap`).
-* **Drittes Theme:** Eintrag in `params.designs` (`hugo.toml`) mit `id`,
+  unter `:root[data-design="klar"]`. Roboto/Poppins (Klar) und Montserrat
+  (Modern) stehen als `@font-face` bereit und werden erst geladen, wenn die
+  Variante sie benutzt (kein Preload, `font-display: swap`).
+* **Kompatibilität:** Die neuen Theme-Dateien fixieren die vorherige Breite
+  des Theme-Feldes für Neo/Klar (59,78 px / 72 px). Dadurch bleiben die
+  bestehenden Köpfe pixelgleich, ohne deren CSS zu ändern.
+* **Weiteres Theme:** Eintrag in `params.designs` (`hugo.toml`) mit `id`,
   `name`, `kurz`, `css` und optional `fonts`; die CSS-Regeln unter
   `:root[data-design="<id>"]` schreiben; Dokument anlegen. Templates,
-  Umschalter und Skript bleiben unverändert.
-* **Dokumente:** `Neobrutalismus-DESIGN.md`, `clean-DESIGN.md`, gemeinsam
-  `DESIGN.md`.
+  Umschalter und Skript bleiben unverändert, die CSS-Datei wird automatisch
+  mitgeladen.
+* **Dokumente:** `Neobrutalismus-DESIGN.md`, `clean-DESIGN.md`,
+  `funktional-DESIGN.md`, `modern-DESIGN.md`, gemeinsam `DESIGN.md`.
+  Vorschaubilder der neuen Themes: [Funktional](static/bilder/themes/funktional.webp)
+  und [Modern](static/bilder/themes/modern.webp); der bestehende Umschalter
+  bleibt ein natives Auswahlfeld ohne Bildkonvention.
 * **QA:** `qa/kontrast.py` prüft Neo, `qa/kontrast_klar.py` prüft Klar
   (Hell und Dunkel, AAA). `qa/klar_pruefung.py <bau>` misst die
-  Klar-Variante im Browser (Versalien, Rotation, Schatten, Schriftgrößen,
-  Zeigeziele, Kontrast, Überlauf) und ruft die Seiten mit `?design=klar`
-  auf; `qa/design.py <url>` prüft Umschalter, Speicherung, Neuladen und
-  `?design=klar`. Voraussetzung für beide Browserprüfungen ist Playwright
-  mit Chromium.
+  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle vier Varianten
+  auf Überlauf, Versalien, Rotation, Schriftgrößen, Kontraste und
+  Zeigeziele; `qa/design.py <url>` prüft Umschalter, Speicherung, Neuladen
+  und `?design=klar`. `qa/theme-guard.py` vergleicht alle 681 vorhandenen
+  Layout-, Asset-, Inhalts- und statischen Dateien mit dem Schutzstand
+  `qa/theme-baseline.json`; nach einer bewussten Änderung an Neo oder Klar
+  wird die Baseline neu erzeugt. Voraussetzung für die Browserprüfungen ist
+  Playwright mit Chromium.
 
 ### Farbmodus (Hell/Dunkel)
 

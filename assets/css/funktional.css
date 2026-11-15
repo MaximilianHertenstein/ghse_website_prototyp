@@ -1,0 +1,1531 @@
+/* GHSE – Gestaltungsvariante „funktional“
+   ============================================================
+   Gleiche Struktur wie die Hauptvariante: gleiche Templates, Menüs,
+   Dropdowns und Inhalte. Das Aussehen folgt einem konsequenten funktionalen
+   Minimalismus: Weiß, Schwarz, Systemschrift, GHSE-Logofarben nur als Akzent,
+   keine Schatten und keine Rundungen.
+   Beschreibung, Regeln und QA-Checkliste: funktional-DESIGN.md.
+
+   Technik: Die Datei wird auf jeder Seite mitgeladen und wirkt nur unter
+   :root[data-design="funktional"]; die Wahl trifft der Umschalter (design.js,
+   gespeichert in localStorage). Jede Regel trägt das Präfix und schlägt
+   damit main.css, ohne dass dort etwas geändert werden muss. Kein
+   CSS-Nesting: ältere Tablets und Telefone verstehen es nicht.
+
+   Pflegehinweis: Was der helle Satz in den Farb-Tokens setzt, setzt der
+   dunkle Satz ebenfalls – und jedes Token, das main.css im Dunkeln setzt,
+   setzt er auch. Sonst scheint der dunkle Satz aus main.css durch.
+   qa/themes.py und qa/theme-guard.py prüfen das. */
+
+/* ---------- Tokens, hell ---------- */
+
+:root[data-design="funktional"] {
+  --primaer: #114c92;
+  --primaer-text: #114c92;
+  --primaer-akzent: #ee7330;
+  --primaer-hell: #f6dc56;
+  --aktion: #000000;
+  --aktion-schrift: #ffffff;
+  --fokus: #114c92;
+  --marke-gelb: #f6dc56;
+  --marke-gelb-hell: #ffffff;
+  --hero-flaeche: #ffffff;
+  --text: #000000;
+  --text-leise: #000000;
+  --flaeche-leise: #ffffff;
+  --rand-leise: #000000;
+  --erfolg: #114c92;
+  --warnung: #ee7330;
+  --fehler: #ee7330;
+  --papier: #ffffff;
+  --papier2: #ffffff;
+  --flaeche: #ffffff;
+  --schrift: #000000;
+  --grau: #000000;
+  --rand: #000000;
+  --linie: #000000;
+  --link: var(--primaer-text);
+  --blau: #114c92;
+  --gelb: #f6dc56;
+  --orange: #ee7330;
+  --orange-tief: #114c92;
+  --tinte: #000000;
+  --schatten-farbe: transparent;
+  --haarlinie: #000000;
+  --marker-hintergrund: #f6dc56;
+  --kategorie-teilzeit: #ee7330;
+  --hinweis-flaeche: #ffffff;
+  --hinweis-rand: #000000;
+  --warn-flaeche: #ffffff;
+  --warn-rand: #ee7330;
+  --wert-blau: #114c92;
+  --wert-gelb: #f6dc56;
+  --wert-orange: #ee7330;
+  --fuss-flaeche: #000000;
+  --fuss-schrift: #ffffff;
+  --fuss-titel: #ffffff;
+  --fuss-linie: #ffffff;
+  --fuss-link: #ffffff;
+  --fuss-haarlinie: #ffffff;
+  --fuss-leiste-flaeche: #000000;
+  --fuss-leiste-schrift: #ffffff;
+  color-scheme: light;
+  --rund: 0px;
+  --rahmen: 1px solid var(--rand);
+  --schatten: none;
+  --schatten-klein: none;
+  --schriftstapel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --schriftstapel-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --t-xs: 0.875rem;
+  --t-s: 1rem;
+  --t-ui: 1.0625rem;
+  --t-m: 1.125rem;
+  --t-h3: 1.3rem;
+  --t-h2: clamp(1.5rem, 2.4vw, 1.8rem);
+  --t-h1: clamp(1.9rem, 3.6vw, 2.6rem);
+  --t-display: clamp(2rem, 4.2vw, 2.9rem);
+}
+
+/* Kopfhöhe gemessen (Leiste + Logozeile); steuert Sprungleiste und Ankerabstand. */
+@media (min-width: 901px) {
+  :root[data-design="funktional"] {
+    --kopfhoehe: 7.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :root[data-design="funktional"] {
+    --kopfhoehe: 4.5625rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root[data-design="funktional"] {
+    --t-ui: 1rem;
+    --t-m: 1.125rem;
+  }
+}
+
+/* ---------- Tokens, dunkel (gleiche Namen wie oben) ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root[data-design="funktional"]:not([data-theme="light"]) {
+    --primaer: #114c92;
+    --primaer-text: #f6dc56;
+    --primaer-akzent: #ee7330;
+    --primaer-hell: #f6dc56;
+    --aktion: #ffffff;
+    --aktion-schrift: #000000;
+    --fokus: #f6dc56;
+    --marke-gelb: #f6dc56;
+    --marke-gelb-hell: #000000;
+    --hero-flaeche: #000000;
+    --text: #ffffff;
+    --text-leise: #ffffff;
+    --flaeche-leise: #000000;
+    --rand-leise: #ffffff;
+    --erfolg: #f6dc56;
+    --warnung: #ee7330;
+    --fehler: #ee7330;
+    --papier: #000000;
+    --papier2: #000000;
+    --flaeche: #000000;
+    --schrift: #ffffff;
+    --grau: #ffffff;
+    --rand: #ffffff;
+    --linie: #ffffff;
+    --link: var(--primaer-text);
+    --blau: #114c92;
+    --gelb: #f6dc56;
+    --orange: #ee7330;
+    --orange-tief: #f6dc56;
+    --tinte: #000000;
+    --schatten-farbe: transparent;
+    --haarlinie: #ffffff;
+    --marker-hintergrund: #f6dc56;
+    --kategorie-teilzeit: #ee7330;
+    --hinweis-flaeche: #000000;
+    --hinweis-rand: #ffffff;
+    --warn-flaeche: #000000;
+    --warn-rand: #ee7330;
+    --wert-blau: #114c92;
+    --wert-gelb: #f6dc56;
+    --wert-orange: #ee7330;
+    --fuss-flaeche: #000000;
+    --fuss-schrift: #ffffff;
+    --fuss-titel: #ffffff;
+    --fuss-linie: #ffffff;
+    --fuss-link: #ffffff;
+    --fuss-haarlinie: #ffffff;
+    --fuss-leiste-flaeche: #000000;
+    --fuss-leiste-schrift: #ffffff;
+    color-scheme: dark;
+    --rund: 0px;
+    --rahmen: 1px solid var(--rand);
+    --schatten: none;
+    --schatten-klein: none;
+    --schriftstapel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --schriftstapel-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --t-xs: 0.875rem;
+    --t-s: 1rem;
+    --t-ui: 1.0625rem;
+    --t-m: 1.125rem;
+    --t-h3: 1.3rem;
+    --t-h2: clamp(1.5rem, 2.4vw, 1.8rem);
+    --t-h1: clamp(1.9rem, 3.6vw, 2.6rem);
+    --t-display: clamp(2rem, 4.2vw, 2.9rem);
+}
+}
+
+:root[data-design="funktional"][data-theme="dark"] {
+  --primaer: #114c92;
+  --primaer-text: #f6dc56;
+  --primaer-akzent: #ee7330;
+  --primaer-hell: #f6dc56;
+  --aktion: #ffffff;
+  --aktion-schrift: #000000;
+  --fokus: #f6dc56;
+  --marke-gelb: #f6dc56;
+  --marke-gelb-hell: #000000;
+  --hero-flaeche: #000000;
+  --text: #ffffff;
+  --text-leise: #ffffff;
+  --flaeche-leise: #000000;
+  --rand-leise: #ffffff;
+  --erfolg: #f6dc56;
+  --warnung: #ee7330;
+  --fehler: #ee7330;
+  --papier: #000000;
+  --papier2: #000000;
+  --flaeche: #000000;
+  --schrift: #ffffff;
+  --grau: #ffffff;
+  --rand: #ffffff;
+  --linie: #ffffff;
+  --link: var(--primaer-text);
+  --blau: #114c92;
+  --gelb: #f6dc56;
+  --orange: #ee7330;
+  --orange-tief: #f6dc56;
+  --tinte: #000000;
+  --schatten-farbe: transparent;
+  --haarlinie: #ffffff;
+  --marker-hintergrund: #f6dc56;
+  --kategorie-teilzeit: #ee7330;
+  --hinweis-flaeche: #000000;
+  --hinweis-rand: #ffffff;
+  --warn-flaeche: #000000;
+  --warn-rand: #ee7330;
+  --wert-blau: #114c92;
+  --wert-gelb: #f6dc56;
+  --wert-orange: #ee7330;
+  --fuss-flaeche: #000000;
+  --fuss-schrift: #ffffff;
+  --fuss-titel: #ffffff;
+  --fuss-linie: #ffffff;
+  --fuss-link: #ffffff;
+  --fuss-haarlinie: #ffffff;
+  --fuss-leiste-flaeche: #000000;
+  --fuss-leiste-schrift: #ffffff;
+  color-scheme: dark;
+  --rund: 0px;
+  --rahmen: 1px solid var(--rand);
+  --schatten: none;
+  --schatten-klein: none;
+  --schriftstapel: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --schriftstapel-display: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --t-xs: 0.875rem;
+  --t-s: 1rem;
+  --t-ui: 1.0625rem;
+  --t-m: 1.125rem;
+  --t-h3: 1.3rem;
+  --t-h2: clamp(1.5rem, 2.4vw, 1.8rem);
+  --t-h1: clamp(1.9rem, 3.6vw, 2.6rem);
+  --t-display: clamp(2rem, 4.2vw, 2.9rem);
+}
+
+/* ---------- Basis ---------- */
+
+:root[data-design="funktional"] body {
+  font-size: var(--t-m);
+  line-height: 1.6;
+}
+
+/* Keine Versalien, keine Sperrung: gilt für alles, auch für Pseudo-Elemente. */
+:root[data-design="funktional"] *,
+:root[data-design="funktional"] *::before,
+:root[data-design="funktional"] *::after {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Nichts hüpft: weder transform (je Komponente unten) noch translate.
+   !important, weil main.css die Hover-Bewegung an einzelnen Stellen über
+   translate setzt und künftig weitere hinzukommen können. */
+:root[data-design="funktional"] *,
+:root[data-design="funktional"] *::before,
+:root[data-design="funktional"] *::after {
+  translate: none !important;
+}
+
+:root[data-design="funktional"] h1,
+:root[data-design="funktional"] h2,
+:root[data-design="funktional"] h3,
+:root[data-design="funktional"] .hero__titel,
+:root[data-design="funktional"] .karte__titel,
+:root[data-design="funktional"] .karte__block-titel,
+:root[data-design="funktional"] .zeitgruppe__titel,
+:root[data-design="funktional"] .kasten h2,
+:root[data-design="funktional"] .fliesstext > h2,
+:root[data-design="funktional"] .fliesstext > h3,
+:root[data-design="funktional"] .service h3 {
+  font-family: var(--schriftstapel-display);
+}
+
+:root[data-design="funktional"] h1,
+:root[data-design="funktional"] h2,
+:root[data-design="funktional"] h3,
+:root[data-design="funktional"] .hero__titel,
+:root[data-design="funktional"] .karte__titel,
+:root[data-design="funktional"] .karte__block-titel,
+:root[data-design="funktional"] .zeitgruppe__titel,
+:root[data-design="funktional"] .kasten h2,
+:root[data-design="funktional"] .fliesstext > h2,
+:root[data-design="funktional"] .fliesstext > h3,
+:root[data-design="funktional"] .zeile__titel,
+:root[data-design="funktional"] .infozeile__titel,
+:root[data-design="funktional"] .konten__titel,
+:root[data-design="funktional"] .kalender__name,
+:root[data-design="funktional"] .hero__ticket-datum,
+:root[data-design="funktional"] .karte--text .karte__datum,
+:root[data-design="funktional"] .service h3 {
+  font-weight: 600;
+}
+
+:root[data-design="funktional"] h1,
+:root[data-design="funktional"] h2,
+:root[data-design="funktional"] h3 {
+  line-height: 1.25;
+}
+
+:root[data-design="funktional"] .hero__titel {
+  line-height: 1.15;
+}
+
+:root[data-design="funktional"] .karte__block-titel {
+  line-height: 1.3;
+}
+
+/* Sichtbarer Fokus: 4 px in der Textfarbe des Akzents, 4 px Abstand. */
+:root[data-design="funktional"] a:focus-visible,
+:root[data-design="funktional"] button:focus-visible,
+:root[data-design="funktional"] summary:focus-visible {
+  outline-width: 4px;
+  outline-offset: 4px;
+  outline-color: var(--fokus);
+}
+
+:root[data-design="funktional"] .band--blau :focus-visible {
+  outline-color: var(--primaer-hell);
+}
+
+/* Platz zwischen den Abschnitten: 8-pt-Raster, großzügiger als bisher. */
+:root[data-design="funktional"] .band {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+:root[data-design="funktional"] .kopfzeile {
+  margin-bottom: 3rem;
+}
+
+:root[data-design="funktional"] .kopfzeile h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+:root[data-design="funktional"] .seitenkopf {
+  padding-block: clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .band--gelb {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .band--blau {
+  border-block: 0;
+}
+
+/* ---------- Fließtext und Einleitungen ---------- */
+
+:root[data-design="funktional"] .lead {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+:root[data-design="funktional"] .einleitung {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  color: var(--grau);
+}
+
+:root[data-design="funktional"] .fliesstext {
+  font-size: var(--t-m);
+  line-height: 1.7;
+  max-width: 66ch;
+}
+
+:root[data-design="funktional"] .fliesstext blockquote {
+  font-size: var(--t-m);
+  border-left: 0;
+  background: var(--flaeche-leise);
+  border-radius: var(--rund);
+  padding: 1rem 1.25rem;
+}
+
+:root[data-design="funktional"] .fliesstext > h2 {
+  margin-top: 3rem;
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="funktional"] .fliesstext > h3 {
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="funktional"] .beitrag__bild figcaption {
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="funktional"] .fliesstext a {
+  font-weight: 500;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+:root[data-design="funktional"] .fliesstext a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons im Fließtext: .fliesstext a färbt sonst auch sie wie einen Link
+   (im Dunkelmodus gelb auf gelb in main.css). Schrift wie bei Buttons. */
+:root[data-design="funktional"] .fliesstext a.btn {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .fliesstext a.btn--akzent {
+  color: var(--aktion-schrift);
+}
+
+:root[data-design="funktional"] .fliesstext a.btn:hover {
+  text-decoration: underline;
+}
+
+:root[data-design="funktional"] .fliesstext th,
+:root[data-design="funktional"] .fliesstext td {
+  border: 1px solid var(--rand);
+  padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 640px) {
+  :root[data-design="funktional"] .fliesstext th,
+  :root[data-design="funktional"] .fliesstext td {
+    padding: 0.25rem 0.5rem;
+    /* Notbremse für lange Fachwörter: erst Silbentrennung, dann Umbruch im Wort,
+       statt die ganze Seite seitwärts zu verschieben. */
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
+:root[data-design="funktional"] .fliesstext hr {
+  border-top: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .zeitgruppe__titel {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* ---------- Kleine Bausteine ---------- */
+
+:root[data-design="funktional"] .chip {
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-ui);
+  font-weight: 500;
+  min-height: 3rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+:root[data-design="funktional"] .chip span {
+  font-size: var(--t-s);
+  color: var(--grau);
+}
+
+:root[data-design="funktional"] .chip,
+:root[data-design="funktional"] .hero__punkte li {
+  border-width: 1px;
+}
+
+/* Zweittext in Karten und Listen: 18 px statt 16 px – für diese Zielgruppe
+   ist 16 px die Untergrenze, nicht der Normalfall. */
+:root[data-design="funktional"] .karte__text,
+:root[data-design="funktional"] .service p,
+:root[data-design="funktional"] .zeile__beschreibung,
+:root[data-design="funktional"] .infozeile__text,
+:root[data-design="funktional"] .instabeitrag__text {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="funktional"] .chip--klein {
+  min-height: 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="funktional"] .chip--akzent,
+:root[data-design="funktional"] .chip:active {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .marke,
+:root[data-design="funktional"] .chip[data-kategorie="teilzeitschularten"],
+:root[data-design="funktional"] .marke[data-kategorie="teilzeitschularten"] {
+  transform: none;
+}
+
+:root[data-design="funktional"] .marke {
+  border: 0;
+  border-radius: 4px;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+:root[data-design="funktional"] .karte__koerper .marke {
+  align-self: flex-start;
+}
+
+:root[data-design="funktional"] .meta time {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.125rem 0.5rem;
+}
+
+/* Schaltfläche. Zustände: Standard, Hover (Unterstreichung + zweiter innerer
+   Rand), Fokus (siehe oben), Aktiv (dritter Rand), Deaktiviert (main.css). */
+:root[data-design="funktional"] .btn {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  line-height: 1.25;
+  min-height: 3rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--rund);
+  box-shadow: none;
+  white-space: normal;
+}
+
+:root[data-design="funktional"] .btn:hover,
+:root[data-design="funktional"] .btn--klein:hover {
+  transform: none;
+  box-shadow: inset 0 0 0 2px currentColor;
+  text-decoration: underline;
+}
+
+:root[data-design="funktional"] .btn:active {
+  transform: none;
+  box-shadow: inset 0 0 0 3px currentColor;
+}
+
+/* Primäraktion: gefüllt in GHSE-Blau (hell) bzw. hellem Blau (dunkel). */
+:root[data-design="funktional"] .btn--akzent {
+  background: var(--aktion);
+  color: var(--aktion-schrift);
+  border-color: var(--aktion);
+}
+
+:root[data-design="funktional"] .btn--klein {
+  font-size: var(--t-s);
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .linkpfeil {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  border-bottom-width: 3px;
+}
+
+:root[data-design="funktional"] .anzahl {
+  font-size: var(--t-xs);
+  vertical-align: 0.4em;
+}
+
+/* Kleine Textlinks: die sichtbare Fläche bleibt, die Treffläche wächst
+   unsichtbar auf mindestens 44 px Höhe. */
+:root[data-design="funktional"] .leiste__schnell a,
+:root[data-design="funktional"] .brotkrumen a,
+:root[data-design="funktional"] .zurueck a,
+:root[data-design="funktional"] .linkpfeil {
+  position: relative;
+}
+
+:root[data-design="funktional"] .leiste__schnell a::after,
+:root[data-design="funktional"] .brotkrumen a::after,
+:root[data-design="funktional"] .zurueck a::after,
+:root[data-design="funktional"] .linkpfeil::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem -0.5rem;
+}
+
+:root[data-design="funktional"] .hinweiszeile {
+  font-size: var(--t-s);
+}
+
+/* ---------- Kopf, Leiste, Menü ---------- */
+
+:root[data-design="funktional"] .leiste {
+  font-size: var(--t-xs);
+}
+
+:root[data-design="funktional"] .leiste__innen {
+  padding-block: 0.25rem;
+}
+
+:root[data-design="funktional"] .leiste__schnell a {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  border-bottom-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .marke-link:hover img {
+  transform: none;
+}
+
+:root[data-design="funktional"] .menue ul a {
+  font-size: var(--t-ui);
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+:root[data-design="funktional"] .menue ul.menue__tafel a {
+  font-size: var(--t-s);
+  font-weight: 400;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+:root[data-design="funktional"] .menue__abteilung {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  padding: 1rem 1rem 0.25rem;
+}
+
+:root[data-design="funktional"] .menueknopf,
+:root[data-design="funktional"] .modusknopf {
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+/* Farbmodus-Knopf in der Kopfleiste: Zeigeziel mindestens 44 px. */
+:root[data-design="funktional"] .modusknopf--leiste {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+:root[data-design="funktional"] .menueknopf:active,
+:root[data-design="funktional"] .modusknopf:active {
+  transform: none;
+}
+
+/* Dropdowns ab 1200 px: dieselbe Struktur (Hover und Tastaturfokus), aber
+   sie bleiben kurz sichtbar, wenn der Zeiger die Fläche schräg verlässt. */
+@media (min-width: 1200px) {
+  :root[data-design="funktional"] .menue ul.menue__tafel {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid var(--rand-leise);
+    border-radius: var(--rund);
+    box-shadow: none;
+    transition: opacity 0.12s ease 0.35s, visibility 0s linear 0.47s;
+  }
+  :root[data-design="funktional"] .menue__gruppe:hover > ul.menue__tafel,
+  :root[data-design="funktional"] .menue__gruppe:focus-within > ul.menue__tafel {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  /* Wechselt der Zeiger zu einer anderen Kategorie, schließt die alte sofort. */
+  :root[data-design="funktional"] .menue > ul:has(.menue__gruppe:hover) .menue__gruppe:not(:hover):not(:focus-within) > ul.menue__tafel {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0s;
+  }
+}
+
+@media (max-width: 1199px) {
+  :root[data-design="funktional"] .menue ul a {
+    font-size: var(--t-m);
+    border-radius: 0;
+  }
+  :root[data-design="funktional"] .menue ul.menue__tafel a {
+    font-size: var(--t-m);
+  }
+}
+
+/* Handy: „Krankmelden“ im Kopf bleibt schmal, sonst läuft die Zeile über. */
+@media (max-width: 640px) {
+  :root[data-design="funktional"] .krankmelden-knopf {
+    font-size: var(--t-s);
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  :root[data-design="funktional"] .marke-link img {
+    height: 2.5rem;
+  }
+  :root[data-design="funktional"] .kopf__innen {
+    gap: 0.75rem;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+:root[data-design="funktional"] .hero {
+  background: var(--hero-flaeche);
+  color: var(--schrift);
+  padding-block: clamp(3rem, 6vw, 6rem);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* main.css hält den Hero im dunklen Modus gelb und setzt dafür eigene Tokens
+   (schwarze Schrift, harte Schatten). Hier erbt der Hero die Tokens der Seite. */
+:root[data-design="funktional"][data-design="funktional"] .hero {
+  --flaeche: inherit;
+  --schrift: inherit;
+  --grau: inherit;
+  --rand: inherit;
+  --schatten-farbe: inherit;
+  --orange-tief: inherit;
+  --rahmen: inherit;
+  --schatten: inherit;
+  --schatten-klein: inherit;
+}
+
+:root[data-design="funktional"] .hero__titel,
+:root[data-design="funktional"] .hero__unter {
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .hero__titel::after {
+  width: 96px;
+  height: 4px;
+}
+
+:root[data-design="funktional"] .hero__unter {
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+}
+
+:root[data-design="funktional"] .hero__marke {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--grau);
+  font-size: var(--t-ui);
+  font-weight: 500;
+  padding: 0;
+}
+
+:root[data-design="funktional"] .hero__ticket {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .hero__ticket-datum {
+  color: var(--primaer-text);
+}
+
+:root[data-design="funktional"] .hero__ticket:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .hero__ticket-label {
+  font-weight: 500;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="funktional"] .hero__punkte li,
+:root[data-design="funktional"] .hero__punkte li:nth-child(odd),
+:root[data-design="funktional"] .hero__punkte li:nth-child(even) {
+  transform: none;
+  padding: 0;
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-ui);
+  font-weight: 500;
+}
+
+:root[data-design="funktional"] .hero__punkte li:hover,
+:root[data-design="funktional"] .hero__punkte li:focus-within {
+  box-shadow: inset 0 0 0 2px var(--rand);
+}
+
+:root[data-design="funktional"] .hero__punkte a:hover {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+}
+
+:root[data-design="funktional"] .hero__punkte a {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+:root[data-design="funktional"] .hero__bild img {
+  transform: none;
+  box-shadow: none;
+  border: 1px solid var(--rand-leise);
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  :root[data-design="funktional"] .hero__bild img {
+    box-shadow: none;
+  }
+}
+
+/* ---------- Karten, Service, Zeilen, Kästen ---------- */
+
+:root[data-design="funktional"] .karte {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+:root[data-design="funktional"] .karte:hover,
+:root[data-design="funktional"] .karte:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .karte__bild {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .karte:hover .karte__bild img,
+:root[data-design="funktional"] .karte:focus-within .karte__bild img {
+  transform: none;
+}
+
+:root[data-design="funktional"] .karte__koerper {
+  gap: 1rem;
+}
+
+/* Meldungs-Blöcke: ein neutraler Ton statt Gelb, Orange und Blau reihum. */
+:root[data-design="funktional"] .karte__block,
+:root[data-design="funktional"] .raster--news .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="funktional"] .raster--3 .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="funktional"] .raster--news .karte:nth-child(3n) .karte__block,
+:root[data-design="funktional"] .raster--3 .karte:nth-child(3n) .karte__block {
+  --block-flaeche: var(--papier2);
+  --block-schrift: var(--schrift);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .karte__aktion {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  border-bottom: 3px solid var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .karte__link:hover .karte__titel,
+:root[data-design="funktional"] .karte__link:focus-visible .karte__titel {
+  text-decoration-color: var(--primaer-akzent);
+  text-decoration-thickness: 3px;
+}
+
+:root[data-design="funktional"] .service,
+:root[data-design="funktional"] .serviceliste .service:nth-child(3n + 1),
+:root[data-design="funktional"] .serviceliste .service:nth-child(3n + 2),
+:root[data-design="funktional"] .serviceliste .service:nth-child(3n) {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .service:hover,
+:root[data-design="funktional"] .service:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .service h3 {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="funktional"] .zeile {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .zeile:hover,
+:root[data-design="funktional"] .zeile:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .zeile__titel {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="funktional"] .kasten {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+/* Keine Karte in der Karte: Download-Zeilen im Kasten werden zu
+   Zeilen mit Trennlinie, der Kasten bleibt die einzige Fläche. */
+:root[data-design="funktional"] .kasten .zeile {
+  border: 0;
+  border-bottom: 1px solid var(--rand-leise);
+  border-radius: 0;
+  padding-inline: 0;
+  padding-block: 1rem;
+}
+
+:root[data-design="funktional"] .kasten .zeile:last-child {
+  border-bottom: 0;
+}
+
+:root[data-design="funktional"] .kasten .zeile:hover,
+:root[data-design="funktional"] .kasten .zeile:focus-within {
+  border-color: transparent;
+  border-bottom-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .kasten h2 {
+  font-size: var(--t-s);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .kasten__kontakt {
+  border-top: 1px solid var(--rand-leise);
+}
+
+/* „kasten--gelb“ erzwang weiße Innenflächen und schwarze Schrift; hier erbt
+   der Inhalt die Tokens der Seite, die Fläche selbst ist ein neutraler Ton. */
+:root[data-design="funktional"] .kasten--gelb {
+  --flaeche: inherit;
+  --schrift: inherit;
+  --grau: inherit;
+  --rand: inherit;
+  --schatten-farbe: inherit;
+  --link: inherit;
+  --orange-tief: inherit;
+  --rahmen: inherit;
+  --schatten: inherit;
+  --schatten-klein: inherit;
+  background: var(--marke-gelb-hell);
+  border-top: 4px solid var(--primaer-text);
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .hinweis {
+  border: 1px solid var(--hinweis-rand);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .hinweis__titel {
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .hinweis p {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="funktional"] .infozeile {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .infozeile__titel {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="funktional"] .konten__titel {
+  font-size: var(--t-ui);
+}
+
+/* ---------- Bilder ---------- */
+
+:root[data-design="funktional"] .bild img,
+:root[data-design="funktional"] .seitenleiste__bild img,
+:root[data-design="funktional"] .beitrag__lupe img,
+:root[data-design="funktional"] .schulleben img {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .schulleben li:nth-child(3n + 1) img,
+:root[data-design="funktional"] .schulleben li:nth-child(3n + 3) img {
+  transform: none;
+}
+
+:root[data-design="funktional"] .lupe__plakette {
+  border: 2px solid var(--tinte);
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: var(--t-s);
+}
+
+:root[data-design="funktional"] .beitrag__lupe:hover .lupe__plakette,
+:root[data-design="funktional"] .beitrag__lupe:focus-visible .lupe__plakette {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .video__knopf {
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .video__knopf:hover,
+:root[data-design="funktional"] .video__knopf:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .video__zeichen {
+  box-shadow: none;
+}
+
+/* ---------- Navigationshilfen ---------- */
+
+:root[data-design="funktional"] .sprungleiste__label {
+  color: var(--primaer-text);
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="funktional"] .sprungleiste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+:root[data-design="funktional"] .brotkrumen ol,
+:root[data-design="funktional"] .zurueck a {
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+/* ---------- Startseite: Termine, Instagram, Partner ---------- */
+
+:root[data-design="funktional"] .kalender,
+:root[data-design="funktional"] .kalenderliste li:nth-child(3n + 2) .kalender,
+:root[data-design="funktional"] .kalenderliste li:nth-child(3n) .kalender {
+  --kalender-flaeche: var(--flaeche);
+  --kalender-schrift: var(--schrift);
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .kalender:hover,
+:root[data-design="funktional"] .kalender:focus-visible {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .kalender__name {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="funktional"] .kalender__aktion {
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="funktional"] .instabeitrag {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+:root[data-design="funktional"] .instabeitrag:hover,
+:root[data-design="funktional"] .instabeitrag:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="funktional"] .instabeitrag__bild {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="funktional"] .instabeitrag__plakette,
+:root[data-design="funktional"] .instaraster li:nth-child(4n + 2) .instabeitrag__plakette,
+:root[data-design="funktional"] .instaraster li:nth-child(4n + 3) .instabeitrag__plakette {
+  transform: none;
+  box-shadow: none;
+  border: 2px solid var(--tinte);
+  border-radius: var(--rund);
+}
+
+:root[data-design="funktional"] .partnergitter__kachel {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .partnergitter__kachel:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+/* Hover-Rückmeldung bleibt ruhig und blau; das kräftige GHSE-Gelb ist
+   Flächen und Marken vorbehalten (PDF-/Zähler-Marken, Fußkante). */
+@media (hover: hover) {
+  :root[data-design="funktional"] .chip:hover,
+  :root[data-design="funktional"] .leiste__schnell a:hover,
+  :root[data-design="funktional"] .menue ul a:hover,
+  :root[data-design="funktional"] .menueknopf:hover,
+  :root[data-design="funktional"] .modusknopf:hover,
+  :root[data-design="funktional"] .band--gelb .btn--geist:hover,
+  :root[data-design="funktional"] .band--blau .btn--geist:hover {
+    background: var(--primaer-hell);
+    color: var(--tinte);
+  }
+}
+
+/* ---------- Fuß ---------- */
+
+:root[data-design="funktional"] .fuss {
+  border-top: 4px solid var(--marke-gelb);
+}
+
+:root[data-design="funktional"] .fuss__titel {
+  font-size: var(--t-s);
+  border-bottom: 1px solid var(--fuss-linie);
+}
+
+/* ---------- Gestaltungswahl ---------- */
+
+:root[data-design="funktional"] .stilwahl {
+  gap: 0.5rem;
+}
+
+:root[data-design="funktional"] .stilwahl__label {
+  color: var(--text-leise);
+  font-weight: 500;
+}
+
+:root[data-design="funktional"] .stilwahl__auswahl {
+  min-height: 2.75rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  padding: 0.4rem 2rem 0.4rem 0.75rem;
+  background: var(--flaeche);
+  color: var(--schrift);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .stilwahl__auswahl:focus-visible {
+  outline-width: 4px;
+  outline-offset: 4px;
+}
+
+:root[data-design="funktional"] .stilwahl__pfeil {
+  right: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+:root[data-design="funktional"] .stilwahl--menue {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* ---------- Druck: immer hell, auch wenn der dunkle Satz aktiv ist ---------- */
+
+@media print {
+  :root[data-design="funktional"] {
+    --papier: #ffffff !important;
+    --papier2: #ffffff !important;
+    --flaeche: #ffffff !important;
+    --schrift: #000000 !important;
+    --grau: #000000 !important;
+    --rand: #000000 !important;
+    --primaer: #114c92 !important;
+    --primaer-text: #114c92 !important;
+    --primaer-akzent: #ee7330 !important;
+    --aktion: #114c92 !important;
+    --aktion-schrift: #ffffff !important;
+    --fokus: #114c92 !important;
+    --marke-gelb: #f6dc56 !important;
+    --marke-gelb-hell: #ffffff !important;
+    --hero-flaeche: #ffffff !important;
+    --link: #114c92 !important;
+    --orange-tief: #114c92 !important;
+    --rand-leise: #000000 !important;
+    --linie: #000000 !important;
+    --hinweis-flaeche: #ffffff !important;
+    --fuss-flaeche: #ffffff !important;
+    color-scheme: light;
+  }
+}
+
+/* ============================================================
+   Funktional: weiße Fläche, schwarze Typografie und Linien,
+   GHSE-Logofarben nur als Akzent. Keine Schatten, keine Rundung.
+   ============================================================ */
+
+:root[data-design="funktional"] .hero {
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+  border-bottom: 1px solid var(--rand);
+}
+
+:root[data-design="funktional"] .hero__titel {
+  font-size: var(--t-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+:root[data-design="funktional"] .hero__unter {
+  max-width: 60ch;
+  font-size: 1.1rem;
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .hero__marke {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--schrift);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+:root[data-design="funktional"] .hero__bild img {
+  border: 1px solid var(--rand);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+:root[data-design="funktional"] .hero__punkte {
+  gap: 0.5rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+:root[data-design="funktional"] .hero__punkte li {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  transform: none;
+}
+
+:root[data-design="funktional"] .hero__punkte a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+:root[data-design="funktional"] .einleitung {
+  max-width: 66ch;
+}
+
+:root[data-design="funktional"] .hero__ticket {
+  border: 1px solid var(--rand);
+  border-top: 4px solid var(--blau);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .kopfzeile {
+  margin-bottom: 1.75rem;
+}
+
+:root[data-design="funktional"] .kopfzeile h2 {
+  border-bottom: 2px solid var(--rand);
+  padding-bottom: 0.4rem;
+}
+
+:root[data-design="funktional"] .seitenkopf {
+  padding-block: clamp(1.75rem, 3vw, 2.75rem);
+  border-bottom: 1px solid var(--rand);
+}
+
+:root[data-design="funktional"] .band {
+  padding-block: clamp(2rem, 4vw, 3.25rem);
+}
+
+:root[data-design="funktional"] .band--blau {
+  background: var(--papier);
+  color: var(--schrift);
+  border-block: 1px solid var(--rand);
+}
+
+:root[data-design="funktional"] .band--blau .kopfzeile h2,
+:root[data-design="funktional"] .band--blau .band__einleitung,
+:root[data-design="funktional"] .band--blau .kalender,
+:root[data-design="funktional"] .band--blau .kalender__name,
+:root[data-design="funktional"] .band--blau .kalender__aktion {
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .band--blau .kopfzeile h2 {
+  border-bottom-color: var(--rand);
+}
+
+:root[data-design="funktional"] .band--blau .btn--geist {
+  border-color: var(--rand);
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .band--blau :focus-visible {
+  outline-color: var(--fokus);
+}
+
+:root[data-design="funktional"] .karte,
+:root[data-design="funktional"] .service,
+:root[data-design="funktional"] .zeile,
+:root[data-design="funktional"] .kalender,
+:root[data-design="funktional"] .instabeitrag,
+:root[data-design="funktional"] .kasten,
+:root[data-design="funktional"] .infozeile,
+:root[data-design="funktional"] .konten,
+:root[data-design="funktional"] .hinweis {
+  border: 1px solid var(--rand);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:root[data-design="funktional"] .karte__bild img,
+:root[data-design="funktional"] .instabeitrag__bild img,
+:root[data-design="funktional"] .bild img {
+  border-radius: 0;
+}
+
+:root[data-design="funktional"] .karte__block-meta,
+:root[data-design="funktional"] .marke,
+:root[data-design="funktional"] .chip {
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--rand);
+  border-radius: 0;
+  background: var(--gelb);
+  color: #000000;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="funktional"] .chip--ruhig {
+  background: var(--papier);
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .karte__aktion,
+:root[data-design="funktional"] .linkpfeil,
+:root[data-design="funktional"] .fliesstext a {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+:root[data-design="funktional"] .btn {
+  border-radius: 0;
+  box-shadow: none;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="funktional"] .btn--akzent {
+  background: var(--aktion);
+  border-color: var(--aktion);
+  color: var(--aktion-schrift);
+}
+
+:root[data-design="funktional"] .btn--geist {
+  background: var(--papier);
+  border: 1px solid var(--rand);
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .btn--geist-blau {
+  border-color: var(--link);
+  color: var(--link);
+}
+
+:root[data-design="funktional"] .leiste {
+  border-bottom: 1px solid var(--rand);
+}
+
+:root[data-design="funktional"] .kopf {
+  border-bottom: 1px solid var(--rand);
+}
+
+:root[data-design="funktional"] .leiste__schnell a {
+  border-bottom: 2px solid var(--blau);
+}
+
+:root[data-design="funktional"] .menue ul a[aria-current="page"] {
+  background: var(--blau);
+  color: #ffffff;
+  border-radius: 0;
+}
+
+:root[data-design="funktional"] .serviceliste .service:nth-child(3n + 1) {
+  border-top: 4px solid var(--gelb);
+}
+
+:root[data-design="funktional"] .serviceliste .service:nth-child(3n + 2) {
+  border-top: 4px solid var(--orange);
+}
+
+:root[data-design="funktional"] .serviceliste .service:nth-child(3n) {
+  border-top: 4px solid var(--blau);
+}
+
+:root[data-design="funktional"] .kasten--gelb {
+  background: var(--papier);
+  border-top: 4px solid var(--gelb);
+}
+
+:root[data-design="funktional"] .hinweis {
+  border-left: 1px solid var(--rand);
+  border-top: 4px solid var(--gelb);
+}
+
+:root[data-design="funktional"] .fuss {
+  border-top: 4px solid var(--blau);
+  background: #000000;
+  color: #ffffff;
+}
+
+:root[data-design="funktional"] .fuss a,
+:root[data-design="funktional"] .fuss__titel {
+  color: #ffffff;
+}
+
+:root[data-design="funktional"] .fuss__titel {
+  border-bottom: 1px solid #ffffff;
+}
+
+:root[data-design="funktional"] .fuss__leiste {
+  background: #000000;
+  color: #ffffff;
+}
+
+:root[data-design="funktional"] .fliesstext > h2 {
+  border-left: 0;
+  border-bottom: 1px solid var(--rand);
+  padding-left: 0;
+  padding-bottom: 0.3rem;
+}
+
+:root[data-design="funktional"] .fliesstext > h3 {
+  border-bottom: 1px solid var(--rand);
+}
+
+:root[data-design="funktional"] .fliesstext blockquote {
+  border: 1px solid var(--rand);
+  border-top: 4px solid var(--orange);
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem 1.25rem;
+}
+
+:root[data-design="funktional"] .fliesstext table th,
+:root[data-design="funktional"] .fliesstext table td {
+  border-color: var(--rand);
+}
+
+:root[data-design="funktional"] .fliesstext thead th {
+  background: var(--gelb);
+  color: #000000;
+}
+
+:root[data-design="funktional"] .stilwahl__auswahl {
+  min-height: 2.5rem;
+  border: 1px solid var(--rand);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Dunkel: schwarze Fläche, weiße Linien; die Logofarben bleiben Akzent. */
+:root[data-design="funktional"][data-theme="dark"] .fuss,
+:root[data-design="funktional"]:not([data-theme="light"]) .fuss {
+  background: #000000;
+  color: #ffffff;
+  border-top-color: var(--blau);
+}
+
+:root[data-design="funktional"] .band--gelb {
+  background: var(--papier);
+}
+
+/* Kein Grau: Auch dezente Flächen bleiben schwarz oder weiß. */
+:root[data-design="funktional"] .sprungleiste,
+:root[data-design="funktional"] .brotkrumen,
+:root[data-design="funktional"] .fuss__leiste {
+  background: var(--papier);
+  color: var(--schrift);
+}
+
+:root[data-design="funktional"] .sprungleiste a,
+:root[data-design="funktional"] .brotkrumen a {
+  color: var(--link);
+}
+
+/* Kompatibilität: Die neuen Optionen dürfen die Breite des bestehenden
+   Theme-Feldes in Neo und Klar nicht verändern. Die Werte sind die vor
+   dem Vier-Themes-Ausbau gemessenen Breiten; neue Themes bleiben automatisch. */
+:root[data-design="neobrutalismus"] .stilwahl__auswahl {
+  width: 59.78125px;
+}
+
+:root[data-design="klar"] .stilwahl__auswahl {
+  width: 72px;
+}

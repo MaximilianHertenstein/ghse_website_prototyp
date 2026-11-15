@@ -55,6 +55,17 @@ disableKinds = ["taxonomy", "term"]
     kurz = "Klar"
     css = "css/klar.css"
     fonts = "schriften-klar.html"
+  [[params.designs]]
+    id = "funktional"
+    name = "Funktional"
+    kurz = "Sach"
+    css = "css/funktional.css"
+  [[params.designs]]
+    id = "modern"
+    name = "Modern"
+    kurz = "Mod"
+    css = "css/modern.css"
+    fonts = "schriften-modern.html"
 
 # Adressen im Fließtext bleiben Text: Der Originalseite stehen dort die
 # Webadressen als Klartext, und ein paar davon zeigen längst ins Leere.

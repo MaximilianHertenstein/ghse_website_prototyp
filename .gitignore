@@ -9,6 +9,7 @@
 # lokal. Wer sie mitversionieren will, entfernt die zwei Zeilen.
 /qa/*
 !qa/*.py
+!qa/theme-baseline.json
 /recherche/
 
 # Betriebssystem- und Editor-Reste
