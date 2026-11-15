@@ -39,12 +39,13 @@ disableKinds = ["taxonomy", "term"]
   fax = "07641 465 199"
   mail = "poststelle@ghse.de"
 
-  # Zwei Gestaltungsvarianten derselben Seiten. Die erste ist der Standard
-  # (main.css, ohne data-design); jede weitere bringt eine eigene, auf
-  # data-design="<id>" begrenzte CSS-Datei mit. Ein drittes Theme braucht
-  # nur einen weiteren Eintrag hier, seine CSS-Datei und – falls nötig –
-  # ein Schriften-Partial.
-  design = "neobrutalismus"
+  # Vier Gestaltungsvarianten derselben Seiten. `design` ist der Einstieg
+  # ohne gespeicherte Wahl; `?design=<id>` und der Umschalter wechseln die
+  # Variante. Neo steht in main.css (ohne eigene CSS-Datei), jede weitere
+  # bringt eine auf data-design="<id>" begrenzte Datei mit. Ein weiteres
+  # Theme braucht nur einen Eintrag hier, seine CSS-Datei und – falls
+  # nötig – ein Schriften-Partial.
+  design = "funktional"
   [[params.designs]]
     id = "neobrutalismus"
     name = "Neobrutalismus"

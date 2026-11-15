@@ -89,6 +89,11 @@ in den beiden dunklen Sätzen. Alles Weitere benutzt Tokens.
   oben, Text, ein Textlink. Kategorie als gelbe Marke mit schwarzer Kontur.
 - **Service und Kalender:** flache Kästen; Service trägt eine 4-px-Kante in
   Gelb, Orange oder Blau, Kalender bleiben neutral.
+- **Sprungleiste:** die Kategorie-Chips der Download-Seite bleiben am
+  Zeigegerät flach (14 px, 38 px hoch), damit die klebende Leiste in einer
+  Zeile bleibt statt auf 170–226 px anzuwachsen; auf Touch und unter 640 px
+  gilt weiter die volle Zielhöhe von 48 px. Ankersprünge landen unter Kopf
+  und Leiste.
 - **Knöpfe:** primär schwarz gefüllt, sekundär weiß mit schwarzer Kontur,
   0 Radius; Hover als Unterstreichung/Farbwechsel, kein Versatz.
 - **Tabellen:** 1-px-Raster, gelber Kopf, schwarze Schrift; mobil kleinere
@@ -111,8 +116,8 @@ in den beiden dunklen Sätzen. Alles Weitere benutzt Tokens.
 ## 5. Abgrenzung
 
 Neu ist ausschließlich `assets/css/funktional.css` plus der Eintrag in
-`params.designs`; alle Regeln sind auf `:root[data-design="funktional"]`
-begrenzt. Die Varianten Neo und Klar bleiben unberührt. Die Datei wird auf
+`params.designs` (dort als Einstieg ohne gespeicherte Wahl); alle Regeln sind
+auf `:root[data-design="funktional"]` begrenzt. Die Varianten Neo und Klar bleiben unberührt. Die Datei wird auf
 jeder Seite mitgeladen, wirkt aber nur bei aktiver Wahl.
 
 ## 6. QA

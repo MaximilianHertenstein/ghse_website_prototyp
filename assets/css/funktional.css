@@ -1034,14 +1034,25 @@
   font-weight: 600;
 }
 
+/* Die Sprungleiste bleibt am Zeigegerät flach: breite 48-px-Chips wickeln
+   die sieben Kategorien in zwei bis drei Zeilen und lassen die klebende
+   Leiste auf 170–226 px anwachsen. Auf Touch und schmalen Fenstern gilt
+   weiter die volle Zielhöhe. */
 :root[data-design="funktional"] .sprungleiste a {
   display: inline-flex;
   align-items: center;
-  min-height: 3rem;
-  padding: 0.5rem 1rem;
+  padding: 0.35rem 0.7rem;
   border-radius: 4px;
-  font-size: var(--t-s);
+  font-size: 0.875rem;
   font-weight: 500;
+}
+
+@media (pointer: coarse), (max-width: 640px) {
+  :root[data-design="funktional"] .sprungleiste a {
+    min-height: 3rem;
+    padding: 0.5rem 1rem;
+    font-size: var(--t-s);
+  }
 }
 
 :root[data-design="funktional"] .brotkrumen ol,

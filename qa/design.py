@@ -5,10 +5,11 @@ Aufruf (Preview-Server muss laufen):
     python3 tools/preview-server.py public 8735
     python3 qa/design.py http://127.0.0.1:8735/
 
-Geprüft wird: Standard ist Neo, der Wechsel auf Klar setzt `data-design`,
-speichert in localStorage und lädt Roboto; nach dem Neuladen bleibt die Wahl;
-`?design=klar` öffnet Klar ohne zu speichern; der Rückwechsel lädt wieder
-Inter. Voraussetzung ist Playwright mit Chromium (wie qa/klar_pruefung.py).
+Geprüft wird: Einstieg ist Funktional, der Wechsel auf Klar setzt
+`data-design`, speichert in localStorage und lädt Roboto; nach dem Neuladen
+bleibt die Wahl; `?design=klar` öffnet Klar ohne zu speichern; der
+Rückwechsel lädt wieder Hanken Grotesk bzw. Inter. Voraussetzung ist
+Playwright mit Chromium (wie qa/klar_pruefung.py).
 """
 import shutil
 import sys
@@ -50,9 +51,9 @@ def main():
             page = ctx.new_page()
             page.goto(BASIS, wait_until="load")
             s = zustand(page)
-            pruefe(s["design"] == "neobrutalismus", "Start ist nicht Neo: %r" % s)
-            pruefe("Inter" in s["schrift"], "Neo nutzt nicht Inter: %r" % s["schrift"])
-            pruefe(s["wahl"] == "neobrutalismus", "Auswahl zeigt nicht Neo: %r" % s["wahl"])
+            pruefe(s["design"] == "funktional", "Start ist nicht Funktional: %r" % s)
+            pruefe("Hanken" in s["schrift"], "Funktional nutzt nicht Hanken Grotesk: %r" % s["schrift"])
+            pruefe(s["wahl"] == "funktional", "Auswahl zeigt nicht Funktional: %r" % s["wahl"])
 
             page.select_option(".stilwahl--leiste select", "klar")
             page.wait_for_timeout(250)

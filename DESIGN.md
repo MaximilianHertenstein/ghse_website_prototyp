@@ -32,9 +32,9 @@ Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 
 | Variante | Kennung | Aussehen | Dokument |
 | --- | --- | --- | --- |
-| **Neobrutalismus** (Standard) | `neobrutalismus` | GHSE-Gelb/Orange/Blau, schwarze Konturen, harte Schatten, Inter | `Neobrutalismus-DESIGN.md` |
+| **Neobrutalismus** | `neobrutalismus` | GHSE-Gelb/Orange/Blau, schwarze Konturen, harte Schatten, Inter | `Neobrutalismus-DESIGN.md` |
 | **Klar** (Clean) | `klar` | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
-| **Funktional** | `funktional` | Weiß/Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
+| **Funktional** (Einstieg) | `funktional` | Weiß/Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
 | **Modern** | `modern` | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten auf hellem Blau, weiche Schatten | `modern-DESIGN.md` |
 
 ## Umschaltung
@@ -42,8 +42,9 @@ Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 - `params.designs` in `hugo.toml` listet die Varianten mit `id`, `name`,
   `kurz`, optional `css` und `fonts`.
 - `layouts/baseof.html` setzt `data-design` am `<html>` vor dem ersten
-  Bild (localStorage `ghse-design`, sonst `params.design`). Die
-  Standardvariante braucht keine Zusatz-CSS.
+  Bild (localStorage `ghse-design`, sonst `params.design`). Ohne
+  gespeicherte Wahl startet die Seite in `funktional`; Neo steht in
+  `main.css` und braucht keine eigene CSS-Datei.
 - Der Umschalter (`_partials/stilwahl.html`) steht ab 1101 px in der
   Kopfleiste, bis 1100 px im Menü. `assets/js/design.js` schaltet um,
   speichert die Wahl und hält beide Menüs synchron.

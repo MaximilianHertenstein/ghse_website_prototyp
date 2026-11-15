@@ -106,9 +106,15 @@ async function messe(iframe, breite, pfad) {
   // A4: Touch-Ziele. Der bindende Wert ist die KLEINSTE sichtbare Fläche –
   // ein zu kleines Ziel darf nicht von einem größeren Geschwisterteil
   // verdeckt werden, deshalb minimum statt Maximum.
+  // WCAG 2.5.8 gilt für Zeiger-Ziele, nicht für statische Auszeichnung:
+  // `.chip` wird deshalb nur gemessen, wenn er selbst in einem Link oder
+  // Button steckt. PDF-/Größen-Marken in Download-Zeilen sind Text, kein Ziel.
+  const istZiel = {'.chip': x => !!x.closest('a,button,[role="link"],[role="button"]')};
   const ziele = {};
   for (const sel of A4) {
-    const e = [...d.querySelectorAll(sel)].filter(x => x.offsetParent !== null || x === d.activeElement);
+    const e = [...d.querySelectorAll(sel)]
+      .filter(x => x.offsetParent !== null || x === d.activeElement)
+      .filter(x => !istZiel[sel] || istZiel[sel](x));
     if (!e.length) continue;
     const hoehen = e.map(x => Math.round(x.getBoundingClientRect().height));
     ziele[sel] = { n: e.length, min: Math.min(...hoehen), max: Math.max(...hoehen) };

@@ -7,10 +7,10 @@
 
 Neubau von [www.ghse.de](https://www.ghse.de/) mit Hugo, gedacht als
 vollständige Ablöse des Originals – nicht als Demo.
-Reduzierter Neobrutalismus als Standard (Grundlage: Skill `neobrutalism` aus
-[bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
-dazu die Varianten **Klar** (Clean), **Funktional** (funktionaler
-Minimalismus) und **Modern** (Weiterentwicklung des GHSE-Auftritts); mit
+Einstieg ist die Variante **Funktional** (funktionaler Minimalismus),
+dazu **Neo** (reduzierter Neobrutalismus, Grundlage: Skill `neobrutalism`
+aus [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
+**Klar** (Clean) und **Modern** (Weiterentwicklung des GHSE-Auftritts); mit
 echten GHSE-Inhalten, Texten, Bildern und Dokumenten.
 
 ---
@@ -29,7 +29,7 @@ python3 tools/preview-server.py   # public/ so ausliefern wie GitHub Pages
 
 Es gibt keine npm-/PostCSS-Toolchain: CSS und JS liegen unter `assets/`
 (Hugo Pipes, minify + fingerprint), Schriften und Bilder unter `static/`.
-Inter ist die selbst gehostete Variable-Font der Standardvariante; Klar
+Inter ist die selbst gehostete Variable-Font der Neo-Variante; Klar
 bringt Roboto und Poppins mit, Funktional Hanken Grotesk und Modern
 Familjen Grotesk (Hallmark-Referenz Cobalt).
 
@@ -752,9 +752,9 @@ Inhalte und URLs:
 
 | Kennung | Kurzform | Aussehen |
 | --- | --- | --- |
-| `neobrutalismus` | Neo | GHSE-Gelb/Orange/Blau, harte Schatten, Inter (Standard) |
+| `neobrutalismus` | Neo | GHSE-Gelb/Orange/Blau, harte Schatten, Inter |
 | `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam |
-| `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen |
+| `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen (Einstieg) |
 | `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
@@ -851,7 +851,8 @@ Websites: CSS `prefers-color-scheme` plus ein Umschalten per JavaScript.
   getippten Kategorie auf und zu (die aktuelle Sektion steht offen),
   Download-Zeilen werden zu Vollbreiten-Karten mit großem Button. Nachgemessen
   wird das mit `qa/layout.py` (Ankersprung unter Kopf **und** Sprungleiste,
-  Kopfhöhe, Touch-Ziele an 1440/640/390 px) und `qa/reflow.py` (82 Seiten ×
+  Kopfhöhe, Touch-Ziele an 1440/640/390 px; statische Marken wie PDF/Größe
+  zählen nicht als Ziel) und `qa/reflow.py` (82 Seiten ×
   11 Breiten = 902 Kombinationen, 0 Probleme – nichts bricht horizontales
   Scrollen aus). Dieselben drei Prüfungen laufen zusätzlich gegen einen Bau
   mit `--baseURL /ghse_website_prototyp/` (`qa/unterpfad.py`) – dort sind
