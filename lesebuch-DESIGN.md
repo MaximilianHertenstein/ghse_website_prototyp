@@ -95,21 +95,23 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
 
 ### Rücken (ab 1200 px)
 
-- 300 px breit, feststehend, GHSE-Blau, 100 dvh, innen scrollbar.
-- Oben das GHSE-Zeichen auf einer Papierkachel, darunter das Verzeichnis:
-  acht Kapitel als Zeilen mit Haarlinie, aktive Stelle mit gelbem
-  Lesebändchen (4 px) und weißer Schrift.
+- 300 px breit, feststehend, GHSE-Blau, 100 dvh. Der Verzeichnisteil
+  scrollt; der Ansichtsblock bleibt unten stehen.
+- Oben das GHSE-Zeichen auf einer dunkelblauen Plakette mit Haarlinie –
+  keine weiße Fläche, die das Blau unterbricht.
+- Reihenfolge: Zeichen → Krankmelden → Schnellzugriffe (zweispaltig) →
+  Verzeichnis → Ansicht. Die acht Kapitel stehen als Zeilen mit Haarlinie,
+  die aktive Stelle trägt ein gelbes Lesebändchen (4 px) und weiße Schrift.
 - Unterkapitel klappen im Rücken selbst auf (Papier tief, eingerückt),
   gesteuert über den 44-px-Pfeilknopf; sie schweben nicht über der Seite.
-  Der Rücken scrollt nur den Verzeichnisteil, die Leiste mit Kontakt,
-  Schnellzugriffen, Stilwahl und Farbmodus bleibt unten stehen.
+- Der Ansichtsblock (Stilwahl und Farbmodus) sitzt unten, durch eine
+  Haarlinie vom Verzeichnis getrennt. `assets/js/lesebuch.js` hängt dafür
+  die vorhandene Serviceleiste ab 1200 px ans Ende des Rückens; dadurch
+  stimmen DOM- und Tastaturreihenfolge. Ohne JavaScript bleibt sie oben
+  und die Seite vollständig nutzbar.
 - Der Schulname steht als Masthead über dem Titel: 1,15–1,6 rem, Tinte,
   Haarlinie darunter. Er ist kein Etikett, sondern der Name der Schule;
   auf Wunsch der GHSE bewusst größer als in den anderen Varianten.
-- Ab 1200 px entfällt die obere Serviceleiste; ihre Aufgaben stehen in
-  DOM-Reihenfolge im Rücken: Farbmodus, Krankmelden, Schnellzugriffe,
-  Stilwahl, Verzeichnis. So folgen Lesefluss und Tastatur derselben
-  Reihenfolge, ohne DOM-Umbau und ohne `order`.
 - Unter 1200 px wird der Rücken zur blauen Kopfleiste mit Menüknopf; das
   Panel ist eine Papierseite mit Verzeichnis, dieselben Linien und das
   gelbe Lesebändchen.
@@ -171,9 +173,10 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
 - Neue Schriften unter `assets/fonts/lesebuch/` (SIL OFL), eingebunden über
   `layouts/_partials/schriften-lesebuch.html`; das Partial wird nur durch
   den neuen Eintrag in `params.designs` geladen.
-- Kein eigenes JavaScript: Der Rücken nutzt ausschließlich die
-  vorhandenen Elemente in ihrer DOM-Reihenfolge. Die obere Serviceleiste
-  ist ab 1200 px ausgeblendet; Kontakt und Öffnungszeiten stehen im Fuß.
+- `assets/js/lesebuch.js` (nur über das Theme-Partial geladen) verschiebt
+  die Serviceleiste ab 1200 px ans Ende des Rückens, damit Darstellung
+  und Tastatur derselben Reihenfolge folgen. Kontakt und Öffnungszeiten
+  stehen im Fuß.
 - `hugo.toml` erhält ausschließlich einen fünften Eintrag am Ende der
   Design-Liste.
 - Vorschau: `static/bilder/themes/lesebuch.webp`.

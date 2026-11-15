@@ -259,14 +259,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: var(--lb-logo-flaeche);
-    padding: 0.6rem 0.75rem;
-    border: 0;
+    background: var(--lb-blau-tief);
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--lb-rail-linie);
     box-shadow: none;
   }
 
   :root[data-design="lesebuch"] .marke-link img {
-    height: 2.5rem;
+    height: 2.75rem;
     width: auto;
   }
 
@@ -496,8 +496,9 @@
   }
 
   :root[data-design="lesebuch"] .marke-link {
-    background: var(--lb-logo-flaeche);
+    background: var(--lb-blau-tief);
     padding: 0.4rem 0.5rem;
+    border: 1px solid var(--lb-rail-linie);
   }
 
   :root[data-design="lesebuch"] .marke-link img {
@@ -3037,5 +3038,185 @@
 
   :root[data-design="lesebuch"] .stilwahl--menue {
     margin-bottom: 0.5rem;
+  }
+}
+
+/* ---------- Seitenleiste: Ordnung und Ansicht ----------
+   Logo → Aktion → Schnellzugriffe → Verzeichnis → Ansicht. Der
+   Darstellungsblock (Stil + Farbmodus) sitzt unten, durch eine Haarlinie
+   getrennt; die obere Leiste entfällt ab 1200 px. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .kopf {
+    overflow: hidden;
+    padding: 1.25rem 1.25rem 0.9rem;
+  }
+
+  :root[data-design="lesebuch"] .kopf::after {
+    content: none;
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 0.35rem 0 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--lb-rail-rand) transparent;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen::-webkit-scrollbar-thumb {
+    background: var(--lb-rail-rand);
+  }
+
+  :root[data-design="lesebuch"] .kopf__ende {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 1.25rem;
+  }
+
+  /* Der Farbmodus lebt unten in der Ansicht, nicht neben dem Logo. */
+  :root[data-design="lesebuch"] .modusknopf--kopf {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .krankmelden-knopf {
+    margin-top: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue__schnell {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 0.75rem;
+    margin: 0 0 0.5rem;
+    padding: 0;
+    border: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue__schnell .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0;
+    background: transparent;
+    color: var(--lb-rail-text-leise);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .menue__schnell .chip:hover {
+      background: transparent;
+      color: var(--lb-hell);
+      box-shadow: inset 0 -1px 0 var(--lb-gelb);
+    }
+  }
+
+  /* Darstellung aus dem Menü ist am Desktop ausgeblendet; die Leiste
+     unten trägt die einzige Stilwahl. */
+  :root[data-design="lesebuch"] .stilwahl--menue {
+    display: none;
+  }
+
+  /* Die Leiste wird per Skript ans Ende gehängt und sitzt unten fest. */
+  :root[data-design="lesebuch"] .leiste {
+    display: flex;
+    flex: 0 0 auto;
+    margin-top: 0;
+    padding-top: 0.75rem;
+    background: transparent;
+    color: var(--lb-rail-leise);
+    border: 0;
+    border-top: 1px solid var(--lb-rail-linie);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  :root[data-design="lesebuch"] .leiste__innen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0;
+  }
+
+  :root[data-design="lesebuch"] .leiste__adresse,
+  :root[data-design="lesebuch"] .leiste__schnell {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--leiste {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--leiste .stilwahl__label {
+    color: var(--lb-rail-leise);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--leiste .stilwahl__feld {
+    flex: 1;
+    min-width: 0;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--leiste .stilwahl__auswahl {
+    width: 100%;
+    min-height: 2.4rem;
+    padding: 0.3rem 1.5rem 0.3rem 0.5rem;
+    background: var(--lb-papier);
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-rail-rand);
+    border-radius: 0;
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  :root[data-design="lesebuch"] .modusknopf--leiste {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    background: transparent;
+    color: var(--lb-rail-text);
+    border: 1px solid var(--lb-rail-rand);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .modusknopf--leiste:hover {
+      background: var(--lb-rail-hover);
+      color: var(--lb-hell);
+    }
   }
 }

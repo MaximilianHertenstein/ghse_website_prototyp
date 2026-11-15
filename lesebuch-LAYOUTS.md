@@ -31,7 +31,7 @@ RTL-Oberfläche (keine `dir="rtl"`-Seite), native Apps.
 | Schwere | Ort | Vorher | Nachher | Warum |
 | --- | --- | --- | --- | --- |
 | HIGH | `lesebuch.css` (Krankmelden, Sprungmarke) | Gelbe Fläche mit `--lb-tinte`; im Dunkelmodus hell auf gelb, 1,17:1 | `--lb-auf-gelb: #171b18` in beiden Modi, 12,67:1 | 1.4.3 AA; der wichtigste CTA war im Dunkelmodus unlesbar |
-| HIGH | `.kopf` (Rücken) | `order` schob die Serviceleiste visuell nach unten, die Tastatur lief ihr zuvor (11 Stopps vor dem ersten Kapitel) | Serviceleiste ab 1200 px ausgeblendet; Modus, CTA, Schnellzugriffe, Stilwahl und Verzeichnis stehen in DOM-Reihenfolge | 2.4.3; visuelle und Fokus-Reihenfolge sind jetzt identisch, ohne DOM-Umbau |
+| HIGH | `.kopf` (Rücken) | `order` schob die Serviceleiste visuell nach unten, die Tastatur lief ihr zuvor (11 Stopps vor dem ersten Kapitel) | Die Leiste wird ab 1200 px tatsächlich ans Ende des Rückens gehängt; Ansicht (Stil/Farbmodus) steht dort abgesetzt unten | 2.4.3; DOM-, visuelle und Fokus-Reihenfolge sind identisch |
 | MEDIUM | `lesebuch.css` (Fuß) | Kurze Seiten ließen den Fuß mitten im Fenster stehen | `body` als Flex-Spalte mit `min-height: 100svh`, `main { flex: 1 }` | Seiten wie `/anmeldeformulare/` enden jetzt am unteren Rand |
 | MEDIUM | `.sprungleiste` mobil | Scroll-Snap zog die Liste unter das stehende „Kategorie“-Label; die erste Kategorie war angeschnitten | Kein Snap, Label bleibt sticky, dünner Scrollbalken | Inhalt war hinter dem Label nicht lesbar (better-layout: versteckter Inhalt braucht eine sichtbare Spur) |
 | MEDIUM | `.fliesstext`, `.zeile__beschreibung` | 91–93 Zeichen pro Zeile bei 1440 px | 60ch im Fließtext, 55ch in Download-Zeilen; gemessen 653 px / 17,44 px | better-typography: 60–75 Zeichen; Detector jetzt 0 Befunde |
@@ -45,7 +45,9 @@ RTL-Oberfläche (keine `dir="rtl"`-Seite), native Apps.
 | LOW | `.fliesstext strong` | 700 neben 400/500/600 | 600; drei Gewichte (400/500/600) | Ruhigere Gewichtsstaffel, Emphasis bleibt |
 | LOW | Skip-Link | Blauer Ring auf blauem Rücken (1,23:1) | Gelber Ring auf dem Rücken | 1.4.11; der Fokusring ist auch am ersten Stopp sichtbar |
 | LOW | `html` | Kein `scroll-padding` | `scroll-padding-block-start: calc(--kopfhoehe + .5rem)` | Fokus und Anker landen nicht unter dem klebenden Kopf |
-| LOW | Rücken | Kein sichtbarer Hinweis auf weiteren Inhalt | Dünner Scrollbalken + weiche Kante unten | better-layout: versteckter Inhalt braucht eine Spur |
+| LOW | Rücken | Kein sichtbarer Hinweis auf weiteren Inhalt | Dünner Scrollbalken im Verzeichnisteil | better-layout: versteckter Inhalt braucht eine Spur |
+| LOW | `.marke-link` | Weiße Kachel um das Logo unterbrach das Blau | Dunkelblaue Plakette mit Haarlinie, 2,75 rem Zeichen | Ruhiger Rücken, das Zeichen bleibt gefasst |
+| LOW | Ansicht (Stil/Farbmodus) | Stilwahl mitten im Verzeichnis, Modus neben dem Logo | Beide unten in einem abgesetzten Block mit Haarlinie | Nutzerwunsch; weniger Konkurrenz für das Verzeichnis |
 | — | Hero (Nutzerwunsch) | Schulname klein und unten, Bild 427 × 320 px | Schulname oben, 1,15–1,6 rem; Bild füllt die rechte Spalte (rund 520 × 565 px) | Der Einstieg sollte die Schule und den Ort sofort zeigen; Abstände im Kopf enger |
 
 ## Bewusste Entscheidungen
@@ -95,7 +97,7 @@ RTL-Oberfläche (keine `dir="rtl"`-Seite), native Apps.
 | `qa/linkcheck.py` | 5.767 Ziele, **0** |
 | Impeccable `detect` | 7 Seiten × 2 Breiten, **0 Befunde** |
 | Hallmark `sloplint` | **0 FAIL**, 2 begründete Waivers, 1 Note |
-| Tastatur | Skip → Logo → Modus → CTA → Schnellzugriffe → Stil → Verzeichnis; Fokusring überall sichtbar |
+| Tastatur | Skip → Logo → CTA → Schnellzugriffe → Verzeichnis → Stil → Farbmodus; Fokusring überall sichtbar |
 | Dunkelmodus | CTA 12,67:1, Fließtext 15:1, Links 10:1 |
 
 **Ergebnis:** Keine offenen HIGH-Befunde. Die verbleibenden Punkte sind
