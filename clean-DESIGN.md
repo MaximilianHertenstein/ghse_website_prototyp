@@ -1,14 +1,14 @@
 ---
 name: GHSE Klar (Clean)
 colors:
-  primary: "#1E40AF"
-  secondary: "#3B82F6"
+  primary: "#114C92"
+  secondary: "#E2651F"
   success: "#166534"
   warning: "#92400E"
   danger: "#991B1B"
   surface: "#FFFFFF"
   text: "#111827"
-  neutral: "#F9FAFB"
+  neutral: "#FFF8D6"
 typography:
   body:
     fontFamily: "Roboto"
@@ -53,16 +53,19 @@ Rohwerte stehen nur im Token-Block am Anfang von `klar.css`. Alles Weitere benut
 | --- | --- | --- | --- | --- |
 | Text | `--text` | `#111827` | `#f9fafb` | Fließtext, Überschriften (≥ 7:1) |
 | Zweittext | `--text-leise` | `#4b5563` | `#d1d5db` | Beschreibungen, Metadaten (≥ 7:1) |
-| Primär (Fläche) | `--primaer` | `#1e40af` | `#1e40af` | Flächen mit weißer Schrift, `.band--blau`, aktives Menü |
-| Primär (Text) | `--primaer-text` | `#1e40af` | `#93c5fd` | Links, Textakzente (≥ 7:1) |
-| Akzent | `--primaer-akzent` | `#3b82f6` | `#3b82f6` | Linien, Balken, Icons; **nie Text** (Clean-Primärblau) |
+| Primär (Fläche) | `--primaer` | `#114c92` | `#114c92` | GHSE-Blau; Flächen mit weißer Schrift, `.band--blau`, aktives Menü (8,5:1) |
+| Primär (Text) | `--primaer-text` | `#114c92` | `#93c5fd` | GHSE-Blau für Links und Textakzente (≥ 7:1) |
+| Akzent | `--primaer-akzent` | `#e2651f` | `#ee7330` | GHSE-Orange für Linien, Balken, Rahmen; **nie Text** (3,4:1 hell) |
+| Fokus | `--fokus` | `#b8430f` | `#ee7330` | Fokusringe (5,5:1 hell, 6,0:1 dunkel) |
+| Gelb | `--marke-gelb` / `--marke-gelb-hell` | `#f6dc56` / `#fff8d6` | `#f6dc56` / `#2a2610` | GHSE-Gelb als Kante (Fuß) und sehr blasse Fläche (Kästen, Hinweise) |
+| Hero | `--hero-flaeche` | `#fffaf0` | `#111827` | warmes Papier im Licht, dunkles Papier im Dunkeln |
 | Hellfläche | `--primaer-hell` | `#dbeafe` | `#dbeafe` | Hover, Markierung, mit dunkler Schrift |
-| Aktion | `--aktion` / `--aktion-schrift` | `#1e40af` / `#fff` | `#93c5fd` / `#111827` | Primärer Button |
+| Aktion | `--aktion` / `--aktion-schrift` | `#114c92` / `#fff` | `#93c5fd` / `#111827` | Primärer Button |
 | Fläche | `--papier`, `--flaeche-leise` | `#fff`, `#f9fafb` | `#111827`, `#1f2937` | Seite, Hero, Karten im Dunkeln |
 | Linie | `--rand-leise` / `--rand` | `#e5e7eb` / `#4b5563` | `#374151` / `#9ca3af` | Kartenrand und Trenner / Rand bedienbarer Elemente (≥ 3:1) |
 | Erfolg, Warnung, Fehler | `--erfolg`, `--warnung`, `--fehler` | `#166534`, `#92400e`, `#991b1b` | `#86efac`, `#fcd34d`, `#fca5a5` | Clean-Signalfarben, für Text abgedunkelt (≥ 7:1) |
 
-Die Tokens aus `main.css` (`--gelb`, `--orange`, `--blau`, `--link` …) werden in `klar` auf diese Rollen abgebildet. So verschwinden Gelb und Orange ohne Eingriff in die Templates; die fünf Wertefarben der Schule (`--wert-*`) bleiben als Inhalt erhalten.
+Die Tokens aus `main.css` (`--gelb`, `--orange`, `--blau`, `--link` …) werden in `klar` auf diese Rollen abgebildet. Die GHSE-Farben bleiben sichtbar, aber nach Aufgabe getrennt: Blau trägt Text und Aktionen, Orange Linien und Rahmen, Gelb Flächen und Kanten. Die fünf Wertefarben der Schule (`--wert-*`) bleiben als Inhalt erhalten.
 
 **Schrift.** Roboto (Text) und Poppins 600 (Überschriften), selbst gehostet unter `assets/fonts/klar/` (Lizenz: SIL OFL, Text in `LIZENZ.txt`). Die `@font-face`-Regeln stehen auf jeder Seite (`_partials/schriften-klar.html`); geladen werden die Dateien erst, wenn die Variante sie benutzt (`font-display: swap`, kein Preload). Inter wird dann nicht abgerufen.
 
@@ -85,13 +88,15 @@ Gemeinsam: keine Schatten (Ausnahme: Dropdown-Tafel), keine Schrägstellung, kei
 
 | Komponente | Aufbau und Varianten | Zustände |
 | --- | --- | --- |
-| Button `.btn` | min. 48 px hoch, 18 px/600, Rand 2 px `--rand`. `--akzent` gefüllt (`--aktion`), `--geist` transparent, `--klein` 16 px | Hover: Unterstreichung + innerer Rand 2 px. Aktiv: innerer Rand 3 px. Fokus: 4 px Ring. Deaktiviert: `main.css` |
+| Button `.btn` | min. 48 px hoch, 18 px/600, Rand 2 px `--rand`. `--akzent` gefüllt in GHSE-Blau (`--aktion`), `--geist` transparent, `--klein` 16 px | Hover: Unterstreichung + innerer Rand 2 px. Aktiv: innerer Rand 3 px. Fokus: 4 px Ring. Deaktiviert: `main.css` |
 | Chip `.chip`, Hero-Chips | 48 px hoch, Rand 1 px `--rand`, Radius 8 px | wie Button |
 | Karte `.karte`, `.service`, `.zeile`, `.kalender`, `.instabeitrag` | weiß, Rand 1 px `--rand-leise`, Radius 8 px, Polster 24 px, kein Balken | Hover und Fokus innen: Rand `--primaer-akzent`. Titel unterstrichen |
 | Menü und Dropdown | gleiche Struktur wie `main`, Einträge 48 px hoch, Tafel mit Rand und weichem Schatten | Hover: `--primaer-hell`. Aktuelle Seite: `--primaer` mit Weiß. Tafel schließt 0,35 s verzögert, Wechsel zur nächsten Kategorie sofort |
 | Link im Text | `--primaer-text`, unterstrichen 2 px | Hover: `--primaer-hell`, Unterstreichung bleibt |
 | Gestaltungswahl `.stilwahl` | Label 14 px in `--text-leise`; Auswahlfeld 44 px hoch, Rand 1 px, Radius 8 px, kein Schatten. Ab 1101 px in der Leiste, darunter im Menü | Fokus: 4 px Ring; Wechsel ohne Neuladen |
-| Hinweis `.hinweis` | `--hinweis-flaeche`, Rand 1 px `--hinweis-rand` | – |
+| Kasten „Auf einen Blick“ `.kasten--gelb` | blasse GHSE-Gelbfläche `--marke-gelb-hell`, 4 px GHSE-Blau an der Oberkante, Rand 1 px | – |
+| Hinweis `.hinweis` | blasse GHSE-Gelbfläche `--hinweis-flaeche`, Rand 1 px `--hinweis-rand` | – |
+| Fuß `.fuss` | 4 px GHSE-Gelb als Oberkante, sonst ruhige Graufläche | – |
 | Tabelle | Rand 1 px, Polster 8/12 px (mobil 4/8), lange Wörter trennen und brechen | – |
 
 Responsiv: ab 1200 px Dropdowns, darunter Panel mit Pfeilknöpfen. Unter 640 px: Fließtext 18 px, Kopfzeile mit Logo, Farbmodus, Krankmelden und Menü; unter 380 px kleineres Logo. Die Gestaltungswahl steht ab 1101 px in der Leiste, darunter im Menü. Leer-, Lade- und Fehlerzustände gibt es auf dieser statischen Seite nicht; sollten Formulare dazukommen, gelten `--fehler` und `--erfolg` mit Symbol und Text (nie nur Farbe).
@@ -123,8 +128,8 @@ Klar und freundlich, ohne Versalien. Kleinschreibung nach Satzregeln gilt auch f
 
 - **Muss nicht:** Versalien, gesperrte Schrift, Schrägstellung, harte Schatten, Hover-Hüpfen, Farbe als einziger Bedeutungsträger, Text kleiner als 14 px.
   Don't: `text-transform: uppercase`, `transform: rotate()`, `box-shadow: 4px 4px 0`.
-- **Muss nicht:** neue Rohfarben oder Pixelwerte in Komponenten. Do: Token verwenden. Don't: `#3b82f6` als Textfarbe (3,7:1).
-- **Sollte nicht:** mehr als eine Akzentfarbe. Do: `--primaer-akzent`. Don't: wieder Gelb/Orange/Blau reihum.
+- **Muss nicht:** neue Rohfarben oder Pixelwerte in Komponenten. Do: Token verwenden. Don't: Orange als Textfarbe (3,4:1) oder Gelb als Text.
+- **Sollte nicht:** Akzentfarben ohne Rolle mischen. Do: Blau für Text/Aktion, Orange für Linien/Rahmen, Gelb für Flächen/Kanten. Don't: wieder Gelb/Orange/Blau reihum als Dekoration.
 
 ## 7. Wenn sich `main.css` ändert (Migration)
 

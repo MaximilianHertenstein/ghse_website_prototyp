@@ -20,12 +20,16 @@
 
 :root[data-design="klar"] {
   /* Semantische Ebene (Clean). Rohwerte stehen nur hier. */
-  --primaer: #1e40af;            /* Flächen mit weißer Schrift, Primäraktion (8,7:1) */
-  --primaer-text: #1e40af;       /* Links und Textakzente (8,7:1 auf Weiß) */
-  --primaer-akzent: #3b82f6;     /* Clean-Primärblau: Linien, Balken, Icons – nie Text */
+  --primaer: #114c92;            /* GHSE-Blau: Flächen mit weißer Schrift, Primäraktion (8,5:1) */
+  --primaer-text: #114c92;       /* GHSE-Blau für Links und Textakzente (8,5:1 auf Weiß) */
+  --primaer-akzent: #e2651f;     /* GHSE-Orange, leicht abgedunkelt: Linien, Balken, Rahmen (3,4:1) */
   --primaer-hell: #dbeafe;       /* Hover- und Markierungsfläche, mit dunkler Schrift */
-  --aktion: #1e40af;             /* Fläche der Primäraktion */
+  --aktion: #114c92;             /* Fläche der Primäraktion */
   --aktion-schrift: #ffffff;
+  --fokus: #b8430f;              /* GHSE-Tieforange für Fokusringe (5,5:1) */
+  --marke-gelb: #f6dc56;         /* GHSE-Gelb, nur als Fläche oder Kante */
+  --marke-gelb-hell: #fff8d6;    /* sehr blasse Gelbfläche für Kästen */
+  --hero-flaeche: #fffaf0;       /* Hero: warmes Papier statt reinem Weiß */
   --text: #111827;               /* Clean: text */
   --text-leise: #4b5563;         /* Zweittext (7,6:1) */
   --flaeche-leise: #f9fafb;
@@ -43,7 +47,7 @@
   --linie: var(--rand-leise);
   --link: var(--primaer-text);
   --blau: var(--primaer);
-  --gelb: var(--primaer-hell);
+  --gelb: var(--marke-gelb);
   --orange: var(--primaer-akzent);
   --orange-tief: var(--primaer-text);
   --tinte: var(--text);
@@ -51,7 +55,7 @@
   --haarlinie: rgba(17, 24, 39, 0.12);
   --marker-hintergrund: transparent;
   --kategorie-teilzeit: var(--rand-leise);
-  --hinweis-flaeche: #eff6ff;
+  --hinweis-flaeche: #fff8d6;
   --hinweis-rand: var(--primaer);
   --warn-flaeche: #fffbeb;
   --warn-rand: var(--warnung);
@@ -115,9 +119,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root[data-design="klar"]:not([data-theme="light"]) {
-    --primaer: #1e40af;
+    --primaer: #114c92;
     --primaer-text: #93c5fd;
-    --primaer-akzent: #3b82f6;
+    --primaer-akzent: #ee7330;
+    --fokus: #ee7330;
+    --marke-gelb: #f6dc56;
+    --marke-gelb-hell: #2a2610;
+    --hero-flaeche: var(--papier);
     --primaer-hell: #dbeafe;
     --aktion: #93c5fd;
     --aktion-schrift: #111827;
@@ -138,7 +146,7 @@
     --linie: var(--rand-leise);
     --link: var(--primaer-text);
     --blau: var(--primaer);
-    --gelb: var(--primaer-hell);
+    --gelb: var(--marke-gelb);
     --orange: var(--primaer-akzent);
     --orange-tief: var(--primaer-text);
     --tinte: #111827;
@@ -146,7 +154,7 @@
     --haarlinie: rgba(255, 255, 255, 0.14);
     --marker-hintergrund: transparent;
     --kategorie-teilzeit: var(--rand-leise);
-    --hinweis-flaeche: #172554;
+    --hinweis-flaeche: #2a2610;
     --hinweis-rand: var(--primaer-text);
     --warn-flaeche: #451a03;
     --warn-rand: var(--warnung);
@@ -168,9 +176,13 @@
 }
 
 :root[data-design="klar"][data-theme="dark"] {
-  --primaer: #1e40af;
+  --primaer: #114c92;
   --primaer-text: #93c5fd;
-  --primaer-akzent: #3b82f6;
+  --primaer-akzent: #ee7330;
+  --fokus: #ee7330;
+  --marke-gelb: #f6dc56;
+  --marke-gelb-hell: #2a2610;
+  --hero-flaeche: var(--papier);
   --primaer-hell: #dbeafe;
   --aktion: #93c5fd;
   --aktion-schrift: #111827;
@@ -191,7 +203,7 @@
   --linie: var(--rand-leise);
   --link: var(--primaer-text);
   --blau: var(--primaer);
-  --gelb: var(--primaer-hell);
+  --gelb: var(--marke-gelb);
   --orange: var(--primaer-akzent);
   --orange-tief: var(--primaer-text);
   --tinte: #111827;
@@ -199,7 +211,7 @@
   --haarlinie: rgba(255, 255, 255, 0.14);
   --marker-hintergrund: transparent;
   --kategorie-teilzeit: var(--rand-leise);
-  --hinweis-flaeche: #172554;
+  --hinweis-flaeche: #2a2610;
   --hinweis-rand: var(--primaer-text);
   --warn-flaeche: #451a03;
   --warn-rand: var(--warnung);
@@ -297,6 +309,7 @@
 :root[data-design="klar"] summary:focus-visible {
   outline-width: 4px;
   outline-offset: 4px;
+  outline-color: var(--fokus);
 }
 
 :root[data-design="klar"] .band--blau :focus-visible {
@@ -516,7 +529,7 @@
   box-shadow: inset 0 0 0 3px currentColor;
 }
 
-/* Primäraktion: gefüllt in Clean-Blau (hell) bzw. hellem Blau (dunkel). */
+/* Primäraktion: gefüllt in GHSE-Blau (hell) bzw. hellem Blau (dunkel). */
 :root[data-design="klar"] .btn--akzent {
   background: var(--aktion);
   color: var(--aktion-schrift);
@@ -678,7 +691,7 @@
 /* ---------- Hero ---------- */
 
 :root[data-design="klar"] .hero {
-  background: var(--papier2);
+  background: var(--hero-flaeche);
   color: var(--schrift);
   padding-block: clamp(3rem, 6vw, 6rem);
   border-bottom: 1px solid var(--rand-leise);
@@ -923,7 +936,8 @@
   --rahmen: inherit;
   --schatten: inherit;
   --schatten-klein: inherit;
-  background: var(--papier2);
+  background: var(--marke-gelb-hell);
+  border-top: 4px solid var(--primaer-text);
   color: var(--schrift);
 }
 
@@ -1090,10 +1104,25 @@
   border-color: var(--primaer-akzent);
 }
 
+/* Hover-Rückmeldung bleibt ruhig und blau; das kräftige GHSE-Gelb ist
+   Flächen und Marken vorbehalten (PDF-/Zähler-Marken, Fußkante). */
+@media (hover: hover) {
+  :root[data-design="klar"] .chip:hover,
+  :root[data-design="klar"] .leiste__schnell a:hover,
+  :root[data-design="klar"] .menue ul a:hover,
+  :root[data-design="klar"] .menueknopf:hover,
+  :root[data-design="klar"] .modusknopf:hover,
+  :root[data-design="klar"] .band--gelb .btn--geist:hover,
+  :root[data-design="klar"] .band--blau .btn--geist:hover {
+    background: var(--primaer-hell);
+    color: var(--tinte);
+  }
+}
+
 /* ---------- Fuß ---------- */
 
 :root[data-design="klar"] .fuss {
-  border-top: 1px solid var(--fuss-linie);
+  border-top: 4px solid var(--marke-gelb);
 }
 
 :root[data-design="klar"] .fuss__titel {
@@ -1148,8 +1177,17 @@
     --schrift: #000000 !important;
     --grau: #333333 !important;
     --rand: #000000 !important;
-    --link: #1e40af !important;
-    --orange-tief: #1e40af !important;
+    --primaer: #114c92 !important;
+    --primaer-text: #114c92 !important;
+    --primaer-akzent: #e2651f !important;
+    --aktion: #114c92 !important;
+    --aktion-schrift: #ffffff !important;
+    --fokus: #b8430f !important;
+    --marke-gelb: #f6dc56 !important;
+    --marke-gelb-hell: #ffffff !important;
+    --hero-flaeche: #ffffff !important;
+    --link: #114c92 !important;
+    --orange-tief: #114c92 !important;
     --rand-leise: #999999 !important;
     --linie: #999999 !important;
     --hinweis-flaeche: #ffffff !important;

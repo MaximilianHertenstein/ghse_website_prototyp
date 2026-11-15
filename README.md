@@ -744,6 +744,8 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 Dieselben Seiten gibt es in zwei Aussehen. Standard ist der Neobrutalismus
 (`main.css`); die zweite Variante „Klar“ folgt dem Clean-System
 (`assets/css/klar.css`). Beide nutzen dieselben Templates, Inhalte und URLs.
+Klar setzt die GHSE-Farben sparsam ein: Blau für Text und Aktionen, Orange
+für Linien und Rahmen, Gelb für Flächen und Kanten.
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt

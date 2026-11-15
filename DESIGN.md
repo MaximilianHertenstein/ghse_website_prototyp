@@ -33,7 +33,7 @@ Beide nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 | Variante | Aussehen | Dokument |
 | --- | --- | --- |
 | **Neobrutalismus** (Standard) | GHSE-Gelb/Orange/Blau, schwarze Konturen, harte Schatten, Inter | `Neobrutalismus-DESIGN.md` |
-| **Klar** (Clean) | viel Weißraum, Roboto/Poppins, Blau als einziger Akzent, keine Schatten | `clean-DESIGN.md` |
+| **Klar** (Clean) | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
 
 ## Umschaltung
 
