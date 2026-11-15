@@ -69,7 +69,7 @@ def main():
             pruefe(s["wahl"] == "klar", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
 
             optionen = page.eval_on_selector_all(".stilwahl--leiste option", "els => els.map(e => e.value)")
-            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern"], "Theme-Optionen: %r" % optionen)
+            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern", "lesebuch"], "Theme-Optionen: %r" % optionen)
 
             page.select_option(".stilwahl--leiste select", "funktional")
             page.wait_for_timeout(250)
@@ -105,7 +105,7 @@ def main():
             ctx2.close()
         finally:
             browser.close()
-    print("OK: vier Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
+    print("OK: fünf Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
 
 
 if __name__ == "__main__":

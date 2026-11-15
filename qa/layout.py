@@ -74,7 +74,11 @@ async function messe(iframe, breite, pfad) {
   const leiste = d.querySelector('.leiste');
   const kL = kopf ? kopf.getBoundingClientRect() : null;
   const leisteSichtbar = leiste && getComputedStyle(leiste).display !== 'none';
-  const kopfEnde = kL ? kL.bottom : 0;
+  /* Ein Rücken (feste Spalte links) überlagert keine Oberkante: Für
+     Ankersprünge zählt dort nur die klebende Sprungleiste. */
+  const seitenRail = !!(kopf && kL && getComputedStyle(kopf).position === 'fixed'
+                        && kL.width < innerWidth * 0.4);
+  const kopfEnde = seitenRail ? 0 : (kL ? kL.bottom : 0);
 
   // A2: Gescrollt sitzt die Sprungleiste (sticky) direkt unter dem Kopf.
   // Eine Überlappung wäre ein Rasterfehler; ihre Höhe ist zugleich die
@@ -82,7 +86,7 @@ async function messe(iframe, breite, pfad) {
   d.documentElement.style.scrollBehavior = 'auto';
   const sprungleiste = d.querySelector('.sprungleiste');
   let sprungHoehe = 0, ueberlappung = 0;
-  if (sprungleiste) {
+  if (sprungleiste && !seitenRail) {
     sprungHoehe = Math.round(sprungleiste.getBoundingClientRect().height);
     w.scrollTo(0, 2000);
     ueberlappung = Math.max(0, Math.round(
@@ -143,7 +147,8 @@ async function messe(iframe, breite, pfad) {
       zeilen: [...new Set(karten.map(k => Math.round(k.getBoundingClientRect().top)))].length };
   }
 
-  return { pfad, breite, kopfHoehe: kL ? Math.round(kL.height) : null,
+  return { pfad, breite, seitenRail, kopfBreite: kL ? Math.round(kL.width) : null,
+    kopfHoehe: kL ? Math.round(kL.height) : null,
     token: getComputedStyle(d.documentElement).getPropertyValue('--kopfhoehe').trim(),
     leisteSichtbar, sprungHoehe, sprung, ueberlappung,
     ziele, menue, raster };
@@ -240,12 +245,13 @@ def pruefe(b):
         return [f"Messtechnik: {b['fehler']}"]
     if b["ueberlappung"] > 0:
         fehler.append(f"A2 Sprungleiste überlappt den Kopf um {b['ueberlappung']} px")
-    if b["kopfHoehe"] and b["token"]:
+    if b["kopfHoehe"] and b["token"] and not b.get("seitenRail"):
         token = b["token"].removesuffix("px") if b["token"].endswith("px") else None
         if token and abs(float(token) - b["kopfHoehe"]) > 1.5:
             fehler.append(f"M1 Token {b['token']} weicht vom gemessenen Kopf "
                           f"{b['kopfHoehe']} px ab")
-    if b["breite"] == 390 and b["kopfHoehe"] and b["kopfHoehe"] > 96:
+    if (b["breite"] == 390 and b["kopfHoehe"] and b["kopfHoehe"] > 96
+            and not b.get("seitenRail")):
         fehler.append(f"N1 Mobilkopf ist {b['kopfHoehe']} px hoch (Ziel ≤ 96)")
     if b["sprung"]:
         s = b["sprung"]
@@ -275,6 +281,9 @@ def main():
     basis = ""
     if "--basis" in sys.argv:
         basis = sys.argv[sys.argv.index("--basis") + 1].strip("/")
+    design = ""
+    if "--design" in sys.argv:
+        design = sys.argv[sys.argv.index("--design") + 1].strip()
 
     public = os.path.join(REPO, "public")
     vorlage = None
@@ -300,7 +309,9 @@ def main():
             quel = os.path.join(quelle, eintrag)
             ziel = os.path.join(ziel_basis, eintrag)
             shutil.copytree(quel, ziel) if os.path.isdir(quel) else shutil.copy(quel, ziel)
-        zpfade = [f"/{basis}{z}" for z in ZIELE] if basis else ZIELE
+        zpfade = [f"/{basis}{z}" for z in ZIELE] if basis else list(ZIELE)
+        if design:
+            zpfade = [f"{z}{'&' if '?' in z else '?'}design={design}" for z in zpfade]
         with open(os.path.join(tmp, "__harness.html"), "w", encoding="utf-8") as f:
             f.write(HARNESS.replace(json.dumps(ZIELE), json.dumps(zpfade)))
 

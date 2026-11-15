@@ -1,0 +1,2961 @@
+/* Hallmark · theme: custom · idea: "Die Schule als Lesebuch: blauer Rücken, Papier, Tafeln, Verzeichnis" · vibe: "gebunden, ruhig, konkret, vielseitig" · paper: mid #e3e5dd · ink: #171b18 · accent: #114c92 (Rücken) und #f6dc56 (Lesebändchen) · display: Piazzolla · body: Public Sans · hero: Ledge · nav: blauer Rücken als Verzeichnis · footer: Kolophon · posture: restrained · axes: mid/roman-serif/cool · copy: verbatim */
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: H — der Rücken darf die Seite nicht überschreien; eine Fläche, eine gelbe Marke, keine weitere Farbe */
+/* Hallmark · waive 44c · custom hero: Tafel-Mitte 394 px, Titelblock-Mitte 399 px · der feste Rücken ersetzt die Kopfleiste */
+/* Hallmark · waive 79 · Ledge: der Fold ist der Hero-Fuß plus 104 px Bandabstand · eine Leseseite, kein Poster */
+/* Hallmark · waive 83 · own GHSE photographs, gemessen 17 % der Fläche unter dem Hero · sloplint teilt durch den 211-px-Rücken-Container */
+/* Hallmark · answered F7 · eine 1-px-Kante trägt Leseseite, Notizen und Formulare; Unterschiede macht die Schrift, nicht der Kasten */
+/* GHSE „Lesebuch“: eigenständige fünfte Variante. Jede Regel ist auf
+   :root[data-design="lesebuch"] begrenzt; die vier bestehenden Varianten
+   lesen keine dieser Deklarationen. */
+
+/* Farben als Token am :root. Die Namen --lb-* gehören nur dieser Variante;
+   die vier bestehenden Varianten lesen sie nicht. */
+:root {
+  /* Papier und Tinte: kühles Graugrün, kein Creme. */
+  --lb-papier: #e3e5dd;
+  --lb-papier-2: #d7dad0;
+  --lb-papier-3: #cbcfc2;
+  --lb-tinte: #171b18;
+  --lb-leise: #4e544c;
+  --lb-linie: #b3b8ac;
+  --lb-linie-stark: #8f968a;
+
+  /* GHSE-Zeichen: Blau trägt, Gelb markiert. */
+  --lb-blau: #114c92;
+  --lb-blau-tief: #0c3a71;
+  --lb-gelb: #f6dc56;
+  --lb-link: #0f3f7a;
+  --lb-fokus: #0f3f7a;
+  --lb-logo-flaeche: #f2f0e6;
+  /* Text auf Gelb bleibt in beiden Modi dunkel. */
+  --lb-auf-gelb: #171b18;
+  --lb-hell: #f3f0e6;
+  --lb-tafel: #f7f5ec;
+  --lb-bildrand: rgba(0, 0, 0, 0.12);
+
+  /* Rücken: helle Schrift und Linien auf GHSE-Blau. */
+  --lb-rail-text: #f3f0e6;
+  --lb-rail-text-leise: rgba(243, 240, 230, 0.88);
+  --lb-rail-leise: rgba(243, 240, 230, 0.78);
+  --lb-rail-leiser: rgba(243, 240, 230, 0.6);
+  --lb-rail-linie: rgba(243, 240, 230, 0.22);
+  --lb-rail-rand: rgba(243, 240, 230, 0.35);
+  --lb-rail-rand-stark: rgba(243, 240, 230, 0.45);
+  --lb-rail-aktiv: rgba(243, 240, 230, 0.08);
+  --lb-rail-hover: rgba(243, 240, 230, 0.1);
+  --lb-rail-hover-stark: rgba(243, 240, 230, 0.12);
+}
+
+:root[data-design="lesebuch"] {
+  --lb-schrift: "Piazzolla", Georgia, "Times New Roman", serif;
+  --lb-ui: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+
+  /* Abstände als Skala; Rohwerte nur als optische Korrektur. */
+  --lb-s1: 0.25rem;
+  --lb-s2: 0.5rem;
+  --lb-s3: 0.75rem;
+  --lb-s4: 1rem;
+  --lb-s5: 1.5rem;
+  --lb-s6: 2rem;
+  --lb-s7: 3rem;
+  --lb-s8: 4rem;
+  --lb-s9: 6rem;
+
+  --lb-rail: 300px;
+  --lb-mass: 60ch;
+
+  --schriftstapel: var(--lb-schrift);
+  --container: 1180px;
+  --schmal: 700px;
+  --t-display: clamp(2.7rem, 5.2vw, 4.3rem);
+  --t-h1: clamp(2.2rem, 4vw, 3.15rem);
+  --t-h2: clamp(1.9rem, 3vw, 2.5rem);
+  --t-h3: 1.35rem;
+  --t-m: 1.0625rem;
+  --t-s: 0.95rem;
+  --t-xs: 0.875rem;
+  color-scheme: light;
+  background: var(--lb-papier);
+}
+
+/* Dunkler Modus: dieselbe Bindung, dunkles Papier. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --lb-papier: #161a17;
+    --lb-papier-2: #1e231f;
+    --lb-papier-3: #272d28;
+    --lb-tinte: #eceee4;
+    --lb-leise: #b4b9ac;
+    --lb-linie: #3a413a;
+    --lb-linie-stark: #596157;
+    --lb-blau: #0d3a70;
+    --lb-blau-tief: #092c56;
+    --lb-link: #a9c6ea;
+    --lb-fokus: #f6dc56;
+    --lb-bildrand: rgba(255, 255, 255, 0.16);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --lb-papier: #161a17;
+  --lb-papier-2: #1e231f;
+  --lb-papier-3: #272d28;
+  --lb-tinte: #eceee4;
+  --lb-leise: #b4b9ac;
+  --lb-linie: #3a413a;
+  --lb-linie-stark: #596157;
+  --lb-blau: #0d3a70;
+  --lb-blau-tief: #092c56;
+  --lb-link: #a9c6ea;
+  --lb-fokus: #f6dc56;
+  --lb-bildrand: rgba(255, 255, 255, 0.16);
+  color-scheme: dark;
+}
+
+/* ---------- Grundtypografie ---------- */
+
+:root[data-design="lesebuch"] body {
+  background: var(--lb-papier);
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: 1.09rem;
+  line-height: 1.7;
+}
+
+:root[data-design="lesebuch"] h1,
+:root[data-design="lesebuch"] h2,
+:root[data-design="lesebuch"] h3,
+:root[data-design="lesebuch"] h4 {
+  font-family: var(--lb-schrift);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--lb-tinte);
+  overflow-wrap: break-word;
+  min-width: 0;
+  text-wrap: balance;
+}
+
+:root[data-design="lesebuch"] h1 {
+  font-size: var(--t-h1);
+  line-height: 1.03;
+}
+
+:root[data-design="lesebuch"] h2 {
+  font-size: var(--t-h2);
+}
+
+:root[data-design="lesebuch"] h3 {
+  font-size: var(--t-h3);
+  line-height: 1.2;
+}
+
+:root[data-design="lesebuch"] h4 {
+  font-size: 1.05rem;
+  font-family: var(--lb-ui);
+  font-weight: 600;
+}
+
+:root[data-design="lesebuch"] p,
+:root[data-design="lesebuch"] li,
+:root[data-design="lesebuch"] dd,
+:root[data-design="lesebuch"] address {
+  text-wrap: pretty;
+}
+
+:root[data-design="lesebuch"] a {
+  color: inherit;
+}
+
+:root[data-design="lesebuch"] ::selection {
+  background: var(--lb-gelb);
+  color: var(--lb-tinte);
+}
+
+:root[data-design="lesebuch"] a:focus-visible,
+:root[data-design="lesebuch"] button:focus-visible,
+:root[data-design="lesebuch"] select:focus-visible,
+:root[data-design="lesebuch"] summary:focus-visible,
+:root[data-design="lesebuch"] [tabindex]:focus-visible {
+  outline: 3px solid var(--lb-fokus);
+  outline-offset: 3px;
+  border-radius: 0;
+}
+
+/* Auf dem blauen Rücken trägt Gelb den Fokus. */
+:root[data-design="lesebuch"] .kopf :focus-visible,
+:root[data-design="lesebuch"] .leiste :focus-visible {
+  outline-color: var(--lb-gelb);
+}
+
+/* Die Icons und Pfeile der alten Varianten sind Dekoration im Satz; im
+   Lesebuch stehen die Wörter allein. Die zugänglichen Beschriftungen
+   bleiben unberührt. */
+:root[data-design="lesebuch"] .karte__aktion span[aria-hidden="true"],
+:root[data-design="lesebuch"] .karte__block-meta span[aria-hidden="true"],
+:root[data-design="lesebuch"] .hero__ticket-titel span[aria-hidden="true"],
+:root[data-design="lesebuch"] .linkpfeil span[aria-hidden="true"],
+:root[data-design="lesebuch"] .leiste__trenn {
+  display: none;
+}
+
+/* ---------- Rücken: feste Navigationsspalte ab 1200 px ---------- */
+
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] {
+    --kopfhoehe: 0px !important;
+  }
+
+  :root[data-design="lesebuch"] body {
+    padding-left: var(--lb-rail);
+  }
+
+  :root[data-design="lesebuch"] .kopf {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--lb-rail);
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: var(--lb-s5) var(--lb-s5) var(--lb-s4);
+    background: var(--lb-blau);
+    color: var(--lb-hell);
+    border: 0;
+    border-right: 1px solid var(--lb-blau-tief);
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+    z-index: 60;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+    padding: 0 0.35rem 0 0;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--lb-rail-rand) transparent;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen::-webkit-scrollbar-thumb {
+    background: var(--lb-rail-rand);
+  }
+
+  :root[data-design="lesebuch"] .marke-link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--lb-logo-flaeche);
+    padding: 0.6rem 0.75rem;
+    border: 0;
+    box-shadow: none;
+  }
+
+  :root[data-design="lesebuch"] .marke-link img {
+    height: 2.5rem;
+    width: auto;
+  }
+
+  :root[data-design="lesebuch"] .kopf__ende {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    flex: 1;
+    margin-top: var(--lb-s6);
+  }
+
+  /* Verzeichnis: eine Spalte, Haarlinien, keine Flächen. */
+  :root[data-design="lesebuch"] .menue {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li {
+    border-bottom: 1px solid var(--lb-rail-linie);
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li:first-child {
+    border-top: 1px solid var(--lb-rail-linie);
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li > a {
+    padding: 0.7rem 0.25rem 0.7rem 0.8rem;
+  }
+
+  :root[data-design="lesebuch"] .menue ul a {
+    display: block;
+    min-height: 2.75rem;
+    padding: 0.7rem 0.25rem 0.7rem 0.8rem;
+    color: var(--lb-hell);
+    background: transparent;
+    font-family: var(--lb-ui);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: none;
+    box-shadow: inset 4px 0 0 transparent;
+    white-space: normal;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  :root[data-design="lesebuch"] .menue ul a[aria-current="page"] {
+    background: var(--lb-rail-aktiv);
+    color: var(--lb-hell);
+    box-shadow: inset 4px 0 0 var(--lb-gelb);
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe > a {
+    flex: 1;
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe > .menue__tafel {
+    flex-basis: 100%;
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .menue ul a:hover {
+      background: var(--lb-rail-hover);
+      color: var(--lb-hell);
+    }
+  }
+
+  /* Untertafel: im Rücken aufgeklappt, nicht als schwebende Karte. */
+  :root[data-design="lesebuch"] .menue ul.menue__tafel {
+    position: static;
+    display: none;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0 0 var(--lb-s2) 0;
+    background: var(--lb-blau-tief);
+    border: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  /* Auch Hover und Fokus öffnen die Tafel nicht: Sie klappt nur über den
+     Pfeilknopf auf und schiebt das Verzeichnis, statt darüber zu schweben. */
+  :root[data-design="lesebuch"] .menue__gruppe:focus-within > .menue__tafel,
+  :root[data-design="lesebuch"] .menue__gruppe:hover > .menue__tafel {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe[data-offen] > .menue__tafel {
+    display: block;
+  }
+
+  :root[data-design="lesebuch"] .menue ul.menue__tafel a {
+    padding: 0.55rem 0.25rem 0.55rem 1.6rem;
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: var(--lb-rail-text-leise);
+    box-shadow: none;
+    border-bottom: 1px solid var(--lb-rail-hover);
+  }
+
+  :root[data-design="lesebuch"] .menue ul.menue__tafel a[aria-current="page"] {
+    color: var(--lb-hell);
+    box-shadow: inset 3px 0 0 var(--lb-gelb);
+  }
+
+  :root[data-design="lesebuch"] .menue__abteilung {
+    padding: 0.7rem 0.25rem 0.2rem 1.6rem;
+    color: var(--lb-rail-leise);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* Aufklapp-Pfeil: sichtbar, 44 px, Teil des Verzeichnisses. */
+  :root[data-design="lesebuch"] .menue__auf {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    min-height: 2.75rem;
+    border: 0;
+    background: transparent;
+    color: var(--lb-rail-leise);
+  }
+
+  :root[data-design="lesebuch"] .menue__auf-pfeil {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.15s ease;
+  }
+
+  :root[data-design="lesebuch"] .menue__auf[aria-expanded="true"] .menue__auf-pfeil {
+    transform: rotate(180deg);
+  }
+
+  :root[data-design="lesebuch"] .menueknopf {
+    display: none;
+  }
+
+  /* Krankmelden: die eine gefüllte Schaltfläche im Rücken. */
+  :root[data-design="lesebuch"] .krankmelden-knopf {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 2.75rem;
+    margin-top: var(--lb-s5);
+    padding: 0.65rem 1rem;
+    background: var(--lb-gelb);
+    color: var(--lb-auf-gelb);
+    border: 0;
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: none;
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .krankmelden-knopf:hover {
+      background: var(--lb-hell);
+      color: var(--lb-blau-tief);
+    }
+  }
+}
+
+/* ---------- Kopf unter 1200 px: blaue Leiste, Papierpanel ---------- */
+
+@media (max-width: 1199px) {
+  :root[data-design="lesebuch"] .kopf {
+    position: sticky;
+    top: 0;
+    background: var(--lb-blau);
+    color: var(--lb-hell);
+    border-bottom: 1px solid var(--lb-blau-tief);
+    box-shadow: none;
+  }
+
+  :root[data-design="lesebuch"] .leiste {
+    background: var(--lb-blau-tief);
+    color: var(--lb-rail-text-leise);
+    border: 0;
+    font-family: var(--lb-ui);
+    font-weight: 400;
+  }
+
+  :root[data-design="lesebuch"] .leiste__schnell a {
+    color: var(--lb-hell);
+    text-transform: none;
+    letter-spacing: 0;
+    border-bottom-color: var(--lb-gelb);
+  }
+
+  :root[data-design="lesebuch"] .leiste__adresse a {
+    color: inherit;
+  }
+
+  :root[data-design="lesebuch"] .marke-link {
+    background: var(--lb-logo-flaeche);
+    padding: 0.4rem 0.5rem;
+  }
+
+  :root[data-design="lesebuch"] .marke-link img {
+    height: 2.5rem;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen {
+    border: 0;
+  }
+
+  :root[data-design="lesebuch"] .menueknopf {
+    min-height: 2.75rem;
+    background: transparent;
+    color: var(--lb-hell);
+    border: 1px solid var(--lb-rail-rand-stark);
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .menueknopf__balken {
+    background: var(--lb-hell);
+  }
+
+  :root[data-design="lesebuch"] .krankmelden-knopf {
+    background: var(--lb-gelb);
+    color: var(--lb-auf-gelb);
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    font-family: var(--lb-ui);
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .modusknopf--leiste {
+    background: transparent;
+    color: var(--lb-hell);
+    border: 1px solid var(--lb-rail-rand-stark);
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  :root[data-design="lesebuch"] .modusknopf--kopf {
+    background: transparent;
+    color: var(--lb-hell);
+    border: 1px solid var(--lb-rail-rand-stark);
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  /* Menüpanel: eine Papierseite mit demselben Verzeichnis. */
+  :root[data-design="lesebuch"] .menue {
+    background: var(--lb-papier);
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-linie);
+    box-shadow: none;
+    padding: var(--lb-s4) var(--lb-s5) var(--lb-s5);
+    font-family: var(--lb-ui);
+  }
+
+  :root[data-design="lesebuch"] .menue ul a {
+    color: var(--lb-tinte);
+    background: transparent;
+    font-family: var(--lb-ui);
+    font-size: 1.02rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    border-bottom: 1px solid var(--lb-linie);
+    box-shadow: inset 4px 0 0 transparent;
+  }
+
+  :root[data-design="lesebuch"] .menue ul a[aria-current="page"] {
+    background: transparent;
+    color: var(--lb-tinte);
+    box-shadow: inset 4px 0 0 var(--lb-gelb);
+  }
+
+  :root[data-design="lesebuch"] .menue__auf {
+    color: var(--lb-tinte);
+  }
+
+  :root[data-design="lesebuch"] .menue__tafel {
+    background: var(--lb-papier-2);
+    border-top: 1px solid var(--lb-linie);
+  }
+
+  :root[data-design="lesebuch"] .menue__tafel a {
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--lb-linie);
+  }
+
+  :root[data-design="lesebuch"] .menue__abteilung {
+    color: var(--lb-leise);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue__schnell {
+    border-bottom: 1px solid var(--lb-linie);
+  }
+
+  :root[data-design="lesebuch"] .menue__schnell .chip {
+    background: transparent;
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-linie);
+    box-shadow: none;
+    border-radius: 0;
+    font-family: var(--lb-ui);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl {
+    font-family: var(--lb-ui);
+  }
+
+  :root[data-design="lesebuch"] .stilwahl__label {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl__auswahl {
+    background: var(--lb-papier);
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-linie);
+    box-shadow: none;
+    border-radius: 0;
+    font-family: var(--lb-ui);
+    font-weight: 500;
+  }
+}
+
+/* ---------- Startseite: Titelseite ---------- */
+
+:root[data-design="lesebuch"] .hero {
+  background: var(--lb-papier);
+  color: var(--lb-tinte);
+  padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3rem, 5vw, 4.5rem);
+  border: 0;
+  border-bottom: 1px solid var(--lb-linie);
+  overflow: visible;
+}
+
+:root[data-design="lesebuch"] .hero__innen {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: end;
+  margin-top: 0;
+}
+
+:root[data-design="lesebuch"] .hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+/* Der Schulname steht als Impressum-Zeile über dem Titel, nicht als
+   Etikett: normale Zeile, Haarlinie darunter, keine Versalien. */
+:root[data-design="lesebuch"] .hero__marke {
+  display: block;
+  margin: 0 0 var(--lb-s6);
+  padding: 0 0 var(--lb-s3);
+  background: transparent;
+  color: var(--lb-leise);
+  border: 0;
+  border-bottom: 1px solid var(--lb-linie);
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+  max-width: 46ch;
+}
+
+:root[data-design="lesebuch"] .hero__titel {
+  margin: 0;
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: var(--t-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+:root[data-design="lesebuch"] .hero__titel::after {
+  display: none;
+}
+
+:root[data-design="lesebuch"] .hero__unter {
+  margin-top: var(--lb-s4);
+  max-width: 42ch;
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+  line-height: 1.55;
+}
+
+:root[data-design="lesebuch"] .hero__ticket {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--lb-s4);
+  align-items: center;
+  margin-top: var(--lb-s5);
+  padding: var(--lb-s3) 0;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+  border-bottom: 1px solid var(--lb-linie);
+  box-shadow: none;
+  text-decoration: none;
+}
+
+:root[data-design="lesebuch"] .hero__ticket-datum {
+  font-family: var(--lb-schrift);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="lesebuch"] .hero__ticket-label {
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="lesebuch"] .hero__ticket-titel {
+  font-family: var(--lb-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+:root[data-design="lesebuch"] .hero__punkte {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  width: 100%;
+  margin: var(--lb-s6) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .hero__punkte li {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--lb-linie);
+  box-shadow: none;
+  transform: none;
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="lesebuch"] .hero__punkte li:nth-child(odd),
+:root[data-design="lesebuch"] .hero__punkte li:nth-child(even) {
+  transform: none;
+}
+
+:root[data-design="lesebuch"] .hero__punkte li:nth-child(odd) {
+  border-right: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .hero__punkte a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.4rem 0.8rem 0.4rem 0;
+  color: var(--lb-tinte);
+  font-family: var(--lb-ui);
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--lb-link);
+  text-underline-offset: 4px;
+}
+
+:root[data-design="lesebuch"] .hero__punkte li:nth-child(even) a {
+  padding-left: 0.9rem;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .hero__punkte a:hover {
+    color: var(--lb-link);
+    box-shadow: inset 0 -2px 0 var(--lb-link);
+  }
+}
+
+:root[data-design="lesebuch"] .hero__punkte li:focus-within {
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .hero__bild {
+  margin: 0;
+  padding: var(--lb-s2);
+  border: 1px solid var(--lb-bildrand);
+  background: transparent;
+}
+
+:root[data-design="lesebuch"] .hero__bild img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+@media (max-width: 1199px) {
+  :root[data-design="lesebuch"] .hero__innen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .hero__bild {
+    margin-top: var(--lb-s5);
+  }
+}
+
+/* ---------- Bänder und Kapitel ---------- */
+
+:root[data-design="lesebuch"] .band {
+  padding: clamp(3.25rem, 6vw, 5.5rem) 0;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .band--papier,
+:root[data-design="lesebuch"] .band--gelb,
+:root[data-design="lesebuch"] .band--nacht {
+  background: transparent;
+  color: var(--lb-tinte);
+  border-bottom: 0;
+}
+
+/* Ein Band wechselt die Papierstufe – das ist der einzige Flächenwechsel. */
+:root[data-design="lesebuch"] .band--blau {
+  background: var(--lb-papier-2);
+  color: var(--lb-tinte);
+  border-block: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .band--blau .band__einleitung,
+:root[data-design="lesebuch"] .band--blau .hinweiszeile {
+  color: var(--lb-leise);
+}
+
+:root[data-design="lesebuch"] .band--blau .kopfzeile h2 {
+  border-bottom: 0;
+}
+
+:root[data-design="lesebuch"] .band--gelb a:not(.btn),
+:root[data-design="lesebuch"] .band--blau a:not(.btn):not(.kalender),
+:root[data-design="lesebuch"] .band--nacht a:not(.btn):not(.kalender) {
+  color: var(--lb-tinte);
+}
+
+:root[data-design="lesebuch"] .kopfzeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--lb-s4);
+  margin-bottom: var(--lb-s6);
+  padding-top: var(--lb-s4);
+  border-top: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .kopfzeile h2 {
+  display: block;
+  padding: 0;
+  border: 0;
+  font-family: var(--lb-schrift);
+  font-size: var(--t-h2);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+:root[data-design="lesebuch"] .band--blau .kopfzeile {
+  border-top-color: var(--lb-linie-stark);
+}
+
+/* Kapitelaktion: Text mit Linie, kein Knopf. */
+:root[data-design="lesebuch"] .btn,
+:root[data-design="lesebuch"] .btn--geist,
+:root[data-design="lesebuch"] .btn--geist-blau {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.45rem 0;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  border-bottom: 1px solid var(--lb-tinte);
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .btn:hover,
+  :root[data-design="lesebuch"] .btn--geist:hover,
+  :root[data-design="lesebuch"] .btn--geist-blau:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-color: var(--lb-link);
+  }
+}
+
+:root[data-design="lesebuch"] .btn--akzent {
+  padding: 0.65rem 1.1rem;
+  background: var(--lb-blau);
+  color: var(--lb-tafel);
+  border: 0;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .btn--akzent:hover {
+    background: var(--lb-blau-tief);
+    color: var(--lb-hell);
+  }
+}
+
+/* Krankmelden ist die eine gefüllte Schaltfläche; die btn-Regeln oben
+   setzen für Kapitelaktionen transparente Flächen. */
+:root[data-design="lesebuch"] .btn.krankmelden-knopf {
+  background: var(--lb-gelb);
+  color: var(--lb-auf-gelb);
+  border: 0;
+  padding: 0.65rem 1rem;
+  font-family: var(--lb-ui);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .btn.krankmelden-knopf:hover {
+    background: var(--lb-blau-tief);
+    color: var(--lb-hell);
+  }
+}
+
+:root[data-design="lesebuch"] .band__einleitung {
+  max-width: 62ch;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+:root[data-design="lesebuch"] .hinweiszeile {
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+}
+
+/* ---------- Einträge statt Karten ---------- */
+
+:root[data-design="lesebuch"] .raster {
+  gap: var(--lb-s7) var(--lb-s6);
+}
+
+:root[data-design="lesebuch"] .raster--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+:root[data-design="lesebuch"] .raster--3,
+:root[data-design="lesebuch"] .raster--news {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+:root[data-design="lesebuch"] .raster--2 > .karte,
+:root[data-design="lesebuch"] .raster--3 > .karte,
+:root[data-design="lesebuch"] .raster--news > .karte {
+  border-top: 1px solid var(--lb-linie);
+  padding-top: var(--lb-s4);
+}
+
+:root[data-design="lesebuch"] .raster--2 > .karte:last-child:nth-child(odd) {
+  grid-column: auto;
+  width: auto;
+  justify-self: stretch;
+}
+
+:root[data-design="lesebuch"] .karte {
+  display: block;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+
+:root[data-design="lesebuch"] .karte:hover,
+:root[data-design="lesebuch"] .karte:focus-within {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .karte__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="lesebuch"] .karte__bild {
+  margin: 0 0 var(--lb-s4);
+  border: 1px solid var(--lb-bildrand);
+  border-radius: 0;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--lb-papier-2);
+}
+
+:root[data-design="lesebuch"] .karte__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: none;
+}
+
+:root[data-design="lesebuch"] .karte:hover .karte__bild img,
+:root[data-design="lesebuch"] .karte:focus-within .karte__bild img {
+  transform: none;
+}
+
+:root[data-design="lesebuch"] .karte__koerper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lb-s2);
+  padding: 0;
+  flex: 1;
+}
+
+:root[data-design="lesebuch"] .marke,
+:root[data-design="lesebuch"] .karte__block-meta {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--lb-leise);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  transform: none;
+}
+
+:root[data-design="lesebuch"] .karte__block-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lb-s2);
+}
+
+:root[data-design="lesebuch"] .karte__titel,
+:root[data-design="lesebuch"] .karte__block-titel {
+  margin: 0;
+  font-family: var(--lb-schrift);
+  font-size: 1.45rem;
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.005em;
+  color: var(--lb-tinte);
+  text-wrap: balance;
+}
+
+:root[data-design="lesebuch"] .karte--gross .karte__titel,
+:root[data-design="lesebuch"] .karte--gross .karte__block-titel {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+:root[data-design="lesebuch"] .karte__text {
+  max-width: 52ch;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+:root[data-design="lesebuch"] .karte__aktion {
+  margin-top: auto;
+  padding-top: var(--lb-s3);
+  align-self: flex-start;
+  color: var(--lb-link);
+  border-bottom: 1px solid var(--lb-link);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="lesebuch"] .karte__link:focus-visible {
+  outline: 3px solid var(--lb-fokus);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .karte__link:hover .karte__titel,
+  :root[data-design="lesebuch"] .karte__link:hover .karte__block-titel {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+}
+
+/* Meldungskopf ohne Bild: typografischer Kopf statt Farbblock. */
+:root[data-design="lesebuch"] .karte__block {
+  --block-flaeche: transparent;
+  --block-schrift: var(--lb-tinte);
+  min-height: 0;
+  margin-bottom: var(--lb-s4);
+  padding: 0;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 0;
+  gap: var(--lb-s2);
+}
+
+:root[data-design="lesebuch"] .karte__block-titel {
+  font-size: 1.3rem;
+}
+
+:root[data-design="lesebuch"] .karte__datum {
+  color: var(--lb-leise);
+  font-family: var(--lb-schrift);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Instagram, Kalender, Service ---------- */
+
+:root[data-design="lesebuch"] .instaraster {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--lb-s6) var(--lb-s4);
+  list-style: none;
+  padding: 0;
+  margin: var(--lb-s5) 0 0;
+}
+
+:root[data-design="lesebuch"] .instabeitrag {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+:root[data-design="lesebuch"] .instabeitrag__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="lesebuch"] .instabeitrag__bild {
+  margin: 0 0 var(--lb-s3);
+  border: 1px solid var(--lb-bildrand);
+  border-radius: 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--lb-papier-2);
+}
+
+:root[data-design="lesebuch"] .instabeitrag__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: none;
+}
+
+:root[data-design="lesebuch"] .instabeitrag__koerper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lb-s2);
+  padding: 0;
+}
+
+:root[data-design="lesebuch"] .instabeitrag__text {
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+:root[data-design="lesebuch"] .instabeitrag .karte__aktion {
+  margin-top: auto;
+}
+
+:root[data-design="lesebuch"] .kalenderliste {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--lb-s6);
+  margin-top: var(--lb-s5);
+  list-style: none;
+  padding: 0;
+}
+
+:root[data-design="lesebuch"] .kalender {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--lb-s2) var(--lb-s4);
+  padding: var(--lb-s3) 0;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+  box-shadow: none;
+  text-decoration: none;
+  transform: none;
+}
+
+:root[data-design="lesebuch"] .kalender__name {
+  font-family: var(--lb-schrift);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+:root[data-design="lesebuch"] .kalender__aktion {
+  color: var(--lb-link);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  text-transform: none;
+  border-bottom: 1px solid var(--lb-link);
+}
+
+:root[data-design="lesebuch"] .serviceliste {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--lb-s6);
+  list-style: none;
+  padding: 0;
+}
+
+:root[data-design="lesebuch"] .service {
+  padding: var(--lb-s4) 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+  border-radius: 0;
+  box-shadow: none;
+  gap: var(--lb-s2);
+}
+
+:root[data-design="lesebuch"] .service h3,
+:root[data-design="lesebuch"] .service__titel {
+  font-family: var(--lb-schrift);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+:root[data-design="lesebuch"] .service p {
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+:root[data-design="lesebuch"] .service .btn,
+:root[data-design="lesebuch"] .service .linkpfeil {
+  align-self: flex-start;
+  border-bottom: 1px solid var(--lb-link);
+  color: var(--lb-link);
+}
+
+:root[data-design="lesebuch"] .konten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lb-s2);
+  padding: 0;
+  list-style: none;
+}
+
+:root[data-design="lesebuch"] .konten .chip {
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 1px solid var(--lb-linie);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---------- Seitenköpfe, Brotkrumen ---------- */
+
+:root[data-design="lesebuch"] .seitenkopf {
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2rem, 4vw, 3rem);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .seitenkopf h1 {
+  max-width: 20ch;
+  font-size: var(--t-h1);
+}
+
+:root[data-design="lesebuch"] .seitenkopf .lead,
+:root[data-design="lesebuch"] .beitrag__kopf .lead {
+  max-width: 52ch;
+  margin-top: var(--lb-s4);
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  line-height: 1.55;
+}
+
+:root[data-design="lesebuch"] .brotkrumen {
+  margin-bottom: var(--lb-s5);
+}
+
+:root[data-design="lesebuch"] .brotkrumen ol {
+  gap: 0.4rem;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--lb-leise);
+}
+
+:root[data-design="lesebuch"] .brotkrumen a {
+  color: var(--lb-leise);
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .brotkrumen a:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-color: var(--lb-link);
+  }
+}
+
+:root[data-design="lesebuch"] .brotkrumen li + li::before {
+  content: "/";
+  opacity: 0.6;
+}
+
+:root[data-design="lesebuch"] .zurueck a {
+  color: var(--lb-link);
+  border-bottom: 1px solid var(--lb-link);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---------- Downloads ---------- */
+
+:root[data-design="lesebuch"] .sprungleiste {
+  top: var(--kopfhoehe);
+  padding: var(--lb-s3) 0;
+  background: var(--lb-papier);
+  color: var(--lb-tinte);
+  border-top: 1px solid var(--lb-linie);
+  border-bottom: 1px solid var(--lb-linie);
+  z-index: 40;
+}
+
+:root[data-design="lesebuch"] .sprungleiste .container {
+  gap: var(--lb-s2) var(--lb-s4);
+}
+
+:root[data-design="lesebuch"] .sprungleiste__label {
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="lesebuch"] .sprungleiste ul {
+  gap: 0 var(--lb-s4);
+}
+
+:root[data-design="lesebuch"] .sprungleiste a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0;
+  color: var(--lb-tinte);
+  border: 0;
+  border-bottom: 1px solid transparent;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .sprungleiste a:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-color: var(--lb-link);
+  }
+}
+
+:root[data-design="lesebuch"] .zeilen {
+  gap: 0;
+}
+
+:root[data-design="lesebuch"] .zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: var(--lb-s2) var(--lb-s5);
+  align-items: center;
+  padding: var(--lb-s4) 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+  box-shadow: none;
+  border-radius: 0;
+  transform: none;
+  transition: none;
+}
+
+:root[data-design="lesebuch"] .zeile:hover,
+:root[data-design="lesebuch"] .zeile:focus-within {
+  transform: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+:root[data-design="lesebuch"] .zeile__text {
+  max-width: 55ch;
+}
+
+:root[data-design="lesebuch"] .zeile__titel {
+  font-family: var(--lb-schrift);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+:root[data-design="lesebuch"] .zeile__beschreibung {
+  max-width: 55ch;
+  margin-top: 0.25rem;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+:root[data-design="lesebuch"] .zeile__daten {
+  display: flex;
+  gap: var(--lb-s2);
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="lesebuch"] .zeile__daten .chip {
+  padding: 0;
+  background: transparent;
+  color: var(--lb-leise);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+:root[data-design="lesebuch"] .zeile__aktion {
+  justify-self: end;
+}
+
+:root[data-design="lesebuch"] .zeile .btn--klein {
+  min-height: 2.75rem;
+  padding: 0.2rem 0;
+  background: transparent;
+  color: var(--lb-link);
+  border: 0;
+  border-bottom: 1px solid var(--lb-link);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .zeile .btn--klein:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-width: 2px;
+  }
+}
+
+:root[data-design="lesebuch"] .anzahl {
+  background: transparent;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.5em;
+  font-weight: 500;
+  letter-spacing: 0;
+  padding: 0 0 0 0.5rem;
+}
+
+:root[data-design="lesebuch"] .kasten {
+  margin-top: var(--lb-s7);
+  padding: 0 0 0 var(--lb-s5);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--lb-blau);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .kasten--gelb {
+  --flaeche: transparent;
+  background: transparent;
+  color: var(--lb-tinte);
+}
+
+:root[data-design="lesebuch"] .kasten h2 {
+  margin-bottom: var(--lb-s3);
+  padding: 0;
+  border: 0;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="lesebuch"] .kasten .zeile {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+:root[data-design="lesebuch"] .kasten .zeile + .zeile {
+  margin-top: 0;
+}
+
+:root[data-design="lesebuch"] .kasten .zeile__daten {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Schulart-Seite: Lesespalte und Randnote ---------- */
+
+:root[data-design="lesebuch"] .raster--seite {
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-block: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+:root[data-design="lesebuch"] .seitenleiste {
+  gap: var(--lb-s5);
+  top: var(--lb-s5);
+}
+
+:root[data-design="lesebuch"] .seitenleiste__bild {
+  margin: 0;
+  padding: var(--lb-s1);
+  border: 1px solid var(--lb-bildrand);
+}
+
+:root[data-design="lesebuch"] .seitenleiste__bild img {
+  border: 0;
+  box-shadow: none;
+  aspect-ratio: 4 / 3;
+}
+
+:root[data-design="lesebuch"] .fakten {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--lb-s1);
+  margin: 0;
+}
+
+:root[data-design="lesebuch"] .fakten dt {
+  margin-top: var(--lb-s3);
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+:root[data-design="lesebuch"] .fakten dt:first-child {
+  margin-top: 0;
+}
+
+:root[data-design="lesebuch"] .fakten dd {
+  margin: 0;
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+:root[data-design="lesebuch"] .kasten__kontakt {
+  margin-top: var(--lb-s4);
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+:root[data-design="lesebuch"] .kasten__kontakt a,
+:root[data-design="lesebuch"] .kasten .linkpfeil {
+  color: var(--lb-link);
+  border-bottom: 1px solid var(--lb-link);
+  text-decoration: none;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---------- Fließtext ---------- */
+
+:root[data-design="lesebuch"] .fliesstext {
+  max-width: var(--lb-mass);
+  font-family: var(--lb-schrift);
+  font-size: 1.09rem;
+  line-height: 1.75;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+:root[data-design="lesebuch"] .fliesstext > * + * {
+  margin-top: 1.05rem;
+}
+
+:root[data-design="lesebuch"] .fliesstext > h2 {
+  margin-top: var(--lb-s7);
+  padding: var(--lb-s4) 0 0;
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+  font-size: clamp(1.55rem, 2.4vw, 1.95rem);
+  font-weight: 600;
+  line-height: 1.18;
+}
+
+:root[data-design="lesebuch"] .fliesstext > h3 {
+  margin-top: var(--lb-s6);
+  padding: 0;
+  border: 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+:root[data-design="lesebuch"] .fliesstext > h4 {
+  margin-top: var(--lb-s5);
+  font-family: var(--lb-ui);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+:root[data-design="lesebuch"] .fliesstext a {
+  color: var(--lb-link);
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--lb-link);
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .fliesstext a:hover {
+    background: transparent;
+    color: var(--lb-link);
+    text-decoration-thickness: 2px;
+  }
+}
+
+:root[data-design="lesebuch"] .fliesstext > h2 a,
+:root[data-design="lesebuch"] .fliesstext > h3 a,
+:root[data-design="lesebuch"] .fliesstext > h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="lesebuch"] .fliesstext > h2 a::after,
+:root[data-design="lesebuch"] .fliesstext > h3 a::after,
+:root[data-design="lesebuch"] .fliesstext > h4 a::after {
+  content: none;
+}
+
+:root[data-design="lesebuch"] .fliesstext strong {
+  background: none;
+  font-weight: 700;
+}
+
+:root[data-design="lesebuch"] .fliesstext em {
+  font-style: italic;
+}
+
+:root[data-design="lesebuch"] .fliesstext hr {
+  margin: var(--lb-s6) 0;
+  border: 0;
+  border-top: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .fliesstext ul,
+:root[data-design="lesebuch"] .fliesstext ol {
+  padding-left: 0;
+  list-style: none;
+}
+
+:root[data-design="lesebuch"] .fliesstext li {
+  position: relative;
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+:root[data-design="lesebuch"] .fliesstext ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.72em;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--lb-gelb);
+  border: 1px solid var(--lb-linie-stark);
+}
+
+:root[data-design="lesebuch"] .fliesstext li li::before {
+  content: "";
+  background: transparent;
+  border-color: var(--lb-leise);
+}
+
+:root[data-design="lesebuch"] .fliesstext ol {
+  counter-reset: lbz;
+}
+
+:root[data-design="lesebuch"] .fliesstext ol > li {
+  counter-increment: lbz;
+}
+
+:root[data-design="lesebuch"] .fliesstext ol > li::before {
+  content: counter(lbz) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="lesebuch"] .fliesstext blockquote {
+  margin: var(--lb-s5) 0;
+  padding: 0 0 0 var(--lb-s4);
+  border-left: 2px solid var(--lb-blau);
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+:root[data-design="lesebuch"] .fliesstext blockquote em {
+  display: block;
+  margin-top: var(--lb-s2);
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-style: normal;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="lesebuch"] .fliesstext table {
+  width: 100%;
+  margin: var(--lb-s5) 0;
+  border-collapse: collapse;
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="lesebuch"] .fliesstext th,
+:root[data-design="lesebuch"] .fliesstext td {
+  padding: 0.55rem 0.7rem;
+  border: 0;
+  border-bottom: 1px solid var(--lb-linie);
+  text-align: left;
+  vertical-align: top;
+}
+
+:root[data-design="lesebuch"] .fliesstext thead th {
+  background: var(--lb-papier-2);
+  color: var(--lb-tinte);
+  border-top: 1px solid var(--lb-linie);
+  font-weight: 600;
+}
+
+:root[data-design="lesebuch"] .fliesstext tbody td:first-child {
+  font-weight: 500;
+}
+
+:root[data-design="lesebuch"] .fliesstext .bild {
+  max-width: 100%;
+  margin: var(--lb-s5) auto;
+}
+
+:root[data-design="lesebuch"] .fliesstext .bild img {
+  width: min(100%, var(--breite, 100%));
+  border: 1px solid var(--lb-bildrand);
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .fliesstext .bild--breit img {
+  width: 100%;
+}
+
+:root[data-design="lesebuch"] .fliesstext .bild__name {
+  margin-top: var(--lb-s2);
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+:root[data-design="lesebuch"] .bildraster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--lb-s5) var(--lb-s4);
+  list-style: none;
+  padding: 0;
+}
+
+:root[data-design="lesebuch"] .bildraster .bild {
+  margin: 0;
+}
+
+:root[data-design="lesebuch"] .bildraster .bild__name {
+  font-size: 0.875rem;
+}
+
+:root[data-design="lesebuch"] .hinweis {
+  margin-top: var(--lb-s5);
+  padding: var(--lb-s4);
+  background: var(--lb-papier-2);
+  color: var(--lb-tinte);
+  border: 1px solid var(--lb-linie);
+  border-left: 2px solid var(--lb-blau);
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .hinweis__titel {
+  color: var(--lb-tinte);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+:root[data-design="lesebuch"] .hinweis p {
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ---------- Beiträge ---------- */
+
+:root[data-design="lesebuch"] .beitrag {
+  padding-bottom: var(--lb-s8);
+}
+
+:root[data-design="lesebuch"] .beitrag__kopf {
+  padding: clamp(2.5rem, 5vw, 4rem) 0 var(--lb-s5);
+  border-bottom: 1px solid var(--lb-linie);
+  margin-bottom: var(--lb-s6);
+}
+
+:root[data-design="lesebuch"] .beitrag__kopf h1 {
+  max-width: 24ch;
+}
+
+:root[data-design="lesebuch"] .beitrag .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  margin-top: var(--lb-s4);
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+}
+
+:root[data-design="lesebuch"] .beitrag .meta time {
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="lesebuch"] .beitrag .fliesstext .zeitung,
+:root[data-design="lesebuch"] .beitrag .fliesstext figure:has(.zeitung) {
+  border: 1px solid var(--lb-linie);
+  padding: var(--lb-s3);
+}
+
+/* ---------- Fuß als Kolophon ---------- */
+
+:root[data-design="lesebuch"] .fuss {
+  background: var(--lb-papier-2);
+  color: var(--lb-tinte);
+  border-top: 1px solid var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .fuss__gitter {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--lb-s6);
+  padding-block: var(--lb-s7);
+}
+
+:root[data-design="lesebuch"] .fuss__titel {
+  margin-bottom: var(--lb-s3);
+  padding-bottom: var(--lb-s2);
+  border-bottom: 1px solid var(--lb-linie);
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="lesebuch"] .fuss address,
+:root[data-design="lesebuch"] .fuss p,
+:root[data-design="lesebuch"] .fuss__liste {
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+:root[data-design="lesebuch"] .fuss a {
+  color: var(--lb-tinte);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  text-underline-offset: 3px;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .fuss a:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-color: var(--lb-link);
+  }
+}
+
+:root[data-design="lesebuch"] .fuss__liste a {
+  text-decoration: none;
+}
+
+:root[data-design="lesebuch"] .fuss__leiste {
+  padding: var(--lb-s3) 0;
+  background: transparent;
+  color: var(--lb-leise);
+  border-top: 1px solid var(--lb-linie);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+}
+
+/* ---------- Sprungmarke, Warnungen, Sonstiges ---------- */
+
+:root[data-design="lesebuch"] .sprungmarke {
+  background: var(--lb-gelb);
+  color: var(--lb-auf-gelb);
+  border: 1px solid var(--lb-auf-gelb);
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="lesebuch"] .hinweis--warnung {
+  background: var(--lb-papier-3);
+  color: var(--lb-tinte);
+  border: 1px solid var(--lb-linie-stark);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+:root[data-design="lesebuch"] .chip {
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  color: var(--lb-tinte);
+  border: 1px solid var(--lb-linie);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="lesebuch"] .chip span {
+  color: var(--lb-leise);
+  font-size: 0.875rem;
+}
+
+:root[data-design="lesebuch"] .chip--akzent,
+:root[data-design="lesebuch"] .chip--ruhig {
+  background: transparent;
+  color: var(--lb-tinte);
+  border-color: var(--lb-linie);
+}
+
+:root[data-design="lesebuch"] .chip--klein {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  font-size: 0.875rem;
+}
+
+:root[data-design="lesebuch"] .modusknopf svg {
+  width: 18px;
+  height: 18px;
+}
+
+:root[data-design="lesebuch"] .stilwahl__pfeil {
+  color: inherit;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1199px) {
+  :root[data-design="lesebuch"] .hero__titel {
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
+  }
+}
+
+@media (max-width: 1000px) {
+  :root[data-design="lesebuch"] .kalenderliste {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .raster--2,
+  :root[data-design="lesebuch"] .raster--3,
+  :root[data-design="lesebuch"] .raster--news,
+  :root[data-design="lesebuch"] .instaraster,
+  :root[data-design="lesebuch"] .serviceliste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  :root[data-design="lesebuch"] .raster--seite {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .seitenleiste--mobil {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    position: static;
+  }
+
+  :root[data-design="lesebuch"] .seitenleiste--desktop {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  :root[data-design="lesebuch"] .raster--2,
+  :root[data-design="lesebuch"] .raster--3,
+  :root[data-design="lesebuch"] .raster--news,
+  :root[data-design="lesebuch"] .instaraster,
+  :root[data-design="lesebuch"] .kalenderliste,
+  :root[data-design="lesebuch"] .serviceliste {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .hero__punkte {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .hero__punkte li:nth-child(odd) {
+    border-right: 0;
+  }
+
+  :root[data-design="lesebuch"] .hero__punkte li:nth-child(even) a {
+    padding-left: 0;
+  }
+
+  :root[data-design="lesebuch"] .seitenleiste--mobil {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .zeile {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--lb-s2) var(--lb-s4);
+  }
+
+  :root[data-design="lesebuch"] .zeile__aktion {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  :root[data-design="lesebuch"] .kasten .zeile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .kasten .zeile__aktion {
+    justify-self: start;
+  }
+
+  :root[data-design="lesebuch"] .fuss__gitter {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .sprungleiste .container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  :root[data-design="lesebuch"] .sprungleiste .container::-webkit-scrollbar {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .sprungleiste ul {
+    flex-wrap: nowrap;
+    gap: 0 var(--lb-s4);
+  }
+
+  :root[data-design="lesebuch"] .sprungleiste a {
+    white-space: nowrap;
+  }
+
+  :root[data-design="lesebuch"] .fliesstext {
+    font-size: 1.05rem;
+  }
+
+  :root[data-design="lesebuch"] .fliesstext table {
+    font-size: 0.875rem;
+  }
+
+  :root[data-design="lesebuch"] .fliesstext th,
+  :root[data-design="lesebuch"] .fliesstext td {
+    padding: 0.4rem 0.45rem;
+  }
+}
+
+@media (max-width: 420px) {
+  :root[data-design="lesebuch"] .fuss__gitter {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Bewegung bleibt eine Frage von Farbe und Linie. */
+@media (prefers-reduced-motion: reduce) {
+  :root[data-design="lesebuch"] * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Nachzug: Komponenten, die eigene alte Regeln mitbringen ---------- */
+
+:root[data-design="lesebuch"] .kalender__aktion span[aria-hidden="true"],
+:root[data-design="lesebuch"] .btn span[aria-hidden="true"],
+:root[data-design="lesebuch"] .zurueck a span[aria-hidden="true"],
+:root[data-design="lesebuch"] .lupe__plakette span[aria-hidden="true"],
+:root[data-design="lesebuch"] .meta span[aria-hidden="true"] {
+  display: none;
+}
+
+:root[data-design="lesebuch"] .service__titel,
+:root[data-design="lesebuch"] .service h3 {
+  font-family: var(--lb-schrift);
+  font-size: 1.35rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+:root[data-design="lesebuch"] .service .linkpfeil,
+:root[data-design="lesebuch"] .kasten .linkpfeil {
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--lb-link);
+  border-bottom: 1px solid var(--lb-link);
+  padding-bottom: 0.1rem;
+  min-height: 0;
+}
+
+:root[data-design="lesebuch"] .fakten dt {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+:root[data-design="lesebuch"] .schulleben {
+  gap: var(--lb-s4);
+}
+
+:root[data-design="lesebuch"] .schulleben img {
+  border: 1px solid var(--lb-linie);
+  box-shadow: none;
+  transform: none;
+}
+
+:root[data-design="lesebuch"] .schulleben li:nth-child(3n + 1) img,
+:root[data-design="lesebuch"] .schulleben li:nth-child(3n + 3) img {
+  transform: none;
+}
+
+:root[data-design="lesebuch"] .partnergitter {
+  gap: var(--lb-s3);
+  margin-top: var(--lb-s5);
+}
+
+:root[data-design="lesebuch"] .partnergitter__kachel {
+  min-height: 7rem;
+  padding: var(--lb-s4);
+  background: var(--lb-tafel);
+  border: 1px solid var(--lb-linie);
+  box-shadow: none;
+  transform: none;
+  transition: border-color 0.15s ease;
+}
+
+
+/* Beiträge: Meta-Zeile ohne gelbes Etikett, Scan als Tafel. */
+:root[data-design="lesebuch"] .beitrag .meta {
+  gap: 0.5rem 0.75rem;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+:root[data-design="lesebuch"] .beitrag .meta time {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--lb-tinte);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="lesebuch"] .zurueck {
+  margin-bottom: var(--lb-s4);
+}
+
+:root[data-design="lesebuch"] .zurueck a {
+  min-height: 0;
+  color: var(--lb-link);
+  border-bottom: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .zurueck a:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-color: var(--lb-link);
+  }
+}
+
+:root[data-design="lesebuch"] .beitrag__bild {
+  --ueberhang: 0px;
+  margin: var(--lb-s6) 0 0;
+}
+
+:root[data-design="lesebuch"] .beitrag__lupe {
+  display: block;
+  max-width: 100% !important;
+}
+
+:root[data-design="lesebuch"] .beitrag__bild img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--lb-linie);
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .lupe__plakette {
+  position: static;
+  display: inline-flex;
+  margin-top: var(--lb-s2);
+  padding: 0;
+  background: transparent;
+  color: var(--lb-link);
+  border: 0;
+  border-bottom: 1px solid var(--lb-link);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .beitrag__lupe:hover .lupe__plakette {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+:root[data-design="lesebuch"] .beitrag__bild figcaption {
+  max-width: 100%;
+  margin: var(--lb-s3) 0 0;
+  padding: 0;
+  border: 0;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+:root[data-design="lesebuch"] .lupe__hinweis {
+  margin-bottom: 0.25rem;
+  color: var(--lb-tinte);
+  font-weight: 500;
+}
+
+:root[data-design="lesebuch"] .beitrag__quelle {
+  margin-top: var(--lb-s5);
+}
+
+:root[data-design="lesebuch"] .beitrag__quelle .btn {
+  border-bottom: 1px solid var(--lb-tinte);
+}
+
+/* Kleine Marken bleiben lesbar und als Fläche greifbar. */
+:root[data-design="lesebuch"] .chip,
+:root[data-design="lesebuch"] .chip--klein {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+}
+
+:root[data-design="lesebuch"] .chip--klein {
+  min-height: 1.75rem;
+  padding: 0 0.15rem;
+  border: 0;
+}
+
+/* 320 px: der Kopf darf nicht breiter werden als das Fenster. */
+@media (max-width: 360px) {
+  :root[data-design="lesebuch"] .kopf .container {
+    width: calc(100% - 1.5rem);
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen {
+    gap: 0.5rem;
+  }
+
+  :root[data-design="lesebuch"] .marke-link {
+    padding: 0.3rem 0.4rem;
+  }
+
+  :root[data-design="lesebuch"] .marke-link img {
+    height: 2.1rem;
+  }
+
+  :root[data-design="lesebuch"] .btn.krankmelden-knopf {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.875rem;
+  }
+
+  :root[data-design="lesebuch"] .menueknopf {
+    min-width: 2.5rem;
+    padding: 0.45rem 0.5rem;
+  }
+
+  :root[data-design="lesebuch"] .modusknopf--kopf {
+    min-width: 2.4rem;
+    padding: 0.45rem;
+  }
+}
+
+@media (pointer: coarse), (max-width: 640px) {
+  :root[data-design="lesebuch"] .chip,
+  :root[data-design="lesebuch"] .chip--klein {
+    min-height: 2.75rem;
+  }
+}
+
+/* ---------- Feinschliff nach Hallmark-Lauf 1 ---------- */
+
+/* Der Schulname wird zur Impressum-Zeile unter dem Verzeichnis: Damit
+   stehen vor den Aktionen nur Titel und Leitsatz. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .hero {
+    min-height: 86svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  :root[data-design="lesebuch"] .hero__innen {
+    align-items: center;
+  }
+
+  :root[data-design="lesebuch"] .hero__marke {
+    order: 5;
+    margin: var(--lb-s5) 0 0;
+    padding: var(--lb-s3) 0 0;
+    border-top: 1px solid var(--lb-linie);
+    border-bottom: 0;
+  }
+
+  :root[data-design="lesebuch"] .hero__punkte {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  :root[data-design="lesebuch"] .hero__punkte li:nth-child(odd) {
+    border-right: 0;
+  }
+
+  :root[data-design="lesebuch"] .hero__punkte li:nth-child(even) a {
+    padding-left: 0;
+  }
+}
+
+/* Drei Gewichte genügen: 400 Text, 500 Bedienung, 600 Serif-Titel. */
+:root[data-design="lesebuch"] .meta,
+:root[data-design="lesebuch"] .hinweiszeile,
+:root[data-design="lesebuch"] .kalender__aktion,
+:root[data-design="lesebuch"] .modusknopf,
+:root[data-design="lesebuch"] .menueknopf,
+:root[data-design="lesebuch"] .leiste,
+:root[data-design="lesebuch"] .stilwahl,
+:root[data-design="lesebuch"] .hero__ticket-titel,
+:root[data-design="lesebuch"] .btn.krankmelden-knopf,
+:root[data-design="lesebuch"] .fliesstext > h4,
+:root[data-design="lesebuch"] .fliesstext thead th,
+:root[data-design="lesebuch"] .hinweis__titel {
+  font-weight: 500;
+}
+
+/* Bilder bleiben Tafeln, aber flacher: weniger Fläche, mehr Text. */
+:root[data-design="lesebuch"] .raster--2 .karte__bild {
+  aspect-ratio: 16 / 9;
+}
+
+:root[data-design="lesebuch"] .schulleben img {
+  aspect-ratio: 21 / 9;
+}
+
+
+
+
+@media (min-width: 1201px) {
+  :root[data-design="lesebuch"] .kalenderliste {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+/* Aktiver Zustand: die Taste senkt die Farbe, ohne zu springen. */
+:root[data-design="lesebuch"] a:active,
+:root[data-design="lesebuch"] button:active,
+:root[data-design="lesebuch"] .btn:active {
+  color: var(--lb-blau-tief);
+}
+
+:root[data-design="lesebuch"] .kopf a:active,
+:root[data-design="lesebuch"] .kopf button:active,
+:root[data-design="lesebuch"] .leiste a:active {
+  color: var(--lb-gelb);
+}
+
+:root[data-design="lesebuch"] .btn--akzent:active,
+:root[data-design="lesebuch"] .zeile .btn--klein:active,
+:root[data-design="lesebuch"] .btn.krankmelden-knopf:active {
+  background: var(--lb-blau-tief);
+  color: var(--lb-hell);
+}
+
+/* ---------- Nachzug aus der Impeccable-Critique ---------- */
+
+/* Zeilenlänge: 60ch statt 68ch; die Lesespalte bleibt unter 88 Zeichen. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .raster--seite {
+    grid-template-columns: minmax(0, 60ch) 280px;
+    justify-content: center;
+  }
+}
+
+/* Die erste H2 im Fließtext soll nicht auf die Linie des Seitenkopfs treffen. */
+:root[data-design="lesebuch"] .fliesstext > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Ankersprung auf eine Download-Kategorie: blaue Kante statt Gelbmarke. */
+:root[data-design="lesebuch"] .band h2:target,
+:root[data-design="lesebuch"] .fliesstext h2:target {
+  padding-left: 0.9rem;
+  background: transparent;
+  color: var(--lb-tinte);
+  box-shadow: inset 3px 0 0 var(--lb-blau);
+}
+
+/* Mobil bleibt das Register bedienbar: Label stehen, Scrollbalken sichtbar. */
+@media (max-width: 640px) {
+  :root[data-design="lesebuch"] .sprungleiste .container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--lb-linie-stark) transparent;
+    scroll-padding-inline: 0.5rem;
+  }
+
+  :root[data-design="lesebuch"] .sprungleiste__label {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    padding-right: 0.6rem;
+    background: var(--lb-papier);
+  }
+}
+
+/* Geöffnetes Mobilmenü: die drei Balken werden zum Kreuz. */
+@media (max-width: 1199px) {
+  :root[data-design="lesebuch"] .menueknopf[aria-expanded="true"] .menueknopf__balken:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  :root[data-design="lesebuch"] .menueknopf[aria-expanded="true"] .menueknopf__balken:nth-child(2) {
+    opacity: 0;
+  }
+
+  :root[data-design="lesebuch"] .menueknopf[aria-expanded="true"] .menueknopf__balken:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+
+/* 404: eine gefüllte Aktion, die zweite wird zum Textlink. */
+:root[data-design="lesebuch"] .hero__knoepfe .btn--akzent + .btn--akzent {
+  background: transparent;
+  color: var(--lb-link);
+  border-bottom: 1px solid var(--lb-link);
+  padding-inline: 0;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .hero__knoepfe .btn--akzent + .btn--akzent:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-width: 2px;
+  }
+}
+
+
+/* ---------- Rücken in DOM-Reihenfolge (better-layout) ----------
+   Die Serviceleiste des gemeinsamen Templates steht im DOM vor dem Logo.
+   Statt sie per order nach unten zu schieben, bleibt sie auf dieser Breite
+   ausgeblendet; ihre Aufgaben stehen ohnehin später im DOM: Farbmodus im
+   Kopf, Schnellzugriffe und Stilwahl im Menü. So folgt die Tastatur der
+   sichtbaren Reihenfolge, ohne DOM-Umbau. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .leiste {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .kopf {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--lb-rail-rand) transparent;
+  }
+
+  :root[data-design="lesebuch"] .kopf::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  :root[data-design="lesebuch"] .kopf::-webkit-scrollbar-thumb {
+    background: var(--lb-rail-rand);
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen {
+    display: block;
+    overflow: visible;
+    padding: 0 0.35rem 0 0;
+  }
+
+  :root[data-design="lesebuch"] .kopf__ende {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+    gap: 0;
+    margin-top: var(--lb-s5);
+  }
+
+  /* Farbmodus: kleiner Begleiter des Logos, in der ersten Zeile rechts. */
+  :root[data-design="lesebuch"] .modusknopf--kopf {
+    display: inline-flex;
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    min-width: 2.4rem;
+    min-height: 2.4rem;
+    padding: 0.3rem;
+    background: transparent;
+    color: var(--lb-hell);
+    border: 1px solid var(--lb-rail-rand);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  :root[data-design="lesebuch"] .krankmelden-knopf {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-top: var(--lb-s4);
+  }
+
+  :root[data-design="lesebuch"] .menue {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-top: var(--lb-s4);
+  }
+
+  /* Schnellzugriffe aus dem Menü: Textzeilen statt Chips. */
+  :root[data-design="lesebuch"] .menue__schnell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--lb-s4);
+    margin: 0 0 var(--lb-s3);
+    padding: 0;
+    border: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue__schnell .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0;
+    background: transparent;
+    color: var(--lb-rail-text-leise);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .menue__schnell .chip:hover {
+      background: transparent;
+      color: var(--lb-hell);
+      box-shadow: inset 0 -1px 0 var(--lb-gelb);
+    }
+  }
+
+  /* Stilwahl aus dem Menü, vor dem Verzeichnis. */
+  :root[data-design="lesebuch"] .stilwahl--menue {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 0 var(--lb-s3);
+    padding: 0;
+    border: 0;
+    font-size: 0.875rem;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--menue .stilwahl__label {
+    color: var(--lb-rail-leise);
+    font-family: var(--lb-ui);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--menue .stilwahl__auswahl {
+    min-height: 2.4rem;
+    padding: 0.3rem 1.5rem 0.3rem 0.5rem;
+    background: var(--lb-papier);
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-rail-rand);
+    border-radius: 0;
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+}
+
+
+:root[data-design="lesebuch"] .sprungmarke:focus-visible {
+  outline: 3px solid var(--lb-gelb);
+  outline-offset: 3px;
+}
+
+/* Sticky-Kopf: Ankersprünge und Fokus landen nicht darunter. */
+:root[data-design="lesebuch"] {
+  scroll-padding-block-start: calc(var(--kopfhoehe) + 0.5rem);
+}
+
+/* Mobile H1: bei drei Zeilen etwas mehr Luft. */
+@media (max-width: 640px) {
+  :root[data-design="lesebuch"] .hero__titel {
+    line-height: 1.06;
+  }
+}
+
+/* Kurze Seiten: der Fuß sitzt am unteren Rand, statt mitten im Papier. */
+:root[data-design="lesebuch"] body {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+:root[data-design="lesebuch"] main {
+  flex: 1 0 auto;
+}
+
+/* Einleitung im Seitenkopf: dieselbe Stimme wie der Leitsatz. */
+:root[data-design="lesebuch"] .seitenkopf .einleitung {
+  max-width: 52ch;
+  margin-top: var(--lb-s4);
+  color: var(--lb-tinte);
+  font-family: var(--lb-schrift);
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  line-height: 1.55;
+}
+
+/* Die Kontaktzeile in der Randnote trug eine schwarze 3-px-Kante. */
+:root[data-design="lesebuch"] .kasten__kontakt {
+  margin-top: var(--lb-s4);
+  padding-top: var(--lb-s3);
+  border-top: 1px solid var(--lb-linie);
+}
+
+/* ---------- Shortcodes und Restflächen ---------- */
+
+/* „Mehr erfahren“/„Vergrößern“: Textlink statt Versalien-Knopf. */
+:root[data-design="lesebuch"] .linkpfeil {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0 0.15rem;
+  color: var(--lb-link);
+  border: 0;
+  border-bottom: 1px solid var(--lb-link);
+  font-family: var(--lb-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="lesebuch"] .linkpfeil:hover {
+    background: transparent;
+    color: var(--lb-link);
+    border-bottom-width: 2px;
+  }
+}
+
+/* Bildunterschriften: Funktion und Name als eine ruhige Zeile. */
+:root[data-design="lesebuch"] .bild__funktion {
+  display: block;
+  color: var(--lb-leise);
+  font-family: var(--lb-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-design="lesebuch"] .bildraster figcaption {
+  margin-top: var(--lb-s2);
+}
+
+/* Video: Tafel mit blauem Abspielzeichen, kein Schatten. */
+:root[data-design="lesebuch"] .video {
+  margin: var(--lb-s5) 0 var(--lb-s3);
+}
+
+:root[data-design="lesebuch"] .video__knopf {
+  border: 1px solid var(--lb-bildrand);
+  background: var(--lb-papier-2);
+  box-shadow: none;
+  transition: none;
+}
+
+:root[data-design="lesebuch"] .video__knopf:hover,
+:root[data-design="lesebuch"] .video__knopf:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .video__zeichen {
+  width: 4rem;
+  height: 4rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--lb-blau);
+  box-shadow: none;
+}
+
+:root[data-design="lesebuch"] .video__zeichen::after {
+  border-left-color: var(--lb-hell);
+  border-top-width: 0.6rem;
+  border-bottom-width: 0.6rem;
+  border-left-width: 1rem;
+}
+
+:root[data-design="lesebuch"] .video__hinweis a {
+  color: var(--lb-link);
+  font-family: var(--lb-ui);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Leitbild: sechs Punkte, zwei Farben statt Regenbogen. */
+:root[data-design="lesebuch"] .werte {
+  gap: var(--lb-s2) var(--lb-s5);
+  margin: var(--lb-s4) 0 var(--lb-s5);
+}
+
+:root[data-design="lesebuch"] .wert {
+  color: var(--lb-tinte);
+  font-family: var(--lb-ui);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+:root[data-design="lesebuch"] .wert__marke {
+  width: 0.75rem;
+  height: 0.75rem;
+  background: var(--lb-blau);
+}
+
+:root[data-design="lesebuch"] .wert__marke--gelb,
+:root[data-design="lesebuch"] .wert__marke--orange {
+  background: var(--lb-gelb);
+  box-shadow: inset 0 0 0 1px var(--lb-linie-stark);
+}
+
+:root[data-design="lesebuch"] .wert__marke--gruen,
+:root[data-design="lesebuch"] .wert__marke--magenta {
+  background: var(--lb-blau-tief);
+}
+
+:root[data-design="lesebuch"] .wert__marke--vielfalt {
+  background: linear-gradient(to bottom, var(--lb-blau) 0 50%, var(--lb-gelb) 50% 100%);
+}
+
+/* Rücken: eine weiche Kante zeigt, dass unten mehr Verzeichnis liegt. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .kopf::after {
+    content: "";
+    position: sticky;
+    bottom: calc(-1 * var(--lb-s4));
+    display: block;
+    height: 1.5rem;
+    margin: 0 calc(-1 * var(--lb-s5)) calc(-1 * var(--lb-s4));
+    background: linear-gradient(to bottom, transparent, var(--lb-blau));
+    pointer-events: none;
+  }
+}
+
+/* Register mobil: kein Scroll-Snap, sonst springt die Liste unter das
+   stehende „Kategorie“-Label und schneidet die erste Kategorie an. */
+@media (max-width: 640px) {
+  :root[data-design="lesebuch"] .sprungleiste .container {
+    scroll-snap-type: none;
+  }
+
+  :root[data-design="lesebuch"] .sprungleiste li {
+    scroll-snap-align: none;
+  }
+}
+
+:root[data-design="lesebuch"] .fliesstext strong {
+  font-weight: 600;
+}
+
+
+@media (min-width: 1200px) {
+  /* Krankmelden steht bereits als Aktion im Rücken; der erste
+     Schnellzugriff wäre derselbe Link ein zweites Mal. */
+  :root[data-design="lesebuch"] .menue__schnell .chip:first-child {
+    display: none;
+  }
+}

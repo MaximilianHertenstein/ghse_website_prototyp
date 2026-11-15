@@ -12,7 +12,7 @@ Geprüft werden für jede Variante (Neo, Klar, Funktional, Modern):
   - Schriftgrößen mindestens 14 px
   - Textkontrast mindestens 4,5:1 (große Schrift 3:1)
   - Zeigeziele außerhalb von Fließtext mindestens 24 px hoch (mobil)
-  - genau vier Theme-Optionen im Umschalter
+  - genau fünf Theme-Optionen im Umschalter
 
 Voraussetzung: Playwright mit Chromium (wie qa/klar_pruefung.py).
 Exit 1 bei Befunden.
@@ -24,8 +24,8 @@ from playwright.sync_api import sync_playwright
 
 BASIS = (sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:8735").rstrip("/") + "/"
 SEITEN = ["/", "/downloads/", "/schularten/technisches-gymnasium/", "/news/besuch-aus-china/", "/404.html"]
-THEMES = ["neobrutalismus", "klar", "funktional", "modern"]
-NEU = {"funktional", "modern"}
+THEMES = ["neobrutalismus", "klar", "funktional", "modern", "lesebuch"]
+NEU = {"funktional", "modern", "lesebuch"}
 BREITEN = [1440, 1024, 768, 390, 320]
 KEIN_UEBERLAUF = "html,body{overflow-x:visible !important}"
 
@@ -149,7 +149,7 @@ def main():
         for b in befunde[:40]:
             print("   ", b)
         sys.exit(1)
-    print("Alle vier Varianten ohne Befund.")
+    print("Alle fünf Varianten ohne Befund.")
 
 
 if __name__ == "__main__":

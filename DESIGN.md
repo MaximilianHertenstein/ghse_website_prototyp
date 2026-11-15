@@ -1,5 +1,5 @@
 ---
-name: GHSE – vier Gestaltungsvarianten
+name: GHSE – fünf Gestaltungsvarianten
 colors:
   primary: "#F6DC56"
   secondary: "#114C92"
@@ -27,7 +27,7 @@ spacing:
 
 ## Überblick
 
-Dieselben Seiten, Inhalte und URLs gibt es in vier Gestaltungsvarianten.
+Dieselben Seiten, Inhalte und URLs gibt es in fünf Gestaltungsvarianten.
 Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 
 | Variante | Kennung | Aussehen | Dokument |
@@ -36,6 +36,7 @@ Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 | **Klar** (Clean) | `klar` | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
 | **Funktional** (Einstieg) | `funktional` | Weiß/Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
 | **Modern** | `modern` | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten auf hellem Blau, weiche Schatten | `modern-DESIGN.md` |
+| **Lesebuch** | `lesebuch` | Graugrünes Papier, fester blauer Rücken als Verzeichnis, Piazzolla/Public Sans, Tafeln und Haarlinien statt Karten | `lesebuch-DESIGN.md` |
 
 ## Umschaltung
 

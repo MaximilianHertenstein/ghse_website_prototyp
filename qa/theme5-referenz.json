@@ -1,0 +1,313 @@
+{
+ "aufnahme": {
+  "basis": "http://127.0.0.1:8735",
+  "bewegung": "reduce",
+  "breiten": [
+   1440,
+   1024,
+   390
+  ],
+  "design_parameter": "?design=<id>",
+  "modus": "light",
+  "seiten": {
+   "artikel": "/news/den-naechsten-schritt-wagen/",
+   "downloads": "/downloads/",
+   "home": "/",
+   "news": "/news/",
+   "schule": "/unsere-schule/",
+   "tg": "/schularten/technisches-gymnasium/"
+  }
+ },
+ "base": "3aa9a4c",
+ "dateien": {
+  "funktional-artikel-1024.png": {
+   "bytes": 1077074,
+   "sha256": "94b7efc502d474d5828fdae47b496241ec507b3a79f222d8cc622a6dcbda31b7"
+  },
+  "funktional-artikel-1440.png": {
+   "bytes": 1102096,
+   "sha256": "b6e79d687edda6f12f37c88182b67db8b14cab6e2060886d4fda7982f1e77638"
+  },
+  "funktional-artikel-390.png": {
+   "bytes": 351880,
+   "sha256": "88310ccd2279ddcb426bd94cb1717fd0585cddb81d33bb682c772a1c412cda30"
+  },
+  "funktional-downloads-1024.png": {
+   "bytes": 941350,
+   "sha256": "8c546aef5d02e0d1249ca9a25c4840cd7af778b34e04801b55ef218e6f08d598"
+  },
+  "funktional-downloads-1440.png": {
+   "bytes": 982150,
+   "sha256": "2c671d934b2bbe91f5d01710e49dcbf04d70e6d7489da5f84ecde5f30b9eced4"
+  },
+  "funktional-downloads-390.png": {
+   "bytes": 842101,
+   "sha256": "0d774833617aa53ae08b490ec95941c0701211a56b859b81371b4788f1a8afd1"
+  },
+  "funktional-home-1024.png": {
+   "bytes": 2493063,
+   "sha256": "e5d9d407b2e75c0121f2a6f43726df55ec91dbda656d4f9dbf2551abbe1b8f7f"
+  },
+  "funktional-home-1440.png": {
+   "bytes": 3315604,
+   "sha256": "bbbf009d8e00dda728b66f9ad20073f7834bd4a867680883228e8627e7988e2f"
+  },
+  "funktional-home-390.png": {
+   "bytes": 2651273,
+   "sha256": "0e8efcf19469a85f9c58493a54968b55cde950656ffb0e40011a513908caa28d"
+  },
+  "funktional-news-1024.png": {
+   "bytes": 255564,
+   "sha256": "4acf211d8e96ec4a6fee396d8c96862c5190a0153ceabd7a154848afce8ffeb5"
+  },
+  "funktional-news-1440.png": {
+   "bytes": 249617,
+   "sha256": "ee41c4bbcc72f43402e71a512bdf1893e3864af6e2d7ca62da1a787bb95f7e0c"
+  },
+  "funktional-news-390.png": {
+   "bytes": 234036,
+   "sha256": "133cabe3d397c818e4cbff1a564c63f3cdf73b5a1b23d85c019a94b10b581dbe"
+  },
+  "funktional-schule-1024.png": {
+   "bytes": 1795522,
+   "sha256": "cc6da4fba2f70a6c0bbf0bb2450b61ef7df9d2e379b8874e098d195e41ebbacf"
+  },
+  "funktional-schule-1440.png": {
+   "bytes": 1853738,
+   "sha256": "a8b37d644cf801799d49e58d75709002e7395d9837c941a7ee9b0ffca8073cc5"
+  },
+  "funktional-schule-390.png": {
+   "bytes": 1441617,
+   "sha256": "6a449207d090ac5d6ec11e8be114c7462e9c66af27415c80816a24289689d604"
+  },
+  "funktional-tg-1024.png": {
+   "bytes": 3312999,
+   "sha256": "76ba5a8e8cbfb7e37f7c4b4abed35e5b599dd25bf89722edc30ca5625b1bc651"
+  },
+  "funktional-tg-1440.png": {
+   "bytes": 3705577,
+   "sha256": "05325d3766cffbaf843550b745043720fc61854f9dea045b272b28ecfa1ba4d9"
+  },
+  "funktional-tg-390.png": {
+   "bytes": 2163962,
+   "sha256": "38ca516d5bb1977d3a751957051bbd8afddeaa5cc7303e270370fc25e161a82e"
+  },
+  "klar-artikel-1024.png": {
+   "bytes": 1094365,
+   "sha256": "c71df9213ad1afbd134ba028eed64675186b1ba4401179d4edcb2101050e6894"
+  },
+  "klar-artikel-1440.png": {
+   "bytes": 1118996,
+   "sha256": "1c11ef62d6442770e0c2b61fc6eab28d08ceceaefefa49a9dfb8cdd15f8b8d73"
+  },
+  "klar-artikel-390.png": {
+   "bytes": 365853,
+   "sha256": "cb5f036a8aee8574fd2462f149931d18233a80045c717804598331a154fbb543"
+  },
+  "klar-downloads-1024.png": {
+   "bytes": 1245431,
+   "sha256": "e64495174ddf910e0308a62152305d6a75853584a898a5acfdb2bd651e727acb"
+  },
+  "klar-downloads-1440.png": {
+   "bytes": 1341830,
+   "sha256": "d161491724fd1e0ef7fb17d4ef8ba815803bc94b10bf5e164a90f21250434248"
+  },
+  "klar-downloads-390.png": {
+   "bytes": 1102540,
+   "sha256": "05dc57d6bfb6eb8d00ddf86cae26eb5848c8888bce1680abbb213f0ab280fb81"
+  },
+  "klar-home-1024.png": {
+   "bytes": 2626935,
+   "sha256": "be9296849e9bbd37e38a8bc76e3c54049b20a9c9759d676e044dba4edce59544"
+  },
+  "klar-home-1440.png": {
+   "bytes": 3450340,
+   "sha256": "06417ece2667e11281be207ff4f740e061e1297ef8c9b0678fedfae2075c5245"
+  },
+  "klar-home-390.png": {
+   "bytes": 2758220,
+   "sha256": "08c85403eac205fd0308062726230c603638816d0a28055aa74a9448cdaed9c5"
+  },
+  "klar-news-1024.png": {
+   "bytes": 305183,
+   "sha256": "44769ae344b4e7568bee7c8f0a1ff472b106844587b1b90edc1b8828945cf045"
+  },
+  "klar-news-1440.png": {
+   "bytes": 311380,
+   "sha256": "bcebef21902f6abaab87e68bae053863b0b4a48aee6ba19be84e6a8ea1a11660"
+  },
+  "klar-news-390.png": {
+   "bytes": 280441,
+   "sha256": "e5847dcfa8dc8ae24e14b8a96f134ecc7aa4590ad60380b8b94eac73139def64"
+  },
+  "klar-schule-1024.png": {
+   "bytes": 2054516,
+   "sha256": "ba4679c062e21c854ef09c0090bf95b8c20827d8c43bc90c00fb2079b0ce22ea"
+  },
+  "klar-schule-1440.png": {
+   "bytes": 2114860,
+   "sha256": "f978b5c8deabfb8f13e1327cb8ae9c1e215cc4f7320a88733e6cdfd3553fb36a"
+  },
+  "klar-schule-390.png": {
+   "bytes": 1552099,
+   "sha256": "ff78e2712b315ba6d627ed0e9667d3121df41fe7cbed88ebae140cac2a7ae73f"
+  },
+  "klar-tg-1024.png": {
+   "bytes": 3563185,
+   "sha256": "271dba7e522ed5f37871f24394a3b22cc1d67f5936d72adaecf5c031e20d81e3"
+  },
+  "klar-tg-1440.png": {
+   "bytes": 3033025,
+   "sha256": "76e03ed6e1e4f6e1e43c044006950d197f3fd216c0962d2b91301aca05b33def"
+  },
+  "klar-tg-390.png": {
+   "bytes": 2317335,
+   "sha256": "0ee5bf3d7a196a60e34bf4c8e3982c34d6c4649b75452278aaae376d093aa193"
+  },
+  "modern-artikel-1024.png": {
+   "bytes": 1090535,
+   "sha256": "f88b7c138fb4071c6aeb07d42d1cef4abc44a187654880fdd6ea11362df961a2"
+  },
+  "modern-artikel-1440.png": {
+   "bytes": 1114964,
+   "sha256": "db09e4ab9585fff4e3c24587470048aecdc4962a1b8df22845341fcde644f5ed"
+  },
+  "modern-artikel-390.png": {
+   "bytes": 360939,
+   "sha256": "c24b057cd74bc4871bf3807a9b6fbe45a1c0355fb50e4ec24254de7b8bf52f79"
+  },
+  "modern-downloads-1024.png": {
+   "bytes": 1288872,
+   "sha256": "28b513627eab68e83efce340edb93366d89a9aabf9dec71145c2bf2538cf24d5"
+  },
+  "modern-downloads-1440.png": {
+   "bytes": 1343339,
+   "sha256": "94885027da2a8e832b448a63c2eb3f01a2ddffb3af7432e8c26a25bcaa83c650"
+  },
+  "modern-downloads-390.png": {
+   "bytes": 1147072,
+   "sha256": "201963847b5a5254a4b798f10dc212f22f0e172fc8fa6bd223f0ca1d19750421"
+  },
+  "modern-home-1024.png": {
+   "bytes": 2602387,
+   "sha256": "1f106cd6a7695efef64831663c4ac5e4b0a9286a946ee616481bc9510e34defb"
+  },
+  "modern-home-1440.png": {
+   "bytes": 3428104,
+   "sha256": "fd31deb5e913ce4f58cd76358baca27b1f2469ee70883e6e1be9445b45f67e99"
+  },
+  "modern-home-390.png": {
+   "bytes": 2758602,
+   "sha256": "cc75befed18d617620d5cf4d7843802cb32269c5338a0523052a3c2cf9643134"
+  },
+  "modern-news-1024.png": {
+   "bytes": 301633,
+   "sha256": "aac13fec91b4d61a95741ab4f104b22e1554c522f2feb15d1010556a0554816a"
+  },
+  "modern-news-1440.png": {
+   "bytes": 301518,
+   "sha256": "d450050028b2a7761e974c0e0f1557e310eece83d73a0b52198b993c3ffd72c9"
+  },
+  "modern-news-390.png": {
+   "bytes": 290054,
+   "sha256": "6c67315365b00e7875ef7273817d961adbab377906d98fd7d218c6b66d3d424f"
+  },
+  "modern-schule-1024.png": {
+   "bytes": 1822924,
+   "sha256": "f56d9ce4075ef9dbc330748596ca39e796cf47462371baa797d5864851a1bb21"
+  },
+  "modern-schule-1440.png": {
+   "bytes": 1879060,
+   "sha256": "cd136c50d5eb93f64c07cd410fa5b589bddf473dbee13f9fc9e0af26009fa5a6"
+  },
+  "modern-schule-390.png": {
+   "bytes": 1508404,
+   "sha256": "cbe09ab8a5767b5e7c830ab4e509be55f1ac56bf2a969fa793d6aac8d2b187a8"
+  },
+  "modern-tg-1024.png": {
+   "bytes": 3404730,
+   "sha256": "b1db3c86832bbc8ed978910aeb68bfe1b879a6861077b225c0d78b96cffd71f0"
+  },
+  "modern-tg-1440.png": {
+   "bytes": 3615612,
+   "sha256": "63fa409041ebaf20aacbbc240e23b0440a10d12e5500561609aea44c268e09ba"
+  },
+  "modern-tg-390.png": {
+   "bytes": 2264975,
+   "sha256": "658a2d7234ab528b852cd4c136f64a3d4f5c53a514797ae14dc7f9889534dbf1"
+  },
+  "neobrutalismus-artikel-1024.png": {
+   "bytes": 1070786,
+   "sha256": "6eba92a7507a559dd2d4e66ee1e7ac5a1e1b390f8f5493a8dc6d1f6a7ad2e3a2"
+  },
+  "neobrutalismus-artikel-1440.png": {
+   "bytes": 1098234,
+   "sha256": "9b4ed09ce91d32f63215e24452a3651a340b5b29931d6694ae3658aab9e88ca4"
+  },
+  "neobrutalismus-artikel-390.png": {
+   "bytes": 346259,
+   "sha256": "b99787e39e8036871fac95725d147fac67cffb8f8d918803969a8cb906238658"
+  },
+  "neobrutalismus-downloads-1024.png": {
+   "bytes": 929562,
+   "sha256": "34a6cc86c40af4efbc7b3622c1f72c86be2ed2572e1e2bb0821e6a23d1e84515"
+  },
+  "neobrutalismus-downloads-1440.png": {
+   "bytes": 967727,
+   "sha256": "c90ed9e2d65fb482588b6488d3aea5ee733ac2533f10c8b83995aba12b341de2"
+  },
+  "neobrutalismus-downloads-390.png": {
+   "bytes": 899959,
+   "sha256": "048d9bca18d8c38f61691d919d8f9c69a6670234f34f1692c09baa2b375169f8"
+  },
+  "neobrutalismus-home-1024.png": {
+   "bytes": 2507765,
+   "sha256": "2114f0a8920bda8b3cc015fc8052be2fe6d7c232fd91c68248f9845b1ee625b1"
+  },
+  "neobrutalismus-home-1440.png": {
+   "bytes": 3334325,
+   "sha256": "6402bd580499fb23c500bdf703282d82d460deac8a506c10b3512250e12f2a19"
+  },
+  "neobrutalismus-home-390.png": {
+   "bytes": 2625265,
+   "sha256": "2f2d910c88eb80a2022b60591f3d98544ddaf354dd8053c4435f296e49a00b86"
+  },
+  "neobrutalismus-news-1024.png": {
+   "bytes": 263512,
+   "sha256": "100eb9f63fd9e24d6940ce4509344c914c9c04ac605747d0d9ca7115813050a5"
+  },
+  "neobrutalismus-news-1440.png": {
+   "bytes": 278820,
+   "sha256": "df65492833fb4f7d3943c4d82b33644804e385ed4e9491950b38591c426d9053"
+  },
+  "neobrutalismus-news-390.png": {
+   "bytes": 246523,
+   "sha256": "060e229c4488090d89b1041c09d6ca5986309d956069f8fb0029ecf7a707a903"
+  },
+  "neobrutalismus-schule-1024.png": {
+   "bytes": 1813713,
+   "sha256": "90c212a7e62a54948c13a216ae041b46282e510617602100c72df8de7c7d8493"
+  },
+  "neobrutalismus-schule-1440.png": {
+   "bytes": 1865739,
+   "sha256": "b755662f43135cb4ff80e494093f52d45ce7f1ceccbc56059cc16d10d9ac3ee6"
+  },
+  "neobrutalismus-schule-390.png": {
+   "bytes": 1462792,
+   "sha256": "c915e90aca1226850a9fe8c09d6b10c33f193caaad381e0a1140282cb6dd8143"
+  },
+  "neobrutalismus-tg-1024.png": {
+   "bytes": 3285413,
+   "sha256": "375f2c27ea1ef55852fc29b41a2f479de9994ff1fbf14803db5bff8bcae1704a"
+  },
+  "neobrutalismus-tg-1440.png": {
+   "bytes": 3639256,
+   "sha256": "fb006375b10426391b683ffe8e87ecec566cc3f7af8983b00e18524e77b39bbc"
+  },
+  "neobrutalismus-tg-390.png": {
+   "bytes": 2146070,
+   "sha256": "b3bb1227c9188fb4e79e291c91085e783bcf37a28e174236847737cb33733934"
+  }
+ },
+ "hinweis": "Referenzstand der vier bestehenden Varianten vor Theme 5. Die PNG-Dateien liegen nicht im Repo; mit qa/themebilder.py --out <dir> lassen sie sich identisch neu aufnehmen (heller Modus, reduced motion, Schriften und Bilder geladen, fester Viewport)."
+}

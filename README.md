@@ -10,7 +10,8 @@ vollständige Ablöse des Originals – nicht als Demo.
 Einstieg ist die Variante **Funktional** (funktionaler Minimalismus),
 dazu **Neo** (reduzierter Neobrutalismus, Grundlage: Skill `neobrutalism`
 aus [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
-**Klar** (Clean) und **Modern** (Weiterentwicklung des GHSE-Auftritts); mit
+**Klar** (Clean), **Modern** (Weiterentwicklung des GHSE-Auftritts) und
+**Lesebuch** (Buchbindung mit blauem Rücken, Serif und Verzeichnis); mit
 echten GHSE-Inhalten, Texten, Bildern und Dokumenten.
 
 ---
@@ -30,8 +31,9 @@ python3 tools/preview-server.py   # public/ so ausliefern wie GitHub Pages
 Es gibt keine npm-/PostCSS-Toolchain: CSS und JS liegen unter `assets/`
 (Hugo Pipes, minify + fingerprint), Schriften und Bilder unter `static/`.
 Inter ist die selbst gehostete Variable-Font der Neo-Variante; Klar
-bringt Roboto und Poppins mit, Funktional Hanken Grotesk und Modern
-Familjen Grotesk (Hallmark-Referenz Cobalt).
+bringt Roboto und Poppins mit, Funktional Hanken Grotesk, Modern
+Familjen Grotesk (Hallmark-Referenz Cobalt) und Lesebuch Piazzolla mit
+Public Sans.
 
 Die Instagram-Karten auf der Startseite frischt
 `python3 tools/instagram.py` auf: Es liest die neuesten Beiträge des
@@ -745,9 +747,9 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
   werten; Kategorien und Gruppen entstehen aus den Daten, nicht aus der Vorlage.
 
-### Gestaltungsvarianten (vier Themes)
+### Gestaltungsvarianten (fünf Themes)
 
-Dieselben Seiten gibt es in vier Aussehen; alle nutzen dieselben Templates,
+Dieselben Seiten gibt es in fünf Aussehen; alle nutzen dieselben Templates,
 Inhalte und URLs:
 
 | Kennung | Kurzform | Aussehen |
@@ -756,6 +758,7 @@ Inhalte und URLs:
 | `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam |
 | `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen (Einstieg) |
 | `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
+| `lesebuch` | Lesebuch | Graugrünes Papier, blaues Verzeichnis links, Piazzolla/Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt
@@ -766,32 +769,44 @@ Inhalte und URLs:
   (QA und Teilen).
 * **Laden:** `klar.css` wird auf jeder Seite mitgeladen, wirkt aber nur
   unter `:root[data-design="klar"]`. Roboto/Poppins (Klar), Hanken Grotesk
-  (Funktional) und Familjen Grotesk (Modern) stehen als `@font-face` bereit
-  und werden erst geladen, wenn die
-  Variante sie benutzt (kein Preload, `font-display: swap`).
+  (Funktional), Familjen Grotesk (Modern) sowie Piazzolla und Public Sans
+  (Lesebuch) stehen als `@font-face` bereit und werden erst geladen, wenn
+  die Variante sie benutzt (kein Preload, `font-display: swap`).
 * **Kompatibilität:** Die neuen Theme-Dateien fixieren die vorherige Breite
   des Theme-Feldes für Neo/Klar (59,78 px / 72 px). Dadurch bleiben die
   bestehenden Köpfe pixelgleich, ohne deren CSS zu ändern.
+* **Lesebuch:** Das fünfte Theme hält den festen blauen Rücken links,
+  Piazzolla für Lesetext und Überschriften, Public Sans für Bedienung.
+  Alle Regeln stehen unter `:root[data-design="lesebuch"]`; die Farbtokens
+  heißen `--lb-*` und werden von keiner anderen Variante gelesen. Der
+  Bestandsschutz läuft über `qa/theme5-guard.py` (Prüfsummen) und
+  `qa/themebilder.py` (Referenzaufnahmen der vier bestehenden Varianten).
 * **Weiteres Theme:** Eintrag in `params.designs` (`hugo.toml`) mit `id`,
   `name`, `kurz`, `css` und optional `fonts`; die CSS-Regeln unter
   `:root[data-design="<id>"]` schreiben; Dokument anlegen. Templates,
   Umschalter und Skript bleiben unverändert, die CSS-Datei wird automatisch
   mitgeladen.
 * **Dokumente:** `Neobrutalismus-DESIGN.md`, `clean-DESIGN.md`,
-  `funktional-DESIGN.md`, `modern-DESIGN.md`, gemeinsam `DESIGN.md`.
-  Vorschaubilder der neuen Themes: [Funktional](static/bilder/themes/funktional.webp)
-  und [Modern](static/bilder/themes/modern.webp); der bestehende Umschalter
+  `funktional-DESIGN.md`, `modern-DESIGN.md`, `lesebuch-DESIGN.md`, gemeinsam
+  `DESIGN.md`. Vorschaubilder der neuen Themes:
+  [Funktional](static/bilder/themes/funktional.webp),
+  [Modern](static/bilder/themes/modern.webp) und
+  [Lesebuch](static/bilder/themes/lesebuch.webp); der bestehende Umschalter
   bleibt ein natives Auswahlfeld ohne Bildkonvention.
 * **QA:** `qa/kontrast.py` prüft Neo, `qa/kontrast_klar.py` prüft Klar
   (Hell und Dunkel, AAA). `qa/klar_pruefung.py <bau>` misst die
-  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle vier Varianten
+  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle fünf Varianten
   auf Überlauf, Versalien, Rotation, Schriftgrößen, Kontraste und
   Zeigeziele; `qa/design.py <url>` prüft Umschalter, Speicherung, Neuladen
   und `?design=klar`. `qa/theme-guard.py` vergleicht alle 681 vorhandenen
   Layout-, Asset-, Inhalts- und statischen Dateien mit dem Schutzstand
   `qa/theme-baseline.json`; nach einer bewussten Änderung an Neo oder Klar
-  wird die Baseline neu erzeugt. Voraussetzung für die Browserprüfungen ist
-  Playwright mit Chromium.
+  wird die Baseline neu erzeugt. `qa/theme5-guard.py` schützt zusätzlich
+  alle 692 Dateien der vier Varianten vor dem Stand `3aa9a4c` (Theme 5
+  ergänzt nur den fünften `params.designs`-Eintrag). `qa/themebilder.py`
+  nimmt sechs Seiten × drei Breiten je Variante auf und vergleicht zwei
+  Läufe per SHA-256 der PNG-Dateien. Voraussetzung für die Browserprüfungen
+  ist Playwright mit Chromium.
 
 ### Farbmodus (Hell/Dunkel)
 

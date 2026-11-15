@@ -10,6 +10,8 @@
 /qa/*
 !qa/*.py
 !qa/theme-baseline.json
+!qa/theme5-baseline.json
+!qa/theme5-referenz.json
 /recherche/
 
 # Betriebssystem- und Editor-Reste

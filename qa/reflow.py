@@ -31,10 +31,15 @@ BREITEN = [320, 360, 414, 480, 640, 768, 834, 1024, 1112, 1280, 1440]
 # Optional: anderes Ziel-Verzeichnis und Port, z. B. für den Bau mit
 # --baseURL /ghse_website_prototyp/ (Unterpfad-Probe):
 #   python3 qa/reflow.py <verzeichnis> [port]
-if len(sys.argv) > 1:
-    ROOT = os.path.abspath(sys.argv[1])
-if len(sys.argv) > 2:
-    PORT = int(sys.argv[2])
+DESIGN = None
+if "--design" in sys.argv:
+    DESIGN = sys.argv[sys.argv.index("--design") + 1].strip()
+REST = [a for a in sys.argv[1:] if not a.startswith("--")
+        and (DESIGN is None or a != DESIGN)]
+if REST:
+    ROOT = os.path.abspath(REST[0])
+if len(REST) > 1:
+    PORT = int(REST[1])
 
 PROBE = """<!doctype html><meta charset="utf-8"><body style="margin:0"><pre id="a">lade</pre>
 <iframe id="f" style="border:0;width:100%;height:1400px"></iframe>
@@ -151,6 +156,8 @@ def main():
     if not os.path.isdir(ROOT):
         sys.exit("public/ fehlt – zuerst `hugo -D` ausfuehren.")
     seiten = seiten_aus_public()
+    if DESIGN:
+        seiten = [s + ("&" if "?" in s else "?") + "design=" + DESIGN for s in seiten]
     probe_pfad = os.path.join(ROOT, "__probe.html")
     with open(probe_pfad, "w", encoding="utf-8") as f:
         f.write(PROBE.replace("__BREITEN__", json.dumps(BREITEN)))
