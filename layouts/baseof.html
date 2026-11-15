@@ -10,6 +10,42 @@
       if (m === 'dark' || m === 'light') document.documentElement.setAttribute('data-theme', m);
     } catch (e) {}
   </script>
+  <meta name="design-options" content="{{ range site.Params.designs }}{{ .id }},{{ end }}">
+  <meta name="design-default" content="{{ site.Params.design | default "neobrutalismus" }}">
+  {{- /* Inter nur laden, wenn die Neo-Variante aktiv ist; das Skript unten
+         setzt den Preload. Die Klar-Schriften kommen ohne Preload aus. */}}
+  <meta name="font-neo" content="{{ "fonts/inter-var-latin.woff2" | relURL }}">
+  <script>
+    // Gestaltungsvariante früh setzen: Neo ist der Standard ohne Zusatz-CSS,
+    // jede weitere Variante hängt an data-design. Auch per ?design=klar
+    // aufrufbar, ohne die gespeicherte Wahl zu ändern.
+    try {
+      var wurzel = document.documentElement;
+      var optionen = ((document.querySelector('meta[name="design-options"]') || {}).content || '').split(',').filter(Boolean);
+      var standard = (document.querySelector('meta[name="design-default"]') || {}).content || 'neobrutalismus';
+      var ausUrl = null;
+      try { ausUrl = new URLSearchParams(location.search).get('design'); } catch (e) {}
+      var gespeichert = null;
+      try { gespeichert = localStorage.getItem('ghse-design'); } catch (e) {}
+      var wahl = ausUrl || gespeichert || standard;
+      if (optionen.length && optionen.indexOf(wahl) === -1) wahl = standard;
+      wurzel.setAttribute('data-design', wahl);
+
+      // Schriften der aktiven Variante anstoßen, aber nicht die der anderen.
+      if (wahl === 'neobrutalismus') {
+        var schrift = document.querySelector('meta[name="font-neo"]');
+        if (schrift) {
+          var preload = document.createElement('link');
+          preload.rel = 'preload';
+          preload.as = 'font';
+          preload.type = 'font/woff2';
+          preload.crossOrigin = 'anonymous';
+          preload.href = schrift.content;
+          document.head.appendChild(preload);
+        }
+      }
+    } catch (e) {}
+  </script>
   {{- /* Ein Titel für <title> und og:title – sonst driftet der eine beim
          Teilen auseinander. „Emmendingen" steht doppelt, weil site.Title die
          Stadt schon nennt; der volle Name bleibt im Fuß stehen. */}}
@@ -39,10 +75,22 @@
   <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} | {{ site.Title }}">
   {{ end }}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
-  <link rel="preload" href="{{ "fonts/inter-var-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+  <noscript><style>.stilwahl{display:none !important}</style></noscript>
   {{ if .IsHome }}{{ with .Params.bild }}<link rel="preload" as="image" href="{{ . | strings.TrimPrefix "/" | relURL }}" fetchpriority="high">{{ end }}{{ end }}
   {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{- /* Weitere Gestaltungsvarianten: jede bringt eine eigene, auf
+         data-design begrenzte CSS-Datei mit und wird immer mitgeladen,
+         damit der Wechsel ohne Neuladen funktioniert. Die Standardvariante
+         (Neo) steht in main.css und braucht keinen Eintrag. */}}
+  {{- range site.Params.designs }}
+  {{- $design := . }}
+  {{- with .fonts }}{{ partial . $ }}{{ end }}
+  {{- with .css }}
+  {{- $designCss := resources.Get . | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $designCss.RelPermalink }}" integrity="{{ $designCss.Data.Integrity }}" data-design-css="{{ $design.id }}">
+  {{- end }}
+  {{- end }}
   {{ partial "jsonld.html" . }}
 </head>
 <body>
@@ -54,7 +102,9 @@
   {{ partial "footer.html" . }}
   {{- $nav := resources.Get "js/nav.js" | minify | fingerprint }}
   {{- $video := resources.Get "js/video.js" | minify | fingerprint }}
+  {{- $design := resources.Get "js/design.js" | minify | fingerprint }}
   <script src="{{ $nav.RelPermalink }}" integrity="{{ $nav.Data.Integrity }}" defer></script>
   <script src="{{ $video.RelPermalink }}" integrity="{{ $video.Data.Integrity }}" defer></script>
+  <script src="{{ $design.RelPermalink }}" integrity="{{ $design.Data.Integrity }}" defer></script>
 </body>
 </html>

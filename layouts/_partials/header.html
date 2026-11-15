@@ -12,6 +12,7 @@
           <a href="{{ $ziel }}">{{ .Name }}</a>
         {{ end }}
       </nav>
+      {{ partial "stilwahl.html" (dict "ort" "leiste") }}
       {{ partial "theme-button.html" "leiste" }}
     </div>
   </div>
@@ -48,6 +49,7 @@
             <a class="chip chip--ruhig" href="{{ $ziel }}">{{ .Name }}</a>
           {{ end }}
         </nav>
+        {{ partial "stilwahl.html" (dict "ort" "menue") }}
         <ul>
           {{- /* Die Tafeln hängen ab 1200 px an ::hover und :focus-within,
                  darunter sind sie eingeklappt und laufen über den Pfeilknopf

@@ -97,6 +97,12 @@
       "skillPath": "skills/explain-interface/SKILL.md",
       "computedHash": "027b08c97bb30e38a4498612dd1a8d1ff5424ae535dd9eec61c5de62b5df5b7a"
     },
+    "hallmark": {
+      "source": "Nutlope/hallmark",
+      "sourceType": "github",
+      "skillPath": "skills/hallmark/SKILL.md",
+      "computedHash": "e5d4ee5cf0af2dcc81a23ef49b587fbfd71236ff9f9df9da12d3bf347e26e572"
+    },
     "hugo-theme": {
       "source": "magnus919/agent-skills",
       "sourceType": "github",

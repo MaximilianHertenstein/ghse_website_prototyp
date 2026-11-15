@@ -714,6 +714,79 @@ h2[id^="dl-"] {
   opacity: 0.5;
 }
 
+/* ---------- Gestaltungswahl ---------- */
+
+.stilwahl {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: var(--t-xs);
+  line-height: 1;
+}
+
+.stilwahl__label {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stilwahl__feld {
+  position: relative;
+  display: inline-flex;
+}
+
+.stilwahl__auswahl {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: var(--t-xs);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--schrift);
+  background: var(--flaeche);
+  border: 2px solid var(--rand);
+  border-radius: 0;
+  padding: 0.15rem 1.4rem 0.15rem 0.4rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--schatten-farbe);
+}
+
+.stilwahl__auswahl:focus-visible {
+  outline: 3px solid var(--orange-tief);
+  outline-offset: 3px;
+}
+
+.stilwahl__pfeil {
+  position: absolute;
+  top: 50%;
+  right: 0.45rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.stilwahl--menue {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .stilwahl--leiste {
+    display: none;
+  }
+  .stilwahl--menue {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--haarlinie);
+  }
+  .stilwahl--menue .stilwahl__auswahl {
+    min-height: 2.75rem;
+    padding-block: 0.5rem;
+  }
+}
+
 .kopf__innen {
   display: flex;
   align-items: center;

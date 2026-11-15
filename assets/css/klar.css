@@ -1,0 +1,1159 @@
+/* GHSE – Gestaltungsvariante „klar“ (Design-System „Clean“)
+   ============================================================
+   Gleiche Struktur wie die Hauptvariante: gleiche Templates, Menüs,
+   Dropdowns und Inhalte. Nur das Aussehen folgt dem Design-System „Clean“:
+   minimal, viel Weißraum, gut lesbare Schrift, begrenzte Palette.
+   Beschreibung, Regeln und QA-Checkliste: clean-DESIGN.md.
+
+   Technik: Die Datei wird auf jeder Seite mitgeladen und wirkt nur unter
+   :root[data-design="klar"]; die Wahl trifft der Umschalter (design.js,
+   gespeichert in localStorage). Jede Regel trägt das Präfix und schlägt
+   damit main.css, ohne dass dort etwas geändert werden muss. Kein
+   CSS-Nesting: ältere Tablets und Telefone verstehen es nicht.
+
+   Pflegehinweis: Was der helle Satz in den Farb-Tokens setzt, setzt der
+   dunkle Satz ebenfalls – und jedes Token, das main.css im Dunkeln setzt,
+   setzt er auch. Sonst scheint der dunkle Satz aus main.css durch.
+   qa/kontrast_klar.py prüft das. */
+
+/* ---------- Tokens, hell ---------- */
+
+:root[data-design="klar"] {
+  /* Semantische Ebene (Clean). Rohwerte stehen nur hier. */
+  --primaer: #1e40af;            /* Flächen mit weißer Schrift, Primäraktion (8,7:1) */
+  --primaer-text: #1e40af;       /* Links und Textakzente (8,7:1 auf Weiß) */
+  --primaer-akzent: #3b82f6;     /* Clean-Primärblau: Linien, Balken, Icons – nie Text */
+  --primaer-hell: #dbeafe;       /* Hover- und Markierungsfläche, mit dunkler Schrift */
+  --aktion: #1e40af;             /* Fläche der Primäraktion */
+  --aktion-schrift: #ffffff;
+  --text: #111827;               /* Clean: text */
+  --text-leise: #4b5563;         /* Zweittext (7,6:1) */
+  --flaeche-leise: #f9fafb;
+  --rand-leise: #e5e7eb;         /* Trennlinien und Kartenränder */
+  --erfolg: #166534;             /* Clean #16A34A, für Text abgedunkelt */
+  --warnung: #92400e;            /* Clean #D97706, für Text abgedunkelt */
+  --fehler: #991b1b;             /* Clean #DC2626, für Text abgedunkelt */
+
+  /* Abbildung auf die Tokens aus main.css */
+  --papier: #ffffff;
+  --papier2: var(--flaeche-leise);
+  --schrift: var(--text);
+  --grau: var(--text-leise);
+  --rand: #4b5563;               /* Rand interaktiver Elemente (7,6:1) */
+  --linie: var(--rand-leise);
+  --link: var(--primaer-text);
+  --blau: var(--primaer);
+  --gelb: var(--primaer-hell);
+  --orange: var(--primaer-akzent);
+  --orange-tief: var(--primaer-text);
+  --tinte: var(--text);
+  --schatten-farbe: transparent;
+  --haarlinie: rgba(17, 24, 39, 0.12);
+  --marker-hintergrund: transparent;
+  --kategorie-teilzeit: var(--rand-leise);
+  --hinweis-flaeche: #eff6ff;
+  --hinweis-rand: var(--primaer);
+  --warn-flaeche: #fffbeb;
+  --warn-rand: var(--warnung);
+
+  /* Die fünf Werte der Schule sind Inhalt und behalten ihre Markenfarben. */
+  --wert-blau: #114c92;
+  --wert-gelb: #f6dc56;
+  --wert-orange: #ee7330;
+
+  --fuss-flaeche: #f3f4f6;
+  --fuss-schrift: var(--text);
+  --fuss-titel: var(--text);
+  --fuss-linie: var(--rand-leise);
+  --fuss-link: var(--primaer-text);
+  --fuss-haarlinie: var(--rand-leise);
+  --fuss-leiste-flaeche: #e5e7eb;
+  --fuss-leiste-schrift: #374151;
+  color-scheme: light;
+
+  /* Form */
+  --rahmen: 2px solid var(--rand);
+  --schatten: none;
+  --schatten-klein: none;
+  --rund: 8px;
+
+  /* Schrift: Clean-Skala 14/16/20/24/32, ergänzt um 18 (Bedienelemente),
+     40 und 48 (Überschrift, Hero). Roboto für Text, Poppins für Überschriften. */
+  --schriftstapel: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --schriftstapel-display: "Poppins", "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --t-xs: 0.875rem;
+  --t-s: 1rem;
+  --t-ui: 1.125rem;
+  --t-m: 1.25rem;
+  --t-h3: clamp(1.25rem, 1.8vw, 1.5rem);
+  --t-h2: clamp(1.5rem, 3vw, 2rem);
+  --t-h1: clamp(2rem, 4vw, 2.5rem);
+  --t-display: clamp(2rem, 5vw, 3rem);
+}
+
+/* Kopfhöhe gemessen (Leiste + Logozeile); steuert Sprungleiste und Ankerabstand. */
+@media (min-width: 901px) {
+  :root[data-design="klar"] {
+    --kopfhoehe: 7.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :root[data-design="klar"] {
+    --kopfhoehe: 4.5625rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root[data-design="klar"] {
+    --t-ui: 1rem;
+    --t-m: 1.125rem;
+  }
+}
+
+/* ---------- Tokens, dunkel (gleiche Namen wie oben) ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root[data-design="klar"]:not([data-theme="light"]) {
+    --primaer: #1e40af;
+    --primaer-text: #93c5fd;
+    --primaer-akzent: #3b82f6;
+    --primaer-hell: #dbeafe;
+    --aktion: #93c5fd;
+    --aktion-schrift: #111827;
+    --text: #f9fafb;
+    --text-leise: #d1d5db;
+    --flaeche-leise: #1f2937;
+    --rand-leise: #374151;
+    --erfolg: #86efac;
+    --warnung: #fcd34d;
+    --fehler: #fca5a5;
+
+    --papier: #111827;
+    --papier2: var(--flaeche-leise);
+    --flaeche: var(--flaeche-leise);
+    --schrift: var(--text);
+    --grau: var(--text-leise);
+    --rand: #9ca3af;
+    --linie: var(--rand-leise);
+    --link: var(--primaer-text);
+    --blau: var(--primaer);
+    --gelb: var(--primaer-hell);
+    --orange: var(--primaer-akzent);
+    --orange-tief: var(--primaer-text);
+    --tinte: #111827;
+    --schatten-farbe: transparent;
+    --haarlinie: rgba(255, 255, 255, 0.14);
+    --marker-hintergrund: transparent;
+    --kategorie-teilzeit: var(--rand-leise);
+    --hinweis-flaeche: #172554;
+    --hinweis-rand: var(--primaer-text);
+    --warn-flaeche: #451a03;
+    --warn-rand: var(--warnung);
+
+    --wert-blau: #114c92;
+    --wert-gelb: #f6dc56;
+    --wert-orange: #ee7330;
+
+    --fuss-flaeche: #0b1220;
+    --fuss-schrift: var(--text);
+    --fuss-titel: var(--text);
+    --fuss-linie: var(--rand-leise);
+    --fuss-link: var(--primaer-text);
+    --fuss-haarlinie: rgba(255, 255, 255, 0.14);
+    --fuss-leiste-flaeche: #060b14;
+    --fuss-leiste-schrift: #d1d5db;
+    color-scheme: dark;
+  }
+}
+
+:root[data-design="klar"][data-theme="dark"] {
+  --primaer: #1e40af;
+  --primaer-text: #93c5fd;
+  --primaer-akzent: #3b82f6;
+  --primaer-hell: #dbeafe;
+  --aktion: #93c5fd;
+  --aktion-schrift: #111827;
+  --text: #f9fafb;
+  --text-leise: #d1d5db;
+  --flaeche-leise: #1f2937;
+  --rand-leise: #374151;
+  --erfolg: #86efac;
+  --warnung: #fcd34d;
+  --fehler: #fca5a5;
+
+  --papier: #111827;
+  --papier2: var(--flaeche-leise);
+  --flaeche: var(--flaeche-leise);
+  --schrift: var(--text);
+  --grau: var(--text-leise);
+  --rand: #9ca3af;
+  --linie: var(--rand-leise);
+  --link: var(--primaer-text);
+  --blau: var(--primaer);
+  --gelb: var(--primaer-hell);
+  --orange: var(--primaer-akzent);
+  --orange-tief: var(--primaer-text);
+  --tinte: #111827;
+  --schatten-farbe: transparent;
+  --haarlinie: rgba(255, 255, 255, 0.14);
+  --marker-hintergrund: transparent;
+  --kategorie-teilzeit: var(--rand-leise);
+  --hinweis-flaeche: #172554;
+  --hinweis-rand: var(--primaer-text);
+  --warn-flaeche: #451a03;
+  --warn-rand: var(--warnung);
+
+  --wert-blau: #114c92;
+  --wert-gelb: #f6dc56;
+  --wert-orange: #ee7330;
+
+  --fuss-flaeche: #0b1220;
+  --fuss-schrift: var(--text);
+  --fuss-titel: var(--text);
+  --fuss-linie: var(--rand-leise);
+  --fuss-link: var(--primaer-text);
+  --fuss-haarlinie: rgba(255, 255, 255, 0.14);
+  --fuss-leiste-flaeche: #060b14;
+  --fuss-leiste-schrift: #d1d5db;
+  color-scheme: dark;
+}
+
+/* ---------- Basis ---------- */
+
+:root[data-design="klar"] body {
+  font-size: var(--t-m);
+  line-height: 1.6;
+}
+
+/* Keine Versalien, keine Sperrung: gilt für alles, auch für Pseudo-Elemente. */
+:root[data-design="klar"] *,
+:root[data-design="klar"] *::before,
+:root[data-design="klar"] *::after {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Nichts hüpft: weder transform (je Komponente unten) noch translate.
+   !important, weil main.css die Hover-Bewegung an einzelnen Stellen über
+   translate setzt und künftig weitere hinzukommen können. */
+:root[data-design="klar"] *,
+:root[data-design="klar"] *::before,
+:root[data-design="klar"] *::after {
+  translate: none !important;
+}
+
+:root[data-design="klar"] h1,
+:root[data-design="klar"] h2,
+:root[data-design="klar"] h3,
+:root[data-design="klar"] .hero__titel,
+:root[data-design="klar"] .karte__titel,
+:root[data-design="klar"] .karte__block-titel,
+:root[data-design="klar"] .zeitgruppe__titel,
+:root[data-design="klar"] .kasten h2,
+:root[data-design="klar"] .fliesstext > h2,
+:root[data-design="klar"] .fliesstext > h3,
+:root[data-design="klar"] .service h3 {
+  font-family: var(--schriftstapel-display);
+}
+
+:root[data-design="klar"] h1,
+:root[data-design="klar"] h2,
+:root[data-design="klar"] h3,
+:root[data-design="klar"] .hero__titel,
+:root[data-design="klar"] .karte__titel,
+:root[data-design="klar"] .karte__block-titel,
+:root[data-design="klar"] .zeitgruppe__titel,
+:root[data-design="klar"] .kasten h2,
+:root[data-design="klar"] .fliesstext > h2,
+:root[data-design="klar"] .fliesstext > h3,
+:root[data-design="klar"] .zeile__titel,
+:root[data-design="klar"] .infozeile__titel,
+:root[data-design="klar"] .konten__titel,
+:root[data-design="klar"] .kalender__name,
+:root[data-design="klar"] .hero__ticket-datum,
+:root[data-design="klar"] .karte--text .karte__datum,
+:root[data-design="klar"] .service h3 {
+  font-weight: 600;
+}
+
+:root[data-design="klar"] h1,
+:root[data-design="klar"] h2,
+:root[data-design="klar"] h3 {
+  line-height: 1.25;
+}
+
+:root[data-design="klar"] .hero__titel {
+  line-height: 1.15;
+}
+
+:root[data-design="klar"] .karte__block-titel {
+  line-height: 1.3;
+}
+
+/* Sichtbarer Fokus: 4 px in der Textfarbe des Akzents, 4 px Abstand. */
+:root[data-design="klar"] a:focus-visible,
+:root[data-design="klar"] button:focus-visible,
+:root[data-design="klar"] summary:focus-visible {
+  outline-width: 4px;
+  outline-offset: 4px;
+}
+
+:root[data-design="klar"] .band--blau :focus-visible {
+  outline-color: var(--primaer-hell);
+}
+
+/* Platz zwischen den Abschnitten: 8-pt-Raster, großzügiger als bisher. */
+:root[data-design="klar"] .band {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+:root[data-design="klar"] .kopfzeile {
+  margin-bottom: 3rem;
+}
+
+:root[data-design="klar"] .kopfzeile h2 {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+:root[data-design="klar"] .seitenkopf {
+  padding-block: clamp(2rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .band--gelb {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .band--blau {
+  border-block: 0;
+}
+
+/* ---------- Fließtext und Einleitungen ---------- */
+
+:root[data-design="klar"] .lead {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+:root[data-design="klar"] .einleitung {
+  font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+  color: var(--grau);
+}
+
+:root[data-design="klar"] .fliesstext {
+  font-size: var(--t-m);
+  line-height: 1.7;
+  max-width: 66ch;
+}
+
+:root[data-design="klar"] .fliesstext blockquote {
+  font-size: var(--t-m);
+  border-left: 0;
+  background: var(--flaeche-leise);
+  border-radius: var(--rund);
+  padding: 1rem 1.25rem;
+}
+
+:root[data-design="klar"] .fliesstext > h2 {
+  margin-top: 3rem;
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="klar"] .fliesstext > h3 {
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="klar"] .beitrag__bild figcaption {
+  border-left: 0;
+  padding-left: 0;
+}
+
+:root[data-design="klar"] .fliesstext a {
+  font-weight: 500;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+}
+
+:root[data-design="klar"] .fliesstext a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons im Fließtext: .fliesstext a färbt sonst auch sie wie einen Link
+   (im Dunkelmodus gelb auf gelb in main.css). Schrift wie bei Buttons. */
+:root[data-design="klar"] .fliesstext a.btn {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--schrift);
+}
+
+:root[data-design="klar"] .fliesstext a.btn--akzent {
+  color: var(--aktion-schrift);
+}
+
+:root[data-design="klar"] .fliesstext a.btn:hover {
+  text-decoration: underline;
+}
+
+:root[data-design="klar"] .fliesstext th,
+:root[data-design="klar"] .fliesstext td {
+  border: 1px solid var(--rand);
+  padding: 0.5rem 0.75rem;
+}
+
+@media (max-width: 640px) {
+  :root[data-design="klar"] .fliesstext th,
+  :root[data-design="klar"] .fliesstext td {
+    padding: 0.25rem 0.5rem;
+    /* Notbremse für lange Fachwörter: erst Silbentrennung, dann Umbruch im Wort,
+       statt die ganze Seite seitwärts zu verschieben. */
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+}
+
+:root[data-design="klar"] .fliesstext hr {
+  border-top: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .zeitgruppe__titel {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* ---------- Kleine Bausteine ---------- */
+
+:root[data-design="klar"] .chip {
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-ui);
+  font-weight: 500;
+  min-height: 3rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+:root[data-design="klar"] .chip span {
+  font-size: var(--t-s);
+  color: var(--grau);
+}
+
+:root[data-design="klar"] .chip,
+:root[data-design="klar"] .hero__punkte li {
+  border-width: 1px;
+}
+
+/* Zweittext in Karten und Listen: 18 px statt 16 px – für diese Zielgruppe
+   ist 16 px die Untergrenze, nicht der Normalfall. */
+:root[data-design="klar"] .karte__text,
+:root[data-design="klar"] .service p,
+:root[data-design="klar"] .zeile__beschreibung,
+:root[data-design="klar"] .infozeile__text,
+:root[data-design="klar"] .instabeitrag__text {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="klar"] .chip--klein {
+  min-height: 0;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="klar"] .chip--akzent,
+:root[data-design="klar"] .chip:active {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .marke,
+:root[data-design="klar"] .chip[data-kategorie="teilzeitschularten"],
+:root[data-design="klar"] .marke[data-kategorie="teilzeitschularten"] {
+  transform: none;
+}
+
+:root[data-design="klar"] .marke {
+  border: 0;
+  border-radius: 4px;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}
+
+:root[data-design="klar"] .karte__koerper .marke {
+  align-self: flex-start;
+}
+
+:root[data-design="klar"] .meta time {
+  border: 0;
+  border-radius: 4px;
+  padding: 0.125rem 0.5rem;
+}
+
+/* Schaltfläche. Zustände: Standard, Hover (Unterstreichung + zweiter innerer
+   Rand), Fokus (siehe oben), Aktiv (dritter Rand), Deaktiviert (main.css). */
+:root[data-design="klar"] .btn {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  line-height: 1.25;
+  min-height: 3rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--rund);
+  box-shadow: none;
+  white-space: normal;
+}
+
+:root[data-design="klar"] .btn:hover,
+:root[data-design="klar"] .btn--klein:hover {
+  transform: none;
+  box-shadow: inset 0 0 0 2px currentColor;
+  text-decoration: underline;
+}
+
+:root[data-design="klar"] .btn:active {
+  transform: none;
+  box-shadow: inset 0 0 0 3px currentColor;
+}
+
+/* Primäraktion: gefüllt in Clean-Blau (hell) bzw. hellem Blau (dunkel). */
+:root[data-design="klar"] .btn--akzent {
+  background: var(--aktion);
+  color: var(--aktion-schrift);
+  border-color: var(--aktion);
+}
+
+:root[data-design="klar"] .btn--klein {
+  font-size: var(--t-s);
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .linkpfeil {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  border-bottom-width: 3px;
+}
+
+:root[data-design="klar"] .anzahl {
+  font-size: var(--t-xs);
+  vertical-align: 0.4em;
+}
+
+/* Kleine Textlinks: die sichtbare Fläche bleibt, die Treffläche wächst
+   unsichtbar auf mindestens 44 px Höhe. */
+:root[data-design="klar"] .leiste__schnell a,
+:root[data-design="klar"] .brotkrumen a,
+:root[data-design="klar"] .zurueck a,
+:root[data-design="klar"] .linkpfeil {
+  position: relative;
+}
+
+:root[data-design="klar"] .leiste__schnell a::after,
+:root[data-design="klar"] .brotkrumen a::after,
+:root[data-design="klar"] .zurueck a::after,
+:root[data-design="klar"] .linkpfeil::after {
+  content: "";
+  position: absolute;
+  inset: -0.5rem -0.5rem;
+}
+
+:root[data-design="klar"] .hinweiszeile {
+  font-size: var(--t-s);
+}
+
+/* ---------- Kopf, Leiste, Menü ---------- */
+
+:root[data-design="klar"] .leiste {
+  font-size: var(--t-xs);
+}
+
+:root[data-design="klar"] .leiste__innen {
+  padding-block: 0.25rem;
+}
+
+:root[data-design="klar"] .leiste__schnell a {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  border-bottom-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .marke-link:hover img {
+  transform: none;
+}
+
+:root[data-design="klar"] .menue ul a {
+  font-size: var(--t-ui);
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+:root[data-design="klar"] .menue ul.menue__tafel a {
+  font-size: var(--t-s);
+  font-weight: 400;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+:root[data-design="klar"] .menue__abteilung {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  padding: 1rem 1rem 0.25rem;
+}
+
+:root[data-design="klar"] .menueknopf,
+:root[data-design="klar"] .modusknopf {
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+/* Farbmodus-Knopf in der Kopfleiste: Zeigeziel mindestens 44 px. */
+:root[data-design="klar"] .modusknopf--leiste {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+:root[data-design="klar"] .menueknopf:active,
+:root[data-design="klar"] .modusknopf:active {
+  transform: none;
+}
+
+/* Dropdowns ab 1200 px: dieselbe Struktur (Hover und Tastaturfokus), aber
+   sie bleiben kurz sichtbar, wenn der Zeiger die Fläche schräg verlässt. */
+@media (min-width: 1200px) {
+  :root[data-design="klar"] .menue ul.menue__tafel {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid var(--rand-leise);
+    border-radius: var(--rund);
+    box-shadow: 0 8px 24px rgba(17, 24, 39, 0.16);
+    transition: opacity 0.12s ease 0.35s, visibility 0s linear 0.47s;
+  }
+  :root[data-design="klar"] .menue__gruppe:hover > ul.menue__tafel,
+  :root[data-design="klar"] .menue__gruppe:focus-within > ul.menue__tafel {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+  /* Wechselt der Zeiger zu einer anderen Kategorie, schließt die alte sofort. */
+  :root[data-design="klar"] .menue > ul:has(.menue__gruppe:hover) .menue__gruppe:not(:hover):not(:focus-within) > ul.menue__tafel {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0s;
+  }
+}
+
+@media (max-width: 1199px) {
+  :root[data-design="klar"] .menue ul a {
+    font-size: var(--t-m);
+    border-radius: 0;
+  }
+  :root[data-design="klar"] .menue ul.menue__tafel a {
+    font-size: var(--t-m);
+  }
+}
+
+/* Handy: „Krankmelden“ im Kopf bleibt schmal, sonst läuft die Zeile über. */
+@media (max-width: 640px) {
+  :root[data-design="klar"] .krankmelden-knopf {
+    font-size: var(--t-s);
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  :root[data-design="klar"] .marke-link img {
+    height: 2.5rem;
+  }
+  :root[data-design="klar"] .kopf__innen {
+    gap: 0.75rem;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+:root[data-design="klar"] .hero {
+  background: var(--papier2);
+  color: var(--schrift);
+  padding-block: clamp(3rem, 6vw, 6rem);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* main.css hält den Hero im dunklen Modus gelb und setzt dafür eigene Tokens
+   (schwarze Schrift, harte Schatten). Hier erbt der Hero die Tokens der Seite. */
+:root[data-design="klar"][data-design="klar"] .hero {
+  --flaeche: inherit;
+  --schrift: inherit;
+  --grau: inherit;
+  --rand: inherit;
+  --schatten-farbe: inherit;
+  --orange-tief: inherit;
+  --rahmen: inherit;
+  --schatten: inherit;
+  --schatten-klein: inherit;
+}
+
+:root[data-design="klar"] .hero__titel,
+:root[data-design="klar"] .hero__unter {
+  color: var(--schrift);
+}
+
+:root[data-design="klar"] .hero__titel::after {
+  width: 96px;
+  height: 4px;
+}
+
+:root[data-design="klar"] .hero__unter {
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+}
+
+:root[data-design="klar"] .hero__marke {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--grau);
+  font-size: var(--t-ui);
+  font-weight: 500;
+  padding: 0;
+}
+
+:root[data-design="klar"] .hero__ticket {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .hero__ticket-datum {
+  color: var(--primaer-text);
+}
+
+:root[data-design="klar"] .hero__ticket:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .hero__ticket-label {
+  font-weight: 500;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="klar"] .hero__punkte li,
+:root[data-design="klar"] .hero__punkte li:nth-child(odd),
+:root[data-design="klar"] .hero__punkte li:nth-child(even) {
+  transform: none;
+  padding: 0;
+  border-radius: var(--rund);
+  box-shadow: none;
+  font-size: var(--t-ui);
+  font-weight: 500;
+}
+
+:root[data-design="klar"] .hero__punkte li:hover,
+:root[data-design="klar"] .hero__punkte li:focus-within {
+  box-shadow: inset 0 0 0 2px var(--rand);
+}
+
+:root[data-design="klar"] .hero__punkte a:hover {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+}
+
+:root[data-design="klar"] .hero__punkte a {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+:root[data-design="klar"] .hero__bild img {
+  transform: none;
+  box-shadow: none;
+  border: 1px solid var(--rand-leise);
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  :root[data-design="klar"] .hero__bild img {
+    box-shadow: none;
+  }
+}
+
+/* ---------- Karten, Service, Zeilen, Kästen ---------- */
+
+:root[data-design="klar"] .karte {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+:root[data-design="klar"] .karte:hover,
+:root[data-design="klar"] .karte:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .karte__bild {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .karte:hover .karte__bild img,
+:root[data-design="klar"] .karte:focus-within .karte__bild img {
+  transform: none;
+}
+
+:root[data-design="klar"] .karte__koerper {
+  gap: 1rem;
+}
+
+/* Meldungs-Blöcke: ein neutraler Ton statt Gelb, Orange und Blau reihum. */
+:root[data-design="klar"] .karte__block,
+:root[data-design="klar"] .raster--news .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="klar"] .raster--3 .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="klar"] .raster--news .karte:nth-child(3n) .karte__block,
+:root[data-design="klar"] .raster--3 .karte:nth-child(3n) .karte__block {
+  --block-flaeche: var(--papier2);
+  --block-schrift: var(--schrift);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .karte__aktion {
+  font-size: var(--t-ui);
+  font-weight: 600;
+  border-bottom: 3px solid var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .karte__link:hover .karte__titel,
+:root[data-design="klar"] .karte__link:focus-visible .karte__titel {
+  text-decoration-color: var(--primaer-akzent);
+  text-decoration-thickness: 3px;
+}
+
+:root[data-design="klar"] .service,
+:root[data-design="klar"] .serviceliste .service:nth-child(3n + 1),
+:root[data-design="klar"] .serviceliste .service:nth-child(3n + 2),
+:root[data-design="klar"] .serviceliste .service:nth-child(3n) {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .service:hover,
+:root[data-design="klar"] .service:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .service h3 {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="klar"] .zeile {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .zeile:hover,
+:root[data-design="klar"] .zeile:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .zeile__titel {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="klar"] .kasten {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+/* Keine Karte in der Karte: Download-Zeilen im Kasten werden zu
+   Zeilen mit Trennlinie, der Kasten bleibt die einzige Fläche. */
+:root[data-design="klar"] .kasten .zeile {
+  border: 0;
+  border-bottom: 1px solid var(--rand-leise);
+  border-radius: 0;
+  padding-inline: 0;
+  padding-block: 1rem;
+}
+
+:root[data-design="klar"] .kasten .zeile:last-child {
+  border-bottom: 0;
+}
+
+:root[data-design="klar"] .kasten .zeile:hover,
+:root[data-design="klar"] .kasten .zeile:focus-within {
+  border-color: transparent;
+  border-bottom-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .kasten h2 {
+  font-size: var(--t-s);
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .kasten__kontakt {
+  border-top: 1px solid var(--rand-leise);
+}
+
+/* „kasten--gelb“ erzwang weiße Innenflächen und schwarze Schrift; hier erbt
+   der Inhalt die Tokens der Seite, die Fläche selbst ist ein neutraler Ton. */
+:root[data-design="klar"] .kasten--gelb {
+  --flaeche: inherit;
+  --schrift: inherit;
+  --grau: inherit;
+  --rand: inherit;
+  --schatten-farbe: inherit;
+  --link: inherit;
+  --orange-tief: inherit;
+  --rahmen: inherit;
+  --schatten: inherit;
+  --schatten-klein: inherit;
+  background: var(--papier2);
+  color: var(--schrift);
+}
+
+:root[data-design="klar"] .hinweis {
+  border: 1px solid var(--hinweis-rand);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .hinweis__titel {
+  color: var(--schrift);
+}
+
+:root[data-design="klar"] .hinweis p {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="klar"] .infozeile {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .infozeile__titel {
+  font-size: var(--t-h3);
+}
+
+:root[data-design="klar"] .konten__titel {
+  font-size: var(--t-ui);
+}
+
+/* ---------- Bilder ---------- */
+
+:root[data-design="klar"] .bild img,
+:root[data-design="klar"] .seitenleiste__bild img,
+:root[data-design="klar"] .beitrag__lupe img,
+:root[data-design="klar"] .schulleben img {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .schulleben li:nth-child(3n + 1) img,
+:root[data-design="klar"] .schulleben li:nth-child(3n + 3) img {
+  transform: none;
+}
+
+:root[data-design="klar"] .lupe__plakette {
+  border: 2px solid var(--tinte);
+  border-radius: 4px;
+  box-shadow: none;
+  font-size: var(--t-s);
+}
+
+:root[data-design="klar"] .beitrag__lupe:hover .lupe__plakette,
+:root[data-design="klar"] .beitrag__lupe:focus-visible .lupe__plakette {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .video__knopf {
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .video__knopf:hover,
+:root[data-design="klar"] .video__knopf:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .video__zeichen {
+  box-shadow: none;
+}
+
+/* ---------- Navigationshilfen ---------- */
+
+:root[data-design="klar"] .sprungleiste__label {
+  color: var(--primaer-text);
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="klar"] .sprungleiste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+:root[data-design="klar"] .brotkrumen ol,
+:root[data-design="klar"] .zurueck a {
+  font-size: var(--t-s);
+  font-weight: 500;
+}
+
+/* ---------- Startseite: Termine, Instagram, Partner ---------- */
+
+:root[data-design="klar"] .kalender,
+:root[data-design="klar"] .kalenderliste li:nth-child(3n + 2) .kalender,
+:root[data-design="klar"] .kalenderliste li:nth-child(3n) .kalender {
+  --kalender-flaeche: var(--flaeche);
+  --kalender-schrift: var(--schrift);
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .kalender:hover,
+:root[data-design="klar"] .kalender:focus-visible {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .kalender__name {
+  font-size: var(--t-ui);
+}
+
+:root[data-design="klar"] .kalender__aktion {
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="klar"] .instabeitrag {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+:root[data-design="klar"] .instabeitrag:hover,
+:root[data-design="klar"] .instabeitrag:focus-within {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+:root[data-design="klar"] .instabeitrag__bild {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+:root[data-design="klar"] .instabeitrag__plakette,
+:root[data-design="klar"] .instaraster li:nth-child(4n + 2) .instabeitrag__plakette,
+:root[data-design="klar"] .instaraster li:nth-child(4n + 3) .instabeitrag__plakette {
+  transform: none;
+  box-shadow: none;
+  border: 2px solid var(--tinte);
+  border-radius: var(--rund);
+}
+
+:root[data-design="klar"] .partnergitter__kachel {
+  border: 1px solid var(--rand-leise);
+  border-radius: var(--rund);
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .partnergitter__kachel:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--primaer-akzent);
+}
+
+/* ---------- Fuß ---------- */
+
+:root[data-design="klar"] .fuss {
+  border-top: 1px solid var(--fuss-linie);
+}
+
+:root[data-design="klar"] .fuss__titel {
+  font-size: var(--t-s);
+  border-bottom: 1px solid var(--fuss-linie);
+}
+
+/* ---------- Gestaltungswahl ---------- */
+
+:root[data-design="klar"] .stilwahl {
+  gap: 0.5rem;
+}
+
+:root[data-design="klar"] .stilwahl__label {
+  color: var(--text-leise);
+  font-weight: 500;
+}
+
+:root[data-design="klar"] .stilwahl__auswahl {
+  min-height: 2.75rem;
+  border: 1px solid var(--rand);
+  border-radius: 8px;
+  padding: 0.4rem 2rem 0.4rem 0.75rem;
+  background: var(--flaeche);
+  color: var(--schrift);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+:root[data-design="klar"] .stilwahl__auswahl:focus-visible {
+  outline-width: 4px;
+  outline-offset: 4px;
+}
+
+:root[data-design="klar"] .stilwahl__pfeil {
+  right: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+:root[data-design="klar"] .stilwahl--menue {
+  border-bottom: 1px solid var(--rand-leise);
+}
+
+/* ---------- Druck: immer hell, auch wenn der dunkle Satz aktiv ist ---------- */
+
+@media print {
+  :root[data-design="klar"] {
+    --papier: #ffffff !important;
+    --papier2: #f3f4f6 !important;
+    --flaeche: #ffffff !important;
+    --schrift: #000000 !important;
+    --grau: #333333 !important;
+    --rand: #000000 !important;
+    --link: #1e40af !important;
+    --orange-tief: #1e40af !important;
+    --rand-leise: #999999 !important;
+    --linie: #999999 !important;
+    --hinweis-flaeche: #ffffff !important;
+    --fuss-flaeche: #ffffff !important;
+    color-scheme: light;
+  }
+}

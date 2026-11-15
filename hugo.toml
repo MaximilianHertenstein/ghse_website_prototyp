@@ -39,6 +39,23 @@ disableKinds = ["taxonomy", "term"]
   fax = "07641 465 199"
   mail = "poststelle@ghse.de"
 
+  # Zwei Gestaltungsvarianten derselben Seiten. Die erste ist der Standard
+  # (main.css, ohne data-design); jede weitere bringt eine eigene, auf
+  # data-design="<id>" begrenzte CSS-Datei mit. Ein drittes Theme braucht
+  # nur einen weiteren Eintrag hier, seine CSS-Datei und – falls nötig –
+  # ein Schriften-Partial.
+  design = "neobrutalismus"
+  [[params.designs]]
+    id = "neobrutalismus"
+    name = "Neobrutalismus"
+    kurz = "Neo"
+  [[params.designs]]
+    id = "klar"
+    name = "Klar"
+    kurz = "Klar"
+    css = "css/klar.css"
+    fonts = "schriften-klar.html"
+
 # Adressen im Fließtext bleiben Text: Der Originalseite stehen dort die
 # Webadressen als Klartext, und ein paar davon zeigen längst ins Leere.
 # Links entstehen deshalb nur noch aus ausgeschriebenen Markdown-Zielen,

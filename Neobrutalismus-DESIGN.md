@@ -1,0 +1,281 @@
+---
+name: GHSE Neobrutalismus
+colors:
+  primary: "#F6DC56"
+  secondary: "#114C92"
+  success: "#1A9C5A"
+  warning: "#EE7330"
+  danger: "#B8430F"
+  surface: "#FFFFFF"
+  text: "#000000"
+  neutral: "#FFFFFF"
+typography:
+  h1:
+    fontFamily: "Inter"
+    fontSize: 2.1rem
+  body-md:
+    fontFamily: "Inter"
+    fontSize: 1.0625rem
+  label-caps:
+    fontFamily: "Inter"
+    fontSize: 0.8125rem
+  sourceScale: "13/15/17/19/27/34/43/77 px"
+  weights: "100–900 (variable)"
+rounded:
+  sm: 0
+  md: 0
+spacing:
+  sm: 4px
+  md: 8px
+  sourceScale: "4/8/12/16/24/32/48/64/80"
+---
+
+## Überblick
+
+Standardvariante der Website: Neobrutalismus mit den Farben des GHSE-Logos –
+schwarze Konturen, harte Schatten, weißes Papier und Gelb, Orange und Blau
+als Akzente. Die Typografie ist eine einzige variable Inter-Datei in den
+Schnitten 100 bis 900.
+
+Die zweite Variante **Klar** (Clean) steht in `clean-DESIGN.md`; Umschaltung
+und ein mögliches drittes Theme beschreibt `DESIGN.md`.
+
+## Grundlagen
+
+- **Stil:** klar, kontrastreich, flächig; keine Verläufe, keine Rundungen,
+  keine Muster.
+- **Schrift:** Inter (variabel, selbst gehostet), Fließtext 1,0625 rem,
+  H1 `clamp(2.1rem, 4.6vw, 3.5rem)`, H2 `clamp(1.7rem, 3.4vw, 2.6rem)`.
+- **Gewichte:** 400 für Text, 700/800 für Labels, 900 für Überschriften.
+- **Farben:** Logo-Gelb `#F6DC56` (246, 220, 86), Logo-Orange `#EE7330`
+  (238, 115, 48) und Blau `#114C92` (Mitte zwischen (34, 45, 113) und
+  (0, 106, 180)); dunkles Navy bleibt aus großen Flächen heraus. Tieforange `#B8430F` für
+  Fokusringe und Warnungen, Schwarz/Weiß als Basis.
+- **Abstände:** 4/8/12/16/24/32/48/64/80 px, Container 1180 px,
+  Fließtext 60ch (rund 78 Zeichen), Einleitung 40ch (rund 77 Zeichen);
+  Einzelseiten 760 px.
+- **Zeilenumbruch:** Überschriften `text-wrap: balance`, Absätze
+  `text-wrap: pretty`; so bleiben keine einzelnen Wörter („Seiten).")
+  am Zeilenende stehen und Überschriften brechen nicht in eine
+  Restzeile mit einem Wort.
+
+## Flächen und Farbe
+
+- Neutrale Grundflächen bleiben im Light Mode weiß. Im Dark Mode wird das
+  Papier schwarz; Karten, Zeilen und Knöpfe liegen auf `#222222`, damit
+  weiße Kontur und harter Schatten als Relief lesbar bleiben. Hero und
+  Termine setzen GHSE-Gelb und helles Blau als gezielte Vollflächen ein;
+  Schularten liegen auf der Grundfläche.
+- Der Hero bleibt in beiden Modi die gelbe Markenfläche: Abschluss-Chips
+  und Schulnamen-Badge sind dort weiß mit schwarzer Kontur, schwarzem
+  Schatten und schwarzer Schrift – nie weißer Schatten auf Gelb.
+- Gelb markiert Aktionen und Marker, Orange Struktur (Kategorien,
+  Linien, Unterstreichungen), helles Blau Links und einzelne
+  Sekundäraktionen.
+- Schwarze 3-px-Rahmen und harte Schatten (Karten 8 px, übrige 6 px,
+  klein 4 px) tragen die Kontur; Fokusringe sind 3 px tieforange mit
+  3 px Abstand.
+- Dark Mode tauscht nur die Tokens (`--papier`, `--schrift`, `--rand`,
+  `--link` …), nicht die Regeln. Gelbe Flächen behalten dunkle Schrift.
+
+## Komponenten (Anatomie, Varianten, Zustände)
+
+- **Hero:** gelbe Vollfläche mit schwarzer Überschrift
+  mit orangem Abschlussbalken, kontrastierendem Schulnamen-Badge und
+  leicht schräg stehenden Abschluss-Chips; das Foto steht gekippt wie ein
+  aufgeklebter Abzug mit dynamischem Rahmen und orangem Versatzschatten
+  (12 px). Das Termin-Ticket trägt eine orange Anschlagkante links. Die
+  Abschluss-Chips beginnen an derselben Flucht wie Badge, H1 und Text und
+  bleiben leicht gedreht. Sie stehen in der Textspalte, damit sie auf dem
+  Telefon zwischen Leitsatz und Foto erscheinen. Der Hero bleibt
+  inhaltshoch; auf dem Telefon wird das Foto auf 13 rem Höhe beschnitten,
+  damit die Chips im ersten Bild bleiben. Die Wege führen über
+  Kopfnavigation, Sektionen und den „Alle Schularten"-Knopf.
+- **Schulart-Kopf:** Brotkrumen, H1 und Lead. Kein Kategorie-Etikett über
+  der H1; die Einordnung (Vollzeit/Teilzeit) steht als Fakt „Schulart" in
+  „Auf einen Blick" in der Seitenleiste und wird dort nicht doppelt
+  wiederholt.
+- **Sektionsköpfe (`kopfzeile`):** die H2 steht allein auf der
+  Containerkante und trägt einen 6-px-Unterstrich in Orange – auf dem
+  blauen Band in Gelb (Kontrast). Kein Kicker darüber: die Überschrift
+  benennt die Sektion selbst, ein Zusatz gehört in ihren Wortlaut
+  („Termine im Schuljahr").
+- **Knöpfe (`btn`):** Varianten `--akzent` (gelb), `--geist`
+  (transparent, schwarze Kontur), `--klein` (z. B. in Download-Zeilen und
+  Hinweisen). Zustände: hover hebt 3 px, `:active` drückt auf den
+  Schatten, disabled über `aria-disabled`. Label ist ein Verb mit Ziel
+  („Alle Schularten", „Mehr erfahren →"), nie „Hier klicken".
+- **Chips (`chip`):** kleine Großbeschriftung; `--akzent` (gelbe Fläche,
+  leichte Schräglage) für Hauptpfade, `--ruhig` für Sekundäres, `--klein`
+  in Meta-Zeilen. Teilzeit orange, Vollzeit gelb (über `data-kategorie`).
+  Die Account-Chips der Startseite stehen in einem `auto-fit`-Raster und
+  füllen ihre Zelle.
+- **Karten (`karte`):** `karte__bild` (16:10, unten Rahmen), `karte__koerper`
+  mit Marke, Titel als einzigem Link (`karte__link`), Text und Aktion;
+  hover/:focus-within hebt 4 px auf einen 12-px-Schatten, das Bild zoomt
+  auf 1,03, Fokusring über `:has()`. Varianten: `--gross` (erste Meldung), `--text` (ohne Bild),
+  `--news`. Die Aktion („Mehr erfahren") trägt die Akzentfarbe der Karte
+  als 4-px-**Unterstrich**, nicht als Textfarbe – Gelb auf Weiß ist
+  1,37:1, Orange 2,95:1, als Text unlesbar. Bei ungerader Kartenzahl in
+  zwei Spalten rückt die letzte Karte mittig unter die Reihe und behält
+  die Breite ihrer Nachbarn; im Fließtext behält die Kartenüberschrift
+  die Kartenfarbe (der Prosa-Link färbt sie nicht blau).
+- **Service-Karten (`service`):** Akzentkante oben, reihum Gelb, Orange,
+  Blau; hover/:focus-within hebt 3 px.
+- **Zeilen (`zeile`, Downloads):** Titel, Metadaten (Tabellenziffern),
+  Aktion rechts; Textspalte max 60ch, unter 640 px Vollbreite mit vollem
+  Knopf.
+- **Bilder im Fließtext (`bild`, Shortcode):** 26rem breit (gut zwei Drittel
+  der Lesespalte), zentriert, schwarzer Rahmen mit Versatzschatten;
+  `breite="voll"` über die ganze Lesespalte. Stehen mehrere Bilder
+  unmittelbar nebeneinander, ordnet sie das Raster der Liste
+  (`.fliesstext ul:has(> li .bild)`) nebeneinander an – ab 15rem
+  Spaltenbreite zwei Spalten, sonst untereinander; die Pfeilzeichen der
+  Aufzählung entfallen dort. Die natürliche Breite steht als Variable
+  (`--breite`) im Bild: kleine Originale (Porträts, Logos) werden nicht
+  hochskaliert, und die Größe ist vor dem Laden bekannt, damit der Text
+  beim Nachladen nicht springt. Gallerien mit Bildunterschrift nutzen
+  `bilder` (Front Matter), alle Bilder 4:3 im Raster; unter 640 px steht
+  die Beschriftung eine Stufe kleiner (`--t-s`), damit lange Namen in der
+  zweispaltigen Galerie nicht mitten im Wort brechen.
+- **Hinweise (`hinweis`, Shortcode):** blasse Gelbfläche
+  (`--hinweis-flaeche`), Titel fett in Tieforange, optional ein
+  `btn--geist btn--klein` mit Ziel; Variante `--warnung` (rote Fläche,
+  Tieforange-Rand).
+- **Kalender-Karten (`kalender`):** Name plus Aktionsspalte; ganzflächig
+  klickbar, hover/focus heben 3 px auf einen 8-px-Schatten. Die Aktion
+  trägt einen Unterstrich in der Kartenschrift und kippt bei hover in
+  einen invertierten Block (Schriftfarbe wird Fläche und umgekehrt) – ein
+  gelber Hover-Hintergrund läge auf der gelben Karte unsichtbar. Die neun
+  Karten tragen reihum Gelb, Orange und helles Blau – wie die
+  Schularten-Karten; Fläche und Schrift kommen aus denselben Variablen
+  (`--kalender-flaeche`, `--kalender-schrift`). Auf dem schwarzen Band
+  bleibt die blaue Karte mit weißer Schrift erhalten.
+- **Fuß (`fuss`):** folgt der Grundfläche des Farbmodus; Links und
+  Überschriften wechseln passend zwischen den dynamischen Fuß-Tokens
+  (`--fuss-flaeche`, `--fuss-titel`, `--fuss-link` …); die Spaltentitel
+  tragen einen 3-px-Unterstrich in der Fuß-Linienfarbe (Gelb).
+- **Video (`video`, Shortcode):** Breite der Lesespalte, schwarzer
+  Rahmen, gelber Play-Knopf auf dem Vorschaubild. Das Video selbst wird
+  erst beim Klick nachgeladen (`assets/js/video.js`) – ein
+  `<video>`-Element bringt den Mediaplayer mit und kostet rund 200 ms
+  Hauptthread-Zeit, auch ohne Abspielen. Ohne JavaScript bleibt das
+  Vorschaubild mit dem Link auf die Datei.
+- **Menü (Kopf):** acht Kategorien mit Tafeln; ab 1200 px aufklappend
+  (hover/`:focus-within`), darunter Panel mit einklappbaren Kategorien
+  (Pfeilknopf, `aria-expanded`). Aktiver Pfad als blauer Block mit weißer
+  Schrift (`aria-current="page"`).
+- **Werte-Quadrate (`wert__marke`, Shortcode):** reine Grafik, mit
+  `aria-hidden`; die Beschriftung daneben trägt die Aussage – Farbe allein
+  vermittelt keine Bedeutung. Sechs Farben, „Vielfalt" als Streifen.
+
+## Inhaltsseiten
+
+- **Gliederung:** H2 trägt einen 8-px-Balken links, H3 einen 4-px-Balken;
+  nur direkte Gliederungen des Fließtexts, nicht Überschriften in Karten,
+  Download-Zeilen oder Kästen – die Komponenten bringen eigene Größen und
+  Abstände mit.
+- **Tabellen:** 2-px-Raster, gelbe Kopfzeile, erste Spalte fett,
+  Tabellenziffern; unter 640 px eine Schriftstufe kleiner und 8 px
+  Zellenpolster horizontal.
+- **Seitenleiste:** Zwei Fassungen derselben Zusammenfassung. Die mobile
+  Kopie steht im Markup vor dem Fließtext und erscheint unter 1000 px;
+  die Desktop-Fassung steht danach und bleibt in der rechten Spalte.
+  Immer nur eine ist sichtbar – `display: none` hält die andere aus dem
+  Accessibility-Baum und aus der Tab-Reihenfolge.
+
+## Text und Ton
+
+- **Labels eindeutig:** Knöpfe und Links benennen das Ziel („Alle
+  Meldungen", „Mehr erfahren →"); Pfeile und ↗ als `aria-hidden`-Zier,
+  nicht als einzige Information.
+- **Sektionsköpfe:** keine Kicker über der Überschrift. Die H2 benennt
+  die Sektion; wo ein Zusatz nötig ist, steht er in ihrem Wortlaut
+  („Termine im Schuljahr") – kein Werbetext.
+- **Kurzfassungen:** erste Aussage der Quelle, bei Instagram mit „…"
+  gekappt, ohne Emojis und Hashtags; nichts erfinden, keine Zahlen
+  ergänzen, die die Quelle nicht nennt.
+- **Alt-Texte:** beschreiben das Bild für jemanden, der es nicht sieht
+  (Konstellation, Schriftzüge wörtlich), statt „Bild" oder Dateiname.
+
+## Responsiv
+
+- **Ab 1200 px:** Dropdown-Tafeln im Kopfmennü (CSS-only, hover und
+  `:focus-within`), Zeile und Adresse sichtbar.
+- **Unter 1199 px:** die Navigation wird zum Aufklappmenü (`.menueknopf`,
+  Panel mit `aria-expanded`, scrollbar, `overscroll-behavior: contain`).
+- **Unter 1000 px:** Karten- und Zeilenraster stapeln; Hero einspaltig,
+  Bild versetzt den Schatten nach unten. Die mobile Kopie der Seitenleiste
+  erscheint vor dem Fließtext; die Desktop-Sidebar wird ausgeblendet.
+- **Unter 900 px:** Adressleiste aus, Kopfhöhe schrumpft auf 4,5 rem,
+  Schnellzugriff wandert ins Menüpanel, Modusknopf ohne Schrift.
+- **Unter 640/560 px:** Typo-Skala abschwächen (Fließtext 1,02 rem),
+  Hero-Foto auf 13 rem begrenzt, Karten-, Zeilen-, Kalender- und Fußraster
+  einspaltig, Buttons mehrzeilig fähig (`white-space: normal`) und
+  aktionsbreit, Wertequadrat-Raster einspaltig; Touch-Ziele bleiben
+  ≥ 44 px.
+- **Kantenfälle:** Raster mit `minmax(0, 1fr)` (kein Überlauf durch lange
+  Wörter), Buttons umbrechen mehrzeilig statt zu kneifen, Longtexte über
+  `text-wrap: balance` in Überschriften. Geprüft von `qa/reflow.py`
+  (alle Seiten × 11 Breiten) und `qa/layout.py` (1440/640/390).
+
+## Zustände (Pflicht für jedes interaktive Element)
+
+- **default / hover:** Hover hebt das Element und lässt den Schatten
+  weiter stehen – Stärke je nach Komponente: Knöpfe 3 px, Karten 4 px,
+  Kalender/Instagram 3 px, Partner 2 px; `:active` drückt auf den Schatten
+  (`translate(4px, 4px)`, Schatten aus). Nicht nur die Farbe ändern.
+  Hover-Regeln liegen unter `@media (hover: hover)`; auf Touch bleiben
+  Ruhezustand und `:focus-within`/`:focus-visible` sichtbar.
+- **focus-visible:** 3 px Ring mit 3 px Abstand. Auf Papier und Fläche
+  Tieforange (`--orange-tief`), auf dem blauen Band Gelb, auf Gelb Tinte –
+  der Ring muss gegen die Fläche 3:1 erreichen.
+- **Modusknopf:** führt die sichtbare Zielbeschriftung („Dunkel"/„Hell")
+  im zugänglichen Namen und meldet den Zustand über `aria-pressed`.
+- **disabled:** `.btn:disabled` und `[aria-disabled="true"]` senken das
+  Erscheinungsbild ohne Grau-in-Grau-Kontrastverlust; Kontrollelemente
+  zusätzlich per `disabled`/`aria-disabled` aus dem Fokus nehmen.
+- **geöffnet (Mobilmenü):** `aria-expanded` am Knopf, `aria-controls` auf
+  das Panel; der Zustand hängt am Element, nicht an einer Klasse allein.
+
+## Barrierefreiheit (prüfbare Kriterien)
+
+- Textkontrast ≥ 4,5:1, Grafik ≥ 3:1 in beiden Farbmodi – geprüft von
+  `qa/kontrast.py` gegen die Tokens des Stylesheets (nicht gegen Kopien).
+- Touch-Ziele ≥ 44 px (`qa/layout.py`), Tastaturpfad über die Sprungleiste,
+  Fokus sichtbar an jedem interaktiven Element; der Ring erreicht gegen
+  Papier, Blau und Gelb mindestens 3:1.
+- `prefers-reduced-motion`: Bewegungen (Hover-Drehungen, Smooth-Scroll)
+  abgeschaltet; Bilder mit beschreibendem `alt`, dekorative mit `alt=""`.
+
+## Anti-Patterns
+
+- Farben ohne Token („mal eben“ ein Hexwert in einer Komponente) – neue
+  Farben kommen in `:root`/den dunklen Satz, sonst schweigt `kontrast.py`.
+- Runde Ecken, Verläufe, weiche Schatten – der Stil lebt von Kante und
+  hartem Schatten.
+- Grau-auf-Grau-Sekundärtext: Sekundärtext steht in `--grau` nur auf
+  Papier/Fläche, nie auf farbigen Flächen.
+- Farbige Vollflächen-Bänder als Sektionshintergrund – Flächenfarbe gehört
+  der Komponente (Chip, Knopf, Kasten), nicht der Sektion.
+
+## QA-Checkliste (vor jedem Commit)
+
+1. `hugo` baut ohne Warnung.
+2. `python3 qa/kontrast.py` → 0 Fehler (Hell und Dunkel).
+3. `python3 qa/linkcheck.py` → 0 Fehlschläge; `python3 qa/extlinkcheck.py`
+   vor Veröffentlichung.
+4. `python3 qa/layout.py` → 0 Fehler (Anker, Sprungleiste, Touch-Ziele).
+5. `python3 qa/reflow.py` → 0 Überlauf über alle Seiten und Breiten.
+6. Lighthouse mobil ≥ 98 Performance, 100 A11y/SEO
+   (`tools/preview-server.py` als Server, kein Parallel-Chromium).
+7. Nach Token-Änderungen: Dark-Mode-Sichtprobe – Kopie von `public/` mit
+   `data-theme="dark"` am `<html>` ansehen (Achtung: `nav.js` setzt den
+   Modus am laufenden Dokument, im Testkopie den Anfangs-`stelle()`-Aufruf
+   überspringen).
+8. `python3 qa/unterpfad.py` – derselbe Stand unter
+   `/ghse_website_prototyp/` (Bau mit `--baseURL`, dann Linkcheck, Reflow
+   und Layoutmessung im Wegwerf-Verzeichnis). Fängt genau die Fehler, die
+   unter "/" unsichtbar bleiben: Schriften und alle Inhalts-Links brechen
+   unter dem GitHub-Pages-Unterpfad, wenn ein Pfad nicht durch `relURL`
+   läuft.

@@ -26,6 +26,7 @@ __pycache__/
 # skills-lock.json bleibt als Manifest erhalten; die Skill-Dateien lassen
 # sich darüber neu installieren.
 /.agents/skills/design-taste-frontend/
+/.agents/skills/hallmark/
 /.taste-skill/
 /shots/
 

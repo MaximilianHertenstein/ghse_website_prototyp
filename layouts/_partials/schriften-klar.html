@@ -1,0 +1,13 @@
+{{- /* Schriften der Variante „klar“ (Design-System Clean): Roboto für Text,
+       Poppins für Überschriften. Die Dateien werden mit Hash veröffentlicht;
+       die @font-face-Regeln stehen auf jeder Seite, geladen wird eine Schrift
+       aber erst, wenn die Variante sie wirklich benutzt (font-display: swap).
+       Ein Preload würde beide Dateien auch Neo-Lesern aufzwingen und fehlt
+       deshalb bewusst. Zeichensatz wie bei Inter: Latin-Ausschnitt. */ -}}
+{{- $roboto := resources.Get "fonts/klar/roboto-var-latin.woff2" | fingerprint -}}
+{{- $poppins := resources.Get "fonts/klar/poppins-600-latin.woff2" | fingerprint -}}
+{{- $bereich := "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" -}}
+<style>
+@font-face{font-family:"Roboto";src:url({{ $roboto.RelPermalink }}) format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:{{ $bereich | safeCSS }}}
+@font-face{font-family:"Poppins";src:url({{ $poppins.RelPermalink }}) format("woff2");font-weight:600;font-style:normal;font-display:swap;unicode-range:{{ $bereich | safeCSS }}}
+</style>
