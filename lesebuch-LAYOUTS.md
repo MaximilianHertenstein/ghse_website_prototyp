@@ -46,15 +46,15 @@ RTL-Oberfläche (keine `dir="rtl"`-Seite), native Apps.
 | LOW | Skip-Link | Blauer Ring auf blauem Rücken (1,23:1) | Gelber Ring auf dem Rücken | 1.4.11; der Fokusring ist auch am ersten Stopp sichtbar |
 | LOW | `html` | Kein `scroll-padding` | `scroll-padding-block-start: calc(--kopfhoehe + .5rem)` | Fokus und Anker landen nicht unter dem klebenden Kopf |
 | LOW | Rücken | Kein sichtbarer Hinweis auf weiteren Inhalt | Dünner Scrollbalken + weiche Kante unten | better-layout: versteckter Inhalt braucht eine Spur |
+| — | Hero (Nutzerwunsch) | Schulname klein und unten, Bild 427 × 320 px | Schulname oben, 1,15–1,6 rem; Bild füllt die rechte Spalte (rund 520 × 565 px) | Der Einstieg sollte die Schule und den Ort sofort zeigen; Abstände im Kopf enger |
 
 ## Bewusste Entscheidungen
 
-- **Schulname als Impressum-Zeile:** `.hero__marke` steht im DOM vor dem
-  Titel (für Screenreader und die Faktenlage richtig), wird aber unter dem
-  Abschlussverzeichnis gezeigt (`order: 5`). Hallmark-Gate 58 verbietet drei
-  Textblöcke vor den Aktionen; der Name ist kein Einstiegstext, sondern eine
-  Impressum-Zeile. Der Eingriff ist nicht fokussierbar und ändert die
-  Tastaturreihenfolge nicht.
+- **Schulname als Masthead über dem Titel:** Auf ausdrücklichen Wunsch
+  steht der volle Schulname groß und oben (1,15–1,6 rem, Tinte,
+  Haarlinie). Hallmark 58 meldet dadurch drei Textblöcke vor den Aktionen
+  und führt das als Note (`copy: verbatim`), nicht als FAIL; der Name ist
+  keine Einstiegstextzeile, sondern der Name der Schule.
 - **Haarlinien als Gruppen:** Das Buch trägt seine Ordnung über Linien und
   Abstände; die Abstände zwischen Kapiteln sind trotzdem mindestens doppelt
   so groß wie die innerhalb eines Kapitels. Die Linien sind Verzeichnis-

@@ -1,6 +1,6 @@
 /* Hallmark · theme: custom · idea: "Die Schule als Lesebuch: blauer Rücken, Papier, Tafeln, Verzeichnis" · vibe: "gebunden, ruhig, konkret, vielseitig" · paper: mid #e3e5dd · ink: #171b18 · accent: #114c92 (Rücken) und #f6dc56 (Lesebändchen) · display: Piazzolla · body: Public Sans · hero: Ledge · nav: blauer Rücken als Verzeichnis · footer: Kolophon · posture: restrained · axes: mid/roman-serif/cool · copy: verbatim */
 /* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: H — der Rücken darf die Seite nicht überschreien; eine Fläche, eine gelbe Marke, keine weitere Farbe */
-/* Hallmark · waive 44c · custom hero: Tafel-Mitte 394 px, Titelblock-Mitte 399 px · der feste Rücken ersetzt die Kopfleiste */
+/* Hallmark · waive 44c · custom hero, die Tafel füllt den Textblock · die Schule und ihr Bild tragen den ersten Bildschirm */
 /* Hallmark · waive 79 · Ledge: der Fold ist der Hero-Fuß plus 104 px Bandabstand · eine Leseseite, kein Poster */
 /* Hallmark · waive 83 · own GHSE photographs, gemessen 17 % der Fläche unter dem Hero · sloplint teilt durch den 211-px-Rücken-Container */
 /* Hallmark · answered F7 · eine 1-px-Kante trägt Leseseite, Notizen und Formulare; Unterschiede macht die Schrift, nicht der Kasten */
@@ -670,20 +670,20 @@
    Etikett: normale Zeile, Haarlinie darunter, keine Versalien. */
 :root[data-design="lesebuch"] .hero__marke {
   display: block;
-  margin: 0 0 var(--lb-s6);
+  margin: 0 0 var(--lb-s5);
   padding: 0 0 var(--lb-s3);
   background: transparent;
-  color: var(--lb-leise);
+  color: var(--lb-tinte);
   border: 0;
   border-bottom: 1px solid var(--lb-linie);
   box-shadow: none;
   font-family: var(--lb-ui);
-  font-size: 0.9rem;
-  font-weight: 400;
-  line-height: 1.45;
-  letter-spacing: 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
   text-transform: none;
-  max-width: 46ch;
+  max-width: 44ch;
 }
 
 :root[data-design="lesebuch"] .hero__titel {
@@ -2957,5 +2957,85 @@
      Schnellzugriff wäre derselbe Link ein zweites Mal. */
   :root[data-design="lesebuch"] .menue__schnell .chip:first-child {
     display: none;
+  }
+}
+
+/* ---------- Feinschliff Hero (Nutzerwunsch) ----------
+   Der Schulname steht wieder oben und trägt als Masthead; das Bild füllt
+   die rechte Spalte in der Höhe des Textblocks. Der Kopf rückt enger
+   zusammen, damit der Einstieg höher beginnt. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .hero {
+    min-height: 0;
+    display: block;
+    padding-block: 2.25rem 3.25rem;
+  }
+
+  :root[data-design="lesebuch"] .hero__innen {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  :root[data-design="lesebuch"] .hero__marke {
+    order: 0;
+    max-width: 44ch;
+    margin: 0 0 1.25rem;
+    padding: 0 0 0.9rem;
+    color: var(--lb-tinte);
+    font-size: clamp(1.2rem, 1.9vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+
+  :root[data-design="lesebuch"] .hero__titel {
+    font-size: clamp(2.6rem, 4.6vw, 4rem);
+  }
+
+  :root[data-design="lesebuch"] .hero__bild {
+    display: flex;
+    align-self: stretch;
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  :root[data-design="lesebuch"] .hero__bild img {
+    width: 100%;
+    height: 100%;
+    min-height: 30rem;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: 50% 55%;
+  }
+
+  /* Kopf enger: weniger Luft zwischen Logo, Aktion, Schnellzugriffen,
+     Stilwahl und Verzeichnis. */
+  :root[data-design="lesebuch"] .kopf {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  :root[data-design="lesebuch"] .kopf__ende {
+    margin-top: 1.25rem;
+  }
+
+  :root[data-design="lesebuch"] .krankmelden-knopf {
+    margin-top: 1rem;
+  }
+
+  :root[data-design="lesebuch"] .menue {
+    margin-top: 1rem;
+  }
+
+  :root[data-design="lesebuch"] .menue ul a {
+    padding: 0.55rem 0.25rem 0.55rem 0.8rem;
+  }
+
+  :root[data-design="lesebuch"] .menue__schnell {
+    margin-bottom: 0.5rem;
+  }
+
+  :root[data-design="lesebuch"] .stilwahl--menue {
+    margin-bottom: 0.5rem;
   }
 }

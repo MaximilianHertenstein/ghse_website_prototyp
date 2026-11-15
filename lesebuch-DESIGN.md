@@ -103,8 +103,9 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
   gesteuert über den 44-px-Pfeilknopf; sie schweben nicht über der Seite.
   Der Rücken scrollt nur den Verzeichnisteil, die Leiste mit Kontakt,
   Schnellzugriffen, Stilwahl und Farbmodus bleibt unten stehen.
-- Der Schulname steht als Impressum-Zeile unter dem Abschluss-Verzeichnis,
-  nicht als Etikett über dem Titel.
+- Der Schulname steht als Masthead über dem Titel: 1,15–1,6 rem, Tinte,
+  Haarlinie darunter. Er ist kein Etikett, sondern der Name der Schule;
+  auf Wunsch der GHSE bewusst größer als in den anderen Varianten.
 - Ab 1200 px entfällt die obere Serviceleiste; ihre Aufgaben stehen in
   DOM-Reihenfolge im Rücken: Farbmodus, Krankmelden, Schnellzugriffe,
   Stilwahl, Verzeichnis. So folgen Lesefluss und Tastatur derselben
@@ -115,9 +116,10 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
 
 ### Seiten
 
-- **Startseite:** Titelseite mit H1, Leitsatz, Abschluss-Verzeichnis und
-  einer Tafel; danach Kapitel (Schularten, Instagram, Aktuelles, Termine,
-  Service, Schulleben, Partner). Die Abschluss-Links sind unterstrichen,
+- **Startseite:** Titelseite mit großem Schulnamen als Masthead, H1,
+  Leitsatz, Abschluss-Verzeichnis und einer Tafel, die die rechte Spalte
+  in der Höhe des Textblocks füllt; danach Kapitel (Schularten, Instagram,
+  Aktuelles, Termine, Service, Schulleben, Partner). Die Abschluss-Links sind unterstrichen,
   die Instagram-Beiträge stehen als vierteiliger Streifen, nicht als
   Posterwand.
 - **Seitenkopf:** Brotkrumen als leise Zeile, H1 in Piazzolla, Leitsatz in
