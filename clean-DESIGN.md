@@ -58,7 +58,7 @@ Rohwerte stehen nur im Token-Block am Anfang von `klar.css`. Alles Weitere benut
 | Akzent | `--primaer-akzent` | `#e2651f` | `#ee7330` | GHSE-Orange für Linien, Balken, Rahmen; **nie Text** (3,4:1 hell) |
 | Fokus | `--fokus` | `#b8430f` | `#ee7330` | Fokusringe (5,5:1 hell, 6,0:1 dunkel) |
 | Gelb | `--marke-gelb` / `--marke-gelb-hell` | `#f6dc56` / `#fff8d6` | `#f6dc56` / `#2a2610` | GHSE-Gelb als Kante (Fuß) und sehr blasse Fläche (Kästen, Hinweise) |
-| Hero | `--hero-flaeche` | `#fffaf0` | `#111827` | warmes Papier im Licht, dunkles Papier im Dunkeln |
+| Hero | `--hero-flaeche` | `#dde9f7` | `#111827` | helles GHSE-Blau im Licht, dunkles Papier im Dunkeln |
 | Hellfläche | `--primaer-hell` | `#dbeafe` | `#dbeafe` | Hover, Markierung, mit dunkler Schrift |
 | Aktion | `--aktion` / `--aktion-schrift` | `#114c92` / `#fff` | `#93c5fd` / `#111827` | Primärer Button |
 | Fläche | `--papier`, `--flaeche-leise` | `#fff`, `#f9fafb` | `#111827`, `#1f2937` | Seite, Hero, Karten im Dunkeln |

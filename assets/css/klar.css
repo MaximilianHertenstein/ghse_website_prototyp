@@ -29,7 +29,7 @@
   --fokus: #b8430f;              /* GHSE-Tieforange für Fokusringe (5,5:1) */
   --marke-gelb: #f6dc56;         /* GHSE-Gelb, nur als Fläche oder Kante */
   --marke-gelb-hell: #fff8d6;    /* sehr blasse Gelbfläche für Kästen */
-  --hero-flaeche: #fffaf0;       /* Hero: warmes Papier statt reinem Weiß */
+  --hero-flaeche: #dde9f7;      /* Hero: helles GHSE-Blau statt reinem Weiß */
   --text: #111827;               /* Clean: text */
   --text-leise: #4b5563;         /* Zweittext (7,6:1) */
   --flaeche-leise: #f9fafb;
