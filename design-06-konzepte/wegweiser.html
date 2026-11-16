@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konzept Wegweiser – GHSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#222D71; --blue:#006AB4; --orange:#EE7330; --yellow:#F6DC56;
+    --blue-900:#0B1638; --blue-800:#132451; --blue-700:#1B3A74; --blue-600:#22539A;
+    --white:#FFFFFF; --enamel:#F7F5EE; --ink:#0E1526; --soft:#4A5368;
+    --serif:"Archivo","Arial Narrow",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--blue-900);color:#fff;font-family:var(--serif);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  figure{margin:0}
+  .wrap{width:min(1200px,calc(100% - 56px));margin-inline:auto}
+
+  .top{background:#08112B;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#C9D5EE}
+  .top__in{display:flex;justify-content:space-between;align-items:center;min-height:34px;gap:24px}
+  .top__in nav{display:flex;gap:20px}
+  .top__in a:hover{color:var(--yellow)}
+
+  .head{background:linear-gradient(180deg,#0F1F47,#0B1638);border-bottom:1px solid rgba(255,255,255,.16)}
+  .head__in{display:flex;align-items:center;gap:18px;min-height:92px}
+  .brand{display:flex;align-items:center;gap:14px;background:var(--enamel);color:var(--ink);padding:8px 14px 8px 9px;border:2px solid #fff;box-shadow:5px 5px 0 rgba(0,0,0,.25)}
+  .brand img{width:38px}
+  .brand b{display:block;font-size:13px;letter-spacing:.15em}
+  .brand span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .nav{display:flex;align-items:center;gap:6px;margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .nav a{padding:10px 11px;border:1px solid rgba(255,255,255,.2);color:#EAF0FB}
+  .nav a:hover{border-color:var(--yellow);color:var(--yellow)}
+  .nav a[aria-current]{background:var(--enamel);color:var(--blue-900);border-color:#fff}
+  .tools{display:flex;align-items:center;gap:8px;margin-left:8px}
+  .krank{display:inline-flex;align-items:center;min-height:42px;padding:0 14px;background:var(--yellow);color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.08em;border:2px solid var(--ink);box-shadow:3px 3px 0 rgba(0,0,0,.3)}
+  .menu{display:none;align-items:center;gap:6px;min-height:40px;padding:0 10px;background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;font:inherit;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .krank:hover{background:var(--orange)}
+  .stil{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#C9D5EE;display:flex;align-items:center;gap:6px}
+  .stil select{font:inherit;font-size:10px;padding:6px 20px 6px 7px;border:1px solid rgba(255,255,255,.3);background:#0B1638;color:#fff}
+
+  /* Wand */
+  .hero{position:relative;overflow:hidden;background:
+    radial-gradient(120% 80% at 82% 12%,rgba(0,106,180,.55) 0%,transparent 55%),
+    linear-gradient(160deg,#0B1638 0%,#132451 34%,#1B3A74 64%,#22539A 100%);
+  }
+  .hero::before{content:"";position:absolute;inset:0;background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:56px 56px;pointer-events:none}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:14px;background:
+    linear-gradient(90deg,var(--yellow) 0 33%,var(--orange) 33% 66%,var(--blue) 66% 100%);opacity:.9}
+  .hero__in{position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:18px;padding:34px 0 42px}
+  .you{grid-column:1/8;background:var(--enamel);color:var(--ink);border:2px solid #fff;box-shadow:10px 10px 0 rgba(0,0,0,.28);padding:26px 28px 24px;position:relative}
+  .you::before{content:"";position:absolute;left:28px;top:-13px;width:24px;height:24px;border-radius:50%;background:var(--orange);border:3px solid var(--enamel);box-shadow:0 0 0 2px var(--orange)}
+  .you__kicker{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-700);margin:0 0 16px}
+  .you__kicker::before{content:"";width:8px;height:8px;background:var(--orange);border-radius:50%}
+  h1{font-size:clamp(2.9rem,5.6vw,4.9rem);line-height:.94;letter-spacing:-.04em;font-weight:800;margin:0 0 14px;max-width:12ch;color:var(--blue-900);text-wrap:balance}
+  .lead{font-size:17px;color:var(--soft);max-width:44ch;margin:0 0 18px}
+  .dest{list-style:none;padding:0;margin:0;border-top:2px solid var(--blue-900)}
+  .dest li{position:relative;border-bottom:1px solid #C9CEDA}
+  .dest a{display:flex;align-items:center;gap:12px;min-height:42px;font-size:12px;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-900);padding:0 6px 0 0}
+  .dest a::before{content:"";width:18px;height:2px;background:var(--orange);flex:0 0 auto;transform:scaleX(.45);transform-origin:left;transition:transform .2s}
+  .dest a::after{content:"→";margin-left:auto;font-size:16px;transition:transform .2s}
+  .dest a:hover::before,.dest a:focus-visible::before{transform:scaleX(1)}
+  .dest a:hover::after,.dest a:focus-visible::after{transform:translateX(5px)}
+  .dest a:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+
+  .view{grid-column:8/13;display:flex;flex-direction:column;gap:14px;padding-top:18px;width:100%}
+  .view__panel{background:var(--enamel);border:2px solid #fff;box-shadow:8px 8px 0 rgba(0,0,0,.25);padding:9px 9px 0;position:relative;width:100%;margin:0}
+  .view__panel img{width:100%;aspect-ratio:4/3;object-fit:cover}
+  .view__panel figcaption{display:flex;justify-content:space-between;gap:10px;color:var(--ink);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 1px 9px}
+  .view__panel figcaption span{color:var(--soft);font-weight:600}
+  .view__tag{align-self:flex-start;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:7px 10px;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;box-shadow:4px 4px 0 rgba(0,0,0,.25)}
+  .big-arrow{position:absolute;left:calc(58.333% - 18px);top:52%;width:70px;height:34px;background:var(--yellow);clip-path:polygon(0 34%,58% 34%,58% 0,100% 50%,58% 100%,58% 66%,0 66%);filter:drop-shadow(0 3px 0 rgba(0,0,0,.25));z-index:2}
+
+  .board{position:relative;grid-column:1/-1;background:var(--enamel);color:var(--ink);border:2px solid #fff;margin:0 0 18px;box-shadow:10px 10px 0 rgba(0,0,0,.24);width:100%}
+  .board__head{display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--blue-900);color:#fff;padding:11px 16px;border-bottom:5px solid var(--yellow)}
+  .board__head b{font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .board__head span{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#C9D5EE}
+  .board__grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .board__item{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:10px 14px;border-right:1px solid #C9CEDA;border-bottom:1px solid #C9CEDA;font-size:11px;font-weight:750;letter-spacing:.05em;text-transform:uppercase;color:var(--blue-900)}
+  .board__item:nth-child(4n){border-right:0}
+  .board__item:hover{background:var(--yellow)}
+  .board__item::after{content:"→";font-size:14px;color:var(--orange)}
+  .board__foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 16px;background:#EDEAE0;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .board__foot a{color:var(--blue-900);font-weight:800;border-bottom:2px solid var(--yellow)}
+
+  .hero__foot{position:relative;display:flex;justify-content:space-between;gap:18px;border-top:1px solid rgba(255,255,255,.2);padding:12px 0 16px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#B9C7E4}
+  .hero__foot b{color:var(--yellow)}
+
+  @media(max-width:980px){
+    .nav{display:none}
+    .menu{display:inline-flex}
+    .you,.view{grid-column:1/-1}
+    .view{max-width:620px;padding-top:0}
+    .big-arrow{display:none}
+    .board__grid{grid-template-columns:repeat(2,1fr)}
+    .board__item:nth-child(4n){border-right:1px solid #C9CEDA}
+    .board__item:nth-child(2n){border-right:0}
+    .top__in nav{display:none}
+    .top{display:none}
+  }
+  @media(max-width:640px){
+    .wrap{width:calc(100% - 32px)}
+    .head__in{min-height:74px;gap:10px}
+    .brand span{display:none}
+    .brand b{font-size:11px}
+    .tools .stil{display:none}
+    .krank{min-height:38px;font-size:10px;padding:0 9px}
+    .hero__in{padding:22px 0 30px}
+    .you{padding:20px 18px 18px}
+    h1{font-size:clamp(2.7rem,13vw,4rem)}
+    .lead{font-size:15px}
+    .board__grid{grid-template-columns:1fr}
+    .board__item{border-right:0}
+    .board__foot{flex-direction:column;align-items:start;gap:6px}
+  }
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="wrap top__in">
+    <p>Jahnstr. 12–14, 79312 Emmendingen · 07641 465 100</p>
+    <nav aria-label="Schnellzugriff"><a href="#">Krankmelden</a><a href="#">Stundenplan</a><a href="#">Vertretungsplan</a><a href="#">Downloads</a><a href="#">Anmeldung</a></nav>
+  </div>
+</div>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="brand" href="#" aria-label="GHSE – zur Startseite">
+      <img src="logo-zeichen.webp" alt="GHSE-Zeichen">
+      <span><b>GHSE</b><span>Emmendingen</span></span>
+    </a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a href="#">Unsere Schule</a><a href="#" aria-current="page">Schularten</a><a href="#">Schüler</a><a href="#">UNESCO</a><a href="#">Downloads</a><a href="#">MINT</a>
+    </nav>
+    <div class="tools">
+      <label class="stil">Stil<select aria-label="Darstellung wählen"><option>Neo</option><option>Klar</option><option>Funktional</option><option>Modern</option><option>Lesebuch</option><option selected>Wegweiser</option></select></label>
+      <a class="krank" href="#">Krankmelden</a>
+      <button class="menu" type="button">☰ Menü</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="titel">
+  <div class="wrap hero__in">
+    <div class="you">
+      <p class="you__kicker">Sie stehen hier · GHSE Emmendingen</p>
+      <h1 id="titel">Wir machen Schule für alle</h1>
+      <p class="lead">Vom Hauptschulabschluss über die mittlere Reife und die Fachhochschulreife bis zum Abitur. Acht Schularten, ein Haus.</p>
+      <ul class="dest" aria-label="Abschlüsse">
+        <li><a href="#">Hauptschulabschluss</a></li>
+        <li><a href="#">Mittlere Reife</a></li>
+        <li><a href="#">Fachhochschulreife</a></li>
+        <li><a href="#">Abitur</a></li>
+        <li><a href="#">Berufsausbildung</a></li>
+      </ul>
+    </div>
+    <div class="view">
+      <figure class="view__panel">
+        <img src="hero-schule.webp" alt="Das Schulgebäude der GHSE mit dem gelb markierten Gebäudeübergang">
+        <figcaption><b>Hauptgebäude</b><span>Jahnstr. 12–14</span></figcaption>
+      </figure>
+      </div>
+    <span class="big-arrow" aria-hidden="true"></span>
+
+    <div class="board" aria-label="Schularten-Verzeichnis">
+      <div class="board__head"><b>Verzeichnis · Schularten</b><span>Alle Wege ab hier</span></div>
+      <div class="board__grid">
+        <a class="board__item" href="#">Technisches Gymnasium</a>
+        <a class="board__item" href="#">Sozialwissenschaftliches Gymnasium</a>
+        <a class="board__item" href="#">Zweijährige Berufsfachschulen</a>
+        <a class="board__item" href="#">Berufsvorbereitende Schularten</a>
+        <a class="board__item" href="#">Zweijähriges Berufskolleg</a>
+        <a class="board__item" href="#">Einjährige Berufsfachschulen</a>
+        <a class="board__item" href="#">Berufsschule</a>
+        <a class="board__item" href="#">Pflege</a>
+      </div>
+      <div class="board__foot"><span>Vollzeit · Teilzeit · Berufsausbildung</span><a href="#">Alle Schularten ansehen →</a></div>
+    </div>
+  </div>
+  <div class="wrap hero__foot"><span><b>Sie stehen hier</b> · Jahnstr. 12–14, Emmendingen</span><span>Ausgang: Startseite</span></div>
+</section>
+</body>
+</html>

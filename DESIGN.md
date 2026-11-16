@@ -1,5 +1,5 @@
 ---
-name: GHSE – fünf Gestaltungsvarianten
+name: GHSE – sechs Gestaltungsvarianten
 colors:
   primary: "#F6DC56"
   secondary: "#114C92"
@@ -27,7 +27,7 @@ spacing:
 
 ## Überblick
 
-Dieselben Seiten, Inhalte und URLs gibt es in fünf Gestaltungsvarianten.
+Dieselben Seiten, Inhalte und URLs gibt es in sechs Gestaltungsvarianten.
 Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 
 | Variante | Kennung | Aussehen | Dokument |
@@ -37,6 +37,22 @@ Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 | **Funktional** (Einstieg) | `funktional` | Weiß/Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
 | **Modern** | `modern` | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten auf hellem Blau, weiche Schatten | `modern-DESIGN.md` |
 | **Lesebuch** | `lesebuch` | Graugrünes Papier, fester blauer Rücken als Verzeichnis, Piazzolla/Public Sans, Tafeln und Haarlinien statt Karten | `lesebuch-DESIGN.md` |
+| **Wegweiser** | `design-06` | GHSE-Blauverlauf als Wand, weiße Emailschilder, gelbe Zielwege, Archivo, Standortleiste und Spezifikationsetiketten | `design-06-DESIGN.md` |
+
+## Sechste Variante: Wegweiser
+
+Die sechste Variante ist eine eigenständige Designwelt, keine Ableitung der
+fünf bestehenden. Sie überträgt die Beschilderung eines Schulgebäudes auf die
+Website: tiefblauer GHSE-Verlauf als Wand, weiße Schilder, gelbe Pfeile und
+Registerlaschen, Orange als Standortmarke. Archivo ist die einzige Schrift;
+die GHSE-Originalfarben `#222D71`, `#006AB4`, `#EE7330` und `#F6DC56` bleiben
+unverändert, ergänzt um ein dokumentiertes Blauspektrum.
+
+- Kennung: `design-06`; sichtbarer Name „Wegweiser“; Kurzform „Wegw.“.
+- CSS: `assets/css/design-06.css`; Schrift: `layouts/_partials/schriften-design06.html`; Dokumentation: `design-06-DESIGN.md`.
+- Die fünf bestehenden Varianten, ihre CSS-Dateien, Layouts, Inhalte und
+  Dokumentationen bleiben unverändert.
+- Critique, Polish und Audit: `design-06-CRITIQUE.md`, `design-06-AUDIT.md`.
 
 ## Umschaltung
 

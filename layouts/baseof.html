@@ -50,6 +50,10 @@
          Teilen auseinander. „Emmendingen" steht doppelt, weil site.Title die
          Stadt schon nennt; der volle Name bleibt im Fuß stehen. */}}
   {{- $titel := cond .IsHome (printf "%s | %s" site.Title (strings.TrimSuffix " Emmendingen" site.Params.schulname)) (printf "%s | %s" .Title site.Title) -}}
+  {{- /* Die Hugo-Grundlage setzt für 404 den englischen Titel „404 Page
+         not found“. Die sichtbare Seite ist deutsch; der Browser-Titel
+         folgt ihr, ohne das Markup der anderen Seiten zu ändern. */ -}}
+  {{- if eq .RelPermalink "/404.html" -}}{{- $titel = printf "Seite nicht gefunden | %s" site.Title -}}{{- end -}}
   <title>{{ $titel }}</title>
   <meta name="description" content="{{ .Description | default site.Params.beschreibung }}">
   <link rel="canonical" href="{{ .Permalink }}">

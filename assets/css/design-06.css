@@ -1,0 +1,3095 @@
+/* GHSE – Gestaltungsvariante „Wegweiser“ (Design 6)
+   ============================================================
+   Idee: Die Schule als begehbares Schulhaus. Tiefblauer GHSE-Verlauf als
+   Wand, weiße Emailschilder, gelbe Pfeile und Registerlaschen, Orange als
+   „Sie stehen hier“-Marke. Archivo trägt Schilder und Fließtext; die
+   vorhandene HTML-Struktur bleibt unverändert.
+
+   Technik: Jede Regel steht unter :root[data-design="design-06"]. Die
+   Datei wird wie die anderen Varianten auf jeder Seite geladen, wirkt
+   aber nur bei aktiver Wahl. Kein CSS-Nesting, keine globalen Tokens,
+   keine Keyframes außerhalb des Präfixes. Die fünf Bestandsdesigns lesen
+   keine dieser Deklarationen.
+
+   Pflegehinweis: Der helle und der dunkle Satz setzen dieselben Token-
+   Namen. Was main.css im Dunkeln setzt, setzt dieser Satz ebenfalls,
+   sonst scheint der dunkle Neo-Satz durch. qa/themes.py,
+   qa/design6-isolation.py und qa/themebilder.py prüfen das. */
+
+/* ---------- Tokens, hell ---------- */
+
+:root[data-design="design-06"] {
+  color-scheme: light;
+
+  /* GHSE-Originalfarben – unverändert. */
+  --d6-navy: #222d71;
+  --d6-blue: #006ab4;
+  --d6-orange: #ee7330;
+  --d6-yellow: #f6dc56;
+
+  /* Freies GHSE-Blauspektrum, abgeleitet und dokumentiert. */
+  --d6-blue-950: #080f26;
+  --d6-blue-900: #101a4a;
+  --d6-blue-850: #141f55;
+  --d6-blue-800: #18245c;
+  --d6-blue-700: #222d71;
+  --d6-blue-650: #1b3a74;
+  --d6-blue-600: #174c96;
+  --d6-blue-500: #0f57a0;
+  --d6-blue-400: #006ab4;
+  --d6-blue-300: #2e8bcb;
+  --d6-blue-200: #8fc2e6;
+  --d6-blue-100: #d6e8f5;
+  --d6-blue-50: #eef6fb;
+
+  /* Grund, Flächen, Tinte. */
+  --d6-ground: #edf1f5;
+  --d6-ground-2: #e3e9f0;
+  --d6-panel: #ffffff;
+  --d6-panel-2: #f7f9fb;
+  --d6-ink: #101828;
+  --d6-on-yellow: #101828;
+  --d6-heading: #222d71;
+  --d6-soft: #4a5568;
+  --d6-line: #c9d3df;
+  --d6-line-strong: #8fa1b6;
+  --d6-white: #ffffff;
+
+  /* Akzente und Funktion. */
+  --d6-blue-text: #0f4c8a;
+  --d6-blue-text-dark: #8fc2e6;
+  --d6-orange-text: #a8430f;
+  --d6-yellow-soft: #fbefa8;
+  --d6-success: #1f6b45;
+  --d6-warning: #8a4b00;
+  --d6-danger: #a32a1a;
+  --d6-focus: #b8430f;
+  --d6-focus-on-blue: #f6dc56;
+
+  /* Wand, Kopf, Fuß. */
+  --d6-wall: linear-gradient(135deg, #101a4a 0%, #18245c 28%, #222d71 52%, #174c96 78%, #006ab4 100%);
+  --d6-wall-dark: linear-gradient(135deg, #060b16 0%, #0b1638 42%, #10254d 100%);
+  --d6-header: #ffffff;
+  --d6-header-ink: #101828;
+  --d6-leiste: #101a4a;
+  --d6-leiste-ink: #f2f5fa;
+  --d6-footer: #101a4a;
+  --d6-footer-ink: #f2f5fa;
+  --d6-footer-soft: #c9d5e6;
+  --d6-footer-titel: #f6dc56;
+
+  /* Tiefe: einmal weich, nie harter Versatz. */
+  --d6-shadow: 0 18px 40px -28px rgba(16, 24, 40, 0.45);
+  --d6-shadow-soft: 0 10px 28px -22px rgba(16, 24, 40, 0.35);
+  --d6-radius: 2px;
+
+  /* Schrift. */
+  --d6-font: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+
+  /* main.css-Token auf die Wegweiser-Welt abbilden. Die transparenten
+     Schatten kappen die harten Neo-Versätze, die main.css direkt setzt. */
+  --papier: var(--d6-ground);
+  --papier2: var(--d6-ground-2);
+  --flaeche: var(--d6-panel);
+  --schrift: var(--d6-ink);
+  --grau: var(--d6-soft);
+  --rand: var(--d6-line-strong);
+  --haarlinie: var(--d6-line);
+  --tinte: var(--d6-ink);
+  --weiss: #ffffff;
+  --gelb: var(--d6-yellow);
+  --orange: var(--d6-orange);
+  --blau: var(--d6-navy);
+  --orange-tief: var(--d6-focus);
+  --link: var(--d6-blue-text);
+  --fokus: var(--d6-focus);
+  --schatten: none;
+  --schatten-klein: none;
+  --schatten-farbe: transparent;
+  --rahmen: 1px solid var(--d6-line-strong);
+  --marker-hintergrund: rgba(246, 220, 86, 0.35);
+
+  --fuss-flaeche: var(--d6-footer);
+  --fuss-schrift: var(--d6-footer-ink);
+  --fuss-titel: var(--d6-footer-titel);
+  --fuss-linie: var(--d6-yellow);
+  --fuss-link: var(--d6-footer-ink);
+  --fuss-haarlinie: rgba(255, 255, 255, 0.18);
+  --fuss-leiste-flaeche: var(--d6-blue-950);
+  --fuss-leiste-schrift: var(--d6-footer-soft);
+
+  --hinweis-flaeche: var(--d6-panel-2);
+  --hinweis-rand: var(--d6-line-strong);
+  --warn-flaeche: #fff1ec;
+  --warn-rand: var(--d6-orange-text);
+
+  --kategorie-teilzeit: var(--d6-orange);
+  --wert-blau: var(--d6-navy);
+  --wert-gelb: var(--d6-yellow);
+  --wert-orange: var(--d6-orange);
+  --wert-gruen: var(--d6-success);
+  --wert-magenta: #a32a5a;
+
+  /* Typografie: 14 px ist die Untergrenze für Text. */
+  --t-display: clamp(2.9rem, 5.6vw, 4.7rem);
+  --t-h1: clamp(2.2rem, 4.4vw, 3.4rem);
+  --t-h2: clamp(1.8rem, 3.2vw, 2.6rem);
+  --t-h3: clamp(1.15rem, 1.5vw, 1.4rem);
+  --t-xs: 0.875rem;
+  --t-s: 0.9375rem;
+  --t-m: 1.0625rem;
+  --container: 1200px;
+  --schmal: 760px;
+  --kopfhoehe: 7rem;
+}
+
+/* ---------- Tokens, dunkel ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root[data-design="design-06"]:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --d6-ground: #080e1c;
+    --d6-ground-2: #0d1527;
+    --d6-panel: #101a2e;
+    --d6-panel-2: #14203a;
+    --d6-ink: #f2f5fa;
+    --d6-on-yellow: #101828;
+    --d6-heading: #d6e4f7;
+    --d6-soft: #b7c4d8;
+    --d6-line: #26344c;
+    --d6-line-strong: #3c4e6b;
+    --d6-blue-text: #8fc2e6;
+    --d6-orange-text: #f09a6b;
+    --d6-yellow-soft: #3a3316;
+    --d6-success: #7fd3a8;
+    --d6-warning: #f3b562;
+    --d6-danger: #f09a8c;
+    --d6-focus: #f6dc56;
+
+    --d6-wall: var(--d6-wall-dark);
+    --d6-header: #0d1527;
+    --d6-header-ink: #f2f5fa;
+    --d6-leiste: #060b16;
+    --d6-leiste-ink: #dbe6f5;
+    --d6-footer: #060b16;
+    --d6-footer-ink: #f2f5fa;
+    --d6-footer-soft: #b7c4d8;
+
+    --d6-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.8);
+    --d6-shadow-soft: 0 10px 28px -22px rgba(0, 0, 0, 0.7);
+
+    --papier: var(--d6-ground);
+    --papier2: var(--d6-ground-2);
+    --flaeche: var(--d6-panel);
+    --schrift: var(--d6-ink);
+    --grau: var(--d6-soft);
+    --rand: var(--d6-line-strong);
+    --haarlinie: var(--d6-line);
+    --tinte: var(--d6-ink);
+    --link: var(--d6-blue-text);
+    --hinweis-flaeche: var(--d6-panel-2);
+    --warn-flaeche: #2a1712;
+    --marker-hintergrund: rgba(246, 220, 86, 0.28);
+  }
+}
+
+:root[data-design="design-06"][data-theme="dark"] {
+  color-scheme: dark;
+
+  --d6-ground: #080e1c;
+  --d6-ground-2: #0d1527;
+  --d6-panel: #101a2e;
+  --d6-panel-2: #14203a;
+  --d6-ink: #f2f5fa;
+  --d6-on-yellow: #101828;
+  --d6-heading: #d6e4f7;
+  --d6-soft: #b7c4d8;
+  --d6-line: #26344c;
+  --d6-line-strong: #3c4e6b;
+  --d6-blue-text: #8fc2e6;
+  --d6-orange-text: #f09a6b;
+  --d6-yellow-soft: #3a3316;
+  --d6-success: #7fd3a8;
+  --d6-warning: #f3b562;
+  --d6-danger: #f09a8c;
+  --d6-focus: #f6dc56;
+
+  --d6-wall: var(--d6-wall-dark);
+  --d6-header: #0d1527;
+  --d6-header-ink: #f2f5fa;
+  --d6-leiste: #060b16;
+  --d6-leiste-ink: #dbe6f5;
+  --d6-footer: #060b16;
+  --d6-footer-ink: #f2f5fa;
+  --d6-footer-soft: #b7c4d8;
+
+  --d6-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.8);
+  --d6-shadow-soft: 0 10px 28px -22px rgba(0, 0, 0, 0.7);
+
+  --papier: var(--d6-ground);
+  --papier2: var(--d6-ground-2);
+  --flaeche: var(--d6-panel);
+  --schrift: var(--d6-ink);
+  --grau: var(--d6-soft);
+  --rand: var(--d6-line-strong);
+  --haarlinie: var(--d6-line);
+  --tinte: var(--d6-ink);
+  --link: var(--d6-blue-text);
+  --hinweis-flaeche: var(--d6-panel-2);
+  --warn-flaeche: #2a1712;
+  --marker-hintergrund: rgba(246, 220, 86, 0.28);
+}
+
+/* ---------- Basis ---------- */
+
+:root[data-design="design-06"] body {
+  background: var(--d6-ground);
+  color: var(--d6-ink);
+  font-family: var(--d6-font);
+  font-size: var(--t-m);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-design="design-06"] ::selection {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] a {
+  color: var(--d6-blue-text);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+:root[data-design="design-06"] a:hover {
+  color: var(--d6-heading);
+}
+
+:root[data-design="design-06"] :focus-visible {
+  outline: 3px solid var(--d6-focus);
+  outline-offset: 3px;
+}
+
+:root[data-design="design-06"] .band--blau :focus-visible,
+:root[data-design="design-06"] .hero :focus-visible,
+:root[data-design="design-06"] .fuss :focus-visible,
+:root[data-design="design-06"] .sprungleiste :focus-visible {
+  outline-color: var(--d6-focus-on-blue);
+}
+
+:root[data-design="design-06"] h1,
+:root[data-design="design-06"] h2,
+:root[data-design="design-06"] h3,
+:root[data-design="design-06"] h4,
+:root[data-design="design-06"] .hero__titel,
+:root[data-design="design-06"] .karte__titel,
+:root[data-design="design-06"] .karte__block-titel,
+:root[data-design="design-06"] .zeitgruppe__titel,
+:root[data-design="design-06"] .kasten h2,
+:root[data-design="design-06"] .service h3,
+:root[data-design="design-06"] .zeile__titel,
+:root[data-design="design-06"] .infozeile__titel,
+:root[data-design="design-06"] .kalender__name,
+:root[data-design="design-06"] .konten__titel {
+  font-family: var(--d6-font);
+  color: var(--d6-heading);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+:root[data-design="design-06"] h1 {
+  font-size: var(--t-h1);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+}
+
+:root[data-design="design-06"] h2 {
+  font-size: var(--t-h2);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+:root[data-design="design-06"] h3 {
+  font-size: var(--t-h3);
+  font-weight: 750;
+}
+
+:root[data-design="design-06"] p {
+  text-wrap: pretty;
+}
+
+:root[data-design="design-06"] .container {
+  width: min(100% - 3rem, var(--container));
+  margin-inline: auto;
+}
+
+:root[data-design="design-06"] .schmal {
+  width: min(100% - 3rem, var(--schmal));
+  margin-inline: auto;
+}
+
+:root[data-design="design-06"] .sprungmarke {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-ink);
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  z-index: 100;
+}
+
+/* Browserflächen gehören zum System: Auswahl, Scrollbar, Fokus. */
+:root[data-design="design-06"] {
+  scrollbar-color: var(--d6-line-strong) var(--d6-ground);
+  scrollbar-width: thin;
+}
+
+:root[data-design="design-06"] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+:root[data-design="design-06"] ::-webkit-scrollbar-track {
+  background: var(--d6-ground-2);
+}
+
+:root[data-design="design-06"] ::-webkit-scrollbar-thumb {
+  background: var(--d6-line-strong);
+  border: 2px solid var(--d6-ground-2);
+}
+
+/* ---------- Kopf ---------- */
+
+:root[data-design="design-06"] .kopf {
+  background: var(--d6-header);
+  color: var(--d6-header-ink);
+  border-bottom: 1px solid var(--d6-line);
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .leiste {
+  background: var(--d6-leiste);
+  color: var(--d6-leiste-ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: var(--t-xs);
+  font-weight: 600;
+}
+
+:root[data-design="design-06"] .leiste__innen {
+  min-height: 2.2rem;
+  padding: 0.25rem 0;
+  gap: 0.35rem 1.25rem;
+}
+
+:root[data-design="design-06"] .leiste a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .leiste__schnell {
+  gap: 1.1rem;
+}
+
+:root[data-design="design-06"] .leiste__schnell a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  border-bottom: 1px solid var(--d6-yellow);
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-weight: 650;
+  font-size: var(--t-xs);
+  padding-bottom: 1px;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .leiste__schnell a:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .leiste__trenn {
+  opacity: 0.55;
+  margin-inline: 0.15rem;
+}
+
+/* Gestaltungswahl und Farbmodus: kleine Schilder, keine Pills. */
+:root[data-design="design-06"] .stilwahl {
+  gap: 0.45rem;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="design-06"] .stilwahl__label {
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: var(--d6-leiste-ink);
+}
+
+:root[data-design="design-06"] .stilwahl__auswahl {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: var(--t-xs);
+  font-weight: 650;
+  line-height: 1.1;
+  color: var(--d6-ink);
+  background-color: var(--d6-panel);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  padding: 0.25rem 1.5rem 0.25rem 0.5rem;
+  min-height: 2rem;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .stilwahl__auswahl:focus-visible {
+  outline: 3px solid var(--d6-focus);
+  outline-offset: 3px;
+}
+
+:root[data-design="design-06"] .stilwahl__pfeil {
+  right: 0.5rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  color: var(--d6-ink);
+}
+
+:root[data-design="design-06"] .leiste .stilwahl__label {
+  color: var(--d6-leiste-ink);
+}
+
+:root[data-design="design-06"] .stilwahl--menue .stilwahl__label {
+  color: var(--d6-ink);
+}
+
+:root[data-design="design-06"] .kopf__innen {
+  min-height: 4.75rem;
+  padding: 0.5rem 0;
+  gap: 1.25rem;
+}
+
+:root[data-design="design-06"] .marke-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 2.75rem;
+  padding: 0;
+  background: transparent url("../bilder/themes/wegweiser-logo.webp") center / contain no-repeat;
+  border: 0;
+  border-radius: 0;
+  transition: opacity 0.18s ease;
+}
+
+:root[data-design="design-06"] .marke-link img {
+  display: none;
+}
+
+:root[data-design="design-06"] .marke-link:hover {
+  opacity: 0.86;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-design="design-06"]:not([data-theme="light"]) .marke-link {
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
+  }
+}
+
+:root[data-design="design-06"][data-theme="dark"] .marke-link {
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
+}
+
+:root[data-design="design-06"] .menue {
+  gap: 0.6rem;
+}
+
+:root[data-design="design-06"] .menue ul {
+  gap: 0;
+}
+
+:root[data-design="design-06"] .menue ul a {
+  display: flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0.45rem 0.65rem;
+  color: var(--d6-header-ink);
+  border: 1px solid transparent;
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .menue ul a:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+    border-color: var(--d6-ink);
+  }
+}
+
+:root[data-design="design-06"] .menue ul a[aria-current="page"] {
+  background: var(--d6-navy);
+  color: #ffffff;
+  border-color: var(--d6-heading);
+}
+
+:root[data-design="design-06"] .menue ul.menue__tafel {
+  padding: 0 0 0 1rem;
+}
+
+:root[data-design="design-06"] .menue ul.menue__tafel a {
+  min-height: 0;
+  padding: 0.45rem 0.55rem;
+  font-size: var(--t-s);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  border-color: transparent;
+  border-bottom: 1px solid var(--d6-line);
+  border-radius: 0;
+}
+
+:root[data-design="design-06"] .menue__abteilung {
+  padding: 0.9rem 0.55rem 0.25rem;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  color: var(--d6-soft);
+}
+
+@media (min-width: 1200px) {
+  :root[data-design="design-06"] .menue ul.menue__tafel {
+    background: var(--d6-panel);
+    border: 1px solid var(--d6-line-strong);
+    box-shadow: var(--d6-shadow);
+    padding: 0.45rem;
+    max-height: calc(100vh - var(--kopfhoehe) - 0.75rem);
+  }
+}
+
+:root[data-design="design-06"] .menueknopf {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.7rem;
+  background: var(--d6-panel);
+  color: var(--d6-header-ink);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  font: inherit;
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .menueknopf__balken {
+  background: var(--d6-header-ink);
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .menueknopf:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+    border-color: var(--d6-ink);
+  }
+  :root[data-design="design-06"] .menueknopf:hover .menueknopf__balken {
+    background: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .menueknopf:active,
+:root[data-design="design-06"] .modusknopf:active {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .kopf__ende {
+  gap: 0.45rem;
+}
+
+:root[data-design="design-06"] .krankmelden-knopf {
+  display: none;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.8rem;
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-ink);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 750;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .krankmelden-knopf:hover {
+    background: var(--d6-orange);
+    color: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .modusknopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  padding: 0.35rem;
+  background: var(--d6-panel);
+  color: var(--d6-header-ink);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+:root[data-design="design-06"] .modusknopf svg {
+  width: 18px;
+  height: 18px;
+}
+
+:root[data-design="design-06"] .modusknopf--leiste {
+  display: none;
+}
+
+:root[data-design="design-06"] .modusknopf--kopf {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  :root[data-design="design-06"] .modusknopf--leiste {
+    display: inline-flex;
+  }
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .modusknopf:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+    border-color: var(--d6-ink);
+  }
+}
+
+/* ---------- Hero: die Standorttafel aus Schild und Sichtfenster ---------- */
+
+:root[data-design="design-06"] .hero {
+  position: relative;
+  background: var(--d6-wall);
+  color: #ffffff;
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2.5rem, 4.5vw, 3.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+
+/* Maßstab am Fuß der Wand: eine echte Wegmarke, keine Textur. */
+:root[data-design="design-06"] .hero__innen {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(1.5rem, 3.2vw, 3rem);
+  align-items: start;
+  margin-top: 0;
+}
+
+:root[data-design="design-06"] .hero__text {
+  --d6-hero-pad: clamp(1.15rem, 2.1vw, 1.9rem);
+  position: relative;
+  background: var(--d6-panel);
+  color: var(--d6-ink);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  box-shadow: var(--d6-shadow);
+  padding: var(--d6-hero-pad);
+  z-index: 2;
+}
+
+:root[data-design="design-06"] .hero__marke {
+  display: block;
+  margin: calc(-1 * var(--d6-hero-pad)) calc(-1 * var(--d6-hero-pad)) 1.15rem;
+  padding: 0.65rem var(--d6-hero-pad);
+  background: var(--d6-navy);
+  color: #ffffff;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: var(--t-xs);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+:root[data-design="design-06"] .hero__marke::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0.55rem;
+  background: var(--d6-orange);
+  vertical-align: 0.08em;
+}
+
+:root[data-design="design-06"] .hero__titel {
+  color: var(--d6-heading);
+  font-size: var(--t-display);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  max-width: 12ch;
+  margin: 0;
+  text-wrap: balance;
+}
+
+:root[data-design="design-06"] .hero__titel::after {
+  content: none;
+  display: none;
+}
+
+:root[data-design="design-06"] .hero__unter {
+  color: var(--d6-soft);
+  font-size: clamp(1.02rem, 1.35vw, 1.16rem);
+  line-height: 1.5;
+  max-width: 43ch;
+  margin: 1rem 0 0;
+}
+
+:root[data-design="design-06"] .hero__ticket {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 28rem;
+  margin-top: 1.2rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--d6-panel-2);
+  color: var(--d6-ink);
+  border: 1px solid var(--d6-line);
+  border-top: 3px solid var(--d6-yellow);
+  border-left: 1px solid var(--d6-line);
+  box-shadow: none;
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+:root[data-design="design-06"] .hero__ticket-datum {
+  color: var(--d6-heading);
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+:root[data-design="design-06"] .hero__ticket-text {
+  display: grid;
+  gap: 0.1rem;
+}
+
+:root[data-design="design-06"] .hero__ticket-label {
+  color: var(--d6-soft);
+  font-size: var(--t-xs);
+  font-weight: 650;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .hero__ticket-titel {
+  color: var(--d6-ink);
+  font-size: var(--t-s);
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .hero__ticket:hover {
+    transform: translateY(-2px);
+    border-color: var(--d6-heading);
+  }
+}
+
+:root[data-design="design-06"] .hero__ticket:focus-visible {
+  outline: 3px solid var(--d6-focus);
+  outline-offset: 3px;
+}
+
+/* Die fünf Abschlüsse sind Zielzeilen, keine Sticker. */
+:root[data-design="design-06"] .hero__punkte {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  list-style: none;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--d6-line);
+}
+
+:root[data-design="design-06"] .hero__punkte li {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--d6-line);
+  box-shadow: none;
+  transform: none;
+}
+
+:root[data-design="design-06"] .hero__punkte a {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.15rem;
+  color: var(--d6-blue-text);
+  font-size: var(--t-s);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .hero__punkte a::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  flex: 0 0 auto;
+  background: var(--d6-orange);
+  transition: width 0.18s ease;
+}
+
+:root[data-design="design-06"] .hero__punkte a::after {
+  content: "→";
+  margin-left: auto;
+  color: var(--d6-orange);
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.18s ease;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .hero__punkte a:hover {
+    color: var(--d6-heading);
+  }
+  :root[data-design="design-06"] .hero__punkte a:hover::before {
+    width: 30px;
+  }
+  :root[data-design="design-06"] .hero__punkte a:hover::after {
+    transform: translateX(4px);
+  }
+}
+
+:root[data-design="design-06"] .hero__punkte a:focus-visible {
+  outline: 3px solid var(--d6-focus);
+  outline-offset: 2px;
+}
+
+/* Sichtfenster: das Gebäude als gerahmte Ansicht. */
+:root[data-design="design-06"] .hero__bild {
+  margin: 0;
+  padding: 0.55rem;
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  box-shadow: var(--d6-shadow);
+  position: relative;
+  z-index: 1;
+  align-self: center;
+}
+
+:root[data-design="design-06"] .hero__bild img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 0;
+  box-shadow: none;
+  transform: none;
+  border-radius: 0;
+}
+
+:root[data-design="design-06"] .hero__bild::after {
+  content: "Hauptgebäude · Jahnstr. 12–14";
+  display: block;
+  margin-top: 0.55rem;
+  padding: 0.55rem 0.1rem 0.15rem;
+  border-top: 1px solid var(--d6-line);
+  color: var(--d6-soft);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+/* Der gelbe Wegpfeil zwischen Schild und Sichtfenster. */
+/* ---------- Bänder und Abschnittsköpfe ---------- */
+
+:root[data-design="design-06"] .band {
+  padding: clamp(2.2rem, 4vw, 3.5rem) 0;
+  background: var(--d6-ground);
+}
+
+:root[data-design="design-06"] .band--papier {
+  background: var(--d6-ground);
+}
+
+:root[data-design="design-06"] .band--gelb {
+  background: var(--d6-panel-2);
+  border-top: 1px solid var(--d6-line);
+  border-bottom: 1px solid var(--d6-line);
+}
+
+:root[data-design="design-06"] .band--blau {
+  background: var(--d6-wall);
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+:root[data-design="design-06"] .band--nacht {
+  background: var(--d6-blue-950);
+  color: #ffffff;
+}
+
+:root[data-design="design-06"] .band__einleitung {
+  max-width: 64ch;
+  color: var(--d6-soft);
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+:root[data-design="design-06"] .band--blau .band__einleitung,
+:root[data-design="design-06"] .band--nacht .band__einleitung {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-design="design-06"] .kopfzeile {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--d6-line);
+}
+
+:root[data-design="design-06"] .kopfzeile h2 {
+  margin: 0;
+  color: var(--d6-heading);
+  font-size: var(--t-h2);
+  border-bottom: 2px solid var(--d6-yellow);
+  padding-bottom: 0.35rem;
+}
+
+:root[data-design="design-06"] .band--blau .kopfzeile,
+:root[data-design="design-06"] .band--nacht .kopfzeile {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+:root[data-design="design-06"] .band--blau .kopfzeile h2,
+:root[data-design="design-06"] .band--nacht .kopfzeile h2 {
+  color: #ffffff;
+}
+
+:root[data-design="design-06"] .anzahl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.8rem;
+  height: 1.8rem;
+  margin-left: 0.45rem;
+  padding: 0 0.4rem;
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  vertical-align: middle;
+}
+
+:root[data-design="design-06"] .hinweiszeile {
+  color: var(--d6-soft);
+  font-size: var(--t-xs);
+}
+
+/* ---------- Karten: Zielschilder ---------- */
+
+:root[data-design="design-06"] .raster {
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Keine Schräglage: Die Wegweiser-Welt steht gerade. Die Neo-Rotationen
+   an Marken, Chips und Plaketten werden hier ausdrücklich aufgehoben. */
+:root[data-design="design-06"] .marke,
+:root[data-design="design-06"] .chip--akzent,
+:root[data-design="design-06"] .instabeitrag__plakette,
+:root[data-design="design-06"] .schulleben img,
+:root[data-design="design-06"] .hero__bild img {
+  transform: none;
+}
+
+:root[data-design="design-06"] .band--gelb .kopfzeile .btn {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-on-yellow);
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .band--gelb .kopfzeile .btn:hover {
+    background: var(--d6-orange);
+    color: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .karte {
+  position: relative;
+  display: flex;
+  background: var(--d6-panel);
+  color: var(--d6-ink);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  box-shadow: none;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+:root[data-design="design-06"] .karte:hover,
+:root[data-design="design-06"] .karte:focus-within {
+  transform: translateY(-3px);
+  border-color: var(--d6-heading);
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .karte__link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .karte__bild {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--d6-ground-2);
+  border-bottom: 1px solid var(--d6-line);
+}
+
+:root[data-design="design-06"] .karte__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+:root[data-design="design-06"] .karte:hover .karte__bild img,
+:root[data-design="design-06"] .karte:focus-within .karte__bild img {
+  transform: scale(1.025);
+}
+
+:root[data-design="design-06"] .karte__koerper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.05rem 1.1rem 1.2rem;
+}
+
+:root[data-design="design-06"] .marke {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.18rem 0.45rem;
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .marke::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: var(--d6-navy);
+}
+
+:root[data-design="design-06"] .marke[data-kategorie="teilzeitschularten"],
+:root[data-design="design-06"] .chip[data-kategorie="teilzeitschularten"] {
+  background: var(--d6-orange);
+  color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .karte__titel {
+  margin: 0;
+  color: var(--d6-heading);
+  font-size: var(--t-h3);
+  font-weight: 750;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+
+:root[data-design="design-06"] .karte__link:hover .karte__titel,
+:root[data-design="design-06"] .karte__link:focus-visible .karte__titel {
+  text-decoration: underline;
+  text-decoration-color: var(--d6-orange);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+:root[data-design="design-06"] .karte__text {
+  margin: 0;
+  color: var(--d6-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: 52ch;
+}
+
+:root[data-design="design-06"] .karte__aktion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 0.7rem;
+  color: var(--d6-blue-text);
+  border-bottom: 2px solid var(--d6-yellow);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .karte__aktion span {
+  transition: transform 0.18s ease;
+}
+
+:root[data-design="design-06"] .karte__link:hover .karte__aktion span {
+  transform: translateX(3px);
+}
+
+/* Nachrichtenkarten: der farbige Block ist ein Aushang, kein Bildersatz. */
+:root[data-design="design-06"] .karte__block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-height: 11.5rem;
+  padding: 1rem 1.1rem 1.3rem;
+  background: var(--d6-navy);
+  color: #ffffff;
+  border-bottom: 1px solid var(--d6-line);
+}
+
+:root[data-design="design-06"] .raster--news .karte:nth-child(3n + 2) .karte__block,
+:root[data-design="design-06"] .raster--3 .karte:nth-child(3n + 2) .karte__block {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .raster--news .karte:nth-child(3n) .karte__block,
+:root[data-design="design-06"] .raster--3 .karte:nth-child(3n) .karte__block {
+  background: var(--d6-orange);
+  color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .karte__block-meta {
+  margin: 0;
+  font-size: var(--t-xs);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+:root[data-design="design-06"] .karte__block-titel {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-weight: 750;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: inherit;
+}
+
+:root[data-design="design-06"] .karte--gross .karte__block-titel,
+:root[data-design="design-06"] .karte--gross .karte__titel {
+  font-size: var(--t-h2);
+}
+
+:root[data-design="design-06"] .karte--text .karte__datum {
+  color: var(--d6-heading);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="design-06"] .karte--text .karte__koerper {
+  gap: 0.7rem;
+}
+
+:root[data-design="design-06"] .karte--gross .karte__bild {
+  aspect-ratio: 21 / 9;
+}
+
+/* ---------- Chips, Knöpfe, Links ---------- */
+
+:root[data-design="design-06"] .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  padding: 0.45rem 0.7rem;
+  background: var(--d6-panel);
+  color: var(--d6-ink);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .chip span {
+  color: var(--d6-soft);
+}
+
+:root[data-design="design-06"] .chip--ruhig {
+  background: transparent;
+}
+
+:root[data-design="design-06"] .chip--akzent {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-line-strong);
+}
+
+:root[data-design="design-06"] .chip--klein {
+  min-height: 2rem;
+  padding: 0.2rem 0.5rem;
+  font-size: var(--t-xs);
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .chip:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+    border-color: var(--d6-ink);
+  }
+  :root[data-design="design-06"] .chip:hover span {
+    color: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--d6-panel);
+  color: var(--d6-heading);
+  border: 1px solid var(--d6-navy);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: none;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .btn:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+    border-color: var(--d6-on-yellow);
+    transform: translateY(-1px);
+  }
+}
+
+:root[data-design="design-06"] .btn:active {
+  transform: none;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .btn--akzent {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-on-yellow);
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .btn--akzent:hover {
+    background: var(--d6-orange);
+    color: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .btn--geist {
+  background: transparent;
+  color: var(--d6-heading);
+  border-color: var(--d6-line-strong);
+}
+
+:root[data-design="design-06"] .btn--geist-blau {
+  background: transparent;
+  color: var(--d6-blue-text);
+  border-color: var(--d6-blue-text);
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .btn--geist:hover,
+  :root[data-design="design-06"] .btn--geist-blau:hover {
+    background: var(--d6-navy);
+    color: #ffffff;
+    border-color: var(--d6-heading);
+  }
+}
+
+:root[data-design="design-06"] .btn--klein {
+  min-height: 2.75rem;
+  padding: 0.45rem 0.7rem;
+  font-size: var(--t-xs);
+}
+
+/* .fliesstext a ist spezifischer als .btn--akzent; ohne diese Regeln
+   würde der gelbe Button im Dunkelmodus hellblauen Text tragen. */
+:root[data-design="design-06"] .fliesstext a.btn {
+  color: var(--d6-heading);
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .fliesstext a.btn--akzent,
+:root[data-design="design-06"] .fliesstext a.btn--akzent:hover {
+  color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .fliesstext a.btn--geist,
+:root[data-design="design-06"] .fliesstext a.btn--geist:hover {
+  color: var(--d6-heading);
+}
+
+:root[data-design="design-06"] .meta time {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-on-yellow);
+  padding: 0.08rem 0.38rem;
+  font-weight: 700;
+}
+
+:root[data-design="design-06"] .linkpfeil {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 1.5rem;
+  color: var(--d6-blue-text);
+  border-bottom: 1px solid var(--d6-yellow);
+  font-size: var(--t-s);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .linkpfeil:hover {
+  color: var(--d6-heading);
+  border-bottom-color: var(--d6-orange);
+}
+
+:root[data-design="design-06"] .linkpfeil span {
+  transition: transform 0.18s ease;
+}
+
+:root[data-design="design-06"] .linkpfeil:hover span {
+  transform: translateX(3px);
+}
+
+:root[data-design="design-06"] .meta {
+  margin: 0;
+  color: var(--d6-soft);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+:root[data-design="design-06"] .meta time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+/* ---------- Instagram ---------- */
+
+:root[data-design="design-06"] .instaraster {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+:root[data-design="design-06"] .instabeitrag {
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  box-shadow: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+:root[data-design="design-06"] .instabeitrag:hover,
+:root[data-design="design-06"] .instabeitrag:focus-within {
+  border-color: var(--d6-heading);
+  transform: translateY(-3px);
+}
+
+:root[data-design="design-06"] .instabeitrag__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .instabeitrag__bild {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-bottom: 1px solid var(--d6-line);
+  background: var(--d6-ground-2);
+}
+
+:root[data-design="design-06"] .instabeitrag__bild img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+:root[data-design="design-06"] .instabeitrag:hover .instabeitrag__bild img {
+  transform: scale(1.025);
+}
+
+:root[data-design="design-06"] .instabeitrag__plakette {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.4rem;
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-on-yellow);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 700;
+}
+
+:root[data-design="design-06"] .instabeitrag__plakette svg {
+  width: 14px;
+  height: 14px;
+}
+
+:root[data-design="design-06"] .instabeitrag__koerper {
+  padding: 0.8rem 0.85rem 0.95rem;
+}
+
+:root[data-design="design-06"] .instabeitrag__koerper .meta {
+  margin-bottom: 0.35rem;
+}
+
+:root[data-design="design-06"] .instabeitrag__text {
+  color: var(--d6-ink);
+  font-size: var(--t-s);
+  line-height: 1.45;
+  margin: 0 0 0.65rem;
+}
+
+:root[data-design="design-06"] .instabeitrag .karte__aktion {
+  padding-top: 0.45rem;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="design-06"] .konten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+
+:root[data-design="design-06"] .konten__titel {
+  margin: 1.75rem 0 0;
+  color: var(--d6-heading);
+  font-size: var(--t-h3);
+}
+
+/* ---------- Termine ---------- */
+
+:root[data-design="design-06"] .kalenderliste {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+:root[data-design="design-06"] .kalender {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  height: 100%;
+  min-height: 4.5rem;
+  padding: 0.85rem 0.9rem;
+  background: var(--d6-panel);
+  color: var(--d6-ink);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  text-decoration: none;
+  box-shadow: none;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+:root[data-design="design-06"] .kalender__name {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  color: var(--d6-heading);
+  font-size: var(--t-s);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+:root[data-design="design-06"] .kalender__name::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  background: var(--d6-yellow);
+  border: 1px solid var(--d6-line-strong);
+}
+
+:root[data-design="design-06"] .kalender__aktion {
+  margin-top: auto;
+  color: var(--d6-blue-text);
+  font-size: var(--t-xs);
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .kalender:hover {
+    border-color: var(--d6-yellow);
+    transform: translateY(-2px);
+  }
+}
+
+:root[data-design="design-06"] .kalender:focus-visible {
+  outline-color: var(--d6-focus-on-blue);
+}
+
+/* ---------- Service ---------- */
+
+:root[data-design="design-06"] .serviceliste {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+:root[data-design="design-06"] .service {
+  position: relative;
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  padding: 1.05rem 1.1rem 1.15rem;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .service::before {
+  content: "";
+  position: absolute;
+  left: 1.1rem;
+  top: 0;
+  width: 28px;
+  height: 3px;
+  background: var(--d6-yellow);
+}
+
+:root[data-design="design-06"] .service h3 {
+  margin: 0 0 0.45rem;
+  color: var(--d6-heading);
+  font-size: var(--t-h3);
+  font-weight: 750;
+}
+
+:root[data-design="design-06"] .service p {
+  color: var(--d6-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 0.7rem;
+}
+
+:root[data-design="design-06"] .service .linkpfeil {
+  margin-top: 0.15rem;
+}
+
+/* ---------- Schulleben und Partner ---------- */
+
+:root[data-design="design-06"] .schulleben {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+:root[data-design="design-06"] .schulleben li {
+  overflow: hidden;
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+}
+
+:root[data-design="design-06"] .schulleben img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  box-shadow: none;
+  transform: none;
+  transition: transform 0.4s ease;
+}
+
+:root[data-design="design-06"] .schulleben li:hover img {
+  transform: scale(1.025);
+}
+
+:root[data-design="design-06"] .partnergitter {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+:root[data-design="design-06"] .partnergitter__kachel {
+  display: grid;
+  place-items: center;
+  min-height: 5.5rem;
+  padding: 0.75rem;
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  box-shadow: none;
+  transition: border-color 0.18s ease;
+}
+
+:root[data-design="design-06"] .partnergitter__kachel img {
+  max-width: 100%;
+  max-height: 3.5rem;
+  width: auto;
+  height: auto;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .partnergitter__kachel:hover {
+    border-color: var(--d6-heading);
+  }
+}
+
+/* ---------- Seitenkopf, Brotkrumen, Nachrichten ---------- */
+
+:root[data-design="design-06"] .seitenkopf {
+  background: var(--d6-panel);
+  border-bottom: 1px solid var(--d6-line);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+:root[data-design="design-06"] .seitenkopf h1 {
+  color: var(--d6-heading);
+  max-width: 22ch;
+  margin: 0.35rem 0 0.6rem;
+}
+
+:root[data-design="design-06"] .brotkrumen {
+  margin: 0 0 0.75rem;
+}
+
+:root[data-design="design-06"] .brotkrumen ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .brotkrumen li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--d6-soft);
+}
+
+:root[data-design="design-06"] .brotkrumen li + li::before {
+  content: "→";
+  color: var(--d6-orange);
+  font-weight: 700;
+}
+
+:root[data-design="design-06"] .brotkrumen a {
+  color: var(--d6-blue-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--d6-yellow);
+}
+
+:root[data-design="design-06"] .brotkrumen a:hover {
+  color: var(--d6-heading);
+}
+
+:root[data-design="design-06"] .lead {
+  max-width: 58ch;
+  color: var(--d6-soft);
+  font-size: clamp(1.05rem, 1.4vw, 1.18rem);
+  line-height: 1.55;
+  margin: 0;
+}
+
+:root[data-design="design-06"] .einleitung {
+  max-width: 68ch;
+  color: var(--d6-ink);
+}
+
+:root[data-design="design-06"] .zeitgruppe__titel {
+  padding-bottom: 0.55rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--d6-line);
+  font-variant-numeric: tabular-nums;
+}
+
+:root[data-design="design-06"] .beitrag {
+  background: var(--d6-ground);
+}
+
+:root[data-design="design-06"] .beitrag__kopf {
+  margin: 0 0 1.5rem;
+}
+
+:root[data-design="design-06"] .beitrag__kopf h1 {
+  margin-bottom: 0.6rem;
+}
+
+:root[data-design="design-06"] .zurueck {
+  margin: 0 0 1rem;
+  font-size: var(--t-xs);
+}
+
+:root[data-design="design-06"] .zurueck a {
+  color: var(--d6-blue-text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--d6-yellow);
+}
+
+:root[data-design="design-06"] .beitrag__bild {
+  margin: 1.5rem 0;
+}
+
+:root[data-design="design-06"] .beitrag__lupe {
+  display: block;
+  position: relative;
+  border: 1px solid var(--d6-line);
+  background: var(--d6-panel);
+  text-decoration: none;
+}
+
+:root[data-design="design-06"] .beitrag__lupe img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+:root[data-design="design-06"] .lupe__plakette {
+  position: absolute;
+  top: auto;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border: 1px solid var(--d6-on-yellow);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.05em;
+}
+
+:root[data-design="design-06"] .beitrag__bild figcaption {
+  margin: 0.5rem 0 0;
+  padding-left: 0;
+  border-left: 0;
+  color: var(--d6-soft);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+}
+
+:root[data-design="design-06"] .lupe__hinweis {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--d6-ink);
+}
+
+:root[data-design="design-06"] .beitrag__quelle {
+  margin-top: 1.5rem;
+}
+
+/* 404: kein gewöhnlicher Buttonstapel, sondern eine Wegtafel. Die Seite
+   ist die einzige, deren Seitenkopf .hero__knoepfe enthält. */
+:root[data-design="design-06"] .seitenkopf:has(.hero__knoepfe) {
+  background: var(--d6-wall);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+:root[data-design="design-06"] .seitenkopf:has(.hero__knoepfe) h1 {
+  color: #ffffff;
+}
+
+:root[data-design="design-06"] .seitenkopf:has(.hero__knoepfe) .lead {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-design="design-06"] .seitenkopf:has(.hero__knoepfe) .btn {
+  background: #ffffff;
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .seitenkopf:has(.hero__knoepfe) .btn:hover {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .seitenkopf:has(.hero__knoepfe) .hero__knoepfe + .hero__knoepfe .btn:first-child {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-on-yellow);
+}
+
+/* ---------- Detailseite: Lesespalte und Spezifikationsschild ---------- */
+
+:root[data-design="design-06"] .raster--seite {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18.5rem;
+  gap: clamp(1.5rem, 3vw, 2.75rem);
+  align-items: start;
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+:root[data-design="design-06"] .fliesstext {
+  max-width: 64ch;
+  color: var(--d6-ink);
+  font-size: var(--t-m);
+  line-height: 1.7;
+}
+
+:root[data-design="design-06"] .fliesstext > *:first-child {
+  margin-top: 0;
+}
+
+:root[data-design="design-06"] .fliesstext p {
+  margin: 0 0 1em;
+}
+
+:root[data-design="design-06"] .fliesstext h2 {
+  margin: 2.4em 0 0.55em;
+  padding: 0.55rem 0 0;
+  border-top: 1px solid var(--d6-line);
+  border-left: 0;
+  font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+  font-weight: 750;
+  color: var(--d6-heading);
+}
+
+:root[data-design="design-06"] .fliesstext h3 {
+  margin: 1.9em 0 0.45em;
+  padding-left: 0;
+  border-left: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--d6-heading);
+}
+
+:root[data-design="design-06"] .fliesstext h4 {
+  margin: 1.5em 0 0.35em;
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--d6-ink);
+}
+
+:root[data-design="design-06"] .fliesstext a {
+  color: var(--d6-blue-text);
+  text-decoration: underline;
+  text-decoration-color: var(--d6-line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+:root[data-design="design-06"] .fliesstext a:hover {
+  color: var(--d6-heading);
+  text-decoration-color: var(--d6-orange);
+}
+
+:root[data-design="design-06"] .fliesstext ul,
+:root[data-design="design-06"] .fliesstext ol {
+  margin: 0 0 1em;
+  padding-left: 1.3em;
+}
+
+:root[data-design="design-06"] .fliesstext li {
+  margin: 0.3em 0;
+}
+
+:root[data-design="design-06"] .fliesstext li::marker {
+  color: var(--d6-orange);
+}
+
+:root[data-design="design-06"] .fliesstext strong {
+  font-weight: 700;
+}
+
+:root[data-design="design-06"] .fliesstext blockquote {
+  margin: 1.5rem 0;
+  padding: 0.15rem 0 0.15rem 1rem;
+  border-left: 1px solid var(--d6-line-strong);
+  color: var(--d6-soft);
+  font-size: 1.05rem;
+}
+
+:root[data-design="design-06"] .fliesstext hr {
+  border: 0;
+  border-top: 1px solid var(--d6-line);
+  margin: 2rem 0;
+}
+
+:root[data-design="design-06"] .fliesstext table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0 1.5rem;
+  font-size: var(--t-s);
+  line-height: 1.45;
+}
+
+:root[data-design="design-06"] .fliesstext th,
+:root[data-design="design-06"] .fliesstext td {
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--d6-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+:root[data-design="design-06"] .fliesstext th {
+  background: var(--d6-navy);
+  color: #ffffff;
+  font-weight: 650;
+}
+
+:root[data-design="design-06"] .fliesstext tbody th {
+  background: var(--d6-panel-2);
+  color: var(--d6-ink);
+  font-weight: 650;
+}
+
+:root[data-design="design-06"] .fliesstext tbody tr:nth-child(even) {
+  background: var(--d6-panel-2);
+}
+
+:root[data-design="design-06"] .fliesstext img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--d6-line);
+  background: var(--d6-panel);
+}
+
+:root[data-design="design-06"] .bild {
+  margin: 1.5rem 0;
+}
+
+:root[data-design="design-06"] .bild img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--d6-line);
+  background: var(--d6-panel);
+}
+
+:root[data-design="design-06"] .bild figcaption {
+  margin-top: 0.45rem;
+  color: var(--d6-soft);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+}
+
+:root[data-design="design-06"] .bild__funktion {
+  display: block;
+  color: var(--d6-blue-text);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .bild__name {
+  display: block;
+  color: var(--d6-ink);
+  font-weight: 650;
+}
+
+:root[data-design="design-06"] .bild--breit {
+  width: 100%;
+}
+
+/* Die Bildergalerie der Schulartseiten ist ein Band aus Ansichten, keine
+   Wand: vier Spalten auf breiten Desktops, drei dazwischen, zwei auf dem
+   Telefon. Alle Bilder bleiben im DOM und in Lesereihenfolge erhalten;
+   die Seite wird kürzer, ohne Inhalt zu verstecken. */
+:root[data-design="design-06"] .fliesstext .bildraster {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 1200px) {
+  :root[data-design="design-06"] .fliesstext .bildraster {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+:root[data-design="design-06"] .bildraster {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+:root[data-design="design-06"] .bildraster .bild {
+  margin: 0;
+}
+
+:root[data-design="design-06"] .bildraster img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Sidebar */
+:root[data-design="design-06"] .seitenleiste {
+  min-width: 0;
+}
+
+:root[data-design="design-06"] .seitenleiste__bild {
+  margin: 0 0 1rem;
+  padding: 0.45rem;
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+}
+
+:root[data-design="design-06"] .seitenleiste__bild img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 0;
+}
+
+:root[data-design="design-06"] .kasten h2 {
+  padding-block: 0.5rem;
+  margin: 0;
+}
+
+:root[data-design="design-06"] .kasten {
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  padding: 1rem 1.1rem;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .kasten--gelb {
+  background: var(--d6-yellow);
+  color: var(--d6-on-yellow);
+  border-color: var(--d6-line-strong);
+  padding: 0;
+  overflow: hidden;
+}
+
+:root[data-design="design-06"] .kasten--gelb h2 {
+  margin: 0;
+  padding: 0.55rem 1rem;
+  background: var(--d6-navy);
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+:root[data-design="design-06"] .kasten--gelb .fakten,
+:root[data-design="design-06"] .kasten--gelb p {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+:root[data-design="design-06"] .fakten {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+  gap: 0.35rem 0.7rem;
+  margin: 0.9rem 0 0.9rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(16, 24, 40, 0.3);
+  font-size: var(--t-xs);
+  line-height: 1.45;
+}
+
+:root[data-design="design-06"] .fakten dt {
+  color: rgba(16, 24, 40, 0.72);
+  font-weight: 650;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .fakten dd {
+  margin: 0;
+  color: var(--d6-on-yellow);
+  font-weight: 650;
+}
+
+:root[data-design="design-06"] .kasten__kontakt {
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(16, 24, 40, 0.3);
+  font-size: var(--t-xs);
+  line-height: 1.5;
+}
+
+:root[data-design="design-06"] .kasten__kontakt a {
+  color: var(--d6-on-yellow);
+  text-decoration: underline;
+  text-decoration-color: rgba(16, 24, 40, 0.4);
+}
+
+:root[data-design="design-06"] .kasten--gelb .linkpfeil {
+  color: var(--d6-on-yellow);
+  border-bottom-color: var(--d6-on-yellow);
+}
+
+:root[data-design="design-06"] .kasten--gelb .linkpfeil:hover {
+  color: var(--d6-blue-950);
+}
+
+:root[data-design="design-06"] .kasten--gelb :focus-visible {
+  outline-color: var(--d6-on-yellow);
+  outline-offset: 2px;
+}
+
+@media (min-width: 1101px) {
+  :root[data-design="design-06"] .seitenleiste--desktop {
+    position: sticky;
+    top: calc(var(--kopfhoehe) + 1rem);
+    align-self: start;
+    max-height: calc(100vh - var(--kopfhoehe) - 2rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  :root[data-design="design-06"] .seitenleiste--mobil {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  :root[data-design="design-06"] .raster--seite {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :root[data-design="design-06"] .seitenleiste--mobil {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  :root[data-design="design-06"] .seitenleiste--desktop {
+    display: none;
+  }
+  :root[data-design="design-06"] .seitenleiste--mobil .seitenleiste__bild img {
+    max-height: 17rem;
+  }
+}
+
+/* Downloads */
+:root[data-design="design-06"] .sprungleiste {
+  background: var(--d6-navy);
+  color: #ffffff;
+  border-top: 1px solid var(--d6-line-strong);
+  border-bottom: 1px solid var(--d6-yellow);
+  padding: 0.65rem 0;
+}
+
+:root[data-design="design-06"] .sprungleiste__label {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: var(--d6-yellow);
+  font-size: var(--t-xs);
+  font-weight: 650;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .sprungleiste ul {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+}
+
+:root[data-design="design-06"] .sprungleiste li {
+  margin: 0;
+}
+
+:root[data-design="design-06"] .sprungleiste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.6rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--d6-radius);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .sprungleiste a:hover {
+    background: var(--d6-yellow);
+    color: var(--d6-on-yellow);
+    border-color: var(--d6-on-yellow);
+  }
+}
+
+:root[data-design="design-06"] .zeilen {
+  display: grid;
+  gap: 0.6rem;
+}
+
+:root[data-design="design-06"] .zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.35rem 1rem;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: var(--d6-panel);
+  border: 1px solid var(--d6-line);
+  border-radius: var(--d6-radius);
+  box-shadow: none;
+  transition: border-color 0.18s ease;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .zeile:hover {
+    border-color: var(--d6-heading);
+  }
+}
+
+:root[data-design="design-06"] .zeile__text {
+  min-width: 0;
+}
+
+:root[data-design="design-06"] .zeile__titel {
+  margin: 0 0 0.2rem;
+  color: var(--d6-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+:root[data-design="design-06"] .zeile__beschreibung {
+  margin: 0;
+  color: var(--d6-soft);
+  font-size: var(--t-s);
+  line-height: 1.45;
+}
+
+:root[data-design="design-06"] .zeile__daten {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+:root[data-design="design-06"] .zeile__aktion {
+  margin: 0;
+  justify-self: end;
+}
+
+:root[data-design="design-06"] .kasten .zeile {
+  grid-template-columns: minmax(0, 1fr);
+  padding: 0.7rem 0;
+  border: 0;
+  border-top: 1px solid var(--d6-line);
+  border-radius: 0;
+  background: transparent;
+}
+
+:root[data-design="design-06"] .kasten .zeile:last-child {
+  border-bottom: 1px solid var(--d6-line);
+}
+
+:root[data-design="design-06"] .kasten .zeile__aktion {
+  justify-self: start;
+}
+
+/* Hinweise, Werte, Video */
+:root[data-design="design-06"] .hinweis {
+  background: var(--d6-panel-2);
+  border: 1px solid var(--d6-line);
+  border-top: 3px solid var(--d6-yellow);
+  padding: 0.9rem 1rem;
+  margin: 1.5rem 0;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .hinweis__titel {
+  margin: 0 0 0.35rem;
+  color: var(--d6-heading);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .hinweis p {
+  margin: 0 0 0.5rem;
+  color: var(--d6-ink);
+  font-size: var(--t-s);
+}
+
+:root[data-design="design-06"] .hinweis--warnung {
+  background: var(--warn-flaeche);
+  border-top-color: var(--d6-orange);
+}
+
+:root[data-design="design-06"] .werte {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 1.5rem 0;
+}
+
+:root[data-design="design-06"] .wert {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: var(--d6-ink);
+  font-size: var(--t-s);
+  font-weight: 600;
+}
+
+:root[data-design="design-06"] .wert__marke {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  border: 1px solid var(--d6-line-strong);
+}
+
+:root[data-design="design-06"] .wert__marke--blau {
+  background: var(--d6-navy);
+}
+
+:root[data-design="design-06"] .wert__marke--gelb {
+  background: var(--d6-yellow);
+}
+
+:root[data-design="design-06"] .wert__marke--orange {
+  background: var(--d6-orange);
+}
+
+:root[data-design="design-06"] .wert__marke--gruen {
+  background: var(--d6-success);
+}
+
+:root[data-design="design-06"] .wert__marke--magenta {
+  background: #a32a5a;
+}
+
+:root[data-design="design-06"] .wert__marke--vielfalt {
+  background: linear-gradient(90deg, var(--d6-navy) 0 20%, var(--d6-yellow) 20% 40%, var(--d6-orange) 40% 60%, var(--d6-success) 60% 80%, #a32a5a 80% 100%);
+}
+
+:root[data-design="design-06"] .video {
+  margin: 1.5rem 0;
+}
+
+:root[data-design="design-06"] .video__knopf {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--d6-line-strong);
+  border-radius: var(--d6-radius);
+  background: var(--d6-panel);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+:root[data-design="design-06"] .video__knopf img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+:root[data-design="design-06"] .video__zeichen {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  transform: translate(-50%, -50%);
+  background: var(--d6-yellow);
+  border: 2px solid #101828;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+:root[data-design="design-06"] .video__zeichen::after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  top: 50%;
+  width: 14px;
+  height: 18px;
+  transform: translate(-50%, -50%);
+  background: var(--d6-on-yellow);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+:root[data-design="design-06"] .video__hinweis {
+  margin-top: 0.45rem;
+  font-size: var(--t-xs);
+}
+
+/* ---------- Fuß ---------- */
+
+:root[data-design="design-06"] .fuss {
+  background: var(--d6-footer);
+  color: var(--d6-footer-ink);
+  border-top: 1px solid var(--d6-yellow);
+}
+
+:root[data-design="design-06"] .fuss__gitter {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.75rem;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+}
+
+:root[data-design="design-06"] .fuss__block {
+  min-width: 0;
+  font-size: var(--t-xs);
+  line-height: 1.55;
+}
+
+:root[data-design="design-06"] .fuss__titel {
+  margin: 0 0 0.6rem;
+  color: var(--d6-footer-titel);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+:root[data-design="design-06"] .fuss address {
+  font-style: normal;
+}
+
+:root[data-design="design-06"] .fuss a {
+  color: var(--d6-footer-ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 0.18em;
+}
+
+:root[data-design="design-06"] .fuss a:hover {
+  color: var(--d6-yellow);
+  text-decoration-color: var(--d6-yellow);
+}
+
+:root[data-design="design-06"] .fuss__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:root[data-design="design-06"] .fuss__liste li {
+  margin: 0.25rem 0;
+}
+
+:root[data-design="design-06"] .fuss__liste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+:root[data-design="design-06"] .fuss__leiste {
+  background: var(--d6-blue-950);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--d6-footer-soft);
+  font-size: var(--t-xs);
+}
+
+:root[data-design="design-06"] .fuss__leisteinnen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+}
+
+/* Auf Desktop steht „Krankmelden“ in der Nutzleiste; der zweite Knopf
+   würde den Kopf nur doppeln. Unter 1200 px übernimmt er die Aufgabe. */
+@media (min-width: 1200px) {
+  :root[data-design="design-06"] .kopf__ende .krankmelden-knopf {
+    display: none;
+  }
+}
+
+/* Die Wegweiser-Welt spricht in gemischter Schreibung. Das ist eine
+   bewusste Abweichung von den Versalien der Beschilderung: Die Namen der
+   Schularten und Abschlüsse bleiben so auch für jüngere Leserinnen und
+   Leser sofort lesbar; die Schildwirkung tragen Kante, Farbe und Gewicht. */
+:root[data-design="design-06"] *,
+:root[data-design="design-06"] *::before,
+:root[data-design="design-06"] *::after {
+  text-transform: none;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1199px) {
+  :root[data-design="design-06"] .menueknopf {
+    display: inline-flex;
+  }
+  :root[data-design="design-06"] .krankmelden-knopf {
+    display: inline-flex;
+  }
+  :root[data-design="design-06"] .menue {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    background: var(--d6-panel);
+    border: 1px solid var(--d6-line-strong);
+    border-radius: 0 0 var(--d6-radius) var(--d6-radius);
+    padding: 1rem 1.1rem 1.4rem;
+    box-shadow: var(--d6-shadow);
+    max-height: calc(100vh - var(--kopfhoehe));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  :root[data-design="design-06"] .menue[data-offen] {
+    display: flex;
+  }
+  :root[data-design="design-06"] .menue ul {
+    flex-direction: column;
+    gap: 0;
+  }
+  :root[data-design="design-06"] .menue ul a {
+    min-height: 2.75rem;
+    padding: 0.8rem 0.45rem;
+    font-size: 1rem;
+    border: 0;
+    border-bottom: 1px solid var(--d6-line);
+    border-radius: 0;
+  }
+  :root[data-design="design-06"] .menue ul a[aria-current="page"] {
+    background: var(--d6-navy);
+    color: #ffffff;
+    padding-left: 0.7rem;
+  }
+  :root[data-design="design-06"] .menue__gruppe {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  :root[data-design="design-06"] .menue__gruppe > a {
+    flex: 1;
+  }
+  :root[data-design="design-06"] .menue__auf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    min-height: 2.75rem;
+    background: transparent;
+    color: var(--d6-heading);
+    border: 0;
+    border-bottom: 1px solid var(--d6-line);
+    cursor: pointer;
+  }
+  :root[data-design="design-06"] .menue__auf-pfeil {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.18s ease;
+  }
+  :root[data-design="design-06"] .menue__gruppe[data-offen] .menue__auf-pfeil {
+    transform: rotate(180deg);
+  }
+  :root[data-design="design-06"] .menue__tafel {
+    display: none;
+    width: 100%;
+    padding: 0 0 0 0.75rem !important;
+  }
+  :root[data-design="design-06"] .menue__gruppe[data-offen] .menue__tafel {
+    display: block;
+  }
+  :root[data-design="design-06"] .menue__tafel a {
+    font-size: var(--t-s) !important;
+    padding: 0.55rem 0.45rem !important;
+    border-bottom: 1px solid var(--d6-line) !important;
+  }
+  :root[data-design="design-06"] .stilwahl--menue .stilwahl__auswahl {
+    min-height: 2.75rem;
+  }
+  :root[data-design="design-06"] .menue__schnell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--d6-line);
+  }
+  /* Die Kategorien bleiben auf schmalen Geräten eine Zeile und werden
+     waagerecht scrollbar; sonst wüchse die klebende Leiste auf über
+     300 px und deckte den Sprungziel den Text zu. */
+  :root[data-design="design-06"] .sprungleiste .container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.5rem;
+    scrollbar-width: thin;
+  }
+  :root[data-design="design-06"] .sprungleiste__label {
+    flex: 0 0 auto;
+  }
+  :root[data-design="design-06"] .sprungleiste ul {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+    margin: 0;
+  }
+  :root[data-design="design-06"] .sprungleiste li {
+    flex: 0 0 auto;
+  }
+  :root[data-design="design-06"] .hero__innen {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+  :root[data-design="design-06"] .hero__text {
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  :root[data-design="design-06"] .hero__bild {
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  :root[data-design="design-06"] .hero__innen::before,
+  :root[data-design="design-06"] .hero__innen::after {
+    content: none;
+    display: none;
+  }
+  :root[data-design="design-06"] .raster--3,
+  :root[data-design="design-06"] .raster--news,
+  :root[data-design="design-06"] .kalenderliste {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :root[data-design="design-06"] .instaraster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :root[data-design="design-06"] .fuss__gitter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  :root[data-design="design-06"] .leiste {
+    display: none;
+  }
+  :root[data-design="design-06"] .kopf__innen {
+    min-height: 4.5rem;
+  }
+  :root[data-design="design-06"] .modusknopf--leiste {
+    display: none;
+  }
+  :root[data-design="design-06"] .modusknopf--kopf {
+    display: inline-flex;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+  :root[data-design="design-06"] .marke-link img {
+    height: 2.6rem;
+  }
+  :root[data-design="design-06"] .hero {
+    padding-top: 1rem;
+  }
+  :root[data-design="design-06"] .seitenleiste--desktop {
+    display: none;
+  }
+  :root[data-design="design-06"] .seitenleiste--mobil {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  :root[data-design="design-06"] .fliesstext .bildraster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :root[data-design="design-06"] .raster--2,
+  :root[data-design="design-06"] .raster--3,
+  :root[data-design="design-06"] .raster--news,
+  :root[data-design="design-06"] .serviceliste,
+  :root[data-design="design-06"] .kalenderliste {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :root[data-design="design-06"] .karte--gross {
+    grid-column: auto;
+  }
+  :root[data-design="design-06"] .karte--gross .karte__bild {
+    aspect-ratio: 16 / 10;
+  }
+  :root[data-design="design-06"] .schulleben {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :root[data-design="design-06"] .partnergitter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :root[data-design="design-06"] .zeile {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :root[data-design="design-06"] .zeile__aktion {
+    justify-self: start;
+  }
+  :root[data-design="design-06"] .kopfzeile {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root[data-design="design-06"] .container,
+  :root[data-design="design-06"] .schmal {
+    width: calc(100% - 1.75rem);
+  }
+  :root[data-design="design-06"] body {
+    font-size: 1rem;
+  }
+  :root[data-design="design-06"] .kopf__innen {
+    gap: 0.6rem;
+    padding: 0.55rem 0;
+  }
+  :root[data-design="design-06"] .krankmelden-knopf {
+    min-height: 2.75rem;
+    padding: 0.45rem 0.55rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+  }
+  :root[data-design="design-06"] .menueknopf {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.45rem 0.55rem;
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .menueknopf__text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  :root[data-design="design-06"] .hero {
+    padding-bottom: 2rem;
+  }
+  :root[data-design="design-06"] .hero__text {
+    --d6-hero-pad: 1.05rem;
+  }
+  :root[data-design="design-06"] .hero__marke {
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    padding: 0.55rem var(--d6-hero-pad);
+  }
+  :root[data-design="design-06"] .hero__titel {
+    font-size: clamp(2.55rem, 12vw, 3.4rem);
+    max-width: 11ch;
+  }
+  :root[data-design="design-06"] .hero__unter {
+    font-size: 1rem;
+  }
+  :root[data-design="design-06"] .hero__ticket {
+    max-width: none;
+    padding: 0.65rem 0.7rem;
+  }
+  :root[data-design="design-06"] .hero__ticket-datum {
+    font-size: 1.25rem;
+  }
+  :root[data-design="design-06"] .hero__ticket-titel {
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .hero__punkte a {
+    min-height: 2.75rem;
+    font-size: 0.9375rem;
+  }
+  :root[data-design="design-06"] .hero__bild {
+    max-width: none;
+    padding: 0.4rem;
+  }
+  :root[data-design="design-06"] .hero__bild::after {
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .band {
+    padding: 2rem 0;
+  }
+  :root[data-design="design-06"] .karte__koerper {
+    padding: 0.9rem 0.9rem 1rem;
+  }
+  :root[data-design="design-06"] .karte__text {
+    font-size: 0.9375rem;
+  }
+  :root[data-design="design-06"] .instaraster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  :root[data-design="design-06"] .instabeitrag__koerper {
+    padding: 0.6rem 0.6rem 0.7rem;
+  }
+  :root[data-design="design-06"] .instabeitrag__text {
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .schulleben {
+    gap: 0.5rem;
+  }
+  :root[data-design="design-06"] .fuss__gitter {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+  :root[data-design="design-06"] .fuss__leisteinnen {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  :root[data-design="design-06"] .bildraster {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  :root[data-design="design-06"] .fliesstext table {
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .fliesstext th,
+  :root[data-design="design-06"] .fliesstext td {
+    padding: 0.35rem 0.45rem;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 640px) {
+  :root[data-design="design-06"] .menueknopf__text {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    clip-path: none;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  :root[data-design="design-06"] .instaraster {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :root[data-design="design-06"] .schulleben {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  :root[data-design="design-06"] .partnergitter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :root[data-design="design-06"] .hero__marke {
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .krankmelden-knopf {
+    font-size: 0.875rem;
+  }
+  :root[data-design="design-06"] .karte__block-titel {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 360px) {
+  :root[data-design="design-06"] .hero__text {
+    --d6-hero-pad: 0.9rem;
+  }
+  :root[data-design="design-06"] .hero__titel {
+    font-size: 2.35rem;
+  }
+  :root[data-design="design-06"] .kopf__ende {
+    gap: 0.25rem;
+  }
+  :root[data-design="design-06"] .krankmelden-knopf {
+    padding-inline: 0.4rem;
+  }
+}
+
+/* ---------- Bewegung und Druck ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-design="design-06"] *,
+  :root[data-design="design-06"] *::before,
+  :root[data-design="design-06"] *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  :root[data-design="design-06"] .karte:hover,
+  :root[data-design="design-06"] .karte:focus-within,
+  :root[data-design="design-06"] .instabeitrag:hover,
+  :root[data-design="design-06"] .instabeitrag:focus-within,
+  :root[data-design="design-06"] .kalender:hover,
+  :root[data-design="design-06"] .btn:hover {
+    transform: none;
+  }
+  :root[data-design="design-06"] .karte:hover .karte__bild img,
+  :root[data-design="design-06"] .karte:focus-within .karte__bild img,
+  :root[data-design="design-06"] .instabeitrag:hover .instabeitrag__bild img,
+  :root[data-design="design-06"] .schulleben li:hover img {
+    transform: none;
+  }
+  :root[data-design="design-06"] .karte__link:hover .karte__aktion span,
+  :root[data-design="design-06"] .linkpfeil:hover span,
+  :root[data-design="design-06"] .hero__punkte a:hover::after {
+    transform: none;
+  }
+}
+
+@media print {
+  :root[data-design="design-06"] {
+    --d6-ground: #ffffff;
+    --d6-ground-2: #ffffff;
+    --d6-panel: #ffffff;
+    --d6-panel-2: #ffffff;
+    --d6-ink: #000000;
+    --d6-soft: #222222;
+    --d6-line: #999999;
+    --d6-line-strong: #555555;
+    --d6-blue-text: #000000;
+    --d6-orange-text: #000000;
+    --d6-wall: none;
+    --d6-footer: #ffffff;
+    --d6-footer-ink: #000000;
+    --d6-footer-soft: #222222;
+    --d6-footer-titel: #000000;
+    --d6-shadow: none;
+    --d6-shadow-soft: none;
+  }
+  :root[data-design="design-06"] .kopf,
+  :root[data-design="design-06"] .fuss,
+  :root[data-design="design-06"] .sprungleiste,
+  :root[data-design="design-06"] .stilwahl,
+  :root[data-design="design-06"] .modusknopf,
+  :root[data-design="design-06"] .menueknopf,
+  :root[data-design="design-06"] .krankmelden-knopf {
+    display: none !important;
+  }
+  :root[data-design="design-06"] .hero,
+  :root[data-design="design-06"] .band--blau,
+  :root[data-design="design-06"] .band--nacht {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #999999 !important;
+  }
+  :root[data-design="design-06"] .hero__titel,
+  :root[data-design="design-06"] .hero__marke,
+  :root[data-design="design-06"] .band--blau h2,
+  :root[data-design="design-06"] .band--nacht h2 {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+  :root[data-design="design-06"] .hero__text,
+  :root[data-design="design-06"] .hero__bild,
+  :root[data-design="design-06"] .karte,
+  :root[data-design="design-06"] .instabeitrag,
+  :root[data-design="design-06"] .kalender,
+  :root[data-design="design-06"] .service,
+  :root[data-design="design-06"] .zeile,
+  :root[data-design="design-06"] .kasten {
+    box-shadow: none !important;
+    border-color: #999999 !important;
+  }
+  :root[data-design="design-06"] .hero__innen {
+    display: block;
+  }
+  :root[data-design="design-06"] .hero__bild {
+    margin-top: 1rem;
+    max-width: 28rem;
+  }
+  :root[data-design="design-06"] a {
+    color: #000000;
+    text-decoration: underline;
+  }
+}

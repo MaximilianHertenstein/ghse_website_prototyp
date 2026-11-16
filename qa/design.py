@@ -69,7 +69,20 @@ def main():
             pruefe(s["wahl"] == "klar", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
 
             optionen = page.eval_on_selector_all(".stilwahl--leiste option", "els => els.map(e => e.value)")
-            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern", "lesebuch"], "Theme-Optionen: %r" % optionen)
+            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern", "lesebuch", "design-06"], "Theme-Optionen: %r" % optionen)
+
+            page.select_option(".stilwahl--leiste select", "design-06")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "design-06", "Wechsel auf Wegweiser fehlt: %r" % s)
+            pruefe("Archivo" in s["schrift"], "Wegweiser nutzt nicht Archivo: %r" % s["schrift"])
+            pruefe(s["gespeichert"] == "design-06", "Wegweiser nicht gespeichert: %r" % s["gespeichert"])
+
+            page.reload(wait_until="load")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "design-06", "Wegweiser überlebt Neuladen nicht: %r" % s)
+            pruefe(s["wahl"] == "design-06", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
 
             page.select_option(".stilwahl--leiste select", "funktional")
             page.wait_for_timeout(250)
@@ -105,7 +118,7 @@ def main():
             ctx2.close()
         finally:
             browser.close()
-    print("OK: fünf Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
+    print("OK: sechs Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
 
 
 if __name__ == "__main__":

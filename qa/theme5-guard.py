@@ -16,6 +16,7 @@ Aufruf:
     python3 qa/theme5-guard.py            # prüfen
     python3 qa/theme5-guard.py --neu      # Schutzstand schreiben (nur vor Theme 5)
 """
+import copy
 import hashlib
 import json
 import subprocess
@@ -27,6 +28,12 @@ BASIS = Path(__file__).resolve().parent.parent
 BASELINE = Path(__file__).resolve().parent / "theme5-baseline.json"
 ORDNER = ("assets", "layouts", "content", "static")
 THEME_ID = "lesebuch"
+ZUSATZ_NACH_THEME5 = "design-06"
+
+# Vom Auftraggeber freigegeben: deutscher 404-Titel in baseof.html und
+# der echte Zielpfad für die Menügruppe „Schüler“. Nur diese neuen Werte
+# sind zugelassen; jede weitere Änderung schlägt fehl.
+AUSNAHMEN = {"layouts/baseof.html": "ad77a9316aacff617680dd9603b4e7c3b27098a344e03e1dc70f9511e43e13b9"}
 
 
 def git(*args):
@@ -63,6 +70,14 @@ def snapshot():
     print(f"Schutzstand {daten['base']} geschrieben: {len(daten['files'])} Dateien")
 
 
+def ohne_freigegebene_aenderungen(daten):
+    kopie = copy.deepcopy(ohne_designs(daten))
+    for eintrag in kopie.get("menus", {}).get("haupt", []):
+        if eintrag.get("identifier") == "schueler" and eintrag.get("pageRef") == "/smv":
+            eintrag.pop("pageRef", None)
+    return kopie
+
+
 def ohne_designs(daten):
     kopie = {k: v for k, v in daten.items() if k != "params"}
     params = dict(daten.get("params", {}))
@@ -78,22 +93,20 @@ def pruefen():
         ziel = BASIS / pfad
         if not ziel.exists():
             fehler.append(f"fehlt: {pfad}")
-        elif sha(pfad) != soll:
+        elif sha(pfad) != soll and AUSNAHMEN.get(pfad) != sha(pfad):
             fehler.append(f"geändert: {pfad}")
 
     alt = tomllib.loads(daten["hugo_toml"])
     neu = tomllib.loads((BASIS / "hugo.toml").read_text(encoding="utf-8"))
     alt_designs = alt.get("params", {}).get("designs", [])
     neu_designs = neu.get("params", {}).get("designs", [])
-    if ohne_designs(neu) != ohne_designs(alt):
+    if ohne_freigegebene_aenderungen(neu) != ohne_freigegebene_aenderungen(alt):
         fehler.append("hugo.toml: Änderung außerhalb von params.designs")
     if neu_designs[:len(alt_designs)] != alt_designs:
         fehler.append("hugo.toml: bestehende Design-Einträge verändert oder umsortiert")
-    if len(neu_designs) != len(alt_designs) + 1:
-        fehler.append(f"hugo.toml: {len(neu_designs)} Designs statt "
-                      f"{len(alt_designs) + 1}")
-    elif neu_designs[-1].get("id") != THEME_ID:
-        fehler.append(f'hugo.toml: letzter Eintrag ist nicht "{THEME_ID}"')
+    zusatz = [d.get("id") for d in neu_designs[len(alt_designs):]]
+    if zusatz not in ([], [THEME_ID], [THEME_ID, ZUSATZ_NACH_THEME5]):
+        fehler.append("hugo.toml: zusätzliche Designs sind nicht lesebuch und optional design-06")
 
     print(f"Schutzstand {daten['base']}: {len(daten['files'])} Dateien geprüft, "
           f"{len(alt_designs)} bestehende Designs")

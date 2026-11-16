@@ -39,7 +39,7 @@ disableKinds = ["taxonomy", "term"]
   fax = "07641 465 199"
   mail = "poststelle@ghse.de"
 
-  # Vier Gestaltungsvarianten derselben Seiten. `design` ist der Einstieg
+  # Sechs Gestaltungsvarianten derselben Seiten. `design` ist der Einstieg
   # ohne gespeicherte Wahl; `?design=<id>` und der Umschalter wechseln die
   # Variante. Neo steht in main.css (ohne eigene CSS-Datei), jede weitere
   # bringt eine auf data-design="<id>" begrenzte Datei mit. Ein weiteres
@@ -74,6 +74,12 @@ disableKinds = ["taxonomy", "term"]
     kurz = "Lesebuch"
     css = "css/lesebuch.css"
     fonts = "schriften-lesebuch.html"
+  [[params.designs]]
+    id = "design-06"
+    name = "Wegweiser"
+    kurz = "Wegw."
+    css = "css/design-06.css"
+    fonts = "schriften-design06.html"
 
 # Adressen im Fließtext bleiben Text: Der Originalseite stehen dort die
 # Webadressen als Klartext, und ein paar davon zeigen längst ins Leere.
@@ -255,6 +261,7 @@ disableKinds = ["taxonomy", "term"]
   [[menus.haupt]]
     identifier = "schueler"
     name = "Schüler"
+    pageRef = "/smv"
     weight = 50
   [[menus.haupt]]
     identifier = "smv"
