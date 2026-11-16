@@ -58,7 +58,7 @@
 
 ### Detector
 
-- **CSS:** 81 Advisories vor dem Token-Feinschliff (52 Farbe, 29 Schriftgröße), 0 Warnungen/Fehler. Nach Einführung von `--d6-on-yellow`: **44 Advisories** (15 Farbe, 29 Schriftgröße), alle dokumentiert.
+- **CSS:** 81 Advisories vor dem Token-Feinschliff (52 Farbe, 29 Schriftgröße), 0 Warnungen/Fehler. Nach Einführung von `--d6-on-yellow`: **43 Advisories** (15 Farbe, 28 Schriftgröße), alle dokumentiert.
 - **URL:** 0 Laufzeitbefunde auf den Kernseiten; der spätere 83-Seiten-Sweep ergab nach Behebung eines Video-Schattenbefunds **0/83**.
 - **Einordnung:** Die Farbadvisories betreffen die neue, dokumentierte Design-6-Palette und die vier GHSE-Originalfarben; die Schriftgrößen-Advisories die neue Skala. Keine echten Slop-Warnungen nach dem Polish.
 
@@ -103,6 +103,7 @@ Die Critique wurde als Polish-Pass umgesetzt; die fünf Bestandsdesigns bleiben 
 | Sidebar-Fokus dunkel | dunkler Fokusring mit 2 px Offset | **resolved** (12,92:1) |
 | Mobiles „Stil“-Label | dunkle Farbe im Menü; Select 44 px | **resolved** (17,75:1) |
 | Sprungleisten-Fokus | gelber Fokus auf Navy | **resolved** (9,09:1) |
+| Unterschiedliche Strichstärken | alle sichtbaren Rahmen/Trennlinien auf 1 px; Fokusring bleibt Zustand | **resolved** |
 | Hero-Zielzeilen zu schmal | volle Panelbreite, Pfeil rechts | **resolved** |
 | Pfeil/Plakette im Hero | Auf Wunsch des Auftraggebers entfernt; Zielzeilen und Sichtfenster tragen den Hero | **entschieden** |
 | 404 Buttonstapel | blaue Wegtafel, weiße Schilder, „Zur Startseite“ gelb | **resolved** |

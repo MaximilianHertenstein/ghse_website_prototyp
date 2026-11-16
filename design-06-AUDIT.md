@@ -102,7 +102,7 @@ Belege:
 - **Performance:** Lighthouse 95 mobil / 100 Desktop, Accessibility 100, Best Practices 100; kein neues JavaScript, lokale Schriften und Bilder.
 - **Zustände:** sichtbarer Fokus, Tastaturmenü, Theme-/Stilwechsel, Reduced Motion, Skip-Link, Sticky-Sidebar, Anker.
 - **404:** echte Wegtafel statt Buttonstapel; „Zur Startseite“ ist der gelbe Primärweg.
-- **Konsistenz:** ein Token-System, eine Schrift, klare Schild- und Registerlogik über acht Seitentypen.
+- **Konsistenz:** ein Token-System, eine Schrift, ein 1-px-Liniensystem und klare Schild-/Registerlogik über acht Seitentypen.
 
 ---
 

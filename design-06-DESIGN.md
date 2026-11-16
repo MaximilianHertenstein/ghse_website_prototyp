@@ -21,8 +21,8 @@ Die Startseite ist das **Foyer** der Schule:
 - Die H1 „Wir machen Schule für alle“ ist der größte Text der Seite.
 - Die fünf Abschlüsse sind echte Zielzeilen über die volle Panelbreite,
   keine dekorativen Sticker.
-- Das Schulgebäude mit dem gelben Übergang ist das gerahmte Sichtfenster;
-  die Bildzeile nennt „Hauptgebäude · Jahnstr. 12–14“.
+- Das Schulgebäude mit dem gelben Übergang ist das gerahmte Sichtfenster –
+  ohne zusätzliche Bildzeile.
 - Der Hero bleibt bewusst ohne zusätzliche Plakette und ohne Pfeil; die
   blauen Zielzeilen und das Sichtfenster tragen die Komposition.
 - „Alle Schularten“ ist der gelbe Primärweg; die vier vorhandenen
@@ -315,6 +315,11 @@ Neobrutalismus-Welt. Die Schilder stehen auf 1-px-Kanten; die weiche Tiefe
 ist nur für schwebende Panels (Hero, Menü, 404) reserviert. Karten und
 Zeilen bleiben flach.
 
+**Linien:** Alle sichtbaren Rahmen und Trennlinien sind **1 px**. Die
+früheren 2-/3-px-Akzente an Ticket, Hinweis, Überschriften, Kartenaktion,
+Service-Kante, Video-Knopf und Footer-Titel wurden auf dasselbe Maß
+gebracht. Der Fokusring bleibt als eigener Zugänglichkeitszustand 3 px.
+
 ---
 
 ## 6. Aufbau und Komponenten
@@ -346,7 +351,7 @@ Zeilen bleiben flach.
   Orange-Tick links, Pfeil rechts; Hover verlängert den Tick und schiebt
   den Pfeil.
 - Keine zusätzliche Standortplakette und kein Pfeil; die Abschlusszeilen und das Sichtfenster tragen die Komposition.
-- Gebäude als gerahmtes Sichtfenster mit Bildzeile.
+- Gebäude als gerahmtes Sichtfenster ohne Bildzeile.
 - Auf ≤1199 px stapeln Panel und Bild, beide max. 46rem und zentriert.
 
 ### 6.3 Schularten / Zielschilder
@@ -393,7 +398,7 @@ Zeilen bleiben flach.
 
 ### 6.7 Service, Hinweise, Bilder
 
-- Service-Karten: weiße Merkblätter mit gelbem Top-Tab, Titel, Text und
+- Service-Karten: weiße Merkblätter mit gelber 1-px-Oberkante, Titel, Text und
   Textlink; 2 Spalten, mobil 1.
 - Hinweise: weißes Merkblatt mit gelber Oberkante, kein dicker Seitenbalken.
 - Werte: farbige Quadrate aus der bestehenden Leitbild-Palette; Text trägt
@@ -512,8 +517,8 @@ Ziel: **WCAG 2.2 AA**.
 - **Semantik:** eine H1 pro Seite, Überschriftenhierarchie, echte Listen,
   Tabellen mit `th`, `aria-label` für Navigationen, `aria-hidden` für
   dekorative Grafik.
-- **Bilder:** echte `alt`-Texte; die Bildzeile im Hero ist zusätzliche
-  visuelle Beschriftung, keine Ersatzbeschreibung.
+- **Bilder:** echte `alt`-Texte; im Hero gibt es keine zusätzliche
+  Bildzeile, die mit der Beschreibung konkurriert.
 - **Bewegung:** `prefers-reduced-motion` schaltet Übergänge, Bildskalierung
   und Pfeilverschiebung ab.
 - **Farbunabhängigkeit:** Kategorien stehen als Text, nicht nur als Farbe;
@@ -609,7 +614,7 @@ qa/design6-isolation.py
 | Kontrast-Sweep | 83 Seiten × hell/dunkel: 0 Textkontrast-Fehler |
 | Impeccable Detector (URL) | 83 Seiten: 0 Laufzeitbefunde |
 | Impeccable Audit | 19/20 (Accessibility 3, Performance 4, Theming 4, Responsive 4, Implementation Integrity 4) |
-| Impeccable Detector (CSS) | 44 Advisories (15 Farbe, 29 Schriftgröße), 0 Warnungen/Fehler; Tokens und Skala sind hier dokumentiert |
+| Impeccable Detector (CSS) | 43 Advisories (15 Farbe, 28 Schriftgröße), 0 Warnungen/Fehler; Tokens und Skala sind hier dokumentiert |
 | Lighthouse Startseite mobil | Performance 95, Accessibility 100, Best Practices 100, SEO 85 (lokale `robots.txt`/Canonical) |
 | Lighthouse TG Desktop | Performance 100, Accessibility 100, Best Practices 100, SEO 85 (lokal) |
 | Konsole | 0 Fehler, 0 fehlgeschlagene Requests; kein `livereload.js` |
@@ -660,13 +665,15 @@ Umgesetzt:
 | Mobiles „Stil“-Label | **resolved** (17,75:1; Select 44 px) |
 | 404-Wegtafel | **resolved** (blau, weiße Schilder, gelber Primärweg) |
 | Reduced Motion | **resolved** |
-| Galeriehöhe | **partial** (1.381 px statt 2.850 px bei 1440; erste H2 weiter nach der Galerie) |
-| Sichtbare Schulbreite (4 von 8) | **unresolved** (Inhalt/Template; „Alle Schularten“ gelb) |
-| Primäre Hierarchie | **partial** (Hero und 404 gestärkt; Sidebar ohne Anmelde-CTA; „Schüler“ und „Anmeldung“ jetzt echte Ziele) |
-| Mobiles Menü-Fokus | **partial** (Label/Select behoben; Fokusfalle im geteilten `nav.js` nicht geändert) |
-| 44-px-Ziele | **partial** (mobile/Kernwege resolved; Desktop-Nutzleiste 28–40 px, ≥24 px) |
-| „Wegw.“ | **unresolved (niedrig)** (Pixelgleichheit der fünf Bestandsdesigns hat Vorrang) |
+| Galeriehöhe | **entschieden** (4/3/2-Raster; 1.381 px statt 2.850 px bei 1440) |
+| Sichtbare Schulbreite (4 von 8) | **entschieden** (vier Karten + gelber „Alle Schularten“-Weg) |
+| Primäre Hierarchie | **entschieden** (Hero/404 gestärkt; „Schüler“ und „Anmeldung“ echte Ziele; Sidebar bleibt inhaltlich) |
+| Mobiles Menü-Fokus | **entschieden** (Label/Select behoben; geteiltes `nav.js` bleibt) |
+| 44-px-Ziele | **entschieden** (mobile/Kernwege 44 px; Desktop-Sekundärbedienung kompakt, ≥24 px) |
+| „Wegw.“ | **entschieden** (Pixelgleichheit der fünf Bestandsdesigns hat Vorrang) |
 | Designsystem-Doku | **resolved** (`DESIGN.md` additiv um die sechste Variante ergänzt; fünf Bestandsdokumente unverändert) |
+| „Schüler“-Ziel / 404-Titel | **resolved** (`/smv/`; „Seite nicht gefunden“) |
+| Linien | **resolved** (einheitlich 1 px; Fokusring als Zustand 3 px) |
 
 Neue materielle Probleme durch die Fixes: **keine**.
 

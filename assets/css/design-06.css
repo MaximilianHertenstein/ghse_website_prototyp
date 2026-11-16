@@ -361,7 +361,7 @@
 
 :root[data-design="design-06"] ::-webkit-scrollbar-thumb {
   background: var(--d6-line-strong);
-  border: 2px solid var(--d6-ground-2);
+  border: 1px solid var(--d6-ground-2);
 }
 
 /* ---------- Kopf ---------- */
@@ -781,7 +781,7 @@
   background: var(--d6-panel-2);
   color: var(--d6-ink);
   border: 1px solid var(--d6-line);
-  border-top: 3px solid var(--d6-yellow);
+  border-top: 1px solid var(--d6-yellow);
   border-left: 1px solid var(--d6-line);
   box-shadow: none;
   text-decoration: none;
@@ -867,7 +867,7 @@
 :root[data-design="design-06"] .hero__punkte a::before {
   content: "";
   width: 18px;
-  height: 2px;
+  height: 1px;
   flex: 0 0 auto;
   background: var(--d6-orange);
   transition: width 0.18s ease;
@@ -924,18 +924,6 @@
   border-radius: 0;
 }
 
-:root[data-design="design-06"] .hero__bild::after {
-  content: "Hauptgebäude · Jahnstr. 12–14";
-  display: block;
-  margin-top: 0.55rem;
-  padding: 0.55rem 0.1rem 0.15rem;
-  border-top: 1px solid var(--d6-line);
-  color: var(--d6-soft);
-  font-size: var(--t-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: none;
-}
 
 /* Der gelbe Wegpfeil zwischen Schild und Sichtfenster. */
 /* ---------- Bänder und Abschnittsköpfe ---------- */
@@ -993,7 +981,7 @@
   margin: 0;
   color: var(--d6-heading);
   font-size: var(--t-h2);
-  border-bottom: 2px solid var(--d6-yellow);
+  border-bottom: 1px solid var(--d6-yellow);
   padding-bottom: 0.35rem;
 }
 
@@ -1178,7 +1166,7 @@
   margin-top: auto;
   padding-top: 0.7rem;
   color: var(--d6-blue-text);
-  border-bottom: 2px solid var(--d6-yellow);
+  border-bottom: 1px solid var(--d6-yellow);
   font-size: var(--t-xs);
   font-weight: 700;
   text-transform: none;
@@ -1599,8 +1587,18 @@
 :root[data-design="design-06"] .kalender__aktion {
   margin-top: auto;
   color: var(--d6-blue-text);
+  border-bottom: 1px solid var(--d6-blue-text);
   font-size: var(--t-xs);
   font-weight: 600;
+}
+
+@media (hover: hover) {
+  :root[data-design="design-06"] .kalender:hover .kalender__aktion {
+    background: transparent;
+    color: var(--d6-blue-text);
+    border-bottom-color: var(--d6-blue-text);
+    padding: 0;
+  }
 }
 
 @media (hover: hover) {
@@ -1629,19 +1627,10 @@
   position: relative;
   background: var(--d6-panel);
   border: 1px solid var(--d6-line);
+  border-top-color: var(--d6-yellow);
   border-radius: var(--d6-radius);
   padding: 1.05rem 1.1rem 1.15rem;
   box-shadow: none;
-}
-
-:root[data-design="design-06"] .service::before {
-  content: "";
-  position: absolute;
-  left: 1.1rem;
-  top: 0;
-  width: 28px;
-  height: 3px;
-  background: var(--d6-yellow);
 }
 
 :root[data-design="design-06"] .service h3 {
@@ -2144,6 +2133,7 @@
 :root[data-design="design-06"] .kasten h2 {
   padding-block: 0.5rem;
   margin: 0;
+  border-bottom: 1px solid var(--d6-line);
 }
 
 :root[data-design="design-06"] .kasten {
@@ -2167,6 +2157,7 @@
   padding: 0.55rem 1rem;
   background: var(--d6-navy);
   color: #ffffff;
+  border-bottom: 1px solid var(--d6-line-strong);
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -2390,7 +2381,7 @@
 :root[data-design="design-06"] .hinweis {
   background: var(--d6-panel-2);
   border: 1px solid var(--d6-line);
-  border-top: 3px solid var(--d6-yellow);
+  border-top: 1px solid var(--d6-yellow);
   padding: 0.9rem 1rem;
   margin: 1.5rem 0;
   box-shadow: none;
@@ -2496,7 +2487,7 @@
   height: 3.5rem;
   transform: translate(-50%, -50%);
   background: var(--d6-yellow);
-  border: 2px solid #101828;
+  border: 1px solid #101828;
   border-radius: 50%;
   box-shadow: none;
 }
@@ -2541,7 +2532,9 @@
 
 :root[data-design="design-06"] .fuss__titel {
   margin: 0 0 0.6rem;
+  padding-bottom: 0.6rem;
   color: var(--d6-footer-titel);
+  border-bottom: 1px solid var(--d6-footer-titel);
   font-size: var(--t-xs);
   font-weight: 700;
   text-transform: none;
@@ -2555,6 +2548,7 @@
 :root[data-design="design-06"] .fuss a {
   color: var(--d6-footer-ink);
   text-decoration: underline;
+  text-decoration-thickness: 1px;
   text-decoration-color: rgba(255, 255, 255, 0.35);
   text-underline-offset: 0.18em;
 }
@@ -2578,6 +2572,12 @@
   display: inline-flex;
   align-items: center;
   min-height: 1.5rem;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+}
+
+:root[data-design="design-06"] .fuss__liste a:hover {
+  border-bottom-color: var(--d6-footer-ink);
 }
 
 :root[data-design="design-06"] .fuss__leiste {
@@ -2898,9 +2898,6 @@
   :root[data-design="design-06"] .hero__bild {
     max-width: none;
     padding: 0.4rem;
-  }
-  :root[data-design="design-06"] .hero__bild::after {
-    font-size: 0.875rem;
   }
   :root[data-design="design-06"] .band {
     padding: 2rem 0;
