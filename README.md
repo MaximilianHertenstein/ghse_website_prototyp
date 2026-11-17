@@ -11,7 +11,7 @@ Einstieg ist die Variante **Funktional** (funktionaler Minimalismus),
 dazu **Neo** (reduzierter Neobrutalismus, Grundlage: Skill `neobrutalism`
 aus [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
 **Klar** (Clean), **Modern** (Weiterentwicklung des GHSE-Auftritts) und
-**Lesebuch** (Buchbindung mit blauem Rücken, Serif und Verzeichnis); mit
+**Lesebuch** (Buchbindung mit blauer Kopfleiste, Serif und Verzeichnis); mit
 echten GHSE-Inhalten, Texten, Bildern und Dokumenten.
 
 ---
@@ -758,7 +758,7 @@ Inhalte und URLs:
 | `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam |
 | `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen (Einstieg) |
 | `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
-| `lesebuch` | Lesebuch | Graugrünes Papier, blaues Verzeichnis links, Piazzolla/Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
+| `lesebuch` | Lesebuch | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Piazzolla/Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt
@@ -775,8 +775,9 @@ Inhalte und URLs:
 * **Kompatibilität:** Die neuen Theme-Dateien fixieren die vorherige Breite
   des Theme-Feldes für Neo/Klar (59,78 px / 72 px). Dadurch bleiben die
   bestehenden Köpfe pixelgleich, ohne deren CSS zu ändern.
-* **Lesebuch:** Das fünfte Theme hält den festen blauen Rücken links,
-  Piazzolla für Lesetext und Überschriften, Public Sans für Bedienung.
+* **Lesebuch:** Das fünfte Theme führt das Verzeichnis in einer blauen
+  Kopfleiste über der Seite; darunter liegt die helle Serviceleiste.
+  Piazzolla trägt Lesetext und Überschriften, Public Sans die Bedienung.
   Alle Regeln stehen unter `:root[data-design="lesebuch"]`; die Farbtokens
   heißen `--lb-*` und werden von keiner anderen Variante gelesen. Der
   Bestandsschutz läuft über `qa/theme5-guard.py` (Prüfsummen) und
@@ -795,7 +796,7 @@ Inhalte und URLs:
   bleibt ein natives Auswahlfeld ohne Bildkonvention.
 * **QA:** `qa/kontrast.py` prüft Neo, `qa/kontrast_klar.py` prüft Klar
   (Hell und Dunkel, AAA). `qa/klar_pruefung.py <bau>` misst die
-  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle fünf Varianten
+  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle sechs Varianten
   auf Überlauf, Versalien, Rotation, Schriftgrößen, Kontraste und
   Zeigeziele; `qa/design.py <url>` prüft Umschalter, Speicherung, Neuladen
   und `?design=klar`. `qa/theme-guard.py` vergleicht alle 681 vorhandenen

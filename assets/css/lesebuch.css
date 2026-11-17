@@ -1,5 +1,5 @@
-/* Hallmark · theme: custom · idea: "Die Schule als Lesebuch: blauer Rücken, Papier, Tafeln, Verzeichnis" · vibe: "gebunden, ruhig, konkret, vielseitig" · paper: mid #e3e5dd · ink: #171b18 · accent: #114c92 (Rücken) und #f6dc56 (Lesebändchen) · display: Piazzolla · body: Public Sans · hero: Ledge · nav: blauer Rücken als Verzeichnis · footer: Kolophon · posture: restrained · axes: mid/roman-serif/cool · copy: verbatim */
-/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: H — der Rücken darf die Seite nicht überschreien; eine Fläche, eine gelbe Marke, keine weitere Farbe */
+/* Hallmark · theme: custom · idea: "Die Schule als Lesebuch: blaue Kopfleiste, Papier, Tafeln, Verzeichnis" · vibe: "gebunden, ruhig, konkret, vielseitig" · paper: mid #e3e5dd · ink: #171b18 · accent: #114c92 (Rücken) und #f6dc56 (Lesebändchen) · display: Piazzolla · body: Public Sans · hero: Ledge · nav: blaue Kopfleiste als Verzeichnis · footer: Kolophon · posture: restrained · axes: mid/roman-serif/cool · copy: verbatim */
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: H — die Kopfleiste darf die Seite nicht überschreien; eine Fläche, eine gelbe Marke, keine weitere Farbe */
 /* Hallmark · waive 44c · custom hero, die Tafel füllt den Textblock · die Schule und ihr Bild tragen den ersten Bildschirm */
 /* Hallmark · waive 79 · Ledge: der Fold ist der Hero-Fuß plus 104 px Bandabstand · eine Leseseite, kein Poster */
 /* Hallmark · waive 83 · own GHSE photographs, gemessen 17 % der Fläche unter dem Hero · sloplint teilt durch den 211-px-Rücken-Container */
@@ -33,7 +33,7 @@
   --lb-tafel: #f7f5ec;
   --lb-bildrand: rgba(0, 0, 0, 0.12);
 
-  /* Rücken: helle Schrift und Linien auf GHSE-Blau. */
+  /* Kopfleiste: helle Schrift und Linien auf GHSE-Blau. */
   --lb-rail-text: #f3f0e6;
   --lb-rail-text-leise: rgba(243, 240, 230, 0.88);
   --lb-rail-leise: rgba(243, 240, 230, 0.78);
@@ -44,6 +44,10 @@
   --lb-rail-aktiv: rgba(243, 240, 230, 0.08);
   --lb-rail-hover: rgba(243, 240, 230, 0.1);
   --lb-rail-hover-stark: rgba(243, 240, 230, 0.12);
+
+  /* Kopfleiste: der Blauverlauf nimmt die Töne des Logo-Zeichens auf.
+     Dadurch sitzt das Logo auf derselben Fläche statt auf einer Plakette. */
+  --lb-kopf-verlauf: linear-gradient(100deg, #1c3c81 0%, #2a6aa5 18%, #114c92 55%, #0c3a71 100%);
 }
 
 :root[data-design="lesebuch"] {
@@ -84,12 +88,14 @@
     --lb-papier: #161a17;
     --lb-papier-2: #1e231f;
     --lb-papier-3: #272d28;
+    --lb-logo-flaeche: #1e231f;
     --lb-tinte: #eceee4;
     --lb-leise: #b4b9ac;
     --lb-linie: #3a413a;
     --lb-linie-stark: #596157;
     --lb-blau: #0d3a70;
     --lb-blau-tief: #092c56;
+    --lb-kopf-verlauf: linear-gradient(100deg, #142f60 0%, #1d4f84 18%, #0d3a70 55%, #092c56 100%);
     --lb-link: #a9c6ea;
     --lb-fokus: #f6dc56;
     --lb-bildrand: rgba(255, 255, 255, 0.16);
@@ -101,12 +107,14 @@
   --lb-papier: #161a17;
   --lb-papier-2: #1e231f;
   --lb-papier-3: #272d28;
+  --lb-logo-flaeche: #1e231f;
   --lb-tinte: #eceee4;
   --lb-leise: #b4b9ac;
   --lb-linie: #3a413a;
   --lb-linie-stark: #596157;
   --lb-blau: #0d3a70;
   --lb-blau-tief: #092c56;
+  --lb-kopf-verlauf: linear-gradient(100deg, #142f60 0%, #1d4f84 18%, #0d3a70 55%, #092c56 100%);
   --lb-link: #a9c6ea;
   --lb-fokus: #f6dc56;
   --lb-bildrand: rgba(255, 255, 255, 0.16);
@@ -183,7 +191,7 @@
   border-radius: 0;
 }
 
-/* Auf dem blauen Rücken trägt Gelb den Fokus. */
+/* Auf der blauen Kopfleiste trägt Gelb den Fokus. */
 :root[data-design="lesebuch"] .kopf :focus-visible,
 :root[data-design="lesebuch"] .leiste :focus-visible {
   outline-color: var(--lb-gelb);
@@ -200,16 +208,11 @@
   display: none;
 }
 
-/* ---------- Rücken: feste Navigationsspalte ab 1200 px ---------- */
+/* ---------- Historischer Rücken: wird am Dateiende durch die Kopfleiste ersetzt ---------- */
 
 @media (min-width: 1200px) {
-  :root[data-design="lesebuch"] {
-    --kopfhoehe: 0px !important;
-  }
-
-  :root[data-design="lesebuch"] body {
-    padding-left: var(--lb-rail);
-  }
+  /* Die alte Rücken-Spalte ist zur Kopfleiste geworden; die Seite läuft
+     über die volle Breite, die Höhe misst nav.js. */
 
   :root[data-design="lesebuch"] .kopf {
     position: fixed;
@@ -2954,7 +2957,7 @@
 
 
 @media (min-width: 1200px) {
-  /* Krankmelden steht bereits als Aktion im Rücken; der erste
+  /* Krankmelden steht bereits als Aktion in der Kopfleiste; der erste
      Schnellzugriff wäre derselbe Link ein zweites Mal. */
   :root[data-design="lesebuch"] .menue__schnell .chip:first-child {
     display: none;
@@ -3218,5 +3221,373 @@
       background: var(--lb-rail-hover);
       color: var(--lb-hell);
     }
+  }
+}
+
+/* ---------- Kopfleiste statt Rücken (Nutzerwunsch) ----------
+   Die Navigation liegt nicht mehr als feste Spalte links, sondern als
+   Kopfleiste über der Seite. Die helle Serviceleiste nimmt den bisher nur
+   für das Logo verwendeten Flächenton auf; das Logo sitzt ohne Plakette
+   auf dem blauen Verlauf, der seine Farbtöne aufnimmt. */
+
+:root[data-design="lesebuch"] .kopf {
+  background: var(--lb-kopf-verlauf);
+  color: var(--lb-hell);
+  border-bottom: 1px solid var(--lb-blau-tief);
+}
+
+:root[data-design="lesebuch"] .marke-link {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+/* Die helle Serviceleiste ist Papier, kein blauer Rücken: Dort trägt
+   der blaue Fokusring, nicht das gelbe Lesebändchen. */
+:root[data-design="lesebuch"] .leiste :focus-visible {
+  outline-color: var(--lb-fokus);
+}
+
+/* Ab 901 px: helle Serviceleiste über der blauen Kopfleiste. */
+@media (min-width: 901px) {
+  :root[data-design="lesebuch"] .leiste {
+    display: flex;
+    background: var(--lb-logo-flaeche);
+    color: var(--lb-tinte);
+    border: 0;
+    border-bottom: 1px solid var(--lb-linie);
+    padding: 0;
+    margin: 0;
+    font-family: var(--lb-ui);
+    font-weight: 400;
+  }
+
+  :root[data-design="lesebuch"] .leiste__innen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 2.1rem;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+
+  :root[data-design="lesebuch"] .leiste__adresse {
+    display: block;
+    margin: 0;
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  :root[data-design="lesebuch"] .leiste__adresse a {
+    color: var(--lb-tinte);
+  }
+
+  :root[data-design="lesebuch"] .leiste__schnell {
+    display: flex;
+    gap: 0.9rem;
+    margin-left: auto;
+  }
+
+  :root[data-design="lesebuch"] .leiste__schnell a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    padding: 0 0 1px;
+    color: var(--lb-tinte);
+    border-bottom: 1px solid var(--lb-link);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  /* Krankmelden steht als gelbe Aktion in der Kopfleiste. */
+  :root[data-design="lesebuch"] .leiste__schnell a:first-child {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .leiste .stilwahl {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex: 0 0 auto;
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+  }
+
+  :root[data-design="lesebuch"] .leiste .stilwahl__label {
+    color: var(--lb-tinte);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  :root[data-design="lesebuch"] .leiste .stilwahl__feld {
+    flex: 0 0 auto;
+  }
+
+  :root[data-design="lesebuch"] .leiste .stilwahl__auswahl {
+    width: auto;
+    min-width: 8.5rem;
+    min-height: 1.9rem;
+    padding: 0.2rem 1.4rem 0.2rem 0.45rem;
+    background: var(--lb-papier);
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-linie-stark);
+    border-radius: 0;
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  :root[data-design="lesebuch"] .leiste .modusknopf--leiste {
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    color: var(--lb-tinte);
+    border: 1px solid var(--lb-linie-stark);
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .leiste .modusknopf--leiste:hover {
+      background: var(--lb-papier-2);
+      color: var(--lb-tinte);
+    }
+  }
+
+  /* Die Schnellzugriffe der Kopfleiste stehen in der hellen Leiste;
+     im Menüpanel wären sie eine zweite Kopie. Dasselbe gilt für die
+     Stilwahl: Sie sitzt ab 901 px kompakt in der Serviceleiste. */
+  :root[data-design="lesebuch"] .menue__schnell,
+  :root[data-design="lesebuch"] .stilwahl--menue {
+    display: none;
+  }
+}
+
+/* Ab 1200 px: eine waagerechte Kopfleiste statt der festen Randspalte. */
+@media (min-width: 1200px) {
+  :root[data-design="lesebuch"] .kopf {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    display: block;
+    border-right: 0;
+    overflow: visible;
+    z-index: 60;
+  }
+
+  :root[data-design="lesebuch"] .kopf__innen {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex: 0 0 auto;
+    min-height: 4.5rem;
+    padding: 0.45rem 0;
+    overflow: visible;
+  }
+
+  :root[data-design="lesebuch"] .marke-link {
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :root[data-design="lesebuch"] .marke-link img {
+    height: 2.75rem;
+    width: auto;
+  }
+
+  :root[data-design="lesebuch"] .kopf__ende {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex: 1;
+    margin: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    order: 1;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: auto;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li {
+    position: relative;
+    border: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li:first-child {
+    border-top: 0;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li > a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0.55rem 0.55rem;
+    color: var(--lb-hell);
+    background: transparent;
+    font-family: var(--lb-ui);
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-transform: none;
+    text-decoration: none;
+    box-shadow: none;
+    white-space: normal;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  :root[data-design="lesebuch"] .menue > ul > li > a[aria-current="page"] {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: inset 0 -4px 0 var(--lb-gelb);
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .menue > ul > li > a:hover {
+      background: transparent;
+      color: #ffffff;
+      box-shadow: inset 0 -2px 0 var(--lb-gelb);
+    }
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe {
+    display: block;
+    position: relative;
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe > a {
+    flex: none;
+  }
+
+  :root[data-design="lesebuch"] .menue__auf {
+    display: none;
+  }
+
+  :root[data-design="lesebuch"] .menue ul.menue__tafel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: 20rem;
+    min-width: 20rem;
+    max-width: 24rem;
+    max-height: calc(100vh - var(--kopfhoehe) - 1rem);
+    margin: 0;
+    padding: 0.5rem;
+    background: var(--lb-tafel);
+    border: 1px solid var(--lb-linie);
+    box-shadow: none;
+    overflow-y: auto;
+    z-index: 70;
+  }
+
+  :root[data-design="lesebuch"] .menue__gruppe:hover > .menue__tafel,
+  :root[data-design="lesebuch"] .menue__gruppe:focus-within > .menue__tafel {
+    display: block;
+  }
+
+  /* Die aktive Gruppe trägt data-offen für das Mobilpanel; am Desktop
+     öffnet sie die Tafel nicht dauerhaft, sondern erst bei Hover/Fokus. */
+  :root[data-design="lesebuch"] .menue__gruppe[data-offen]:not(:hover):not(:focus-within) > .menue__tafel {
+    display: none;
+  }
+
+  /* Höhere Spezifität als die alten Rücken-Regeln: Untertafeln sind Papier
+     mit dunkler Schrift, nicht helle Schrift auf Blau. */
+  :root[data-design="lesebuch"] .menue ul.menue__tafel a {
+    min-height: 2.75rem;
+    padding: 0.55rem 0.6rem;
+    color: var(--lb-tinte);
+    background: transparent;
+    border-bottom: 1px solid var(--lb-linie);
+    box-shadow: none;
+    font-family: var(--lb-ui);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  :root[data-design="lesebuch"] .menue ul.menue__tafel a[aria-current="page"] {
+    color: var(--lb-tinte);
+    background: transparent;
+    box-shadow: inset 3px 0 0 var(--lb-gelb);
+  }
+
+  @media (hover: hover) {
+    :root[data-design="lesebuch"] .menue ul.menue__tafel a:hover {
+      color: var(--lb-tinte);
+      background: var(--lb-papier-2);
+    }
+  }
+
+  :root[data-design="lesebuch"] .menue__abteilung {
+    padding: 0.6rem 0.6rem 0.2rem;
+    color: var(--lb-leise);
+    font-family: var(--lb-ui);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  :root[data-design="lesebuch"] .krankmelden-knopf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-height: 2.75rem;
+    margin: 0;
+    padding: 0.55rem 0.8rem;
+    background: var(--lb-gelb);
+    color: var(--lb-auf-gelb);
+    border: 0;
+    border-radius: 0;
+    font-family: var(--lb-ui);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    order: 2;
+  }
+
+  :root[data-design="lesebuch"] .modusknopf--kopf,
+  :root[data-design="lesebuch"] .menueknopf {
+    display: none;
   }
 }

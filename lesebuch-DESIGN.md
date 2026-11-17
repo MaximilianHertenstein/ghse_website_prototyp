@@ -6,23 +6,21 @@ steht „Lesebuch“.
 
 ## 1. Konzept
 
-**Die Schule als Buch mit blauem Rücken.** Die GHSE ist eine Schule, an der
+**Die Schule als Buch mit blauer Kopfleiste.** Die GHSE ist eine Schule, an der
 sehr verschiedene Menschen und Fächer zusammenkommen. Statt einen einzelnen
 Fachbereich zum Bild der Schule zu machen, zeigt dieses Theme die Schule als
-*Lese- und Schaubuch*: ein Band, in dem viele Kapitel stehen. Der Rücken des
-Bandes ist das GHSE-Blau und bleibt beim Lesen sichtbar; das gelbe
-Lesebändchen markiert die Stelle, an der man gerade ist. Die Seiten sind
-rötlich-graues, griffiges Papier, die Fotografien sind Tafeln, die
-Zwischenüberschriften sind Kapitelanfänge, und die Randspalte trägt das
-Verzeichnis.
+*Lese- und Schaubuch*: ein Band, in dem viele Kapitel stehen. Die blaue
+Kopfleiste ist der Rücken des Bandes; sie liegt über der Seite und bleibt
+beim Lesen sichtbar. Das gelbe Lesebändchen markiert die Stelle, an der man
+gerade ist. Die Seiten sind rötlich-graues, griffiges Papier, die Fotografien
+sind Tafeln, die Zwischenüberschriften sind Kapitelanfänge.
 
 Daraus folgen alle Entscheidungen:
 
-- **Ort der Navigation:** Der blaue Rücken ist die Hauptnavigation. Er steht
-  am Desktop fest links, statt als Kopfleiste über der Seite zu liegen.
-  Dadurch bleibt das Verzeichnis beim Lesen langer Seiten (Schularten,
-  Downloads, UNESCO) immer erreichbar, und die Seite darunter bleibt eine
-  ruhige Lesefläche.
+- **Ort der Navigation:** Die blaue Kopfleiste trägt das Verzeichnis. Sie
+  liegt über der Seite und bleibt beim Lesen langer Seiten (Schularten,
+  Downloads, UNESCO) immer erreichbar; die Seite darunter bleibt eine ruhige
+  Lesefläche. Die frühere feste Randspalte ist bewusst aufgegeben.
 - **Lesefläche statt Kartenwand:** Karten, Schatten und Rundungen entfallen.
   Einträge werden zu Zeilen und Tafeln, getrennt durch Haarlinien. Das Buch
   hat keine Karten; es hat Absätze, Tafeln und ein Register.
@@ -45,9 +43,9 @@ Daraus folgen alle Entscheidungen:
 | Modern | Marineblau/GHSE-Blau, Familjen Grotesk, weiche Karten, Verläufe | keine Karten, keine Verläufe, kein blaues Hero-Band; Blau ist der Buchrücken, nicht die Seite |
 
 Die Eigenständigkeit liegt nicht in einer weiteren Palette, sondern in der
-**räumlichen Ordnung**: feste Randspalte mit Verzeichnis, Lesespalte,
+**räumlichen Ordnung**: blaue Kopfleiste mit Verzeichnis, Lesespalte,
 Tafeln und Haarlinien statt Kartenraster. Auf den ersten Blick unterscheidet
-sich „Lesebuch“ von allen vier durch den blauen Rücken, die Serif und das
+sich „Lesebuch“ von allen vier durch die blaue Kopfleiste, die Serif und das
 Fehlen von Karten.
 
 ## 3. Farben
@@ -59,14 +57,15 @@ Fehlen von Karten.
 | Tinte | `--lb-tinte` | `#171b18` | `#eceee4` | Text, Überschriften, Linien |
 | Leise | `--lb-leise` | `#4e544c` | `#b4b9ac` | Sekundärtext, Daten |
 | Haarlinie | `--lb-linie` | `#b3b8ac` | `#3a413a` | Trennlinien, Rahmen |
-| Rücken | `--lb-blau` | `#114c92` | `#0d3a70` | Navigationsspalte, Kopf mobil |
-| Rücken tief | `--lb-blau-tief` | `#0c3a71` | `#092c56` | Leiste im Rücken, Hover |
+| Kopfleiste | `--lb-blau` | `#114c92` | `#0d3a70` | Navigationsleiste, Kopf |
+| Kopfleiste tief | `--lb-blau-tief` | `#0c3a71` | `#092c56` | Verlaufspol, Hover |
+| Serviceleiste | `--lb-logo-flaeche` | `#f2f0e6` | `#1e231f` | helle Leiste über der Kopfleiste; früher nur Logo-Fläche |
 | Lesebändchen | `--lb-gelb` | `#f6dc56` | `#f6dc56` | aktive Stelle, Fokus auf Blau |
 | Link | `--lb-link` | `#0f3f7a` | `#a9c6ea` | Links im Text |
 | Fokus | `--lb-fokus` | `#0f3f7a` | `#f6dc56` | Fokusring auf Papier |
 
 Blau und Gelb sind die Farben des GHSE-Zeichens; sie werden hier
-strukturell eingesetzt (Rücken, Lesebändchen), nicht als Dekoration. Grün
+strukturell eingesetzt (Kopfleiste, Lesebändchen), nicht als Dekoration. Grün
 und Orange entfallen ganz. Das Papier ist ein kühles Graugrün, kein Creme.
 
 Kontraste (hell): Tinte/Papier 13,7:1 · Leise/Papier 6,1:1 · Link/Papier
@@ -93,28 +92,29 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
 
 ## 5. Aufbau
 
-### Rücken (ab 1200 px)
+### Kopfleiste (alle Breiten)
 
-- 300 px breit, feststehend, GHSE-Blau, 100 dvh. Der Verzeichnisteil
-  scrollt; der Ansichtsblock bleibt unten stehen.
-- Oben das GHSE-Zeichen auf einer dunkelblauen Plakette mit Haarlinie –
-  keine weiße Fläche, die das Blau unterbricht.
-- Reihenfolge: Zeichen → Krankmelden → Schnellzugriffe (zweispaltig) →
-  Verzeichnis → Ansicht. Die acht Kapitel stehen als Zeilen mit Haarlinie,
-  die aktive Stelle trägt ein gelbes Lesebändchen (4 px) und weiße Schrift.
-- Unterkapitel klappen im Rücken selbst auf (Papier tief, eingerückt),
-  gesteuert über den 44-px-Pfeilknopf; sie schweben nicht über der Seite.
-- Der Ansichtsblock (Stilwahl und Farbmodus) sitzt unten, durch eine
-  Haarlinie vom Verzeichnis getrennt. `assets/js/lesebuch.js` hängt dafür
-  die vorhandene Serviceleiste ab 1200 px ans Ende des Rückens; dadurch
-  stimmen DOM- und Tastaturreihenfolge. Ohne JavaScript bleibt sie oben
-  und die Seite vollständig nutzbar.
+- Zwei Zeilen: eine helle **Serviceleiste** im Papierton mit Adresse/Telefon,
+  Schnellzugriffen, Stilwahl und Farbmodus; darunter die blaue
+  **Kopfleiste** mit Logo, Hauptnavigation und gelbem „Krankmelden“.
+- Das GHSE-Zeichen steht ohne Plakette direkt auf dem blauen Verlauf; der
+  Verlauf nimmt die Blautöne des Zeichens auf. Die frühere Logo-Fläche ist
+  jetzt die volle Serviceleiste.
+- Ab 1200 px stehen die acht Kapitel waagerecht. Die aktive Stelle trägt ein
+  gelbes Lesebändchen (4 px) an der Unterkante; Unterkapitel öffnen als
+  Papier-Dropdown bei Hover und Tastaturfokus, nicht dauerhaft. Die
+  Menüpfeile entfallen am Desktop.
+- Unter 1200 px bleibt die Kopfzeile mit Menüknopf; das Panel ist eine
+  Papierseite mit Verzeichnis, dieselben Linien und das gelbe Lesebändchen.
+  Die Serviceleiste ist ab 901 px sichtbar und auf schmalen Geräten
+  ausgeblendet.
+- `assets/js/lesebuch.js` hält die Serviceleiste in der DOM-Reihenfolge oben;
+  es gibt keine Umsortierung mehr. `nav.js` misst die Kopfhöhe für
+  Ankersprünge und die Sprungleiste.
+- Die Seite läuft über die volle Breite; die Lesespalte bleibt zentriert.
 - Der Schulname steht als Masthead über dem Titel: 1,15–1,6 rem, Tinte,
   Haarlinie darunter. Er ist kein Etikett, sondern der Name der Schule;
   auf Wunsch der GHSE bewusst größer als in den anderen Varianten.
-- Unter 1200 px wird der Rücken zur blauen Kopfleiste mit Menüknopf; das
-  Panel ist eine Papierseite mit Verzeichnis, dieselben Linien und das
-  gelbe Lesebändchen.
 
 ### Seiten
 
@@ -159,7 +159,7 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
 - Alle Texte ≥ 4,5:1, Fließtext ≥ 7:1; Fokusring ≥ 3:1 zur Fläche.
 - Zeigeziele ≥ 44 px auf Touch; die Navigationszeilen sind 44 px hoch.
 - Semantik und Reihenfolge bleiben unverändert (dieselben Templates); die
-  Randspalte ist eine ergänzende Navigation, kein Ersatz für `aria-label`.
+  Kopfleiste ist die Hauptnavigation und behält ihre `aria-label`.
 - Der Umschalter bleibt ein natives Auswahlfeld; Tastatur und
   Screenreader-Verhalten ändern sich nicht.
 - Keine Information hängt an Farbe allein: die aktive Stelle trägt
@@ -169,14 +169,14 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
 
 - Neue Datei `assets/css/lesebuch.css`; jede Regel ist auf
   `:root[data-design="lesebuch"]` begrenzt. Keine Änderung an `main.css`,
-  `klar.css`, `funktional.css`, `modern.css`, an Layouts oder Skripten.
+  `klar.css`, `funktional.css`, `modern.css`, an Layouts oder gemeinsamen
+  Skripten; `assets/js/lesebuch.js` gehört ausschließlich zur Variante.
 - Neue Schriften unter `assets/fonts/lesebuch/` (SIL OFL), eingebunden über
   `layouts/_partials/schriften-lesebuch.html`; das Partial wird nur durch
   den neuen Eintrag in `params.designs` geladen.
-- `assets/js/lesebuch.js` (nur über das Theme-Partial geladen) verschiebt
-  die Serviceleiste ab 1200 px ans Ende des Rückens, damit Darstellung
-  und Tastatur derselben Reihenfolge folgen. Kontakt und Öffnungszeiten
-  stehen im Fuß.
+- `assets/js/lesebuch.js` (nur über das Theme-Partial geladen) hält die
+  Serviceleiste in der DOM-Reihenfolge oben; es gibt keine Umsortierung
+  mehr. Kontakt und Öffnungszeiten stehen im Fuß.
 - `hugo.toml` erhält ausschließlich einen fünften Eintrag am Ende der
   Design-Liste.
 - Vorschau: `static/bilder/themes/lesebuch.webp`.
@@ -187,7 +187,7 @@ Link/Papier 10,0:1 · Gelb/Blau 8,2:1. Text auf Gelb bleibt in beiden Modi
   gebaute Seite, Prüfung der Gates (Floor/Reflex/Finish).
 - Impeccable: Detector auf Start, Meldungen, Downloads, Schulart und
   Artikel bei 1440/1024/390; Critique und Polish; anschließend erneut.
-- Projekt-QA: `qa/themes.py` (fünf Varianten), `qa/design.py`,
+- Projekt-QA: `qa/themes.py` (sechs Varianten), `qa/design.py`,
   `qa/layout.py`, `qa/reflow.py`, `qa/linkcheck.py`, `qa/unterpfad.py`,
   Kontrastprüfung der eigenen Tokens.
 - Bestandsschutz: `qa/theme5-guard.py` mit Prüfsummen aller vorhandenen

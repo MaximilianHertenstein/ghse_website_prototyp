@@ -3,8 +3,8 @@
 
 Der Schutzstand wurde nach den vom Auftraggeber freigegebenen
 Bestands-Fixes (deutscher 404-Titel, echter Zielpfad der Menügruppe
-„Schüler“) aus dem Arbeitsbaum erzeugt (`--neu`) und wird danach nur noch
-geprüft. Er umfasst jede Datei unter `assets/`, `layouts/`, `content/` und
+„Schüler“) und der Lesebuch-Kopfleiste aus dem Arbeitsbaum erzeugt
+(`--neu`) und wird danach nur noch geprüft. Er umfasst jede Datei unter `assets/`, `layouts/`, `content/` und
 `static/` – also auch die CSS-Dateien, Schriften, Vorschaubilder, alle fünf
 bestehenden Designs und die Design-6-Dateien.
 
@@ -110,7 +110,7 @@ def pruefen():
     if zusatz:
         print("Fünf bestehende Varianten unverändert; design-06 additiv ergänzt.")
     elif len(neu_designs) > len(ERWARTETE_DESIGNS):
-        print("Fünf bestehende Varianten unverändert; design-06 vorhanden.")
+        print("Vier Bestandsdesigns unverändert; Lesebuch auf Wunsch angepasst; design-06 vorhanden.")
     else:
         print("Fünf bestehende Varianten unverändert; design-06 noch nicht registriert.")
 
