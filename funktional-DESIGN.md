@@ -116,7 +116,7 @@ in den beiden dunklen Sätzen. Alles Weitere benutzt Tokens.
 ## 5. Abgrenzung
 
 Neu ist ausschließlich `assets/css/funktional.css` plus der Eintrag in
-`params.designs` (dort als Einstieg ohne gespeicherte Wahl); alle Regeln sind
+`params.designs` (dort als Variante ohne gespeicherte Wahl); alle Regeln sind
 auf `:root[data-design="funktional"]` begrenzt. Die Varianten Neo und Klar bleiben unberührt. Die Datei wird auf
 jeder Seite mitgeladen, wirkt aber nur bei aktiver Wahl.
 

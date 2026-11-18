@@ -45,7 +45,7 @@ disableKinds = ["taxonomy", "term"]
   # bringt eine auf data-design="<id>" begrenzte Datei mit. Ein weiteres
   # Theme braucht nur einen Eintrag hier, seine CSS-Datei und – falls
   # nötig – ein Schriften-Partial.
-  design = "funktional"
+  design = "klar"
   [[params.designs]]
     id = "neobrutalismus"
     name = "Neobrutalismus"

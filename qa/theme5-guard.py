@@ -72,6 +72,8 @@ def snapshot():
 
 def ohne_freigegebene_aenderungen(daten):
     kopie = copy.deepcopy(ohne_designs(daten))
+    # Vom Auftraggeber freigegeben: Klar ist jetzt der Einstieg.
+    kopie["params"]["design"] = "klar"
     for eintrag in kopie.get("menus", {}).get("haupt", []):
         if eintrag.get("identifier") == "schueler" and eintrag.get("pageRef") == "/smv":
             eintrag.pop("pageRef", None)

@@ -7,12 +7,13 @@
 
 Neubau von [www.ghse.de](https://www.ghse.de/) mit Hugo, gedacht als
 vollständige Ablöse des Originals – nicht als Demo.
-Einstieg ist die Variante **Funktional** (funktionaler Minimalismus),
-dazu **Neo** (reduzierter Neobrutalismus, Grundlage: Skill `neobrutalism`
-aus [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
-**Klar** (Clean), **Modern** (Weiterentwicklung des GHSE-Auftritts) und
-**Lesebuch** (Buchbindung mit blauer Kopfleiste, Serif und Verzeichnis); mit
-echten GHSE-Inhalten, Texten, Bildern und Dokumenten.
+Einstieg ist die Variante **Klar** (Clean), dazu **Neo** (reduzierter
+Neobrutalismus, Grundlage: Skill `neobrutalism` aus
+[bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
+**Funktional** (funktionaler Minimalismus), **Modern** (Weiterentwicklung
+des GHSE-Auftritts) und **Lesebuch** (Buchbindung mit blauer Kopfleiste,
+Serif und Verzeichnis); mit echten GHSE-Inhalten, Texten, Bildern und
+Dokumenten.
 
 ---
 
@@ -747,18 +748,19 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
   werten; Kategorien und Gruppen entstehen aus den Daten, nicht aus der Vorlage.
 
-### Gestaltungsvarianten (fünf Themes)
+### Gestaltungsvarianten (sechs Themes)
 
-Dieselben Seiten gibt es in fünf Aussehen; alle nutzen dieselben Templates,
+Dieselben Seiten gibt es in sechs Aussehen; alle nutzen dieselben Templates,
 Inhalte und URLs:
 
 | Kennung | Kurzform | Aussehen |
 | --- | --- | --- |
 | `neobrutalismus` | Neo | GHSE-Gelb/Orange/Blau, harte Schatten, Inter |
-| `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam |
-| `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen (Einstieg) |
+| `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam (Einstieg) |
+| `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen |
 | `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
 | `lesebuch` | Lesebuch | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Piazzolla/Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
+| `design-06` | Wegw. | GHSE-Blauverlauf als Wand, weiße Emailschilder, gelbe Zielwege, Archivo, Standortleiste und Spezifikationsetiketten |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt

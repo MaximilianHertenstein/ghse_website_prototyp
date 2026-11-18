@@ -33,8 +33,8 @@ Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 | Variante | Kennung | Aussehen | Dokument |
 | --- | --- | --- | --- |
 | **Neobrutalismus** | `neobrutalismus` | GHSE-Gelb/Orange/Blau, schwarze Konturen, harte Schatten, Inter | `Neobrutalismus-DESIGN.md` |
-| **Klar** (Clean) | `klar` | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
-| **Funktional** (Einstieg) | `funktional` | Weiß/Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
+| **Klar** (Clean, Einstieg) | `klar` | viel Weißraum, Roboto/Poppins, Blau für Text/Aktionen, Orange für Linien, Gelb für Flächen, keine Schatten | `clean-DESIGN.md` |
+| **Funktional** | `funktional` | Weiß/Schwarz, Hanken Grotesk, GHSE-Logofarben nur als Akzente, flache Kästen, harte Linien, keine Schatten | `funktional-DESIGN.md` |
 | **Modern** | `modern` | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten auf hellem Blau, weiche Schatten | `modern-DESIGN.md` |
 | **Lesebuch** | `lesebuch` | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Piazzolla/Public Sans, Tafeln und Haarlinien statt Karten | `lesebuch-DESIGN.md` |
 | **Wegweiser** | `design-06` | GHSE-Blauverlauf als Wand, weiße Emailschilder, gelbe Zielwege, Archivo, Standortleiste und Spezifikationsetiketten | `design-06-DESIGN.md` |

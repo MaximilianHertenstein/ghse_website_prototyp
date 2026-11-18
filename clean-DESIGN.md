@@ -40,7 +40,7 @@ Absicht in einem Satz: *Dieselben Inhalte und dieselbe Navigation, ruhig und ohn
 
 - Struktur, Inhalte, Menüs und Dropdowns sind identisch mit der Hauptvariante. Es ändert sich nur das Aussehen.
 - Erreichbar über den Umschalter in der Kopfleiste (ab 1101 px) und im Menü (bis 1100 px) – dieselbe URL, ohne Neuladen.
-- `params.designs` in `hugo.toml` listet die Varianten; `klar.css` wird auf jeder Seite mitgeladen und ist auf `:root[data-design="klar"]` begrenzt. Ohne Wahl bleibt die Hauptvariante (`data-design="neobrutalismus"`).
+- `params.designs` in `hugo.toml` listet die Varianten; `klar.css` wird auf jeder Seite mitgeladen und ist auf `:root[data-design="klar"]` begrenzt. Ohne Wahl ist Klar der Einstieg (`data-design="klar"`).
 - Die Wahl liegt in `localStorage` (`ghse-design`); `?design=klar` öffnet die Variante ohne zu speichern (für QA und zum Teilen). `design.js` schaltet um und hält beide Menüs synchron.
 - Jede Regel in `klar.css` trägt das Präfix `:root[data-design="klar"]` und gewinnt damit ohne `!important` (Ausnahmen: `translate` und der Druck-Block). Kein CSS-Nesting.
 - `rel="canonical"` zeigt auf dieselbe URL; die Variante ist rein clientseitig und ändert das Markup nicht.

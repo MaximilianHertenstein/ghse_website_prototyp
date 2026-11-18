@@ -444,7 +444,7 @@ Die bestehende Architektur bleibt unverändert:
 3. `?design=design-06` öffnet die Variante ohne zu speichern.
 4. `design.js` speichert die Wahl in `localStorage` (`ghse-design`) und
    synchronisiert beide Selects.
-5. Der Standard bleibt `funktional`.
+5. Der Standard ist `klar`.
 6. Der Hell-/Dunkelmodus läuft unabhängig über `ghse-theme` und
    `data-theme`; `nav.js` steuert die Schaltflächen.
 

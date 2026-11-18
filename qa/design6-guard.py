@@ -88,7 +88,13 @@ def pruefen():
     neu = tomllib.loads((BASIS / "hugo.toml").read_text(encoding="utf-8"))
     alt_designs = alt.get("params", {}).get("designs", [])
     neu_designs = neu.get("params", {}).get("designs", [])
-    if ohne_designs(neu) != ohne_designs(alt):
+    # Vom Auftraggeber freigegeben: Klar ist jetzt der Einstieg. Nur dieser
+    # eine Default-Wechsel wird beim Vergleich neutralisiert.
+    alt_vgl = ohne_designs(alt)
+    neu_vgl = ohne_designs(neu)
+    alt_vgl["params"]["design"] = "klar"
+    neu_vgl["params"]["design"] = "klar"
+    if neu_vgl != alt_vgl:
         fehler.append("hugo.toml: Änderung außerhalb von params.designs")
     if [d.get("id") for d in alt_designs[:len(ERWARTETE_DESIGNS)]] != ERWARTETE_DESIGNS:
         fehler.append("Schutzstand enthält nicht die fünf erwarteten Designs")

@@ -5,11 +5,11 @@ Aufruf (Preview-Server muss laufen):
     python3 tools/preview-server.py public 8735
     python3 qa/design.py http://127.0.0.1:8735/
 
-Geprüft wird: Einstieg ist Funktional, der Wechsel auf Klar setzt
-`data-design`, speichert in localStorage und lädt Roboto; nach dem Neuladen
-bleibt die Wahl; `?design=klar` öffnet Klar ohne zu speichern; der
-Rückwechsel lädt wieder Hanken Grotesk bzw. Inter. Voraussetzung ist
-Playwright mit Chromium (wie qa/klar_pruefung.py).
+Geprüft wird: Einstieg ist Klar, der Wechsel auf Funktional setzt
+`data-design`, speichert in localStorage und lädt Hanken Grotesk; nach dem
+Neuladen bleibt die Wahl; der Rückwechsel auf Klar lädt wieder Roboto;
+`?design=klar` öffnet Klar ohne zu speichern. Voraussetzung ist Playwright
+mit Chromium (wie qa/klar_pruefung.py).
 """
 import shutil
 import sys
@@ -51,22 +51,29 @@ def main():
             page = ctx.new_page()
             page.goto(BASIS, wait_until="load")
             s = zustand(page)
-            pruefe(s["design"] == "funktional", "Start ist nicht Funktional: %r" % s)
-            pruefe("Hanken" in s["schrift"], "Funktional nutzt nicht Hanken Grotesk: %r" % s["schrift"])
-            pruefe(s["wahl"] == "funktional", "Auswahl zeigt nicht Funktional: %r" % s["wahl"])
+            pruefe(s["design"] == "klar", "Start ist nicht Klar: %r" % s)
+            pruefe("Roboto" in s["schrift"], "Klar nutzt nicht Roboto: %r" % s["schrift"])
+            pruefe(s["wahl"] == "klar", "Auswahl zeigt nicht Klar: %r" % s["wahl"])
 
-            page.select_option(".stilwahl--leiste select", "klar")
+            page.select_option(".stilwahl--leiste select", "funktional")
             page.wait_for_timeout(250)
             s = zustand(page)
-            pruefe(s["design"] == "klar", "Wechsel auf Klar fehlt: %r" % s)
-            pruefe(s["gespeichert"] == "klar", "Wahl nicht gespeichert: %r" % s)
-            pruefe("Roboto" in s["schrift"], "Klar nutzt nicht Roboto: %r" % s["schrift"])
+            pruefe(s["design"] == "funktional", "Wechsel auf Funktional fehlt: %r" % s)
+            pruefe(s["gespeichert"] == "funktional", "Wahl nicht gespeichert: %r" % s)
+            pruefe("Hanken" in s["schrift"], "Funktional nutzt nicht Hanken Grotesk: %r" % s["schrift"])
 
             page.reload(wait_until="load")
             page.wait_for_timeout(250)
             s = zustand(page)
-            pruefe(s["design"] == "klar", "Wahl überlebt Neuladen nicht: %r" % s)
-            pruefe(s["wahl"] == "klar", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
+            pruefe(s["design"] == "funktional", "Wahl überlebt Neuladen nicht: %r" % s)
+            pruefe(s["wahl"] == "funktional", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
+
+            page.select_option(".stilwahl--leiste select", "klar")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "klar", "Rückwechsel auf Klar fehlt: %r" % s)
+            pruefe(s["gespeichert"] == "klar", "Klar nicht gespeichert: %r" % s)
+            pruefe("Roboto" in s["schrift"], "Klar nutzt nicht Roboto: %r" % s["schrift"])
 
             optionen = page.eval_on_selector_all(".stilwahl--leiste option", "els => els.map(e => e.value)")
             pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern", "lesebuch", "design-06"], "Theme-Optionen: %r" % optionen)
