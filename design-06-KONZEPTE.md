@@ -38,7 +38,7 @@ Arbeitsstand: `main`, HEAD `7ad5bea`, vor der ersten Design-6-Änderung
 | Klar | `klar` | `klar.css` | Roboto, Poppins | nein |
 | Funktional | `funktional` | `funktional.css` | Hanken Grotesk | **ja** |
 | Modern | `modern` | `modern.css` | Familjen Grotesk | nein |
-| Lesebuch | `lesebuch` | `lesebuch.css` | Piazzolla, Public Sans | nein |
+| Lesebuch | `lesebuch` | `lesebuch.css` | Public Sans | nein |
 
 Die Reihenfolge in `params.designs` ist Neo, Klar, Funktional, Modern,
 Lesebuch. `params.design = "funktional"` ist die Auswahl ohne gespeicherte

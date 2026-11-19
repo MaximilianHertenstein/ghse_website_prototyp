@@ -4,7 +4,9 @@
 Der Schutzstand wurde nach den vom Auftraggeber freigegebenen
 Bestands-Fixes (deutscher 404-Titel, echter Zielpfad der Menügruppe
 „Schüler“) und der Lesebuch-Kopfleiste aus dem Arbeitsbaum erzeugt
-(`--neu`) und wird danach nur noch geprüft. Er umfasst jede Datei unter `assets/`, `layouts/`, `content/` und
+(`--neu`) und wird danach nur noch geprüft. Für den später freigegebenen
+Wechsel von Lesebuch auf Public Sans ohne Serifenschrift stehen die drei
+betroffenen Dateien als feste Ausnahmen im Code. Er umfasst jede Datei unter `assets/`, `layouts/`, `content/` und
 `static/` – also auch die CSS-Dateien, Schriften, Vorschaubilder, alle fünf
 bestehenden Designs und die Design-6-Dateien.
 
@@ -32,6 +34,14 @@ ORDNER = ("assets", "layouts", "content", "static")
 THEME_ID = "design-06"
 ZUSATZ_NACH_DESIGN6 = "neo-ruhig"
 ERWARTETE_DESIGNS = ["neobrutalismus", "klar", "funktional", "modern", "lesebuch"]
+
+# Vom Auftraggeber freigegeben: Lesebuch verwendet keine Serifenschrift mehr.
+# Nur diese drei Dateien dürfen gegenüber dem Schutzstand abweichen.
+AUSNAHMEN = {
+    "assets/css/lesebuch.css": "a7a8cf01ed5e2d478eee31a8b47d1dddd3ad1e721f51d7cfd6e322fdb3aa2109",
+    "layouts/_partials/schriften-lesebuch.html": "cc36d16502822e45ab6e1469a080022d72350c257ea25dfb05a0b8eecd440958",
+    "static/bilder/themes/lesebuch.webp": "a6fb5c6aabba59c9152466bf67d4d51354b9db28c420b06cf485c3942db5efbb",
+}
 
 
 def git(*args):
@@ -82,7 +92,7 @@ def pruefen():
         ziel = BASIS / pfad
         if not ziel.exists():
             fehler.append(f"fehlt: {pfad}")
-        elif sha(pfad) != soll:
+        elif sha(pfad) != soll and AUSNAHMEN.get(pfad) != sha(pfad):
             fehler.append(f"geändert: {pfad}")
 
     alt = tomllib.loads(daten["hugo_toml"])

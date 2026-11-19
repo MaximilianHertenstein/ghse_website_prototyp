@@ -1,4 +1,4 @@
-/* Hallmark · theme: custom · idea: "Die Schule als Lesebuch: blaue Kopfleiste, Papier, Tafeln, Verzeichnis" · vibe: "gebunden, ruhig, konkret, vielseitig" · paper: mid #e3e5dd · ink: #171b18 · accent: #114c92 (Rücken) und #f6dc56 (Lesebändchen) · display: Piazzolla · body: Public Sans · hero: Ledge · nav: blaue Kopfleiste als Verzeichnis · footer: Kolophon · posture: restrained · axes: mid/roman-serif/cool · copy: verbatim */
+/* Hallmark · theme: custom · idea: "Die Schule als Lesebuch: blaue Kopfleiste, Papier, Tafeln, Verzeichnis" · vibe: "gebunden, ruhig, konkret, vielseitig" · paper: mid #e3e5dd · ink: #171b18 · accent: #114c92 (Rücken) und #f6dc56 (Lesebändchen) · display/body: Public Sans · hero: Ledge · nav: blaue Kopfleiste als Verzeichnis · footer: Kolophon · posture: restrained · axes: mid/grotesk/cool · copy: verbatim */
 /* Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5 · weakest: H — die Kopfleiste darf die Seite nicht überschreien; eine Fläche, eine gelbe Marke, keine weitere Farbe */
 /* Hallmark · waive 44c · custom hero, die Tafel füllt den Textblock · die Schule und ihr Bild tragen den ersten Bildschirm */
 /* Hallmark · waive 79 · Ledge: der Fold ist der Hero-Fuß plus 104 px Bandabstand · eine Leseseite, kein Poster */
@@ -51,7 +51,6 @@
 }
 
 :root[data-design="lesebuch"] {
-  --lb-schrift: "Piazzolla", Georgia, "Times New Roman", serif;
   --lb-ui: "Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 
   /* Abstände als Skala; Rohwerte nur als optische Korrektur. */
@@ -68,7 +67,7 @@
   --lb-rail: 300px;
   --lb-mass: 60ch;
 
-  --schriftstapel: var(--lb-schrift);
+  --schriftstapel: var(--lb-ui);
   --container: 1180px;
   --schmal: 700px;
   --t-display: clamp(2.7rem, 5.2vw, 4.3rem);
@@ -126,7 +125,7 @@
 :root[data-design="lesebuch"] body {
   background: var(--lb-papier);
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.09rem;
   line-height: 1.7;
 }
@@ -135,7 +134,7 @@
 :root[data-design="lesebuch"] h2,
 :root[data-design="lesebuch"] h3,
 :root[data-design="lesebuch"] h4 {
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.1;
@@ -693,7 +692,7 @@
 :root[data-design="lesebuch"] .hero__titel {
   margin: 0;
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: var(--t-display);
   font-weight: 600;
   line-height: 1.02;
@@ -709,7 +708,7 @@
   margin-top: var(--lb-s4);
   max-width: 42ch;
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: clamp(1.15rem, 1.7vw, 1.4rem);
   line-height: 1.55;
 }
@@ -731,7 +730,7 @@
 }
 
 :root[data-design="lesebuch"] .hero__ticket-datum {
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.55rem;
   font-weight: 600;
   line-height: 1;
@@ -901,7 +900,7 @@
   display: block;
   padding: 0;
   border: 0;
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: var(--t-h2);
   font-weight: 600;
   line-height: 1.1;
@@ -1104,7 +1103,7 @@
 :root[data-design="lesebuch"] .karte__titel,
 :root[data-design="lesebuch"] .karte__block-titel {
   margin: 0;
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.45rem;
   font-weight: 600;
   line-height: 1.16;
@@ -1172,7 +1171,7 @@
 
 :root[data-design="lesebuch"] .karte__datum {
   color: var(--lb-leise);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 2rem;
   font-weight: 600;
   line-height: 1;
@@ -1265,7 +1264,7 @@
 }
 
 :root[data-design="lesebuch"] .kalender__name {
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -1299,7 +1298,7 @@
 
 :root[data-design="lesebuch"] .service h3,
 :root[data-design="lesebuch"] .service__titel {
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -1358,7 +1357,7 @@
   max-width: 52ch;
   margin-top: var(--lb-s4);
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: clamp(1.15rem, 1.6vw, 1.35rem);
   line-height: 1.55;
 }
@@ -1489,7 +1488,7 @@
 }
 
 :root[data-design="lesebuch"] .zeile__titel {
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.25;
@@ -1648,7 +1647,7 @@
 :root[data-design="lesebuch"] .fakten dd {
   margin: 0;
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.05rem;
   line-height: 1.45;
 }
@@ -1677,7 +1676,7 @@
 
 :root[data-design="lesebuch"] .fliesstext {
   max-width: var(--lb-mass);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.09rem;
   line-height: 1.75;
   hyphens: auto;
@@ -1975,7 +1974,7 @@
   padding-bottom: var(--lb-s2);
   border-bottom: 1px solid var(--lb-linie);
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.1rem;
   font-weight: 600;
   text-transform: none;
@@ -2229,7 +2228,7 @@
 
 :root[data-design="lesebuch"] .service__titel,
 :root[data-design="lesebuch"] .service h3 {
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: 1.35rem;
   font-weight: 600;
   text-transform: none;
@@ -2487,7 +2486,7 @@
   }
 }
 
-/* Drei Gewichte genügen: 400 Text, 500 Bedienung, 600 Serif-Titel. */
+/* Drei Gewichte genügen: 400 Text, 500 Bedienung, 600 Titel. */
 :root[data-design="lesebuch"] .meta,
 :root[data-design="lesebuch"] .hinweiszeile,
 :root[data-design="lesebuch"] .kalender__aktion,
@@ -2795,7 +2794,7 @@
   max-width: 52ch;
   margin-top: var(--lb-s4);
   color: var(--lb-tinte);
-  font-family: var(--lb-schrift);
+  font-family: var(--lb-ui);
   font-size: clamp(1.15rem, 1.6vw, 1.35rem);
   line-height: 1.55;
 }

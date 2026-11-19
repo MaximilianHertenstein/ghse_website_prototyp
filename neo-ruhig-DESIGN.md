@@ -24,8 +24,9 @@ Daraus folgen alle Entscheidungen:
 - **Neobrutalismus bleibt unangetastet:** `main.css` und damit die Variante
   `neobrutalismus` werden nicht verändert. Beide sind getrennte Optionen im
   Umschalter.
-- **Keine Serifenschrift:** Wie alle Varianten außer Lesebuch bleibt
-  „Neo Ruhig“ serifenlos. Lesebuch behält Piazzolla und Public Sans.
+- **Keine Serifenschrift:** „Neo Ruhig“ bleibt wie alle anderen Varianten
+  serifenlos und nutzt Inter. Auch Lesebuch verwendet inzwischen Public Sans
+  ohne Serifenschrift.
 
 ## 2. Was geradegestellt wird
 

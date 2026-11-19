@@ -91,6 +91,13 @@ def main():
             pruefe(s["design"] == "neo-ruhig", "Neo Ruhig überlebt Neuladen nicht: %r" % s)
             pruefe(s["wahl"] == "neo-ruhig", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
 
+            page.select_option(".stilwahl--leiste select", "lesebuch")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "lesebuch", "Wechsel auf Lesebuch fehlt: %r" % s)
+            pruefe("Public Sans" in s["schrift"], "Lesebuch nutzt nicht Public Sans: %r" % s["schrift"])
+            pruefe("Piazzolla" not in s["schrift"], "Lesebuch nutzt noch Piazzolla: %r" % s["schrift"])
+
             page.select_option(".stilwahl--leiste select", "design-06")
             page.wait_for_timeout(250)
             s = zustand(page)

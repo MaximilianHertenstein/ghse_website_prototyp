@@ -13,7 +13,7 @@ Neobrutalismus, Grundlage: Skill `neobrutalism` aus
 **Neo Ruhig** (dieselbe Farb- und Schriftenwelt ohne Schräglage),
 **Funktional** (funktionaler Minimalismus), **Modern** (Weiterentwicklung
 des GHSE-Auftritts) und **Lesebuch** (Buchbindung mit blauer Kopfleiste,
-Serif und Verzeichnis); mit echten GHSE-Inhalten, Texten, Bildern und
+Grotesk und Verzeichnis); mit echten GHSE-Inhalten, Texten, Bildern und
 Dokumenten.
 
 ---
@@ -34,8 +34,7 @@ Es gibt keine npm-/PostCSS-Toolchain: CSS und JS liegen unter `assets/`
 (Hugo Pipes, minify + fingerprint), Schriften und Bilder unter `static/`.
 Inter ist die selbst gehostete Variable-Font der Neo-Variante; Klar
 bringt Roboto und Poppins mit, Funktional Hanken Grotesk, Modern
-Familjen Grotesk (Hallmark-Referenz Cobalt) und Lesebuch Piazzolla mit
-Public Sans.
+Familjen Grotesk (Hallmark-Referenz Cobalt) und Lesebuch Public Sans.
 
 Die Instagram-Karten auf der Startseite frischt
 `python3 tools/instagram.py` auf: Es liest die neuesten Beiträge des
@@ -760,7 +759,7 @@ Inhalte und URLs:
 | `klar` | Klar | Clean, Weißraum, Roboto/Poppins, GHSE-Farben sparsam (Einstieg) |
 | `funktional` | Funktional | Weiß/Schwarz, Hanken Grotesk, Logofarben als Akzente, flache Kästen |
 | `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
-| `lesebuch` | Lesebuch | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Piazzolla/Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
+| `lesebuch` | Lesebuch | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
 | `design-06` | Wegw. | GHSE-Blauverlauf als Wand, weiße Emailschilder, gelbe Zielwege, Archivo, Standortleiste und Spezifikationsetiketten |
 | `neo-ruhig` | Neo Ruhig | Wie Neo, aber ohne jede Schräglage; Farben, Kontraste, Schatten und Inter unverändert |
 
@@ -773,16 +772,17 @@ Inhalte und URLs:
   (QA und Teilen).
 * **Laden:** `klar.css` wird auf jeder Seite mitgeladen, wirkt aber nur
   unter `:root[data-design="klar"]`. Roboto/Poppins (Klar), Hanken Grotesk
-  (Funktional), Familjen Grotesk (Modern) sowie Piazzolla und Public Sans
-  (Lesebuch) stehen als `@font-face` bereit und werden erst geladen, wenn
-  die Variante sie benutzt (kein Preload, `font-display: swap`).
+  (Funktional), Familjen Grotesk (Modern) sowie Public Sans (Lesebuch)
+  stehen als `@font-face` bereit und werden erst geladen, wenn die Variante
+  sie benutzt (kein Preload, `font-display: swap`).
 * **Kompatibilität:** Die neuen Theme-Dateien fixieren die vorherige Breite
   des Theme-Feldes für Neo/Klar (59,78 px / 72 px). Dadurch bleiben die
   bestehenden Köpfe pixelgleich, ohne deren CSS zu ändern.
 * **Lesebuch:** Das fünfte Theme führt das Verzeichnis in einer blauen
   Kopfleiste über der Seite; darunter liegt die helle Serviceleiste.
-  Piazzolla trägt Lesetext und Überschriften, Public Sans die Bedienung.
-  Alle Regeln stehen unter `:root[data-design="lesebuch"]`; die Farbtokens
+  Public Sans trägt Lesetext, Überschriften und Bedienung; eine
+  Serifenschrift wird nicht mehr verwendet. Alle Regeln stehen unter
+  `:root[data-design="lesebuch"]`; die Farbtokens
   heißen `--lb-*` und werden von keiner anderen Variante gelesen. Der
   Bestandsschutz läuft über `qa/theme5-guard.py` (Prüfsummen) und
   `qa/themebilder.py` (Referenzaufnahmen der vier bestehenden Varianten).

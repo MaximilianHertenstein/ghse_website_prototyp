@@ -38,7 +38,7 @@ RTL-Oberfläche (keine `dir="rtl"`-Seite), native Apps.
 | MEDIUM | `.linkpfeil` | „ORGANIGRAMM VERGRÖSSERN“ in Versalien mit oranger 4-px-Kante | Satzcase, Public Sans 500, blaue Unterstreichung | Der Shortcode-Link fiel als einziger aus der Theme-Sprache |
 | MEDIUM | `.kasten__kontakt` | Schwarze 3-px-Kante quer durch die Randnote | 1-px-Haarlinie in der Papierfarbe | Die Kante schnitt „Alle Downloads“ an |
 | MEDIUM | Bildrahmen | Getönte Papierfarbe als Rahmen | `--lb-bildrand` (`rgba(0,0,0,.12)` hell, `rgba(255,255,255,.16)` dunkel) | better-ui: Inhaltsbilder mit reinem Schwarz/Weiß-Outline, kein Farbstich |
-| LOW | `.seitenkopf .einleitung` | Haupt-CSS: 40ch, ohne Theme-Stimme | 52ch, Piazzolla 1,15–1,35 rem | Seitenköpfe aus Schularten/Prosa lesen sich wie der Leitsatz |
+| LOW | `.seitenkopf .einleitung` | Haupt-CSS: 40ch, ohne Theme-Stimme | 52ch, Public Sans 1,15–1,35 rem | Seitenköpfe aus Schularten/Prosa lesen sich wie der Leitsatz |
 | LOW | `.werte` (Leitbild) | Fünf Regenbogenfarben als Quadrate | Blau/Gelb des Themes; „Vielfalt“ als geteilte Fläche | Farbe bleibt Zusatz, die Labels tragen die Bedeutung |
 | LOW | `.video` | Schwarzer Rahmen, gelber Kreis, harter Schatten | Papier-Tafel, blaues Abspielquadrat, kein Schatten | Video ist eine Tafel wie die Bilder |
 | LOW | `.partnergitter__kachel` | Hover auf einer nicht interaktiven Kachel | Hover entfernt | better-ui: kein Hover auf statischen Elementen |
