@@ -8,11 +8,11 @@ Bestands-Fixes (deutscher 404-Titel, echter Zielpfad der Menügruppe
 `static/` – also auch die CSS-Dateien, Schriften, Vorschaubilder, alle fünf
 bestehenden Designs und die Design-6-Dateien.
 
-`hugo.toml` ist nicht byte-gleich geschützt: Design 6 braucht dort genau
-einen zusätzlichen `[[params.designs]]`-Block. Geprüft wird deshalb
-semantisch – alle Einträge außer `params.designs` müssen gleich bleiben,
-die fünf bestehenden Designs müssen unverändert und in derselben Reihenfolge
-stehen, und danach darf genau ein Eintrag `design-06` folgen. Der Aufruf
+`hugo.toml` ist nicht byte-gleich geschützt: Design 6 und Neo Ruhig
+brauchen dort je einen zusätzlichen `[[params.designs]]`-Block. Geprüft
+wird deshalb semantisch – alle Einträge außer `params.designs` müssen
+gleich bleiben, die bestehenden Designs müssen unverändert und in derselben
+Reihenfolge stehen, und danach darf genau `neo-ruhig` folgen. Der Aufruf
 vor der Implementierung akzeptiert auch noch fünf Designs.
 
 Aufruf:
@@ -30,6 +30,7 @@ BASIS = Path(__file__).resolve().parent.parent
 BASELINE = Path(__file__).resolve().parent / "design6-baseline.json"
 ORDNER = ("assets", "layouts", "content", "static")
 THEME_ID = "design-06"
+ZUSATZ_NACH_DESIGN6 = "neo-ruhig"
 ERWARTETE_DESIGNS = ["neobrutalismus", "klar", "funktional", "modern", "lesebuch"]
 
 
@@ -103,8 +104,8 @@ def pruefen():
     zusatz = neu_designs[len(alt_designs):]
     if len(zusatz) > 1:
         fehler.append(f"hugo.toml: {len(zusatz)} zusätzliche Designs statt höchstens einem")
-    elif zusatz and zusatz[0].get("id") != THEME_ID:
-        fehler.append(f'hugo.toml: zusätzlicher Eintrag ist nicht "{THEME_ID}"')
+    elif zusatz and zusatz[0].get("id") not in (THEME_ID, ZUSATZ_NACH_DESIGN6):
+        fehler.append(f'hugo.toml: zusätzlicher Eintrag ist nicht "{THEME_ID}" oder "{ZUSATZ_NACH_DESIGN6}"')
 
     print(f"Schutzstand {daten['base']}: {len(daten['files'])} Dateien geprüft, "
           f"{len(neu_designs)} Designs registriert")
@@ -114,7 +115,8 @@ def pruefen():
             print("  " + eintrag)
         sys.exit(1)
     if zusatz:
-        print("Fünf bestehende Varianten unverändert; design-06 additiv ergänzt.")
+        print("Bestehende Varianten unverändert; "
+              f"\"{zusatz[0].get('id')}\" additiv ergänzt.")
     elif len(neu_designs) > len(ERWARTETE_DESIGNS):
         print("Vier Bestandsdesigns unverändert; Lesebuch auf Wunsch angepasst; design-06 vorhanden.")
     else:

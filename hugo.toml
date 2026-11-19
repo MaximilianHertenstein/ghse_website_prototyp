@@ -39,7 +39,7 @@ disableKinds = ["taxonomy", "term"]
   fax = "07641 465 199"
   mail = "poststelle@ghse.de"
 
-  # Sechs Gestaltungsvarianten derselben Seiten. `design` ist der Einstieg
+  # Sieben Gestaltungsvarianten derselben Seiten. `design` ist der Einstieg
   # ohne gespeicherte Wahl; `?design=<id>` und der Umschalter wechseln die
   # Variante. Neo steht in main.css (ohne eigene CSS-Datei), jede weitere
   # bringt eine auf data-design="<id>" begrenzte Datei mit. Ein weiteres
@@ -80,6 +80,11 @@ disableKinds = ["taxonomy", "term"]
     kurz = "Wegw."
     css = "css/design-06.css"
     fonts = "schriften-design06.html"
+  [[params.designs]]
+    id = "neo-ruhig"
+    name = "Neo Ruhig"
+    kurz = "Neo Ruhig"
+    css = "css/neo-ruhig.css"
 
 # Adressen im Fließtext bleiben Text: Der Originalseite stehen dort die
 # Webadressen als Klartext, und ein paar davon zeigen längst ins Leere.

@@ -10,6 +10,7 @@ vollständige Ablöse des Originals – nicht als Demo.
 Einstieg ist die Variante **Klar** (Clean), dazu **Neo** (reduzierter
 Neobrutalismus, Grundlage: Skill `neobrutalism` aus
 [bergside/awesome-design-skills](https://github.com/bergside/awesome-design-skills)),
+**Neo Ruhig** (dieselbe Farb- und Schriftenwelt ohne Schräglage),
 **Funktional** (funktionaler Minimalismus), **Modern** (Weiterentwicklung
 des GHSE-Auftritts) und **Lesebuch** (Buchbindung mit blauer Kopfleiste,
 Serif und Verzeichnis); mit echten GHSE-Inhalten, Texten, Bildern und
@@ -714,7 +715,7 @@ layouts/            baseof.html, home.html, 404.html
   news/             section.html, page.html
   schularten/       section.html, page.html
   downloads/        section.html
-assets/css/         main.css (Neo), klar.css, funktional.css, modern.css
+assets/css/         main.css (Neo), neo-ruhig.css, klar.css, funktional.css, modern.css
                     – Hugo Pipes: minify + fingerprint
 assets/js/          nav.js, video.js, design.js – Hugo Pipes: minify + fingerprint
 assets/fonts/klar/  Roboto und Poppins für Klar
@@ -748,9 +749,9 @@ recherche/          Roh-Extrakte der Originalseite (Arbeitsstand, nicht eingeche
 * **Strukturierung:** Inhalte sind getrennte Markdown-Dateien mit Schlüssel-
   werten; Kategorien und Gruppen entstehen aus den Daten, nicht aus der Vorlage.
 
-### Gestaltungsvarianten (sechs Themes)
+### Gestaltungsvarianten (sieben Themes)
 
-Dieselben Seiten gibt es in sechs Aussehen; alle nutzen dieselben Templates,
+Dieselben Seiten gibt es in sieben Aussehen; alle nutzen dieselben Templates,
 Inhalte und URLs:
 
 | Kennung | Kurzform | Aussehen |
@@ -761,6 +762,7 @@ Inhalte und URLs:
 | `modern` | Modern | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten |
 | `lesebuch` | Lesebuch | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Piazzolla/Public Sans, Tafeln statt Karten, ein gelbes Lesebändchen |
 | `design-06` | Wegw. | GHSE-Blauverlauf als Wand, weiße Emailschilder, gelbe Zielwege, Archivo, Standortleiste und Spezifikationsetiketten |
+| `neo-ruhig` | Neo Ruhig | Wie Neo, aber ohne jede Schräglage; Farben, Kontraste, Schatten und Inter unverändert |
 
 * **Umschalter:** `_partials/stilwahl.html` steht ab 1101 px in der
   Kopfleiste und bis 1100 px im Menü. `assets/js/design.js` setzt
@@ -789,24 +791,34 @@ Inhalte und URLs:
   `:root[data-design="<id>"]` schreiben; Dokument anlegen. Templates,
   Umschalter und Skript bleiben unverändert, die CSS-Datei wird automatisch
   mitgeladen.
+* **Neo Ruhig:** Das siebte Theme erbt Neobrutalismus vollständig und
+  begradigt nur die gekippten Flächen. `assets/css/neo-ruhig.css` enthält
+  ausschließlich `transform: none` unter
+  `:root[data-design="neo-ruhig"]`; Neobrutalismus und `main.css` bleiben
+  unverändert.
 * **Dokumente:** `Neobrutalismus-DESIGN.md`, `clean-DESIGN.md`,
-  `funktional-DESIGN.md`, `modern-DESIGN.md`, `lesebuch-DESIGN.md`, gemeinsam
-  `DESIGN.md`. Vorschaubilder der neuen Themes:
-  [Funktional](static/bilder/themes/funktional.webp),
-  [Modern](static/bilder/themes/modern.webp) und
-  [Lesebuch](static/bilder/themes/lesebuch.webp); der bestehende Umschalter
-  bleibt ein natives Auswahlfeld ohne Bildkonvention.
+  `funktional-DESIGN.md`, `modern-DESIGN.md`, `lesebuch-DESIGN.md`,
+  `neo-ruhig-DESIGN.md`, gemeinsam `DESIGN.md`. Vorschaubilder der neuen
+  Themes: [Funktional](static/bilder/themes/funktional.webp),
+  [Modern](static/bilder/themes/modern.webp),
+  [Lesebuch](static/bilder/themes/lesebuch.webp) und
+  [Neo Ruhig](static/bilder/themes/neo-ruhig.webp); der bestehende
+  Umschalter bleibt ein natives Auswahlfeld ohne Bildkonvention.
 * **QA:** `qa/kontrast.py` prüft Neo, `qa/kontrast_klar.py` prüft Klar
   (Hell und Dunkel, AAA). `qa/klar_pruefung.py <bau>` misst die
-  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle sechs Varianten
-  auf Überlauf, Versalien, Rotation, Schriftgrößen, Kontraste und
-  Zeigeziele; `qa/design.py <url>` prüft Umschalter, Speicherung, Neuladen
-  und `?design=klar`. `qa/theme-guard.py` vergleicht alle 681 vorhandenen
+  Klar-Variante im Browser; `qa/themes.py <url>` prüft alle sieben Varianten
+  auf Überlauf, Schriftgrößen, Kontraste und Zeigeziele, die neuen
+  Varianten zusätzlich auf Versalien und Neo Ruhig auf Rotation;
+  `qa/design.py <url>` prüft Umschalter, Speicherung, Neuladen und
+  `?design=klar`. `qa/theme-guard.py` vergleicht alle 681 vorhandenen
   Layout-, Asset-, Inhalts- und statischen Dateien mit dem Schutzstand
   `qa/theme-baseline.json`; nach einer bewussten Änderung an Neo oder Klar
   wird die Baseline neu erzeugt. `qa/theme5-guard.py` schützt zusätzlich
-  alle 692 Dateien der vier Varianten vor dem Stand `3aa9a4c` (Theme 5
-  ergänzt nur den fünften `params.designs`-Eintrag). `qa/themebilder.py`
+  alle 692 Dateien der vier Varianten vor dem Stand `3aa9a4c`;
+  `hugo.toml` darf dort nur `lesebuch`, `design-06` und `neo-ruhig`
+  additiv ergänzen. `qa/design6-guard.py` schützt den Stand `ea4e557`,
+  `qa/neo-ruhig-isolation.py` prüft die neue CSS-Datei auf reine
+  Begradigung. `qa/themebilder.py`
   nimmt sechs Seiten × drei Breiten je Variante auf und vergleicht zwei
   Läufe per SHA-256 der PNG-Dateien. Voraussetzung für die Browserprüfungen
   ist Playwright mit Chromium.

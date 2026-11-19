@@ -76,7 +76,20 @@ def main():
             pruefe("Roboto" in s["schrift"], "Klar nutzt nicht Roboto: %r" % s["schrift"])
 
             optionen = page.eval_on_selector_all(".stilwahl--leiste option", "els => els.map(e => e.value)")
-            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern", "lesebuch", "design-06"], "Theme-Optionen: %r" % optionen)
+            pruefe(optionen == ["neobrutalismus", "klar", "funktional", "modern", "lesebuch", "design-06", "neo-ruhig"], "Theme-Optionen: %r" % optionen)
+
+            page.select_option(".stilwahl--leiste select", "neo-ruhig")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "neo-ruhig", "Wechsel auf Neo Ruhig fehlt: %r" % s)
+            pruefe("Inter" in s["schrift"], "Neo Ruhig nutzt nicht Inter: %r" % s["schrift"])
+            pruefe(s["gespeichert"] == "neo-ruhig", "Neo Ruhig nicht gespeichert: %r" % s["gespeichert"])
+
+            page.reload(wait_until="load")
+            page.wait_for_timeout(250)
+            s = zustand(page)
+            pruefe(s["design"] == "neo-ruhig", "Neo Ruhig überlebt Neuladen nicht: %r" % s)
+            pruefe(s["wahl"] == "neo-ruhig", "Auswahl nach Neuladen falsch: %r" % s["wahl"])
 
             page.select_option(".stilwahl--leiste select", "design-06")
             page.wait_for_timeout(250)
@@ -125,7 +138,7 @@ def main():
             ctx2.close()
         finally:
             browser.close()
-    print("OK: sechs Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
+    print("OK: sieben Varianten, Speicherung, Neuladen und ?design=… funktionieren.")
 
 
 if __name__ == "__main__":

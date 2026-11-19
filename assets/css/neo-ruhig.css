@@ -1,0 +1,18 @@
+/* Neobrutalismus Ruhig: dieselbe Farb-, Kontrast- und Schriftenwelt wie
+   „Neobrutalismus“, aber ohne Schräglage. Die Variante erbt alle Regeln
+   aus main.css (Neo) und begradigt ausschließlich die gekippten Flächen.
+   Jede Regel ist auf :root[data-design="neo-ruhig"] begrenzt; die anderen
+   Varianten bleiben unberührt. */
+
+:root[data-design="neo-ruhig"] .chip--akzent,
+:root[data-design="neo-ruhig"] .marke,
+:root[data-design="neo-ruhig"] .hero__punkte li:nth-child(odd),
+:root[data-design="neo-ruhig"] .hero__punkte li:nth-child(even),
+:root[data-design="neo-ruhig"] .hero__bild img,
+:root[data-design="neo-ruhig"] .instabeitrag__plakette,
+:root[data-design="neo-ruhig"] .instaraster li:nth-child(4n + 2) .instabeitrag__plakette,
+:root[data-design="neo-ruhig"] .instaraster li:nth-child(4n + 3) .instabeitrag__plakette,
+:root[data-design="neo-ruhig"] .schulleben li:nth-child(3n + 1) img,
+:root[data-design="neo-ruhig"] .schulleben li:nth-child(3n + 3) img {
+  transform: none;
+}

@@ -6,11 +6,12 @@ erzeugt (`--neu`) und danach nur noch geprüft. Er umfasst jede vorhandene
 Datei unter `assets/`, `layouts/`, `content/` und `static/` sowie die
 Theme-Registrierung in `hugo.toml`.
 
-`hugo.toml` ist nicht byte-gleich geschützt: Theme 5 braucht dort genau
-einen zusätzlichen `[[params.designs]]`-Block. Geprüft wird deshalb
-semantisch – alle Einträge außer `params.designs` müssen gleich bleiben,
-die ersten vier Designs müssen unverändert und in derselben Reihenfolge
-stehen, und danach darf genau ein Eintrag `lesebuch` folgen.
+`hugo.toml` ist nicht byte-gleich geschützt: Theme 5 und die späteren
+Varianten brauchen dort je einen zusätzlichen `[[params.designs]]`-Block.
+Geprüft wird deshalb semantisch – alle Einträge außer `params.designs`
+müssen gleich bleiben, die ersten vier Designs müssen unverändert und in
+derselben Reihenfolge stehen, und danach dürfen nur `lesebuch`, `design-06`
+und `neo-ruhig` folgen.
 
 Aufruf:
     python3 qa/theme5-guard.py            # prüfen
@@ -29,6 +30,7 @@ BASELINE = Path(__file__).resolve().parent / "theme5-baseline.json"
 ORDNER = ("assets", "layouts", "content", "static")
 THEME_ID = "lesebuch"
 ZUSATZ_NACH_THEME5 = "design-06"
+ZUSATZ_NACH_DESIGN6 = "neo-ruhig"
 
 # Vom Auftraggeber freigegeben: deutscher 404-Titel in baseof.html und
 # der echte Zielpfad für die Menügruppe „Schüler“. Nur diese neuen Werte
@@ -107,8 +109,15 @@ def pruefen():
     if neu_designs[:len(alt_designs)] != alt_designs:
         fehler.append("hugo.toml: bestehende Design-Einträge verändert oder umsortiert")
     zusatz = [d.get("id") for d in neu_designs[len(alt_designs):]]
-    if zusatz not in ([], [THEME_ID], [THEME_ID, ZUSATZ_NACH_THEME5]):
-        fehler.append("hugo.toml: zusätzliche Designs sind nicht lesebuch und optional design-06")
+    erlaubt = (
+        [],
+        [THEME_ID],
+        [THEME_ID, ZUSATZ_NACH_THEME5],
+        [THEME_ID, ZUSATZ_NACH_THEME5, ZUSATZ_NACH_DESIGN6],
+    )
+    if zusatz not in erlaubt:
+        fehler.append("hugo.toml: zusätzliche Designs sind nicht lesebuch, "
+                      "design-06 und neo-ruhig")
 
     print(f"Schutzstand {daten['base']}: {len(daten['files'])} Dateien geprüft, "
           f"{len(alt_designs)} bestehende Designs")

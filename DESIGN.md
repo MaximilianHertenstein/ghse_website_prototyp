@@ -1,5 +1,5 @@
 ---
-name: GHSE – sechs Gestaltungsvarianten
+name: GHSE – sieben Gestaltungsvarianten
 colors:
   primary: "#F6DC56"
   secondary: "#114C92"
@@ -27,7 +27,7 @@ spacing:
 
 ## Überblick
 
-Dieselben Seiten, Inhalte und URLs gibt es in sechs Gestaltungsvarianten.
+Dieselben Seiten, Inhalte und URLs gibt es in sieben Gestaltungsvarianten.
 Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 
 | Variante | Kennung | Aussehen | Dokument |
@@ -38,6 +38,7 @@ Alle nutzen dieselben Hugo-Templates; nur das Aussehen wechselt.
 | **Modern** | `modern` | Marineblau/GHSE-Blau/Gelb/Orange, Familjen Grotesk, weiße Karten auf hellem Blau, weiche Schatten | `modern-DESIGN.md` |
 | **Lesebuch** | `lesebuch` | Graugrünes Papier, blaue Kopfleiste als Verzeichnis, Piazzolla/Public Sans, Tafeln und Haarlinien statt Karten | `lesebuch-DESIGN.md` |
 | **Wegweiser** | `design-06` | GHSE-Blauverlauf als Wand, weiße Emailschilder, gelbe Zielwege, Archivo, Standortleiste und Spezifikationsetiketten | `design-06-DESIGN.md` |
+| **Neo Ruhig** | `neo-ruhig` | Neobrutalismus mit denselben Farben, Kontrasten und Inter-Schriften, aber ohne jede Schräglage | `neo-ruhig-DESIGN.md` |
 
 ## Sechste Variante: Wegweiser
 
@@ -54,14 +55,29 @@ unverändert, ergänzt um ein dokumentiertes Blauspektrum.
   Dokumentationen bleiben unverändert.
 - Critique, Polish und Audit: `design-06-CRITIQUE.md`, `design-06-AUDIT.md`.
 
+## Siebte Variante: Neo Ruhig
+
+„Neo Ruhig“ ist keine neue Designwelt, sondern die ruhige Fassung von
+Neobrutalismus. Farben, Kontraste, Rahmen, Schatten und Inter bleiben
+unverändert; alle gekippten Flächen werden geradegestellt. Die Variante
+erbt sämtliche Regeln aus `main.css` und setzt in
+`assets/css/neo-ruhig.css` ausschließlich `transform: none` für die
+vorher gedrehten Elemente. Neobrutalismus selbst bleibt unverändert.
+
+- Kennung: `neo-ruhig`; sichtbarer Name „Neo Ruhig“; Kurzform „Neo Ruhig“.
+- CSS: `assets/css/neo-ruhig.css`; keine eigene Schrift, Inter kommt aus
+  `main.css`; Dokumentation: `neo-ruhig-DESIGN.md`.
+- Alle Regeln sind auf `:root[data-design="neo-ruhig"]` begrenzt;
+  `qa/neo-ruhig-isolation.py` prüft genau das.
+
 ## Umschaltung
 
 - `params.designs` in `hugo.toml` listet die Varianten mit `id`, `name`,
   `kurz`, optional `css` und `fonts`.
 - `layouts/baseof.html` setzt `data-design` am `<html>` vor dem ersten
   Bild (localStorage `ghse-design`, sonst `params.design`). Ohne
-  gespeicherte Wahl startet die Seite in `funktional`; Neo steht in
-  `main.css` und braucht keine eigene CSS-Datei.
+  gespeicherte Wahl startet die Seite in `klar`; Neo und Neo Ruhig stehen
+  in `main.css` bzw. bauen darauf auf.
 - Der Umschalter (`_partials/stilwahl.html`) steht ab 1101 px in der
   Kopfleiste, bis 1100 px im Menü. `assets/js/design.js` schaltet um,
   speichert die Wahl und hält beide Menüs synchron.
@@ -77,6 +93,6 @@ unverändert, ergänzt um ein dokumentiertes Blauspektrum.
   Variante erfindet Inhalte oder Ziele.
 - Jede Variante prüft ihre eigenen Kontrast- und Lesbarkeitswerte
   (`qa/kontrast.py` für Neobrutalismus, `qa/kontrast_klar.py` für Klar,
-  `qa/themes.py` für alle vier im Browser).
+  `qa/themes.py` für alle sieben im Browser).
 - Farbe und Schrift sind pro Variante über Tokens gesetzt; Komponenten
   lesen nur Tokens, keine Rohwerte.
